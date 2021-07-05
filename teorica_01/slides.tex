@@ -38,6 +38,9 @@
 \usepackage[overridenote]{pdfpc} % requires to download manually pdfpc.sty package from https://www.ctan.org/pkg/pdfpc
 \usepackage[backend=biber]{biblatex} % set biber to format references. Must configure Biber in Texstudio
 
+% Color commands for annotations
+\newcommand\TODO[1]{\textbf{\textcolor{red}{#1}}} %  TODO notes
+
 % add bibliography resource
 \renewcommand*{\bibfont}{\footnotesize} % change bibliograhy size
 \bibliography{./src/bibliography.bib}
@@ -58,14 +61,11 @@
 \frame{\titlepage}
 
 
-% add Table of Content slide
-%\begin{frame}
-%    \frametitle{Estructura de la presentación}
-%    \tableofcontents
-%\end{frame}
+\section{Organización de la Materia}
+\input{src/course_organization.tex}
 
 \section{Introducción}
-%\input{src/mobile_robotics_introduction.tex}
+\input{src/mobile_robotics_introduction.tex}
 
 \section{Trabajo actual}
 \begin{frame}
