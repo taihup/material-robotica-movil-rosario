@@ -1,0 +1,84 @@
+% Estas slides tienen que abrirse con el programa pdfpc que soporta videos embebidos
+% el comando es: pdfpc -g slides.pdf
+% para los videos se requiere ubuntu-restricted-extras
+
+
+%\documentclass[compress,handout]{beamer}
+\documentclass[compress]{beamer}
+% compress pone la seccion abajo de todo
+\mode<presentation>
+
+
+% Theme customization
+\usetheme{Copenhagen}
+\setbeamertemplate{itemize item}[rectangle] % configure itemize
+\setbeamertemplate{itemize subitem}[circle] % configure itemize
+\setbeamertemplate{itemize subsubitem}[triangle] % configure itemize
+\setbeamertemplate{navigation symbols}{} % remover simbolos de navegacion de las slides
+\usefonttheme[onlymath]{serif} % simbolos matematicos en serif (Como es en latex original)
+
+\setbeamertemplate{blocks}[rounded] % blocks corners rounded
+\setbeamercolor{block body}{bg=blue!12,fg=black} % color of blocks
+
+% Latex packages
+\usepackage{pdfpc-commands} % pdfpc movie commands
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % para copiar acentos en español del pdf y permite acentos en las notas
+\usepackage[spanish]{babel}
+\usepackage[binary-units=true,per-mode = symbol]{siunitx} % para manejar las unidades
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{amsmath} % bmatrix
+\usepackage[caption=false]{subfig} % caption = false elimina la palabra "Figura" del caption
+\setbeamertemplate{caption}{\raggedright\insertcaption\par} % elimina la palabra "Figura" del caption
+\usepackage{import} % para el comando import (se usa para pdf_tex)
+\captionsetup[subfigure]{labelformat=empty} % remover el indice del caption de la subfigura
+\usepackage{booktabs} % \toprule \midrule \bottomrule
+\usepackage[overridenote]{pdfpc} % requires to download manually pdfpc.sty package from https://www.ctan.org/pkg/pdfpc
+\usepackage[backend=biber]{biblatex} % set biber to format references. Must configure Biber in Texstudio
+
+% add bibliography resource
+\renewcommand*{\bibfont}{\footnotesize} % change bibliograhy size
+\bibliography{./src/bibliography.bib}
+
+
+% add math preamble
+%\input{./math_preamble}
+
+\title{Robótica Móvil}
+\author{}
+\institute{Universidad Nacional de Rosario}
+%\date{\scriptsize{Julio 1, 2021}}
+\date{}
+
+\begin{document}
+
+% add title page
+\frame{\titlepage}
+
+
+% add Table of Content slide
+%\begin{frame}
+%    \frametitle{Estructura de la presentación}
+%    \tableofcontents
+%\end{frame}
+
+\section{Introducción}
+%\input{src/mobile_robotics_introduction.tex}
+
+\section{Trabajo actual}
+\begin{frame}
+    \frametitle{Trabajo actual}
+    \begin{itemize}
+        \item Fusión de sensores (Loosely y Tightly coupled)
+        \item SLAM Relativo (SLAM Multi-Robot y Distribuido)
+        \item Calibración de sensores
+        \item Long-term/Loop Closing en entornos Agrícolas
+    \end{itemize}
+\end{frame}
+
+%\section*{Referencias}
+%\input{src/references.tex}
+
+\end{document}
