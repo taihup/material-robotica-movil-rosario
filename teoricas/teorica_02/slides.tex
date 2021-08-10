@@ -1,7 +1,6 @@
 % Estas slides tienen que abrirse con el programa pdfpc que soporta videos embebidos
 % el comando es: pdfpc -g slides.pdf
 % para los videos se requiere ubuntu-restricted-extras
-% para la bibliografía se requiere biber y configurar texstudio
 
 
 %\documentclass[compress,handout]{beamer}
@@ -44,13 +43,11 @@
 \renewcommand*{\bibfont}{\footnotesize} % change bibliograhy size
 \bibliography{./src/bibliography.bib}
 
-% Graphic paths
-\graphicspath{{./images/}}
 
 % add math preamble
 %\input{./math_preamble}
 
-\title{Robótica Móvil}
+\title{Sensores y actuadores}
 \author{}
 \institute{Universidad Nacional de Rosario}
 %\date{\scriptsize{Julio 1, 2021}}
@@ -62,13 +59,13 @@
 \frame{\titlepage}
 
 
-\section{Organización de la Materia}
-\input{src/course_organization.tex}
+\section{Sensores}
+\input{src/sensors.tex}
 
-\section{Introducción}
-\input{src/mobile_robotics_introduction.tex}
+\section{Tipos de locomoción}
+\input{src/locomotion.tex}
 
-\section{Bibliografía}
-\input{src/bibliography.tex}
+\section{Kinematica}
+\input{src/kinematics.tex}
 
 \end{document}

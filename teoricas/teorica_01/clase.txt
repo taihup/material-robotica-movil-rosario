@@ -1,0 +1,9 @@
+
+Brief introduction to robotics:
+https://cs.stanford.edu/people/eroberts/courses/soco/projects/1998-99/robotics/history.html
+
+
+En esta clase damos una breve reseña hitórica de la robótica.
+Contamos diferences aplicaciones para motivar a los alumnos.
+Mostramos el estado del arte, problemas actuales, estado de la investigación, actualizar todos los años.
+Contar trabajos que estamos haciendo en el grupo.
