@@ -1,9 +1,9 @@
 \begin{frame}
     \frametitle{Tipos de Robots}
-    
+
     Sensores Propioceptivos (estado interno)
     Sensores exterioceptivos (estado externo)
-    
+
 \end{frame}
 
 
@@ -30,62 +30,90 @@
 
 \begin{frame}
 	\frametitle{Bumper}
-	
-\end{frame}
-
-\begin{frame}
-	\frametitle{Sensor cámara}
 
 \end{frame}
 
 \begin{frame}
-	\frametitle{Sensor encoders}
-	
+	\frametitle{Cámara}
+
 \end{frame}
 
 \begin{frame}
-	\frametitle{Sensor Ultrasónico}
-	
+	\frametitle{Encoders}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Ultrasónico}
+
 \end{frame}
 
 \begin{frame}
 	\frametitle{Compass}
-	
+	\includegraphics[width=0.5\columnwidth]{pioneer_10.jpg}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Giróscopo}
-	
+
 \end{frame}
 
 \begin{frame}
 	\frametitle{Acelerómetro}
-	
+
 \end{frame}
 
 \begin{frame}
 	\frametitle{Láser 2D}
-	
+
 \end{frame}
 
 \begin{frame}
 	\frametitle{Láser 3D}
-	
+
 \end{frame}
 
 \begin{frame}
 	\frametitle{Cámara basada en eventos}
-	
+
 \end{frame}
 
 \begin{frame}
-	\frametitle{Global Positionning System (GPS)}
-	
+    \frametitle{Sistema GPS}
+    % Página que explica como funciona un GPS http://gutovnik.com/como_func_sist_gps.htm
+    % video explicativo: https://youtu.be/U3eX6QKS9kY
+    \begin{itemize}
+        \item Se toma la distancia a cuatro satélites (uno por cada incógnita: latitud, longitud, altitud y offset en tiempo del del reloj del receptor) y se estima la pose por triangulación.
+        \item La distancia se obtiene midiendo el tiempo que tarda en llegar la señal del satélite %emitida por el satélite en llegar hasta nuestro receptor de GPS
+        \note{En el caso del GPS estamos midiendo una señal de radio, que sabemos que viaja a la velocidad de la luz, alrededor de 300.000 km por segundo.}
+        \note{La señal que recibe un receptor de GPS no es solamente un Código Pseudo Aleatorio con fines de timing. También contiene un mensaje de navegación con información sobre la órbita exacta del satélite}
+        \note{Otra manera de manejar los errores inducidos por la atmósfera es comparar la velocidad relativa de dos señales diferentes. Esta medición de doble frecuencia es muy sofisticada y solo es posible en receptores GPS muy avanzados. Estos son los GPS-RTK!}
+        \note{Los receptores "normales" basados navegación por satélite, comparan una señal pseudoaleatoria que es enviada desde el satélite con una copia interna generada por la misma señal. Puesto que la senal del satelite tarda tiempo en alcanzar al receptor, las dos senales no se alinean correctamente, la copia del satelite se retrasa en referencia a la copia local. Al retrasar progresivamente la copia local, las dos señales se alinearán correctamente en algún momento. Este retraso es el tiempo necesario para que la señal alcance al receptor, y del resultado de esto puede ser calculada la distancia al satélite. La precisión de la medición resultante es generalmente una función de la capacidad  electrónica del receptor para comparar exactamente las dos señales.}
+        \item Fuentes de ruido (Retrasos ionosféricos y atmosféricos, Efecto Multitrayectoria, Dilución de la Precisión, reloj del satélite)
+        \item Error de posicionamiento métrico ($\sim$2 m)
+    \end{itemize}
+
+    \centering
+    \includegraphics[width=0.5\columnwidth]{gps.pdf}
+
 \end{frame}
 
 \begin{frame}
-	\frametitle{GPS-RTK}
-	
+\frametitle{Sistema GPS-RTK características}
+    \begin{itemize}
+        \item Al menos dos receptores GPS (estación base y unidad móvil)
+        \item La estación base retransmite la fase de la onda portadora de la señal enviada por el satelite \note{no tiene en cuenta los datos enviados por el satelite}
+        \item La unidad móvil compara su medición de fase de la señal con la fase recibida de la estación base (\emph{Resolución de Ambig\"uedad})
+        \item Error de posicionamiento submétrico.
+        \item Alcance de \SI{10}{\km}
+    \end{itemize}
+    \centering
+    \includegraphics[width=0.5\columnwidth]{gps_rtk_system.pdf}
+%
+\note{ RESOLUCIÓN DE AMBIGUEDAD\\
+La sincronización entre la portadora de la señal recibida y la réplica generada en recepción permite obtener una medida de la fase de la portadora. Esta medida de fase puede ser utilizada también para estimar la distancia satélite-receptor. Sin embargo, para ello, es necesario conocer el número entero de ciclos de portadora transcurridos desde que la señal deja el satélite hasta que llega al receptor.\\
+Para realizar la sincronización entre la portadora de la señal y la réplica es necesario tener en cuenta el efecto doppler que se produce debido al movimiento relativo satélite receptor. Por ello, la frecuencia de la réplica ha de ser igual a la frecuencia de la señal transmitida con su desplazamiento doppler corregido. La sincronización se realiza mediante circuitos de enganche en fase (Phase Lock Loop, PLL) o en frecuencia (Frecuency Lock Loop, FLL). Los circuitos PLL o FLL permiten obtener medidas de fase con precisiones del orden de 0.01 ciclos de portadora.\\
+Una vez que el receptor se sincroniza con la portadora y con el código, es decir, se produce el enganche con la señal del satélite, el receptor puede medir la fase de la portadora recibida. Esta medida se obtiene de forma parecida a como se obtiene la medida de pseudodistancia, pues será el desfase que es necesario realizar a la réplica de la portadora para que se sincronice con la portadora recibida. La medida de fase se suele expresar en ciclos de portadora. Por tanto, tal como se ha descrito hasta ahora, la medida de fase será un valor decimal, no entero, indicando la fracción de ciclo de portadora transcurrido en el momento de la recepción de la señal. La distancia entre el satélite y el receptor se puede expresar en número de longitudes de onda y será igual al número entero de ciclos de portadora n transcurridos en el origen desde que la señal salió del satélite hasta que llegó al receptor, más la fracción de ciclo medida (la medida de fase). Por tanto, la medida de fase sirve como estimación de la distancia satélite-receptor pero tiene el problema de que el número entero n es desconocido. A dicho número se le denomina ambigüedad entera de ciclos de portadora. Mientras el receptor permanezca enganchado con la señal el número entero n desconocido permanecerá constante, pues el receptor registra la variación del número entero de ciclos en las propias medidas de fase. La figura 1.7 ilustra esta circunstancia. En el instante t 0 se produce el enganche, obteniéndose la medida phi 0 y siendo desconocido el número de ciclos n. A partir de entonces, el receptor registra la variación de ciclos que se van produciendo y en los instantes sucesivos las medidas de fase phi i estarán formadas por una parte fraccional y una parte entera: la diferencia entre el número de ciclos transcurridos y el número n de la medida inicial. Por tanto, el único valor desconocido es el número entero de ciclos n inicial.}
 \end{frame}
 
 
