@@ -10,10 +10,10 @@
 
 \begin{frame}
     \frametitle{Un poco de Historia}
-    
+
     La primera aparición de la palabra robot es utilizada por Karl Capek en 1921 en su obra teatral R. U. R. (Rossumovi Univerzální Roboti Rossum's Universal Robots). La palabra robot viene de la palabra checa \emph{robota} que significa esclavo.
-    
-    
+
+
     \centering
     \begin{figure}
     	\subfloat[]
@@ -25,7 +25,7 @@
    			\includegraphics[width=0.5\columnwidth]{rossums_universal_robots_play.jpg}
     	}
     \end{figure}
-    
+
     \note{
         Fuente: https://cs.stanford.edu/people/eroberts/courses/soco/projects/1998-99/robotics/history.html\\
         La obra teatral trata sobre una empresa que construye humanos artificiales orgánicos con el fin de aligerar la carga de trabajo del resto de personas. Aunque en la obra a estos hombres artificiales se les llama robots, tienen más que ver con el concepto moderno de androide o clon. Se trata de criaturas que pueden hacerse pasar por humanos y que tienen el don de poder pensar. Pese a ser creadas para ayudar a la humanidad, más adelante estas máquinas entrarán en confrontación con la sociedad, iniciando una revolución que acabará destruyendo la humanidad.}
@@ -33,7 +33,7 @@
 
 \begin{frame}
     \frametitle{Un poco de Historia}
-    
+
     La palabra \emph{robotics} también fue utilizada por primera vez por Issac Asimov en 1942 en su cuento corto \emph{Runaround} (en español Circuito Vicioso).
 
     \begin{itemize}
@@ -42,33 +42,33 @@
         \item Tercera Ley: Un robot debe proteger su propia existencia en la medida en que esta protección no entre en conflicto con la primera o con la segunda ley.
     \end{itemize}
 
-    
+
     \note{The word robotics was also coined by a writer.  Russian-born American science-fiction writer Isaac Asimov first used the word in 1942 in his short story Runabout.  Asimov had a much brighter and more optimistic opinion of the robot's role in human society than did Capek.  He generally characterized the robots in his short stories as helpful servants of man and viewed robots as a better, cleaner race.  Asimov also proposed three "Laws of Robotics" that his robots, as well as sci-fi robotic characters of many other stories.}
 \end{frame}
 
 \begin{frame}
     \frametitle{¿Qué es un Robot?}
-   
+
     \begin{block}{Según Robot Institute of America, 1979}
         Un manipulador reprogramable y multifuncional diseñado para mover material, piezas, herramientas o dispositivos especializados a través de varios movimientos programados para el desempeño de una variedad de tareas.
     \end{block}
-    
+
     \begin{block}{Según la RAE}
         Máquina o ingenio electrónico programable que es capaz de manipular objetos y realizar diversas operaciones.
     \end{block}
-    
+
     \begin{block}{Una definición que usamos (\url{https://robots.ieee.org/learn/what-is-a-robot/}):}
         Un robot es una máquina autónoma capaz de sensar su entorno, realizar cálculos para tomar decisiones y realizar acciones en el mundo real.
     \end{block}
-    
+
     \note{hay varias definiciones.\\
     Fuente: https://robots.ieee.org/learn/what-is-a-robot/}
 \end{frame}
 
 \begin{frame}
     \frametitle{Shakey the robot: el primer robot móvil autónomo}
-    
-   
+
+
     \begin{columns}[T] % align columns
         \begin{column}{.4\textwidth}
             \includegraphics[width=\columnwidth]{shakey.png}
@@ -76,9 +76,9 @@
         \hfill%
         \begin{column}{.56\textwidth}
               Desarrollado durante 1966 - 1972 por Stanford Research Institute International (SRI).
-              
+
               Resultados: A*, Hough transform y visibility graph.
-              
+
         \end{column}%
     \end{columns}
 
@@ -96,35 +96,35 @@
 
 \begin{frame}
     \frametitle{Aplicaciones de la Robótica}
-    
+
     \note{https://robots.ieee.org/learn/types-of-robots/}
-    
+
 	\begin{figure}[!h]
         \centering
-        \subfloat[] 
+        \subfloat[]
         {
             \includegraphics[width=0.33\columnwidth]{./images/drone.jpg}
         }
-        \subfloat[] 
+        \subfloat[]
         {
             \includegraphics[width=0.33\columnwidth]{./images/google_car.jpg}
         }
-        \subfloat[] 
+        \subfloat[]
         {
-            \includegraphics[width=0.16\columnwidth]{./images/industrial_robot.png}
+            \includegraphics[width=0.165\columnwidth]{./images/industrial_robot.png}
         }\\
-        \subfloat[] 
+        \subfloat[]
         {
             \includegraphics[width=0.33\columnwidth]{./images/curiosity.png}
         }
-        \subfloat[] 
+        \subfloat[]
         {
-            \includegraphics[width=0.27\columnwidth]{./images/weed_removal_robot.jpg}
+            \includegraphics[width=0.24\columnwidth]{./images/weed_removal_robot.jpg}
         }
         \subfloat[]
         {
-            \includegraphics[width=0.3\columnwidth]{./images/aqua.png}
-        }		 
+            \includegraphics[width=0.295\columnwidth]{./images/aqua.png}
+        }
     \end{figure}
 \end{frame}
 
@@ -135,7 +135,7 @@
         \begin{column}{.48\textwidth}
             \begin{itemize}
                 \item Vehículos autónomos
-                \item Industriales 
+                \item Industriales
                 \item Cuidado de la Salud
                 \item Aeroespacial
                 \item Robots de consumo
@@ -162,13 +162,13 @@
 
 \begin{frame}
     \frametitle{Tipos de Robots según locomoción o entorno}
-    
+
     Brazos robóticos
     Robots con patas
     Robots acuáticos
     Robots Humanoides
     Robots aéreos
-    
+
 \end{frame}
 
 
@@ -178,7 +178,8 @@
         La navegación autónoma puede definirse a grandes rasgos como la capacidad de moverse de forma segura a lo largo de una trayectoria entre un punto de inicio y uno final [1].
     \end{block}
     \vspace{5mm}
-    \begin{columns}
+    \footnotesize
+    \begin{columns}[t]
         \column{0.4\textwidth}
         \hspace{13pt}Pregunta:
         \begin{enumerate}
@@ -191,7 +192,7 @@
         \begin{enumerate}[$\rightarrow$]
             \visible<3-7>{ \item  Cálculo de la posición (Localization)}
             \visible<5-7>{ \item  Representación del entorno (Mapping)}
-            \visible<7-7>{\item  Planeamiento de movimiento (Motion planning)}
+            \visible<7-7>{\item  Planeamiento de trayectoria (Path planning)}
         \end{enumerate}
     \end{columns}
     \only<4>{}
@@ -203,9 +204,13 @@
 
 
 \begin{frame}
-    \frametitle{Estado del arte}
-    
-    
+    \frametitle{Desafíos de la robótica móvil}
 
-    \TODO{Comentar los problemas actuales del estado del arte. Lor problemas al trabajr con sensores que tienen error, dependiendo el entorno y la aplicación que tiene que hacer el robot hay que resolver diferentes problemas. Dar ejemplos, problemas que hay en el agua, en outdoor con la luz, de noche, blur, comentar problemas con las camaras,}
+    El entorno, el sistema de locomoción, los sensores y la aplicación determinan los desafíos a resolver.
+
+    \vspace{1em}
+
+    Analizar los problemas que puedan aparecer en ciertas aplicaciones...
+
+    \note{Comentar los problemas actuales del estado del arte. Lor problemas al trabajr con sensores que tienen error, dependiendo el entorno y la aplicación que tiene que hacer el robot hay que resolver diferentes problemas. Dar ejemplos, problemas que hay en el agua, en outdoor con la luz, de noche, blur, comentar problemas con las camaras}
 \end{frame}
