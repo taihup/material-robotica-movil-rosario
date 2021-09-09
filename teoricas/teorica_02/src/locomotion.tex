@@ -91,15 +91,78 @@
 
 
 \begin{frame}
-    \frametitle{Gaits}
+    \frametitle{Gaits: static walking gait}
 
+    En el caso de un robot móvil de varias patas, existe el problema de la coordinación de las patas para su locomoción o control de la marcha.
+
+    \begin{center}
+        \includegraphics[width=0.2\columnwidth]{images/hexapod_static_walking_gait.pdf}
+    \end{center}
+
+    Un gait es una secuencia de eventos de elevación y liberación para las piernas individuales. Para un robot móvil con $k$ patas, el número total de secuencias de eventos distintas para una máquina para caminar es
+    \begin{equation*}
+        N = \left( 2k - 1\right)!
+    \end{equation*}
+
+    \note{Hay diferentes formas de desplazarse}
 \end{frame}
-
 
 \begin{frame}
     \frametitle{Tipos de Ruedas}
 
+	\begin{figure}[!h]
+        \centering
+        \subfloat[Fija]
+        {
+            \includegraphics[width=0.15\columnwidth]{./images/fix_wheel.png}
+        }
+        \subfloat[Direccional]
+        {
+            \includegraphics[width=0.15\columnwidth]{./images/directional_wheel.png}
+        }
+        \subfloat[Giratoria]
+        {
+            \includegraphics[width=0.15\columnwidth]{./images/rotational_wheel.png}
+        }
+        \subfloat[Omnidireccional]
+        {
+            \includegraphics[width=0.2\columnwidth]{./images/omni_wheel.png}
+        }
+        \subfloat[Mecanum]
+        {
+            \includegraphics[width=0.2\columnwidth]{./images/mecanum_wheel.png}
+        }
+    \end{figure}
 \end{frame}
+
+\begin{frame}
+    \frametitle{Configuraciones de robots con ruedas}
+
+    \begin{figure}[!h]
+        \centering
+        \subfloat[Fija]
+        {
+            \includegraphics[width=0.15\columnwidth]{./images/fix_wheel.png}
+        }
+        \subfloat[Direccional]
+        {
+            \includegraphics[width=0.15\columnwidth]{./images/directional_wheel.png}
+        }
+        \subfloat[Giratoria]
+        {
+            \includegraphics[width=0.15\columnwidth]{./images/rotational_wheel.png}
+        }
+        \subfloat[Omnidireccional]
+        {
+            \includegraphics[width=0.2\columnwidth]{./images/omni_wheel.png}
+        }
+        \subfloat[Mecanum]
+        {
+            \includegraphics[width=0.2\columnwidth]{./images/mecanum_wheel.png}
+        }
+    \end{figure}
+\end{frame}
+
 
 \begin{frame}
     \frametitle{Drones?}
