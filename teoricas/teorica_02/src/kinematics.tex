@@ -164,16 +164,23 @@ Ejemplo un vector de rotación con una magnitud de $\dfrac{\pi}{2}$ apuntando en
     \begin{equation*}
         q = w + q_x i + q_y j + q_z k = \begin{bmatrix} q_w & q_x & q_y & q_z\end{bmatrix}
     \end{equation*}
+\end{frame}
 
-    Los cuaterniones representan una transformación de rotación en 3D. Por lo tanto, la forma más fácil de representar un cuaternión es imaginar la rotación de un ángulo dado alrededor de un vector dado. La siguiente figura ilustra la rotación del ángulo $\theta$ alrededor del vector $\vec{v} = [v_{x} v_{y} v_{z}]$. El cuaternión asociado a esta rotación está dado por:
+\begin{frame}
+    \frametitle{Quaternions}
+
+    \begin{center}
+        \includegraphics[width=0.3\columnwidth]{./images/quaternion.pdf}
+    \end{center}
+
+    Los cuaterniones representan una transformación de rotación en 3D. Por lo tanto, la forma más fácil de representar un cuaternión es imaginar la rotación de un ángulo dado alrededor de un vector dado. La figura ilustra la rotación del ángulo $\theta$ alrededor del vector $\vec{v} = [v_{x} v_{y} v_{z}]$. El cuaternión asociado a esta rotación está dado por:
     %
     \begin{align*}
         q &= \begin{bmatrix} q_w & q_x & q_y & q_z\end{bmatrix}\\
         q &= \begin{bmatrix}
             \cos \frac{\theta}{2} & v_{x} \sin \frac{\theta}{2} & v_{y} \sin \frac{\theta}{2} & v_{z}\sin \frac{\theta}{2}
-            \end{bmatrix}
+        \end{bmatrix}
     \end{align*}
-
 \end{frame}
 
 \begin{frame}
