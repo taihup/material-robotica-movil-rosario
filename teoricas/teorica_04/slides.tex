@@ -1,0 +1,67 @@
+% Estas slides tienen que abrirse con el programa pdfpc que soporta videos embebidos
+% el comando es: pdfpc -g slides.pdf
+% para los videos se requiere ubuntu-restricted-extras
+% para la bibliografía se requiere biber y configurar texstudio
+
+
+%\documentclass[compress,handout]{beamer}
+\documentclass[compress]{beamer}
+
+
+% Theme customization
+\setbeamertemplate{itemize item}[rectangle] % configure itemize
+\setbeamertemplate{itemize subitem}[circle] % configure itemize
+\setbeamertemplate{itemize subsubitem}[triangle] % configure itemize
+\setbeamertemplate{navigation symbols}{} % remover simbolos de navegacion de las slides
+\usefonttheme[onlymath]{serif} % simbolos matematicos en serif (Como es en latex original)
+
+\setbeamertemplate{blocks}[rounded] % blocks corners rounded
+\setbeamercolor{block body}{bg=blue!12,fg=black} % color of blocks
+
+% Latex packages
+\usepackage{pdfpc-commands} % pdfpc movie commands. Requires to be downloaded manually from https://github.com/pdfpc/pdfpc/issues/328#issuecomment-437397536
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % para copiar acentos en español del pdf y permite acentos en las notas
+\usepackage[spanish]{babel}
+\usepackage[binary-units=true,per-mode = symbol]{siunitx} % para manejar las unidades
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{amsmath} % bmatrix
+\usepackage[caption=false]{subfig} % caption = false elimina la palabra "Figura" del caption
+\setbeamertemplate{caption}{\raggedright\insertcaption\par} % elimina la palabra "Figura" del caption
+\usepackage{import} % para el comando import (se usa para pdf_tex)
+\captionsetup[subfigure]{labelformat=empty} % remover el indice del caption de la subfigura
+\usepackage{booktabs} % \toprule \midrule \bottomrule
+\usepackage[overridenote]{pdfpc} % requires to download manually pdfpc.sty package from https://www.ctan.org/pkg/pdfpc
+\usepackage[backend=biber]{biblatex} % set biber to format references. Must configure Biber in Texstudio
+\usepackage{csquotes} % to remove warning triggered by biblatex and babel
+
+% Color commands for annotations
+\newcommand\TODO[1]{\textbf{\textcolor{red}{#1}}} %  TODO notes
+
+% add bibliography resource
+\renewcommand*{\bibfont}{\footnotesize} % change bibliograhy size
+\bibliography{./src/bibliography.bib}
+
+% Graphic paths
+\graphicspath{{./images/}}
+
+% add math preamble
+%\input{./math_preamble}
+
+\title{ROS: Robot Operative System}
+\author{}
+\institute{Universidad Nacional de Rosario}
+%\date{\scriptsize{Julio 1, 2021}}
+\date{}
+
+\begin{document}
+
+% add title page
+\frame{\titlepage}
+
+\section{ROS}
+\input{src/ros.tex}
+
+\end{document}
