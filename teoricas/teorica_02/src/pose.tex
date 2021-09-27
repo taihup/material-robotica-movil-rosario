@@ -1,7 +1,16 @@
 \begin{frame}
     \frametitle{Representación de pose en 2D}
+    \begin{center}
+        \includegraphics[width=0.5\columnwidth]{./images/coordinate_frames.pdf}
+    \end{center}
 
-    \includegraphics[width=0.5\columnwidth]{./images/coordinate_frames.pdf}
+
+    El punto $\point$ puede describirse mediante vectores de coordenadas relativos a cualquier marco $\{\mathrm{A}\}$ o $\{\mathrm{B}\}$. La pose de $\{\mathrm{B}\}$ relativa a $\{\mathrm{A}\}$ es $\transform{A}{B}$.
+
+
+    ${}^{A}\point= \transform{A}{B}{}^{B}\point$
+
+    $\transform{A}{C}= \transform{A}{B}\transform{B}{C}$
 
 \end{frame}
 
@@ -268,4 +277,9 @@
         \only<1>{\includegraphics[width=\columnwidth]{./images/left_right_hand_rule.pdf}}
         \only<2>{\includegraphics[width=\columnwidth]{./images/left_right_hand_rule_cross.pdf}}
     \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Coordenadas Homogeneas e Hinomogeneas}
+
 \end{frame}

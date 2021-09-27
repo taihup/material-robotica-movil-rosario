@@ -1,0 +1,97 @@
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsopn}
+
+% math
+\renewcommand{\vec}[1]{\boldsymbol{\mathbf{#1}}}
+\newcommand{\norm}[1]{\lVert#1\rVert}
+
+% Declare arg max and arg min functionss
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+% Homogeneous decoration function
+\newcommand{\homo}[1]{\dot{#1}}
+
+
+% Declare projection as math function
+\DeclareMathOperator{\proj}{proj}
+\newcommand{\worldCoordSystem}{\mathrm{w}}
+\newcommand{\cameraCoordSystem}{\mathrm{c}}
+\newcommand{\point}{\vec{p}}
+\newcommand{\worldPoint}{\point^{\mathrm{w}}}
+\newcommand{\homoWorldPoint}{\homo{\point}^{\mathrm{w}}}
+\newcommand{\cameraPoint}{\point^{\mathrm{c}}}
+\newcommand{\homoCameraPoint}{\homo{\point}^{\mathrm{c}}}
+\newcommand{\measurement}{\vec{z}}
+\newcommand{\prediction}{\hat{\vec{z}}}
+\newcommand{\imagePoint}{\vec{u}}
+\newcommand{\seMatrix}{\vec{\xi}}
+\newcommand{\transform}[2]{{}^\mathrm{#1}\seMatrix_\mathrm{#2}}
+\newcommand{\rotation}{\vec{R}}
+\newcommand{\translation}{\vec{t}}
+\newcommand{\intrinsicMatrix}{\vec{K}}
+\newcommand{\principalPoint}{\vec{c}}
+\newcommand{\reprojectionError}{u}
+\newcommand{\projectionMatrix}{\vec{P}}
+\newcommand{\cameraCenter}{\vec{o}}
+
+% Motion model
+\newcommand{\position}{\vec{p}}
+\newcommand{\orientationQuaternion}{\vec{q}}
+\newcommand{\predictedPosition}{\hat{\vec{p}}}
+\newcommand{\predictedOrientationQuaternion}{\hat{\vec{q}}}
+\newcommand{\linearVelocity}{\vec{v}}
+\newcommand{\angularVelocity}{\vec{\omega}}
+
+\DeclareMathOperator{\slerpOp}{slerp}
+\newcommand{\slerp}[1]{\slerpOp{\left( #1 \right)}}
+
+% Map structure
+\newcommand{\map}{M}
+\newcommand{\keyframesSet}{K}
+\newcommand{\mapPointsSet}{P}
+\newcommand{\observedMapPoints}{O}
+\newcommand{\covisibilityKeyframes}{CK}
+\newcommand{\localMap}{local\_map}
+
+
+
+% Bundle Adjutment
+\newcommand{\update}{\vec{\delta}}
+\newcommand{\incremental}{\hat{\update}}
+
+
+% Loop Closure names
+
+% scaled operators and letters to fancy view
+\newcommand{\sminus}{\scalebox{0.5}[1.0]{$-$}}
+\newcommand{\splus}{\scalebox{0.6}[0.6]{$+$}}
+\newcommand{\curr}{c}
+\newcommand{\sind}[1]{\scalebox{0.6}[0.6]{$#1$}}
+\newcommand{\ind}[1]{\scalebox{0.7}[0.7]{$#1$}}
+
+\newcommand{\keyframe}{\vec{K}}
+\newcommand{\bowVector}{\vec{v}}
+\newcommand{\lcError}{\vec{\Omega}}
+\newcommand{\relativeTransformation}{\seMatrix}
+\DeclareMathOperator{\interpolate}{interpolate}
+
+\newcommand{\relativeMotion}{\vec{\delta}}
+\newcommand{\groundTruth}[1]{{#1}^{*}}
+
+
+
+% definición del operador rot()
+\DeclareMathOperator{\rotationOp}{rot}
+\newcommand{\getRotation}[1]{\rotationOp{\left( #1 \right)}}
+
+\DeclareMathOperator{\translationOp}{trans}
+\newcommand{\getTranslation}[1]{\translationOp{\left( #1 \right)}}
+
+
+
+
+
+
+
