@@ -78,13 +78,6 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Traslación en 2D}
-    \begin{equation*}
-        {\displaystyle {\begin{bmatrix}x'\\y'\\\end{bmatrix}}={\begin{bmatrix} x\\y\end{bmatrix}}+{\begin{bmatrix}t_x\\t_y\\\end{bmatrix}}.}
-    \end{equation*}
-\end{frame}
-
-\begin{frame}
     \frametitle{Rotación en 2D}
 
         \begin{center}
@@ -118,23 +111,69 @@
         \end{equation*}
         \end{minipage}
     \end{center}
-
-
-
-
-
 \end{frame}
 
 
 \begin{frame}
     \frametitle{Rototraslación en 2D}
 
+    \begin{align*}
+        \begin{bmatrix}
+            \toCoord{x}{A}\\
+            \toCoord{y}{A}
+        \end{bmatrix} &=
+        \begin{bmatrix}
+            \toCoord{x}{V}\\
+            \toCoord{y}{V}
+        \end{bmatrix} +
+        \begin{bmatrix}
+            t_x\\
+            t_y
+        \end{bmatrix}\\
+        \begin{bmatrix}
+            \toCoord{x}{A}\\
+            \toCoord{y}{A}
+        \end{bmatrix} &=
+        \begin{bmatrix}
+            \cos \theta &-\sin \theta \\
+            \sin \theta &\cos \theta \\
+        \end{bmatrix}
+        \begin{bmatrix}
+            \toCoord{x}{B}\\
+            \toCoord{y}{B}
+        \end{bmatrix} +
+        \begin{bmatrix}
+            t_x\\
+            t_y\\
+        \end{bmatrix}
+    \end{align*}
+
     \begin{equation*}
-        {\displaystyle {\begin{bmatrix}x'\\y'\\\end{bmatrix}}={\begin{bmatrix}\cos \theta &-\sin \theta \\\sin \theta &\cos \theta \\\end{bmatrix}}{\begin{bmatrix}x\\y\\\end{bmatrix}}+{\begin{bmatrix}t_x\\t_y\\\end{bmatrix}}.}
+        \begin{bmatrix}
+            \toCoord{x}{A}\\
+            \toCoord{y}{A}\\
+            1
+        \end{bmatrix} =
+        \begin{bmatrix}
+            \rotationCoord{A}{B} & \translation\\
+            \vec{0} & 1
+        \end{bmatrix} +
+        \begin{bmatrix}
+            \toCoord{x}{B}\\
+            \toCoord{y}{B}\\
+            1
+        \end{bmatrix}
     \end{equation*}
 
     \begin{equation*}
-        {\displaystyle {\begin{bmatrix}x'\\y'\\\end{bmatrix}}={R(\theta )\begin{bmatrix} x\\y\end{bmatrix}}+ \vec{t}.}
+        \begin{bmatrix}
+            \toCoord{x}{A}\\
+            \toCoord{y}{A}\\
+        \end{bmatrix} = R(\theta )
+        \begin{bmatrix}
+            \toCoord{x}{B}\\
+            \toCoord{y}{B}
+       \end{bmatrix} + \translation
     \end{equation*}
 \end{frame}
 
@@ -173,11 +212,12 @@
 
 
 \begin{frame}
-    \frametitle{Propiedades de matrices Rotación en 3D}
+    \frametitle{Propiedades de matrices Rotación}
     \small
     \begin{itemize}
-        \item ${\displaystyle R^{\mathsf {T}}=R^{-1}}$ Matriz ortogonal
-        \item $\det R = \pm 1$
+        \item $R^{\mathsf {T}}=R^{-1}$ Matriz ortogonal
+        \item $\det R = \pm 1$ (esto implica que la longitud del vector no cambia luego de la rotación)
+        \item $R \in SO(3)$ entonces $\rotationCoord{A}{C} = \rotationCoord{A}{B} \rotationCoord{B}{C}$ y $\rotationCoord{A}{B} = \rotationCoord{B}{A}^{-1}$
     \end{itemize}
 
     Determinar el ángulo de una matriz de rotación utilizando la traza de la matriz (la suma de los elementos de la diagonal del matriz).
