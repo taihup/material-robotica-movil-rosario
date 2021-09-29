@@ -6,11 +6,11 @@
 
 
     El punto $\point$ puede describirse mediante vectores de coordenadas relativos a cualquier marco $\{\mathrm{A}\}$ o $\{\mathrm{B}\}$. La pose de $\{\mathrm{B}\}$ relativa a $\{\mathrm{A}\}$ es $\transform{A}{B}$.
-
-
-    ${}^{A}\point= \transform{A}{B}{}^{B}\point$
-
-    $\transform{A}{C}= \transform{A}{B}\transform{B}{C}$
+    \begin{align*}
+        \pointCoord{A} &= \transform{A}{B}\pointCoord{B}\\
+        \transform{A}{C} &= \transform{A}{B}\transform{B}{C}\\
+        \transform{A}{B} &= \transform{B}{A}^{-1}
+    \end{align*}
 
 \end{frame}
 
@@ -86,17 +86,42 @@
 
 \begin{frame}
     \frametitle{Rotación en 2D}
-    \begin{equation*}
-        {\displaystyle R(\theta )={\begin{bmatrix}\cos \theta &-\sin \theta \\\sin \theta &\cos \theta \\\end{bmatrix}}.}
-    \end{equation*}
 
-    \begin{equation*}
-        {\displaystyle {\begin{bmatrix}x'\\y'\\\end{bmatrix}}={\begin{bmatrix}\cos \theta &-\sin \theta \\\sin \theta &\cos \theta \\\end{bmatrix}}{\begin{bmatrix}x\\y\\\end{bmatrix}}.}
-    \end{equation*}
+        \begin{center}
+        \begin{minipage}{0.38\linewidth}
+            \includegraphics[width=\columnwidth]{coordinate_system_rotation.pdf}
+        \end{minipage}
+        \hspace{1em}
+        \begin{minipage}{0.38\linewidth}
+            \begin{equation*}
+            {\displaystyle R(\theta )={\begin{bmatrix}\cos \theta &-\sin \theta \\\sin \theta &\cos \theta \\\end{bmatrix}}.}
+        \end{equation*}
 
-    \begin{equation*}
-        {\displaystyle {\begin{aligned}x'&=x\cos \theta -y\sin \theta \,\\y'&=x\sin \theta +y\cos \theta \,\end{aligned}}.}
-    \end{equation*}
+        \begin{equation*}
+            {\displaystyle {\begin{bmatrix}x'\\y'\\\end{bmatrix}}={\begin{bmatrix}\cos \theta &-\sin \theta \\\sin \theta &\cos \theta \\\end{bmatrix}}{\begin{bmatrix}x\\y\\\end{bmatrix}}.}
+        \end{equation*}
+
+        \begin{equation*}
+            \begin{aligned}x'&=x\cos \theta -y\sin \theta \,\\y'&=x\sin \theta +y\cos \theta \,\end{aligned}
+        \end{equation*}
+
+        \begin{equation*}
+            \begin{bmatrix}
+                \toCoord{x}{V}\\
+                \toCoord{y}{V}
+            \end{bmatrix} =
+            \rotationCoord{V}{B}
+            \begin{bmatrix}
+                \toCoord{x}{A}\\
+                \toCoord{y}{A}
+            \end{bmatrix}
+        \end{equation*}
+        \end{minipage}
+    \end{center}
+
+
+
+
 
 \end{frame}
 
