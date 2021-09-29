@@ -179,6 +179,14 @@
 
 
 \begin{frame}
+    \frametitle{Coordenadas Homogeneas e Hinomogeneas}
+    Un vector $\point = (x, y)$ se escribe en forma homogénea como $\homo{\point} \in P^2$, $\homo{\point} = (x1, x2, x3)$ donde $x = \dfrac{x_1}{x_3}$, $y= \dfrac{x_2}{x_3}$ y $x_3 \neq 0$. La dimensión se ha incrementado en uno y un punto en un plano ahora está representado por un 3-vector. Para convertir un punto a una forma homogénea, normalmente agregamos un elemento igual a uno $\homo{\point} = (x, y, 1)$. La tilde indica que el vector es homogéneo.
+
+
+    Los vectores homogéneos tienen la propiedad importante de que $\homo{\point}$ es equivalente a $\lambda \homo{\point}$ para todo $\lambda \neq 0$ que escribimos como $\homo{\point} = \lambda \homo{\point}$. Es decir, $\homo{\point}$ representa el mismo punto en el plano independientemente del factor de escala general.
+\end{frame}
+
+\begin{frame}
     \frametitle{Rotación en 3D}
     \small
     \begin{equation*}
@@ -344,7 +352,3 @@
     \end{center}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Coordenadas Homogeneas e Hinomogeneas}
-
-\end{frame}
