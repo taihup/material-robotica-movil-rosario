@@ -157,7 +157,7 @@
         \begin{bmatrix}
             \rotationCoord{A}{B} & \translation\\
             \vec{0} & 1
-        \end{bmatrix} +
+        \end{bmatrix}
         \begin{bmatrix}
             \toCoord{x}{B}\\
             \toCoord{y}{B}\\
@@ -175,6 +175,41 @@
             \toCoord{y}{B}
        \end{bmatrix} + \translation
     \end{equation*}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Algunas Propiedades de las transformaciones}
+
+    \begin{equation*}
+        \transform{}{1}\transform{}{2} =
+        \begin{bmatrix}
+            \rotationCoord{}{1} & \translationCoord{}{1}\\
+            \vec{0} & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            \rotationCoord{}{2} & \translationCoord{}{2}\\
+            \vec{0} & 1
+        \end{bmatrix} =
+        \begin{bmatrix}
+            \rotationCoord{}{1}\rotationCoord{}{2} & \translationCoord{}{1}+\rotationCoord{}{1}\translationCoord{}{2}\\
+            \vec{0} & 1
+        \end{bmatrix}
+    \end{equation*}
+
+
+    \begin{equation*}
+        \transform{}{}^{-1}=
+        \begin{bmatrix}
+            \rotation & \translation\\
+            \vec{0} & 1
+        \end{bmatrix}^{-1} =
+        \begin{bmatrix}
+            \rotation^{\top} & -\rotation^{\top}\translation\\
+            \vec{0} & 1
+        \end{bmatrix}
+    \end{equation*}
+
 \end{frame}
 
 
