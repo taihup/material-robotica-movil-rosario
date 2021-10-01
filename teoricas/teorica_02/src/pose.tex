@@ -31,84 +31,37 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Representación de pose en 2D}
-
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Representación de pose en 2D}
-    \footnotesize
-    Modelamos el robot como un cuerpo rígido sobre ruedas, que opera en un plano horizontal. La dimensionalidad total de este chasis de robot en el plano es de tres, dos para la posición en el plano y uno para la orientación a lo largo del eje vertical, que es ortogonal al plano.
-
-    \begin{figure}[!h]
-        \includegraphics[width=0.4\columnwidth]{./images/coordinate_systems.pdf}
-        \caption{El marco de referencia global y el marco de referencia local del robot.}
-    \end{figure}
-
-    Para especificar la posición del robot en el plano, establecemos una relación entre el marco de referencia global y el marco de referencia local del robot.
-
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Representación de pose en 2D}
-    \footnotesize
-
-    \begin{center}
-        \includegraphics[width=0.4\columnwidth]{./images/coordinate_systems.pdf}
-    \end{center}
-
-    \note{Un marco de referencia inercial es un marco de referencia que no está experimentando aceleración. La física de un sistema en un marco inercial no tiene fuerzas externas al sistema.}
-
-    \note{Ejemplo de sistema no inercial: una bola que cae hacia el suelo no va exactamente hacia abajo porque la Tierra está girando, lo que significa que el marco de referencia de un observador en la Tierra no es inercial. La física debe tener en cuenta el efecto Coriolis, en este caso considerado como una fuerza, para predecir el movimiento horizontal.}
-
-
-    Para especificar la posición del robot, elegimos un punto $p$ en el chasis del robot como su punto de referencia de posición. La base $\left\lbrace X_R,Y_R \right\rbrace$ define dos ejes en relación con $p$ en el chasis del robot y, por lo tanto, es el marco de referencia local del robot. La posición de $p$ en el marco de referencia global se especifica mediante las coordenadas $x$ e $y$, y la diferencia angular entre los marcos de referencia global y local está dada por $\theta$.
-
-    La pose del robot estará dada por la posición y la orientación:
-
-    \begin{equation*}
-        \xi_{I} = \begin{bmatrix}
-            x\\
-            y\\
-            \theta
-        \end{bmatrix}
-    \end{equation*}
-\end{frame}
-
-\begin{frame}
     \frametitle{Rotación en 2D}
 
         \begin{center}
-        \begin{minipage}{0.38\linewidth}
+        \begin{minipage}{0.5\linewidth}
             \includegraphics[width=\columnwidth]{coordinate_system_rotation.pdf}
         \end{minipage}
         \hspace{1em}
         \begin{minipage}{0.38\linewidth}
             \begin{equation*}
-            {\displaystyle R(\theta )={\begin{bmatrix}\cos \theta &-\sin \theta \\\sin \theta &\cos \theta \\\end{bmatrix}}.}
-        \end{equation*}
+                {\displaystyle R(\theta )={\begin{bmatrix}\cos \theta &-\sin \theta \\\sin \theta &\cos \theta \\\end{bmatrix}}.}
+            \end{equation*}
 
-        \begin{equation*}
-            {\displaystyle {\begin{bmatrix}x'\\y'\\\end{bmatrix}}={\begin{bmatrix}\cos \theta &-\sin \theta \\\sin \theta &\cos \theta \\\end{bmatrix}}{\begin{bmatrix}x\\y\\\end{bmatrix}}.}
-        \end{equation*}
+            \begin{equation*}
+                {\displaystyle {\begin{bmatrix}x'\\y'\\\end{bmatrix}}={\begin{bmatrix}\cos \theta &-\sin \theta \\\sin \theta &\cos \theta \\\end{bmatrix}}{\begin{bmatrix}x\\y\\\end{bmatrix}}.}
+            \end{equation*}
 
-        \begin{equation*}
-            \begin{aligned}x'&=x\cos \theta -y\sin \theta \,\\y'&=x\sin \theta +y\cos \theta \,\end{aligned}
-        \end{equation*}
+            \begin{equation*}
+                \begin{aligned}x'&=x\cos \theta -y\sin \theta \,\\y'&=x\sin \theta +y\cos \theta \,\end{aligned}
+            \end{equation*}
 
-        \begin{equation*}
-            \begin{bmatrix}
-                \toCoord{x}{V}\\
-                \toCoord{y}{V}
-            \end{bmatrix} =
-            \rotationCoord{V}{B}
-            \begin{bmatrix}
-                \toCoord{x}{A}\\
-                \toCoord{y}{A}
-            \end{bmatrix}
-        \end{equation*}
+            \begin{equation*}
+                \begin{bmatrix}
+                    \toCoord{x}{V}\\
+                    \toCoord{y}{V}
+                \end{bmatrix} =
+                \rotationCoord{V}{B}
+                \begin{bmatrix}
+                    \toCoord{x}{A}\\
+                    \toCoord{y}{A}
+                \end{bmatrix}
+            \end{equation*}
         \end{minipage}
     \end{center}
 \end{frame}
