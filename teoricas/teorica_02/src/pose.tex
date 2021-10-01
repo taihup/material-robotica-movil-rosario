@@ -283,32 +283,6 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Representación de pose en 2D}
-    \footnotesize
-
-    \begin{center}
-        \includegraphics[width=0.4\columnwidth]{./images/coordinate_systems.pdf}
-    \end{center}
-
-    Esta matriz se puede utilizar para mapear el movimiento en el marco de referencia global ?? XI YI? al movimiento en términos del marco de referencia local ?? XR YR ?. Esta operación se denota por R? ()? ·
-
-    \begin{equation*}
-        R(\theta)=\begin{bmatrix}
-            \cos\theta & \sin\theta & 0\\
-            -\sin \theta & \cos \theta & 0\\
-            0 & 0 & 1
-        \end{bmatrix}
-    \end{equation*}
-
-    \begin{equation*}
-        \dot{\xi_R} = R(\dfrac{\pi}{2}) \dot{\xi_I}
-    \end{equation*}
-
-    Dada alguna velocidad (??? · X · y ·) en el marco de referencia global, podemos calcular las componentes del movimiento a lo largo de los ejes locales XR y de este robot. En este caso, debido al ángulo YR específico del robot, el movimiento a lo largo de XR es igual a, y el movimiento a lo largo de YR es: y · –x ·
-
-\end{frame}
-
-\begin{frame}
     \frametitle{Right-hand rule}
     En Robótica la disposición de los ejes de coordenadas y el sentido de rotación de los mismos está dado por la regla de la mano derecha (Right-hand rule).
 

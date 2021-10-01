@@ -60,16 +60,16 @@
     Para describir el movimiento del robot en términos de movimientos de componentes, será necesario mapear el movimiento a lo largo de los ejes del marco de referencia global al movimiento a lo largo de los ejes del marco de referencia local del robot. Por supuesto, el mapeo es una función de la pose actual del robot. Este mapeo se logra usando la matriz de rotación ortogonal:
 
     \begin{equation*}
-        R(\theta) =
-        \begin{bmatrix}
-            \cos \theta & -\sin \theta \\
-            \sin \theta & \cos \theta
-        \end{bmatrix}
-    \end{equation*}
+    R(\theta)=
+    \begin{bmatrix}
+        \cos\theta & \sin\theta & 0\\
+        -\sin \theta & \cos \theta & 0\\
+        0 & 0 & 1
+    \end{bmatrix}
+\end{equation*}
 
-    Esta matriz se puede utilizar para mapear el movimiento en el marco de referencia global $\left\lbrace X_I,Y_I \right\rbrace$ al movimiento en términos del marco de referencia local $\left\lbrace X_R,Y_R \right\rbrace$. Esta operación se denota por $R(\theta)\transform{}{I}$ · Porque el cálculo de esta operación depende del valor de $\theta$:
+    Esta matriz se puede utilizar para mapear el movimiento en el marco de referencia global $\left\lbrace X_I,Y_I \right\rbrace$ al movimiento en términos del marco de referencia local $\left\lbrace X_R,Y_R \right\rbrace$. Esta operación se denota por $R(\theta)\transform{}{I}$ · Porque el cálculo de esta operación depende del valor de $\theta$.
 \end{frame}
-
 
 \begin{frame}
     \frametitle{Cinemática de un robot diferencial}
