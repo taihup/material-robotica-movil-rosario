@@ -11,7 +11,7 @@
    enable-background="new -21.914 -25.609 507 459"
    xml:space="preserve"
    id="svg72"
-   sodipodi:docname="Right_hand_rule_cross_product.svg"
+   sodipodi:docname="right_hand_rule.svg"
    inkscape:version="1.1 (1:1.1+202105261517+ce6663b3b7)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -26,9 +26,9 @@
    inkscape:pageopacity="0.0"
    inkscape:pagecheckerboard="0"
    showgrid="false"
-   inkscape:zoom="1.6405229"
-   inkscape:cx="279.78884"
-   inkscape:cy="258.75896"
+   inkscape:zoom="0.82026145"
+   inkscape:cx="101.18725"
+   inkscape:cy="199.32669"
    inkscape:window-width="1920"
    inkscape:window-height="1022"
    inkscape:window-x="1365"
@@ -197,12 +197,12 @@
    x2="300.89999"
    y2="32.235081"
    id="line44"
-   style="fill:#ff0000;stroke:#ff0000;stroke-opacity:1" />
+   style="fill:#0000ff;stroke:#0000ff;stroke-opacity:1;fill-opacity:1" />
 <polygon
    fill="#963C96"
    points="322.814,0 346.127,60.3 322.814,41.788 299.501,60.3 "
    id="polygon46"
-   style="fill:#ff0000"
+   style="fill:#0000ff;fill-opacity:1"
    transform="translate(-21.914,-9.5529158)" />
 <line
    fill="none"
@@ -214,12 +214,12 @@
    x2="18.986002"
    y2="191.51408"
    id="line48"
-   style="stroke:#00ff00;stroke-opacity:1" />
+   style="stroke:#ff0000;stroke-opacity:1" />
 <polygon
    fill="#2828FF"
    points="0,192.5 63.799,182.044 40.9,201.067 54.24,227.68 "
    id="polygon50"
-   style="fill:#00ff00"
+   style="fill:#ff0000;fill-opacity:1"
    transform="translate(-21.914,-9.5529158)" />
 <line
    fill="none"
@@ -231,18 +231,18 @@
    x2="73.670998"
    y2="338.45209"
    id="line52"
-   style="fill:#0000ff;stroke:#0000ff;stroke-opacity:1" />
+   style="fill:#00ff00;stroke:#00ff00;stroke-opacity:1;fill-opacity:1" />
 <polygon
    fill="#E12828"
    points="69.063,358.197 96.605,315.568 95.585,348.005 118.064,371.413 "
    id="polygon54"
-   style="fill:#0000ff"
+   style="fill:#00ff00;fill-opacity:1"
    transform="translate(-21.914,-9.5529158)" />
 
 
 
 <g
-   transform="matrix(5.2383947,0,0,5.2383947,240.11535,-25.606381)"
+   transform="matrix(5.2383947,0,0,5.2383947,13.381128,123.3737)"
    ns0:version="1.4.0"
    ns0:texconverter="pdflatex"
    ns0:pdfconverter="inkscape"
@@ -293,7 +293,7 @@
     </g>
   </g>
 </g><g
-   transform="matrix(5.23839,0,0,5.23839,75.987842,133.20838)"
+   transform="matrix(5.23839,0,0,5.23839,-1.3214297,317.93699)"
    ns0:version="1.4.0"
    ns0:texconverter="pdflatex"
    ns0:pdfconverter="inkscape"
@@ -348,7 +348,7 @@
     </g>
   </g>
 </g><g
-   transform="matrix(5.23839,0,0,5.23839,-11.453305,305.67766)"
+   transform="matrix(5.23839,0,0,5.23839,240.37219,-16.384606)"
    ns0:version="1.4.0"
    ns0:texconverter="pdflatex"
    ns0:pdfconverter="inkscape"
