@@ -1,6 +1,26 @@
 \begin{frame}
     \frametitle{Optical encoders}
 
-    \TODO{agregar figura 4.6}
+    \includegraphics[width=0.4\columnwidth]{images/encoder_principle}
+    \includegraphics[width=0.4\columnwidth]{images/encoder_parts}
+    \footnotesize
 
+\begin{block}{Principio de funcionamiento}
+    Consta de una fuente de iluminación, una rejilla fija que enmascara la luz, un disco rotor con una fina rejilla óptica que gira con el eje y detectores ópticos fijos. A medida que el rotor se mueve, la cantidad de luz que incide en los detectores ópticos varía según la alineación de las rejillas fijas y móviles. En robótica, la onda sinusoidal resultante se transforma en una onda cuadrada discreta utilizando un umbral para elegir entre estados claros y oscuros. La resolución se mide en ciclos por revolución (CPR). La resolución angular mínima se puede calcular fácilmente a partir de la clasificación de CPR de un codificador. Un codificador típico en robótica móvil puede tener 2000 CPR
+\end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Optical encoders}
+
+    \includegraphics[width=\columnwidth]{images/encoder.pdf}
+    \footnotesize
+
+    La relación de fase observada entre los trenes de impulsos del canal A y B se utiliza para determinar la dirección de rotación. Una sola ranura en la pista interior genera un pulso de referencia (índice) por revolución.
+
+    \begin{itemize}
+        \item Proprioceptivo
+        \item La resolución se mide en ciclos por revolución (CPR). Suelen tener 2000 CPR.
+        \item La odometría basada en encoders acumula error rápidamente por diferencias físicas en en las ruedas, deslizamiento o giro en el aire de las ruedas.
+    \end{itemize}
 \end{frame}
