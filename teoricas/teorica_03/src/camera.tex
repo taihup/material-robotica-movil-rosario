@@ -116,14 +116,31 @@
 \begin{frame}
 	\frametitle{Distorción}
     
+    \footnotesize
+    
     Previamente, consideramos que el modelo de cámara pin-hole es perfectamente lineal, es decir, el punto en el mundo, el punto en la imagen y el centro óptico son colineales.
 	
-    Esta suposición no es cierta en la práctica porque hay una distorsión radial en la imagen producida por la lente de la cámara real. La figura presenta algunas distorsiones comunes generadas por la lente.
+    Esta suposición no es cierta en la práctica porque hay una distorsión radial en la imagen producida por la lente de la cámara real.
     
-    
-    
-   	\includegraphics[width=0.4\columnwidth]{images/camera/distorted_image.png}
-    \includegraphics[width=0.4\columnwidth]{images/camera/undistorted_image.png}
+    \begin{figure}[!h]
+        \centering
+        \subfloat[Sin distorción]
+        {
+            \includegraphics[width=0.2\columnwidth]{images/camera/no_distortion.pdf}
+        }
+        \subfloat[Barrel distortion]
+        {
+            \includegraphics[width=0.2\columnwidth]{images/camera/barrel_distortion.pdf}
+        }
+        \subfloat[Pincushion distortion]
+        {
+            \includegraphics[width=0.2\columnwidth]{images/camera/pincushion_distortion.pdf}
+        }
+        \subfloat[Mustache distortion]
+        {
+            \includegraphics[width=0.2\columnwidth]{images/camera/mustache_distortion.pdf}
+        }
+    \end{figure}
 	
 \end{frame}
 
@@ -131,11 +148,82 @@
 \begin{frame}
     \frametitle{Distorción}
     
-    \includegraphics[width=0.4\columnwidth]{images/camera/distorted_image.png}
-    \includegraphics[width=0.4\columnwidth]{images/camera/undistorted_image.png}
+    Para corregir esta distorsión se calcula un modelo de distorsión radial que relaciona los puntos de la imagen de la imagen real con los puntos ideales, los que se habrían obtenido bajo una cámara lineal perfecta. De esta forma, la cámara se puede representar con un modelo pin-hole lineal. En la figura es posible observar la imagen cruda (distorsionada) tomada por la cámara y la imagen después de la desdistorsión.
+    
+        \begin{figure}[!h]
+        \centering
+        \subfloat[Imagen distorcionada]
+        {
+            \includegraphics[width=0.45\columnwidth]{images/camera/distorted_image.png}
+        }
+        \subfloat[Imagen desdistorcionada]
+        {
+            \includegraphics[width=0.45\columnwidth]{images/camera/undistorted_image.png}
+        }
+    \end{figure}
     
 \end{frame}
 
+
+\begin{frame}
+    \frametitle{Distorción}
+    
+    \footnotesize
+    
+    Dado el punto proyectado real y el punto ideal, el efecto de distorsión radial se puede modelar mediante
+    \begin{equation}
+        \begin{bmatrix}u_{d}\\
+            v_{d}
+        \end{bmatrix}=L(\tilde{r})\begin{bmatrix}\tilde{u}\\
+            \tilde{v}
+        \end{bmatrix}
+    \end{equation}
+
+    donde, 
+    $\begin{bmatrix}\tilde{u}\\ 
+        \tilde{v}
+    \end{bmatrix}$
+     es la posición ideal de la imagen referida al centro de la imagen (que obedece a la proyección lineal);
+    $\begin{bmatrix}u_{d}\\
+        v_{d}
+    \end{bmatrix} $
+    es la posición real de la imagen después de la distorsión radial; $\tilde{r}$ es la distancia radial $\sqrt{\tilde{u}^{2}+\tilde{v}^{2}}$ desde el centro para la distorsión radial, y $L(\tilde{r})$ es una factor de distorsión, que es una función del radio $\tilde{r}$.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Distorción}
+    
+    \footnotesize
+    
+    Finalmente, la corrección se puede representar en coordenadas de píxeles como
+    \begin{equation*}
+        \begin{aligned}\hat{u} & =u_{c}+L(r)(u-u_{c})\\
+            \hat{v} & =v_{c}+L(r)(v-v_{c})
+        \end{aligned}
+    \end{equation*}
+    
+    donde 
+    $\begin{bmatrix}u\\
+        v
+    \end{bmatrix}$ 
+    son las coordenadas medidas, 
+    $\begin{bmatrix}\tilde{u}\\
+        \tilde{v}
+    \end{bmatrix}$ 
+    son las coordenadas corregidas, y 
+    $\begin{bmatrix}u_{c}\\
+        v_{c}
+    \end{bmatrix}$ 
+    es el centro de distorsión radial, con $r^{2}=(u-u_{c})^{2}+(v-v_{c})^{2}$.
+    
+    El factor de distorsión $L(r)$ esta definido solo por valores positivos de $r$ y $L(0)=1$. En la práctica, $L(r)$ es aproximado por la expansión de Taylor
+    
+    \begin{equation*}
+        L(r)=1+k_{1}r+k_{2}r^{2}+k_{3}r^{3}+\ldots.
+    \end{equation*}
+    
+    Los coeficientes $\left\{ k_{1},k_{1},k_{1},\ldots,u_{c},v_{c}\right\}$ se consideran parte de la calibración interna de la cámara. Con frecuencia, el punto principal se utiliza como centro de la distorsión radial, aunque no es necesario que coincidan exactamente. Los coeficientes de corrección, junto con la matriz de calibración de la cámara, especifican el mapeo desde un punto de la imagen hasta un rayo en el sistema de coordenadas de la cámara y se denominan parámetros intrínsecos.
+\end{frame}
 
 \begin{frame}
 	\frametitle{Características Visuales: Detector FAST}
