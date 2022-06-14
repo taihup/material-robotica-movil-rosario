@@ -119,11 +119,11 @@
     	\centering
     	\subfloat[]
     	{
-    		\includegraphics[width=0.4\columnwidth]{images/accelerometer_mems.pdf}
+    		\includegraphics[width=0.3\columnwidth]{images/accelerometer_mems.pdf}
     	}
     	\subfloat[]
     	{
-    		\includegraphics[width=0.4\columnwidth]{images/accelerometer_mems2.pdf}
+    		\includegraphics[width=0.3\columnwidth]{images/accelerometer_mems2.pdf}
     	}
     \end{figure}
     \footnotesize
@@ -139,3 +139,28 @@
     \end{itemize}
     
 \end{frame}
+
+\begin{frame}
+    \frametitle{IMU (Inertial Measurement Unit)}
+    \note{página 122 del libro Introduction to autonomous mobile robots 2nd edition}
+    
+    \begin{itemize}
+        \item 3 giróscopos ortogonales y 3 acelerómetros ortogonales.
+        \item Permite estimar: posición, orientación, velocidad lineal, velocidad angular y aceleración 
+        \item La orientación se obtiene integrando (con el tiempo) el giróscopo
+        \item La velocidad lineal se obtiene integrando el acelerómetro
+        \item La posición se obtiene integrando la velocidad
+        \item Debido a que los datos del acelerómetro se integran dos veces para obtener la posición, cualquier error residual da como resultado un error cuadrático en la posición.
+        \item Mediciones absolutas (GPS o cámaras) permiten cancelar esta deriva de error.
+    \end{itemize}
+    
+    \note{
+    Una unidad de medida inercial (IMU) es un dispositivo que utiliza giroscopios y acelerómetros para estimar la posición relativa, la velocidad y la aceleración de un vehículo en movimiento. Una IMU también se conoce como Sistema de Navegación Inercial (INS).
+    Una IMU estima la pose de seis grados de libertad (DOF) del vehículo: posición (x, y, z) y orientación (pitch, yaw, roll). También estima velocidad y aceleración.
+    
+    Los datos del giroscopio se integran para estimar la orientación del vehículo, mientras que los tres acelerómetros se utilizan para estimar la aceleración instantánea del vehículo. A continuación, la aceleración se transforma en el marco de navegación local por medio de la estimación actual de la orientación del vehículo en relación con la gravedad. En este punto, el vector de gravedad se puede restar de la medición. Luego, la aceleración resultante se integra para obtener la velocidad y luego se integra nuevamente para obtener la posición, siempre que tanto la velocidad inicial como la posición sean conocidas a priori. Para superar la necesidad de conocer la velocidad inicial, la integración generalmente comienza en reposo (es decir, velocidad igual a cero).
+    
+    Observe que las IMU son extremadamente sensibles a los errores de medición tanto en giroscopios como en acelerómetros. Por ejemplo, la deriva en el giroscopio socava inevitablemente la estimación de la orientación del vehículo en relación con la gravedad, lo que da como resultado una cancelación incorrecta del vector de gravedad. Además, observe que, debido a que los datos del acelerómetro se integran dos veces para obtener la posición, cualquier vector de gravedad residual da como resultado un error cuadrático en la posición. Debido a esto y al hecho de que cualquier otro error se integra con el tiempo, la deriva es un problema fundamental en las IMU. Después de un largo período de funcionamiento, todas las IMU se desvían. Para cancelar esta deriva, se requiere alguna referencia a alguna medida externa.
+    }
+\end{frame}
+
