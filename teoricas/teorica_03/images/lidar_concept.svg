@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="7.5941415in"
-   height="2.6317163in"
-   viewBox="0 0 192.89119 66.845593"
+   width="7.5231385in"
+   height="2.6180842in"
+   viewBox="0 0 191.08771 66.499339"
    version="1.1"
    id="svg2882"
-   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
-   sodipodi:docname="2021-03-13_lidar_signal.svg"
+   inkscape:version="1.2 (1:1.2+202206011327+fc4e4096c5)"
+   sodipodi:docname="lidar_concept.svg"
    inkscape:export-filename="/home/jc991053/pCloudDrive/Work/Presentations/2021-03-12 GeoSLU/media/2021-03-13_lidar_signal.png"
    inkscape:export-xdpi="299.96808"
-   inkscape:export-ydpi="299.96808">
+   inkscape:export-ydpi="299.96808"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
   <defs
      id="defs2876">
     <marker
@@ -103,24 +103,27 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.93560606"
-     inkscape:cx="396.83639"
-     inkscape:cy="191.99651"
+     inkscape:zoom="1.3231468"
+     inkscape:cx="306.08849"
+     inkscape:cy="132.26046"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
      showgrid="false"
      units="in"
-     inkscape:window-width="1848"
-     inkscape:window-height="1016"
-     inkscape:window-x="72"
-     inkscape:window-y="27"
+     inkscape:window-width="1920"
+     inkscape:window-height="1023"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:lockguides="false"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
-     fit-margin-bottom="0" />
+     fit-margin-bottom="0"
+     inkscape:showpageshadow="2"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
   <metadata
      id="metadata2879">
     <rdf:RDF>
@@ -129,7 +132,6 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -137,7 +139,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-39.549607,-49.079184)">
+     transform="translate(-39.50866,-49.42544)">
     <path
        style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.760654"
        d="m 69.893543,71.755586 v 9.58841 c 0,0.662599 1.675818,1.200419 3.740875,1.200419 2.06506,0 3.740877,-0.53782 3.740877,-1.200419 v -9.58841"
@@ -232,7 +234,7 @@
        id="path1498" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:5.265px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.179488"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.265px;line-height:1.25;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.179488"
        x="39.1717"
        y="81.42038"
        id="text3052"><tspan
@@ -240,7 +242,7 @@
          id="tspan3050"
          x="39.1717"
          y="81.42038"
-         style="font-weight:bold;font-size:5.265px;stroke-width:0.179488">Scanner</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.265px;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.179488">Scanner</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:5.26499px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.179488"
@@ -251,13 +253,13 @@
          id="tspan3050-4"
          x="213.64314"
          y="80.854797"
-         style="font-weight:bold;font-size:5.26499px;stroke-width:0.179488">Target</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.26499px;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.179488">Target</tspan></text>
     <g
        id="g3121"
        transform="translate(-11.807113,-2.6909744)">
       <text
          xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:6.35px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          x="84.471779"
          y="112.66129"
          id="text3074"><tspan
@@ -265,10 +267,10 @@
            id="tspan3072"
            x="84.471779"
            y="112.66129"
-           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:serif;-inkscape-font-specification:'serif Italic';stroke-width:0.264583">distance = </tspan></text>
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583">distance = </tspan></text>
       <text
          xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:6.35px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          x="169.03421"
          y="106.23"
          id="text3074-0"><tspan
@@ -276,10 +278,10 @@
            id="tspan3072-1"
            x="169.03421"
            y="106.23"
-           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:serif;-inkscape-font-specification:'serif Italic';text-align:center;text-anchor:middle;stroke-width:0.264583">travel time x speed of light</tspan></text>
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.264583">travel time x speed of light</tspan></text>
       <text
          xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:6.35px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1.25;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          x="169.45036"
          y="118.61575"
          id="text3074-0-0"><tspan
@@ -287,7 +289,7 @@
            id="tspan3072-1-0"
            x="169.45036"
            y="118.61575"
-           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:serif;-inkscape-font-specification:'serif Italic';text-align:center;text-anchor:middle;stroke-width:0.264583">2</tspan></text>
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.264583">2</tspan></text>
       <path
          style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
          d="m 121.99477,110.294 h 94.43545"
@@ -305,7 +307,7 @@
        id="path3948" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:5.265px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.179488"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.265px;line-height:1.25;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.179488"
        x="121.26997"
        y="53.07935"
        id="text3052-7"><tspan
@@ -313,6 +315,6 @@
          id="tspan3050-5"
          x="121.26997"
          y="53.07935"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.265px;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#808080;stroke-width:0.179488">light signal</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.265px;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#808080;stroke-width:0.179488">light signal</tspan></text>
   </g>
 </svg>
