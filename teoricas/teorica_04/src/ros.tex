@@ -35,7 +35,7 @@
 
 \begin{frame}
 	\frametitle{¿Qué es ROS?}
-	  Trabajaremos con la versión Ubuntu LTS más actual, esta siempre viene con uan versión de ROS estable.
+	  Trabajaremos con la versión Ubuntu LTS más actual, esta siempre viene con una versión de ROS estable.
 	
 	\begin{figure}[!h]
 		\centering
@@ -53,6 +53,38 @@
 
 \begin{frame}
 	\frametitle{Configuración de entorno de ROS}
+    
+    https://docs.ros.org/en/<distro>/Tutorials.html
+    
+    Instalar ROS
+    
+    sudo apt install ros-<distro>-<package>
+    
+    Sourcear los archivos de setup
+    
+    source /opt/ros/<distro>/setup.bash
+    
+    Agregar el source al .bashrc
+    
+    echo "source /opt/ros/<distro>/setup.bash" >> ~/.bashrc
+    
+    Chequear las variables de entorno
+    
+    printenv | grep -i ROS
+    
+    Output:
+    
+    ROS\_VERSION=2\\
+    ROS\_PYTHON\_VERSION=3\\
+    ROS\_DISTRO=humble
+    
+    
+
+    setear el DOMAIN ID:
+    
+    Los nodos ROS 2 en el mismo dominio pueden descubrir y enviarse mensajes libremente, mientras que los nodos ROS 2 en diferentes dominios no pueden. Todos los nodos ROS 2 utilizan el ID de dominio 0 de forma predeterminada.
+    
+    echo "export ROS\_DOMAIN\_ID=<your\_domain\_id>" >> ~/.bashrc
 	
 	
 \end{frame}
@@ -60,6 +92,13 @@
 \begin{frame}
 	\frametitle{Creando un paquete en ROS}
 	
+     Building system: ament
+     luego para compilar un paquete: colcon build
+     
+     
+     crear un paquete:
+     
+     ros2 pkg create test\_pkg --build-type ament\_cmake
 	
 \end{frame}
 
@@ -106,5 +145,8 @@
 \begin{frame}
 	\frametitle{Herramientas por línea de comandos útiles}
     topic node hz echo Bw etc...
+    ros2 <hit\_tab>
+    ros2 topic list
+    ros2 bag 
 	
 \end{frame}
