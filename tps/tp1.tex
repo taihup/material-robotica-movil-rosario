@@ -1,0 +1,259 @@
+\documentclass[tp]{lcc}
+
+\usepackage{hyperref}
+
+\codigo{R-322}
+\materia{Sistemas Operativos I}
+\titulo{Mini memcached}
+
+\soluciones
+\commentstrue
+
+\newcommand{\memcached}[0]{\texttt{memcached}}
+
+\usepackage{biblatex}
+\addbibresource{refs.bib}
+
+\begin{document}
+\maketitle
+
+\section{Introducción: memcached}
+
+\memcached{}\cite{memcached} es un sistema de memoria caché con pares claves-valor accesible por la red. Los clientes pueden conectarse a la misma y ejecutar comandos para agregar pares a la caché, buscar el valor asociado a una clave, borrar una entrada, etc. Tiene uso extensivo en sistemas distribuídos de gran escala, por ejemplo para cachear consultas a una base de datos (siempre que sea aceptable tener un valor un poco desactualizado).
+
+El objetivo de este trabajo práctico es implementar un \memcached{} propio con funcionalidad relativamente completa. Las características principales que debe tener son:
+\begin{itemize}
+    \item Soportar un protocolo de texto, que puede usarse desde,
+        por ejemplo, \texttt{netcat}.
+
+    \item Soportar un protocolo binario para datos que no sean texto. Ambos protocolos están totalmente definidos en este documento, y deben respetarse para asegurar la interoperabilidad.
+
+    \item Proveer estadísticas sobre su uso (detalladas más adelante).
+
+    \item Tener un límite de memoria configurable que debe respetarse haciendo que el demonio ``olvide'' valores viejos si no hay suficiente memoria.
+
+    \item Soportar \emph{multi-threading}: la caché debe correr un hilo por cada hilo de hardware disponible y atender pedidos en simultáneo lo más posible. \textbf{No} debe levantar un hilo por conexión. Se sugiere usar \cc{epoll()}.
+
+    \item Ser \emph{eficiente} y \emph{robusta}.
+
+    \item Además, se debe implementar una librería en Erlang para interactuar con la misma de manera cómoda.
+\end{itemize}
+
+\section{Protocolo de Texto}
+
+La caché aceptará conexiones en el puerto 888 TCP.
+%
+Una vez formada una conexión, el cliente puede enviar pedidos, cada
+uno de los cuales será respondido.
+%
+Cada pedido y respuesta son exactamente una línea. En el modo texto, ninguna
+clave y ningún valor pueden contener espacios ni caracteres no imprimibles.
+Además, ningun pedido ni respuesta puede superar 2048 caracteres.
+Si un pedido es demasiado largo, el servidor debe contestar \texttt{EINVAL}.
+Si el pedido es correcto pero la respuesta pasa de 2048 caracteres, el servidor
+debe contestar \texttt{EBIG}.
+%
+Un pedido es siempre una secuencia de palabras separadas por
+espacios, terminado por un caracter de nueva línea (\cc{'\\n'}).
+%
+La primer palabra es el comando y el resto (alguna cantidad) son los
+argumentos al comando.
+%
+Ninguna palabra contiene espacios ni caracteres no alfanuméricos.
+%
+Los pedidos posibles son:
+\begin{itemize}
+    \item \texttt{PUT $k$ $v$}: introduce al store el valor $v$ bajo
+        la clave $k$. Si ya hay un valor asociado a 
+        $k$, entonces el mismo es pisado. 
+        El servidor debe responder con \texttt{OK}.
+
+    \item \texttt{DEL $k$}:
+        Borra el valor asociado a la clave $k$.
+        El servidor debe responder con \texttt{OK} si había un
+        valor asociado a $k$. Si no, contesta con \texttt{ENOTFOUND}.
+
+    \item \texttt{GET $k$}:
+        Busca el valor asociado a la clave $k$.
+        El servidor debe contestar con \texttt{OK $v$} si
+        el valor es $v$, o con \texttt{ENOTFOUND} si no hay
+        valor asociado a $k$.
+
+    \item \texttt{TAKE $k$}:
+        Similar a \texttt{GET}, pero remueve \emph{atómicamente} el
+        valor de la caché.
+        \guido{mmm tiene sentido?}
+
+    \item \texttt{STATS}:
+        Devuelve una línea con las estadísticas asociadas
+        a esta ejecución de la caché, en el siguiente formato:
+        \texttt{OK PUTS=111 DELS=99 GETS=381323 KEYS=132 MEM=218MB...}. \taihu{Agregar TAKE?}
+        La respuesta debe contener \emph{como mínimo} i) la cantidad
+        de veces que se recibió cada tipo de pedido ii) la cantidad
+        de pares clave-valor presentes en la caché y iii) el uso actual
+        de memoria.
+        %
+        Pueden agregarse más estadísticas a discreción.
+        %
+        Los contadores internos para cada campo deben ser de al menos 64
+        bits para evitar overflows.
+
+    \item \texttt{MAXMEM $n$}:
+        Configura el límite de memoria de la caché a $n$ megabytes.
+        Si $n \le 0$, el servidor responde \texttt{EINVAL}.
+        Si se está usando más memoria que $n$ megabytes, el servidor debe reducir
+        su uso en memoria hasta cumplir con el nuevo límite.
+        Luego, el servidor responde con \texttt{OK}.
+\end{itemize}
+
+Ante cualquier otro mensaje el servidor responde con
+\texttt{EINVAL}.
+%
+Las respuestas del servidor siempre terminan con \cc{'\\n'}. (El
+servidor debe poder probarse fácilmente con \texttt{netcat}.) Por
+supuesto, deben soportarse conexiones simultáneas de varios
+clientes.
+
+\textbf{Nota:} debido a que existe el modo binario, no todos
+los valores son representables como texto (pueden incluir espacios,
+saltos de línea, caracteres nulos, etc). Si se realiza \texttt{GET}
+de una clave que está asociada a un valor binario, el servidor deberá
+contestar \texttt{EBINARY} si (y sólo si) el valor no es representable
+como texto.
+
+\section{Protocolo Binario}
+
+El protocolo binario tiene los mismos pedidos y respuestas que el
+protocolo de texto, pero codificados de otra forma para poder manejar
+datos arbitrarios tanto en las claves como en los valores.
+
+Los comandos y respuestas son representados por un byte, dónde cada uno
+tiene un identificador único dado por la siguiente tabla:
+
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \hline
+        \texttt{PUT} & 11 \\
+        \hline
+        \texttt{DEL} & 12 \\
+        \hline
+        \texttt{GET} & 13 \\
+        \hline
+        \texttt{TAKE} & 14 \\
+        \hline
+        \texttt{STATS} & 21 \\
+        \hline
+        \texttt{MAXMEM} & 22 \\
+        \hline
+        \texttt{OK} & 101 \\
+        \hline
+        \texttt{EINVAL} & 111 \\
+        \hline
+        \texttt{ENOTFOUND} & 112 \\
+        \hline
+        \texttt{EBINARY} & 113 \\
+        \hline
+        \texttt{EBIG} & 114 \\
+        \hline
+    \end{tabular}
+\end{center}
+
+Los argumentos de cada comando se envían de forma consecutiva al
+código del mismo. Para los datos de longitud variable, prefijamos
+la longitud del componente como un entero de 32 bits en formato
+\emph{big-endian}.
+
+Por ejemplo, para enviar un \texttt{GET} de una clave de longitud
+5283612, el mensaje tiene la forma:
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        13 & 0 & 80 & 159 & 28 & \emph{(bytes de la clave)} \\
+        \hline
+    \end{tabular}
+\end{center}
+Donde 13 es el código de \texttt{GET}; los 4 bytes siguientes
+representan la longitud de la clave ($0 \times 256^3 + 80 \times 256^2 +
+159\times 256^1 + 28 \times 256^0 = 5283612$); y luego viene la clave en sí.
+
+El servidor contesta de la misma forma con un comando \texttt{OK},
+usando un campo de longitud variable para la respuesta.
+
+Para el comando \texttt{STATS}, que no tiene una forma definida, el modo
+binario contesta \texttt{OK} con los mismos datos exactos que el modo
+texto, en el mismo formato (una sucesión de \texttt{V=n}). También,
+por supuesto, indicando la longitud del campo. Así un cliente puede
+pedir \texttt{STATS} sin conocer exactamente las estadísticas presentes
+en el servidor.
+
+En modo binario no hay \emph{ninguna} restricción sobre los tamaños
+de las claves y de los valores (además de la obvia de que entren en un
+entero de 32 bits, es decir, que sean como máximo $2^{32} - 1 \approx
+4\mathrm{GiB}$).
+%
+Debería ser posible guardar objetos de cualquier tamaño (ej. cientos
+de megabytes) mientras haya memoria disponible.
+
+\section{Bajando Privilegios}
+
+El puerto 888 es un puerto \emph{privilegiado} en Unix, y
+sólo un proceso corriendo como el usuario \texttt{root} puede
+\cc{bind()}earse al mismo. Sin embargo, no queremos que la caché
+corra como \texttt{root} todo el tiempo, dado que si resulta vulnerable
+(ej. por un buffer overflow) esto comprometería al sistema entero.
+
+Su implementación debe bajar los privilegios de alguna manera antes de
+comenzar a recibir conexiones.
+%
+Está bien si la invocación inicial es ejecutada por \texttt{root} (por
+ejemplo vía \texttt{sudo}). \taihu{qué invocación inicial?}
+
+Una solución posible es usando un programa auxiliar que hace el
+\cc{bind()} siendo \texttt{root}, cambia de usuario (por ejemplo con
+\cc{setuid()}) y luego ejecuta (\cc{exec()}) el programa que realmente
+implementa la caché. Esta es la solución tomada por el
+programa \texttt{tcpserver}\cite{tcpserver} de Daniel J. Bernstein.
+
+Hay otras altenativas (ej. ver \texttt{man 7 capabilities}). Elija una e
+implementelá de manera que su programa sea lo más seguro posible.
+
+\section{Bindings para Erlang}
+
+También vamos a implementar un módulo de Erlang que permita
+interactuar con la caché sin requerir que cada cliente implemente el
+protocolo. El módulo debe exportar una función para cada
+posible pedido, con aridades adecuadas, por ejemplo \erl{put/2}.
+%
+La llamada \erl{put(K,V)} debería funcionar para \erl{K} y \erl{V}
+de cualquier tipo Erlang, y comunicarse con la caché vía la red para
+efectuar el \texttt{PUT}.
+%
+Luego, una llamada a \erl{get(K)} debería devolver exactamente \erl{V}.
+%
+La representación interna en la caché y el modo de comunicación está
+libre a elección.
+
+\section{Requerimientos}
+
+La implementación debe ser lo más cercana posible a calidad
+industrial. \taihu{especificar que sería calidad industrial, ¿tener Unit-tests?}
+%
+La caché no puede romperse ante entradas mal formadas, ni comportarse
+de manera incorrecta.
+%
+Las estructuras de datos internas deben estar diseñadas para poder
+responder a los pedidos de manera eficiente, y paralelizar tanto como
+sea posible.
+%
+Debería ser relativamente eficiente y manejar miles de peticiones
+(simples) por segundo sin problema.
+\guido{buscar un número realista}
+%
+El código debe estar documentado correctamente. 
+%
+La entrega debe hacerse en un archivo comprimido con un \texttt{Makefile}
+adecuado. A la vez debe contener un informe detallando las decisiones de diseño tomadas (ejempo: estructuras de datos internas, manejo de conexiones, etc).
+
+\printbibliography
+
+\end{document}
