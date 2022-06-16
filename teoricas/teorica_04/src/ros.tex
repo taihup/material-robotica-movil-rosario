@@ -5,9 +5,10 @@
 	
 	\note{https://www.ros.org/blog/why-ros/}
 	
-	\note{http://wiki.ros.org/es/ROS/Tutoriales}
 	
-	\note{https://www.youtube.com/playlist?list=PL8dDSKArO2-m7hAjOgqL5uV75aZW6cqE5}
+	\note{https://www.youtube.com/watch?v=bFDfvKctvV8&list=PLRE44FoOoKf7NzWwxt3W2taZ7BiWyfhCp&index=1}
+	
+	\note{https://www.youtube.com/watch?v=O0729K-7VEY&list=PLNw2RD-1J5YYvFGiMafRD_axHrBUGvuIg&index=1}
 	
 \end{frame}
 
@@ -88,6 +89,24 @@
 	
 	
 \end{frame}
+
+\begin{frame}
+	\frametitle{Ejemplo: talker y listener}
+	
+	En una terminal ejecutar (un talker en c++):
+	
+	source /opt/ros/foxy/setup.bash
+	
+	ros2 run demo\_nodes\_cpp talker
+	
+	En otra terminal ejecutar (un listener en python):
+	
+	source /opt/ros/foxy/setup.bash
+	
+	ros2 run demo\_nodes\_py listener
+	
+\end{frame}
+
 
 \begin{frame}
 	\frametitle{Creando un paquete en ROS}
