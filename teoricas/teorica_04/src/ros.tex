@@ -10,6 +10,8 @@
 	
 	\note{https://www.youtube.com/watch?v=O0729K-7VEY&list=PLNw2RD-1J5YYvFGiMafRD_axHrBUGvuIg&index=1}
 	
+	\note{https://youtu.be/ZQezxGadsqw}
+	
 \end{frame}
 
 \begin{frame}
@@ -55,7 +57,7 @@
 \begin{frame}
 	\frametitle{Configuración de entorno de ROS}
     
-    https://docs.ros.org/en/<distro>/Tutorials.html
+    \href{https://docs.ros.org/en/<distro>/Tutorials.html}{https://docs.ros.org/en/<distro>/Tutorials.html}
     
     Instalar ROS
     
@@ -95,13 +97,13 @@
 	
 	En una terminal ejecutar (un talker en c++):
 	
-	source /opt/ros/foxy/setup.bash
+	source /opt/ros/<distro>/setup.bash
 	
 	ros2 run demo\_nodes\_cpp talker
 	
 	En otra terminal ejecutar (un listener en python):
 	
-	source /opt/ros/foxy/setup.bash
+	source /opt/ros/<distro>/setup.bash
 	
 	ros2 run demo\_nodes\_py listener
 	
@@ -109,7 +111,7 @@
 
 
 \begin{frame}
-	\frametitle{Creando un paquete en ROS}
+	\frametitle{Creando un paquete en ROS2}
 	
      Building system: ament
      luego para compilar un paquete: colcon build
@@ -118,6 +120,8 @@
      crear un paquete:
      
      ros2 pkg create test\_pkg --build-type ament\_cmake
+     
+     ros2 pkg create test\_pkg --build-type ament\_cmake --node-name <node\_name> <package\_name>
 	
 \end{frame}
 
