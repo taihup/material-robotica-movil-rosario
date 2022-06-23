@@ -168,6 +168,14 @@
     
     ros2 node info <node\_name>
     
+    Correr un archivo launch
+    
+    ros2 launch <package\_name> <launch\_file\_name> <launch\_arguments>
+    
+    Ejemplo:
+    
+    ros2 launch turtlesim multisim.launch.py
+    
 \end{frame}
 
 \begin{frame}
@@ -248,6 +256,22 @@
 \end{frame}
 
 \begin{frame}
+	\frametitle{Rosbag}
+	ros2 bag es una herramienta de línea de comandos para registrar datos publicados sobre temas en su sistema. Acumula los datos transmitidos sobre cualquier número de tópicos y los guarda en una base de datos. Luego puede reproducir los datos para reproducir los resultados de sus pruebas y experimentos. Grabar temas también es una excelente manera de compartir su trabajo y permitir que otros lo recreen.
+	
+	ros2 bag record <topic\_name>
+	
+	ros2 bag info <bag\_file\_name>
+	
+	ros2 bag play <bag\_file\_name>
+	
+	ros2 bag compress <bag\_file\_name>
+	
+	ros2 bag decompress <bag\_file\_name>
+	
+\end{frame}
+
+\begin{frame}
 	\frametitle{Cómo escribir un Publicador y un subscriptor}
 
 \end{frame}
@@ -266,12 +290,6 @@
 \begin{frame}
 	\frametitle{TF}
 	Hablar de las TF de ROS.
-	
-\end{frame}
-
-\begin{frame}
-	\frametitle{Rosbags}
-	topic node hz echo Bw etc...
 	
 \end{frame}
 
