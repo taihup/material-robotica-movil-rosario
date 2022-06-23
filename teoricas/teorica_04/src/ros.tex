@@ -109,6 +109,128 @@
 	
 \end{frame}
 
+\begin{frame}
+    \frametitle{Turtlesim}
+    
+    sudo apt install ros-humble-turtlesim
+    
+    Verificamos los 
+    ros2 pkg executables turtlesim
+    output:
+    
+    turtlesim draw\_square
+    turtlesim mimic
+    turtlesim turtle\_teleop\_key
+    turtlesim turtlesim\_node
+    
+    ros2 run turtlesim turtlesim\_node
+    
+    ros2 run turtlesim turtle\_teleop\_key
+    
+    ros2 node list
+    ros2 topic list
+    ros2 service list
+    ros2 action list
+    
+    Abrir rqt
+    Plugins > Services > Service Caller y y spawn un nueva tortuga.
+    
+    ros2 run turtlesim turtle\_teleop\_key --ros-args --remap turtle1/cmd\_vel:=turtle2/cmd\_vel
+    
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{ROS graph}
+    El grafo de ROS es una red de elementos ROS 2 que procesan datos juntos al mismo tiempo. Abarca todos los ejecutables y las conexiones entre ellos si tuviera que mapearlos y visualizarlos.
+    
+    Cada nodo en ROS debe ser responsable de un solo propósito de módulo (por ejemplo, un nodo para controlar los motores de las ruedas, un nodo para controlar un telémetro láser, etc.). Cada nodo puede enviar y recibir datos a otros nodos a través de tópicos, servicios, acciones o parámetros.
+    
+    Un sistema robótico completo se compone de muchos nodos que trabajan en conjunto. En ROS 2, un único ejecutable (programa C++, programa Python, etc.) puede contener uno o más nodos.
+    
+    \TODO{Agregar imagen de comunicación de ROS}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Volvamos al Turtlesim para ver otros conceptos}
+    
+    El comando ros2 run corre un ejecutable desde un paquete.
+    
+    ros2 run <package\_name> <executable\_name>
+    
+    La ros2 node list muestra los nombres de todos los nodos en ejecución.
+    
+    ros2 node list
+    
+    Remapping permite mapear propiedades de nodo predeterminadas, como nombre de nodo, nombres de tópicos, nombres de servicio, etc., a valores personalizados.
+    
+    ros2 run turtlesim turtlesim\_node --ros-args --remap \_\_node:=my\_turtle
+    
+    ros2 node info <node\_name>
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Volvamos al Turtlesim para ver otros conceptos (cont.)}
+    
+    Visualizar los nodos y la comunicación entre los mismos:
+    
+    rqt\_graph
+    
+    Devuelve la misma lista de tópicos, esta vez con el tipo de tema entre paréntesis:
+    
+    ros2 topic list -t
+    
+    Ver los datos publicados en un tópico:
+    
+    ros2 topic echo <topic\_name>
+    
+    Ejemplo:
+    
+    ros2 topic echo /turtle1/cmd\_vel
+    
+    Obtener información acerca de los publicadores y subscriptores de un tópico:
+    
+    ros2 topic info
+    
+    Obtener detallels sobre un tipo de mensaje:
+    
+    ros2 interface show <msg type>
+    
+    Ejemplo:
+    
+    ros2 interface show geometry\_msgs/msg/Twist
+    
+    Publicar mensajes utilizando la línea de comandos:
+    
+    ros2 topic pub <topic\_name> <msg\_type> '<args>'
+    
+    Ejemplo:
+    
+    ros2 topic pub --rate 1 /turtle1/cmd\_vel geometry\_msgs/msg/Twist "{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.8}}"
+    
+    Saber la prefuencia en que se publica un mensaje
+    ros2 topic hz <topic\_name>
+    
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Crear workspace}
+    
+    mkdir -p ~/dev\_ws/src\\
+    cd ~/dev\_ws/src
+    
+    Agregar un paquete de ejemplo existente al workspace
+    
+    git clone https://github.com/ros/ros\_tutorials.git -b <distro>-devel
+    
+    Compilar el worksapce
+    
+    colcon build
+    
+\end{frame}
+
 
 \begin{frame}
 	\frametitle{Creando un paquete en ROS2}
