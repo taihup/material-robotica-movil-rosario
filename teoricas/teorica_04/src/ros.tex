@@ -160,6 +160,12 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{rqt\_bag}
+
+    
+\end{frame}
+
+\begin{frame}
 	\frametitle{Crear mensajes customizados}
 	Hablar de las TF de ROS.
 	
@@ -172,4 +178,23 @@
     ros2 topic list
     ros2 bag 
 	
+\end{frame}
+
+\begin{frame}
+    \frametitle{Estrategias de Debugging}
+    
+    \note{información extraida de https://youtu.be/ZQezxGadsqw}
+    \begin{itemize}
+        \item Compilar y correr código frecuentemente para atrapar errores tempranamente
+        \item Entender los mensajes de error de compilación y ejecución
+        \item Usar herramientas de análisis para verificar el flujo de los datos: ros2 node info, ros2 topic echo, ros2 wtf, rqt\_graph, etc.
+        \item Visualizar y plotear los datos: RViz, RQT Multiplot, rqt\_bag, etc.
+        \item Dividir el programa en pequeños pasos y verificar resultados intermedios (ROS\_INFO, ROS\_DEBUG, etc)
+        \item Hacer el código robusto verificando argumentos de entrada y utilizar try-catch para atrapar excepciones
+        \item Extender y optimizar el código solo cuando la versión básica este funcionando
+        \item si las cosas no tienen sentido, limpiar el workspace
+        \item Debugguear con una IDE (utilizar breakpoints)
+        \item Escribit Unit-tests y test de integración para encontrar regresiones
+    \end{itemize}
+    
 \end{frame}
