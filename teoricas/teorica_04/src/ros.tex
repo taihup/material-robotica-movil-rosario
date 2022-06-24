@@ -305,14 +305,12 @@
 	setup.cfg es requerido cuando un paquete tiene ejecutables, así ROS 2 puede encontrarlos
 	
 	/<package\_name> - un directorio con el mismo nombre del paquete. Este es usado por ROS 2 para encontrar el paquete, contiene el \_\_init\_\_.py
-	
-	
- 	Building system: ament
-    luego para compilar un paquete: colcon build
      
     crear un paquete:
      
      ros2 pkg create test\_pkg --build-type ament\_cmake
+     
+     El argumento opcional --node-name permite crear un ejecutable Hello World en el paquete.
      
      ros2 pkg create test\_pkg --build-type ament\_cmake --node-name <node\_name> <package\_name>
 	
@@ -335,8 +333,14 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Cómo escribir un Publicador y un subscriptor}
-
+	\frametitle{Ejemplo Publicador y subscriptor}
+	
+	\TODO{Agergar código publicador subscriptor con listings}
+	
+	ros2 run cpp\_pubsub talker
+	
+	ros2 run cpp\_pubsub listener
+	
 \end{frame}
 
 
@@ -358,7 +362,7 @@
 
 \begin{frame}
 	\frametitle{RViz}
-	topic node hz echo Bw etc...
+
 	
 \end{frame}
 
@@ -397,7 +401,20 @@
         \item Extender y optimizar el código solo cuando la versión básica este funcionando
         \item si las cosas no tienen sentido, limpiar el workspace
         \item Debugguear con una IDE (utilizar breakpoints)
-        \item Escribit Unit-tests y test de integración para encontrar regresiones
+        \item Escribir Unit-tests y test de integración para encontrar regresiones
     \end{itemize}
     
 \end{frame}
+
+\begin{frame}
+	\frametitle{Tarea}
+	
+	\begin{itemize}
+		\item Ver cómo crear servicios
+		\item Ver cómo crear mensajes
+		\item Uso de parámetros
+	\end{itemize}
+	
+\end{frame}
+
+
