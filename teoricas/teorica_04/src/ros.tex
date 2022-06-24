@@ -168,14 +168,6 @@
     
     ros2 node info <node\_name>
     
-    Correr un archivo launch
-    
-    ros2 launch <package\_name> <launch\_file\_name> <launch\_arguments>
-    
-    Ejemplo:
-    
-    ros2 launch turtlesim multisim.launch.py
-    
 \end{frame}
 
 \begin{frame}
@@ -222,21 +214,70 @@
     
 \end{frame}
 
+\begin{frame}
+	\frametitle{Archivos launch}
+	
+	A medida que se crean sistemas más complejos con más y más nodos ejecutándose simultáneamente, abrir terminales y volver a ingresar los detalles de configuración se vuelve tedioso.
+	
+	Los archivos launch permiten iniciar y configurar varios ejecutables que contienen nodos ROS 2 de manera simultáneamente.
+	
+	Ejecutar un solo archivo launch con el comando ros2 launch iniciará todo su sistema, todos los nodos y sus configuraciones, a la vez.
+	
+    Correr un archivo launch
+
+	ros2 launch <package\_name> <launch\_file\_name> <launch\_arguments>
+
+	Ejemplo:
+
+	ros2 launch turtlesim multisim.launch.py
+	
+\end{frame}
+
 
 \begin{frame}
     \frametitle{Crear workspace}
     
+    Un workspace es un directorio que contiene paquetes de ROS 2. Antes de usar ROS 2, es necesario obtener su espacio de trabajo de instalación de ROS 2 en la terminal en la que planea trabajar. Esto hace que los paquetes de ROS 2 estén disponibles para que los use en esa terminal.
+    
     mkdir -p ~/dev\_ws/src\\
     cd ~/dev\_ws/src
     
-    Agregar un paquete de ejemplo existente al workspace
+    Agregar un paquete de ejemplo al workspace (dentro de ~/dev\_ws/src)
+    
+    git clone https://github.com/ros2/examples examples -b <distro>
+    
     
     git clone https://github.com/ros/ros\_tutorials.git -b <distro>-devel
     
-    Compilar el worksapce
-    
-    colcon build
-    
+ 
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Compilar el workspace}
+
+	Instalar colcon
+	
+	sudo apt install python3-colcon-common-extensions
+	
+	En la raíz del worklspace, ejecutar
+	
+	colcon build --symlink-install
+	
+	El flag --symlink-install permite usar enlaces simbólicos en lugar de copiar archivos a las carpetas de ROS2 durante la instalación, siempre que sea posible. Cada paquete en ROS2 debe instalarse y todos los archivos utilizados por los nodos deben copiarse en las carpetas de instalación.
+	
+	El build genera los directorios: build, install y log.
+	
+	Cuando colcon haya completado el build, la salida estará en el directorio de install.  colcon genera archivos bash/bat en el directorio install para ayudar a configurar el entorno. Estos archivos agregarán todos los elementos requeridos a su ruta y rutas de biblioteca, así como también proporcionarán cualquier comando bash o shell exportado por los paquetes.
+	
+	Ejemplo de uso: (no olvidar source install/setup.bash)
+	
+	ros2 run examples\_rclcpp\_minimal\_subscriber subscriber\_member\_function
+	
+	ros2 run examples\_rclcpp\_minimal\_publisher publisher\_member\_function
+	
+	El comando colcon\_cd le permite cambiar rápidamente el directorio de trabajo actual al de un paquete.
+	
 \end{frame}
 
 
