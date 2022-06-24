@@ -284,11 +284,33 @@
 \begin{frame}
 	\frametitle{Creando un paquete en ROS2}
 	
-     Building system: ament
-     luego para compilar un paquete: colcon build
+	Un paquete puede considerarse un contenedor para código ROS 2. 
+	
+	La creación de paquetes en ROS 2 utiliza ament como sistema de compilación y colcon como herramienta de compilación.
+	
+	Hay paquetes que utilizan CMake y otros python:
+	
+	CMake:
+	
+	package.xml contiene meta información del paquete
+	
+	CMakeLists.txt describe cómo compilar el código dentro del paquete
+	
+	Python:
+	
+	package.xml package.xml contiene meta información del paquete
+	
+	setup.py contiene instrucciones para de cómo instalar el paquete
+	
+	setup.cfg es requerido cuando un paquete tiene ejecutables, así ROS 2 puede encontrarlos
+	
+	/<package\_name> - un directorio con el mismo nombre del paquete. Este es usado por ROS 2 para encontrar el paquete, contiene el \_\_init\_\_.py
+	
+	
+ 	Building system: ament
+    luego para compilar un paquete: colcon build
      
-     
-     crear un paquete:
+    crear un paquete:
      
      ros2 pkg create test\_pkg --build-type ament\_cmake
      
