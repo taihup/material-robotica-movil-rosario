@@ -1,0 +1,76 @@
+% para la bibliografía se requiere biber y configurar texstudio
+
+% Theme customization
+\setbeamertemplate{itemize item}[rectangle] % configure itemize
+\setbeamertemplate{itemize subitem}[circle] % configure itemize
+\setbeamertemplate{itemize subsubitem}[triangle] % configure itemize
+\setbeamertemplate{navigation symbols}{} % remover simbolos de navegacion de las slides
+\usefonttheme[onlymath]{serif} % simbolos matematicos en serif (Como es en latex original)
+
+\setbeamertemplate{blocks}[rounded] % blocks corners rounded
+\setbeamercolor{block body}{bg=blue!12,fg=black} % color of blocks
+
+% Latex packages
+\usepackage{pdfpc-commands} % pdfpc movie commands. Requires to be downloaded manually from https://github.com/pdfpc/pdfpc/issues/328#issuecomment-437397536
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % para copiar acentos en español del pdf y permite acentos en las notas
+\usepackage[spanish]{babel}
+\usepackage[binary-units=true,per-mode = symbol]{siunitx} % para manejar las unidades
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{amsmath} % bmatrix
+\usepackage[caption=false]{subfig} % caption = false elimina la palabra "Figura" del caption
+\setbeamertemplate{caption}{\raggedright\insertcaption\par} % elimina la palabra "Figura" del caption
+\usepackage{import} % para el comando import (se usa para pdf_tex)
+\captionsetup[subfigure]{labelformat=empty} % remover el indice del caption de la subfigura
+\usepackage{booktabs} % \toprule \midrule \bottomrule
+\usepackage[overridenote]{pdfpc} % requires to download manually pdfpc.sty package from https://www.ctan.org/pkg/pdfpc
+\usepackage[backend=biber]{biblatex} % set biber to format references. Must configure Biber in Texstudio
+\usepackage{csquotes} % to remove warning triggered by biblatex and babel
+
+% Color commands for annotations
+\newcommand\TODO[1]{\textbf{\textcolor{red}{#1}}} %  TODO notes
+
+% add bibliography resource
+\renewcommand*{\bibfont}{\footnotesize} % change bibliograhy size
+\bibliography{./src/bibliography.bib}
+
+% Graphic paths
+\graphicspath{{./images/}}
+
+% add math preamble
+%\input{./math_preamble}
+
+% listings configuration for C code
+\usepackage{listings} % code
+\definecolor{commentgreen}{RGB}{2,112,10}
+\definecolor{eminence}{RGB}{108,48,130}
+\definecolor{weborange}{RGB}{255,165,0}
+\definecolor{frenchplum}{RGB}{129,20,83}
+\lstset{ % spanish characters for listings package
+    language=C,
+    inputencoding=latin1,
+    breaklines=true,
+    tabsize=2,
+    showstringspaces=false,
+    basicstyle=\tiny,
+    commentstyle=\color{commentgreen},
+    keywordstyle=\color{eminence},
+    stringstyle=\color{red},
+    emph={int,char,double,float,unsigned,void,bool},
+    emphstyle={\color{blue}},
+    literate={á}{{\'a}}1
+    {ã}{{\~a}}1
+    {é}{{\'e}}1
+    {ó}{{\'o}}1
+    {í}{{\'i}}1
+    {ñ}{{\~n}}1
+    {¡}{{!`}}1
+    {¿}{{?`}}1
+    {ú}{{\'u}}1
+    {Í}{{\'I}}1
+    {Ó}{{\'O}}1
+}
+
+
