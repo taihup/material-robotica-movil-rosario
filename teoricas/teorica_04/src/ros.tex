@@ -384,18 +384,36 @@
 
 
 \begin{frame}
-	\frametitle{Install turtlebot en ROS}
+	\frametitle{Ejemplo completo: Navegación con Turtlebot3}
+    
+    Guía: \href{https://navigation.ros.org}{https://navigation.ros.org}
+    
+    Instalar los paquetes de Nav2 
+    sudo apt install ros-<ros2-distro>-navigation2
+    
+    sudo apt install ros-<ros2-distro>-nav2-bringup
+    
+    Instalar los paquetes de Turtlebot 3
+    
+    sudo apt install ros-<ros2-distro>-turtlebot3*
+    
+    Setear las variables de entorno:
+    
+    export TURTLEBOT3\_MODEL=waffle
+    
+    export GAZEBO\_MODEL\_PATH=\$GAZEBO\_MODEL\_PATH:/opt/ros/<ros2-distro>/share/turtlebot3\_gazebo/models
+    
+    
+    ros2 launch nav2\_bringup tb3\_simulation\_launch.py headless:=False
+  
     
     https://ros2-industrial-workshop.readthedocs.io/en/latest/\_source/navigation/ROS2-Navigation.html
     
     https://docs.ros.org/en/humble/Tutorials/Advanced/Simulators/Ignition.html
     
     https://navigation.ros.org/index.html
-	
-\end{frame}
-
-\begin{frame}
-	\frametitle{Publicar velocidades a Turtlebot}
+    
+    \TODO{agregar vídeo o gif}
 	
 \end{frame}
 
@@ -408,7 +426,6 @@
 \begin{frame}
 	\frametitle{RViz}
 
-	
 \end{frame}
 
 \begin{frame}
@@ -417,21 +434,6 @@
     \TODO{rat\_bag todavía no fue portado a ROS 2}
 
     
-\end{frame}
-
-\begin{frame}
-	\frametitle{Crear mensajes customizados}
-	Hablar de las TF de ROS.
-	
-\end{frame}
-
-\begin{frame}
-	\frametitle{Herramientas por línea de comandos útiles}
-    topic node hz echo Bw etc...
-    ros2 <hit\_tab>
-    ros2 topic list
-    ros2 bag 
-	
 \end{frame}
 
 \begin{frame}
