@@ -334,15 +334,13 @@
 
 \begin{frame}[fragile]
 	\frametitle{Ejemplo Publicador y subscriptor}
-	
-	\TODO{Agergar código publicador subscriptor con listings}
     
     \begin{columns}
         \begin{column}{0.5\textwidth}
-            \lstinputlisting[firstline=59, lastline=77]{src/publisher\_member\_function.cpp}
+            \lstinputlisting[firstline=1, lastline=23]{src/publisher_member_function.cpp}
         \end{column}
         \begin{column}{0.5\textwidth}
-            \lstinputlisting[firstline=79, lastline=108]{src/publisher\_member\_function.cpp}
+            \lstinputlisting[firstline=25, lastline=44]{src/publisher_member_function.cpp}
         \end{column}
     \end{columns}
 	
@@ -350,6 +348,38 @@
 	
 	ros2 run cpp\_pubsub listener
 	
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Ejemplo Publicador y subscriptor}
+    
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \lstinputlisting[firstline=1, lastline=15]{src/subscriber_member_function.cpp}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \lstinputlisting[firstline=16, lastline=31]{src/subscriber_member_function.cpp}
+        \end{column}
+    \end{columns}
+    
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Ejemplo Publicador y subscriptor}
+    
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \lstinputlisting[firstline=1, lastline=15]{src/CMakeLists.txt}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \lstinputlisting[firstline=16, lastline=28]{src/CMakeLists.txt}
+        \end{column}
+    \end{columns}
+    
+    ros2 run cpp\_pubsub talker
+    
+    ros2 run cpp\_pubsub listener
+    
 \end{frame}
 
 
