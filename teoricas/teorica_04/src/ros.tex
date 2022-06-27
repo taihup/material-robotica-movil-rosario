@@ -426,15 +426,70 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{TF}
-	Hablar de las TF de ROS.
-	
+	\frametitle{TF: transformaciones en ROS}
+    
+    \note{slides de tf2 https://ethz.ch/content/dam/ethz/special-interest/mavt/robotics-n-intelligent-systems/rsl-dam/ROS2021/lec3/ROS\%20Course\%20Slides\%20Course\%203.pdf}
+    
+    \begin{itemize}
+        \item Herramienta para seguir los marcos de coordenada a través del tiempo
+        \item Mantiene las relaciones entre los marcos de coordenadas en una estructura de árbol buffereado en el tiempo
+        \item Permite transformar puntos, vectores, etc entre marcos de coordenadas para un determinado tiempo
+        \item Implementado como un modelo publicador/subscriptor en los tópicos /tf y /tf\_static
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{RViz}
+    \frametitle{TF: transformaciones en ROS}
+    \begin{itemize}
+        \item TF listeners usan un buffer para escuchar las transformaciones broadcasteads
+        \item Se puede consultar una transformación específica al árbol de transformaciones
+    \end{itemize}
+
+    tf2\_msgs/TFMessage.msg
+    geometry\_msgs/TransformStamped[] transforms
+    std\_msgs/Header header
+    uint32 seqtime stamp
+    string frame\_id
+    string child\_frame\_id
+    geometry\_msgs/Transform transform
+    geometry\_msgs/Vector3 translation
+    geometry\_msgs/Quaternion rotation
+
 
 \end{frame}
+
+\begin{frame}
+    \frametitle{TF: transformaciones en ROS}
+    
+    Visualizar el árbol de transformaciones:
+    
+    ros2 run tf2\_tools view\_frames
+    
+    Imprimir información a cerca de la transformación entre dos marcos de coordenadas:
+    
+    ros2 run tf2\_ros tf2\_echo [reference\_frame] [target\_frame]
+    
+    Visualizar las transformaciones en RViz
+    
+   
+\end{frame}
+
+
+
+\begin{frame}
+    \frametitle{URDF}
+
+    
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{SDF}
+ 
+    
+    
+\end{frame}
+
 
 \begin{frame}
     \frametitle{rqt\_bag}
