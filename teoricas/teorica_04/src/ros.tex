@@ -427,35 +427,53 @@
 
 \begin{frame}
 	\frametitle{TF: transformaciones en ROS}
+	
+	\footnotesize
     
     \note{slides de tf2 https://ethz.ch/content/dam/ethz/special-interest/mavt/robotics-n-intelligent-systems/rsl-dam/ROS2021/lec3/ROS\%20Course\%20Slides\%20Course\%203.pdf}
     
-    \begin{itemize}
-        \item Herramienta para seguir los marcos de coordenada a través del tiempo
-        \item Mantiene las relaciones entre los marcos de coordenadas en una estructura de árbol buffereado en el tiempo
-        \item Permite transformar puntos, vectores, etc entre marcos de coordenadas para un determinado tiempo
-        \item Implementado como un modelo publicador/subscriptor en los tópicos /tf y /tf\_static
-    \end{itemize}
+    \begin{columns}
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+			\item Herramienta para seguir los marcos de coordenada a través del tiempo
+			\item Mantiene las relaciones entre los marcos de coordenadas en una estructura de árbol buffereado en el tiempo
+			\item Permite transformar puntos, vectores, etc entre marcos de coordenadas para un determinado tiempo
+			\item Implementado como un modelo publicador/subscriptor en los tópicos /tf y /tf\_static
+			\end{itemize}
+		
+			\includegraphics[width=\columnwidth]{images/tf2_broadcaster_listener.pdf}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\includegraphics[width=\columnwidth]{images/tf2_tree_robot.png}
+		\end{column}
+	\end{columns}
+
 \end{frame}
 
 \begin{frame}
     \frametitle{TF: transformaciones en ROS}
-    \begin{itemize}
-        \item TF listeners usan un buffer para escuchar las transformaciones broadcasteads
-        \item Se puede consultar una transformación específica al árbol de transformaciones
-    \end{itemize}
+    
+        \begin{columns}
+    	\begin{column}{0.5\textwidth}
+		    \begin{itemize}
+				\item TF listeners usan un buffer para escuchar las transformaciones broadcasteads
+				\item Se puede consultar una transformación específica al árbol de transformaciones
+			\end{itemize}
 
-    tf2\_msgs/TFMessage.msg
-    geometry\_msgs/TransformStamped[] transforms
-    std\_msgs/Header header
-    uint32 seqtime stamp
-    string frame\_id
-    string child\_frame\_id
-    geometry\_msgs/Transform transform
-    geometry\_msgs/Vector3 translation
-    geometry\_msgs/Quaternion rotation
-
-
+			tf2\_msgs/TFMessage.msg
+			geometry\_msgs/TransformStamped[] transforms
+			std\_msgs/Header header
+			uint32 seqtime stamp
+			string frame\_id
+			string child\_frame\_id
+			geometry\_msgs/Transform transform
+			geometry\_msgs/Vector3 translation
+			geometry\_msgs/Quaternion rotation
+    	\end{column}
+    	\begin{column}{0.5\textwidth}
+    		\includegraphics[width=\columnwidth]{images/tf2_tree_graph.png}
+    	\end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
@@ -468,18 +486,76 @@
     Imprimir información a cerca de la transformación entre dos marcos de coordenadas:
     
     ros2 run tf2\_ros tf2\_echo [reference\_frame] [target\_frame]
-    
-    Visualizar las transformaciones en RViz
-    
    
 \end{frame}
 
+\begin{frame}
+	\frametitle{Visualizar transformaciones en RViz}
+	
+   	\begin{figure}[!h]
+		\centering
+			\includegraphics[width=\columnwidth]{images/tf2_tree_rviz.png}
+	\end{figure}
+	
+\end{frame}
 
+\begin{frame}
+	\frametitle{Visualizar transformaciones en RViz}
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=\columnwidth]{images/tf2_tree_robot_rviz.png}
+	\end{figure}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Ejemplo: TF2 con tutles}
+	
+	
+	\TODO{https://docs.ros.org/en/foxy/Tutorials/Intermediate/Tf2/Introduction-To-Tf2.html}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Unified Robot description Format (URDF)}
+ 	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\item Se define en un archivo XML la representación de un modelo del robot
+				\begin{itemize}
+					\item Descripción de la Cinemática y Dinámica del robot
+					\item Representación Visual
+					\item Modelo de colisión
+				\end{itemize}
+				\item La generación del archivo URDF puede ser a través de un script en XACRO
+			\end{itemize}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{figure}[!h]
+			\centering
+			\subfloat[Modelo Visual]
+			{
+				\includegraphics[width=0.4\columnwidth]{images/urdf_visual_model.png}
+			}
+			\subfloat[Modelo de colisión]
+			{
+				\includegraphics[width=0.4\columnwidth]{images/urdf_collision_model.png}
+			}
+			\end{figure}
+		\end{column}
+	\end{columns}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{URDF}
+	
+	
+\end{frame}
 
 \begin{frame}
     \frametitle{URDF}
-
-    
+   
     
 \end{frame}
 
