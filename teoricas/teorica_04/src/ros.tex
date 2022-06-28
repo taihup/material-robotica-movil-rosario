@@ -550,19 +550,91 @@
 \begin{frame}
 	\frametitle{URDF}
 	
+	\begin{itemize}
+		\item La descripción consiste en un conjunto de elementos links y un conjunto de elementos joints
+		\item Los joints conectan los links entre sí
+	\end{itemize}
 	
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=\columnwidth]{images/urdf_driagram.pdf}
+	\end{figure}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
     \frametitle{URDF}
-   
+    
+    \footnotesize
+    
+ 	\begin{columns}
+		\begin{column}{0.4\textwidth}
+			\begin{itemize}
+				\item La descripción del robot (URDF) está guardada en un servidor de parámetros como /robot\_description
+				\item Se puede visualizar el robot en RViz con el plugin RobotModel
+			\end{itemize}
+		\end{column}
+		\begin{column}{0.6\textwidth}
+		
+		control.launch
+		
+		\begin{lstlisting}
+		...
+		<include file="$(find smb_description)/launch/load.launch">
+		<arg name="simulation"
+		value="$(arg simulation)"/>
+		<arg name="description_name" value="$(arg robot_description)"/>
+		<arg name="description_file" value="$(arg description_file)"/>
+		<arg name="wheel_joint_type" value="continuous"/>
+		<arg name="robot_namespace"
+		value="$(arg robot_namespace)"/>
+		</include>
+		...
+		\end{lstlisting}
+	
+		load.launch
+	
+		\begin{lstlisting}
+		...
+		<param name="$(arg description_name)" command="$(find xacro)/xacro
+		$(arg description_file)
+		wheel_joint_type:=$(arg wheel_joint_type)
+		simulation:=$(arg simulation)
+		robot_namespace:=$(arg robot_namespace)
+		lidar:=$(arg lidar)
+		description_name_xacro:=$(arg description_name)
+		publish_tf:=$(arg publish_tf)"/>
+		</launch>
+		...
+		\end{lstlisting}
+	
+		\end{column}
+	\end{columns}
     
 \end{frame}
 
 \begin{frame}
-    \frametitle{SDF}
+    \frametitle{Simulation Description Format (SDF)}
  
-    
+     	\begin{columns}
+    	\begin{column}{0.5\textwidth}
+    		\begin{itemize}
+    			\item Se define en un archivo XML para describir
+	    		\begin{itemize}
+    				\item Entorno (luces, gravedad, etc)
+					\item Sensores
+					\item Robots
+    			\end{itemize}
+			\item SDF es el foramto estándar de Gazebo
+			\item Gazebo convierte automáticamente URDF a SDF 
+    		\end{itemize}
+    	\end{column}
+    	\begin{column}{0.5\textwidth}
+    		\begin{figure}[!h]
+    			\centering
+				\includegraphics[width=\columnwidth]{images/sdf_gazebo.jpg}
+    		\end{figure}
+    	\end{column}
+    \end{columns}
     
 \end{frame}
 
@@ -600,7 +672,12 @@
 	\begin{itemize}
 		\item Ver cómo crear servicios
 		\item Ver cómo crear mensajes
-		\item Uso de parámetros
+		\item Uso de parámetros en un nodo
+		\item rqt\_logger\_level
+		\item rqt\_console
+		\item rqt\_graph
+		\item rqt\_multiplot
+		\item rqt\_image\_view
 	\end{itemize}
 	
 \end{frame}
