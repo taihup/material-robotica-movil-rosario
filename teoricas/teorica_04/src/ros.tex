@@ -325,64 +325,71 @@ colcon build --symlink-install
 
 Ejemplo de uso: (no olvidar source install/setup.bash)
 \begin{lstlisting}[style=bash] 
-	ros2 run examples_rclcpp_minimal_subscriber subscriber_member_function
+ros2 run examples_rclcpp_minimal_subscriber subscriber_member_function
 \end{lstlisting}
 
 \begin{lstlisting}[style=bash] 
-	ros2 run examples_rclcpp_minimal_publisher publisher_member_function
+ros2 run examples_rclcpp_minimal_publisher publisher_member_function
 \end{lstlisting}
 El comando colcon\_cd le permite cambiar rápidamente el directorio de trabajo actual al de un paquete.
 
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
 	\frametitle{Creando un paquete en ROS2}
 	
-	Un paquete puede considerarse un contenedor para código ROS 2. 
-	
-	La creación de paquetes en ROS 2 utiliza ament como sistema de compilación y colcon como herramienta de compilación.
-	
-	Hay paquetes que utilizan CMake y otros python:
-	
-	CMake:
-	
-	package.xml contiene meta información del paquete
-	
-	CMakeLists.txt describe cómo compilar el código dentro del paquete
-	
-	Python:
-	
-	package.xml package.xml contiene meta información del paquete
-	
-	setup.py contiene instrucciones para de cómo instalar el paquete
-	
-	setup.cfg es requerido cuando un paquete tiene ejecutables, así ROS 2 puede encontrarlos
-	
-	/<package\_name> - un directorio con el mismo nombre del paquete. Este es usado por ROS 2 para encontrar el paquete, contiene el \_\_init\_\_.py
-     
-    crear un paquete:
-     
-     ros2 pkg create test\_pkg --build-type ament\_cmake
-     
-     El argumento opcional --node-name permite crear un ejecutable Hello World en el paquete.
-     
-     ros2 pkg create test\_pkg --build-type ament\_cmake --node-name <node\_name> <package\_name>
-	
+Un paquete puede considerarse un contenedor para código ROS 2. 
+
+La creación de paquetes en ROS 2 utiliza \lstinline|ament| como sistema de compilación y \lstinline|colcon| como herramienta de compilación.
+
+Hay paquetes que utilizan CMake y otros Python:
+
+CMake:
+\begin{itemize}
+	\item \lstinline|package.xml| contiene meta información del paquete
+
+	\item \lstinline|CMakeLists.txt| describe cómo compilar el código dentro del paquete
+\end{itemize}
+
+Python:
+\begin{itemize}
+\item \lstinline|package.xml package.xml| contiene meta información del paquete
+
+\item \lstinline|setup.py| contiene instrucciones para de cómo instalar el paquete
+
+\item \lstinline|setup.cfg| es requerido cuando un paquete tiene ejecutables, así ROS 2 puede encontrarlos
+
+\item \lstinline|/<package_name>| un directorio con el mismo nombre del paquete. Este es usado por ROS 2 para encontrar el paquete, contiene el \lstinline|__init__.py|
+\end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
+	\frametitle{Creando un paquete en ROS2}
+	
+Crear un paquete:
+\begin{lstlisting}[style=bash] 
+ros2 pkg create test_pkg --build-type ament_cmake
+\end{lstlisting}
+
+El argumento opcional \lstinline|--node-name| permite crear un ejecutable Hello World en el paquete.
+\begin{lstlisting}[style=bash] 
+ros2 pkg create test_pkg --build-type ament_cmake --node-name <node_name> <package_name>
+\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]
 	\frametitle{Rosbag}
 	ros2 bag es una herramienta de línea de comandos para registrar datos publicados sobre temas en su sistema. Acumula los datos transmitidos sobre cualquier número de tópicos y los guarda en una base de datos. Luego puede reproducir los datos para reproducir los resultados de sus pruebas y experimentos. Grabar temas también es una excelente manera de compartir su trabajo y permitir que otros lo recreen.
-	
-	ros2 bag record <topic\_name>
-	
-	ros2 bag info <bag\_file\_name>
-	
-	ros2 bag play <bag\_file\_name>
-	
-	ros2 bag compress <bag\_file\_name>
-	
-	ros2 bag decompress <bag\_file\_name>
+
+\begin{lstlisting}[style=bash] 
+ros2 bag record <topic_name>
+ros2 bag info <bag_file_name>
+ros2 bag play <bag_file\_name>
+ros2 bag compress <bag_file_name>
+ros2 bag decompress <bag_file_name>
+...
+\end{lstlisting}
 	
 \end{frame}
 
