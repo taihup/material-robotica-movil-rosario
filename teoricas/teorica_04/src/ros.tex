@@ -54,66 +54,74 @@
 
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
 	\frametitle{Configuración de entorno de ROS}
     
     \href{https://docs.ros.org/en/<distro>/Tutorials.html}{https://docs.ros.org/en/<distro>/Tutorials.html}
     
-    Instalar ROS
-    
-    sudo apt install ros-<distro>-<package>
-    
-    Sourcear los archivos de setup
-    
-    source /opt/ros/<distro>/setup.bash
-    
-    Agregar el source al .bashrc
-    
-    echo "source /opt/ros/<distro>/setup.bash" >> ~/.bashrc
-    
-    Chequear las variables de entorno
-    
-    printenv | grep -i ROS
-    
-    Output:
-    
-    ROS\_VERSION=2\\
-    ROS\_PYTHON\_VERSION=3\\
-    ROS\_DISTRO=humble
-    
-    
+Instalar ROS
+\begin{lstlisting}[style=bash]
+sudo apt install ros-<distro>-<package>
+\end{lstlisting}
 
-    setear el DOMAIN ID:
+Sourcear los archivos de setup
+\begin{lstlisting}[style=bash]
+source /opt/ros/<distro>/setup.bash
+\end{lstlisting}
     
-    Los nodos ROS 2 en el mismo dominio pueden descubrir y enviarse mensajes libremente, mientras que los nodos ROS 2 en diferentes dominios no pueden. Todos los nodos ROS 2 utilizan el ID de dominio 0 de forma predeterminada.
-    
-    echo "export ROS\_DOMAIN\_ID=<your\_domain\_id>" >> ~/.bashrc
-	
-	
+Agregar el source al .bashrc
+\begin{lstlisting}[style=bash]
+echo "source /opt/ros/<distro>/setup.bash" >> ~/.bashrc
+\end{lstlisting}
+
+Chequear las variables de entorno
+\begin{lstlisting}[style=bash]
+printenv | grep -i ROS
+\end{lstlisting}
+
+Output:
+\begin{lstlisting}[style=bash]
+ROS_VERSION=2
+ROS_PYTHON_VERSION=3
+ROS_DISTRO=humble
+\end{lstlisting}	
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
+	\frametitle{Configuración de entorno de ROS}
+
+Los nodos ROS 2 en el mismo dominio pueden descubrir y enviarse mensajes libremente, mientras que los nodos ROS 2 en diferentes dominios no pueden. Todos los nodos ROS 2 utilizan el ID de dominio 0 de forma predeterminada.
+
+\begin{lstlisting}[style=bash]
+$ echo "export ROS_DOMAIN_ID=<your_domain_id>" >> ~/.bashrc
+\end{lstlisting}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
 	\frametitle{Ejemplo: talker y listener}
 	
 	En una terminal ejecutar (un talker en c++):
-	
-	source /opt/ros/<distro>/setup.bash
-	
-	ros2 run demo\_nodes\_cpp talker
-	
+\begin{lstlisting}[style=bash]
+source /opt/ros/<distro>/setup.bash
+ros2 run demo_nodes_cpp talker
+\end{lstlisting}
+
 	En otra terminal ejecutar (un listener en python):
-	
-	source /opt/ros/<distro>/setup.bash
-	
-	ros2 run demo\_nodes\_py listener
-	
+\begin{lstlisting}[style=bash]
+source /opt/ros/<distro>/setup.bash
+ros2 run demo_nodes_py listener
+\end{lstlisting}
+
 \end{frame}
 
-\begin{frame}
-    \frametitle{Turtlesim}
+\begin{frame}[fragile]
+    \frametitle{Ejemplo: Turtlesim}
     
+\begin{lstlisting}[style=bash]
     sudo apt install ros-humble-turtlesim
-    
+\end{lstlisting}
     Verificamos los 
     ros2 pkg executables turtlesim
     output:

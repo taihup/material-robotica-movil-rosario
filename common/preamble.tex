@@ -48,28 +48,38 @@
 \definecolor{eminence}{RGB}{108,48,130}
 \definecolor{weborange}{RGB}{255,165,0}
 \definecolor{frenchplum}{RGB}{129,20,83}
+
 \lstset{ % spanish characters for listings package
+	inputencoding=latin1,
+	breaklines=true,
+	tabsize=2,
+	showstringspaces=false,
+	basicstyle=\ttfamily,
+	backgroundcolor=\color{lightgray}, % Choose background color
+	literate={á}{{\'a}}1
+	{ã}{{\~a}}1
+	{é}{{\'e}}1
+	{ó}{{\'o}}1
+	{í}{{\'i}}1
+	{ñ}{{\~n}}1
+	{¡}{{!`}}1
+	{¿}{{?`}}1
+	{ú}{{\'u}}1
+	{Í}{{\'I}}1
+	{Ó}{{\'O}}1
+}
+
+\lstdefinestyle{cpp}{ % spanish characters for listings package
     language=C++,
-    inputencoding=latin1,
-    breaklines=true,
-    tabsize=2,
-    showstringspaces=false,
-    basicstyle=\tiny,
-    commentstyle=\color{commentgreen},
+   	commentstyle=\color{commentgreen},
     keywordstyle=\color{eminence},
     stringstyle=\color{red},
     emph={int,char,double,float,unsigned,void,bool},
-    emphstyle={\color{blue}},
-    literate={á}{{\'a}}1
-    {ã}{{\~a}}1
-    {é}{{\'e}}1
-    {ó}{{\'o}}1
-    {í}{{\'i}}1
-    {ñ}{{\~n}}1
-    {¡}{{!`}}1
-    {¿}{{?`}}1
-    {ú}{{\'u}}1
-    {Í}{{\'I}}1
-    {Ó}{{\'O}}1
+    emphstyle={\color{blue}}
 }
+
+\lstdefinestyle{bash}{ % spanish characters for listings package
+	language=Bash
+}
+
 
