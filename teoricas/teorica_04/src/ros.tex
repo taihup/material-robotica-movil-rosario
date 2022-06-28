@@ -93,7 +93,7 @@ ROS_DISTRO=humble
 Los nodos ROS 2 en el mismo dominio pueden descubrir y enviarse mensajes libremente, mientras que los nodos ROS 2 en diferentes dominios no pueden. Todos los nodos ROS 2 utilizan el ID de dominio 0 de forma predeterminada.
 
 \begin{lstlisting}[style=bash]
-$ echo "export ROS_DOMAIN_ID=<your_domain_id>" >> ~/.bashrc
+echo "export ROS_DOMAIN_ID=<your_domain_id>" >> ~/.bashrc
 \end{lstlisting}
 
 \end{frame}
@@ -118,33 +118,47 @@ ros2 run demo_nodes_py listener
 
 \begin{frame}[fragile]
     \frametitle{Ejemplo: Turtlesim}
-    
+    \footnotesize
 \begin{lstlisting}[style=bash]
-    sudo apt install ros-humble-turtlesim
+sudo apt install ros-humble-tur`tlesim
 \end{lstlisting}
-    Verificamos los 
-    ros2 pkg executables turtlesim
+    Verificamos los ejecutables dentro del paquete
+\begin{lstlisting}[style=bash]
+ros2 pkg executables turtlesim
+\end{lstlisting}
     output:
-    
-    turtlesim draw\_square
-    turtlesim mimic
-    turtlesim turtle\_teleop\_key
-    turtlesim turtlesim\_node
-    
-    ros2 run turtlesim turtlesim\_node
-    
-    ros2 run turtlesim turtle\_teleop\_key
-    
-    ros2 node list
-    ros2 topic list
-    ros2 service list
-    ros2 action list
-    
+\begin{lstlisting}[style=bash]
+turtlesim draw_square
+turtlesim mimic
+turtlesim turtle_teleop_key
+turtlesim turtlesim_node
+\end{lstlisting}
+
+\begin{lstlisting}[style=bash]
+ros2 run turtlesim turtlesim_node
+\end{lstlisting}
+
+\begin{lstlisting}[style=bash]
+ros2 run turtlesim turtle_teleop_key
+\end{lstlisting}
+\begin{lstlisting}[style=bash]
+ros2 node list
+ros2 topic list
+ros2 service list
+ros2 action list
+\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Ejemplo: Turtlesim}
+	\footnotesize
+	
     Abrir rqt
-    Plugins > Services > Service Caller y y spawn un nueva tortuga.
-    
-    ros2 run turtlesim turtle\_teleop\_key --ros-args --remap turtle1/cmd\_vel:=turtle2/cmd\_vel
-    
+	Plugins -> Services -> Service Caller y spawn una nueva tortuga.
+\begin{lstlisting}[style=bash]    
+ros2 run turtlesim turtle_teleop_key --ros-args --remap turtle1/cmd_vel:=turtle2/cmd_vel
+\end{lstlisting}
 
 \end{frame}
 
@@ -159,70 +173,90 @@ ros2 run demo_nodes_py listener
     \TODO{Agregar imagen de comunicación de ROS}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
     \frametitle{Volvamos al Turtlesim para ver otros conceptos}
     
     El comando ros2 run corre un ejecutable desde un paquete.
-    
-    ros2 run <package\_name> <executable\_name>
-    
+\begin{lstlisting}[style=bash]    
+ros2 run <package_name> <executable_name>
+\end{lstlisting}
+
     La ros2 node list muestra los nombres de todos los nodos en ejecución.
-    
-    ros2 node list
-    
+
+\begin{lstlisting}[style=bash]    
+ros2 node list
+\end{lstlisting}
+
     Remapping permite mapear propiedades de nodo predeterminadas, como nombre de nodo, nombres de tópicos, nombres de servicio, etc., a valores personalizados.
     
-    ros2 run turtlesim turtlesim\_node --ros-args --remap \_\_node:=my\_turtle
-    
-    ros2 node info <node\_name>
-    
+\begin{lstlisting}[style=bash]    
+ros2 run turtlesim turtlesim_node --ros-args --remap __node:=my_turtle
+\end{lstlisting}
+
+\begin{lstlisting}[style=bash]    
+ros2 node info <node_name>
+\end{lstlisting}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
     \frametitle{Volvamos al Turtlesim para ver otros conceptos (cont.)}
+	\footnotesize
+	
+Visualizar los nodos y la comunicación entre los mismos:
+\begin{lstlisting}[style=bash]  
+rqt_graph
+\end{lstlisting}
+
+Devuelve la misma lista de tópicos, esta vez con el tipo de tema entre paréntesis:
+\begin{lstlisting}[style=bash]  
+ros2 topic list -t
+\end{lstlisting}
     
-    Visualizar los nodos y la comunicación entre los mismos:
+Ver los datos publicados en un tópico:
+\begin{lstlisting}[style=bash]  
+ros2 topic echo <topic_name>
+\end{lstlisting}
     
-    rqt\_graph
+Ejemplo:
+\begin{lstlisting}[style=bash]  
+ros2 topic echo /turtle1/cmd_vel
+\end{lstlisting}
     
-    Devuelve la misma lista de tópicos, esta vez con el tipo de tema entre paréntesis:
+Obtener información acerca de los publicadores y subscriptores de un tópico:
+\begin{lstlisting}[style=bash]  
+ros2 topic info
+\end{lstlisting}
     
-    ros2 topic list -t
-    
-    Ver los datos publicados en un tópico:
-    
-    ros2 topic echo <topic\_name>
-    
-    Ejemplo:
-    
-    ros2 topic echo /turtle1/cmd\_vel
-    
-    Obtener información acerca de los publicadores y subscriptores de un tópico:
-    
-    ros2 topic info
-    
-    Obtener detallels sobre un tipo de mensaje:
-    
-    ros2 interface show <msg type>
-    
-    Ejemplo:
-    
-    ros2 interface show geometry\_msgs/msg/Twist
-    
-    Publicar mensajes utilizando la línea de comandos:
-    
-    ros2 topic pub <topic\_name> <msg\_type> '<args>'
-    
-    Ejemplo:
-    
-    ros2 topic pub --rate 1 /turtle1/cmd\_vel geometry\_msgs/msg/Twist "{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.8}}"
-    
-    Saber la prefuencia en que se publica un mensaje
-    ros2 topic hz <topic\_name>
+Obtener detallels sobre un tipo de mensaje:
+\begin{lstlisting}[style=bash]  
+ros2 interface show <msg type>
+\end{lstlisting}    
+
+Ejemplo:
+\begin{lstlisting}[style=bash]  
+ros2 interface show geometry_msgs/msg/Twist
+\end{lstlisting}    
+
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Volvamos al Turtlesim para ver otros conceptos (cont.)}
+Publicar mensajes utilizando la línea de comandos:
+\begin{lstlisting}[style=bash]  
+ros2 topic pub <topic_name> <msg_type> '<args>'
+\end{lstlisting}    
+Ejemplo:
+\begin{lstlisting}[style=bash]  
+ros2 topic pub --rate 1 /turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.8}}"
+\end{lstlisting}    
+Saber la prefuencia en que se publica un mensaje
+\begin{lstlisting}[style=bash]  
+ros2 topic hz <topic_name>
+\end{lstlisting}
     
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
 	\frametitle{Archivos launch}
 	
 	A medida que se crean sistemas más complejos con más y más nodos ejecutándose simultáneamente, abrir terminales y volver a ingresar los detalles de configuración se vuelve tedioso.
@@ -231,63 +265,75 @@ ros2 run demo_nodes_py listener
 	
 	Ejecutar un solo archivo launch con el comando ros2 launch iniciará todo su sistema, todos los nodos y sus configuraciones, a la vez.
 	
-    Correr un archivo launch
+Correr un archivo launch
+\begin{lstlisting}[style=bash] 
+ros2 launch <package_name> <launch_file_name> <launch_arguments>
+\end{lstlisting}
 
-	ros2 launch <package\_name> <launch\_file\_name> <launch\_arguments>
-
-	Ejemplo:
-
-	ros2 launch turtlesim multisim.launch.py
+Ejemplo:
+\begin{lstlisting}[style=bash] 
+ros2 launch turtlesim multisim.launch.py
+\end{lstlisting}
 	
 \end{frame}
 
 
-\begin{frame}
+\begin{frame}[fragile]
     \frametitle{Crear workspace}
     
-    Un workspace es un directorio que contiene paquetes de ROS 2. Antes de usar ROS 2, es necesario obtener su espacio de trabajo de instalación de ROS 2 en la terminal en la que planea trabajar. Esto hace que los paquetes de ROS 2 estén disponibles para que los use en esa terminal.
-    
-    mkdir -p ~/dev\_ws/src\\
-    cd ~/dev\_ws/src
-    
-    Agregar un paquete de ejemplo al workspace (dentro de ~/dev\_ws/src)
-    
-    git clone https://github.com/ros2/examples examples -b <distro>
-    
-    
-    git clone https://github.com/ros/ros\_tutorials.git -b <distro>-devel
-    
- 
+Un workspace es un directorio que contiene paquetes de ROS 2. Antes de usar ROS 2, es necesario obtener su espacio de trabajo de instalación de ROS 2 en la terminal en la que planea trabajar. Esto hace que los paquetes de ROS 2 estén disponibles para que los use en esa terminal.
+
+\begin{lstlisting}[style=bash] 
+mkdir -p ~/dev\_ws/src\\
+cd ~/dev\_ws/src
+\end{lstlisting}
+
+Agregar un paquete de ejemplo al workspace (dentro de ~/dev\_ws/src)
+\begin{lstlisting}[style=bash] 
+git clone https://github.com/ros2/examples examples -b <distro>
+\end{lstlisting}
+
+\begin{lstlisting}[style=bash] 
+git clone https://github.com/ros/ros\_tutorials.git -b <distro>-devel
+\end{lstlisting}
+	 
 \end{frame}
 
 
-\begin{frame}
+\begin{frame}[fragile]
 	\frametitle{Compilar el workspace}
 
-	Instalar colcon
-	
-	sudo apt install python3-colcon-common-extensions
-	
-	En la raíz del worklspace, ejecutar
-	
-	colcon build --symlink-install
-	
+Instalar colcon
+\begin{lstlisting}[style=bash] 
+sudo apt install python3-colcon-common-extensions
+\end{lstlisting}
+
+En la raíz del worklspace, ejecutar
+\begin{lstlisting}[style=bash] 
+colcon build --symlink-install
+\end{lstlisting}
+
 	El flag --symlink-install permite usar enlaces simbólicos en lugar de copiar archivos a las carpetas de ROS2 durante la instalación, siempre que sea posible. Cada paquete en ROS2 debe instalarse y todos los archivos utilizados por los nodos deben copiarse en las carpetas de instalación.
 	
 	El build genera los directorios: build, install y log.
-	
-	Cuando colcon haya completado el build, la salida estará en el directorio de install.  colcon genera archivos bash/bat en el directorio install para ayudar a configurar el entorno. Estos archivos agregarán todos los elementos requeridos a su ruta y rutas de biblioteca, así como también proporcionarán cualquier comando bash o shell exportado por los paquetes.
-	
-	Ejemplo de uso: (no olvidar source install/setup.bash)
-	
-	ros2 run examples\_rclcpp\_minimal\_subscriber subscriber\_member\_function
-	
-	ros2 run examples\_rclcpp\_minimal\_publisher publisher\_member\_function
-	
-	El comando colcon\_cd le permite cambiar rápidamente el directorio de trabajo actual al de un paquete.
-	
 \end{frame}
 
+\begin{frame}[fragile]
+	\frametitle{Compilar el workspace}
+	
+	Cuando colcon haya completado el build, la salida estará en el directorio de install.  colcon genera archivos bash/bat en el directorio install para ayudar a configurar el entorno. Estos archivos agregarán todos los elementos requeridos a su ruta y rutas de biblioteca, así como también proporcionarán cualquier comando bash o shell exportado por los paquetes.
+
+Ejemplo de uso: (no olvidar source install/setup.bash)
+\begin{lstlisting}[style=bash] 
+	ros2 run examples_rclcpp_minimal_subscriber subscriber_member_function
+\end{lstlisting}
+
+\begin{lstlisting}[style=bash] 
+	ros2 run examples_rclcpp_minimal_publisher publisher_member_function
+\end{lstlisting}
+El comando colcon\_cd le permite cambiar rápidamente el directorio de trabajo actual al de un paquete.
+
+\end{frame}
 
 \begin{frame}
 	\frametitle{Creando un paquete en ROS2}
