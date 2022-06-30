@@ -634,52 +634,50 @@ geometry\_msgs/Quaternion rotation
 \begin{frame}[fragile]
     \frametitle{URDF}
     
-    \footnotesize
-    
- 	\begin{columns}
-		\begin{column}{0.4\textwidth}
-			\begin{itemize}
-				\item La descripción del robot (URDF) está guardada en un servidor de parámetros como /robot\_description
-				\item Se puede visualizar el robot en RViz con el plugin RobotModel
-			\end{itemize}
-		\end{column}
-		\begin{column}{0.6\textwidth}
-		
-		control.launch
-		
-		\begin{lstlisting}
-		...
-		<include file="$(find smb_description)/launch/load.launch">
-		<arg name="simulation"
-		value="$(arg simulation)"/>
-		<arg name="description_name" value="$(arg robot_description)"/>
-		<arg name="description_file" value="$(arg description_file)"/>
-		<arg name="wheel_joint_type" value="continuous"/>
-		<arg name="robot_namespace"
-		value="$(arg robot_namespace)"/>
-		</include>
-		...
-		\end{lstlisting}
+\footnotesize
+
+\begin{columns}
+\begin{column}{0.4\textwidth}
+\begin{itemize}
+\item La descripción del robot (URDF) está guardada en un servidor de parámetros como /robot\_description
+\item Se puede visualizar el robot en RViz con el plugin RobotModel
+\end{itemize}
+\end{column}
+\begin{column}{0.6\textwidth}
+
+control.launch
+\begin{lstlisting}[style=xml,basicstyle=\tiny]
+...
+<include file="$(find smb_description)/launch/load.launch">
+<arg name="simulation"
+value="$(arg simulation)"/>
+<arg name="description_name" value="$(arg robot_description)"/>
+<arg name="description_file" value="$(arg description_file)"/>
+<arg name="wheel_joint_type" value="continuous"/>
+<arg name="robot_namespace"
+value="$(arg robot_namespace)"/>
+</include>
+...
+\end{lstlisting}
+
+load.launch
+\begin{lstlisting}[style=xml,basicstyle=\tiny]
+...
+<param name="$(arg description_name)" command="$(find xacro)/xacro
+$(arg description_file)
+wheel_joint_type:=$(arg wheel_joint_type)
+simulation:=$(arg simulation)
+robot_namespace:=$(arg robot_namespace)
+lidar:=$(arg lidar)
+description_name_xacro:=$(arg description_name)
+publish_tf:=$(arg publish_tf)"/>
+</launch>
+...
+\end{lstlisting}
 	
-		load.launch
-	
-		\begin{lstlisting}
-		...
-		<param name="$(arg description_name)" command="$(find xacro)/xacro
-		$(arg description_file)
-		wheel_joint_type:=$(arg wheel_joint_type)
-		simulation:=$(arg simulation)
-		robot_namespace:=$(arg robot_namespace)
-		lidar:=$(arg lidar)
-		description_name_xacro:=$(arg description_name)
-		publish_tf:=$(arg publish_tf)"/>
-		</launch>
-		...
-		\end{lstlisting}
-	
-		\end{column}
-	\end{columns}
-    
+\end{column}
+\end{columns}
+
 \end{frame}
 
 \begin{frame}
