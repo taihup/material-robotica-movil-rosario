@@ -4,7 +4,7 @@
 % para la bibliografía se requiere biber y configurar texstudio
 
 %\documentclass[compress,handout]{beamer}
-\documentclass[compress]{beamer}
+\documentclass[aspectratio=169,compress]{beamer}
 
 % add preamble
 \input{../../common/preamble}
@@ -16,11 +16,14 @@
 \date{}
 
 \begin{document}
+	
+	% add title page
+	\frame{\titlepage}
+	
+\section{Visión por computadora}
+\input{src/computer_vision.tex}
 
-% add title page
-\frame{\titlepage}
-
-\section{ROS}
-\input{src/path_planning.tex}
-
+\section{Bibliografía}
+\input{src/bibliography.tex}
+	
 \end{document}
