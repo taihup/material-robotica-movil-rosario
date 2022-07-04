@@ -69,6 +69,41 @@
 		\item Invariante rotación: Alineado con la orientación dominante de la región local
 		\item Invariante a escala: Adaptar la región descripta a la escala de keypoint
 	\end{itemize}
+
+	\TODO{agregar imagenes SIFT BRIEF}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Local Features invariantes}
+	\footnotesize
+	
+	\begin{itemize}
+		\item Invarianza geométrica: traslación, rotación, escala.
+		\item Invarianza fotométrica: brillo, exposición, etc.
+	\end{itemize}
+	 
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Ventajas de features locales}
+	\footnotesize
+
+	\begin{itemize}
+	\item Locales: los features al ser locales son robustos a oclusiones
+	\item Distintivos: pueden diferenciar un gran conjunto de objetos
+	\item Cuantiosos: puede haber cientos o miles en una misma imagen
+	\item Eficientes: al discretizar la imagen, se puede obtener tiempo real.
+\end{itemize}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Harris}
+	\footnotesize
+	
+	\TODO{Agregar slides de SIFT, HARRIS, FAST y ORB https://youtu.be/ebMyBbkkHWk}
 	
 \end{frame}
 
@@ -79,53 +114,96 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Matcheo de keypoints}
+	\frametitle{RANSAC: Random Sample Consensus}
 	\footnotesize
+	
+	\begin{itemize}
+		\item Permite encontrar un modelo que ajusta datos en presencia de ruido y outliers
+		\item Separa el conjunto de datos entre inliers y outliers
+%		\item Encuentra la mejor partición de puntos en un conjunto de inliers y outliers. Estima un modelo utilizando el conjunto de inliers.
+		\item Ejemplo: dado un conjunto de puntos 2D, ajustar una línea 
+	\end{itemize}
+	
+	\begin{figure}
+		\includegraphics[width=0.5\textwidth]{./images/ransac_points.pdf}
+	\end{figure}
+
+	\TODO{hacer imágenes similares a las del vídeo: https://youtu.be/ebMyBbkkHWk}
+	
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{RANSAC: Random Sample Consensus}
+	\footnotesize
+	
+	\TODO{hacer imágenes similares a las del vídeo: https://youtu.be/ebMyBbkkHWk}
+	
+	\begin{figure}
+		\includegraphics[width=0.5\textwidth]{./images/ransac_fitted_line.pdf}
+	\end{figure}
+	
+\end{frame}
+\begin{frame}
+	\frametitle{RANSAC: Random Sample Consensus}
+	\footnotesize
+
+	\begin{enumerate}
+		\item {\bf Samplear} de manera aleatoria el número de puntos requerido para ajustar el modelo.
+		\item {\bf Computar} el modelo usando los datos sampleados
+		\item {\bf Contar} el número de inliers y quedarse con el modelo que mejor ajusta los datos
+		\item Iterar puntos 1-3 hasta que el mejor modelo es hallado
+	\end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{RANSAC: Random Sample Consensus}
+	\footnotesize
+	
+	Pero...¿cuantas iteraciones realizar?
+	
+	\begin{itemize}
+		\item Número de puntos sampleados $s$ (número de puntos mínimos requeridos para ajustar el modelo)
+		\item Ratio de outliers $e = \dfrac{\# outliers}{\# puntos totales}$
+		\item Número de intentos $T$.
+		Elegimos $T$, con probabilidad $p$ de éxito (la probabilidad de al menos obtener un muestreo aleatorio libre de outliers en las $T$ iteraciones).
+	\end{itemize}
+	
+	Probabilidad de fallar en una iteración, es decir de no seleccionar todos inliers.
+	\begin{equation*}
+		1-p = 1 - (1 - e)^{s}
+	\end{equation*} 
+	\note{(1-e)^s es la probabilidad de seleccionar todos inliers}
+	
+	
+	Probabilidad de fallar en $T$ iteraciones, es decir seleccionar un outlier en todas las iteraciones.
+	
+	\begin{equation*}
+		1-p = (1 - (1 - e)^{s})^{T}
+	\end{equation*} 
+	despejando $T$,
+	\begin{equation*}
+		T = \dfrac{\log(1-p)}{\log(1-(1-e)^{s})}
+	\end{equation*} 
 	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Matcheo de keypoints}
+	\frametitle{RANSAC: ventajas y desventajas}
 	\footnotesize
-	
+	Ventajas:
+	\begin{itemize}
+		\item Robusto en presencia de outliers
+		\item funciona bien para modelos de 1 a 10 parámetros (dependiendo del número de outliers)
+		\item Fácil de implementar y entender
+	\end{itemize}
+	Ventajas:
+	\begin{itemize}
+		\item El tiempo computacional crece rápido con el porcentaje de outliers y el número de parámetros necesarios para ajustar el modelo
+		\item No es bueno para obtener múltiples modelos (e.g. ajustar más de una línea en 2D)
+	\end{itemize}
 \end{frame}
-
-\begin{frame}
-	\frametitle{Matcheo de keypoints}
-	\footnotesize
-	
-\end{frame}
-
-\begin{frame}
-	\frametitle{Matcheo de keypoints}
-	\footnotesize
-	
-\end{frame}
-
-\begin{frame}
-	\frametitle{Matcheo de keypoints}
-	\footnotesize
-	
-\end{frame}
-
-\begin{frame}
-	\frametitle{Matcheo de keypoints}
-	\footnotesize
-	
-\end{frame}
-
-\begin{frame}
-	\frametitle{Matcheo de keypoints}
-	\footnotesize
-	
-\end{frame}
-
-\begin{frame}
-	\frametitle{Matcheo de keypoints}
-	\footnotesize
-	
-\end{frame}
-
 \begin{frame}
 	\frametitle{Matcheo de keypoints}
 	\footnotesize
