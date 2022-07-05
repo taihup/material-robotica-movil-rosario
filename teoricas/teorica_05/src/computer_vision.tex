@@ -205,21 +205,167 @@
 	\end{itemize}
 \end{frame}
 \begin{frame}
-	\frametitle{Matcheo de keypoints}
+	\frametitle{Geometría Epipolar}
 	\footnotesize
+	
+	\begin{itemize}
+		\item La restricción epipolar puede ser computada por medio de puntos 2D en la imagen cuando la pose relative de la cámara es conocida ($\transform{r}{l}$, por ejemplo una cámara estéreo)
+		\item El plano epipolar es definido por $\imagePoint_{l}$ y los dos dentros óptico de las cámaras $\cameraCenter_{l}$ y $\cameraCenter_{r}$
+		\item La línea epipolar es la intersección del plano epipolar y el plano de la imagen derecha.
+		\item La restricción epipolar codifica que $\imagePoint_{r}$ debe estar ubicado sobre la linea epipolar en la imagen derecha.
+	\end{itemize}
+
+	\begin{equation*}
+		\homoImagePoint_{l}^{\top} \essentialMatrix \homoImagePoint_{r}^{\top} = 0,
+	\end{equation*}
+	donde $\essentialMatrix = \transform{l}{r}$, y se denomina \emph{Essential Matrix}
+	
+	La línea epipolar permite que restrinjamos la búsqueda de correspondencias visuales entre dos cámaras.
+	
+	\TODO{renombrar variables en imágenes}
+	
+	\begin{figure}
+		\includegraphics[width=0.4\textwidth]{./images/epipolar_geometry.pdf}
+	\end{figure}
 	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Matcheo de keypoints}
+	\frametitle{Estimación de movimiento}
 	\footnotesize
+	
+	2D-2D
+    \begin{columns}
+	\begin{column}{0.7\textwidth}
+		\begin{itemize}
+		\item Error de reproyección:
+		\[
+		f(\transform{a}{b}, \mapPointsSet)= \sum_{i=1}^{N} \Vert \measurement_{a,i} - \prediction^{\mathrm{s}}(\transform{a}{\worldCoordSystem},\worldPoint_{i}) \Vert^{2} + \Vert \measurement_{b,i} - \prediction^{\mathrm{s}}(\inverse{\transform{a}{b}}\transform{a}{\worldCoordSystem},\worldPoint_{i}) \Vert^{2}
+		\]
+		\item Algoritmos lineales: 8-point, 5-point
+		\end{itemize}
+	\end{column}
+	\begin{column}{0.3\textwidth}
+	    \begin{figure}
+			\def\svgwidth{\columnwidth}
+			\import{./images/}{tracking_reprojection_error_after.pdf_tex}
+		\end{figure}
+	\end{column}
+\end{columns}
+
+	3D-2D
+    \begin{columns}
+	\begin{column}{0.7\textwidth}
+		\begin{itemize}
+			\item Error de reproyección:
+			\[
+			f(\transform{\worldCoordSystem}{a}, \mapPointsSet)= \sum_{i=1}^{N} \Vert \measurement_{a,i} - \prediction(\inverse{\transform{\worldCoordSystem}{a}},\worldPoint_{i}) \Vert^{2}
+			\]
+			\item Algoritmos lineales: DLT, PnP
+		\end{itemize}
+	\end{column}
+	\begin{column}{0.3\textwidth}
+		\begin{figure}
+			\def\svgwidth{\columnwidth}
+			\import{./images/}{tracking_reprojection_error_after.pdf_tex}
+		\end{figure}
+	\end{column}
+	\end{columns}
+	3D-3D
+	\begin{columns}
+		\begin{column}{0.7\textwidth}
+			\begin{itemize}
+				\item Error de reproyección:
+				\[
+				f(\transform{a}{b})= \sum_{i=1}^{N} \Vert \pointCoord{a}_{i} - \transform{a}{b} \pointCoord{b}_{i} \Vert^{2}
+				\]
+				\item Algoritmos lineales: Atun, Horn
+			\end{itemize}
+		\end{column}
+		\begin{column}{0.3\textwidth}
+			\begin{figure}
+				\def\svgwidth{\columnwidth}
+				\import{./images/}{tracking_reprojection_error_after.pdf_tex}
+			\end{figure}
+		\end{column}
+	\end{columns}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Estimación de movimiento 2D-2D}
+	\footnotesize
+	
+	\begin{itemize}
+		\item dados los matches 2D-2D $\{(\measurement_{a}, \measurement_{b})_{i}\}$ de puntos 3D desconocidos $\mapPointsSet_{i}$ encontrar el movimiento relativo $\transform{a}{b}$ entre los frames.
+		\item Error de reproyección (Bundle Adjustment):
+		\[
+		f(\transform{a}{b}, \mapPointsSet)= \sum_{i=1}^{N} \Vert \measurement_{a,i} - \prediction^{\mathrm{s}}(\transform{a}{\worldCoordSystem},\worldPoint_{i}) \Vert^{2} + \Vert \measurement_{b,i} - \prediction^{\mathrm{s}}(\inverse{\transform{a}{b}}\transform{a}{\worldCoordSystem},\worldPoint_{i}) \Vert^{2}
+		\]
+		Se puede optimizar con métodos no lineales pero requieren de una buena semilla inicial. Es no convexo, solución no única (ambigüedadad de escala)
+		\item Se puede utilizar un enfoque algebraico basado en geometría epipolar para obtener la transformación relativa (a un factor de escala) sin explicitamente computar la posición de los puntos 3D: algoritmos 8-point y 5-point.
+		\item Aplicaciones:
+		\begin{itemize}
+			\item Filtrar matches con RANSAC
+			\item Inicializar una sistemas de SLAM monocular / SfM
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Estimación de movimiento 3D-2D}
+	\footnotesize
+	
+	\begin{itemize}
+		\item Dado un conjunto de correspondencias 3D-2D $\{(\worldPoint, \measurement_{a})_{i}\}$ queremos encontrar la pose $\transform{w}{a}$ de la cámara en el mundo.
+		\item Error de reproyección:
+		\[
+		f(\transform{\worldCoordSystem}{a}, \mapPointsSet)= \sum_{i=1}^{N} \Vert \measurement_{a,i} - \prediction(\inverse{\transform{\worldCoordSystem}{a}},\worldPoint_{i}) \Vert^{2}
+		\]
+		Se puede optimizar con métodos no lineales pero requieren de una buena semilla inicial. Es no convexo, solución no única (ambigüedad de escala)
+		\item Este problema es conocido como \emph{Perspective-n-Points} (PnP) y existen diferentes enfoques para resolverlo:
+		\begin{itemize}
+			\item Direct Linear Transform (DLT)
+			\item EPnP
+			\item OPnP
+		\end{itemize}
+		\item Aplicaciones:
+		\begin{itemize}
+			\item Localización de una cámara dado un mapa de puntos (tracking)
+		\end{itemize}
+	\end{itemize}
 	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Matcheo de keypoints}
+	\frametitle{Estimación de movimiento 3D-3D}
 	\footnotesize
+	
+	\begin{itemize}
+		\item Dado un conjunto de correspondencias 3D-2D $\{(\worldPoint, \measurement_{a})_{i}\}$ queremos encontrar la pose $\transform{w}{a}$ de la cámara en el mundo.
+		\item Error de reproyección:
+		\[
+		f(\transform{\worldCoordSystem}{a}, \mapPointsSet)= \sum_{i=1}^{N} \Vert \measurement_{a,i} - \prediction(\inverse{\transform{\worldCoordSystem}{a}},\worldPoint_{i}) \Vert^{2}
+		\]
+		Se puede optimizar con métodos no lineales pero requieren de una buena semilla inicial. Es no convexo, solución no única (ambigüedad de escala)
+		\item Este problema es conocido como \emph{Perspective-n-Points} (PnP) y existen diferentes enfoques para resolverlo:
+		\begin{itemize}
+			\item Direct Linear Transform (DLT)
+			\item EPnP
+			\item OPnP
+		\end{itemize}
+		\item Aplicaciones:
+		\begin{itemize}
+			\item Localización de una cámara dado un mapa de puntos (tracking)
+		\end{itemize}
+	\end{itemize}
+	
 	
 \end{frame}
 
+\begin{frame}
+	\frametitle{Estimación de movimiento 2D-2D}
+	\footnotesize
+	
+\end{frame}
 

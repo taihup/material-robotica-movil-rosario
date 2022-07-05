@@ -24,12 +24,13 @@
 \newcommand{\cameraCoordSystem}{\mathrm{c}}
 \newcommand{\point}{\vec{p}}
 \newcommand{\worldPoint}{\toCoord{\point}{\worldCoordSystem}}
-\newcommand{\homoWorldPoint}{\toCoord{\homo{\point}}{\worldCoordSystem}}
+\newcommand{\imagePoint}{\vec{u}}
 \newcommand{\cameraPoint}{\toCoord{\point}{\cameraCoordSystem}}
+\newcommand{\homoWorldPoint}{\toCoord{\homo{\point}}{\worldCoordSystem}}
+\newcommand{\homoImagePoint}{\homo{\imagePoint}}
 \newcommand{\homoCameraPoint}{\toCoord{\homo{\point}}{\cameraCoordSystem}}
 \newcommand{\measurement}{\vec{z}}
 \newcommand{\prediction}{\hat{\vec{z}}}
-\newcommand{\imagePoint}{\vec{u}}
 \newcommand{\seMatrix}{\vec{\xi}}
 \newcommand{\transform}[2]{\toCoord{\fromCoord{\seMatrix}{#2}}{#1}}
 \newcommand{\pointCoord}[1]{\toCoord{\point}{#1}}
@@ -42,6 +43,8 @@
 \newcommand{\reprojectionError}{u}
 \newcommand{\projectionMatrix}{\vec{P}}
 \newcommand{\cameraCenter}{\vec{o}}
+\newcommand{\essentialMatrix}{\vec{E}}
+\newcommand{\inverse}[1]{{#1}^{-1}}
 
 % Motion model
 \newcommand{\position}{\vec{p}}
