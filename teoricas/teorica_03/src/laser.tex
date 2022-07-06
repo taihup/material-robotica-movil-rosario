@@ -4,7 +4,7 @@
     
     \begin{figure}[!h]
         \centering
-        \includegraphics[width=\columnwidth]{images/lidar_example.pdf}
+        \includegraphics[width=0.8\columnwidth]{images/lidar_example.pdf}
     \end{figure}
 
     \note{imagen extraida de:  https://cdn.sick.com/media/docs/3/43/443/operating_instructions_lms1104c_111031s01_2d_lidar_sensors_en_im0079443.pdf}
@@ -16,9 +16,16 @@
     
     \begin{figure}[!h]
         \centering
-        \includegraphics[width=0.6\columnwidth]{images/lidar_concept.pdf}
-        \includegraphics[width=0.35\columnwidth]{images/lidar.pdf}
+        \subfloat[]
+        {
+        \includegraphics[width=0.4\columnwidth]{images/lidar_concept.pdf}
+        }
+        \subfloat[]
+        {
+        \includegraphics[width=0.2\columnwidth]{images/lidar.pdf}
+        }
     \end{figure}
+
     \footnotesize
     \begin{block}{Principio de funcionamiento}
      Un LiDAR (\emph{Light Detection And Ranging}) o Laser Rangefinder emite pulsos de luz mediante un diodo láser (infrarrojo). Si el rayo láser es reflejado por un objeto, el rayo reflejado es recibido por el sensor.
