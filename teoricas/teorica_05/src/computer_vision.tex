@@ -450,11 +450,120 @@
     \footnotesize
     
     \begin{figure}[!h]
-        \includegraphics[width=0.5\columnwidth]{images/camera/camera_world_coordinate.pdf}
+        \includegraphics[width=0.4\columnwidth]{images/camera/camera_world_coordinate.pdf}
     \end{figure}
     
-    En el caso general, la cámara no está ubicada en el centro del sistema de coordenadas del mundo. Tenemos que agregar esta transformación entre el mundo y los sistemas de coordenadas de la cámara a la transformación
+    En el caso general, la cámara no está ubicada en el centro del sistema de coordenadas del mundo. Tenemos que agregar esta transformación (rotación y traslación) entre el mundo y los sistemas de coordenadas de la cámara a la transformación.
     
+    Dado el punto $\worldPoint$ en coordenadas del mundo $\worldCoordSystem$ , el mismo punto está descripto en el sistema de coordenadas de la cámara $\cameraCoordSystem$, y se lo representa $\cameraPoint$. Esto significa que $\cameraPoint$ está escrito en un sistema cuyo origen es $\worldCameraCenter$ y los ejes de de coordenadas sufrieron una rotación $\rotationCoord{\cameraCoordSystem}{\worldCoordSystem}$:
+    
+    \begin{equation*}
+        \cameraPoint = \rotationCoord{\cameraCoordSystem}{\worldCoordSystem} \left( \worldPoint - \worldCameraCenter \right)
+    \end{equation*}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Cámara - Modelo Pin-Hole}
+    
+    \footnotesize
+    En coordenadsa homogeneas:
+    \begin{equation*}
+    \homoCameraPoint = 
+    \toCoord{\begin{bmatrix}
+            \cameraPoint\\
+            1
+    \end{bmatrix}}{\cameraCoordSystem} =
+    \begin{bmatrix}
+    \left( \rotationCoord{\cameraCoordSystem}{\worldCoordSystem} \worldPoint -\rotationCoord{\cameraCoordSystem}{\worldCoordSystem} \worldCameraCenter \right)\\
+    1
+    \end{bmatrix} = 
+    \begin{bmatrix}
+        \rotationCoord{\cameraCoordSystem}{\worldCoordSystem} & -\rotationCoord{\cameraCoordSystem}{\worldCoordSystem} \worldCameraCenter \\
+        \vec{0} & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+     \worldPoint\\
+     1
+    \end{bmatrix}
+    \end{equation*}
+
+    Reescribiendo $\translation = -\rotationCoord{\cameraCoordSystem}{\worldCoordSystem} \worldCameraCenter$
+    
+    \begin{equation*}
+    \homoCameraPoint = 
+    \toCoord{\begin{bmatrix}
+            \cameraPoint\\
+            1
+    \end{bmatrix}}{\cameraCoordSystem} = 
+    \begin{bmatrix}
+        \rotationCoord{\cameraCoordSystem}{\worldCoordSystem} & \translation \\
+        \vec{0} & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+        \worldPoint\\
+        1
+    \end{bmatrix}
+    \end{equation*}
+    Luego si, $\imagePoint=\intrinsicMatrix\begin{bmatrix} \vec{I} & \vec{0}\end{bmatrix} \cameraPoint$ y $\homoCameraPoint =     \begin{bmatrix}
+        \rotationCoord{\cameraCoordSystem}{\worldCoordSystem} & \translation \\
+        \vec{0} & 1
+    \end{bmatrix}
+    \homoWorldPoint$, entonces
+    
+   	\begin{equation*}
+        \imagePoint=\intrinsicMatrix\begin{bmatrix} \vec{I} & \vec{0}\end{bmatrix} \begin{bmatrix}
+            \rotationCoord{\cameraCoordSystem}{\worldCoordSystem} & \translation \\
+            \vec{0} & 1
+        \end{bmatrix}
+        \homoWorldPoint
+    \end{equation*}
+    
+    La matriz de proyección para el caso en que la cámara pueda ubicarse fuera del origen del mundo entonces queda:
+    
+   	\begin{equation*}
+       \projectionMatrix=\intrinsicMatrix\begin{bmatrix}\rotation & \translation\end{bmatrix}
+    \end{equation*}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Cámara CCD}
+    \footnotesize
+    
+    En cámaras CCD, los pixels pueden no ser cuadrados. Si las coordenadas de la imagen son medidas en píxeles, entonces hay que tener en cuenta las dimensiones del pixel en cada dirección.
+    
+    Sean
+    \begin{itemize}
+        \item $m_{u}$ : número de píxeles por unidad de distancia en coordenadas de la
+        imagen en la dirección $u$
+        \item $m_{v}$ : el número de píxeles por unidad de distancia en coordenadas de
+        la imagen en la dirección $v$
+    \end{itemize}
+
+    \begin{equation*}
+        \intrinsicMatrix=
+        \begin{bmatrix}f_{u} & 0 & \principalPoint_{u}\\
+            0 & f_{v} & \principalPoint_{v}\\
+            0 & 0 & 1
+        \end{bmatrix},
+    \end{equation*}
+
+    donde $f_{u} = f m_{u} $ y $f_{v} = f m_{v}$ representan la distancia focal de la cámara en términos de dimensiones de píxeles en la dirección $u$ e $v$ respectivamente.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Cámara CCD}
+    \footnotesize
+    
+    Agregando más generalidad, puede ser que los píxeles estén torcidos. Para esto se agrega el parámetro \emph{skew} $s$ a la matriz de calibración
+    
+    \begin{equation*}
+        \intrinsicMatrix=
+        \begin{bmatrix}f_{u} & s & \principalPoint_{u}\\
+            0 & f_{v} & \principalPoint_{v}\\
+            0 & 0 & 1
+        \end{bmatrix},
+    \end{equation*}
 \end{frame}
 
 \begin{frame}
@@ -467,21 +576,6 @@
     \begin{bmatrix}\rotation & \translation\\
         \vec{0} & 1
     \end{bmatrix}$ donde $\rotation$ es una matriz de rotación y $\translation$ es un vector de traslación. Observe que una de las ventajas de trabajar con coordenadas homogéneas es que permite utilizar el álgebra de Grupos de Lie SE(3).
-    
-    Existe una notación de matriz para el modelo de cámara pin-hole que también se usa comúnmente en visión por computadora.
-    \begin{equation*}
-        \projectionMatrix=\intrinsicMatrix\begin{bmatrix}\rotation & \translation\end{bmatrix}
-    \end{equation*}
-    
-    donde $\projectionMatrix$ es la matriz de proyección y $\intrinsicMatrix$ es la matriz de calibración. La matriz de calibración se define como,
-    
-    \begin{equation*}
-        \intrinsicMatrix=
-        \begin{bmatrix}f & 0 & c_{u}\\
-            0 & f & c_{v}\\
-            0 & 0 & 1
-        \end{bmatrix},
-    \end{equation*}
     
 \end{frame}
 
@@ -513,7 +607,6 @@
 	Se puede ver que $x/z=u/f$. Análogamente podemos decir que $y/z=v/f$. De estas ecuaciones podemos ver que $u=f(x/z)$ y que $v=f(y/z)$, por lo que la ecuación de proyección se cumple.
 	
 \end{frame}
-
 
 \begin{frame}
 	\frametitle{Cámara - Modelo Pin-Hole}
@@ -560,19 +653,6 @@
 	\end{equation*}
 	
 \end{frame}
-
-\begin{frame}
-	\frametitle{Cámara - Modelo Pin-Hole}
-	
-	\footnotesize
-	
-	Siendo $\begin{bmatrix}c_{u} & c_{v}\end{bmatrix}^{\top}$ la posición del punto principal. Entonces, usando la matriz de proyección $\projectionMatrix$, el punto del mundo $\worldPoint$ se asigna al punto imagen $\imagePoint$ por
-	\begin{equation*}
-		\imagePoint=\proj{(\projectionMatrix\homoWorldPoint)}.
-	\end{equation*}
-	
-\end{frame}
-
 
 \begin{frame}
 	\frametitle{Distorción}
