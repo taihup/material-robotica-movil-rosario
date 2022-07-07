@@ -189,7 +189,7 @@
 		\item {\bf Samplear} de manera aleatoria el número de puntos requerido para ajustar el modelo.
 		\item {\bf Computar} el modelo usando los datos sampleados
 		\item {\bf Contar} el número de inliers y quedarse con el modelo que mejor ajusta los datos
-		\item Iterar puntos 1-3 hasta que el mejor modelo es hallado
+		\item Iterar pasos 1-3 hasta que el mejor modelo es hallado
 	\end{enumerate}
 
 \end{frame}
@@ -235,7 +235,7 @@
 		\item funciona bien para modelos de 1 a 10 parámetros (dependiendo del número de outliers)
 		\item Fácil de implementar y entender
 	\end{itemize}
-	Ventajas:
+	Desventajas:
 	\begin{itemize}
 		\item El tiempo computacional crece rápido con el porcentaje de outliers y el número de parámetros necesarios para ajustar el modelo
 		\item No es bueno para obtener múltiples modelos (e.g. ajustar más de una línea en 2D)
@@ -243,18 +243,250 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{Cámara - Modelo Pin-Hole}
+    
+    \note{Ver libro de Sigwart. Seccion 4.2.3.2}
+    \note{material sacado de mi tesis}
+    
+    \footnotesize
+    \begin{figure}[!h]
+        \centering
+        \subfloat[]
+        {
+            \includegraphics[width=0.3\columnwidth]{images/camera/pinhole_camera_model.pdf}
+        }
+        \subfloat[]
+        {
+            \includegraphics[width=0.3\columnwidth]{images/camera/pinhole_camera_model2.pdf}
+        }
+    \end{figure}
+    
+    \begin{block}{Modelo Pin-hole básico}
+        Cámara es una correspondencia entre el mundo 3D (espacio del objeto) y la imagen 2D.. En el modelo de cámara pinhole, el punto de la imagen $\imagePoint=\begin{bmatrix}u & v\end{bmatrix}^{\top}$ se determina como la intersección entre el {\bf plano de la imagen} y el rayo que une el punto del mundo $\point =\begin{bmatrix}x & y & z\end{bmatrix}^{\top}$ y el {\bf centro de proyección óptico} $\cameraCenter$. 
+    \end{block}
+    
+    \begin{itemize}
+        \item $f$ es la distancia focal
+        \item $\principalPoint = \begin{bmatrix}0 & 0 & f\end{bmatrix}^{\top}$ es el punto principal
+        \item el eje $Z$ es el {\bf eje principal}
+        \item $\worldPoint$ es el punto en el sistema de coordenadas del mundo
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Cámara - Modelo Pin-Hole}
+    
+    \note{Ver libro de Sigwart. Seccion 4.2.3.2}
+    \note{material sacado de mi tesis}
+    
+    \footnotesize
+    \begin{figure}[!h]
+        \centering
+        \subfloat[]
+        {
+            \includegraphics[width=0.3\columnwidth]{images/camera/pinhole_camera_model.pdf}
+        }
+        \subfloat[]
+        {
+            \includegraphics[width=0.3\columnwidth]{images/camera/pinhole_camera_model2.pdf}
+        }
+    \end{figure}
+    
+    \begin{itemize}
+        \item El plano $Z = f$ se denomina {\bf plano principal} o {\bf plano de la imagen}.
+        \item El punto en la imagen $\imagePoint=\begin{bmatrix}u & v\end{bmatrix}^{\top}$, en coordenadas 3D es $\imagePoint=\begin{bmatrix}x & y & f\end{bmatrix}^{\top}$
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Cámara - Modelo Pin-Hole}   
+    \footnotesize
+    \begin{figure}[!h]
+        \centering
+        \subfloat[]
+        {
+            \includegraphics[width=0.3\columnwidth]{images/camera/pinhole_camera_model.pdf}
+        }
+        \subfloat[]
+        {
+            \includegraphics[width=0.3\columnwidth]{images/camera/pinhole_camera_model2.pdf}
+        }
+    \end{figure}
+
+    Para obtener las coordenadas  $\imagePoint=\begin{bmatrix}u & v\end{bmatrix}^{\top}$ del punto $\worldPoint$ en el plano de la imagen, se proyecta $\worldPoint$ sobre el plano $ZX$ y $ZY$. Por similitud de triángulos para cada proyección:
+    
+    \begin{equation*}
+        \dfrac{x}{z} = \dfrac{u}{f} \quad \text{y} \quad \dfrac{y}{z} = \dfrac{v}{f}
+    \end{equation*}
+
+    Por tanto, tenemos:
+    
+    \begin{equation*}
+        u=\dfrac{fx}{z} \quad \text{y} \quad v=\dfrac{fy}{z}
+    \end{equation*}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Cámara - Modelo Pin-Hole}   
+    \footnotesize
+    La correspondencia entre un punto $\mathbb{R}^{3}$ y $\mathbb{R}^{2}$ está dada por 
+    
+    \begin{equation*}
+        \begin{bmatrix}x & y & z\end{bmatrix}^{\top} \rightarrow  \begin{bmatrix} u=\dfrac{fx}{z} & v=\dfrac{fy}{z} \end{bmatrix}^{\top}
+    \end{equation*}
+
+    Está correspondencia está dada por una transformación $\mathbb{P}^{3} \rightarrow \mathbb{P}^{2}$ tal que
+    
+    \begin{equation*}
+        \projectionMatrix \homoWorldPoint= \homoImagePoint
+    \end{equation*}
+    donde $\projectionMatrix$ es la matríz asociada y se la denomina {\bf matríz de proyección}.
+    
+    \begin{equation}
+        \begin{bmatrix}x & y & z\end{bmatrix}^{\top} \rightarrow  \begin{bmatrix} u=\dfrac{fx}{z} & v=\dfrac{fy}{z} \end{bmatrix}^{\top}
+    \end{equation}
+
+    Sea $\homoWorldPoint \in \mathbb{P}^{3}$, $\homoWorldPoint = \begin{bmatrix}x & y & z & 1\end{bmatrix}^{\top}$ entonces
+
+    \begin{equation}
+        \begin{bmatrix}
+            fx\\
+            fy\\
+            z
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+            f & 0 & 0 & 0\\
+            0 & f & 0 & 0\\
+            0 & 0 & 1 & 0
+        \end{bmatrix}
+        \begin{bmatrix}
+            x\\
+            y\\
+            z\\
+            1
+        \end{bmatrix}
+    \end{equation}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Cámara - Modelo Pin-Hole}   
+    \footnotesize
+    
+    \begin{figure}[!h]
+        \includegraphics[width=0.2\columnwidth]{images/camera/principal_point_coordinates.pdf}
+    \end{figure}
+
+    Sin embargo si el origen de coordenadas del plano de la imagen no coincide con el punto principal $\principalPoint = \begin{bmatrix}0 & 0 & f\end{bmatrix}^{\top}$, se realiza una traslación y la correspondencia es:
+    
+    \begin{equation}
+        \begin{bmatrix}x & y & z\end{bmatrix}^{\top} \rightarrow  \begin{bmatrix} u=\dfrac{fx}{z} + \principalPoint_{u}& v=\dfrac{fy}{z} + \principalPoint_{v}\end{bmatrix}^{\top}
+    \end{equation}
+
+    Utilizando matrices
+    \begin{equation}
+    \begin{bmatrix}
+        fx+z\principalPoint_{u}\\
+        fy+z\principalPoint_{v}\\
+        z
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        f & 0 & \principalPoint_{u} & 0\\
+        0 & f & \principalPoint_{v} & 0\\
+        0 & 0 & 1 & 0
+    \end{bmatrix}
+    \begin{bmatrix}
+        x\\
+        y\\
+        z\\
+        1
+    \end{bmatrix}
+    \end{equation}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Cámara - Modelo Pin-Hole}   
+    \footnotesize
+    \begin{equation}
+        \begin{bmatrix}
+            fx+z\principalPoint_{u}\\
+            fy+z\principalPoint_{v}\\
+            z
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+            f & 0 & \principalPoint_{u} & 0\\
+            0 & f & \principalPoint_{v} & 0\\
+            0 & 0 & 1 & 0
+        \end{bmatrix}
+        \begin{bmatrix}
+            x\\
+            y\\
+            z\\
+            1
+        \end{bmatrix}
+    \end{equation}
+    Usando notación matricial;
+    \begin{equation*}
+        \projectionMatrix=\intrinsicMatrix\begin{bmatrix} \vec{I} & \vec{0}\end{bmatrix}
+    \end{equation*}
+    donde $\intrinsicMatrix$ es la matriz de calibración de la cámara y está definida como,
+    
+    \begin{equation*}
+        \intrinsicMatrix=
+        \begin{bmatrix}f & 0 & \principalPoint_{u}\\
+            0 & f & \principalPoint_{v}\\
+            0 & 0 & 1
+        \end{bmatrix},
+    \end{equation*}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Cámara - Modelo Pin-Hole}
+    
+    \footnotesize
+    
+    \begin{figure}[!h]
+        \includegraphics[width=0.5\columnwidth]{images/camera/camera_world_coordinate.pdf}
+    \end{figure}
+    
+    En el caso general, la cámara no está ubicada en el centro del sistema de coordenadas del mundo. Tenemos que agregar esta transformación entre el mundo y los sistemas de coordenadas de la cámara a la transformación
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Cámara - Modelo Pin-Hole}
+    
+    \footnotesize
+    
+    En particular, $\seMatrix^{\mathrm{c}\mathrm{w}}$ es una transformación que pertenece al Lie Group SE(3), el grupo de movimientos de cuerpo rígido en el espacio 3D. Por lo tanto, $\seMatrix^{\mathrm{c}\mathrm{w}}$ se define como
+    $\seMatrix^{\mathrm{c}\mathrm{w}}=
+    \begin{bmatrix}\rotation & \translation\\
+        \vec{0} & 1
+    \end{bmatrix}$ donde $\rotation$ es una matriz de rotación y $\translation$ es un vector de traslación. Observe que una de las ventajas de trabajar con coordenadas homogéneas es que permite utilizar el álgebra de Grupos de Lie SE(3).
+    
+    Existe una notación de matriz para el modelo de cámara pin-hole que también se usa comúnmente en visión por computadora.
+    \begin{equation*}
+        \projectionMatrix=\intrinsicMatrix\begin{bmatrix}\rotation & \translation\end{bmatrix}
+    \end{equation*}
+    
+    donde $\projectionMatrix$ es la matriz de proyección y $\intrinsicMatrix$ es la matriz de calibración. La matriz de calibración se define como,
+    
+    \begin{equation*}
+        \intrinsicMatrix=
+        \begin{bmatrix}f & 0 & c_{u}\\
+            0 & f & c_{v}\\
+            0 & 0 & 1
+        \end{bmatrix},
+    \end{equation*}
+    
+\end{frame}
+
+\begin{frame}
 	\frametitle{Cámara - Modelo Pin-Hole}
-	
-	\note{Ver libro de Sigwart. Seccion 4.2.3.2}
-	\note{material sacado de mi tesis}
-	
-	\includegraphics[width=0.4\columnwidth]{images/camera/pinhole_camera_model.pdf}
-	\includegraphics[width=0.4\columnwidth]{images/camera/pinhole_camera_model2.pdf}
-	\footnotesize
-	
-	\begin{block}{Principio de funcionamiento}
-		En el modelo de cámara pinhole, el punto de la imagen $\imagePoint=\begin{bmatrix}u & v\end{bmatrix}^{\top}$ se determina como la intersección entre el plano de la imagen y el rayo que une el punto del mundo $\point =\begin{bmatrix}x & y & z\end{bmatrix}^{\top}$ y el centro de proyección $\cameraCenter$.
-	\end{block}
 	
 	Denotamos con $\homo{\point}=\begin{bmatrix}x & y & z & 1\end{bmatrix}^{\top}$ la representación homogénea de un punto $\point=\begin{bmatrix}x & y & z\end{bmatrix}^{\top}$. Ahora, definimos el modelo de cámara:
 	\begin{equation*}
@@ -267,10 +499,7 @@
 \begin{frame}
 	\frametitle{Cámara - Modelo Pin-Hole}
 	
-	\includegraphics[width=0.4\columnwidth]{images/camera/pinhole_camera_model.pdf}
-	\includegraphics[width=0.4\columnwidth]{images/camera/pinhole_camera_model2.pdf}
-	\footnotesize
-	
+    \footnotesize	
 	\begin{equation*}
 		\proj(\vec{a})=
 		\frac{1}{a_{n}}\begin{bmatrix}a_{1}\\
@@ -281,7 +510,7 @@
 	
 	Por ejemplo, si $\point=\begin{bmatrix}x & y & z\end{bmatrix}^{\top}$, entonces $\proj(\point)=\begin{bmatrix}x/z & y/z\end{bmatrix}$.
 	
-	Se puede ver que $x/z=u/f$. Análogamente podemos decir que $y/z=v/f$. De estas ecuaciones podemos ver que $u=f(x/z)$ y que $v=f(y/z)$, por lo que la ecuación [eq:proyección] se cumple.
+	Se puede ver que $x/z=u/f$. Análogamente podemos decir que $y/z=v/f$. De estas ecuaciones podemos ver que $u=f(x/z)$ y que $v=f(y/z)$, por lo que la ecuación de proyección se cumple.
 	
 \end{frame}
 
@@ -622,6 +851,16 @@
 	\footnotesize
 	
 \end{frame}
+
+
+\begin{frame}
+    \frametitle{Direct Linear Transformation (DLT) algorithm}
+    \footnotesize
+    \TODO{Book Multiview Geometry: 4.1 The Direct Linear Transformation (DLT) algorithm}
+    
+\end{frame}
+
+
 
 \begin{frame}
 	\frametitle{Calibración de cámara}
