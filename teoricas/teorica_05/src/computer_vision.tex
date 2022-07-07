@@ -552,10 +552,16 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Cámara CCD}
+    \frametitle{Cámara proyectiva finita}
     \footnotesize
     
-    Agregando más generalidad, puede ser que los píxeles estén torcidos. Para esto se agrega el parámetro \emph{skew} $s$ a la matriz de calibración
+    Agregando más generalidad, puede ser que los píxeles estén ``torcidos'', aunque no es el caso usual.
+    
+    \begin{figure}[!h]
+        \includegraphics[width=0.3\columnwidth]{images/camera/pixel_skew.pdf}
+    \end{figure}
+    
+    Para esto se agrega el parámetro \emph{skew} $s$ a la matriz de calibración
     
     \begin{equation*}
         \intrinsicMatrix=
@@ -564,6 +570,7 @@
             0 & 0 & 1
         \end{bmatrix},
     \end{equation*}
+    
 \end{frame}
 
 \begin{frame}
