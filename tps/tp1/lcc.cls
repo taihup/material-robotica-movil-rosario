@@ -1,1 +1,1 @@
-../common/lcc.cls
+../../common/lcc.cls

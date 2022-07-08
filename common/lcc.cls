@@ -166,8 +166,8 @@ Por cualquier problema/mejora, ir a https://github.com/mtzguido/lcc.cls]
     {\@materia}
 }
 
-\def\@num{}
-\newcommand{\num}[1]{\def\@num{#1}}
+\def\@numero{}
+\newcommand{\numero}[1]{\def\@numero{#1}}
 
 \def\@titulo{}
 \newcommand{\titulo}[1]{\def\@titulo{#1}}
@@ -224,8 +224,8 @@ Por cualquier problema/mejora, ir a https://github.com/mtzguido/lcc.cls]
 \def\@fulltitle{%
     \ifk
      {\@tipop}
-     \ifx\@num\empty\else
-      {\@num}
+     \ifx\@numero\empty\else
+      {\@numero}
      \fi
      \ifx\@titulo\empty\else
       {--}
@@ -243,9 +243,9 @@ Por cualquier problema/mejora, ir a https://github.com/mtzguido/lcc.cls]
     {
         \Large\bf
         {\@tipop}
-        \ifx\@num\empty
+        \ifx\@numero\empty
         \else
-        {\@num}
+        {\@numero}
         \fi
     }
 
