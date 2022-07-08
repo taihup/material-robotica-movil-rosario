@@ -27,9 +27,7 @@ Se deberá entregar un informe realizado en Lyx o latex explicando los pasos rea
 \section{Introducción}
 Esta práctica es para ponerse a punto con transformaciones.
 
-\section{Rotaciones 3D}
-
-\begin{problema} Para el sistema de coordenadas canónico de un robot móvil (x: hacia adelante, y: hacia la izquierda, z: hacia arriba) dibujar el sistema de coordenadas resultante luego de aplicar la rotación dada.
+\ejercicio Para el sistema de coordenadas canónico de un robot móvil (x: hacia adelante, y: hacia la izquierda, z: hacia arriba) dibujar el sistema de coordenadas resultante luego de aplicar la rotación dada.
  
     \begin{figure}[!h]
     \centering
@@ -51,9 +49,23 @@ Esta práctica es para ponerse a punto con transformaciones.
     \subfloat[$R_{z}(180)R_{x}(-90)R_{y}(90)$]{}
     \end{figure}
 
-\end{problema}
+\ejercicio Dado el siguiente escenario,
+\begin{itemize}
+    \item un robot A que encuentra en la posición $(2,3)$ con orientación \SI{45}{\degree} en coordenadas del mundo
+    \item un robot B que se encuentra en la posición $(1,1)$ con orientación \SI{-45}{\degree} en el sistema de coordenadas del robot A.
+    \item un punto $\worldPoint1 = (1,5)$ en coordenadas del mundo.
+    \item un punto $\worldPoint2 = (1,2)$ en coordenadas del robot A.
+\end{itemize}
 
+Responda las siguientes preguntas:
+\begin{enumerate}
+    \item ¿Cuáles son los coordenadas del punto $\point1$ en el sistema de coordenadas del robot A?
+    \item ¿Cuáles son los coordenadas del punto $\point2$ en el sistema de coordenadas del robot B?
+    \item ¿Cuál es la pose del robot B en coordenadas del Mundo?
+\end{enumerate}
 
+\ejercicio Dada las siguientes transformaciones
 
+Data la pose del robot en el mundo: $\transform{W}{B}$. Si se tiene la trayectoria realizada por la cámara $C$ (montada sobre el robot). ¿Qué procedimiento hay que realizar para obtener la trayectoria del robot en el mundo, sabiendo la transformación $\transform{B}{C}$?
 
 \end{document}
