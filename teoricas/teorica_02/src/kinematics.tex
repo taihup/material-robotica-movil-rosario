@@ -104,10 +104,17 @@
 \begin{frame}
     \frametitle{Modelo de cinemática directa de un robot diferencial}
     \footnotesize
-    \begin{center}
-        \includegraphics[width=0.4\columnwidth]{./images/differential_drive.pdf}
-    \end{center}
-
+    \begin{figure}[!h]
+        \centering
+        \subfloat[]
+        {
+            \includegraphics[width=0.3\columnwidth]{./images/differential_drive.pdf}
+        }
+        \subfloat[]
+        {
+            \includegraphics[width=0.25\columnwidth]{./images/wheel_parameters.pdf}
+        }
+    \end{figure}
 
     \begin{equation*}
         \dot{\transform{I}{}} =
@@ -116,14 +123,14 @@
             \dot{y}\\
             \dot{\theta}
         \end{bmatrix} =
-        f\left( l,r,\theta,\dot{\phi}_{1},\dot{\phi}_{2}\right)
+        f\left( l,r,\theta,\dot{\varphi}_{1},\dot{\varphi}_{2}\right)
     \end{equation*}
     donde
     \begin{itemize}
         \item $r$ es el diámetro de las ruedas.
         \item $p$ es punto en el medio del eje de las ruedas
         \item $l$ es la distancia de cada rueda al punto $p$
-        \item $\dot{\phi}_{1}$ y $\dot{\phi}_{2}$ la velocidad de giro de cada rueda
+        \item $\dot{\varphi}_{1}$ y $\dot{\varphi}_{2}$ la velocidad de giro de cada rueda
     \end{itemize}
 
     Podemos calcular el movimiento del robot en el marco de referencia global a partir del movimiento en su marco de referencia local:  $\dot{\transform{I}{}} = \inverse{R(\frac{\pi}{2})}\dot{\transform{R}{}}$. Por lo tanto, la estrategia será calcular primero la contribución de cada una de las dos ruedas en el marco de referencia local $\dot{\transform{R}{}}$.
@@ -137,7 +144,7 @@
     \end{center}
     Suponga que el sistema de referencia local del robot está alineado de manera que el robot se mueva hacia adelante, como se muestra en la figura.
     
-    Primero, considere la contribución de la {\bf velocidad de giro de cada rueda} a la {\bf velocidad de traslación en el punto $\point$} en dirección $+X_{R}$. Si una rueda gira mientras la otra no aporta nada (estacionaria), dado que $\point$ está en el medio entre las dos ruedas, el robot se moverá con la mitad de la velocidad: $\dot{x}_{r1} = \left(\frac{1}{2}\right)r\dot{\phi}_{1}$ y $ \dot{x}_{r2} = \left(\frac{1}{2}\right)r\dot{\phi}_{2}$. En un robot de accionamiento diferencial, estas dos contribuciones simplemente se pueden sumar para calcular el componente $\dot{x}_{R}$ de $\dot{\transform{R}{}}$.
+    Primero, considere la contribución de la {\bf velocidad de giro de cada rueda} a la {\bf velocidad de traslación en el punto $\point$} en dirección $+X_{R}$. Si una rueda gira mientras la otra no aporta nada (estacionaria), dado que $\point$ está en el medio entre las dos ruedas, el robot se moverá con la mitad de la velocidad: $\dot{x}_{r1} = \left(\frac{1}{2}\right)r\dot{\varphi}_{1}$ y $ \dot{x}_{r2} = \left(\frac{1}{2}\right)r\dot{\varphi}_{2}$. En un robot de accionamiento diferencial, estas dos contribuciones simplemente se pueden sumar para calcular el componente $\dot{x}_{R}$ de $\dot{\transform{R}{}}$.
 \end{frame}
 
 \begin{frame}
@@ -163,13 +170,13 @@
     Finalmente, debemos calcular la componente rotacional $\dot{\theta}_{R}$ de $\dot{\transform{R}{}}$. Una vez más, las contribuciones de cada rueda se pueden calcular de forma independiente y simplemente sumarlas. Considere la rueda derecha (a esta rueda la llamaremos 1). El giro hacia adelante de esta rueda da como resultado una rotación en sentido antihorario en el punto $\point$. Recuerde que si la rueda 1 gira sola, el robot pivota alrededor de la rueda 2. La velocidad de rotación $\omega_{1}$ en $\point$ se puede calcular porque la rueda se mueve instantáneamente a lo largo del arco de un círculo de radio $2l$:
 
     \begin{equation*}
-        \omega_{1} = \dfrac{r\dot{\phi_{1}}}{2l}
+        \omega_{1} = \dfrac{r\dot{\varphi_{1}}}{2l}
     \end{equation*}
 
     El mismo cálculo se aplica a la rueda izquierda, con la excepción de que el giro hacia adelante da como resultado una rotación en el sentido de las agujas del reloj en el punto:
 
     \begin{equation*}
-        \omega_{1} = \dfrac{-r\dot{\phi_{1}}}{2l}
+        \omega_{1} = \dfrac{-r\dot{\varphi_{1}}}{2l}
     \end{equation*}
 \end{frame}
 
