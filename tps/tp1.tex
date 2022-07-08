@@ -2,9 +2,9 @@
 
 \usepackage{hyperref}
 
-\codigo{R-322}
+\codigo{}
 \materia{Fundamentos de Robótica Móvil}
-\titulo{Triangulación estéreo}
+\titulo{Transformaciones}
 
 \soluciones
 \commentstrue
@@ -26,50 +26,5 @@ Además, se deberá entregar un informe realizado en Lyx o latex explicando los 
 El objetivo del tp es que se realicen los pasos básicos para poder triangular y proyectar puntos con una cámara estéreo. 
 Para esto se trabajará con datos reales.
 
-\section{Datos}
-Para trabajar se utilizarán los siguientes datos:
-
-\section{Calibración}
-Antes de comenzar a trabajar con un dataset se debe realizar una calibración de los sensores. En este trabajo solo deben calibrar una cámara estéreo.
-
-Para la calibración se puede utilizar cualquiera de las aplicaciones que se detallan a continuación:
-\begin{itemize}
-	\item OpenCV tutorial\_camera\_calibration: \href{https://docs.opencv.org/4.x/d4/d94/tutorial_camera_calibration.html}{https://docs.opencv.org/4.x/d4/d94/tutorial\_camera\_calibration.html}
-	\item ROS camera\_calibration: \href{http://wiki.ros.org/camera_calibration/Tutorials/StereoCalibration}{http://wiki.ros.org/camera\_calibration/Tutorials/StereoCalibration}
-	\item Kalibr: \href{https://github.com/ethz-asl/kalibr}{https://github.com/ethz-asl/kalibr}
-	\item Camera Calibration Toolbox for Matlab: \href{https://www.cs.toronto.edu/pub/psala/VM/cameraCalibrationExample.html}{https://www.cs.toronto.edu/pub/psala/VM/cameraCalibrationExample.html}
-\end{itemize}
-
-Desarrollar un programa que lea un par de imágenes estéreo cualquiera y realice los siguientes pasos:
-
-\section{Rectificación de imágenes}
-Con los parámetros íntrinsecos y extrínsecos, rectificar un par imágenes haciendo uso de la librería OpenCV. Para esto se deberan utilizar las funciones: cv::stereoRectify(), cv::initUndistortRectifyMap() y remap().
-
-\section{Extracción de feaures: Keypoints y descriptores}
-
-\begin{enumerate}
-	\item Detectar Keypoitns: FAST, ORB, SIFT, SURF, GFTT, BRISK, etc.
-	\item Extraer descriptores: BRIEF, ORB, BRISK, etc.
-\end{enumerate}
-
-\section{Búsqueda de correspondencias visuales}
-Realizar la búsqueda de correspondencias entre los feature de ambas imágenes (\emph{matching}). Para esto deberá utilizar la función cv::BFMatcher::BFMatcher(). 
-
-\section{Triangulación de puntos 3D}
-Dados los matches encontrados, realice la triangulación de los puntos utilizando la función: cv::sfm::triangulatePoints().
-
-\section{Filtrado de correspondencias espúreas}
-Aplicar RANSAC para filtrar los matches espúreos y calcular la matríz fundamental. Para esto puede utilizar la función cv::findHomography().
-
-\section{Calcular el mapa de disparidad}
-Calcular el mapa de disparidad para esto  deberá utilizar la función cv::StereoMatcher::compute() de OpenCV. También utilizar la librería LIBELAS (\href{http://www.cvlibs.net/software/libelas/}{http://www.cvlibs.net/software/libelas/})
-
-\section{Reconstrucción 3D densa}
-Utilizando el mapa de disparidad realice una reconstrucción densa de la escena observada utilizando la función cv::reprojectImageTo3D(). Para esto debe utilizar la matríz de reproyección Q retornada por la función cv::stereoRectify().
-
-\section{Estimación de pose Monocular}
-Utilizando cv::recoverPose() estimar la transformación entre la imagen izquierda y la imagen derecha. Para esto deberá calcular la matríz esencial utilizando la función cv::findEssentialMat().
-
-\printbibliography
 
 \end{document}
