@@ -826,8 +826,6 @@
 	    Dado $\homoImagePoint = \projectionMatrix \homoWorldPoint$, con $\projectionMatrix = \intrinsicMatrix [\rotation|\translation]$, si conocemos la matríz de calibración $\intrinsicMatrix$ entonces $\hat{\imagePoint} = \inverse{\intrinsicMatrix} \homoImagePoint$ decimos que $\hat{\imagePoint}$ está en {\bf coordenadas normalizadas}. Se lo puede pensar como una imagen del punto $\homoWorldPoint$ con respecto a una cámara $[\rotation|\translation]$ teniendo la matriz de calibración como la identidad. $ \inverse{\intrinsicMatrix} \projectionMatrix = [\rotation| \translation]$ se denomina {\bf cámara normalizada} donde los parámetros de calibración han sido removidos.
     \end{block}
     
-
-    
     \begin{align*}
 		\homoImagePoint^{\prime\top} \essentialMatrix \homoImagePoint &= 0\\
 		\left( \inverse{\intrinsicMatrix^{\prime}} \homoImagePoint^{\prime} \right)^{\top} \essentialMatrix \left( \inverse{\intrinsicMatrix} \homoImagePoint \right) &= 0\\
@@ -838,8 +836,26 @@
 		\essentialMatrix = \intrinsicMatrix^{\prime\top} \fundamentalMatrix \intrinsicMatrix
 	\end{equation*}
     
-    
 \end{frame}
+
+\begin{frame}
+	\frametitle{Matríz Fundamental vs Matríz Esencial}
+	\footnotesize
+	\note{Ver vídeo de calse de staschnis https://youtu.be/auhpPoAqprk}
+	
+	\begin{itemize}
+		\item Ambas matrizes tienen rango 2
+		\item La matríz esencial tiene 5 DoF
+		\item La matríz fundamental tiene 7 DoF (ya que tience información sobre los parámetros de calibración)
+		\item Las restricciones coplanares más pares de correspondencias nos permiten encontrar dichas matrices por medio de la solución de un sistema líneal utilizando descomposición SVD.
+		\item La matríz fundamental puede ser hallada con \emph{8-Point Algorithm}
+		\item La matríz esencial puede ser hallada con \emph{5-Point Algorithm}
+		\item Una vez obtenida la matríz esencial podemos obtener la rotación y traslación (con ambig{\"u}edad de escala)
+		\item La matríz esencial o fundamental nos permiten delimitar la búsqueda de correspondencias en las líneas epipolares únicamente, en vez de tener que buscar en toda la imagen.
+	\end{itemize}
+	
+\end{frame}
+
 
 \begin{frame}
 	\frametitle{Estimación de movimiento}
