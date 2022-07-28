@@ -1,7 +1,7 @@
 \begin{frame}
 	\frametitle{Detección de Keypoints}
 	
-	\note{https://youtu.be/ebMyBbkkHWk}
+	\note{Slides fuertemente basadas de https://youtu.be/ebMyBbkkHWk}
 	
 	\note{https://3d.bk.tudelft.nl/courses/geo1016/slides/Lecture_03_Calibration.pdf}
 	
@@ -847,12 +847,16 @@
 		\item Ambas matrizes tienen rango 2
 		\item La matríz esencial tiene 5 DoF
 		\item La matríz fundamental tiene 7 DoF (ya que tience información sobre los parámetros de calibración)
-		\item Las restricciones coplanares más pares de correspondencias nos permiten encontrar dichas matrices por medio de la solución de un sistema líneal utilizando descomposición SVD.
+		\item Las restricciones coplanares más pares de correspondencias nos permiten encontrar dichas matrices por medio de la solución de un sistema líneal utilizando descomposición SVD (\emph{Singular Value Decomposition}).
 		\item La matríz fundamental puede ser hallada con \emph{8-Point Algorithm}
 		\item La matríz esencial puede ser hallada con \emph{5-Point Algorithm}
 		\item Una vez obtenida la matríz esencial podemos obtener la rotación y traslación (con ambig{\"u}edad de escala)
 		\item La matríz esencial o fundamental nos permiten delimitar la búsqueda de correspondencias en las líneas epipolares únicamente, en vez de tener que buscar en toda la imagen.
 	\end{itemize}
+
+	\begin{figure}
+		\includegraphics[width=\textwidth]{./images/stereo_matches.pdf}
+	\end{figure}
 	
 \end{frame}
 
