@@ -791,13 +791,13 @@
 	
 	\begin{itemize}
 		\item La restricción epipolar puede ser computada por medio de puntos 2D en la imagen cuando la pose relative de la cámara es conocida ($\transform{r}{l}$, por ejemplo una cámara estéreo)
-		\item El plano epipolar es definido por $\imagePoint_{l}$ y los dos dentros óptico de las cámaras $\cameraCenter_{l}$ y $\cameraCenter_{r}$
+		\item El plano epipolar es definido por $\imagePoint_{l}$ y los dos centros óptico de las cámaras $\cameraCenter_{l}$ y $\cameraCenter_{r}$
 		\item La línea epipolar es la intersección del plano epipolar y el plano de la imagen derecha.
 		\item La restricción epipolar codifica que $\imagePoint_{r}$ debe estar ubicado sobre la linea epipolar en la imagen derecha.
 	\end{itemize}
 
 	\begin{equation*}
-		\homoImagePoint_{l}^{\top} \essentialMatrix \homoImagePoint_{r}^{\top} = 0,
+		\homoImagePoint_{l}^{\top} \essentialMatrix \homoImagePoint_{r} = 0 \quad \text{(complanarity constraint)}
 	\end{equation*}
 	donde $\essentialMatrix = \transform{l}{r}$, y se denomina \emph{Essential Matrix}
 	
@@ -814,6 +814,31 @@
 \begin{frame}
     \frametitle{Matríz fundamental}
     \footnotesize
+    \note{Ver 9.6 The essential matrix del libro Multiple view geometry}
+    
+    La {\bf Matríz Esencial} es una especialización de la {\bf Matríz Fundamental}. La Matríz esencial trabaja sobre {\bf coordenadas  normalizadas}  de la imagen, es decir, requiere tener la calibración de las cámaras, mientras que la Matríz Fundamental relaciona correspondencias desconociendo las calibraciones.
+    
+    	\begin{equation*}
+    	\homoImagePoint^{\prime\top} \fundamentalMatrix \homoImagePoint = 0 \quad \text{(complanarity constraint)}
+    \end{equation*}
+    
+    \begin{block}{Coordenadas Normalizadas:}
+	    Dado $\homoImagePoint = \projectionMatrix \homoWorldPoint$, con $\projectionMatrix = \intrinsicMatrix [\rotation|\translation]$, si conocemos la matríz de calibración $\intrinsicMatrix$ entonces $\hat{\imagePoint} = \inverse{\intrinsicMatrix} \homoImagePoint$ decimos que $\hat{\imagePoint}$ está en {\bf coordenadas normalizadas}. Se lo puede pensar como una imagen del punto $\homoWorldPoint$ con respecto a una cámara $[\rotation|\translation]$ teniendo la matriz de calibración como la identidad. $ \inverse{\intrinsicMatrix} \projectionMatrix = [\rotation| \translation]$ se denomina {\bf cámara normalizada} donde los parámetros de calibración han sido removidos.
+    \end{block}
+    
+
+    
+    \begin{align*}
+		\homoImagePoint^{\prime\top} \essentialMatrix \homoImagePoint &= 0\\
+		\left( \inverse{\intrinsicMatrix^{\prime}} \homoImagePoint^{\prime} \right)^{\top} \essentialMatrix \left( \inverse{\intrinsicMatrix} \homoImagePoint \right) &= 0\\
+		\homoImagePoint^{\prime\top} \inverse{\intrinsicMatrix^{\prime\top}} \essentialMatrix \inverse{\intrinsicMatrix} \homoImagePoint&= 0
+    \end{align*}
+	La relación entre la matriz fundamental y la matríz esencial está dada por
+    \begin{equation*}
+		\essentialMatrix = \intrinsicMatrix^{\prime\top} \fundamentalMatrix \intrinsicMatrix
+	\end{equation*}
+    
+    
 \end{frame}
 
 \begin{frame}
