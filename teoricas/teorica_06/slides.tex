@@ -4,7 +4,7 @@
 % para la bibliografía se requiere biber y configurar texstudio
 
 %\documentclass[compress,handout]{beamer}
-\documentclass[compress]{beamer}
+\documentclass[aspectratio=169,compress]{beamer}
 
 % add beamer preamble
 \input{../../common/beamer_preamble}
@@ -15,18 +15,21 @@
 % add math preamble
 \input{../../common/math_preamble}
 
-\title{ROS: Robot Operative System}
+\title{Localización}
 \author{}
 \institute{Universidad Nacional de Rosario}
 %\date{\scriptsize{Julio 1, 2021}}
 \date{}
 
 \begin{document}
-
-% add title page
-\frame{\titlepage}
-
-\section{ROS}
-\input{src/vision.tex}
-
+	
+	% add title page
+	\frame{\titlepage}
+	
+	\section{Visión por computadora}
+	\input{src/localization.tex}
+	
+	\section{Bibliografía}
+	\input{src/bibliography.tex}
+	
 \end{document}
