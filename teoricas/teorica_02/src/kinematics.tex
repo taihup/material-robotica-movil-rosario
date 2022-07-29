@@ -4,7 +4,7 @@
     Modelamos el robot como un cuerpo rígido sobre ruedas, que opera en un plano horizontal. La dimensionalidad total de este chasis de robot en el plano es de 3: 2 para la posición en el plano y 1 para la orientación a lo largo del eje vertical, que es ortogonal al plano.
 
     \begin{figure}[!h]
-        \includegraphics[width=0.4\columnwidth]{./images/coordinate_systems.pdf}
+        \includegraphics[width=0.3\columnwidth]{./images/coordinate_systems.pdf}
         \caption{El marco de referencia global y el marco de referencia local del robot.}
     \end{figure}
 
@@ -17,9 +17,9 @@
     \frametitle{Representación de pose en 2D}
     \footnotesize
 
-    \begin{center}
-        \includegraphics[width=0.4\columnwidth]{./images/coordinate_systems.pdf}
-    \end{center}
+    \begin{figure}
+        \includegraphics[width=0.3\columnwidth]{./images/coordinate_systems.pdf}
+    \end{figure}
 
     \note{Un marco de referencia inercial es un marco de referencia que no está experimentando aceleración. La física de un sistema en un marco inercial no tiene fuerzas externas al sistema.}
 
@@ -33,9 +33,9 @@
 \begin{frame}
     \frametitle{Cinemática de un robot diferencial}
 
-    \begin{center}
-        \includegraphics[width=0.4\columnwidth]{./images/coordinate_systems.pdf}
-    \end{center}
+    \begin{figure}
+        \includegraphics[width=0.3\columnwidth]{./images/coordinate_systems.pdf}
+    \end{figure}
 
     La pose del robot estará dada por la posición y la orientación:
 
@@ -178,10 +178,4 @@
     \begin{equation*}
         \omega_{1} = \dfrac{-r\dot{\varphi_{1}}}{2l}
     \end{equation*}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Práctica}
-    \TODO{Crear una práctica donde los chicos jueguen con traslaciones, rotaciones transformaciones. Quaterniones.}
-    \TODO{Presentar el modelo car-like}
 \end{frame}

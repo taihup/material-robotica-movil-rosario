@@ -247,7 +247,9 @@
         \hspace{1em}
         \begin{minipage}{0.38\linewidth}
             \centering
-            \includegraphics[width=0.5\columnwidth]{images/axis_angle_vector.pdf}
+            \begin{figure}
+	           \includegraphics[width=0.3\columnwidth]{images/axis_angle_vector.pdf}
+            \end{figure}
         \end{minipage}
     \end{center}
 
@@ -273,7 +275,7 @@
     \frametitle{Quaternions}
 
     \begin{center}
-        \includegraphics[width=0.3\columnwidth]{./images/quaternion.pdf}
+        \includegraphics[width=0.2\columnwidth]{./images/quaternion.pdf}
     \end{center}
 
     Los cuaterniones representan una transformación de rotación en 3D. Por lo tanto, la forma más fácil de representar un cuaternión es imaginar la rotación de un ángulo dado alrededor de un vector dado. La figura ilustra la rotación del ángulo $\theta$ alrededor del vector $\vec{v} = [v_{x} v_{y} v_{z}]$. El cuaternión asociado a esta rotación está dado por:
@@ -295,7 +297,7 @@
         \subfloat[]
         {
             \includegraphics[width=0.4\columnwidth]{./images/right_hand_rule.pdf}
-        }\hfill
+        }\hspace{1cm}
         \subfloat[]
         {
             \includegraphics[width=0.4\columnwidth]{./images/right_hand_rule_positive_rotation.pdf}
@@ -307,16 +309,23 @@
     \frametitle{Roll Pitch Yaw }
     
     \begin{figure}[!h]
-        \includegraphics[width=0.5\columnwidth]{./images/roll_pitch_yaw.pdf}
+        \includegraphics[width=0.4\columnwidth]{./images/roll_pitch_yaw.pdf}
     \end{figure}
     \TODO{Gimbal-Lock Video explanation: https://youtu.be/-WXfEPg8eMM}
 \end{frame}
 
 \begin{frame}
     \frametitle{Left-hand vs Right-hand rule}
-    \begin{center}
-        \only<1>{\includegraphics[width=\columnwidth]{./images/left_right_hand_rule.pdf}}
-        \only<2>{\includegraphics[width=\columnwidth]{./images/left_right_hand_rule_cross.pdf}}
-    \end{center}
+
+        \only<1>{
+        	    \begin{figure}
+        	    	\includegraphics[width=0.9\columnwidth]{./images/left_right_hand_rule.pdf}
+	    	    \end{figure}
+            	}
+        \only<2>{
+        	\begin{figure}
+    	    	\includegraphics[width=0.9\columnwidth]{./images/left_right_hand_rule_cross.pdf}
+	        \end{figure}
+        }
 \end{frame}
 
