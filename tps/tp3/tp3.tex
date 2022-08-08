@@ -7,7 +7,7 @@
 \input{../../common/math_preamble}
 
 \codigo{R-521}
-\materia{Fundamentos de Robótica Móvil}
+\materia{Robótica Móvil}
 \titulo{ROS2 y Simulador Gazebo}
 
 \soluciones
@@ -20,14 +20,143 @@
 \begin{document}
 \maketitle
 
-\section{Entrega}
-Se deberá proveer un repositorio git y junto con las instrucciones de compilación en un archivo README.md.
-Además, se deberá entregar un informe realizado en Lyx o latex explicando los pasos realizados y analizando los resultados obtenidos.
 
 \section{Introducción}
 
-El objetivo del tp es que se realicen los pasos básicos para poder triangular y proyectar puntos con una cámara estéreo. 
-Para esto se trabajará con datos reales.
+El objetivo del tp es comprender el modelo cinemático y la estimación de pose (posición y orientación) mediante el cálculo de odometría de un robot con ruedas de tracción diferencial que se mueve sobre una superficie plana. Para esta tarea se utilizará ROS2 y el simulador Gazebo.\footnote{Este trabajo práctico está basado en el trabajo práctico del curso Fundamentos de Robótica Móvil del Departamento de Ingeniería Electrónica de la Facultad Regional Córdoba de la Universidad Tecnológica Nacional \url{https://www.profesores.frc.utn.edu.ar/electronica/fundamentosroboticamovil}.}
+
+
+\section{Entrega}
+En caso de utilizar su propio entorno de trabajo, deberá hacer una imagen docker y proveer un repositorio git junto con las instrucciones de compilación en un archivo README.md.
+
+En caso de utilizar el framework de \url{https://www.theconstructsim.com} se deberá proveer el link al proyecto.
+
+Además, se deberá entregar un informe realizado en Lyx o latex explicando los pasos realizados y analizando los resultados obtenidos.
+
+\section{Instrucciones de compilación}
+Pasos para trabajar en el simulador Gazebo con el robot TurtleBot3 en ROS Development Studio (ROSDS):
+
+\begin{enumerate}
+	\item Crear un usuario en \url{https://www.theconstructsim.com}.
+	\item Crea un proyecto ROSject y seleccionar ROS Humble como distribución.
+\end{enumerate}
+
+Descargar los paquetes de ROS para la simulación del robot TurtleBot3:
+
+\begin{enumerate}
+	\item Abrir una terminal dentro del proyecto recién creado.
+
+	\item Ir al directorio de archivos fuentes del espacio de trabajo de ROS para simulación: \lstinline[style=bash]{cd simulation_ws/src}
+\end{enumerate}
+
+Clonar los repositorios del robot:
+\begin{lstlisting}[style=bash] 
+git clone https://github.com/ROBOTIS-GIT/turtlebot3.git
+git clone https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git
+git clone https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git
+\end{lstlisting}
+
+\begin{enumerate}
+	\item Construir los paquetes de ROS: Ir al espacio de trabajo de ROS y construir los paquetes:
+
+\begin{lstlisting}[style=bash] 
+cd ..
+catkin_make
+\end{lstlisting}
+	
+	\item Descargar y descomprimir el script \lstinline[style=bash]{dump_odom.py}:
+	
+\begin{lstlisting}[style=bash] 
+wget http://www.profesores.frc.utn.edu.ar/electronica/fundamentosroboticamovil/ \
+pub/file/2022/dump_odom.tar.gz
+tar -xzvf dump_odom.tar.gz
+\end{lstlisting}
+	
+\end{enumerate}
+
+\section{Ejecución de la simulación}
+
+\begin{enumerate}
+	\item Ejecutar simulación
+
+\begin{lstlisting}[style=bash] 
+export TURTLEBOT3_MODEL=burger
+roslaunch turtlebot3_gazebo turtlebot3_empty_world.launch
+\end{lstlisting}
+
+	\item Enviar comandos de velocidad para mover el robot:
+
+	\begin{enumerate}
+	\item En una nueva terminal o pestaña, ejecutar el comando:
+
+\begin{lstlisting}[style=bash] 
+rostopic pub -1 /cmd_vel geometry_msgs/Twist '[0.2,0,0]' '[0,0,0.2]'
+\end{lstlisting}
+o bien:
+\begin{lstlisting}[style=bash] 
+rostopic pub -1 /cmd_vel geometry_msgs/Twist '{linear: {x: 0.2}, angular: {z: 0.2}}'
+\end{lstlisting}
+
+\item Detener el robot fijando la velocidad lineal y angular a cero.
+	\end{enumerate}
+
+\item Comandar el robot con el teclado (teleoperación), para ello ejecutar:
+
+Puede ejecutarse el mismo comando de teleoperación por teclado
+\begin{lstlisting}[style=bash] 
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+\end{lstlisting}
+(ver la información en pantalla y decrementar las velocidades si el moviemiento del robot
+resulta demasiado agresivo)
+o bien,
+\begin{lstlisting}[style=bash] 
+roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
+\end{lstlisting}
+
+\end{enumerate}
+
+
+\section{Actividades}
+\begin{enumerate}
+\item  Determinar de forma analítica el radio del camino circular que realiza el robot al ajustar la velocidad lineal y angular a valores constantes. Realizar el cálculo para dos velocidades cualquieras teniendo en cuenta las velocidades máximas del robot.
+
+Nota: Los límites de velocidad y los parámetros cinemáticos (el radio de la rueda R y la distancia
+entre ruedas b) de los diferentes modelos del robot TurtleBot3 se obtienen de las especificaciones\footnote{\url{https://emanual.robotis.com/docs/en/platform/turtlebot3/features/}}.
+
+\item  Calcular la velocidad lineal y angular para que el robot realice un camino circular con un radio a
+elección entre 0,5m y 1,5m.
+
+\item  Calcular las velocidades lineales y angulares de las ruedas (izquierda y derecha) del robot para el camino circular del punto anterior.
+
+Generar un registro (log) de odometría y velocidad del robot, para lo cual hay que ejecutar nuevamente
+la simulación y utilizar el script ’dump odom.py’. Este script muestra en pantalla 6 columnas con los
+siguientes datos: tiempo (timestamp), coordenadas x, y, orientación, velocidad lineal y angular.
+
+\item Obtener un registro de datos con el robot en movimiento mediante teleoperación por teclado. Para
+guardar los datos generados por el script hay que redireccionar la salida a un archivo como:
+
+\begin{lstlisting}[style=bash] 
+./dump_odom.py > log.txt
+\end{lstlisting}
+
+Dentro del IDE de ROSDS hay una opción que permite descargar un archivo del proyecto.
+
+\item Escribir un script en Python que cargue los datos del archivo de log y genere gráficos de:
+\begin{enumerate}
+	\item el camino seguido por el robot,
+	\item la trayectoria (pose respecto al tiempo), y
+	\item la velocidad del robot respecto al tiempo.
+\end{enumerate} 
+Nota: Utilizar una relación de aspecto 1:1 para el gráfico del camino.
+Sugerencias: evitar en lo posible el registro de datos iguales a cero.
+\item Obtener otro registro de datos para un camino circular del robot y graficar el camino y la trayectoria.
+\item Marcar tres puntos cualquiera en el gráfico del camino del robot y sus correspondientes puntos en
+la trayectoria. Elegir puntos diferentes al inicio y final del camino.
+En base a los gráficos anteriores:
+\item ¿Cuáles son los rangos de valores de las coordenadas x e y y por qué?
+\item  ¿Cuál es el rango de valores de la orientación del robot y por qué?
+
+\end{enumerate}
 
 
 \printbibliography
