@@ -44,11 +44,11 @@
 		\centering
 		\subfloat[ROS1]
 		{
-			\includegraphics[width=0.4\columnwidth]{images/ros_version_noetic.png}
+			\includegraphics[width=0.3\columnwidth]{images/ros_version_noetic.png}
 		}
 		\subfloat[ROS2]
 		{
-			\includegraphics[width=0.4\columnwidth]{images/ros_version_humble.png}
+			\includegraphics[width=0.315\columnwidth]{images/ros_version_humble.png}
 		}
 	\end{figure}
 
@@ -398,17 +398,17 @@ ros2 bag decompress <bag_file_name>
     
     \begin{columns}
         \begin{column}{0.5\textwidth}
-            \lstinputlisting[style=cpp,firstline=1,lastline=23]{src/publisher_member_function.cpp}
+            \lstinputlisting[style=cpp,basicstyle=\tiny,firstline=1,lastline=23]{src/publisher_member_function.cpp}
         \end{column}
         \begin{column}{0.5\textwidth}
-            \lstinputlisting[style=cpp,firstline=25,lastline=44]{src/publisher_member_function.cpp}
+            \lstinputlisting[style=cpp,basicstyle=\tiny,firstline=25,lastline=44]{src/publisher_member_function.cpp}
         \end{column}
     \end{columns}
 	
-\begin{lstlisting}[style=bash] 
+\begin{lstlisting}[style=bash,basicstyle=\footnotesize] 
 ros2 run cpp_pubsub talker
 \end{lstlisting}
-\begin{lstlisting}[style=bash] 
+\begin{lstlisting}[style=bash,basicstyle=\footnotesize] 
 ros2 run cpp_pubsub listener
 \end{lstlisting}
 	
@@ -419,10 +419,10 @@ ros2 run cpp_pubsub listener
     
     \begin{columns}
         \begin{column}{0.5\textwidth}
-            \lstinputlisting[style=cpp,firstline=1,lastline=15]{src/subscriber_member_function.cpp}
+            \lstinputlisting[style=cpp,basicstyle=\scriptsize,firstline=1,lastline=15]{src/subscriber_member_function.cpp}
         \end{column}
         \begin{column}{0.5\textwidth}
-            \lstinputlisting[style=cpp,firstline=16,lastline=31]{src/subscriber_member_function.cpp}
+            \lstinputlisting[style=cpp,basicstyle=\scriptsize,firstline=16,lastline=31]{src/subscriber_member_function.cpp}
         \end{column}
     \end{columns}
     
@@ -433,10 +433,10 @@ ros2 run cpp_pubsub listener
     
     \begin{columns}
         \begin{column}{0.5\textwidth}
-            \lstinputlisting[style=cmake,firstline=1,lastline=15]{src/CMakeLists.txt}
+            \lstinputlisting[style=cmake,basicstyle=\scriptsize,firstline=1,lastline=15]{src/CMakeLists.txt}
         \end{column}
         \begin{column}{0.5\textwidth}
-            \lstinputlisting[style=cmake,firstline=16,lastline=28]{src/CMakeLists.txt}
+            \lstinputlisting[style=cmake,basicstyle=\scriptsize,firstline=16,lastline=28]{src/CMakeLists.txt}
         \end{column}
     \end{columns}
     
@@ -452,8 +452,10 @@ ros2 run cpp\_pubsub listener
 
 \begin{frame}[fragile]
 	\frametitle{Ejemplo completo: Navegación con Turtlebot3}
+
+\footnotesize
     
-    Guía: \href{https://navigation.ros.org}{https://navigation.ros.org}
+Guía: \href{https://navigation.ros.org}{https://navigation.ros.org}
     
 Instalar los paquetes de Nav2 
 \begin{lstlisting}[style=bash] 
@@ -579,7 +581,7 @@ geometry\_msgs/Quaternion rotation
 \end{frame}
 
 \begin{frame}
-	\frametitle{Ejemplo: TF2 con tutles}
+	\frametitle{Ejemplo: TF2 con turtles}
 	
 	
 	\TODO{https://docs.ros.org/en/foxy/Tutorials/Intermediate/Tf2/Introduction-To-Tf2.html}
@@ -627,7 +629,7 @@ geometry\_msgs/Quaternion rotation
 	
 	\begin{figure}[!h]
 		\centering
-		\includegraphics[width=\columnwidth]{images/urdf_driagram.pdf}
+		\includegraphics[width=0.8\columnwidth]{images/urdf_driagram.pdf}
 	\end{figure}
 \end{frame}
 
