@@ -56,6 +56,28 @@ git clone https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git
 git clone https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git
 \end{lstlisting}
 
+Instalar los paquetes de Nav2 
+\begin{lstlisting}[style=bash] 
+	sudo apt install ros-<ros2-distro>-navigation2
+	sudo apt install ros-<ros2-distro>-nav2-bringup
+\end{lstlisting}
+
+Instalar los paquetes de Turtlebot 3
+\begin{lstlisting}[style=bash] 
+	sudo apt install ros-<ros2-distro>-turtlebot3*
+\end{lstlisting}
+
+Setear las variables de entorno:
+\begin{lstlisting}[style=bash] 
+	export TURTLEBOT3_MODEL=waffle
+	export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/opt/ros/<ros2-distro>/share/turtlebot3_gazebo/models
+\end{lstlisting}
+
+\begin{lstlisting}[style=bash] 
+	ros2 launch nav2_bringup tb3_simulation_launch.py headless:=False
+\end{lstlisting}
+
+
 \begin{enumerate}
 	\item Construir los paquetes de ROS: Ir al espacio de trabajo de ROS y construir los paquetes:
 
@@ -147,17 +169,29 @@ Dentro del IDE de ROSDS hay una opción que permite descargar un archivo del pro
 	\item la trayectoria (pose respecto al tiempo), y
 	\item la velocidad del robot respecto al tiempo.
 \end{enumerate} 
+
 Nota: Utilizar una relación de aspecto 1:1 para el gráfico del camino.
+
 Sugerencias: evitar en lo posible el registro de datos iguales a cero.
+
 \item Obtener otro registro de datos para un camino circular del robot y graficar el camino y la trayectoria.
-\item Marcar tres puntos cualquiera en el gráfico del camino del robot y sus correspondientes puntos en
-la trayectoria. Elegir puntos diferentes al inicio y final del camino.
+\item Marcar tres puntos cualquiera en el gráfico del camino del robot y sus correspondientes puntos en la trayectoria. Elegir puntos diferentes al inicio y final del camino.
+
+
 En base a los gráficos anteriores:
+
+
 \item ¿Cuáles son los rangos de valores de las coordenadas x e y y por qué?
+
 \item  ¿Cuál es el rango de valores de la orientación del robot y por qué?
 
-\end{enumerate}
 
+\item Obtener diferentes registros y gráficos para caminos circulares con diferentes valores (positivos y negativos) de velocidades lineales y angulares (utilizar todas las combinaciones de signos posibles). Indicar en los gráficos el sentido de avance del robot.
+
+\item Describir cuál sería la secuencia de comandos de velocidad a aplicar al robot para seguir uno de
+los caminos mostrados en la figura 2 (elegir solo uno).
+
+\end{enumerate}
 
 \printbibliography
 
