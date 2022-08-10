@@ -126,20 +126,16 @@ roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
 
 \ejercicio  Determinar de forma analítica el radio del camino circular que realiza el robot al ajustar la velocidad lineal y angular a valores constantes. Realizar el cálculo para dos velocidades cualquieras teniendo en cuenta las velocidades máximas del robot.
 
-Nota: Los límites de velocidad y los parámetros cinemáticos (el radio de la rueda R y la distancia
-entre ruedas b) de los diferentes modelos del robot TurtleBot3 se obtienen de las especificaciones\footnote{\url{https://emanual.robotis.com/docs/en/platform/turtlebot3/features/}}.
+\nota Los límites de velocidad y los parámetros cinemáticos (el radio de la rueda R y la distancia entre ruedas b) de los diferentes modelos del robot TurtleBot3 se obtienen de las especificaciones\footnote{\url{https://emanual.robotis.com/docs/en/platform/turtlebot3/features/}}.
 
-\ejercicio  Calcular la velocidad lineal y angular para que el robot realice un camino circular con un radio a
-elección entre 0,5m y 1,5m.
+\ejercicio  Calcular la velocidad lineal y angular para que el robot realice un camino circular con un radio a elección entre \SI{0.5}{\meter} y \SI{1.5}{\meter}.
 
 \ejercicio  Calcular las velocidades lineales y angulares de las ruedas (izquierda y derecha) del robot para el camino circular del punto anterior.
 
 \ejercicio Generar un registro (log) de odometría y velocidad del robot, para lo cual hay que ejecutar nuevamente
-la simulación y utilizar el script ’dump odom.py’. Este script muestra en pantalla 6 columnas con los
-siguientes datos: tiempo (timestamp), coordenadas x, y, orientación, velocidad lineal y angular.
+la simulación y utilizar el script ’dump odom.py’. Este script muestra en pantalla 6 columnas con los siguientes datos: tiempo (timestamp), coordenadas x, y, orientación, velocidad lineal y angular.
 
-\ejercicio Obtener un registro de datos con el robot en movimiento mediante teleoperación por teclado. Para
-guardar los datos generados por el script hay que redireccionar la salida a un archivo como:
+\ejercicio Obtener un registro de datos con el robot en movimiento mediante teleoperación por teclado. Para guardar los datos generados por el script hay que redireccionar la salida a un archivo como:
 
 \begin{lstlisting}[style=bash] 
 ./dump_odom.py > log.txt
@@ -154,7 +150,7 @@ Dentro del IDE de ROSDS hay una opción que permite descargar un archivo del pro
 	\item la velocidad del robot respecto al tiempo.
 \end{enumerate} 
 
-Nota: Utilizar una relación de aspecto 1:1 para el gráfico del camino.
+\nota Utilizar una relación de aspecto 1:1 para el gráfico del camino.
 
 Sugerencias: evitar en lo posible el registro de datos iguales a cero.
 
