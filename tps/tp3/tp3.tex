@@ -27,33 +27,30 @@ El objetivo del tp es comprender el modelo cinemático y la estimación de pose 
 
 
 \section{Entrega}
-En caso de utilizar su propio entorno de trabajo, deberá hacer una imagen docker y proveer un repositorio git junto con las instrucciones de compilación en un archivo README.md.
+\begin{itemize}
+    \item En caso de utilizar su propio entorno de trabajo, deberá hacer una imagen docker y proveer un repositorio git junto con las instrucciones de compilación en un archivo README.md.
 
-En caso de utilizar el framework de \url{https://www.theconstructsim.com} se deberá proveer el link al proyecto.
+    \item En caso de utilizar el framework de \url{https://www.theconstructsim.com} se deberá proveer el link al proyecto.
 
-Además, se deberá entregar un informe realizado en Lyx o latex explicando los pasos realizados y analizando los resultados obtenidos.
+    \item Además, se deberá entregar un informe realizado en Lyx o latex explicando los pasos realizados y analizando los resultados obtenidos.
+\end{itemize}
+
 
 \section{Instrucciones de compilación}
 Pasos para trabajar en el simulador Gazebo con el robot TurtleBot3 en ROS Development Studio (ROSDS):
 
 \begin{enumerate}
-	\item Crear un usuario en \url{https://www.theconstructsim.com}.
-	\item Crea un proyecto ROSject y seleccionar ROS Humble como distribución.
+	\item Iniciar sesión en \url{https://www.theconstructsim.com}.
+	\item Crea un proyecto ROSject y seleccionar ROS2 Humble como distribución.
 \end{enumerate}
-
-Descargar los paquetes de ROS para la simulación del robot TurtleBot3:
 
 \begin{enumerate}
-	\item Abrir una terminal dentro del proyecto recién creado.
 
-	\item Ir al directorio de archivos fuentes del espacio de trabajo de ROS para simulación: \lstinline[style=bash]{cd simulation_ws/src}
-\end{enumerate}
+\item Instalar los paquetes de ROS2 para la simulación del robot TurtleBot3:
 
-Clonar los repositorios del robot:
+Actualizar la lista de paquetes de linux
 \begin{lstlisting}[style=bash] 
-git clone https://github.com/ROBOTIS-GIT/turtlebot3.git
-git clone https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git
-git clone https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git
+    sudo apt update
 \end{lstlisting}
 
 Instalar los paquetes de Nav2 
@@ -67,25 +64,6 @@ Instalar los paquetes de Turtlebot 3
 	sudo apt install ros-<ros2-distro>-turtlebot3*
 \end{lstlisting}
 
-Setear las variables de entorno:
-\begin{lstlisting}[style=bash] 
-	export TURTLEBOT3_MODEL=waffle
-	export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/opt/ros/<ros2-distro>/share/turtlebot3_gazebo/models
-\end{lstlisting}
-
-\begin{lstlisting}[style=bash] 
-	ros2 launch nav2_bringup tb3_simulation_launch.py headless:=False
-\end{lstlisting}
-
-
-\begin{enumerate}
-	\item Construir los paquetes de ROS: Ir al espacio de trabajo de ROS y construir los paquetes:
-
-\begin{lstlisting}[style=bash] 
-cd ..
-catkin_make
-\end{lstlisting}
-	
 	\item Descargar y descomprimir el script \lstinline[style=bash]{dump_odom.py}:
 	
 \begin{lstlisting}[style=bash] 
@@ -99,12 +77,19 @@ tar -xzvf dump_odom.tar.gz
 \section{Ejecución de la simulación}
 
 \begin{enumerate}
+
+\item Setear las variables de entorno:
+
+\begin{lstlisting}[style=bash] 
+export TURTLEBOT3_MODEL=waffle
+export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/opt/ros/<ros2-distro>/share/turtlebot3_gazebo/models
+\end{lstlisting}
 	\item Ejecutar simulación
 
 \begin{lstlisting}[style=bash] 
-export TURTLEBOT3_MODEL=burger
-roslaunch turtlebot3_gazebo turtlebot3_empty_world.launch
+    ros2 launch nav2_bringup tb3_simulation_launch.py headless:=False
 \end{lstlisting}
+
 
 	\item Enviar comandos de velocidad para mover el robot:
 
