@@ -37,11 +37,11 @@ El objetivo del tp es comprender el modelo cinemático y la estimación de pose 
 
 
 \section{Instrucciones de compilación}
-Pasos para trabajar en el simulador Gazebo con el robot TurtleBot3 en ROS Development Studio (ROSDS):
+Pasos para trabajar en el simulador Gazebo con el robot TurtleBot3 en ROS Development Studio (ROSDS). Mas información en: \url{https://navigation.ros.org/getting_started/}
 
 \begin{enumerate}
 	\item Iniciar sesión en \url{https://www.theconstructsim.com}.
-	\item Crea un proyecto ROSject y seleccionar ROS2 Humble como distribución.
+	\item Crea un proyecto ROSject y seleccionar ROS2 {\bf Humble} como distribución.
 \end{enumerate}
 
 \begin{enumerate}
@@ -55,13 +55,13 @@ Actualizar la lista de paquetes de linux
 
 Instalar los paquetes de Nav2 
 \begin{lstlisting}[style=bash] 
-	sudo apt install ros-<ros2-distro>-navigation2
-	sudo apt install ros-<ros2-distro>-nav2-bringup
+	sudo apt install ros-humble-navigation2
+	sudo apt install ros-humble-nav2-bringup
 \end{lstlisting}
 
 Instalar los paquetes de Turtlebot 3
 \begin{lstlisting}[style=bash] 
-	sudo apt install ros-<ros2-distro>-turtlebot3*
+	sudo apt install ros-humble-turtlebot3*
 \end{lstlisting}
 
 	\item Descargar y descomprimir el script \lstinline[style=bash]{dump_odom.py}:
@@ -87,8 +87,11 @@ export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/opt/ros/<ros2-distro>/share/turtleb
 	\item Ejecutar simulación
 
 \begin{lstlisting}[style=bash] 
-    ros2 launch nav2_bringup tb3_simulation_launch.py headless:=False
+ros2 launch nav2_bringup tb3_simulation_launch.py headless:=False
 \end{lstlisting}
+
+
+	\item Una vez corriendo, setear la pose inicial del robot desde RViz. Para esto primero presionar el botón ``2D Pose Estimate'' y luego hacer click es la zona donde se encuentra el robot en el mapa. Esto es para que el sistema de localización del robot tenga una semilla inicial de dónde esta. Luego presionar ``Navigaton2 Goal'' y luego hacer click en algún lugar del mapa para indicarle al robot que debe navegar hasta ahí.
 
 
 	\item Enviar comandos de velocidad para mover el robot:
@@ -100,14 +103,14 @@ export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/opt/ros/<ros2-distro>/share/turtleb
 ros2 topic pub --rate 1 /turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.2, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.2}}"
 \end{lstlisting}
 
-\item Detener el robot fijando la velocidad lineal y angular a cero.
+	\item Detener el robot fijando la velocidad lineal y angular a cero.
 	\end{enumerate}
 
 \item Comandar el robot con el teclado (teleoperación), para ello ejecutar:
 
 Puede ejecutarse el mismo comando de teleoperación por teclado
 \begin{lstlisting}[style=bash] 
-rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+ros2 run teleop_twist_keyboard teleop_twist_keyboard.py
 \end{lstlisting}
 (ver la información en pantalla y decrementar las velocidades si el moviemiento del robot
 resulta demasiado agresivo)
