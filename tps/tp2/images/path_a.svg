@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="210mm"
-   height="297mm"
-   viewBox="0 0 210 297"
+   width="31.387423mm"
+   height="38.096806mm"
+   viewBox="0 0 31.387423 38.096805"
    version="1.1"
    id="svg5"
    inkscape:version="1.2 (1:1.2.1+202207142221+cd75a1ee6d)"
@@ -24,27 +24,81 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="2.1417558"
-     inkscape:cx="149.17667"
-     inkscape:cy="121.62918"
-     inkscape:window-width="1848"
-     inkscape:window-height="1016"
-     inkscape:window-x="1438"
-     inkscape:window-y="27"
+     inkscape:zoom="2.0693977"
+     inkscape:cx="32.859803"
+     inkscape:cy="83.357589"
+     inkscape:window-width="1920"
+     inkscape:window-height="1020"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1" />
   <defs
-     id="defs2" />
+     id="defs2">
+    <marker
+       style="overflow:visible"
+       id="marker1910"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Stop"
+       markerWidth="1"
+       markerHeight="8"
+       viewBox="0 0 1 8"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1"
+         d="M 0,4 V -4"
+         id="path1908" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Stop"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Stop"
+       markerWidth="1"
+       markerHeight="8"
+       viewBox="0 0 1 8"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1"
+         d="M 0,4 V -4"
+         id="path171" />
+    </marker>
+  </defs>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     transform="translate(-26.722257,-6.181865)">
     <rect
-       style="fill:none;stroke:#0000ff;stroke-width:0.238773;stroke-dasharray:none;stroke-opacity:1"
-       id="rect234"
-       width="19.802"
-       height="15.642465"
-       x="22.880531"
-       y="17.090008" />
+       style="fill:#ffffff;stroke:#0000ff;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1526"
+       width="30.98488"
+       height="30.98488"
+       x="26.971203"
+       y="6.3141565" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Stop);marker-end:url(#marker1910)"
+       d="m 26.854548,41.83241 h 31.12284"
+       id="path1591"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;line-height:1.25;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;stroke-width:0.264583"
+       x="39.72298"
+       y="44.232105"
+       id="text1647"><tspan
+         sodipodi:role="line"
+         id="tspan1645"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
+         x="39.72298"
+         y="44.232105">2.0m</tspan></text>
   </g>
 </svg>
