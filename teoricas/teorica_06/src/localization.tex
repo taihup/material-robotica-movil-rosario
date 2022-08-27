@@ -49,14 +49,14 @@
 
 \section{Problema de localización}
 \begin{frame}{Localización}
-    \begin{block}[Localización]
+    \begin{block}{Localización}
         Es la habilidad que posee una máquina para localizarse en el espacio.
     \end{block}
 \end{frame}
 
 
 \begin{frame}{Ejemplo de localización}
-    \begin{block}[Ejemplo]
+    \begin{block}{Ejemplo}
         \begin{itemize}
             
             \item Dado un robot en un mundo de una dimensión, sin conocimiento de en donde se encuentra
@@ -113,7 +113,7 @@
 \section{Medición}
 
 \begin{frame}{Belief luego de sensar}
-    \begin{block}[Ejemplo]
+    \begin{block}{Ejemplo}
         \begin{itemize}
             
             \item Un mundo constituido por cinco celdas $x_{i}$ donde $i = 1, \dots ,5$
@@ -198,7 +198,7 @@
     
     Notar que cuando el robot sensa no hace otra cosa que aplicar la Regla Bayes:
     
-    \begin{block}[Regla de Bayes]
+    \begin{block}{Regla de Bayes}
         \begin{displaymath}
             P(x_{i} | z) = \dfrac{P(z | x_{i})P(x_{i})} {P(z)} 
         \end{displaymath}
@@ -212,7 +212,7 @@
 
 \section{Motricidad}
 \begin{frame}{Belief luego del movimiento}
-    \begin{block}[Ejemplo continuación]
+    \begin{block}{Ejemplo (continuación)}
         \begin{itemize}
             \item Un mundo \alert{cíclico} constituido por cinco celdas $x_{i}$ donde $i = 1, \dots ,5$
             \item La distribución de probabilidad a priori esta determinada por:
@@ -360,7 +360,7 @@
         \includegraphics<1>[height=2.5cm]{./images/sens_and_move.pdf}
     \end{center}
     
-    \begin{block}[Entropía]
+    \begin{block}{Entropía}
         Medida de información que tiene la distribución
         \begin{displaymath}
             - \sum P(x_{i}) \log P(x_{i})
@@ -376,7 +376,7 @@
 
 \begin{frame}{Definición formal de localización}
     
-    \begin{block}[Medición]
+    \begin{block}{Medición}
         \begin{displaymath}
             \Bar{P}(x_{i}|z) \leftarrow P(z|x_{i}) P(x_{i})
         \end{displaymath}
