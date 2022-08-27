@@ -8,7 +8,7 @@
 
 \codigo{R-521}
 \materia{Robótica Móvil}
-\titulo{Transformaciones}
+\titulo{ROS2 y Simulador Gazebo}
 
 \soluciones
 \commentstrue
@@ -20,59 +20,159 @@
 \begin{document}
 \maketitle
 
+
 \section{Introducción}
 
-El objetivo del tp es que se realicen los pasos básicos para poder triangular y proyectar puntos con una cámara estéreo. 
-Para esto se trabajará con datos reales.
+El objetivo del tp es comprender el modelo cinemático y la estimación de pose (posición y orientación) mediante el cálculo de odometría de un robot con ruedas de tracción diferencial que se mueve sobre una superficie plana. Para esta tarea se utilizará ROS2 y el simulador Gazebo.\footnote{Este trabajo práctico está basado en el trabajo práctico del curso Fundamentos de Robótica Móvil del Departamento de Ingeniería Electrónica de la Facultad Regional Córdoba de la Universidad Tecnológica Nacional \url{https://www.profesores.frc.utn.edu.ar/electronica/fundamentosroboticamovil}.}
 
 
 \section{Entrega}
-Se deberá proveer un repositorio git y junto con las instrucciones de compilación en un archivo README.md.
-Además, se deberá entregar un informe realizado en Lyx o latex explicando los pasos realizados y analizando los resultados obtenidos.
-
-\section{Datos}
-Para trabajar se utilizarán los siguientes datos:
-
-\section{Calibración}
-Antes de comenzar a trabajar con un dataset se debe realizar una calibración de los sensores. En este trabajo solo deben calibrar una cámara estéreo.
-
-Para la calibración se puede utilizar cualquiera de las aplicaciones que se detallan a continuación:
 \begin{itemize}
-	\item OpenCV tutorial\_camera\_calibration: \href{https://docs.opencv.org/4.x/d4/d94/tutorial_camera_calibration.html}{https://docs.opencv.org/4.x/d4/d94/tutorial\_camera\_calibration.html}
-	\item ROS camera\_calibration: \href{http://wiki.ros.org/camera_calibration/Tutorials/StereoCalibration}{http://wiki.ros.org/camera\_calibration/Tutorials/StereoCalibration}
-	\item Kalibr: \href{https://github.com/ethz-asl/kalibr}{https://github.com/ethz-asl/kalibr}
-	\item Camera Calibration Toolbox for Matlab: \href{https://www.cs.toronto.edu/pub/psala/VM/cameraCalibrationExample.html}{https://www.cs.toronto.edu/pub/psala/VM/cameraCalibrationExample.html}
+    \item En caso de utilizar su propio entorno de trabajo, deberá hacer una imagen docker y proveer un repositorio git junto con las instrucciones de compilación en un archivo README.md.
+
+    \item En caso de utilizar el framework de \url{https://www.theconstructsim.com} se deberá proveer el link al proyecto.
+
+    \item Además, se deberá entregar un informe realizado en Lyx o latex explicando los pasos realizados y analizando los resultados obtenidos.
 \end{itemize}
 
-Desarrollar un programa que lea un par de imágenes estéreo cualquiera y realice los siguientes pasos:
 
-\section{Rectificación de imágenes}
-Con los parámetros íntrinsecos y extrínsecos, rectificar un par imágenes haciendo uso de la librería OpenCV. Para esto se deberan utilizar las funciones: cv::stereoRectify(), cv::initUndistortRectifyMap() y remap().
-
-\section{Extracción de feaures: Keypoints y descriptores}
+\section{Instrucciones de compilación}
+Pasos para trabajar en el simulador Gazebo con el robot TurtleBot3 en ROS Development Studio (ROSDS). Mas información en: \url{https://navigation.ros.org/getting_started/}
 
 \begin{enumerate}
-	\item Detectar Keypoitns: FAST, ORB, SIFT, SURF, GFTT, BRISK, etc.
-	\item Extraer descriptores: BRIEF, ORB, BRISK, etc.
+	\item Iniciar sesión en \url{https://www.theconstructsim.com}.
+	\item Crea un proyecto ROSject y seleccionar ROS2 {\bf Humble} como distribución.
 \end{enumerate}
 
-\section{Búsqueda de correspondencias visuales}
-Realizar la búsqueda de correspondencias entre los feature de ambas imágenes (\emph{matching}). Para esto deberá utilizar la función cv::BFMatcher::BFMatcher(). 
+\begin{enumerate}
 
-\section{Triangulación de puntos 3D}
-Dados los matches encontrados, realice la triangulación de los puntos utilizando la función: cv::sfm::triangulatePoints().
+\item Instalar los paquetes de ROS2 para la simulación del robot TurtleBot3:
 
-\section{Filtrado de correspondencias espúreas}
-Aplicar RANSAC para filtrar los matches espúreos y calcular la matríz fundamental. Para esto puede utilizar la función cv::findHomography().
+Actualizar la lista de paquetes de linux
+\begin{lstlisting}[style=bash] 
+    sudo apt update
+\end{lstlisting}
 
-\section{Calcular el mapa de disparidad}
-Calcular el mapa de disparidad para esto  deberá utilizar la función cv::StereoMatcher::compute() de OpenCV. También utilizar la librería LIBELAS (\href{http://www.cvlibs.net/software/libelas/}{http://www.cvlibs.net/software/libelas/})
+Instalar los paquetes de Nav2 
+\begin{lstlisting}[style=bash] 
+	sudo apt install ros-humble-navigation2
+	sudo apt install ros-humble-nav2-bringup
+\end{lstlisting}
 
-\section{Reconstrucción 3D densa}
-Utilizando el mapa de disparidad realice una reconstrucción densa de la escena observada utilizando la función cv::reprojectImageTo3D(). Para esto debe utilizar la matríz de reproyección Q retornada por la función cv::stereoRectify().
+Instalar los paquetes de Turtlebot 3
+\begin{lstlisting}[style=bash] 
+	sudo apt install ros-humble-turtlebot3*
+\end{lstlisting}
 
-\section{Estimación de pose Monocular}
-Utilizando cv::recoverPose() estimar la transformación entre la imagen izquierda y la imagen derecha. Para esto deberá calcular la matríz esencial utilizando la función cv::findEssentialMat().
+	\item Descargar y descomprimir el script \lstinline[style=bash]{dump_odom.py}:
+	
+\begin{lstlisting}[style=bash] 
+wget http://www.profesores.frc.utn.edu.ar/electronica/fundamentosroboticamovil/ \
+pub/file/2022/dump_odom.tar.gz
+tar -xzvf dump_odom.tar.gz
+\end{lstlisting}
+	
+\end{enumerate}
+
+\section{Ejecución de la simulación}
+
+\begin{enumerate}
+
+\item Setear las variables de entorno:
+
+\begin{lstlisting}[style=bash] 
+export TURTLEBOT3_MODEL=waffle
+export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/opt/ros/<ros2-distro>/share/turtlebot3_gazebo/models
+\end{lstlisting}
+	\item Ejecutar simulación
+
+\begin{lstlisting}[style=bash] 
+ros2 launch nav2_bringup tb3_simulation_launch.py headless:=False
+\end{lstlisting}
+
+
+	\item Una vez corriendo, setear la pose inicial del robot desde RViz. Para esto primero presionar el botón ``2D Pose Estimate'' y luego hacer click es la zona donde se encuentra el robot en el mapa. Esto es para que el sistema de localización del robot tenga una semilla inicial de dónde esta. Luego presionar ``Navigaton2 Goal'' y luego hacer click en algún lugar del mapa para indicarle al robot que debe navegar hasta ahí.
+
+	\item Crear un launch que permita lanzar la simulación pero sin un mapa y sin el sistema de localización. Para esto se recomienda crear un nuevo paquete y luego copiar y modificar los archivos launch \lstinline{tb3_simulation_launch.py} y \lstinline{world_only.model}.
+
+	\item Una vez teniendo el robot corriendo en un mundo sin obstáculos y sin un sistema de localización, enviar comandos de velocidad para mover el robot:
+
+	\begin{enumerate}
+	\item En una nueva terminal o pestaña, ejecutar el comando:
+
+\begin{lstlisting}[style=bash] 
+ros2 topic pub --rate 1 /turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.2, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.2}}"
+\end{lstlisting}
+
+	\item Detener el robot fijando la velocidad lineal y angular a cero.
+	\end{enumerate}
+
+\item Comandar el robot con el teclado (teleoperación), para ello ejecutar:
+
+Puede ejecutarse el mismo comando de teleoperación por teclado
+\begin{lstlisting}[style=bash] 
+ros2 run teleop_twist_keyboard teleop_twist_keyboard.py
+\end{lstlisting}
+(ver la información en pantalla y decrementar las velocidades si el moviemiento del robot
+resulta demasiado agresivo)
+o bien,
+\begin{lstlisting}[style=bash] 
+ros2 run turtlebot3_teleop turtlebot3_teleop_key.launch
+\end{lstlisting}
+
+\end{enumerate}
+
+
+\section{Ejercicios}
+
+\ejercicio  Determinar de forma analítica el radio del camino circular que realiza el robot al ajustar la velocidad lineal y angular a valores constantes. Realizar el cálculo para dos velocidades cualquieras teniendo en cuenta las velocidades máximas del robot.
+
+\nota Los límites de velocidad y los parámetros cinemáticos (el radio de la rueda R y la distancia entre ruedas b) de los diferentes modelos del robot TurtleBot3 se obtienen de las especificaciones\footnote{\url{https://emanual.robotis.com/docs/en/platform/turtlebot3/features/}}.
+
+\ejercicio  Calcular la velocidad lineal y angular para que el robot realice un camino circular con un radio a elección entre \SI{0.5}{\meter} y \SI{1.5}{\meter}.
+
+\ejercicio  Calcular las velocidades lineales y angulares de las ruedas (izquierda y derecha) del robot para el camino circular del punto anterior.
+
+\ejercicio Generar un registro (log) de odometría y velocidad del robot, para lo cual hay que ejecutar nuevamente
+la simulación y utilizar el script ’dump odom.py’. Este script muestra en pantalla 6 columnas con los siguientes datos: tiempo (timestamp), coordenadas x, y, orientación, velocidad lineal y angular.
+
+\ejercicio Obtener un registro de datos con el robot en movimiento mediante teleoperación por teclado. Para guardar los datos generados por el script hay que redireccionar la salida a un archivo como:
+
+\begin{lstlisting}[style=bash] 
+./dump_odom.py > log.txt
+\end{lstlisting}
+
+Dentro del IDE de ROSDS hay una opción que permite descargar un archivo del proyecto.
+
+\ejercicio Escribir un script en Python que cargue los datos del archivo de log y genere gráficos de:
+\begin{enumerate}
+	\item el camino seguido por el robot,
+	\item la trayectoria (pose respecto al tiempo), y
+	\item la velocidad del robot respecto al tiempo.
+\end{enumerate} 
+
+\nota Utilizar una relación de aspecto 1:1 para el gráfico del camino.
+
+Sugerencias: evitar en lo posible el registro de datos iguales a cero.
+
+\ejercicio Obtener otro registro de datos para un camino circular del robot y graficar el camino y la trayectoria.
+
+\ejercicio Marcar tres puntos cualquiera en el gráfico del camino del robot y sus correspondientes puntos en la trayectoria. Elegir puntos diferentes al inicio y final del camino.
+
+
+En base a los gráficos anteriores:
+
+\begin{enumerate}
+
+\item ¿Cuáles son los rangos de valores de las coordenadas x e y y por qué?
+
+\item  ¿Cuál es el rango de valores de la orientación del robot y por qué?
+
+\item Obtener diferentes registros y gráficos para caminos circulares con diferentes valores (positivos y negativos) de velocidades lineales y angulares (utilizar todas las combinaciones de signos posibles). Indicar en los gráficos el sentido de avance del robot.
+
+\item Describir cuál sería la secuencia de comandos de velocidad a aplicar al robot para seguir uno de los caminos mostrados en la figura 2 (elegir solo uno).
+
+\end{enumerate}
 
 \printbibliography
 
