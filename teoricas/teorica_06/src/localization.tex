@@ -112,6 +112,37 @@
 	\end{center}
 \end{frame}
 
+
+\begin{frame}
+	\frametitle{Estimación de estado}
+	
+	\note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
+	
+	\begin{itemize}
+		\item  Estimar el estado $\state$ de un systema dada las observaciones $\observation$ y comandos de control $\controlCommand$
+		\item Objetivo:
+	\end{itemize}
+	
+	\begin{equation}
+		p\left(\state_{t} | \observation_{1:t}, \controlCommand_{1:t} \right)
+	\end{equation}
+	
+	Estimación de estado recursiva: Se trata de estimar $\state_{t}$ el estado actual utilizando también el estado inmediatamente anterior $\state_{t-1}$.
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Estimación de estado}
+	
+	\note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
+	Estamos interesados en la creencia (\emph{belief}) del sistema de dónde está en el tiempo $t$:
+	\begin{equation}
+		bel(\state_{t}) = p\left(\state_{t} | \observation_{1:t}, \controlCommand_{1:t} \right) \quad \text{(definición de distribución de probabilidad)}
+	\end{equation}
+
+\end{frame}
+
+
 \section{Medición}
 
 \begin{frame}{Belief luego de sensar}
