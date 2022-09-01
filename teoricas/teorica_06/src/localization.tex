@@ -191,6 +191,45 @@
     \note{Luego se pueden seguir haciendo asumciones, por ejemplo asumir que las probabilidades son gaussianas. Lo cual no es cierto en general.}
 \end{frame}
 
+\begin{frame}{Paso de Predicción y Paso de Corrección}
+    \begin{itemize}
+        \item El Filtro de Bayes puede ser escrito como un proceso de dos pasos
+        \begin{equation*}
+        bel(\state_{t}) = \eta \, p\left(\observation_{t} |\state_{t} \right) \int p\left(\state_{t} | \state_{t-1}, \controlCommand_{t} \right) bel(\state_{t-1}) d \state_{t-1}
+        \end{equation*}
+        \item Paso de Predicción
+        \begin{equation*}
+            \overline{bel}(\state_{t}) = \int p\left(\state_{t} | \state_{t-1}, \controlCommand_{t} \right) bel(\state_{t-1}) d \state_{t-1}
+        \end{equation*}
+        \item Paso de Corrección
+        \begin{equation*}
+            bel(\state_{t}) = \eta \, p\left(\observation_{t} |\state_{t} \right) \overline{bel}(\state_{t})
+        \end{equation*}
+    \end{itemize}
+
+    \note{El paso de predicción: predice dónde vamos a estar dado los comandos de control}
+    \note{El paso de corrección: teniendo en cuenta las mediciones actuales corrije la pose predicha}
+    
+\end{frame}
+
+\begin{frame}{Motion model y observation model}
+    \begin{itemize}
+         \item Paso de Predicción
+        \begin{equation*}
+            \overline{bel}(\state_{t}) = \int \underbrace{p\left(\state_{t} | \state_{t-1}, \controlCommand_{t} \right)}_{\text{Motion model}} bel(\state_{t-1}) d \state_{t-1}
+        \end{equation*}
+        \item Paso de Corrección
+        \begin{equation*}
+            bel(\state_{t}) = \eta \underbrace{p\left(\observation_{t} |\state_{t} \right)}_{\text{\makebox[0pt]{Observation model (Measurement model o Sensor model)}}} \overline{bel}(\state_{t})
+        \end{equation*}
+    \end{itemize}
+    
+    \note{El paso de predicción: predice dónde vamos a estar dado los comandos de control}
+    \note{El paso de corrección: teniendo en cuenta las mediciones actuales corrije la pose predicha}
+    
+\end{frame}
+
+
 \section{Medición}
 
 \begin{frame}{Belief luego de sensar}
