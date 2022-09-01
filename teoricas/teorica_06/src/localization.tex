@@ -26,25 +26,20 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Bayes Filter}
-    
-    \note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
-   
-    
-\end{frame}
-
-\begin{frame}
-    \frametitle{Extended Kalman Filter}
-    
-    \note{Información obtenida de:
-        Cyrill Stachniss KF y EKF: https://youtu.be/E-6paM_Iwfc
-        Chebrolu EKF Localization: https://youtu.be/PiCC-SxWlH8}
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{índice}
-    \tableofcontents%[pausesections]
+	\frametitle{Estimación de estado}
+	
+	\note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
+	
+	\begin{itemize}
+		\item  Estimar el estado $\state$ de un systema dada las observaciones $\observation$ y comandos de control $\controlCommand$
+		\item Objetivo:
+	\end{itemize}
+	
+	\begin{equation}
+		p\left(\state_{t} | \observation_{1:t}, \controlCommand_{1:t} \right)
+	\end{equation}
+	
+	Estimación de estado recursiva: Se trata de estimar $\state_{t}$ el estado actual utilizando también el estado inmediatamente anterior $\state_{t-1}$.
 \end{frame}
 
 \section{Problema de localización}
@@ -55,7 +50,7 @@
 \end{frame}
 
 
-\begin{frame}{Ejemplo de localización}
+\begin{frame}{Filtro de Bayes Recursivo}
     \begin{block}{Ejemplo}
         \begin{itemize}
             
@@ -66,7 +61,7 @@
     \end{block}
 \end{frame}
 
-\begin{frame}{Ejemplo: Posición inicial}
+\begin{frame}{Filtro de Bayes Recursivo: Posición inicial}
     Como en un principio el robot desconoce cual es su posición entonces es igualmente posible que se encuentre en cualquier punto del mundo (\alert{belief}). Esto lo podemos representar matemáticamente diciendo que la \alert{función de distribución de probabilidad} del robot es \alert{uniforme} sobre el mundo en que se encuentra.
     \begin{center}
         \includegraphics<1>[height=2cm]{./images/monte_carlo_uniform.png}
@@ -74,7 +69,7 @@
     
 \end{frame}
 
-\begin{frame}{Ejemplo: Medición}
+\begin{frame}{Filtro de Bayes Recursivo: Medición}
     
     Si el robot sensa que se encuentra al lado de una puerta entonces la creencia de su ubicación se se ve alterada de la siguiente manera:
     
@@ -89,7 +84,7 @@
     
 \end{frame}
 
-\begin{frame}{Ejemplo: Movimiento}
+\begin{frame}{Filtro de Bayes Recursivo: Movimiento}
     
     Si el robot se mueve hacia la derecha la creencia es cambiada de acuerdo al movimiento.
     Así mismo como el movimiento del robot es inexacto, al trasladarse su incertidumbre crece, dicho de otra manera, las lomas son aplanadas. Este aplanamiento matemáticamente se lleva a cabo por medio de la operación de \alert{convolución} entre la función Posterior belief y la función que describe la distancia recorrida.
@@ -102,7 +97,7 @@
     
 \end{frame}
 
-\begin{frame}{Ejemplo: Segunda medición}
+\begin{frame}{Filtro de Bayes Recursivo: Segunda medición}
     Supongamos que el robot luego de haberse movido sensa nuevamente que se encuentre al lado de una puerta entonces, como antes, la probabilidad se incrementara por un cierto factor la función de probabilidad donde haya una puerta.
     
     \begin{center}
@@ -372,8 +367,6 @@
 \end{frame}
 
 
-
-
 \begin{frame}{Definición formal de localización}
     
     \begin{block}{Medición}
@@ -418,5 +411,19 @@
 \end{frame}
 
 
+\begin{frame}
+	\frametitle{Bayes Filter}
+	
+	\note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
+	
+	
+\end{frame}
 
+\begin{frame}
+	\frametitle{Extended Kalman Filter}
+	
+	\note{Información obtenida de:
+		Cyrill Stachniss KF y EKF: https://youtu.be/E-6paM_Iwfc
+		Chebrolu EKF Localization: https://youtu.be/PiCC-SxWlH8}
+\end{frame}
 
