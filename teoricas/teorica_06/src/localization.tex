@@ -192,6 +192,7 @@
 \end{frame}
 
 \begin{frame}{Paso de Predicción y Paso de Corrección}
+    \note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
     \begin{itemize}
         \item El Filtro de Bayes puede ser escrito como un proceso de dos pasos
         \begin{equation*}
@@ -213,6 +214,7 @@
 \end{frame}
 
 \begin{frame}{Motion model y observation model}
+    \note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
     \begin{itemize}
          \item Paso de Predicción
         \begin{equation*}
@@ -229,13 +231,82 @@
     
 \end{frame}
 
+\begin{frame}{Diferentes implementaciones}
+    \note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
+    \begin{itemize}
+        \item El Filtro de Bayes es un {\bf framework} estimación de estado recursiva
+        \item Hay diferentes implementaciones
+        \item Diferentes Propiedades:
+        \begin{itemize}
+            \item Modelos lineales vs no-lineales para el modelo de movimiento y observación
+            \item Utilización de distribuciones de probabilidad solamente Gausianas? 
+            \item Filtros paramétricos y no-paramétricos (representar la distribución de probabilidad de manera paramétrica o no-paramétrica)
+            \item ...
+        \end{itemize}
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}{Filtros populares}
+    \note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
+    \begin{itemize}
+        \item Kalman Filter
+        \begin{itemize}
+            \item Utiliza distribuciones de probabilidad Gaussianas
+            \item Solo funciona con modelo de movimiento y observación lineales
+        \end{itemize}
+        \item Extended Kalman Filter (EKF)
+        \begin{itemize}
+            \item Utiliza distribuciones de probabilidad Gaussianas
+            \item {\bf Lineariza} los modelos de movimiento y observación no lineales por medio de aproximación de Taylor
+        \end{itemize}
+        \item Particle filter
+        \begin{itemize}
+            \item No-paramétrico 
+            \item Modelos de distribuciones probabilísticas arbitrarias, es decir no todo es Gaussiano (etapa de sampleo de muestras)
+        \end{itemize}
+    \end{itemize}
+
+    \note{- Nonparametric filters represent posterior state as a function of previous state.
+    - Nonparametric filters does not rely on a fixed functional form of
+    posterior.
+    - Histogram filter and Particle filter represent state space and posterior as a finite set of data.
+    - There is usually a trade-off between efficiency and level of detail of data.}
+    \note{el precio a pagar es que tiene un costo computacional muy alto}
+\end{frame}
+
+\begin{frame}{Motion Model}
+    \note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
+    \begin{equation*}
+        \overline{bel}(\state_{t}) = \int \underbrace{p\left(\state_{t} | \state_{t-1}, \controlCommand_{t} \right)}_{\text{Motion model}} bel(\state_{t-1}) d \state_{t-1}
+    \end{equation*}
+\end{frame}
+
+\begin{frame}{Ejemplo: Movimiento basado en odometría (Banana shape)}
+    \note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
+    
+    \includegraphics<1>[height=1.8cm]{inexact_motion.png}
+    
+\end{frame}
+
+\begin{frame}{Observation model}
+    \note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
+    \begin{equation*}
+        bel(\state_{t}) = \eta \underbrace{p\left(\observation_{t} |\state_{t} \right)}_{\text{\makebox[0pt]{Observation model (Measurement model o Sensor model)}}} \overline{bel}(\state_{t})
+    \end{equation*}
+\end{frame}
+
+\begin{frame}{Ejemplo: Movimiento basado en odometría}
+    \note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
+
+\end{frame}
+
 
 \section{Medición}
 
 \begin{frame}{Belief luego de sensar}
     \begin{block}{Ejemplo}
         \begin{itemize}
-            
             \item Un mundo constituido por cinco celdas $x_{i}$ donde $i = 1, \dots ,5$
             \item Las celdas $x_{2}$ y $x_{3}$ son rojas, y el resto verdes.
             \item Inicialmente el robot desconoce su posición
