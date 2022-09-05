@@ -78,13 +78,13 @@ Descargue el archivo \emph{ground-truth} (trayectoria real realizada por el robo
 \nota Para la descarga se recomienda utilizar el programa \lstinline{aria2c} con los parámetros: \lstinline{aria2c -s N -x N <URL>}, con \lstinline{N} la cantidad de cores en su computadora.
 
 \begin{enumerate}
-    \item El \emph{ground-truth} se encuentra en coordenadas de la IMU (Body). Se pide crear un script en python que dada la trayectoría ground-truth (timestamp, x, y, z, qw, qx, qy, qz) (primeras 8 columnas del archivo \lstinline{MH_01/state_groundtruth_estimate0.csv}) genere el ground-truth pero que este esté dado por la trayectoria de la cámara izquierda. Para esto deberá utilizar las transformaciones provistas en el dataset.
+    \item El \emph{ground-truth} se encuentra en coordenadas de la IMU (Body). Se pide crear un script en python que dada la trayectoría ground-truth (timestamp, x, y, z, qw, qx, qy, qz) (primeras 8 columnas del archivo \lstinline{MH_01/state_groundtruth_estimate0.csv}) genere el ground-truth pero que este esté dado por la trayectoria de la cámara izquierda. Para esto deberá utilizar las transformaciones provistas en el dataset. 
     
     \item Modifique el script para que el timestamp del nuevo \emph{ground-truth} este en segundos con precisión de nanosegundos.
     
     \item Modifique el script para que genere una imagen con ambos \emph{ground-truth} (el camino de la IMU y el camino de la cámara).
 \end{enumerate}
-\nota Para graficar en python se recomienda utilizar la librería matplotlib\footnote{\url{https://matplotlib.org/}}.
+\nota Para graficar en Python se recomienda utilizar la librería matplotlib\footnote{\url{https://matplotlib.org/}}. Para trabajar con transformaciones en Python se recomienda utilizar la librería: transforms3d\footnote{\url{https://github.com/matthew-brett/transforms3d}}
 
 
 
