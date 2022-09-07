@@ -169,9 +169,17 @@ ros2 run turtlesim turtle_teleop_key --ros-args --remap turtle1/cmd_vel:=turtle2
     Cada nodo en ROS debe ser responsable de un solo propósito de módulo (por ejemplo, un nodo para controlar los motores de las ruedas, un nodo para controlar un telémetro láser, etc.). Cada nodo puede enviar y recibir datos a otros nodos a través de tópicos, servicios, acciones o parámetros.
     
     Un sistema robótico completo se compone de muchos nodos que trabajan en conjunto. En ROS 2, un único ejecutable (programa C++, programa Python, etc.) puede contener uno o más nodos.
-    
-    \TODO{Agregar imagen de comunicación de ROS}
 \end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{ROS graph}
+	
+	\begin{center}
+		\movie[loop]{\includegraphics[width=0.9\columnwidth]{images/ros2_nodes_video.jpg}}{videos/ros2_nodes.mp4}
+	\end{center}
+	
+\end{frame}
+
 
 \begin{frame}[fragile]
     \frametitle{Volvamos al Turtlesim para ver otros conceptos}
