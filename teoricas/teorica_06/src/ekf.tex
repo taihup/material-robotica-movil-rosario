@@ -6,7 +6,7 @@
 		\item Es un Filtro de Bayes
 		\item Todo es Gaussiano
 		\begin{equation*}
-			p(x)=\det(2\pi\covariance)^{\dfrac{1}{2}} \exp\left(-\dfrac{1}{2} (x - \mu )^{\top} \inverse{\covariance} (x - \mu )  \right)
+			p(x)=\det(2\pi\covariance)^{\frac{1}{2}} \exp\left(-\dfrac{1}{2} (x - \mu )^{\top} \inverse{\covariance} (x - \mu )  \right)
 		\end{equation*}
 		
 		\item Soluciones optimas para modelos lineales y distribuciones Gaussianas.
@@ -27,29 +27,77 @@
 
 
 \begin{frame}
-	\frametitle{Kalman Filter Asumciones}
+	\frametitle{Kalman Filter Asunciones}
 	\note{información extraida de https://youtu.be/PiCC-SxWlH8}
 	
-	
+	\begin{itemize}
+		\item Ruido y distribuciones Gaussianas
+		\item Modelos de movimiento y observación lineales
+	\end{itemize}
+
+	\begin{align*}
+		\state_{t} &= A_{t} \state_{t-1} + B_{t}\controlCommand_{t} + \motionModelNoise_{t}\\
+		\observation_{t} &= C_{t} \state_{t} + \measurementModelNoise_{t}
+	\end{align*}
+	\note{Kalman Filter requiere que los ruidos sean gaussianos y que el estado resulte de una combinación lineal.}
+
+	\centering
+	\alert{¿qué pasa si este estas asunciones no pasan?}
+	\note{Differencial drive y Ackerman motion models NO son modelos lineales}
+	\note{Los observation models de un láser  o de una cámara tampoco son lineales.}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Sistemas dinámicos no Non-lineales}
 	\note{información extraida de https://youtu.be/PiCC-SxWlH8}
+	\begin{itemize}
+		\item Los problemas reales en general emplean funciones no-lineales
+	\end{itemize}
 	
-	
+	\begin{align*}
+		\state_{t} &= A_{t} \state_{t-1} + B_{t}\controlCommand_{t} + \motionModelNoise_{t}\\
+		\observation_{t} &= C_{t} \state_{t} + \measurementModelNoise_{t}
+	\end{align*}
+
+\TODO{tachar las formulas lineales}
+
+	\begin{align*}
+		\state_{t} &= \motionModelFunction{\controlCommand_{t}, \state_{t-1}} + \motionModelNoise_{t}\\
+		\observation_{t} &= \observationModelFunction{\state_{t}} + \measurementModelNoise_{t}
+	\end{align*}
+
 \end{frame}
 
 \begin{frame}
-	\frametitle{Motion model linearizado}
+	\frametitle{Modelo de movimiento linearizado}
 	\note{información extraida de https://youtu.be/PiCC-SxWlH8}
 	
+	\begin{itemize}
+		\item Linearizar el modelo esta dado por:
+	\begin{align*}
+		p(\state_{t} | \controlCommand_{t}, \state_{t-1}) &\approx \det(2 \pi R_{t})^{\frac{1}{2}}\\
+		&\exp (-\dfrac{1}{2} (\state_{t} - \motionModelFunction{\controlCommand_{t}-\mu_{t-1}} - G_{t}(\state_{t-1}-\mu_{t-1}))^{\top}\\
+		&\inverse{R_{t}} (\state_{t} - \underbrace{\motionModelFunction{\controlCommand_{t},\mu_{t-1}} - G_{t} (\state_{t-1}-\mu_{t-1})}_{\text{modelo linearizado}}))
+	\end{align*}
 	
+	\item $R_{t}$ describe el ruido del movimiento
+	\end{itemize}	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Observation model linearizado}
+	\frametitle{Modelo de observación linearizado}
 	\note{información extraida de https://youtu.be/PiCC-SxWlH8}
+	
+	\begin{itemize}
+		\item Linearizar el modelo esta dado por:
+		\begin{align*}
+			p(\observation_{t} | \state_{t}) &\approx \det(2 \pi Q_{t})^{\frac{1}{2}}\\
+			&\exp (-\dfrac{1}{2} (\observation_{t} - \observationModelFunction{\overline{\mu_{t}}} - H_{t}(\state_{t} - \overline{\mu_{t}}))^{\top}\\
+			&\inverse{H_{t}} (\observation_{t} - \underbrace{\observationModelFunction{\overline{\mu_{t}}} - H_{t} (\state_{t}-\overline{\mu_{t}})}_{\text{modelo linearizado}}))
+		\end{align*}
+		
+		\item $Q_{t}$ describe el ruido de la medición
+	\end{itemize}	
 	
 	
 \end{frame}
