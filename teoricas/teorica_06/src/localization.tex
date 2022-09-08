@@ -307,19 +307,16 @@
     \end{equation*}
 \end{frame}
 
-\begin{frame}{Ejemplo: Movimiento basado en odometría}
+\begin{frame}{Ejemplo: Observation Model simple con Ruido Gaussiano}
     \note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
     
+    \begin{itemize}
+		\item Sensor de rango estimando la distancia a un objeto cercano
+		\item Ruido Gaussiano en la lectura del sensor
+    \end{itemize}
+    
    	\begin{figure}[!h]
-    	\centering
-    	\subfloat[]
-    	{
-    		\includegraphics[width=0.6\columnwidth]{./images/samping_odometry_motion_model.pdf}
-    	}\\
-    	\subfloat[Muestras del motion model]
-    	{
-    		\includegraphics[width=0.6\columnwidth]{./images/samping_odometry_motion_model.pdf}
-    	}
+   		\includegraphics[width=0.6\columnwidth]{./images/simple_observation_model.pdf}
     \end{figure}
 
 
