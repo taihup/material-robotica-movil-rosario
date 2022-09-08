@@ -75,12 +75,12 @@
 	\begin{itemize}
 		\item Linearizar el modelo esta dado por:
 	\begin{align*}
-		p(\state_{t} | \controlCommand_{t}, \state_{t-1}) &\approx \det(2 \pi R_{t})^{\frac{1}{2}}\\
-		&\exp (-\dfrac{1}{2} (\state_{t} - \motionModelFunction{\controlCommand_{t}-\mu_{t-1}} - G_{t}(\state_{t-1}-\mu_{t-1}))^{\top}\\
-		&\inverse{R_{t}} (\state_{t} - \underbrace{\motionModelFunction{\controlCommand_{t},\mu_{t-1}} - G_{t} (\state_{t-1}-\mu_{t-1})}_{\text{modelo linearizado}}))
+		p(\state_{t} | \controlCommand_{t}, \state_{t-1}) &\approx \det(2 \pi \motionModelCovariance_{t})^{\frac{1}{2}}\\
+		&\exp (-\dfrac{1}{2} (\state_{t} - \motionModelFunction{\controlCommand_{t}-\mu_{t-1}} - \motionModelJacobian_{t}(\state_{t-1}-\mu_{t-1}))^{\top}\\
+		&\inverse{\motionModelCovariance_{t}} (\state_{t} - \underbrace{\motionModelFunction{\controlCommand_{t},\mu_{t-1}} - \motionModelJacobian_{t} (\state_{t-1}-\mu_{t-1})}_{\text{modelo linearizado}}))
 	\end{align*}
 	
-	\item $R_{t}$ describe el ruido del movimiento
+	\item $\motionModelCovariance_{t}$ describe el ruido del movimiento
 	\end{itemize}	
 \end{frame}
 
@@ -91,12 +91,12 @@
 	\begin{itemize}
 		\item Linearizar el modelo esta dado por:
 		\begin{align*}
-			p(\observation_{t} | \state_{t}) &\approx \det(2 \pi Q_{t})^{\frac{1}{2}}\\
-			&\exp (-\dfrac{1}{2} (\observation_{t} - \observationModelFunction{\overline{\mu_{t}}} - H_{t}(\state_{t} - \overline{\mu_{t}}))^{\top}\\
-			&\inverse{H_{t}} (\observation_{t} - \underbrace{\observationModelFunction{\overline{\mu_{t}}} - H_{t} (\state_{t}-\overline{\mu_{t}})}_{\text{modelo linearizado}}))
+			p(\observation_{t} | \state_{t}) &\approx \det(2 \pi \observationModelCovariance_{t})^{\frac{1}{2}}\\
+			&\exp (-\dfrac{1}{2} (\observation_{t} - \observationModelFunction{\overline{\mu_{t}}} - \observationModelJacobian_{t}(\state_{t} - \overline{\mu_{t}}))^{\top}\\
+			&\inverse{\observationModelCovariance_{t}} (\observation_{t} - \underbrace{\observationModelFunction{\overline{\mu_{t}}} - \observationModelJacobian_{t} (\state_{t}-\overline{\mu_{t}})}_{\text{modelo linearizado}}))
 		\end{align*}
 		
-		\item $Q_{t}$ describe el ruido de la medición
+		\item $\observationModelCovariance_{t}$ describe el ruido de la medición
 	\end{itemize}	
 	
 	
@@ -104,18 +104,22 @@
 
 \begin{frame}
 	\frametitle{Algoritmo de Filtro de Kalman Extendido}
-	\note{información extraida de https://youtu.be/PiCC-SxWlH8}
+	\note{información extraída de https://youtu.be/PiCC-SxWlH8}
 	
-	
+    \begin{algorithmic}[1]
+    \Procedure{ExtendedKalmanFilter}{$\mu_{t-1}, \covariance_{t-1}, \controlCommand_{t}, \observation_{t}$}
+        \State $\overline{\mu}_{t} = \motionModelFunction{\controlCommand_{t}, \mu_{t-1}}$
+        \State $\overline{\covariance}_{t} = \motionModelJacobian_{t} \covariance_{t-1} \motionModelJacobian_{t}^{\top}+\motionModelCovariance_{t}$
+        \Statex
+        \State $\kalmanGain_{t} = \overline{\covariance}_{t} \observationModelJacobian_{t}^{\top} (\observationModelJacobian_{t} \overline{\covariance}_{t}  \observationModelJacobian_{t} + \observationModelCovariance_{t})^{-1} $
+        \State $\mu_{t} = \overline{\mu}_{t} + \kalmanGain_{t} (\observation_{t} - \observationModelFunction{\overline{\mu}_{t}})$
+        \State $\covariance_{t} =  (I - \kalmanGain_{t} \observationModelJacobian_{t}) \overline{\covariance}_{t}$
+        \State \Return $\mu_{t}, \covariance_{t}$
+    \EndProcedure
+    \end{algorithmic}
 \end{frame}
 
-
-\begin{frame}
-	\frametitle{EKF Localización for feature-based map}
-	\note{información extraida de https://youtu.be/PiCC-SxWlH8}
-	
-	
-\end{frame}
+\section{EKF Localización for feature-based map}
 
 \begin{frame}
 	\frametitle{Odometry as controls}
