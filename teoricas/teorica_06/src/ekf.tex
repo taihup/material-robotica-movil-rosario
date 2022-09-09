@@ -171,13 +171,13 @@
 \begin{frame}
 	\frametitle{Jacobianos del modelo de movimiento}
 	\note{información extraida de https://youtu.be/PiCC-SxWlH8}
-	Calculamos el Jacobiano
+	Calculamos el Jacobiano con respecto al estado
 	\begin{equation*}
 		\motionModelJacobian_{t} = \dfrac{\delta\motionModelFunction{\controlCommand_{t},\mu_{t-1}}}{\delta \state_{t-1}} =
 		\begin{bmatrix}
-			\dfrac{\delta x^{\prime}}{\delta \mu_{t-1,x}} & \dfrac{\delta x^{\prime}}{\delta \mu_{t-1,y}} & \dfrac{\delta x^{\prime}}{\delta \mu_{t-1,z}}\\
-			\dfrac{\delta y^{\prime}}{\delta \mu_{t-1,x}} & \dfrac{\delta y^{\prime}}{\delta \mu_{t-1,y}} & \dfrac{\delta y^{\prime}}{\delta \mu_{t-1,z}}\\
-			\dfrac{\delta z^{\prime}}{\delta \mu_{t-1,x}} & \dfrac{\delta z^{\prime}}{\delta \mu_{t-1,y}} & \dfrac{\delta z^{\prime}}{\delta \mu_{t-1,z}}\\
+			\dfrac{\delta x^{\prime}}{\delta \mu_{t-1,x}} & \dfrac{\delta x^{\prime}}{\delta \mu_{t-1,y}} & \dfrac{\delta x^{\prime}}{\delta \mu_{t-1,\theta}}\\
+			\dfrac{\delta y^{\prime}}{\delta \mu_{t-1,x}} & \dfrac{\delta y^{\prime}}{\delta \mu_{t-1,y}} & \dfrac{\delta y^{\prime}}{\delta \mu_{t-1,\theta}}\\
+			\dfrac{\delta \theta^{\prime}}{\delta \mu_{t-1,x}} & \dfrac{\delta \theta^{\prime}}{\delta \mu_{t-1,y}} & \dfrac{\delta \theta^{\prime}}{\delta \mu_{t-1,\theta}}\\
 		\end{bmatrix}
 	\end{equation*}
 
@@ -189,14 +189,52 @@
 		0 & 0 & 1\\
 	\end{bmatrix}
 	\end{equation*}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Jacobianos del modelo de movimiento}
+	\note{información extraida de https://youtu.be/PiCC-SxWlH8}
+	Calculamos el Jacobiano con respecto al comando de control
+	\begin{equation*}
+		\motionModelJacobianControl{t} = \dfrac{\delta\motionModelFunction{\controlCommand_{t},\mu_{t-1}}}{\delta \controlCommand_{t}} =
+		\begin{bmatrix}
+			\dfrac{\delta x^{\prime}}{\delta \controlCommand_{t,\delta_{rot_{1}}}} & \dfrac{\delta x^{\prime}}{\delta \controlCommand_{t,\delta_{trans}}} & \dfrac{\delta x^{\prime}}{\delta \controlCommand_{t,\delta_{rot_{2}}}}\\
+			\dfrac{\delta y^{\prime}}{\delta \controlCommand_{t,\delta_{rot_{1}}}} & \dfrac{\delta y^{\prime}}{\delta \controlCommand_{t,\delta_{trans}}} & \dfrac{\delta y^{\prime}}{\delta \controlCommand_{t,\delta_{rot_{2}}}}\\
+			\dfrac{\delta \theta^{\prime}}{\delta \controlCommand_{t,\delta_{rot_{1}}}} & \dfrac{\delta \theta^{\prime}}{\delta \controlCommand_{t,\delta_{trans}}} & \dfrac{\delta \theta^{\prime}}{\delta \controlCommand_{t,\delta_{rot_{2}}}}
+		\end{bmatrix}
+	\end{equation*}
 	
-	
+	\begin{equation*}
+		\motionModelJacobianControl_{t} = 
+		\begin{bmatrix}
+			-\delta_{trans} \sin(\theta + \delta_{rot_{1}}) & \cos(\theta + \delta_{rot_{1}}) & 0\\
+			\delta_{trans} \cos(\theta + \delta_{rot_{1}}) & \sin(\theta + \delta_{rot_{1}}) & 0\\
+			0 & 0 & 1\\
+		\end{bmatrix}
+	\end{equation*}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Observation model}
 	\note{información extraida de https://youtu.be/PiCC-SxWlH8}
+		Calculamos el Jacobiano
+	\begin{equation*}
+		\motionModelJacobian_{t} = \dfrac{\delta\motionModelFunction{\controlCommand_{t},\mu_{t-1}}}{\delta \state_{t-1}} =
+		\begin{bmatrix}
+			\dfrac{\delta x^{\prime}}{\delta \mu_{t-1,x}} & \dfrac{\delta x^{\prime}}{\delta \mu_{t-1,y}} & \dfrac{\delta x^{\prime}}{\delta \mu_{t-1,z}}\\
+			\dfrac{\delta y^{\prime}}{\delta \mu_{t-1,x}} & \dfrac{\delta y^{\prime}}{\delta \mu_{t-1,y}} & \dfrac{\delta y^{\prime}}{\delta \mu_{t-1,z}}\\
+			\dfrac{\delta z^{\prime}}{\delta \mu_{t-1,x}} & \dfrac{\delta z^{\prime}}{\delta \mu_{t-1,y}} & \dfrac{\delta z^{\prime}}{\delta \mu_{t-1,z}}\\
+		\end{bmatrix}
+	\end{equation*}
 	
+	\begin{equation*}
+		\motionModelJacobian_{t} = 
+		\begin{bmatrix}
+			1 & 0 & -\delta_{trans} \sin(\theta + \delta_{rot_{1}})\\
+			0 & 1 & \delta_{trans} \cos(\theta + \delta_{rot_{1}})\\
+			0 & 0 & 1\\
+		\end{bmatrix}
+	\end{equation*}
 	
 \end{frame}
 
