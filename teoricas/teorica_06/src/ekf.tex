@@ -75,12 +75,12 @@
 	\begin{itemize}
 		\item Linearizar el modelo esta dado por:
 	\begin{align*}
-		p(\state_{t} | \controlCommand_{t}, \state_{t-1}) &\approx \det(2 \pi \motionModelCovariance_{t})^{\frac{1}{2}}\\
+		p(\state_{t} | \controlCommand_{t}, \state_{t-1}) &\approx \det(2 \pi \motionParametersCovariance_{t})^{\frac{1}{2}}\\
 		&\exp (-\dfrac{1}{2} (\state_{t} - \motionModelFunction{\controlCommand_{t}-\mu_{t-1}} - \motionModelJacobian_{t}(\state_{t-1}-\mu_{t-1}))^{\top}\\
-		&\inverse{\motionModelCovariance_{t}} (\state_{t} - \underbrace{\motionModelFunction{\controlCommand_{t},\mu_{t-1}} - \motionModelJacobian_{t} (\state_{t-1}-\mu_{t-1})}_{\text{modelo linearizado}}))
+		&\inverse{\motionParametersCovariance_{t}} (\state_{t} - \underbrace{\motionModelFunction{\controlCommand_{t},\mu_{t-1}} - \motionModelJacobian_{t} (\state_{t-1}-\mu_{t-1})}_{\text{modelo linearizado}}))
 	\end{align*}
 	
-	\item $\motionModelCovariance_{t}$ describe el ruido del movimiento
+	\item $\motionParametersCovariance_{t}$ describe el ruido del movimiento
 	\end{itemize}	
 \end{frame}
 
@@ -109,7 +109,7 @@
     \begin{algorithmic}[1]
     \Procedure{ExtendedKalmanFilter}{$\mu_{t-1}, \covariance_{t-1}, \controlCommand_{t}, \observation_{t}$}
         \State $\overline{\mu}_{t} = \motionModelFunction{\controlCommand_{t}, \mu_{t-1}}$
-        \State $\overline{\covariance}_{t} = \motionModelJacobian_{t} \covariance_{t-1} \motionModelJacobian_{t}^{\top}+\motionModelCovariance_{t}$
+        \State $\overline{\covariance}_{t} = \motionModelJacobian_{t} \covariance_{t-1} \motionModelJacobian_{t}^{\top}+\motionParametersCovariance_{t}$
         \Statex
         \State $\kalmanGain_{t} = \overline{\covariance}_{t} \observationModelJacobian_{t}^{\top} (\observationModelJacobian_{t} \overline{\covariance}_{t}  \observationModelJacobian_{t} + \observationModelCovariance_{t})^{-1} $
         \State $\mu_{t} = \overline{\mu}_{t} + \kalmanGain_{t} (\observation_{t} - \observationModelFunction{\overline{\mu}_{t}})$
@@ -158,7 +158,7 @@
 				\delta_{trans}\cos(\theta+\delta_{rot_{1}}) \\
 				\delta_{rot_{1}} + \delta_{rot_{2}}
 			\end{bmatrix}
-			}_{\motionModelFunction{\controlCommand_{t}, \state_{t-1}}} + \normalDistribution{0}{\motionModelCovariance_{t}}
+			}_{\motionModelFunction{\controlCommand_{t}, \state_{t-1}}} + \normalDistribution{0}{\motionParametersCovariance_{t}}
 		\end{equation*}
 		\item Linearización
 		\begin{equation*}
@@ -269,13 +269,42 @@
 	\frametitle{Algoritmo de Filtro de Kalman Extendido}
 	\note{información extraida de https://youtu.be/PiCC-SxWlH8}
 	
-	
-\end{frame}
-
-\begin{frame}
-	\frametitle{Algoritmo de Filtro de Kalman Extendido}
-	\note{información extraida de https://youtu.be/PiCC-SxWlH8}
-	
+ 	\begin{algorithmic}[1]
+		\State ExtendedKalmanFilter({$\mu_{t-1}, \covariance_{t-1}, \controlCommand_{t}, \observation_{t}$, $c_{t}$, $m$})
+		\State $\theta = \mu_{t-1,\theta}$
+		
+		\State $
+			\motionModelJacobian_{t} = 
+			\begin{bmatrix}
+				1 & 0 & -\delta_{trans} \sin(\theta + \delta_{rot_{1}})\\
+				0 & 1 & \delta_{trans} \cos(\theta + \delta_{rot_{1}})\\
+				0 & 0 & 1\\
+			\end{bmatrix}
+			   $
+		\State $
+			\motionModelJacobianControl_{t} = 
+			\begin{bmatrix}
+				-\delta_{trans} \sin(\theta + \delta_{rot_{1}}) & \cos(\theta + \delta_{rot_{1}}) & 0\\
+				\delta_{trans} \cos(\theta + \delta_{rot_{1}}) & \sin(\theta + \delta_{rot_{1}}) & 0\\
+				0 & 0 & 1\\
+			\end{bmatrix}
+         	   $
+		\State $
+			\motionModelCovariance_{t} = 
+			\begin{bmatrix}
+				\alpha_{1}\delta^{2}_{rot_{1}} + \alpha_{2}\delta^{2}_{trans} & 0 & 0\\
+				0 & \alpha_{3} \delta^{2}_{trans} + \alpha_{4} \left( \delta^{2}_{rot_{1}} + \delta^{2}_{rot_{2}} \right) & 0\\
+				0 & 0 & \alpha_{1}\delta^{2}_{rot_{1}} + \alpha_{2}\delta^{2}_{trans}\\
+			\end{bmatrix}
+			  $
+		\State $\overline{\mu}_{t} = \mu_{t-1} + 
+			\begin{bmatrix}
+			\delta_{trans}\cos(\theta+\delta_{rot_{1}}) \\
+			\delta_{trans}\cos(\theta+\delta_{rot_{1}}) \\
+			\delta_{rot_{1}} + \delta_{rot_{2}}
+		\end{bmatrix}$
+		\State $\overline{\covariance}_{t} = \motionModelJacobian_{t} \covariance_{t-1} \motionModelJacobian_{t}^{\top}+\motionModelJacobianControl_{t} \motionModelCovariance_{t} \motionModelJacobianControl_{t}^{\top}$
+	\end{algorithmic}
 	
 \end{frame}
 
@@ -283,12 +312,54 @@
 	\frametitle{Prediction step}
 	\note{información extraida de https://youtu.be/PiCC-SxWlH8}
 	
+	\TODO{Agregar imagen}
+	
 	
 \end{frame}
 
 \begin{frame}
 	\frametitle{Algoritmo de Filtro de Kalman Extendido}
 	\note{información extraida de https://youtu.be/PiCC-SxWlH8}
+	\footnotesize
+ 	\begin{algorithmic}[1]
+		\State
+		$ \observationModelCovariance_{t} =
+			\begin{bmatrix}
+				\sigma_{r}^{2} & 0\\
+				0 & \sigma_{\phi}^{2}
+			\end{bmatrix}
+		$
+		\For todos los features observados $z_{t}^{i} = (r_{t}^{i}, \phi_{t}^{i})^{\top}$
+		
+		\State $ j = c_{t}^{i}$
+		\State $ q = (m_{j,x}-\overline{\mu}_{t,x})^{2} + (m_{j,y}-\overline{\mu}_{t,y})^{2} $
+		\State
+		$ \hat{\observation}_{t}^{i} =
+			\begin{bmatrix}
+				\sqrt{q}\\
+				\atantwo(m_{j,y}-\overline{\mu}_{t,y}, m_{j,x}-\overline{\mu}_{t,x}) - \overline{\mu}_{t,\theta}
+			\end{bmatrix}
+		$
+		\State
+		$ \observationModelJacobian_{t}^{i} = 
+			\begin{bmatrix}
+				-\dfrac{m_{j,x} - \overline{\mu}_{t,x}}{\sqrt{q}} & -\dfrac{m_{j,y} - \overline{\mu}_{t,y}}{\sqrt{q}}  & 0\\
+				-\dfrac{m_{j,y} - \overline{\mu}_{t,y}}{q}  & -\dfrac{m_{j,x} - \overline{\mu}_{t,x}}{q}  & -1
+			\end{bmatrix}
+		$
+		
+		\State $S_{t}^{i} = \observationModelJacobian_{t}^{i} \overline{\covariance}_{t} \observationModelJacobian_{t}^{i^{\top}} + \observationModelCovariance_{t} $
+
+		\State $\kalmanGain_{t}^{i} = \overline{\covariance}_{t} {\observationModelJacobian_{t}^{i}} \overline{\covariance}_{t} \observationModelJacobian_{t}^{i^{\top}} S_{t}^{i^{-1}} $
+		\State $\overline{\mu}_{t} = \overline{\mu}_{t} + \kalmanGain_{t}^{i}(\observation_{t} - \hat{\observation}_{t}^{i})$
+		\State $\overline{\covariance}_{t} = (I - \kalmanGain_{t}^{i}\observationModelJacobian_{t}^{i})\overline{\covariance}_{t}$
+		
+		\EndFor
+		\State $\mu_{t} = \overline{\mu}_{t}$
+		\State $\covariance_{t} = \overline{\covariance}_{t}$
+		
+		\State \Return $\mu_{t}, \covariance_{t}$
+	\end{algorithmic}
 	
 	
 \end{frame}
