@@ -139,12 +139,56 @@
 	\frametitle{Motion model}
 	\note{información extraida de https://youtu.be/PiCC-SxWlH8}
 	
+	\begin{itemize}
+		\item Odometría de modelo de movimiento
+		\begin{equation*}
+			\begin{bmatrix}
+				x^{\prime} \\
+				y^{\prime} \\
+				\theta^{\prime}
+			\end{bmatrix} =
+			\underbrace{
+				\begin{bmatrix}
+				x \\
+				y \\
+				\theta
+			\end{bmatrix} +
+			\begin{bmatrix}
+				\delta_{trans}\cos(\theta+\delta_{rot_{1}}) \\
+				\delta_{trans}\cos(\theta+\delta_{rot_{1}}) \\
+				\delta_{rot_{1}} + \delta_{rot_{2}}
+			\end{bmatrix}
+			}_{\motionModelFunction{\controlCommand_{t}, \state_{t-1}}} + \normalDistribution{0}{\motionModelCovariance_{t}}
+		\end{equation*}
+		\item Linearización
+		\begin{equation*}
+			\motionModelFunction{\controlCommand_{t}, \state_{t-1}} \approx 			\motionModelFunction{\controlCommand_{t}, \mu_{t-1}} + \covariance_{t}(\state_{t-1}-\mu_{t-1})
+		\end{equation*}
+	\end{itemize}
 	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Jacobianos del motion model}
+	\frametitle{Jacobianos del modelo de movimiento}
 	\note{información extraida de https://youtu.be/PiCC-SxWlH8}
+	Calculamos el Jacobiano
+	\begin{equation*}
+		\motionModelJacobian_{t} = \dfrac{\delta\motionModelFunction{\controlCommand_{t},\mu_{t-1}}}{\delta \state_{t-1}} =
+		\begin{bmatrix}
+			\dfrac{\delta x^{\prime}}{\delta \mu_{t-1,x}} & \dfrac{\delta x^{\prime}}{\delta \mu_{t-1,y}} & \dfrac{\delta x^{\prime}}{\delta \mu_{t-1,z}}\\
+			\dfrac{\delta y^{\prime}}{\delta \mu_{t-1,x}} & \dfrac{\delta y^{\prime}}{\delta \mu_{t-1,y}} & \dfrac{\delta y^{\prime}}{\delta \mu_{t-1,z}}\\
+			\dfrac{\delta z^{\prime}}{\delta \mu_{t-1,x}} & \dfrac{\delta z^{\prime}}{\delta \mu_{t-1,y}} & \dfrac{\delta z^{\prime}}{\delta \mu_{t-1,z}}\\
+		\end{bmatrix}
+	\end{equation*}
+
+	\begin{equation*}
+	\motionModelJacobian_{t} = 
+	\begin{bmatrix}
+		1 & 0 & -\delta_{trans} \sin(\theta + \delta_{rot_{1}})\\
+		0 & 1 & \delta_{trans} \cos(\theta + \delta_{rot_{1}})\\
+		0 & 0 & 1\\
+	\end{bmatrix}
+	\end{equation*}
 	
 	
 \end{frame}
