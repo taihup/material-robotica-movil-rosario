@@ -215,34 +215,54 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Observation model}
+	\frametitle{Modelo de observación}
 	\note{información extraida de https://youtu.be/PiCC-SxWlH8}
-		Calculamos el Jacobiano
+	\begin{itemize}
+	\item Modelo de distancia y orientación (range-bearing model)
 	\begin{equation*}
-		\motionModelJacobian_{t} = \dfrac{\delta\motionModelFunction{\controlCommand_{t},\mu_{t-1}}}{\delta \state_{t-1}} =
+		\observation_{t}^{i} =
 		\begin{bmatrix}
-			\dfrac{\delta x^{\prime}}{\delta \mu_{t-1,x}} & \dfrac{\delta x^{\prime}}{\delta \mu_{t-1,y}} & \dfrac{\delta x^{\prime}}{\delta \mu_{t-1,z}}\\
-			\dfrac{\delta y^{\prime}}{\delta \mu_{t-1,x}} & \dfrac{\delta y^{\prime}}{\delta \mu_{t-1,y}} & \dfrac{\delta y^{\prime}}{\delta \mu_{t-1,z}}\\
-			\dfrac{\delta z^{\prime}}{\delta \mu_{t-1,x}} & \dfrac{\delta z^{\prime}}{\delta \mu_{t-1,y}} & \dfrac{\delta z^{\prime}}{\delta \mu_{t-1,z}}\\
+			r_{t}^{i}\\
+			\phi_{t}^{i} 
+		\end{bmatrix} =
+		\begin{bmatrix}
+			\sqrt{(m_{j,x}-x)^{2} + (m_{j,y}-y)^{2}}\\
+			\atantwo(m_{j,y}-y, m_{j,x}-x) -\theta
 		\end{bmatrix}
+		+ \normalDistribution{0}{\observationModelCovariance_{t}}		
 	\end{equation*}
 	
+	\item Linearización
 	\begin{equation*}
-		\motionModelJacobian_{t} = 
-		\begin{bmatrix}
-			1 & 0 & -\delta_{trans} \sin(\theta + \delta_{rot_{1}})\\
-			0 & 1 & \delta_{trans} \cos(\theta + \delta_{rot_{1}})\\
-			0 & 0 & 1\\
-		\end{bmatrix}
+	\observationModelFunction{\state_{t}, m} \approx 			\observationModelFunction{\overline{\mu}_{t}} + \observationModelJacobian_{t}^{i}(\state_{t}-\overline{\mu}_{t})
 	\end{equation*}
+	\end{itemize}
 	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Jacobianos del observation model}
+	\frametitle{Jacobianos del modelo de observación}
 	\note{información extraida de https://youtu.be/PiCC-SxWlH8}
+	Calculamos el Jacobiano con respecto al estado
+	\begin{equation*}
+		\observationModelJacobian_{t} = \dfrac{\delta\observationModelFunction{\overline{\mu}_{t},m}}{\delta \state_{t-1}} =
+		\begin{bmatrix}
+			\dfrac{\delta r_{t}^{i}}{\delta \overline{\mu}_{t,x}} & \dfrac{\delta r_{t}^{i}}{\delta \overline{\mu}_{t,y}} & \dfrac{\delta r_{t}^{i}}{\delta \overline{\mu}_{t,\theta}}\\
+			\dfrac{\delta \phi_{t}^{i}}{\delta \overline{\mu}_{t,x}} & \dfrac{\delta \phi_{t}^{i}}{\delta \overline{\mu}_{t,y}} & \dfrac{\delta \phi_{t}^{i}}{\delta \overline{\mu}_{t,\theta}}
+		\end{bmatrix}
+	\end{equation*}
 	
-	
+	\begin{equation*}
+		\observationModelJacobian_{t}^{i} = 
+		\begin{bmatrix}
+			-\dfrac{m_{j,x} - \overline{\mu}_{t,x}}{\sqrt{q}} & -\dfrac{m_{j,y} - \overline{\mu}_{t,y}}{\sqrt{q}}  & 0\\
+			-\dfrac{m_{j,y} - \overline{\mu}_{t,y}}{q}  & -\dfrac{m_{j,x} - \overline{\mu}_{t,x}}{q}  & -1
+		\end{bmatrix}
+	\end{equation*}
+	donde
+	\begin{equation*}
+		q = (m_{j,x}-\overline{\mu}_{t,x})^{2} + (m_{j,y}-\overline{\mu}_{t,y})^{2}
+	\end{equation*}
 \end{frame}
 
 \begin{frame}
