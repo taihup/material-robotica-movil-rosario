@@ -1,4 +1,4 @@
-\documentclass[tp]{lcc}
+\documentclass[parcial]{lcc}
 
 % add latex preamble
 \input{../../common/latex_preamble}
@@ -8,7 +8,7 @@
 
 \codigo{R-521}
 \materia{Robótica Móvil}
-\titulo{Transformaciones}
+\titulo{Parcial}
 
 \soluciones
 \commentstrue
@@ -20,71 +20,12 @@
 \begin{document}
 \maketitle
 
-\section{Entrega}
-Se deberá entregar un informe realizado en Lyx\footnote{\url{https://www.lyx.org/}} o latex con los ejercicios resueltos y explicando la solución según lo vea necesario para su comprensión. Para realizar gráficos se recomienda la utilización de la herramienta inkscape\footnote{\url{https://inkscape.org/}}.
-
-\section{Ejercicios}
-Esta práctica es para ponerse a punto con transformaciones.
-
-\ejercicio Para el sistema de coordenadas canónico de un robot móvil (x: hacia adelante, y: hacia la izquierda, z: hacia arriba) dibujar el sistema de coordenadas resultante luego de aplicar la rotación dada.
-
-    \begin{figure}[!h]
-    \centering
-    \hspace{-4cm}
-    \subfloat[(0,0,0)]
-    {
-        \includegraphics[width=0.2\columnwidth]{./images/roll_pitch_yaw.pdf}
-    }
-    \hspace{3cm}
-    \subfloat[$R_{y}(\SI{90}{\degree})$]
-    {
-        
-    }
-    \hspace{3cm}
-    \subfloat[$R_{x}(\SI{-90}{\degree})R_{y}(\SI{90}{\degree})$]
-    {
-    
-    }
-    \hspace{3cm}
-    \subfloat[$R_{z}(\SI{180}{\degree})R_{x}(\SI{-90}{\degree})R_{y}(\SI{90}{\degree})$]{}
-    \end{figure}
-
-\ejercicio Dado el siguiente escenario,
-\begin{itemize}
-    \item un robot A que encuentra en la posición $(2,3)$ con orientación \SI{45}{\degree} en coordenadas del mundo
-    \item un robot B que se encuentra en la posición $(1,1)$ con orientación \SI{-45}{\degree} en el sistema de coordenadas del robot A.
-    \item un punto $\worldPoint1 = (1,5)$ en coordenadas del mundo.
-    \item un punto $\toCoord{\point}{A}2 = (1,2)$ en coordenadas del robot A.
-\end{itemize}
-Resuelva:
-\begin{enumerate}
-    \item Dibuje los robots y las poses y todos los sistemas de coordenadas presentes
-    \item ¿Cuáles son los coordenadas del punto $\point1$ en el sistema de coordenadas del robot A?
-    \item ¿Cuáles son los coordenadas del punto $\point2$ en el sistema de coordenadas del robot B?
-    \item ¿Cuál es la pose del robot B en coordenadas del Mundo?
-\end{enumerate}
-
-\ejercicio Data la pose del robot (Body) en el mundo: $\transform{W}{B}$. Si se tiene el camino (conjunto de poses $\transform{C_{0}}{C_{i}}$ con $i = 1 \dots n$) realizado por la cámara $C$ (montada sobre el robot) en el marco de coordenadas de la cámara inicial $C_{0}$. Sabiendo la transformación $\transform{B}{C}$, 
-\begin{itemize}
-	\item ¿Qué procedimiento hay que realizar para obtener el camino realizado por la cámara en el sistema de coordenadas del mundo?
-	\item ¿Qué procedimiento hay que realizar para obtener el camino realizado por el robot (Body) en el sistema de coordenadas del mundo?
-\end{itemize}
+\section{Sensores}
+\ejercicio Dibuje el árbol de transformaciones
 
 
-\ejercicio Para este ejercicio utilizaremos el dataset EuRoc\footnote{\url{https://projects.asl.ethz.ch/datasets/kmavvisualinertialdatasets}}.
+\ejercicio 
 
-Descargue el archivo \emph{ground-truth} (trayectoria real realizada por el robot) localizado \url{ http://robotics.ethz.ch/~asl-datasets/ijrr_euroc_mav_dataset/machine_hall/MH_01_easy/MH_01_easy.zip}.
-
-\nota Para la descarga se recomienda utilizar el programa \lstinline{aria2c} con los parámetros: \lstinline{aria2c -s N -x N <URL>}, con \lstinline{N} la cantidad de cores en su computadora.
-
-\begin{enumerate}
-    \item El \emph{ground-truth} se encuentra en coordenadas de la IMU (Body). Se pide crear un script en python que dada la trayectoría ground-truth (timestamp, x, y, z, qw, qx, qy, qz) (primeras 8 columnas del archivo \lstinline{MH_01/state_groundtruth_estimate0.csv}) genere el ground-truth pero que este esté dado por la trayectoria de la cámara izquierda. Para esto deberá utilizar las transformaciones provistas en el dataset. 
-    
-    \item Modifique el script para que el timestamp del nuevo \emph{ground-truth} este en segundos con precisión de nanosegundos.
-    
-    \item Modifique el script para que genere una imagen con ambos \emph{ground-truth} (el camino de la IMU y el camino de la cámara).
-\end{enumerate}
-\nota Para graficar en Python se recomienda utilizar la librería matplotlib\footnote{\url{https://matplotlib.org/}}. Para trabajar con transformaciones en Python se recomienda utilizar la librería: transforms3d\footnote{\url{https://github.com/matthew-brett/transforms3d}}
 
 
 
