@@ -65,7 +65,7 @@ sudo apt install ros-<distro>-<package>
 \end{lstlisting}
 
 Sourcear los archivos de setup
-\begin{lstlisting}[style=bash]
+\begin{lstlisting}[style=bash]source /usr/share/gazebo/setup.bash
 source /opt/ros/<distro>/setup.bash
 \end{lstlisting}
     
@@ -476,10 +476,11 @@ Instalar los paquetes de Turtlebot 3
 sudo apt install ros-<ros2-distro>-turtlebot3*
 \end{lstlisting}
     
-Setear las variables de entorno:
+Setear las variables de entorno y sourcear Gazebo (recuerde agregar estas líneas a .bashrc):
 \begin{lstlisting}[style=bash] 
 export TURTLEBOT3_MODEL=waffle
 export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/opt/ros/<ros2-distro>/share/turtlebot3_gazebo/models
+source /usr/share/gazebo/setup.bash
 \end{lstlisting}
 
 \begin{lstlisting}[style=bash] 
