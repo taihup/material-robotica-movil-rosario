@@ -40,11 +40,14 @@ El objetivo del tp es comprender el modelo cinemático y la estimación de pose 
 Pasos para trabajar en el simulador Gazebo con el robot TurtleBot3 en ROS Development Studio (ROSDS). Mas información en: \url{https://navigation.ros.org/getting_started/}
 
 \begin{enumerate}
+
+\item (Opcional) Si no puede trabajar en su propia computadora (con Ubuntu 22.04) entonces realice los siguientes pasos:
+
+\begin{enumerate}
 	\item Iniciar sesión en \url{https://www.theconstructsim.com}.
 	\item Crea un proyecto ROSject y seleccionar ROS2 {\bf Humble} como distribución.
 \end{enumerate}
 
-\begin{enumerate}
 
 \item Instalar los paquetes de ROS2 para la simulación del robot TurtleBot3:
 
@@ -93,7 +96,7 @@ ros2 launch nav2_bringup tb3_simulation_launch.py headless:=False
 
 	\item Una vez corriendo, setear la pose inicial del robot desde RViz. Para esto primero presionar el botón ``2D Pose Estimate'' y luego hacer click es la zona donde se encuentra el robot en el mapa. Esto es para que el sistema de localización del robot tenga una semilla inicial de dónde esta. Luego presionar ``Navigaton2 Goal'' y luego hacer click en algún lugar del mapa para indicarle al robot que debe navegar hasta ahí.
 
-	\item Crear un launch que permita lanzar la simulación pero sin un mapa y sin el sistema de localización. Para esto se recomienda crear un nuevo paquete y luego copiar y modificar los archivos launch \lstinline{tb3_simulation_launch.py} y \lstinline{world_only.model}.
+	\item Crear un launch que permita lanzar la simulación pero sin un mapa y sin el sistema de localización. Se recomienda crear un nuevo paquete y luego copiar y modificar los archivos \lstinline{tb3_simulation_launch.py} y \lstinline{world_only.model}.
 
 	\item Una vez teniendo el robot corriendo en un mundo sin obstáculos y sin un sistema de localización, enviar comandos de velocidad para mover el robot:
 
@@ -144,16 +147,14 @@ la simulación y utilizar el script ’dump odom.py’. Este script muestra en p
 
 Dentro del IDE de ROSDS hay una opción que permite descargar un archivo del proyecto.
 
-\ejercicio Escribir un script en Python que cargue los datos del archivo de log y genere gráficos de:
+\ejercicio Escribir un script en Python que cargue los datos del archivo log y genere gráficos de:
 \begin{enumerate}
 	\item el camino seguido por el robot,
 	\item la trayectoria (pose respecto al tiempo), y
 	\item la velocidad del robot respecto al tiempo.
 \end{enumerate} 
 
-\nota Utilizar una relación de aspecto 1:1 para el gráfico del camino.
-
-Sugerencias: evitar en lo posible el registro de datos iguales a cero.
+\nota Utilizar una relación de aspecto 1:1 para el gráfico del camino y evitar en lo posible el registro de datos iguales a cero.
 
 \ejercicio Obtener otro registro de datos para un camino circular del robot y graficar el camino y la trayectoria.
 
@@ -190,11 +191,10 @@ En base a los gráficos anteriores:
     \label{fig:trajectories}
 \end{figure}
 
-\ejercicio El mundo deberá contar con varios cilindros de un mismo radio dado $r$. Los cilindros deben estar distribuidos en el entorno y ser todos observados por el láser del robot al momento de inicio de la simulación.
+\ejercicio El mundo deberá contar con varios cilindros de un mismo radio $r$. Los cilindros deben estar distribuidos en el entorno y ser todos observados por el láser del robot al momento de inicio de la simulación.
 
-Utilizar una medición láser para generar un mapa de la escena observada por el robot en simulación. Para esto deberá detectar los cilindros en la medición laser obtenida. Cada cilindro será utilizado como un landmark en el mapa virtual del robot. Deberá estimar el centro del cilindro, dicha posición será la posición de un landmark en el mapa virtual del robot. Debera crear un mapa de landmarks y publicarlo y visualizarlo en RVIZ utilizando el marker de cilindro.
-Obtenga un screenshot de RViz donde s
-e visualice las mediciones del láser y los landmarks reconstruidos.
+Utilizar una medición láser para generar un mapa de la escena observada por el robot en simulación. Para esto deberá detectar los cilindros en la medición laser obtenida. Cada cilindro será utilizado como un landmark en el mapa virtual del robot. Deberá estimar el centro del cilindro, dicha posición será la posición de un landmark en el mapa virtual del robot. Debera crear un mapa de landmarks, publicarlo y visualizarlo en RVIZ utilizando el marker de cilindro.
+Obtenga una captura de pantalla de RViz donde se visualice las mediciones del láser y los landmarks reconstruidos.
 
 
 \printbibliography
