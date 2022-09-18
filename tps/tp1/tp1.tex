@@ -21,12 +21,12 @@
 \maketitle
 
 \section{Entrega}
-Se deberá entregar un informe realizado en Lyx\footnote{\url{https://www.lyx.org/}} o latex con los ejercicios resueltos y explicando la solución según lo vea necesario para su comprensión. Para realizar gráficos se recomienda la utilización de la herramienta inkscape\footnote{\url{https://inkscape.org/}}.
+Se deberá entregar un informe realizado en Lyx\footnote{\url{https://www.lyx.org/}} o latex con los ejercicios resueltos y explicando la solución según lo vea necesario para su comprensión. Para realizar gráficos se recomienda la utilización de la herramienta inkscape\footnote{\url{https://inkscape.org/}}. Para el código se debe proveer el link de un repositorio git junto con un archivo README.md con las instrucciones de ejecución.
 
 \section{Ejercicios}
 Esta práctica es para ponerse a punto con transformaciones.
 
-\ejercicio Para el sistema de coordenadas canónico de un robot móvil (x: hacia adelante, y: hacia la izquierda, z: hacia arriba) dibujar el sistema de coordenadas resultante luego de aplicar la rotación dada.
+\ejercicio Para el sistema de coordenadas canónico de un robot móvil (x: hacia adelante, y: hacia la izquierda, z: hacia arriba) dibujar y resolver matemáticamente el sistema de coordenadas resultante luego de aplicar las rotaciones dadas.
 
     \begin{figure}[!h]
     \centering
@@ -66,8 +66,9 @@ Resuelva:
 
 \ejercicio Data la pose del robot (Body) en el mundo: $\transform{W}{B}$. Si se tiene el camino (conjunto de poses $\transform{C_{0}}{C_{i}}$ con $i = 1 \dots n$) realizado por la cámara $C$ (montada sobre el robot) en el marco de coordenadas de la cámara inicial $C_{0}$. Sabiendo la transformación $\transform{B}{C}$, 
 \begin{itemize}
-	\item ¿Qué procedimiento hay que realizar para obtener el camino realizado por la cámara en el sistema de coordenadas del mundo?
+	\item ¿Qué procedimiento hay que realizar para obtener el camino realizado por la cámara en el sistema de coordenadas del mundo?.
 	\item ¿Qué procedimiento hay que realizar para obtener el camino realizado por el robot (Body) en el sistema de coordenadas del mundo?
+    \item Realizar un gráfico ilustrativo donde se visualicen los sistemas de coordenadas, las transformaciones y los caminos realizados por el robot y la cámara.
 \end{itemize}
 
 
