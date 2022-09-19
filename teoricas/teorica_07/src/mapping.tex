@@ -13,8 +13,7 @@
     \item Estos tipos de mapas almacenan información sobre que áreas del mapa están ocupados (hay obstáculos) y cuales están libres (se pueden navegar). Se los puede pensar como un ``plano del lugar''.
     \item Permiten realizar planeamiento de caminos.
     \end{itemize}
-
-    
+   
 \end{frame}
 
 \begin{frame}
@@ -143,19 +142,43 @@
     \frametitle{Recontrucción de mapas}
     \note{información extraída de https://youtu.be/v-Rm9TUG9LA}
     
+    \begin{itemize}
+        \item Computar el mapa más probable dado las mediciones de los sensores
+        \begin{equation*}
+            \map^{*} = \argmax p(\map | \controlCommand_{1}, \observation_{1}, \dots, \controlCommand_{t}, \observation_{t})
+        \end{equation*}
+        \item Sin embargo, vamos a abordar un problema más simple: veamos cómo computar el mapa dada la pose del robot (la localización resuelta) y las mediciones de los sensores.
+        \begin{equation*}
+            \map^{*} = \argmax p(\map | \state_{1}, \observation_{1}, \dots, \state_{t}, \observation_{t})
+        \end{equation*}
+    \end{itemize}
+
+    \alert{Resolver la localización y el mapeo al mismo tiempo es resolver el problema de SLAM, y lo veremos más adelante.}
+    
 \end{frame}
 
 \begin{frame}
-    \frametitle{Mapas de Grilla}
+    \frametitle{Grid Maps}
     \note{información extraída de https://youtu.be/v-Rm9TUG9LA}
     
+    \note{}
     
+    \begin{itemize}
+        \item Modelos de mapa de ocupación del espacio
+        \item Discretiza el mundo en celdas
+        \item La estructura de la grilla está fija (el tamaño de las celdas y la grilla es fijo)
+        \item Cada celda puede estar ocupada o libre
+        \item Modelo no-paramétrico (es decir, una celda no está parametrizada como una gaussiana por ejemplo sino que está libre u ocupada)
+        \item El tamaño de los mapas de grilla puede requerir mucha memoria (en el caso 3D sobre todo)
+        \item No requiere de un detector de features específico (sino que utilizamos las mediciones crudas del sensor)
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{Ejemplo de Mapa de Grilla}
     \note{información extraída de https://youtu.be/v-Rm9TUG9LA}
     
+    Podemos representar al Grid Map como un imagen binaria donde los píxeles pueden ser blanco si está libre y negro si está ocupada.
     
 \end{frame}
 
