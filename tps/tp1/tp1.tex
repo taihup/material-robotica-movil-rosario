@@ -61,7 +61,7 @@ Resuelva:
     \item Dibuje los robots y las poses y todos los sistemas de coordenadas presentes
     \item ¿Cuáles son los coordenadas del punto $\point1$ en el sistema de coordenadas del robot A?
     \item ¿Cuáles son los coordenadas del punto $\point2$ en el sistema de coordenadas del robot B?
-    \item ¿Cuál es la pose del robot B en coordenadas del Mundo?
+    \item ¿Cuál es la pose (posición y orientación) del robot B en coordenadas del Mundo?
 \end{enumerate}
 
 \ejercicio Data la pose del robot (Body) en el mundo: $\transform{W}{B}$. Si se tiene el camino (conjunto de poses $\transform{C_{0}}{C_{i}}$ con $i = 1 \dots n$) realizado por la cámara $C$ (montada sobre el robot) en el marco de coordenadas de la cámara inicial $C_{0}$. Sabiendo la transformación $\transform{B}{C}$, 
@@ -79,11 +79,11 @@ Descargue el archivo \emph{ground-truth} (trayectoria real realizada por el robo
 \nota Para la descarga se recomienda utilizar el programa \lstinline{aria2c} con los parámetros: \lstinline{aria2c -s N -x N <URL>}, con \lstinline{N} la cantidad de cores en su computadora.
 
 \begin{enumerate}
-    \item El \emph{ground-truth} se encuentra en coordenadas de la IMU (Body). Se pide crear un script en python que dada la trayectoría ground-truth (timestamp, x, y, z, qw, qx, qy, qz) (primeras 8 columnas del archivo \lstinline{MH_01/state_groundtruth_estimate0.csv}) genere el ground-truth pero que este esté dado en el sistema de coordenadas de la cámara inicial. Para esto deberá utilizar las transformaciones provistas en el dataset. 
+    \item El \emph{ground-truth} se encuentra en coordenadas de la IMU (Body). Se pide crear un script en python que dada la trayectoría ground-truth (timestamp, x, y, z, qw, qx, qy, qz) (primeras 8 columnas del archivo \lstinline{MH_01/state_groundtruth_estimate0.csv}) genere el ground-truth pero que este esté dado en el sistema de coordenadas de la cámara inicial. Para esto deberá utilizar las transformaciones provistas en el dataset.
     
-    \item Modifique el script para que el timestamp del nuevo \emph{ground-truth} este en segundos con precisión de nanosegundos.
+    \item Modifique el script para que el timestamp del nuevo \emph{ground-truth} este en segundos con precisión de nanosegundos. Agregar las primeras 5 filas del ground-truth resultante y las del original del dataset al informe.
     
-    \item Modifique el script para que genere una imagen con ambos \emph{ground-truth} (el camino de la IMU y el camino de la cámara). Aplique las transformaciones necesaria para que ambos caminos esten en el sisma de coordenadas del ground-truth original.
+    \item Modifique el script para que genere una imagen con ambos \emph{ground-truth} (el camino de la IMU y el camino de la cámara). Aplique las transformaciones necesaria para que ambos caminos esten en el sisma de coordenadas del ground-truth original. Agregar la imagen al informe.
 \end{enumerate}
 \nota Para graficar en Python se recomienda utilizar la librería matplotlib\footnote{\url{https://matplotlib.org/}}. Para trabajar con transformaciones en Python se recomienda utilizar la librería: transforms3d\footnote{\url{https://github.com/matthew-brett/transforms3d}}
 
