@@ -175,25 +175,45 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Ejemplo de Mapa de Grilla}
+    \frametitle{Ejemplo de Mapa de Grilla de Ocupación}
     \note{información extraída de https://youtu.be/v-Rm9TUG9LA}
     
-    Podemos representar al Grid Map como un imagen binaria donde los píxeles pueden ser blanco si está libre y negro si está ocupada.
+    Podemos representar a un \emph{Occupancy Grid Map} con una imagen donde un píxel es blanco si está libre y negro si está ocupado (hay algún objeto). Un píxel gris representa un espacio que no conocemos.
     
+  	\begin{figure}[!h]
+    		\includegraphics[width=0.23\columnwidth]{./images/volumetric_map_2d.png}
+    \end{figure}
+
+
+	Los \emph{Occupancy Grid Maps} hacen asunciones acerca del mundo.
+       
 \end{frame}
 
 \begin{frame}
-    \frametitle{Mapas de Grilla}
+    \frametitle{Asunciones Occupancy Grid Maps}
     \note{información extraída de https://youtu.be/v-Rm9TUG9LA}
     
-    
+    \begin{block}{Asunción 1}
+	    El área de una celda esta o completamente libre u ocupada.
+    \end{block}
+	\note{esta asunción no sucede en la realidad ya que puede haber objetos que sean menores que el tamaño de la celda.}
+	
+	Cada celda es una variable aleatoria binaria que modela se la celda está ocupada o libre.
+	
+  	\begin{figure}[!h]
+		\includegraphics[width=0.7\columnwidth]{./images/grid_map.pdf}
+	\end{figure}
+	
 \end{frame}
 
 \begin{frame}
-    \frametitle{Mapas de Grilla}
-    \note{información extraída de https://youtu.be/v-Rm9TUG9LA}
-    
-    
+	\frametitle{Asunciones Occupancy Grid Maps}
+	\note{información extraída de https://youtu.be/v-Rm9TUG9LA}
+	
+	\begin{figure}[!h]
+		\includegraphics[width=0.7\columnwidth]{./images/grid_map_representation.pdf}
+	\end{figure}
+	
 \end{frame}
 
 \begin{frame}
