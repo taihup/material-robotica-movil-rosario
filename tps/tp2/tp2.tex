@@ -96,7 +96,7 @@ ros2 launch nav2_bringup tb3_simulation_launch.py headless:=False
 
 	\item Una vez corriendo, setear la pose inicial del robot desde RViz. Para esto primero presionar el botón ``2D Pose Estimate'' y luego hacer click es la zona donde se encuentra el robot en el mapa. Esto es para que el sistema de localización del robot tenga una semilla inicial de dónde esta. Luego presionar ``Navigaton2 Goal'' y luego hacer click en algún lugar del mapa para indicarle al robot que debe navegar hasta ahí.
 
-	\item Crear un launch que permita lanzar la simulación pero sin un mapa y sin el sistema de localización. Se recomienda crear un nuevo paquete y luego copiar y modificar los archivos \lstinline{tb3_simulation_launch.py} y \lstinline{world_only.model}.
+	\item Crear un launch que permita lanzar la simulación pero sin un mapa y sin el sistema de localización. Se recomienda crear un nuevo paquete y luego copiar y modificar los archivos \lstinline{tb3_simulation_launch.py} comentando el código relacionado a la localización (\lstinline{slam}) y al mapa (\lstinline{map}); y \lstinline{world_only.model} comentando el código relacionado al modelo del mundo a utilizar.
 
 	\item Una vez teniendo el robot corriendo en un mundo sin obstáculos y sin un sistema de localización, enviar comandos de velocidad para mover el robot:
 
