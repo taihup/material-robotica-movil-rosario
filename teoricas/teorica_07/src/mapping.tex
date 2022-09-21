@@ -196,9 +196,8 @@
     \begin{block}{Asunción 1}
 	    El área de una celda esta o completamente libre u ocupada.
     \end{block}
-	\note{esta asunción no sucede en la realidad ya que puede haber objetos que sean menores que el tamaño de la celda.}
-	
-	Cada celda es una variable aleatoria binaria que modela se la celda está ocupada o libre.
+
+	Esta asunción no sucede en la realidad ya que puede haber objetos que sean menores que el tamaño de la celda u objetos que cubran parcialmente una celda.
 	
   	\begin{figure}[!h]
 		\includegraphics[width=0.7\columnwidth]{./images/grid_map.pdf}
@@ -207,31 +206,63 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Asunciones Occupancy Grid Maps}
+	\frametitle{Representación: Probabilidad de Ocupación}
 	\note{información extraída de https://youtu.be/v-Rm9TUG9LA}
+
+	\begin{itemize}
+	\item Cada celda es una {\bf variable aleatoria binaria} que modela la ocupación de la celda.
+	\item La celda está ocupada: $p(\map_{i}) = 1$
+	\item La celda está libre: $p(\map_{i}) = 0$
+	\item No tenemos información: $p(\map_{i}) = 0.5$
+	\end{itemize}
 	
 	\begin{figure}[!h]
 		\includegraphics[width=0.7\columnwidth]{./images/grid_map_representation.pdf}
 	\end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Probabilidad de Ocupación}
+    \note{información extraída de https://youtu.be/v-Rm9TUG9LA}
+   	\begin{itemize}
+    	\item Cada celda es una {\bf variable aleatoria binaria} que modela la ocupación de la celda.
+    	\item Notación:
+   	   	\begin{itemize}
+    		\item La probabilidad de que la celta este ocupada, la notamos:\\ $P(\mapRandomVariable_{i} = occ) = P_{occ}(\mapRandomVariable_{i}) = p(\map_{i})$
+    		\item La probabilidad de que la celta este libre, la notamos:\\ $P(\mapRandomVariable_{i} = free) = P_{free}(\mapRandomVariable_{i}) = 1 - P_{occ}(\mapRandomVariable{i}) = p(\neg \map_{i})$
+    	\end{itemize}
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Asunción 2}
+    \note{información extraída de https://youtu.be/v-Rm9TUG9LA}
+    El mundo es estático.
+    
+     	\begin{figure}[!h]
+    	\includegraphics[width=0.7\columnwidth]{./images/grid_map_static_assumption.pdf}
+    \end{figure}
+    
+    Esto no es cierto en la práctica ya que hay objetos que se mueven por el entorno o el entorno es modificado (personas caminando, objetos que se mueven de un lugar a otro, etc).
+    
+\end{frame}
+
+\begin{frame}
+	\frametitle{Asunción 3}
+	\note{información extraída de https://youtu.be/v-Rm9TUG9LA}
+	Las celdas (las variables aleatorias) son independientes entre sí.
+	
+	\begin{figure}[!h]
+		\includegraphics[width=0.7\columnwidth]{./images/grid_map_independency_assumption.pdf}
+	\end{figure}
+	
+	Nuevamente esto no es cierto en el la práctica, pero asumimos esta independencia para simplificar el modelo.
 	
 \end{frame}
 
 \begin{frame}
-    \frametitle{Mapas de Grilla}
-    \note{información extraída de https://youtu.be/v-Rm9TUG9LA}
-    
-    
-\end{frame}
-
-\begin{frame}
-    \frametitle{Mapas de Grilla}
-    \note{información extraída de https://youtu.be/v-Rm9TUG9LA}
-    
-    
-\end{frame}
-
-\begin{frame}
-    \frametitle{Mapas de Grilla}
+    \frametitle{Distribución conjunta}
     \note{información extraída de https://youtu.be/v-Rm9TUG9LA}
     
     

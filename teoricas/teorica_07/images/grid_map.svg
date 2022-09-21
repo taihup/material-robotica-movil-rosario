@@ -2,9 +2,9 @@
 <svg
    id="svg29967"
    version="1.1"
-   viewBox="0 0 61.179222 18.879644"
+   viewBox="0 0 50.855 18.879644"
    height="18.879644mm"
-   width="61.179222mm"
+   width="50.855mm"
    sodipodi:docname="grid_map.svg"
    inkscape:version="1.2 (1:1.2.1+202207142221+cd75a1ee6d)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -28,12 +28,12 @@
      id="namedview150"
      showgrid="false"
      inkscape:zoom="2"
-     inkscape:cx="157"
-     inkscape:cy="116.75"
+     inkscape:cx="62.5"
+     inkscape:cy="117.25"
      inkscape:window-x="1440"
      inkscape:window-y="27"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer5"
+     inkscape:current-layer="layer7"
      inkscape:pagecheckerboard="0"
      inkscape:document-units="mm"
      fit-margin-top="0"
@@ -514,6 +514,44 @@
          d="m 21,0 h 3 v 9.964844 h -3 z m 0,0"
          id="path7129" />
     </clipPath>
+    <marker
+       style="overflow:visible"
+       id="Arrow1L-6-3-3"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Arrow1L"
+       markerWidth="8.75"
+       markerHeight="5"
+       viewBox="0 0 8.75 5"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="arrow1L-1-1-6"
+         transform="scale(-0.5)" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1L-6-3-36"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Arrow1L"
+       markerWidth="8.75"
+       markerHeight="5"
+       viewBox="0 0 8.75 5"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="arrow1L-1-1-7"
+         transform="scale(-0.5)" />
+    </marker>
   </defs>
   <metadata
      id="metadata29964">
@@ -531,7 +569,7 @@
      id="layer2"
      inkscape:label="Grid"
      style="display:inline"
-     transform="translate(16.68628,-2.259768)"
+     transform="translate(27.457606,-2.259768)"
      sodipodi:insensitive="true">
     <g
        id="g3684">
@@ -607,10 +645,10 @@
   <g
      inkscape:groupmode="layer"
      id="layer1"
-     inkscape:label="occupied"
+     inkscape:label="occupied_boxes"
      style="display:inline"
      sodipodi:insensitive="true"
-     transform="translate(16.572822,-4.6706087)">
+     transform="translate(27.344148,-4.6706087)">
     <g
        id="g3866">
       <rect
@@ -639,9 +677,8 @@
   <g
      inkscape:groupmode="layer"
      id="layer3"
-     inkscape:label="text"
-     transform="translate(20.491627)"
-     sodipodi:insensitive="true"
+     inkscape:label="free_occupied_text"
+     transform="translate(31.262953)"
      style="display:none">
     <text
        xml:space="preserve"
@@ -652,7 +689,7 @@
        transform="translate(11.562214,0.33981693)"><tspan
          x="-45.935684"
          y="7.7643962"
-         id="tspan11403">espacio ocupado</tspan></text>
+         id="tspan2070">espacio ocupado</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:1.25;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;inline-size:33.5335;display:inline;stroke-width:0.264583"
@@ -662,14 +699,15 @@
        transform="translate(70.146842,0.33981693)"><tspan
          x="-45.935684"
          y="7.7643962"
-         id="tspan11405">espacio libre</tspan></text>
+         id="tspan2072">espacio libre</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer4"
-     inkscape:label="arrows"
+     inkscape:label="free_occupied_arrows"
+     transform="translate(-2.9918473)"
      sodipodi:insensitive="true"
-     transform="translate(-13.763173)">
+     style="display:none">
     <path
        style="fill:none;stroke:#ff0000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L-6)"
        d="M 23.541464,7.0458807 H 18.815218"
@@ -685,9 +723,50 @@
   </g>
   <g
      inkscape:groupmode="layer"
+     id="layer6"
+     inkscape:label="always_free_occupied_arrows"
+     transform="translate(10.771326)"
+     style="display:none"
+     sodipodi:insensitive="true">
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L-6-3)"
+       d="M -3.9989173,7.0458807 H 0.72732842"
+       id="path965"
+       sodipodi:nodetypes="cc"
+       transform="translate(20.491627)" />
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L-6-3-3)"
+       d="m 16.772888,16.336544 h 4.726245"
+       id="path965-7"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:1.25;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;inline-size:30.9747;display:inline;stroke-width:0.264583"
+       x="-45.935684"
+       y="7.7643962"
+       id="text1385"
+       transform="translate(30.900489,0.11983279)"><tspan
+         x="-45.935684"
+         y="7.7643962"
+         id="tspan2074">siempre ocupada</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:1.25;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;inline-size:30.9747;display:inline;stroke-width:0.264583"
+       x="-45.935684"
+       y="7.7643962"
+       id="text1385-5"
+       transform="translate(38.391283,9.4671052)"><tspan
+         x="-45.935684"
+         y="7.7643962"
+         id="tspan2076">siempre libre</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
      id="layer5"
-     inkscape:label="probilities"
-     transform="translate(-13.763173)">
+     inkscape:label="probabilities"
+     transform="translate(-2.9918473)"
+     sodipodi:insensitive="true"
+     style="display:none">
     <g
        inkscape:label=""
        transform="translate(13.65293,5.2001993)"
@@ -914,5 +993,36 @@
         </g>
       </g>
     </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer7"
+     inkscape:label="independency_assumption"
+     sodipodi:insensitive="true"
+     transform="translate(-4.1240323)">
+    <path
+       style="display:inline;fill:none;stroke:#ff0000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L-6-3)"
+       d="M -3.9989173,7.0458807 H 0.72732842"
+       id="path1004"
+       sodipodi:nodetypes="cc"
+       transform="translate(35.386986)" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222px;line-height:1.25;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';font-variant-ligatures:none;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;inline-size:30.9747;display:inline;stroke-width:0.264583"
+       x="-45.935684"
+       y="7.7643962"
+       id="text1008"
+       transform="translate(49.980557,-4.1348049)"><tspan
+         x="-45.935684"
+         y="7.7643962"
+         id="tspan2078">No hay dependencia </tspan><tspan
+         x="-45.935684"
+         y="11.292171"
+         id="tspan2080">entre las celdas</tspan></text>
+    <path
+       style="display:inline;fill:none;stroke:#ff0000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1L-6-3-36)"
+       d="m 31.25737,2.9271994 h 4.726245"
+       id="path1004-5"
+       sodipodi:nodetypes="cc" />
   </g>
 </svg>
