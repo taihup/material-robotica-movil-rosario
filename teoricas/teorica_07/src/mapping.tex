@@ -265,12 +265,33 @@
     \frametitle{Distribución conjunta}
     \note{información extraída de https://youtu.be/v-Rm9TUG9LA}
     
+    Un mapa de ocupación entonces es la distribución de probabilidad representando todo el mapa del entorno. La distribución de probabilidad de todo el mapa es la probabilidad conjunta (\emph{joint belief}) del valor de todas las celdas individuales.
+    
+   	\begin{figure}[!h]
+    	\includegraphics[width=0.5\columnwidth]{./images/joint_distribution.pdf}
+    \end{figure}
     
 \end{frame}
 
 \begin{frame}
-    \frametitle{Mapas de Grilla}
+    \frametitle{Representación}
     \note{información extraída de https://youtu.be/v-Rm9TUG9LA}
+    La distribución de probabilidad del mapa esta dada por el producto de las celdas.
     
+   	\begin{figure}[!h]
+    	\includegraphics[width=0.3\columnwidth]{./images/map_probability_distribution.pdf}
+    \end{figure}
     
+\end{frame}
+
+\begin{frame}
+	\frametitle{Estimando un Mapa por medio de mediciones}
+	\note{información extraída de https://youtu.be/v-Rm9TUG9LA}
+	
+	Dadas las mediciones $\observation_{i:t}$ y las poses $\state_{1:t}$ del sensor, estimamos el mapa como
+	
+	\begin{equation*}
+		p(\map | \observation_{1:t}, \state_{1:t}) = \prod_{i} p(\map_{i} | \observation_{1:t}, \state_{1:t})
+	\end{equation*}
+	
 \end{frame}
