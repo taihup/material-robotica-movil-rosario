@@ -290,14 +290,64 @@
 	
 	Dadas las mediciones $\observation_{i:t}$ y las poses $\state_{1:t}$ del sensor, estimamos el mapa como
 	
-	\begin{equation*}
-		p(\map | \observation_{1:t}, \state_{1:t}) = \prod_{i} p(\map_{i} | \observation_{1:t}, \state_{1:t})
-	\end{equation*}
-
    	\begin{figure}[!h]
     \includegraphics[width=0.3\columnwidth]{./images/map_from_sensor_data.pdf}
     \end{figure}
 
     En este caso, utilizaremos sensores de rango, pero necesitamos un sensor que nos diga si una celda está ocupada o libre.
 	
+	
+	Podemos utilizar un {\bf Filtro de Bayes Binario} para estimar la probabilidad de las variables aleatorias binarias. Asumimos un estado (mapa) estático, no cambia en el tiempo. Una celda ocupada/libre permanecera por siempre ocupada/libre.
+	
 \end{frame}
+
+\begin{frame}
+	\frametitle{Filtro de Bayes Binario para Estado Estático}
+	\note{información extraída de https://youtu.be/v-Rm9TUG9LA}
+	
+	\begin{align*}
+		\only<1->{
+			p(\map_{i}| \observation_{1:t}, \state_{1:t}) \overset{\text{Regla de Bayes}}{=}& \dfrac{p(\observation_{t} | \map_{i}, \observation_{1:t-1}, \state_{1:t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t})}{p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}}
+		\\
+		\only<2->{
+			\overset{\text{Markov}}{=}& \dfrac{p(\observation_{t} | \map_{i}, \state_{1:t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}}
+		\\
+		\only<3->{
+		\overset{\text{Regla de Bayes}}{=}& \dfrac{p(\map{i} | \observation_{t}, \state_{t}) p(\observation_{t} | \state_{t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\map_{i} | \state_{t})p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}}
+		\\
+		\only<4->{
+		\overset{\text{independencia}}{=}& \dfrac{p(\map{i} | \observation_{t}, \state_{t}) p(\observation_{t} | \state_{t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\map_{i})p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}}
+	\end{align*}
+
+	\only<2>{Aplicamos Markov: La observación de ahora es independiente de las mediciones y poses anteriores.	También, en el segundo término podemos ignorar xt. Esto es, saber mi posición en el instante $t$ sin tener mediciones en dicho instante, no me va a servir de determinar si una celda esta libre u ocupada. El único caso dónde esto puede servir en la práctica es si el robot se encuentra encima de esa celda, y por tanto la celda esta libre de obstáculos ya que estoy parada sobre ella.}
+	
+	\only<3>{Aplicamos regla de bayes en el primer término de la multiplicación}
+	
+	\only<4>{Asumimos Independencia: nuevamente saber donde estamos no nos sirve para saber si una celda está libre u ocupada.}
+	
+	\only<5>{Como estamos con una variable aleatoria binaria entonces podemos hacer la misma derivación para el caso en que la celda este vacía
+	
+	\begin{equation*}
+		p(\neg \map_{i}| \observation_{1:t}, \state_{1:t}) \overset{\text{Regla de Bayes}}{=} \dfrac{p(\neg \map{i} | \observation_{t}, \state_{t}) p(\observation_{t} | \state_{t}) p(\neg \map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\neg \map_{i})p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}
+	\end{equation*}
+	}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Filtro de Bayes Binario para Estado Estático}
+	\note{información extraída de https://youtu.be/v-Rm9TUG9LA}
+	
+	Podemos computar la razón de ambas probabilidades obteniendo:
+	
+	\begin{equation*}
+		\dfrac{p(\map_{i}| \observation_{1:t}, \state_{1:t})}{p(\neg \map_{i}| \observation_{1:t}, \state_{1:t})} = \dfrac{\dfrac{p(\map{i} | \observation_{t}, \state_{t}) p(\observation_{t} | \state_{t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\map_{i})p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}} {\dfrac{p(\neg \map{i} | \observation_{t}, \state_{t}) p(\observation_{t} | \state_{t}) p(\neg \map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\neg \map_{i})p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}}
+	\end{equation*}
+
+	\begin{equation*}
+	\dfrac{p(\map_{i}| \observation_{1:t}, \state_{1:t})}{p(\neg \map_{i}| \observation_{1:t}, \state_{1:t})} = \dfrac{\dfrac{p(\map{i} | \observation_{t}, \state_{t}) p(\observation_{t} | \state_{t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\map_{i})p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}} {\dfrac{p(\neg \map{i} | \observation_{t}, \state_{t}) p(\observation_{t} | \state_{t}) p(\neg \map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\neg \map_{i})p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}}
+	\end{equation*}
+
+
+\end{frame}
+
