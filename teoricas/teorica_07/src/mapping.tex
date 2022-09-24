@@ -1,6 +1,7 @@
 \begin{frame}
 	\frametitle{Material para armado de estas slides}
-	Curso de Cyrill Stachniss: \url{https://youtu.be/v-Rm9TUG9LA}
+	Curso de Cyrill Stachniss: \url{https://youtu.be/v-Rm9TUG9LA} slides: \url{http://ais.informatik.uni-freiburg.de/teaching/ws12/mapping/pdf/slam11-gridmaps-4.pdf}
+    
 
 \end{frame}
 
@@ -489,7 +490,11 @@ tenemos entonces:
         \end{equation*}
     \end{itemize}
     
-    Entonces, el valor de la celda $i$ en el instante $t$ se actualiza con la suma del $inv\_sensor\_model$ (término que depende de mi observación actual) y el valor anterior que tenía la celda $i$, menos el prior de información.
+    Entonces, el valor de la celda $i$ en el instante $t$ se actualiza con la suma del $inv\_sensor\_model$ (término que depende de mi observación actual) y el valor anterior que tenía la celda $i$, menos el prior de información. The occupancygrid mapping algorithm requires a marginalize dinverse mea-surement model,p(mi|x, z). This probability is called inverse since it rea-sons from effects to causes: it provides information about the world condi-tionedonameasurementcausedbythisworld.
+    
+    Inversemodelsareoftenusedinsituationswheremeasurementsaremorecomplexthanthebinarystate. Anexampleofsuchasituationistheproblemofestimatingwhetherornotadoorisclosedfromcameraimages. Herethestate is extremely simple, but the space of all measurements is huge. It iseasiertodeviseafunctionthatcalculatesaprobabilityofadoorbeingclosedfromacameraimage,thandescribingthedistributionoverallcameraimagesthatshowacloseddoor. Inotherwords,itiseasiertoimplementaninversethanaforwardsensormodel.
+    
+    forward measurement model vs inverse measurement model
     
 \end{frame}
 
