@@ -313,10 +313,10 @@
 			\overset{\text{Markov}}{=}& \dfrac{p(\observation_{t} | \map_{i}, \state_{1:t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}}
 		\\
 		\only<3->{
-		\overset{\text{Regla de Bayes}}{=}& \dfrac{p(\map{i} | \observation_{t}, \state_{t}) p(\observation_{t} | \state_{t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\map_{i} | \state_{t})p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}}
+		\overset{\text{Regla de Bayes}}{=}& \dfrac{p(\map_{i} | \observation_{t}, \state_{t}) p(\observation_{t} | \state_{t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\map_{i} | \state_{t})p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}}
 		\\
 		\only<4->{
-		\overset{\text{independencia}}{=}& \dfrac{p(\map{i} | \observation_{t}, \state_{t}) p(\observation_{t} | \state_{t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\map_{i})p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}}
+		\overset{\text{independencia}}{=}& \dfrac{p(\map_{i} | \observation_{t}, \state_{t}) p(\observation_{t} | \state_{t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\map_{i})p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}}
 	\end{align*}
 
 	\only<2>{Aplicamos Markov: La observación de ahora es independiente de las mediciones y poses anteriores.	También, en el segundo término podemos ignorar xt. Esto es, saber mi posición en el instante $t$ sin tener mediciones en dicho instante, no me va a servir de determinar si una celda esta libre u ocupada. El único caso dónde esto puede servir en la práctica es si el robot se encuentra encima de esa celda, y por tanto la celda esta libre de obstáculos ya que estoy parada sobre ella.}
@@ -328,7 +328,7 @@
 	\only<5>{Como estamos con una variable aleatoria binaria entonces podemos hacer la misma derivación para el caso en que la celda este vacía
 	
 	\begin{equation*}
-		p(\neg \map_{i}| \observation_{1:t}, \state_{1:t}) \overset{\text{Regla de Bayes}}{=} \dfrac{p(\neg \map{i} | \observation_{t}, \state_{t}) p(\observation_{t} | \state_{t}) p(\neg \map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\neg \map_{i})p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}
+		p(\neg \map_{i}| \observation_{1:t}, \state_{1:t}) \overset{\text{Regla de Bayes}}{=} \dfrac{p(\neg \map_{i} | \observation_{t}, \state_{t}) p(\observation_{t} | \state_{t}) p(\neg \map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\neg \map_{i})p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}
 	\end{equation*}
 	}
 \end{frame}
@@ -338,16 +338,157 @@
 	\frametitle{Filtro de Bayes Binario para Estado Estático}
 	\note{información extraída de https://youtu.be/v-Rm9TUG9LA}
 	
-	Podemos computar la razón de ambas probabilidades obteniendo:
+	Hagamos un truco matemático...\\
+    Podemos computar el ratio de ambas probabilidades obteniendo:
 	
+    \only<1>{
 	\begin{equation*}
-		\dfrac{p(\map_{i}| \observation_{1:t}, \state_{1:t})}{p(\neg \map_{i}| \observation_{1:t}, \state_{1:t})} = \dfrac{\dfrac{p(\map{i} | \observation_{t}, \state_{t}) p(\observation_{t} | \state_{t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\map_{i})p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}} {\dfrac{p(\neg \map{i} | \observation_{t}, \state_{t}) p(\observation_{t} | \state_{t}) p(\neg \map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\neg \map_{i})p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}}
+		\dfrac{p(\map_{i}| \observation_{1:t}, \state_{1:t})}{p(\neg \map_{i}| \observation_{1:t}, \state_{1:t})} = \dfrac{\dfrac{p(\map_{i} | \observation_{t}, \state_{t}) p(\observation_{t} | \state_{t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\map_{i})p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}} {\dfrac{p(\neg \map_{i} | \observation_{t}, \state_{t}) p(\observation_{t} | \state_{t}) p(\neg \map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\neg \map_{i})p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}}
 	\end{equation*}
+    }
 
+    \only<2>{
 	\begin{equation*}
-	\dfrac{p(\map_{i}| \observation_{1:t}, \state_{1:t})}{p(\neg \map_{i}| \observation_{1:t}, \state_{1:t})} = \dfrac{\dfrac{p(\map{i} | \observation_{t}, \state_{t}) p(\observation_{t} | \state_{t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\map_{i})p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}} {\dfrac{p(\neg \map{i} | \observation_{t}, \state_{t}) p(\observation_{t} | \state_{t}) p(\neg \map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\neg \map_{i})p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}}
+	\dfrac{p(\map_{i}| \observation_{1:t}, \state_{1:t})}{p(\neg \map_{i}| \observation_{1:t}, \state_{1:t})} = \dfrac{\dfrac{p(\map_{i} | \observation_{t}, \state_{t}) \cancel{p(\observation_{t} | \state_{t})} p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\map_{i})\cancel{p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}}} {\dfrac{p(\neg \map_{i} | \observation_{t}, \state_{t}) \cancel{p(\observation_{t} | \state_{t})} p(\neg \map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\neg \map_{i})\cancel{p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}}}
 	\end{equation*}
+    }
 
+    \only<3>{
+    \begin{equation*}
+        \dfrac{p(\map_{i}| \observation_{1:t}, \state_{1:t})}{p(\neg \map_{i}| \observation_{1:t}, \state_{1:t})} = \dfrac{\dfrac{p(\map_{i} | \observation_{t}, \state_{t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\map_{i})}} {\dfrac{p(\neg \map_{i} | \observation_{t}, \state_{t}) p(\neg \map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\neg \map_{i})}}
+    \end{equation*}
+    }
+
+    \only<4->{
+    \begin{align*}
+        \dfrac{p(\map_{i}| \observation_{1:t}, \state_{1:t})}{p(\neg \map_{i}| \observation_{1:t}, \state_{1:t})} 
+        =& \dfrac{p(\map_{i} | \observation_{t}, \state_{t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1} p(\neg \map_{i})} {p(\neg \map_{i} | \observation_{t}, \state_{t}) p(\neg \map_{i} | \observation_{1:t-1}, \state_{1:t-1})p(\map_{i})}\\
+    \only<5>{
+        =& \dfrac{p(\map_{i} | \observation_{t}, \state_{t})}{1 - p(\map_{i} | \observation_{t}, \state_{t})}
+        %
+        \dfrac{p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{1- p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}
+        %
+        \dfrac{1 - p(\map_{i})} {p(\map_{i})}
+    }
+    \only<6>{
+        =& \underbrace{\dfrac{p(\map_{i} | \observation_{t}, \state_{t})}{1 - p(\map_{i} | \observation_{t}, \state_{t})}}_{\text{usa } \observation_{t}}
+        %
+        \underbrace{\dfrac{p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{1- p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}}_{\text{término recursivo}}
+        %
+        \underbrace{\dfrac{1 - p(\map_{i})} {p(\map_{i})}}_{\text{prior}}
+    }
+    \end{align*}
+    }
+
+    \only<5>{Reescribimos y Reagrupamos términos}
+    \only<6>{El primer término utiliza información actual.\\
+             El segundo término utiliza información del pasado.\\
+             El tercer término es un prior (información que asumimos del mapa)
+    }
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Del ratio a la probabilidad}
+    \note{información extraída de https://youtu.be/v-Rm9TUG9LA}
+
+    Podemos transformar fácilmente este ratio denominado \emph{odds ratio} (razón de probabilidades) en una probabilidad:
+    
+    \begin{align*}
+        Odds(x) &= \dfrac{p(x)}{1-p(x)}\\
+        p(x) &= Odds(x) - Odds(x) p(x)\\
+        p(x)(1 + Odds(x)) &= Odds(x)\\
+        p(x) &= \dfrac{Odds(x)}{1 + Odds(x)}\\
+        p(x) &= \dfrac{1}{1 + \dfrac{1}{Odds(x)}}
+    \end{align*}
+
+    De esta manera podemos convertir odds a probabilidades y de probabilidades a odds.    
+    
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Del ratio a la probabilidad}
+    \note{información extraída de https://youtu.be/v-Rm9TUG9LA}
+    
+    Utilizando $p(x) = \dfrac{1}{1 + \dfrac{1}{Odds(x)}}$ en el odds ratio que habíamos encontrado
+    
+    \begin{equation*}
+         \dfrac{p(\map_{i}| \observation_{1:t}, \state_{1:t})}{p(\neg \map_{i}| \observation_{1:t}, \state_{1:t})} = \dfrac{p(\map_{i} | \observation_{t}, \state_{t})}{1 - p(\map_{i} | \observation_{t}, \state_{t})}
+        %
+        \dfrac{p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{1- p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}
+        %
+        \dfrac{1 - p(\map_{i})} {p(\map_{i})}
+    \end{equation*}
+
+tenemos entonces:
+
+    \begin{equation*}
+    p(\map_{i}| \observation_{1:t}, \state_{1:t}) =
+    \left[
+        1 + 
+         \dfrac{1 - p(\map_{i} | \observation_{t}, \state_{t})}{p(\map_{i} | \observation_{t}, \state_{t})}
+        %
+        \dfrac{1- p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}
+        %
+        \dfrac{p(\map_{i})}{1 - p(\map_{i})}
+    \right]^{-1}
+    \end{equation*}
+
+    Por razones de eficiencia, se realizan los cálculos aplicando el logaritmo al ratio de las probabilidades (notación \emph{log odds}).
+\end{frame}
+
+\begin{frame}
+    \frametitle{Notación log-odds}
+    \note{información extraída de https://youtu.be/v-Rm9TUG9LA}
+    \begin{equation*}
+        \dfrac{p(\map_{i}| \observation_{1:t}, \state_{1:t})}{1 - p(\map_{i}| \observation_{1:t}, \state_{1:t})} =  \underbrace{\dfrac{p(\map_{i} | \observation_{t}, \state_{t})}{1 - p(\map_{i} | \observation_{t}, \state_{t})}}_{\text{usa } \observation_{t}}
+        %
+        \underbrace{\dfrac{p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{1- p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}}_{\text{término recursivo}}
+        %
+        \underbrace{\dfrac{1 - p(\map_{i})} {p(\map_{i})}}_{\text{prior}}
+    \end{equation*}
+
+    \begin{equation*}
+   l(\map_{i}| \observation_{1:t}, \state_{1:t}) =  \log \left( \dfrac{p(\map_{i} | \observation_{1:t}, \state_{1:t})}{1 - p(\map_{i} | \observation_{1:t}, \state_{1:t})} \right)
+    \end{equation*}
+
+    Aplicando un logaritmo a ambos lados entonces, en el lado derecho de la igualdad se convierten las multiplicaciones en sumas. haciendo que el algoritmo sea rápido ya que solo tenemos que aplicar tres sumas.
 
 \end{frame}
+
+\begin{frame}
+    \frametitle{Notación log-odds}
+    \note{información extraída de https://youtu.be/v-Rm9TUG9LA}
+
+    \begin{itemize}
+        \item Log odds ratio está definido por:
+        \begin{equation*}
+            l(x) = \log \dfrac{p(x)}{1-p(x)}
+        \end{equation*}
+        \item podemos de despejar $p(x)$
+        \begin{equation*}
+            p(x) = 1 - \dfrac{1}{1 + \exp l(x)}
+        \end{equation*}
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Notación log-odds}
+    \note{información extraída de https://youtu.be/v-Rm9TUG9LA}
+    
+    \begin{itemize}
+        \item Log odds ratio está definido por:
+        \begin{equation*}
+            l(x) = \log \dfrac{p(x)}{1-p(x)}
+        \end{equation*}
+        \item podemos de despejar $p(x)$
+        \begin{equation*}
+            p(x) = 1 - \dfrac{1}{1 + \exp l(x)}
+        \end{equation*}
+    \end{itemize}
+    
+\end{frame}
+
 
