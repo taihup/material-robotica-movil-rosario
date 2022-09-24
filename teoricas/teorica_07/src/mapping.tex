@@ -475,20 +475,42 @@ tenemos entonces:
 \end{frame}
 
 \begin{frame}
-    \frametitle{Notación log-odds}
+    \frametitle{Mapeo de ocupación utilizando Log Odds}
     \note{información extraída de https://youtu.be/v-Rm9TUG9LA}
     
     \begin{itemize}
         \item Log odds ratio está definido por:
         \begin{equation*}
-            l(x) = \log \dfrac{p(x)}{1-p(x)}
+            l(\map_{i}| \observation_{1:t}, \state_{1:t}) = \underbrace{l(\map_{i}| \observation_{t}, \state_{t})}_{\text{inverse sensor model}} + \underbrace{l(\map_{i}| \observation_{1:t-1}, \state_{1:t-1})}_{\text{término recursivo}} - \underbrace{l(\map_{i})}_{\text{prior}}
         \end{equation*}
-        \item podemos de despejar $p(x)$
+        \item reescribiendo:
         \begin{equation*}
-            p(x) = 1 - \dfrac{1}{1 + \exp l(x)}
+            l_{t,i} = inv\_sensor\_model(\map_{i}, \state_{t}, \observation_{t}) + l_{t-1,i} - l_{0}
         \end{equation*}
     \end{itemize}
     
+    Entonces, el valor de la celda $i$ en el instante $t$ se actualiza con la suma del $inv\_sensor\_model$ (término que depende de mi observación actual) y el valor anterior que tenía la celda $i$, menos el prior de información.
+    
 \end{frame}
+
+
+\begin{frame}
+    \frametitle{Algoritmo de Mapeo de Ocupación}
+    \note{información extraída de https://youtu.be/v-Rm9TUG9LA}
+    
+   \begin{algorithmic}[1]
+       \State occupancy\_grid\_mapping($\left\lbrace l_{t-1,i} \right\rbrace, \state_{t}, \observation_{t}$)
+       \For todas las celdas $\map_{i}$
+       \If{$\map_{i}$ está siendo observada por $\observation_{t}$}
+            \State $l_{t,i} = inv\_sensor\_model(\map_{i}, \state_{t}, \observation_{t}) + l_{t-1,i} - l_{0}$
+       \Else
+       \State $l_{t,i} = l_{t-1,i}$
+       \EndIf
+       \EndFor
+       
+       \State \Return $\left\lbrace l_{t,i} \right\rbrace$
+   \end{algorithmic}
+\end{frame}
+
 
 
