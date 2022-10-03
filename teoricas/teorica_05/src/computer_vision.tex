@@ -900,29 +900,80 @@
 
 
 \begin{frame}
-    \frametitle{Cámara estéreo: Rectificación }
-    \footnotesize
-    
-    \TODO{agregar cámaras rectificadas}
-   
+	\frametitle{Triangulación estéreo (con cámara rectificada)}
+	\footnotesize
+	\begin{figure}
+		\includegraphics[width=0.5\textwidth]{./images/stereo_matches.pdf}
+		\caption{Matching estéreo.}    
+	\end{figure}
+	\vspace{-2em}
+	\begin{minipage}[t]{0.65\textwidth}
+		\begin{figure}
+			\includegraphics[width=0.65\textwidth]{./images/stereo_triangulation.pdf}
+		\end{figure}
+	\end{minipage}
+	\begin{minipage}[t]{0.3\textwidth}
+		\centering
+		\begin{align*}
+			\point&=\begin{bmatrix}x & y & z\end{bmatrix}^{\top}\\
+			x &= \frac{(u_{l}-c_{u})z}{f}\\
+			y &= \frac{(v_{l}-c_{v})z}{f}\\
+			z &= \frac{bf}{u_{l}-u_{r}}
+		\end{align*}
+	\end{minipage}
+	\centering
+	
+	Triangulación estéreo.
 \end{frame}
 
 \begin{frame}
-    \frametitle{Cámara estéreo: Triangulación }
-    \footnotesize
-    
-    \TODO{agregar triangulación}
-    
+	\frametitle{Reconstrucción 3D: cámara estéreo}
+	
+	\begin{figure}[!h]
+		\includegraphics[width=0.8\textwidth]{images/stereo_triangulation2.png}
+	\end{figure}
+	
+	\begin{equation*}
+		\frac{T}{Z} = \frac{T - (x_l - x_r)}{Z-f} \Rightarrow Z = \frac{fT}{(x_l - x_r)}  = \frac{fT}{d}
+	\end{equation*}
+	
 \end{frame}
 
 \begin{frame}
-    \frametitle{Cámara estéreo: Calculo de Disparidad }
-    \footnotesize
-    
-    \TODO{agregar disparidad}
-    
+	\frametitle{Disparidad}
+	
+	\begin{figure}[!h]
+		\includegraphics[width=0.7\textwidth]{images/disparity.png}
+	\end{figure}
+
 \end{frame}
 
+
+\begin{frame}
+	\frametitle{KITTI: error de reconstrucción}
+	\begin{figure}[!htb]
+		\centering
+		\subfloat[Left image]{\includegraphics[width=0.35\columnwidth]{./images/kitti06_frame612_rgb.png}%
+			\label{kitti06_frame612_rgb}}
+		\hfil
+		\subfloat[Ground-truth depth]{\includegraphics[width=0.35\columnwidth]{./images/kitti06_frame612_gt_low-10_high50.png}%
+			\label{kitti06_frame612_gt}}
+		\\
+		\subfloat[LIBELAS depth]{\includegraphics[width=0.35\columnwidth]{./images/kitti06_frame612_libelas_depth_high50.png}%
+			\label{kitti06_frame612_libelas_depth}}
+		\hfil
+		\subfloat[LIBELAS depth errors]{\includegraphics[width=0.35\columnwidth]{./images/kitti06_frame612_libelas_error_low-1_high5.png}%
+			\label{kitti06_frame612_libelas_error}}
+		\\
+		\subfloat[Color metric for depth maps. Gray stands for the largest values.]{\includegraphics[width=0.4\columnwidth]{./images/high50_bar.png}%
+			\label{kitti06_bar}}
+		\hfil
+		\subfloat[Color metric for depth errors. Gray stands for the largest values.]{\includegraphics[width=0.4\columnwidth]{./images/kitti06_bar_low-1_high5.png}%
+			\label{kitti06_bar_low-1_high5}}
+		\caption{Comparison of LIBELAS depth maps against the ground truth, for a single frame (KITTI dataset).}
+		\label{fig:kitti06_frame612}
+	\end{figure}
+\end{frame}
 
 \begin{frame}
 	\frametitle{Estimación de movimiento}
