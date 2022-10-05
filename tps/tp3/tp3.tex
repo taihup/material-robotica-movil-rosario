@@ -8,7 +8,7 @@
 
 \codigo{R-521}
 \materia{Robótica Móvil}
-\titulo{Visión por Computadora: Triangulación y Proyección}
+\titulo{Visión por Computadora: Estimación de Pose}
 
 \soluciones
 \commentstrue
@@ -28,11 +28,12 @@ El objetivo del trabajo práctico es la realización de los pasos básicos para 
 \section{Entrega}
 \begin{itemize}
 	\item Se debe proveer un repositorio git que contenga el código desarrollado, una imagen docker y un archivo \lstinline{README.md} con las instrucciones de compilación y ejecución.
-	\item Además, se deberá entregar un informe realizado en Lyx o latex explicando los pasos realizados y analizando los resultados obtenidos.
+    
+	\item Se debe entregar un informe en Lyx o \LaTeX\  explicando el trabajo realizado y analizando los resultados obtenidos.
 \end{itemize}
 
 \section{Datos}
-Para trabajar se utilizarán los datos del dataset EuRoC\footnote{\url{https://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets}} pero en formato rosbag de ROS2 que pueden ser descargado de \url{https://docs.openvins.com/gs-datasets.html}
+Para trabajar se utilizarán los datos del dataset EuRoC\footnote{\url{https://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets}}. Debera convertir la secuencia de calibración a formato ROS2. El resto de las secuencias ya se encuentra en formato ROS2 y pueden ser descargadas de \url{https://docs.openvins.com/gs-datasets.html}
 
 \section{Calibración}
 Antes de comenzar a trabajar con un dataset se debe realizar una calibración de los sensores. En este trabajo solo deben calibrar una cámara estéreo.
