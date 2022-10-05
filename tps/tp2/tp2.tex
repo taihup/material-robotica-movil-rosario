@@ -28,11 +28,11 @@ El objetivo del TP es comprender el modelo cinemático y la estimación de pose 
 
 \section{Entrega}
 \begin{itemize}
-    \item En caso de utilizar su propio entorno de trabajo, deberá hacer una imagen docker y proveer un repositorio git junto con las instrucciones de compilación en un archivo README.md.
+    \item En caso de utilizar su propio entorno de trabajo, deberá hacer una imagen docker que permita reproducir fácilmente los resultados de cada ejercicio. También, deberá proveer un repositorio git junto con las instrucciones de compilación y ejecución en un archivo README.md.
 
     \item En caso de utilizar el framework de \url{https://www.theconstructsim.com} se deberá proveer el link al proyecto.
 
-    \item Además, se deberá entregar un informe realizado en Lyx o \LaTeX\  explicando el trabajo y analizando los resultados obtenidos.
+    \item Además, se deberá entregar un informe en Lyx o \LaTeX\  explicando el trabajo realizado y analizando los resultados obtenidos.
 \end{itemize}
 
 
@@ -139,8 +139,6 @@ la simulación y utilizar el script ’dump odom.py’. Este script muestra en p
 \begin{lstlisting}[style=bash] 
 ./dump_odom.py > log.txt
 \end{lstlisting}
-
-Dentro del IDE de ROSDS hay una opción que permite descargar un archivo del proyecto.
 
 \ejercicio Escribir un script en Python que cargue los datos del archivo log y genere gráficos de:
 \begin{enumerate}

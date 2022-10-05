@@ -944,10 +944,12 @@
 \begin{frame}
 	\frametitle{Disparidad}
 	\TODO{vectorizar imagenes}
-	
+	\footnotesize
 	\begin{figure}[!h]
 		\includegraphics[width=0.7\textwidth]{images/disparity.png}
 	\end{figure}
+
+    Ejemplo de disparidad: pongamos un dedo enfrente de nuestros ojos a una distancia \SI{20}{\centi\meter} y alternadamente cerremos y abramos cada ojo.
 
 \end{frame}
 
@@ -979,8 +981,67 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{Matching 3D-2D}
+    
+    \begin{figure}
+        \includegraphics{./images/tracking_reprojection_error_before.pdf}
+    \end{figure}
+    
+    \note{Ejemplo de trackeo de 3 puntos del mapa.\\
+        
+        Imaginemos que estamos en el segundo frame estéreo y ya tenemos el mapa inicial reconstruido por el primer frame estéreo dado por la cámara.\\
+        
+        Los puntos del mapa son proyectados sobre los planos de las imagenes de la cámara izquierda y derecha, y se buscan las correspondencias entre el punto del mapa y los features extraidos en las imagenes mediante la comparación de los descriptores.\\
+        
+        Para limitar la busqueda de correspondencias, se divide la imagen en celdas y se busca los candidatos a ser matcheados en celdas vecinas a la celda donde cae cada proyeccion.}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ajuste de pose}
+    
+    \begin{figure}
+        \includegraphics{./images/tracking_reprojection_error_after.pdf}
+    \end{figure}
+    \note{
+        Correccion de los errores de proyeccion.\\
+        Observar que la camara derecha esta fija con respecto a la camara izquierda.}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Local Bundle Adjustment}
+    
+    \begin{figure}
+        \includegraphics[width=\textwidth]{./images/ba_reprojection_error_before.pdf}
+    \end{figure}
+    
+    \note{Ejemplo de ajuste de 3 keyframes que ven 2 puntos del mapa.\\
+        k1 - x1 medición estéreo\\
+        k1 - x2 medición derecha\\
+        k2 - x1 medición estéreo\\
+        k2 - x2 medición estéreo\\
+        k3 - x1 medición izquierda\\
+        k3 - x2 medición estéreo}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Local Bundle Adjustment}
+    
+    \begin{figure}
+        \includegraphics[width=\textwidth]{./images/ba_reprojection_error_after.pdf}
+    \end{figure}
+    
+    \note{Ajustamos los keyframes y los puntos!!!\\
+        Una ecuación de error por cada medición (6 en total).\\
+        Nuevamente tenemos en cuenta la transformación rígida entre la cámara izquierda y la cámara derecha para las mediciones derechas.}
+    
+\end{frame}
+
+
+\begin{frame}
 	\frametitle{Estimación de movimiento}
-	\footnotesize
+	\scriptsize
 	\note{imagenes extraidas de https://vision.in.tum.de/_media/teaching/ss2020/visnav_ss2020/visnav_lecture3.pdf}
 	
 	2D-2D
