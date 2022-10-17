@@ -14,7 +14,7 @@ class DumpOdom:
     def __init__(self):
 
         # Node subscribers
-        node.create_subscription(Odometry, 'odom', self.odom_cb)
+        node.create_subscription(Odometry, 'odom', self.odom_cb, 10)
 
     def odom_cb(self, msg):
         """ Odometry subscriber callback """
@@ -22,7 +22,7 @@ class DumpOdom:
         orientation_list = [quat.x, quat.y, quat.z, quat.w]
         (_, _, yaw) = euler_from_quaternion(orientation_list)
 
-        print(str(rclpy.get_time()) + '\t' + \
+        print(str(node.get_clock().now().to_msg()) + '\t' + \
         str(msg.pose.pose.position.x) + '\t' + \
         str(msg.pose.pose.position.y) + '\t' + str(yaw) + '\t' + \
         str(msg.twist.twist.linear.x) + '\t' + \
@@ -33,4 +33,7 @@ if __name__ == '__main__':
     node = rclpy.create_node('dump_odom')
 
     DumpOdom()
-    rclpy.spin()
+    rclpy.spin(node)
+    rclpy.shutdown()
+    
+    my_node.get_clock().now()
