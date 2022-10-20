@@ -31,7 +31,7 @@
 
 
 \begin{frame}
-	\frametitle{Kalman Filter Asunciones}
+	\frametitle{Suposiciones de Kalman Filter}
 	\note{información extraida de https://youtu.be/PiCC-SxWlH8}
 	
 	\begin{itemize}
@@ -46,7 +46,7 @@
 	\note{Kalman Filter requiere que los ruidos sean gaussianos y que el estado resulte de una combinación lineal.}
 
 	\centering
-	\alert{¿qué pasa si este estas asunciones no pasan?}
+	\alert{¿qué pasa si este estas suposiciones no pasan?}
 	\note{Differencial drive y Ackerman motion models NO son modelos lineales}
 	\note{Los observation models de un láser  o de una cámara tampoco son lineales.}
 \end{frame}
@@ -71,6 +71,63 @@
 	\end{align*}
 
 \end{frame}
+
+
+\begin{frame}
+	\frametitle{Filtro de Kalman 1D}
+	\note{información extraida de https://youtu.be/PiCC-SxWlH8}
+	
+	\TODO{Agregar slides \url{https://www.youtube.com/watch?v=E-6paM\_Iwfc\&t=3260s}}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Linearización en EKF: Expansión de Taylor de primer orden}
+	
+	\TODO{Agregar slides \url{https://www.youtube.com/watch?v=E-6paM\_Iwfc\&t=3260s}}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Suposición de Linealidad}
+	
+	\begin{figure}[!h]
+		\includegraphics[width=0.5\columnwidth]{./images/linear_transformation_of_a_gaussian.pdf}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Función No-Lineal}
+	
+	\begin{figure}[!h]
+		\includegraphics[width=0.5\columnwidth]{./images/nonlinear_transformation_of_a_gaussian.pdf}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Linearización en EKF}
+	
+	\begin{figure}[!h]
+		\includegraphics[width=0.5\columnwidth]{./images/linearization_applied_by_ekf.pdf}
+	\end{figure}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Calidad de la Linearización en EKF}
+	
+	\begin{figure}[!h]
+		\includegraphics[width=0.5\columnwidth]{./images/dependency_approximation_quality_spread.pdf}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Calidad de la Linearización en EKF}
+	
+	\begin{figure}[!h]
+		\includegraphics[width=0.5\columnwidth]{./images/dependency_approximation_quality_narrow.pdf}
+	\end{figure}
+\end{frame}
+
 
 \begin{frame}
 	\frametitle{Modelo de movimiento linearizado}
