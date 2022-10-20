@@ -166,7 +166,7 @@
 		\end{equation*}
 		\item Linearización
 		\begin{equation*}
-			\motionModelFunction{\controlCommand_{t}, \state_{t-1}} \approx 			\motionModelFunction{\controlCommand_{t}, \mu_{t-1}} + \covariance_{t}(\state_{t-1}-\mu_{t-1})
+			\motionModelFunction{\controlCommand_{t}, \state_{t-1}} \approx 			\motionModelFunction{\controlCommand_{t}, \mu_{t-1}} + \motionModelJacobian_{t}(\state_{t-1}-\mu_{t-1})
 		\end{equation*}
 	\end{itemize}
 	
