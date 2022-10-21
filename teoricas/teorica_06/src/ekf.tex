@@ -80,10 +80,48 @@
 
 \begin{frame}
 	\frametitle{Filtro de Kalman 1D}
-	\note{información extraida de https://youtu.be/PiCC-SxWlH8}
+	\note{información extraida de https://youtu.be/E-6paM_Iwfc}
 	
-	\TODO{Agregar slides \url{https://www.youtube.com/watch?v=E-6paM\_Iwfc\&t=3260s}}
+	\begin{figure}[!h]
+		\centering
+		\subfloat[Predicción Inicial]
+		{
+			\includegraphics[width=0.3\columnwidth]{./images/kalman_filter_initial_prediction.pdf}
+		}
+		\subfloat[Medición]
+		{
+			\includegraphics[width=0.3\columnwidth]{./images/kalman_filter_first_measurement.pdf}
+		}
+		\subfloat[Corrección]
+		{
+			\includegraphics[width=0.3\columnwidth]{./images/kalman_filter_first_correction.pdf}
+		}
+	\end{figure}
+	
 \end{frame}
+
+\begin{frame}
+	\frametitle{Filtro de Kalman 1D}
+	\note{información extraida de https://youtu.be/E-6paM_Iwfc}
+	
+	\begin{figure}[!h]
+		\centering
+		\subfloat[Predicción por Movimiento]
+		{
+			\includegraphics[width=0.3\columnwidth]{./images/kalman_filter_motion_prediction.pdf}
+		}
+		\subfloat[Segunda Medición]
+		{
+			\includegraphics[width=0.3\columnwidth]{./images/kalman_filter_second_measurement.pdf}
+		}
+		\subfloat[Segunda Corrección]
+		{
+			\includegraphics[width=0.3\columnwidth]{./images/kalman_filter_second_correction.pdf}
+		}
+	\end{figure}
+	
+\end{frame}
+
 
 \begin{frame}
 	\frametitle{Linearización en EKF: Expansión de Taylor de primer orden}
