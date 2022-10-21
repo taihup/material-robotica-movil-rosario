@@ -40,44 +40,40 @@
 	\end{itemize}
 
 	\begin{align*}
-		\state_{t} &= A_{t} \state_{t-1} + B_{t}\controlCommand_{t} + \motionModelNoise_{t}\\
+		\state_{t} &= \stateEvolutionMatrix_{t} \state_{t-1} + B_{t}\controlCommand_{t} + \motionModelNoise_{t}\\
 		\observation_{t} &= C_{t} \state_{t} + \measurementModelNoise_{t}
 	\end{align*}
 	\note{Kalman Filter requiere que los ruidos sean gaussianos y que el estado resulte de una combinación lineal.}
 
-	\centering
-	\alert{¿qué pasa si este estas suposiciones no pasan?}
 	\note{Differencial drive y Ackerman motion models NO son modelos lineales}
 	\note{Los observation models de un láser  o de una cámara tampoco son lineales.}
 \end{frame}
 
+
 \begin{frame}
-	\frametitle{Sistemas dinámicos no Non-lineales}
-	\note{información extraida de https://youtu.be/PiCC-SxWlH8}
-	\begin{itemize}
-		\item Los problemas reales en general emplean funciones no-lineales
-	\end{itemize}
+	\frametitle{Componentes de Kalman Filter}
 	
-%	\begin{align*}
-%		\state_{t} &= A_{t} \state_{t-1} + B_{t}\controlCommand_{t} + \motionModelNoise_{t}\\
-%		\observation_{t} &= C_{t} \state_{t} + \measurementModelNoise_{t}
-%	\end{align*}
+	\note{Información extraída de  https://www.youtube.com/watch?v=E-6paM\_Iwfc\&t=3442s}
+	
+	\begin{description}
+	\item[$\stateEvolutionMatrix_{t}$] Matriz $(n \times n)$ que describe como el estado evoluciona de $t-1$ a $t$ sin comandos de control o ruido.
+	
+	\item[$B_{t}$] Matriz $(n \times l)$ que describe cómo el control $\controlCommand_{t}$ cambia el estado de $t-1$ a $t$.
+	
+	\item[$C_{t}$] Matriz $(k \times n)$ que describe cómo mapear el estado $\state_{t}$ a una observación $\observation_{t}$.
+	
+	\item[$\epsilon_{t}$] Variable aleatoria representando el ruido gaussiano del {\bf modelo de movimiento}, se asume independiente y con distribución normal con media cero y covarianza $\motionParametersCovariance_{t}$.
+	
+	\item[$\delta_{t}$] Variable aleatoria representando el ruido gaussiano del {\bf modelo de observación}, se asume independiente y con distribución normal con media cero y covarianza $\observationModelCovariance_{t}$.
+	
+	\end{description}
 
-	\begin{figure}[!h]
-
-		\includegraphics[width=0.4\columnwidth]{./images/kalman_filter_linear_equations_cross_out.pdf}
-	\end{figure}
-
-	\begin{align*}
-		\state_{t} &= \motionModelFunction{\controlCommand_{t}, \state_{t-1}} + \motionModelNoise_{t}\\
-		\observation_{t} &= \observationModelFunction{\state_{t}} + \measurementModelNoise_{t}
-	\end{align*}
-
+	
 \end{frame}
 
 
 \begin{frame}
-	\frametitle{Filtro de Kalman 1D}
+	\frametitle{1D Kalman Filter}
 	\note{información extraida de https://youtu.be/E-6paM_Iwfc}
 	
 	\begin{figure}[!h]
@@ -99,7 +95,7 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Filtro de Kalman 1D}
+	\frametitle{1D Kalman Filter}
 	\note{información extraida de https://youtu.be/E-6paM_Iwfc}
 	
 	\begin{figure}[!h]
@@ -117,6 +113,51 @@
 			\includegraphics[width=0.3\columnwidth]{./images/kalman_filter_second_correction.pdf}
 		}
 	\end{figure}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Suposiciones de Kalman Filter}
+	\note{información extraida de https://youtu.be/PiCC-SxWlH8}
+	
+	\begin{itemize}
+		\item Ruido y distribuciones Gaussianas
+		\item Modelos de movimiento y observación lineales
+	\end{itemize}
+	
+	\begin{align*}
+		\state_{t} &= A_{t} \state_{t-1} + B_{t}\controlCommand_{t} + \motionModelNoise_{t}\\
+		\observation_{t} &= C_{t} \state_{t} + \measurementModelNoise_{t}
+	\end{align*}
+	\note{Kalman Filter requiere que los ruidos sean gaussianos y que el estado resulte de una combinación lineal.}
+	
+	\centering
+	\alert{¿qué pasa si este estas suposiciones no pasan?}
+	\note{Differencial drive y Ackerman motion models NO son modelos lineales}
+	\note{Los observation models de un láser  o de una cámara tampoco son lineales.}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Sistemas dinámicos no Non-lineales}
+	\note{información extraida de https://youtu.be/PiCC-SxWlH8}
+	\begin{itemize}
+		\item Los problemas reales en general emplean funciones no-lineales
+	\end{itemize}
+	
+	%	\begin{align*}
+		%		\state_{t} &= A_{t} \state_{t-1} + B_{t}\controlCommand_{t} + \motionModelNoise_{t}\\
+		%		\observation_{t} &= C_{t} \state_{t} + \measurementModelNoise_{t}
+		%	\end{align*}
+	
+	\begin{figure}[!h]
+		
+		\includegraphics[width=0.4\columnwidth]{./images/kalman_filter_linear_equations_cross_out.pdf}
+	\end{figure}
+	
+	\begin{align*}
+		\state_{t} &= \motionModelFunction{\controlCommand_{t}, \state_{t-1}} + \motionModelNoise_{t}\\
+		\observation_{t} &= \observationModelFunction{\state_{t}} + \measurementModelNoise_{t}
+	\end{align*}
 	
 \end{frame}
 
@@ -511,3 +552,23 @@
 	
 \end{frame}
 
+\begin{frame}
+	\frametitle{Extended Kalman Filter}
+	
+	\note{Información obtenida de:
+		Cyrill Stachniss KF y EKF: https://youtu.be/E-6paM_Iwfc
+		Chebrolu EKF Localization: https://youtu.be/PiCC-SxWlH8}
+	
+	https://automaticaddison.com/extended-kalman-filter-ekf-with-python-code-example/
+	https://github.com/shangzhouye/EKF-SLAM-on-Turtlebot3
+	
+	https://github.com/ser94mor/sensor-fusion
+	
+	https://github.com/AtsushiSakai/PythonRobotics
+	
+	Puede ser que el tp sea en python no mas y el tp final hacerlo en ROS2.
+	
+	https://github.com/debbynirwan/mcl
+	
+	
+\end{frame}
