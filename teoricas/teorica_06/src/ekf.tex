@@ -181,7 +181,7 @@
 \begin{frame}
 	\frametitle{Distribuciones No-Gaussianas}
 	
-	\note{Información extraída de https://www.youtube.com/watch?v=E-6paM\_Iwfc\&t=3260s}
+	\note{Información extraída de https://youtu.be/E-6paM\_Iwfc}
 	
 	\begin{itemize}
 		\item Las funciones no-lineales llevan a distribuciones no Gaussianas
@@ -193,7 +193,64 @@
 \begin{frame}
 	\frametitle{Linearización en EKF: Expansión de Taylor de primer orden}
 	
-	\TODO{Agregar slides \url{https://www.youtube.com/watch?v=E-6paM\_Iwfc\&t=3260s}}
+	\note{Información extraída de https://youtu.be/E-6paM\_Iwfc}
+	
+	\begin{itemize}
+		\item Predicción:
+		\begin{equation*}
+			\motionModelFunction{\controlCommand_{t}, \state_{t-1}} \approx \motionModelFunction{\controlCommand_{t}, \mu_{t-1}} + \underbrace{\dfrac{\partial\motionModelFunction{\controlCommand_{t}, \mu_{t-1}}}{\partial\state_{t-1}}}_{\motionModelJacobian_{t}} (\state_{t-1} - \mu_{t-1}) 
+		\end{equation*}
+			
+		\item Corrección:
+		
+		\begin{equation*}
+			\observationModelFunction{\state_{t}} \approx \observationModelFunction{\overline{\mu}_{t}} + \underbrace{\dfrac{\partial \observationModelFunction{\overline{\mu}_{t}}}{\partial \state_{t}}}_{\observationModelJacobian_{t}} (\state_{t} - \overline{\mu}_{t})
+		\end{equation*}
+		
+	\end{itemize}
+	
+	$\motionModelJacobian_{t}$ y $\observationModelJacobian_{t}$ se denominan Jacobianos.
+\end{frame}
+
+\begin{frame}
+	\frametitle{Recordando Jacobianos}
+	
+	\begin{itemize}
+		\item En general es una matriz no-cuadrada $m \times n$
+		\item Dada una función vectorial
+		
+		\begin{equation*}
+			g(x) =
+			\begin{bmatrix}
+			g_{1}(x) \\
+			g_{2}(x) \\
+			\vdots \\
+			g_{m}(x)
+			\end{bmatrix}
+		\end{equation*}
+	
+		\item  El Jacobiano está definido como
+		\begin{equation*}
+		G_{x} =
+		\begin{bmatrix}
+			\dfrac{\partial g_{1}}{\partial x_{1}} & \dfrac{\partial g_{1}}{\partial x_{2}}& \dots &  \dfrac{\partial g_{1}}{\partial x_{n}}\\
+			\dfrac{\partial g_{2}}{\partial x_{1}} & \dfrac{\partial g_{2}}{\partial x_{2}}& \dots &  \dfrac{\partial g_{2}}{\partial x_{n}}\\
+			\vdots & \vdots& \vdots & \vdots\\
+			\dfrac{\partial g_{m}}{\partial x_{1}} & \dfrac{\partial g_{m}}{\partial x_{2}}& \dots &  \dfrac{\partial g_{m}}{\partial x_{n}}
+		\end{bmatrix}
+		\end{equation*}		
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Recordando Jacobianos}
+	
+	\TODO{agregar imagenes de jacobianos 3D, plano tangencial}
+	
+	\begin{itemize}
+		\item El Jacobiano es la orientación del plano tangente a la función vectorial en un punto dado
+		\item El Jacobiano es la generalización del gradiente de una función escalar
+	\end{itemize}
 \end{frame}
 
 \begin{frame}
