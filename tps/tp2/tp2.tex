@@ -119,7 +119,9 @@ resulta demasiado agresivo)
 
 \ejercicio  Determinar de forma analítica el radio del camino circular que realiza el robot al ajustar la velocidad lineal y angular a valores constantes. Realizar el cálculo para dos velocidades cualquieras teniendo en cuenta las velocidades máximas del robot.
 
-\nota Los límites de velocidad y los parámetros cinemáticos (el radio de la rueda R y la distancia entre ruedas b) de los diferentes modelos del robot TurtleBot3 se obtienen de las especificaciones\footnote{\url{https://emanual.robotis.com/docs/en/platform/turtlebot3/features/}}.
+\begin{nota}
+	Los límites de velocidad y los parámetros cinemáticos (el radio de la rueda R y la distancia entre ruedas b) de los diferentes modelos del robot TurtleBot3 se obtienen de las especificaciones\footnote{\url{https://emanual.robotis.com/docs/en/platform/turtlebot3/features/}}.
+\end{nota}
 
 \ejercicio  Calcular la velocidad lineal y angular para que el robot realice un camino circular con un radio a elección entre \SI{0.5}{\meter} y \SI{1.5}{\meter}.
 
@@ -141,7 +143,9 @@ la simulación y utilizar el script ’dump odom.py’. Este script muestra en p
 	\item la velocidad del robot respecto al tiempo.
 \end{enumerate} 
 
-\nota Utilizar una relación de aspecto 1:1 para el gráfico del camino y evitar en lo posible el registro de datos iguales a cero.
+\begin{nota}
+	Utilizar una relación de aspecto 1:1 para el gráfico del camino y evitar en lo posible el registro de datos iguales a cero.
+\end{nota}
 
 \ejercicio Obtener otro registro de datos para un camino circular del robot y graficar el camino y la trayectoria.
 
@@ -160,7 +164,9 @@ En base a los gráficos anteriores:
 
 \item Describir cuál sería la secuencia de comandos de velocidad a aplicar al robot para seguir uno de los caminos mostrados en la Figura~\ref{fig:trajectories} (elegir solo uno).
 
-\nota{Para setear los comandos de velocidad por un tiempo determinado se puede utilizar el comando ros2 topic pub con los argumentos -1 y --keep-alive.}
+\begin{nota}
+	Para setear los comandos de velocidad por un tiempo determinado se puede utilizar el comando \lstinline[style=bash]{ros2 topic pub} con los argumentos \lstinline[style=bash]{-1} y \lstinline[style=bash]{--keep-alive}.
+\end{nota}
 
 \end{enumerate}
 
