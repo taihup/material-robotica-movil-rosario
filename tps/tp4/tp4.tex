@@ -8,7 +8,7 @@
 
 \codigo{R-521}
 \materia{Robótica Móvil}
-\titulo{Visión por Computadora: Triangulación y Proyección}
+\titulo{EKF para Localización de un Robot Móvil}
 
 \soluciones
 \commentstrue
@@ -18,62 +18,90 @@
 %\addbibresource{refs.bib}
 
 \begin{document}
-\maketitle
+	\maketitle
+	
+	
+	\section{Introducción}
+	
+	El objetivo del Trabajo Práctico es comprender cómo funciona EKF para la localización de un robot móvil y desarrollar una implementación funcional del mismo.
+	
+	Para esta tarea se utilizará un framework de Python provisto por la cátedra. Aunque se alienta a que se desarrolle en ROS2 y Gazebo. \footnote{Este trabajo práctico está basado en el trabajo práctico del curso CSE 571 - Robotics \url{https://courses.cs.washington.edu/courses/cse571/20sp/homeworks/HW2.pdf}.}
+	
+	Useful reading material: Lecture notes, Chapters 3,4,5,7 \& 8 of Probabilistic Robotics, Thrun, Burgard and Fox (pdf shared with class).
+	
+	
+	\section{Entrega}
+	\begin{itemize}
+		\item Se debe proveer un repositorio git que contenga el código desarrollado, una imagen docker y un archivo \lstinline{README.md} con las instrucciones de compilación y ejecución.
+		
+		\item Se debe entregar un informe en Lyx o \LaTeX\  explicando el trabajo realizado y analizando los resultados obtenidos.
+		
+		\item En caso de utilizar el framework \url{https://www.theconstructsim.com}, se deberá además el link al proyecto.
+	\end{itemize}
 
-\section{Introducción}
+	
+	\section{Ejercicios}
+	
+	\ejercicio  Determinar de forma analítica el radio del camino circular que realiza el robot al ajustar la velocidad lineal y angular a valores constantes. Realizar el cálculo para dos velocidades cualquieras teniendo en cuenta las velocidades máximas del robot.
+	
+	\begin{nota}
+		Los límites de velocidad y los parámetros cinemáticos (el radio de la rueda R y la distancia entre ruedas b) de los diferentes modelos del robot TurtleBot3 se obtienen de las especificaciones\footnote{\url{https://emanual.robotis.com/docs/en/platform/turtlebot3/features/}}.
+	\end{nota}
+	
+	\ejercicio  Calcular la velocidad lineal y angular para que el robot realice un camino circular con un radio a elección entre \SI{0.5}{\meter} y \SI{1.5}{\meter}.
+	
+	\ejercicio  Calcular las velocidades lineales y angulares de las ruedas (izquierda y derecha) del robot para el camino circular del punto anterior.
+	
+	\ejercicio Generar un registro (log) de odometría y velocidad del robot, para lo cual hay que ejecutar nuevamente
+	la simulación y utilizar el script ’dump odom.py’. Este script muestra en pantalla 6 columnas con los siguientes datos: tiempo (timestamp), coordenadas x, y, orientación, velocidad lineal y angular.
+	
+	\ejercicio Obtener un registro de datos con el robot en movimiento mediante teleoperación por teclado. Para guardar los datos generados por el script hay que redireccionar la salida a un archivo como:
+	
+	\begin{lstlisting}[style=bash] 
+		./dump_odom.py > log.txt
+	\end{lstlisting}
+	
+	\ejercicio Escribir un script en Python que cargue los datos del archivo log y genere gráficos de:
+	\begin{enumerate}
+		\item el camino seguido por el robot,
+		\item la trayectoria (pose respecto al tiempo), y
+		\item la velocidad del robot respecto al tiempo.
+	\end{enumerate} 
+	
+	\begin{nota}
+		Utilizar una relación de aspecto 1:1 para el gráfico del camino y evitar en lo posible el registro de datos iguales a cero.
+	\end{nota}
+	
+	\ejercicio Obtener otro registro de datos para un camino circular del robot y graficar el camino y la trayectoria.
+	
+	\ejercicio Marcar tres puntos cualquiera en el gráfico del camino del robot y sus correspondientes puntos en la trayectoria. Elegir puntos diferentes al inicio y final del camino.
+	
+	
+	En base a los gráficos anteriores:
+	
+	\begin{enumerate}
+		
+		\item ¿Cuáles son los rangos de valores de las coordenadas x e y y por qué?
+		
+		\item  ¿Cuál es el rango de valores de la orientación del robot y por qué?
+		
+		\item Obtener diferentes registros y gráficos para caminos circulares con diferentes valores (positivos y negativos) de velocidades lineales y angulares (utilizar todas las combinaciones de signos posibles). Indicar en los gráficos el sentido de avance del robot.
+		
+		\item Describir cuál sería la secuencia de comandos de velocidad a aplicar al robot para seguir uno de los caminos mostrados en la Figura~\ref{fig:trajectories} (elegir solo uno).
+		
+		\begin{nota}
+			Para setear los comandos de velocidad por un tiempo determinado se puede utilizar el comando \lstinline[style=bash]{ros2 topic pub} con los argumentos \lstinline[style=bash]{-1} y \lstinline[style=bash]{--keep-alive}.
+		\end{nota}
+		
+	\end{enumerate}
+	
 
-El objetivo del tp es que se realicen los pasos básicos para poder triangular y proyectar puntos con una cámara estéreo. 
-Para esto se trabajará con datos reales.
-
-
-\section{Entrega}
-Se deberá proveer un repositorio git y junto con las instrucciones de compilación en un archivo README.md.
-Además, se deberá entregar un informe realizado en Lyx o latex explicando los pasos realizados y analizando los resultados obtenidos.
-
-\section{Datos}
-Para trabajar se utilizarán los siguientes datos:
-
-\section{Calibración}
-Antes de comenzar a trabajar con un dataset se debe realizar una calibración de los sensores. En este trabajo solo deben calibrar una cámara estéreo.
-
-Para la calibración se puede utilizar cualquiera de las aplicaciones que se detallan a continuación:
-\begin{itemize}
-	\item OpenCV tutorial\_camera\_calibration: \href{https://docs.opencv.org/4.x/d4/d94/tutorial_camera_calibration.html}{https://docs.opencv.org/4.x/d4/d94/tutorial\_camera\_calibration.html}
-	\item ROS camera\_calibration: \href{http://wiki.ros.org/camera_calibration/Tutorials/StereoCalibration}{http://wiki.ros.org/camera\_calibration/Tutorials/StereoCalibration}
-	\item Kalibr: \href{https://github.com/ethz-asl/kalibr}{https://github.com/ethz-asl/kalibr}
-	\item Camera Calibration Toolbox for Matlab: \href{https://www.cs.toronto.edu/pub/psala/VM/cameraCalibrationExample.html}{https://www.cs.toronto.edu/pub/psala/VM/cameraCalibrationExample.html}
-\end{itemize}
-
-Desarrollar un programa que lea un par de imágenes estéreo cualquiera y realice los siguientes pasos:
-
-\section{Rectificación de imágenes}
-Con los parámetros íntrinsecos y extrínsecos, rectificar un par imágenes haciendo uso de la librería OpenCV. Para esto se deberan utilizar las funciones: cv::stereoRectify(), cv::initUndistortRectifyMap() y remap().
-
-\section{Extracción de feaures: Keypoints y descriptores}
-
-\begin{enumerate}
-	\item Detectar Keypoitns: FAST, ORB, SIFT, SURF, GFTT, BRISK, etc.
-	\item Extraer descriptores: BRIEF, ORB, BRISK, etc.
-\end{enumerate}
-
-\section{Búsqueda de correspondencias visuales}
-Realizar la búsqueda de correspondencias entre los feature de ambas imágenes (\emph{matching}). Para esto deberá utilizar la función cv::BFMatcher::BFMatcher(). 
-
-\section{Triangulación de puntos 3D}
-Dados los matches encontrados, realice la triangulación de los puntos utilizando la función: cv::sfm::triangulatePoints().
-
-\section{Filtrado de correspondencias espúreas}
-Aplicar RANSAC para filtrar los matches espúreos y calcular la matríz fundamental. Para esto puede utilizar la función cv::findHomography().
-
-\section{Calcular el mapa de disparidad}
-Calcular el mapa de disparidad para esto  deberá utilizar la función cv::StereoMatcher::compute() de OpenCV. También utilizar la librería LIBELAS (\href{http://www.cvlibs.net/software/libelas/}{http://www.cvlibs.net/software/libelas/})
-
-\section{Reconstrucción 3D densa}
-Utilizando el mapa de disparidad realice una reconstrucción densa de la escena observada utilizando la función cv::reprojectImageTo3D(). Para esto debe utilizar la matríz de reproyección Q retornada por la función cv::stereoRectify().
-
-\section{Estimación de pose Monocular}
-Utilizando cv::recoverPose() estimar la transformación entre la imagen izquierda y la imagen derecha. Para esto deberá calcular la matríz esencial utilizando la función cv::findEssentialMat().
-
-\printbibliography
-
+	\ejercicio El mundo deberá contar con varios cilindros de un mismo radio $r$. Los cilindros deben estar distribuidos en el entorno y ser todos observados por el láser del robot al momento de inicio de la simulación.
+	
+	Utilizar una medición láser para generar un mapa de la escena observada por el robot en simulación. Para esto deberá detectar los cilindros en la medición laser obtenida. Cada cilindro será utilizado como un landmark en el mapa virtual del robot. Deberá estimar el centro del cilindro, dicha posición será la posición de un landmark en el mapa virtual del robot. Debera crear un mapa de landmarks, publicarlo y visualizarlo en RVIZ utilizando el marker de cilindro.
+	Obtenga una captura de pantalla de RViz donde se visualice las mediciones del láser y los landmarks reconstruidos.
+	
+	
+	\printbibliography
+	
 \end{document}
