@@ -38,14 +38,17 @@
 	\end{itemize}
 
 	
+	\section{Ejercicios}
+	
+	\section{Jacobiano del Modelo de Movimiento}
+	
 	\section{Enunciado}
 		
 	Implementar un Filtro de Kalman Extendido (EKF) y un Filtro de Partículas (PF) para localizar un robot basado en \emph{landmarks}. Usaremos el modelo de movimiento basado en la odometría que derivó en la pregunta 1.2. Suponemos que hay landmarks presentes en el entorno del robot. El robot recibe los ángulos (\emph{bearing}) a los landmarks y los ID de los landmarks como observaciones: (orientación, ID de landmark).
 	
-	Asumimos un modelo de ruido para el modelo de movimiento de odometría con parámetros $\alpha$ (PR Tabla 5.6) y un modelo separado modelo de ruido para las observaciones de rumbo con parámetro $\beta$ (PR Sección 6.6). La observación de ID de punto de referencia es sin ruido. Consulte el código de inicio proporcionado para obtener detalles de implementación.
+	Asumimos un modelo de ruido para el modelo de movimiento de odometría con parámetros $\alpha$ (Libro Probabilisitc Robotics Tabla 5.6) y un modelo separado modelo de ruido para las observaciones de rumbo con parámetro $\beta$ (Libro Probabilisitc Robotics Sección 6.6). La observación de ID del landmark es sin ruido. Consulte el código de inicio proporcionado para obtener detalles de implementación.
 	
-	En cada paso de tiempo, el robot comienza desde el estado actual y se mueve de acuerdo con la entrada de control. El robot luego recibe una observación histórica del mundo. Utilizará esta información para localizar el robot sobre el
-	secuencia de tiempo completo con un EKF y PF.
+	En cada paso de tiempo, el robot comienza desde el estado actual y se mueve de acuerdo con la entrada de control. El robot luego recibe una observación del mundo. Utilizar esta información para localizar el robot sobre la secuencia de tiempo completa con un EKF y PF.
 	
 	\begin{figure}[!htbp]
 		\centering
@@ -55,27 +58,27 @@
 
 	\section{Descripción del código}
 	
-	El código de inicio está escrito en Python y depende de NumPy y Matplotlib.
+	El código provisto está escrito en Python y depende de las librerías \lstinline[style=bash]{NumPy} y \lstinline[style=bash]{Matplotlib}.
 	
 	\begin{itemize}
-	\item \lstinline[style=bash]{localization.py} --- principal punto de entrada para ejecutar experimentos.
-	\item \lstinline[style=bash]{soccer_field.py} --- implementa las funciones del modelo dinámico y observación, así como los modelos de ruido para ambos. ¡Implementar los jacobianos acá!
-	\item \lstinline[style=bash]{utils.py} --- contiene varias funciones de visualización, así como una función útil para normalizar un ángulo entre $[-\pi, \pi]$.
-	\item \lstinline[style=bash]{policy.py} --- contiene una política simple que puede ignorar sin problemas.
-	\item \lstinline[style=bash]{ekf.py} --- ¡Implementar acá el Filtro de Kalman Extendido!
-	\item \lstinline[style=bash]{pf.py} --- ¡Implementar acá el Filtro Partículas!
+		\item \lstinline[style=bash]{localization.py} --- principal punto de entrada para ejecutar experimentos.
+		\item \lstinline[style=bash]{soccer_field.py} --- implementa las funciones del modelo dinámico y de observación, así como los modelos de ruido para ambos. ¡Implementar los jacobianos acá!
+		\item \lstinline[style=bash]{utils.py} --- contiene varias funciones de ploteo, así como una función útil para normalizar un ángulo entre $[-\pi, \pi]$.
+		\item \lstinline[style=bash]{policy.py} --- contiene una política simple que puede ignorar sin problemas.
+		\item \lstinline[style=bash]{ekf.py} --- ¡Implementar acá el Filtro de Kalman Extendido!
+		\item \lstinline[style=bash]{pf.py} --- ¡Implementar acá el Filtro Partículas!
 	\end{itemize}
 
 	\section{Interfaz de comando}
 
 	Para visualizar el robot en el entorno del campo de fútbol, ejecute
-	
+
 \begin{lstlisting}[style=bash] 
 python localization.py --plot none
 \end{lstlisting}
 
-	
-	La línea azul traza la posición del robot, que es el resultado de acciones ruidosas. La línea verde traza el robot posición asumiendo que las acciones no eran ruidosas. Después de implementar un filtro, la estimación del filtro del robot la posición se dibujará en rojo.
+
+	La línea azul traza la posición del robot, que es el resultado de acciones ruidosas. La línea verde traza el la posición del posición asumiendo que las acciones no son ruidosas. Después de implementar un filtro, la estimación del filtro de la posición del robot se dibujará en rojo.
 	
 	
 \begin{lstlisting}[style=bash] 
@@ -83,31 +86,31 @@ python localization.py --plot ekf
 python localization.py --plot pf
 \end{lstlisting}
 
-Para ver otras banderas de línea de comandos disponibles para usted, ejecute
+	Para ver los flags de la línea de comandos disponibles, ejecute
 
 \begin{lstlisting}[style=bash] 
 python localization.py -h
 \end{lstlisting}
 
-\section{Formato de los datos}
+	\section{Formato de los datos}
 
-\begin{itemize}
-	\item estado: $[x,y,\theta]$
-	\item control: $[\delta_{rot1},\delta_{trans},\delta_{rot2}]$
-	\item observación: $[\theta_{bearing}]$
-\end{itemize}
+	\begin{itemize}
+		\item estado: $[x,y,\theta]$
+		\item control: $[\delta_{rot1},\delta_{trans},\delta_{rot2}]$
+		\item observación: $[\theta_{bearing}]$
+	\end{itemize}
+	
+	\section{Notas}
+	\begin{itemize}
+		\item Llamar a \lstinline[style=bash]{utils.minimized_angle} cada vez que un ángulo o una diferencia de ángulo pueda exceder $[-\pi, \pi]$.
+		\item Utilizar el muestreador sistemático de baja varianza de clase. Te da una distribución más suave de partículas y también requiere un único número aleatorio por paso de remuestreo.
+		\item Desactivar la visualización para una acelerar la ejecución.
+	\end{itemize}
 
-\section{Notas}
-\begin{itemize}
-	\item Llamar a \lstinline[style=bash]{utils.minimized_angle} cada vez que un ángulo o una diferencia de ángulo pueda exceder $[-\pi, \pi]$.
-	\item Utilizar el muestreador sistemático de baja varianza de clase. Te da una distribución más suave de partículas y también requiere un único número aleatorio por paso de remuestreo.
-	\item Desactivar la visualización para una acelerar la ejecución.
-\end{itemize}
-
-\ejercicio Implementar EKF
-Implemente el algoritmo de filtro de Kalman extendido en ekf.py. Deberá completar ExtendedKalmanFilter.update
-y los métodos de campo G, V y H. Sus resultados de una implementación exitosa de EKF deben ser comparables
-a los siguientes resultados.
+	\ejercicio Implementar EKF
+	Implemente el algoritmo de filtro de Kalman extendido en ekf.py. Deberá completar ExtendedKalmanFilter.update
+	y los métodos de campo G, V y H. Sus resultados de una implementación exitosa de EKF deben ser comparables
+	a los siguientes resultados.
 
 \begin{lstlisting}[style=bash] 
 python localization.py ekf --seed 0
@@ -118,23 +121,23 @@ ANEES: 1.472139416194766
 \end{lstlisting}
 
 
-\begin{enumerate}
-	\item Trace la ruta del robot real y la ruta del filtro con los parámetros predeterminados (proporcionados).
-	\item  Grafique el error de posición medio a medida que los factores $\alpha$ y $\beta$ varían sobre $r = [1/64, 1/16, 1/4, 4, 16, 64]$\footnote{Dado que los factores se multiplican con varianzas, esto es entre 1/8 y 8 veces los valores de ruido predeterminados.} y analice cualquier cosa interesante que observes.
-	
-	Debe ejecutar 10 ensayos por valor de $r$. Una ejecución podría ser algo como:
+	\begin{enumerate}
+		\item Trace la ruta del robot real y la ruta del filtro con los parámetros predeterminados (proporcionados).
+		\item  Grafique el error de posición medio a medida que los factores $\alpha$ y $\beta$ varían sobre $r = [1/64, 1/16, 1/4, 4, 16, 64]$\footnote{Dado que los factores se multiplican con varianzas, esto es entre 1/8 y 8 veces los valores de ruido predeterminados.} y analice cualquier cosa interesante que observes.
+		
+		Debe ejecutar 10 ensayos por valor de $r$. Una ejecución podría ser algo como:
 
 \begin{lstlisting}[style=bash] 
 python localización.py ekf --factor de datos 4 --factor de filtro 4
 \end{lstlisting}
 
-	\item Trace el error de posición medio y ANEES (error de estimación normalizado promedio al cuadrado) como el filtro $\alpha$, $\beta$ los factores varían sobre $r$ (como arriba) mientras que los datos se generan con el valor predeterminado. Habla de cualquier cosa que te interese observar.
-\end{enumerate}
+		\item Trace el error de posición medio y ANEES (error de estimación normalizado promedio al cuadrado) como el filtro $\alpha$, $\beta$ los factores varían sobre $r$ (como arriba) mientras que los datos se generan con el valor predeterminado. Habla de cualquier cosa que te interese observar.
+	\end{enumerate}
 
 
-\ejercicio Implementar PF
-
-Implemente el algoritmo de filtro de partículas en pf.py. Deberá completar ParticleFilter.update y ParticleFilter.resample.
+	\ejercicio Implementar PF
+	
+	Implemente el algoritmo de filtro de partículas en pf.py. Deberá completar ParticleFilter.update y ParticleFilter.resample.
 
 \begin{lstlisting}[style=bash] 
 python localization.py pf --seed 0
@@ -144,16 +147,16 @@ Mean Mahalanobis error: 14.742252771106532
 ANEES: 4.914084257035511
 \end{lstlisting}
 
-\begin{enumerate}
-	\item Trace la ruta del robot real y la ruta del filtro con los parámetros predeterminados.
-	\item Grafique el error de posición medio a medida que los factores $\alpha$, $\beta$ varían sobre $r$ y analice.
-	\item Grafique el error de posición medio y ANEES como el filtro $\alpha$, los factores $\beta$ varían sobre $r$ mientras se generan los datos
-	con el valor predeterminado.
-	\item Grafique el error de posición medio y ANEES a medida que los factores $\alpha$, $\beta$ varían sobre $r$ y el número de partículas varía
-	sobre $[20, 50, 500]$.
-\end{enumerate}
+	\begin{enumerate}
+		\item Trace la ruta del robot real y la ruta del filtro con los parámetros predeterminados.
+		\item Grafique el error de posición medio a medida que los factores $\alpha$, $\beta$ varían sobre $r$ y analice.
+		\item Grafique el error de posición medio y ANEES como el filtro $\alpha$, los factores $\beta$ varían sobre $r$ mientras se generan los datos
+		con el valor predeterminado.
+		\item Grafique el error de posición medio y ANEES a medida que los factores $\alpha$, $\beta$ varían sobre $r$ y el número de partículas varía
+		sobre $[20, 50, 500]$.
+	\end{enumerate}
 
 
-\printbibliography
+	\printbibliography
 	
 \end{document}
