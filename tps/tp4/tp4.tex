@@ -27,7 +27,7 @@
 	
 	Para esta tarea se utilizará un framework de Python provisto por la cátedra. Aunque se alienta a que se desarrolle en ROS2 y Gazebo. \footnote{Este trabajo práctico está basado en el trabajo práctico del curso CSE 571 - Robotics \url{https://courses.cs.washington.edu/courses/cse571/20sp/homeworks/HW2.pdf}.}
 	
-	Useful reading material: Lecture notes, Chapters 3,4,5,7 \& 8 of Probabilistic Robotics, Thrun, Burgard and Fox (pdf shared with class).
+	Material de lectura útil: slides de las clases, Capítulos 3,4,5,7 \& 8 del libro Probabilistic Robotics, Thrun, Burgard and Fox.
 	
 	
 	\section{Entrega}
@@ -35,12 +35,24 @@
 		\item Se debe proveer un repositorio git que contenga el código desarrollado, una imagen docker y un archivo \lstinline{README.md} con las instrucciones de compilación y ejecución.
 		
 		\item Se debe entregar un informe en Lyx o \LaTeX\  explicando el trabajo realizado y analizando los resultados obtenidos.
-		
-		\item En caso de utilizar el framework \url{https://www.theconstructsim.com}, se deberá además el link al proyecto.
 	\end{itemize}
 
 	
 	\section{Ejercicios}
+	
+	
+	Implementar un filtro de Kalman extendido (EKF) y filtro de partículas (PF) para localizar un robot basado en puntos de referencia. Usaremos el modelo de movimiento basado en la odometría que derivó en la pregunta 1.2. Suponemos que hay puntos de referencia presentes en el entorno del robot. El robot recibe los rumbos (ángulos) a los puntos de referencia y la ID de la puntos de referencia como observaciones: (rumbo, ID de punto de referencia).
+	
+	Asumimos un modelo de ruido para el modelo de movimiento de odometría con parámetros $\alpha$ (PR Tabla 5.6) y un modelo separado modelo de ruido para las observaciones de rumbo con parámetro $\beta$ (PR Sección 6.6). La observación de ID de punto de referencia es sin ruido. Consulte el código de inicio proporcionado para obtener detalles de implementación.
+	
+	En cada paso de tiempo, el robot comienza desde el estado actual y se mueve de acuerdo con la entrada de control. El robot luego recibe una observación histórica del mundo. Utilizará esta información para localizar el robot sobre el
+	secuencia de tiempo completo con un EKF y PF.
+	
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=0.5\textwidth]{./images/odometry_as_controls.pdf}
+		\label{fig:odometry-base-motion-model}
+	\end{figure}
 	
 	\ejercicio  Determinar de forma analítica el radio del camino circular que realiza el robot al ajustar la velocidad lineal y angular a valores constantes. Realizar el cálculo para dos velocidades cualquieras teniendo en cuenta las velocidades máximas del robot.
 	
