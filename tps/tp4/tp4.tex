@@ -53,67 +53,108 @@
 		\includegraphics[width=0.5\textwidth]{./images/odometry_as_controls.pdf}
 		\label{fig:odometry-base-motion-model}
 	\end{figure}
-	
-	\ejercicio  Determinar de forma analítica el radio del camino circular que realiza el robot al ajustar la velocidad lineal y angular a valores constantes. Realizar el cálculo para dos velocidades cualquieras teniendo en cuenta las velocidades máximas del robot.
-	
-	\begin{nota}
-		Los límites de velocidad y los parámetros cinemáticos (el radio de la rueda R y la distancia entre ruedas b) de los diferentes modelos del robot TurtleBot3 se obtienen de las especificaciones\footnote{\url{https://emanual.robotis.com/docs/en/platform/turtlebot3/features/}}.
-	\end{nota}
-	
-	\ejercicio  Calcular la velocidad lineal y angular para que el robot realice un camino circular con un radio a elección entre \SI{0.5}{\meter} y \SI{1.5}{\meter}.
-	
-	\ejercicio  Calcular las velocidades lineales y angulares de las ruedas (izquierda y derecha) del robot para el camino circular del punto anterior.
-	
-	\ejercicio Generar un registro (log) de odometría y velocidad del robot, para lo cual hay que ejecutar nuevamente
-	la simulación y utilizar el script ’dump odom.py’. Este script muestra en pantalla 6 columnas con los siguientes datos: tiempo (timestamp), coordenadas x, y, orientación, velocidad lineal y angular.
-	
-	\ejercicio Obtener un registro de datos con el robot en movimiento mediante teleoperación por teclado. Para guardar los datos generados por el script hay que redireccionar la salida a un archivo como:
-	
-	\begin{lstlisting}[style=bash] 
-		./dump_odom.py > log.txt
-	\end{lstlisting}
-	
-	\ejercicio Escribir un script en Python que cargue los datos del archivo log y genere gráficos de:
-	\begin{enumerate}
-		\item el camino seguido por el robot,
-		\item la trayectoria (pose respecto al tiempo), y
-		\item la velocidad del robot respecto al tiempo.
-	\end{enumerate} 
-	
-	\begin{nota}
-		Utilizar una relación de aspecto 1:1 para el gráfico del camino y evitar en lo posible el registro de datos iguales a cero.
-	\end{nota}
-	
-	\ejercicio Obtener otro registro de datos para un camino circular del robot y graficar el camino y la trayectoria.
-	
-	\ejercicio Marcar tres puntos cualquiera en el gráfico del camino del robot y sus correspondientes puntos en la trayectoria. Elegir puntos diferentes al inicio y final del camino.
-	
-	
-	En base a los gráficos anteriores:
-	
-	\begin{enumerate}
-		
-		\item ¿Cuáles son los rangos de valores de las coordenadas x e y y por qué?
-		
-		\item  ¿Cuál es el rango de valores de la orientación del robot y por qué?
-		
-		\item Obtener diferentes registros y gráficos para caminos circulares con diferentes valores (positivos y negativos) de velocidades lineales y angulares (utilizar todas las combinaciones de signos posibles). Indicar en los gráficos el sentido de avance del robot.
-		
-		\item Describir cuál sería la secuencia de comandos de velocidad a aplicar al robot para seguir uno de los caminos mostrados en la Figura~\ref{fig:trajectories} (elegir solo uno).
-		
-		\begin{nota}
-			Para setear los comandos de velocidad por un tiempo determinado se puede utilizar el comando \lstinline[style=bash]{ros2 topic pub} con los argumentos \lstinline[style=bash]{-1} y \lstinline[style=bash]{--keep-alive}.
-		\end{nota}
-		
-	\end{enumerate}
-	
 
-	\ejercicio El mundo deberá contar con varios cilindros de un mismo radio $r$. Los cilindros deben estar distribuidos en el entorno y ser todos observados por el láser del robot al momento de inicio de la simulación.
+	\section{Descripción del código}
 	
-	Utilizar una medición láser para generar un mapa de la escena observada por el robot en simulación. Para esto deberá detectar los cilindros en la medición laser obtenida. Cada cilindro será utilizado como un landmark en el mapa virtual del robot. Deberá estimar el centro del cilindro, dicha posición será la posición de un landmark en el mapa virtual del robot. Debera crear un mapa de landmarks, publicarlo y visualizarlo en RVIZ utilizando el marker de cilindro.
-	Obtenga una captura de pantalla de RViz donde se visualice las mediciones del láser y los landmarks reconstruidos.
+	El código de inicio está escrito en Python y depende de NumPy y Matplotlib.
+	
+	\begin{itemize}
+	\item \lstinline[style=bash]{localization.py} --- principal punto de entrada para ejecutar experimentos.
+	\item \lstinline[style=bash]{soccer_field.py} --- implementa las funciones del modelo dinámico y observación, así como los modelos de ruido para ambos. ¡Implementar los jacobianos acá!
+	\item \lstinline[style=bash]{utils.py} --- contiene varias funciones de visualización, así como una función útil para normalizar un ángulo entre $[-\pi, \pi]$.
+	\item \lstinline[style=bash]{policy.py} --- contiene una política simple que puede ignorar sin problemas.
+	\item \lstinline[style=bash]{ekf.py} --- ¡Implementar acá el Filtro de Kalman Extendido!
+	\item \lstinline[style=bash]{pf.py} --- ¡Implementar acá el Filtro Partículas!
+	\end{itemize}
+
+	\section{Interfaz de comando}
+
+	Para visualizar el robot en el entorno del campo de fútbol, ejecute
+	
+\begin{lstlisting}[style=bash] 
+python localization.py --plot none
+\end{lstlisting}
+
+	
+	La línea azul traza la posición del robot, que es el resultado de acciones ruidosas. La línea verde traza el robot posición asumiendo que las acciones no eran ruidosas. Después de implementar un filtro, la estimación del filtro del robot la posición se dibujará en rojo.
 	
 	
-	\printbibliography
+\begin{lstlisting}[style=bash] 
+python localization.py --plot ekf
+python localization.py --plot pf
+\end{lstlisting}
+
+Para ver otras banderas de línea de comandos disponibles para usted, ejecute
+
+\begin{lstlisting}[style=bash] 
+python localization.py -h
+\end{lstlisting}
+
+\section{Formato de los datos}
+
+\begin{itemize}
+	\item estado: $[x,y,\theta]$
+	\item control: $[\delta_{rot1},\delta_{trans},\delta_{rot2}]$
+	\item observación: $[\theta_{bearing}]$
+\end{itemize}
+
+\section{Notas}
+\begin{itemize}
+	\item Llamar a \lstinline[style=bash]{utils.minimized_angle} cada vez que un ángulo o una diferencia de ángulo pueda exceder $[-\pi, \pi]$.
+	\item Utilizar el muestreador sistemático de baja varianza de clase. Te da una distribución más suave de partículas y también requiere un único número aleatorio por paso de remuestreo.
+	\item Desactivar la visualización para una acelerar la ejecución.
+\end{itemize}
+
+\ejercicio Implementar EKF
+Implemente el algoritmo de filtro de Kalman extendido en ekf.py. Deberá completar ExtendedKalmanFilter.update
+y los métodos de campo G, V y H. Sus resultados de una implementación exitosa de EKF deben ser comparables
+a los siguientes resultados.
+
+\begin{lstlisting}[style=bash] 
+python localization.py ekf --seed 0
+...
+Mean position error: 8.9983675360847
+Mean Mahalanobis error: 4.416418248584298
+ANEES: 1.472139416194766
+\end{lstlisting}
+
+
+\begin{enumerate}
+	\item Trace la ruta del robot real y la ruta del filtro con los parámetros predeterminados (proporcionados).
+	\item  Grafique el error de posición medio a medida que los factores $\alpha$ y $\beta$ varían sobre $r = [1/64, 1/16, 1/4, 4, 16, 64]$\footnote{Dado que los factores se multiplican con varianzas, esto es entre 1/8 y 8 veces los valores de ruido predeterminados.} y analice cualquier cosa interesante que observes.
+	
+	Debe ejecutar 10 ensayos por valor de $r$. Una ejecución podría ser algo como:
+
+\begin{lstlisting}[style=bash] 
+python localización.py ekf --factor de datos 4 --factor de filtro 4
+\end{lstlisting}
+
+	\item Trace el error de posición medio y ANEES (error de estimación normalizado promedio al cuadrado) como el filtro $\alpha$, $\beta$ los factores varían sobre $r$ (como arriba) mientras que los datos se generan con el valor predeterminado. Habla de cualquier cosa que te interese observar.
+\end{enumerate}
+
+
+\ejercicio Implementar PF
+
+Implemente el algoritmo de filtro de partículas en pf.py. Deberá completar ParticleFilter.update y ParticleFilter.resample.
+
+\begin{lstlisting}[style=bash] 
+python localization.py pf --seed 0
+...
+Mean position error: 8.567264372950905
+Mean Mahalanobis error: 14.742252771106532
+ANEES: 4.914084257035511
+\end{lstlisting}
+
+\begin{enumerate}
+	\item Trace la ruta del robot real y la ruta del filtro con los parámetros predeterminados.
+	\item Grafique el error de posición medio a medida que los factores $\alpha$, $\beta$ varían sobre $r$ y analice.
+	\item Grafique el error de posición medio y ANEES como el filtro $\alpha$, los factores $\beta$ varían sobre $r$ mientras se generan los datos
+	con el valor predeterminado.
+	\item Grafique el error de posición medio y ANEES a medida que los factores $\alpha$, $\beta$ varían sobre $r$ y el número de partículas varía
+	sobre $[20, 50, 500]$.
+\end{enumerate}
+
+
+\printbibliography
 	
 \end{document}
