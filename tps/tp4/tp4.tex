@@ -38,10 +38,9 @@
 	\end{itemize}
 
 	
-	\section{Ejercicios}
-	
-	
-	Implementar un filtro de Kalman extendido (EKF) y filtro de partículas (PF) para localizar un robot basado en puntos de referencia. Usaremos el modelo de movimiento basado en la odometría que derivó en la pregunta 1.2. Suponemos que hay puntos de referencia presentes en el entorno del robot. El robot recibe los rumbos (ángulos) a los puntos de referencia y la ID de la puntos de referencia como observaciones: (rumbo, ID de punto de referencia).
+	\section{Enunciado}
+		
+	Implementar un Filtro de Kalman Extendido (EKF) y un Filtro de Partículas (PF) para localizar un robot basado en \emph{landmarks}. Usaremos el modelo de movimiento basado en la odometría que derivó en la pregunta 1.2. Suponemos que hay landmarks presentes en el entorno del robot. El robot recibe los ángulos (\emph{bearing}) a los landmarks y los ID de los landmarks como observaciones: (orientación, ID de landmark).
 	
 	Asumimos un modelo de ruido para el modelo de movimiento de odometría con parámetros $\alpha$ (PR Tabla 5.6) y un modelo separado modelo de ruido para las observaciones de rumbo con parámetro $\beta$ (PR Sección 6.6). La observación de ID de punto de referencia es sin ruido. Consulte el código de inicio proporcionado para obtener detalles de implementación.
 	
