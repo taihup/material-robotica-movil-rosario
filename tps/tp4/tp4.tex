@@ -38,7 +38,7 @@
 	\end{itemize}
 
 	
-	\section{Ejercicios}
+	\section{Ejercicios Teóricos}
     
     \ejercicio Kalman Gain
     
@@ -67,7 +67,8 @@
         K = \dfrac{\overline{\sigma}^{2}}{\overline{\sigma}^{2}+\sigma_{obs}^{2}}.
     \end{equation*}
 	
-	\section{Jacobiano del Modelo de Movimiento}
+	\ejercicio Jacobiano del Modelo de Movimiento
+    \label{exercise:jacobian}
     
     La Figura~\ref{fig:odometry-base-motion-model} describe un modelo de movimiento simple. El estado del robot es su posición y orientación 2D: $s = [x, y, \theta]$. El control del robot es $\controlCommand = [\delta_{rot1}, \delta_{trans}, \delta_{rot2}]$, es decir el robot rota $\delta_{rot1}$, se desplaza $\delta_{trans}$ y luego rota $\delta_{rot2}$.
     
@@ -81,10 +82,6 @@
 
     donde $s_{t+1} = [x_{t+1}, y_{t+1}, \theta_{t+1}]$ es la predicción del modelo de movimiento. Derivar los Jacobianos de $g$ respecto del estado $\motionModelJacobian = \dfrac{\partial g}{\partial s}$ y el control $\motionModelJacobianControl = \dfrac{\partial g}{\partial \controlCommand}$
     
-
-
-
-
     \noindent
     \begin{minipage}[t]{.5\textwidth}
     \begin{equation*}
@@ -108,9 +105,9 @@
     \end{minipage}
     
 	
-	\section{Enunciado}
+	\section{Ejercicios de Programación}
 		
-	Implementar un Filtro de Kalman Extendido (EKF) y un Filtro de Partículas (PF) para localizar un robot basado en \emph{landmarks}. Usaremos el modelo de movimiento basado en la odometría que derivó en la pregunta 1.2. Suponemos que hay landmarks presentes en el entorno del robot. El robot recibe los ángulos (\emph{bearing}) a los landmarks y los ID de los landmarks como observaciones: (orientación, ID de landmark).
+	Implementar un Filtro de Kalman Extendido (EKF) y un Filtro de Partículas (PF) para localizar un robot basado en \emph{landmarks}. Usaremos el modelo de movimiento basado en la odometría que derivó en el ejercicio~\ref{exercise:jacobian}. Suponemos que hay landmarks presentes en el entorno del robot. El robot recibe los ángulos (\emph{bearing}) a los landmarks y los ID de los landmarks como observaciones: (orientación, ID de landmark).
 	
 	Asumimos un modelo de ruido para el modelo de movimiento de odometría con parámetros $\alpha$ (Libro Probabilisitc Robotics Tabla 5.6) y un modelo separado modelo de ruido para las observaciones de rumbo con parámetro $\beta$ (Libro Probabilisitc Robotics Sección 6.6). La observación de ID del landmark es sin ruido. Consulte el código de inicio proporcionado para obtener detalles de implementación.
 	
@@ -197,7 +194,7 @@ ANEES: 1.472139416194766
 python localización.py ekf --factor de datos 4 --factor de filtro 4
 \end{lstlisting}
 
-		\item Trace el error de posición medio y ANEES (error de estimación normalizado promedio al cuadrado) como el filtro $\alpha$, $\beta$ los factores varían sobre $r$ (como arriba) mientras que los datos se generan con el valor predeterminado. Habla de cualquier cosa que te interese observar.
+		\item Trace el error de posición medio y ANEES (error de estimación normalizado promedio al cuadrado) como el filtro $\alpha$, $\beta$ los factores varían sobre $r$ (como arriba) mientras que los datos se generan con el valor predeterminado. Comentar cualquier cosa que sea de interes observar.
 	\end{enumerate}
 
 
