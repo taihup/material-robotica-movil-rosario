@@ -173,9 +173,7 @@ python localization.py -h
 
 	\ejercicio Implementar EKF
     
-	Implemente el algoritmo de Filtro de Kalman Extendido en ekf.py. Deberá completar ExtendedKalmanFilter.update
-	y los métodos de campo G, V y H. Sus resultados de una implementación exitosa de EKF deben ser comparables
-	a los siguientes resultados.
+	Implemente el algoritmo de Filtro de Kalman Extendido en \lstinline[style=bash]{ekf.py}. Deberá completar \lstinline[style=bash]{ExtendedKalmanFilter.update} y los métodos de campo $G$, $V$ y $H$. Sus resultados de una implementación exitosa de EKF deben ser comparables	a los siguientes resultados.
 
 \begin{lstlisting}[style=bash] 
 python localization.py ekf --seed 0
@@ -202,7 +200,7 @@ python localización.py ekf --factor de datos 4 --factor de filtro 4
 
 	\ejercicio Implementar PF
 	
-	Implemente el algoritmo de filtro de partículas en pf.py. Deberá completar ParticleFilter.update y ParticleFilter.resample.
+	Implemente el algoritmo de filtro de partículas en \lstinline[style=bash]{pf.py}. Deberá completar \lstinline[style=bash]{ParticleFilter.update} y \lstinline[style=bash]{ParticleFilter.resample}.
 
 \begin{lstlisting}[style=bash] 
 python localization.py pf --seed 0
