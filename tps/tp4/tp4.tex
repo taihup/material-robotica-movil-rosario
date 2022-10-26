@@ -68,6 +68,45 @@
     \end{equation*}
 	
 	\section{Jacobiano del Modelo de Movimiento}
+    
+    La Figura~\ref{fig:odometry-base-motion-model} describe un modelo de movimiento simple. El estado del robot es su posición y orientación 2D: $s = [x, y, \theta]$. El control del robot es $\controlCommand = [\delta_{rot1}, \delta_{trans}, \delta_{rot2}]$, es decir el robot rota $\delta_{rot1}$, se desplaza $\delta_{trans}$ y luego rota $\delta_{rot2}$.
+    
+    Las ecuaciones para el modelo de movimiento $g$ son las siguientes:
+    
+    \begin{align*}
+        x_{t+1} &= x_{t} + \delta_{trans} \cos(\theta_{t} + \delta_{rot1})\\
+        y_{t+1} &= y_{t} + \delta_{trans} \sin(\theta_{t} + \delta_{rot2})\\
+        \theta_{t+1} &= \theta_{t} + \delta_{rot1} + \delta_{rot2}
+    \end{align*}
+
+    donde $s_{t+1} = [x_{t+1}, y_{t+1}, \theta_{t+1}]$ es la predicción del modelo de movimiento. Derivar los Jacobianos de $g$ respecto del estado $\motionModelJacobian = \dfrac{\partial g}{\partial s}$ y el control $\motionModelJacobianControl = \dfrac{\partial g}{\partial \controlCommand}$
+    
+
+
+
+
+    \noindent
+    \begin{minipage}[t]{.5\textwidth}
+    \begin{equation*}
+        \motionModelJacobian =
+        \begin{bmatrix}
+            \dfrac{\partial x^{\prime}}{\partial x} & \dfrac{\partial x^{\prime}}{\partial y} & \dfrac{\partial x^{\prime}}{\partial \theta}\\
+            \dfrac{\partial y^{\prime}}{\partial x} & \dfrac{\partial y^{\prime}}{\partial y} & \dfrac{\partial y^{\prime}}{\partial \theta}\\
+            \dfrac{\partial \theta^{\prime}}{\partial x} & \dfrac{\partial \theta^{\prime}}{\partial y} & \dfrac{\partial \theta^{\prime}}{\partial \theta}
+        \end{bmatrix}
+\end{equation*}
+    \end{minipage}% <---------------- Note the use of "%"
+    \begin{minipage}[t]{.5\textwidth}
+        \begin{equation*}
+            \motionModelJacobianControl =
+            \begin{bmatrix}
+                \dfrac{\partial x^{\prime}}{\partial \delta_{rot1}} & \dfrac{\partial x^{\prime}}{\partial \delta_{trans}} & \dfrac{\partial x^{\prime}}{\partial \delta_{rot2}}\\
+                \dfrac{\partial y^{\prime}}{\partial \delta_{rot1}} & \dfrac{\partial y^{\prime}}{\partial \delta_{trans}} & \dfrac{\partial y^{\prime}}{\partial \delta_{rot2}}\\
+                \dfrac{\partial \theta^{\prime}}{\partial \delta_{rot1}} & \dfrac{\partial \theta^{\prime}}{\partial \delta_{trans}} & \dfrac{\partial \theta^{\prime}}{\partial \delta_{rot2}}
+            \end{bmatrix}
+        \end{equation*}
+    \end{minipage}
+    
 	
 	\section{Enunciado}
 		
