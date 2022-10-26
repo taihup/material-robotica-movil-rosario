@@ -8,7 +8,7 @@
 
 \codigo{R-521}
 \materia{Robótica Móvil}
-\titulo{EKF para Localización de un Robot Móvil}
+\titulo{EKF y PF para Localización de un Robot Móvil}
 
 \soluciones
 \commentstrue
@@ -23,9 +23,9 @@
 	
 	\section{Introducción}
 	
-	El objetivo del Trabajo Práctico es comprender cómo funciona EKF para la localización de un robot móvil y desarrollar una implementación del mismo.
+	El objetivo del Trabajo Práctico es comprender cómo funciona el Filtro de Kalman Extendido(EKF) y el Filtro de Partículas (PF) para la localización de un robot móvil y desarrollar una implementación de cada uno.
 	
-	Para este trabajo se utilizará el framework de Python provisto por la cátedra. Sin embargo, se alienta a que el trabajo se desarrolle en ROS2 y Gazebo. \footnote{Este trabajo práctico está basado en el Homework 2 del curso CSE571: Probabilistic Robotics of University of Washington - Paul G. Allen School of Computer Science \& Engineering \url{https://courses.cs.washington.edu/courses/cse571/20sp/homeworks/HW2.pdf}.}
+	Para este trabajo se utilizará el framework de Python provisto por la cátedra. Sin embargo, se alienta a que el trabajo se desarrolle utilizando ROS2 y Gazebo. \footnote{Este trabajo práctico está basado en el Homework 2 del curso CSE571: Probabilistic Robotics of University of Washington - Paul G. Allen School of Computer Science \& Engineering \url{https://courses.cs.washington.edu/courses/cse571/20sp/homeworks/HW2.pdf}.}
 	
 	Material de lectura útil: slides de las clases, Capítulos 3, 4, 5, 7 y 8 del libro Probabilistic Robotics, Thrun, Burgard and Fox.
 	
@@ -42,7 +42,7 @@
     
     \ejercicio Kalman Gain
     
-    Recordemos que si tenemos dos funciones de densidad de probabilidad gaussianas:
+    Recordemos que si tenemos dos funciones de densidad de probabilidad Gaussianas:
     
     \begin{align*}
         f(x) &= \mathcal{N}(x;\mu_{1},\sigma_{1}^{2})\\
@@ -55,13 +55,13 @@
         f(x)g(x) \propto \mathcal{N} \left(x; \dfrac{\sigma_{2}^{2}}{\sigma_{1}^{2} + \sigma_{2}^{2}}\mu_{1} + \dfrac{\sigma_{1}^{2}}{\sigma_{1}^{2} + \sigma_{2}^{2}}\mu_{2}, \dfrac{1}{\sigma_{1}^{-2} + \sigma_{2}^{-2}} \right)
     \end{equation*}
 
-    Demuestre que en 1D, el paso de corrección del filtro de Kalman que se muestra a continuación es equivalente (hasta un factor de escala) a un multiplicación del estado predicho ($\mathcal{N}(x;\overline{\mu}_{1},\overline{\sigma}_{1}^{2})$) y observación ($\mathcal{N}(z;x, \sigma_{obs}^{2})$) Gaussianas con media y varianza dadas por:
+    Demuestre que en 1D, el paso de corrección del filtro de Kalman que se muestra a continuación es equivalente (hasta un factor de escala) a la multiplicación de las Gaussianas del estado predicho ($\mathcal{N}(x;\overline{\mu}_{1},\overline{\sigma}_{1}^{2})$) y de observación ($\mathcal{N}(z;x, \sigma_{obs}^{2})$) con media y varianza dadas por:
     
     \begin{align*}
         \mu &= \overline{\mu} + K (z - \overline{\mu})\\
         \sigma^{2} &= (1 - K) \overline{\sigma}^{2}
     \end{align*}
-
+%
     donde 
     \begin{equation*}
         K = \dfrac{\overline{\sigma}^{2}}{\overline{\sigma}^{2}+\sigma_{obs}^{2}}.
@@ -107,19 +107,20 @@
 	
 	\section{Ejercicios de Programación}
 		
-	Implementar un Filtro de Kalman Extendido (EKF) y un Filtro de Partículas (PF) para localizar un robot basado en \emph{landmarks}. Usaremos el modelo de movimiento basado en la odometría que derivó en el ejercicio~\ref{exercise:jacobian}. Suponemos que hay landmarks presentes en el entorno del robot. El robot recibe los ángulos (\emph{bearing}) a los landmarks y los ID de los landmarks como observaciones: (orientación, ID de landmark).
+	Implementar un Filtro de Kalman Extendido (EKF) y un Filtro de Partículas (PF) para localizar un robot utilizando \emph{landmarks}. Usaremos el modelo de movimiento basado en la odometría que se derivó previamente. Asumimos que hay landmarks presentes en el entorno del robot. El robot recibe los ángulos (\emph{bearing}) a los landmarks y los ID de los landmarks como observaciones: (orientación, ID de landmark).
 	
-	Asumimos un modelo de ruido para el modelo de movimiento de odometría con parámetros $\alpha$ (Libro Probabilisitc Robotics Tabla 5.6) y un modelo separado modelo de ruido para las observaciones de rumbo con parámetro $\beta$ (Libro Probabilisitc Robotics Sección 6.6). La observación de ID del landmark es sin ruido. Consulte el código de inicio proporcionado para obtener detalles de implementación.
+	Asumimos un modelo de ruido para el modelo de movimiento de odometría con parámetro $\alpha$ (ver Libro Probabilisitc Robotics Tabla 5.6) y un modelo de ruido separado para las observaciones de ángulo con parámetro $\beta$ (ver Libro Probabilisitc Robotics Sección 6.6). El ID del landmark en las observaciones es sin ruido. Consulte el código provisto para obtener detalles de implementación.
 	
 	En cada paso de tiempo, el robot comienza desde el estado actual y se mueve de acuerdo con la entrada de control. El robot luego recibe una observación del mundo. Utilizar esta información para localizar el robot sobre la secuencia de tiempo completa con un EKF y PF.
 	
 	\begin{figure}[!htbp]
 		\centering
 		\includegraphics[width=0.5\textwidth]{./images/odometry_as_controls.pdf}
+        \caption{Modelo de movimiento.}
 		\label{fig:odometry-base-motion-model}
 	\end{figure}
 
-	\section{Descripción del código}
+	\subsection{Descripción del código}
 	
 	El código provisto está escrito en Python y depende de las librerías \lstinline[style=bash]{NumPy} y \lstinline[style=bash]{Matplotlib}.
 	
@@ -132,7 +133,7 @@
 		\item \lstinline[style=bash]{pf.py} --- ¡Implementar acá el Filtro Partículas!
 	\end{itemize}
 
-	\section{Interfaz de comando}
+	\subsection{Interfaz de comando}
 
 	Para visualizar el robot en el entorno del campo de fútbol, ejecute
 
@@ -155,7 +156,7 @@ python localization.py --plot pf
 python localization.py -h
 \end{lstlisting}
 
-	\section{Formato de los datos}
+	\subsection{Formato de los datos}
 
 	\begin{itemize}
 		\item estado: $[x,y,\theta]$
@@ -171,7 +172,8 @@ python localization.py -h
 	\end{itemize}
 
 	\ejercicio Implementar EKF
-	Implemente el algoritmo de filtro de Kalman extendido en ekf.py. Deberá completar ExtendedKalmanFilter.update
+    
+	Implemente el algoritmo de Filtro de Kalman Extendido en ekf.py. Deberá completar ExtendedKalmanFilter.update
 	y los métodos de campo G, V y H. Sus resultados de una implementación exitosa de EKF deben ser comparables
 	a los siguientes resultados.
 
