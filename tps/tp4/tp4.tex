@@ -39,6 +39,33 @@
 
 	
 	\section{Ejercicios}
+    
+    \ejercicio Kalman Gain
+    
+    Recordemos que si tenemos dos funciones de densidad de probabilidad gaussianas:
+    
+    \begin{align*}
+        f(x) &= \mathcal{N}(x;\mu_{1},\sigma_{1}^{2})\\
+        g(x) &= \mathcal{N}(x;\mu_{2},\sigma_{2}^{2})
+    \end{align*}
+%
+    Entonces, su producto es una Gaussiana (a un factor de escala):
+%
+    \begin{equation*}
+        f(x)g(x) \propto \mathcal{N} \left(x; \dfrac{\sigma_{2}^{2}}{\sigma_{1}^{2} + \sigma_{2}^{2}}\mu_{1} + \dfrac{\sigma_{1}^{2}}{\sigma_{1}^{2} + \sigma_{2}^{2}}\mu_{2}, \dfrac{1}{\sigma_{1}^{-2} + \sigma_{2}^{-2}} \right)
+    \end{equation*}
+
+    Demuestre que en 1D, el paso de corrección del filtro de Kalman que se muestra a continuación es equivalente (hasta un factor de escala) a un multiplicación del estado predicho ($\mathcal{N}(x;\overline{\mu}_{1},\overline{\sigma}_{1}^{2})$) y observación ($\mathcal{N}(z;x, \sigma_{obs}^{2})$) Gaussianas con media y varianza dadas por:
+    
+    \begin{align*}
+        \mu &= \overline{\mu} + K (z - \overline{\mu})\\
+        \sigma^{2} &= (1 - K) \overline{\sigma}^{2}
+    \end{align*}
+
+    donde 
+    \begin{equation*}
+        K = \dfrac{\overline{\sigma}^{2}}{\overline{\sigma}^{2}+\sigma_{obs}^{2}}.
+    \end{equation*}
 	
 	\section{Jacobiano del Modelo de Movimiento}
 	
