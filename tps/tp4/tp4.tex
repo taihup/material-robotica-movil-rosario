@@ -142,7 +142,7 @@ python localization.py --plot none
 \end{lstlisting}
 
 
-	La línea azul traza la posición del robot, que es el resultado de acciones ruidosas. La línea verde traza el la posición del posición asumiendo que las acciones no son ruidosas. Después de implementar un filtro, la estimación del filtro de la posición del robot se dibujará en rojo.
+	La línea {\color{blue} azul} traza la posición del robot, que es el resultado de acciones ruidosas. La línea {\color{green} verde} traza el la posición del posición asumiendo que las acciones no son ruidosas. Después de implementar un filtro, la posición del robot estimada por el filtro se dibujará en {\color{red} rojo}.
 	
 	
 \begin{lstlisting}[style=bash] 
@@ -167,13 +167,13 @@ python localization.py -h
 	\subsection{Notas}
 	\begin{itemize}
 		\item Llamar a \lstinline[style=bash]{utils.minimized_angle} cada vez que un ángulo o una diferencia de ángulo pueda exceder $[-\pi, \pi]$.
-		\item Utilizar el muestreador sistemático de baja varianza de clase. Te da una distribución más suave de partículas y también requiere un único número aleatorio por paso de remuestreo.
-		\item Desactivar la visualización para una acelerar la ejecución.
+		\item Utilizar el muestreador sistemático de baja varianza visto en clase. Da una distribución más suave de partículas y también requiere un único número aleatorio por paso de remuestreo.
+		\item Desactivar la visualización para acelerar la ejecución.
 	\end{itemize}
 
 	\ejercicio Implementar EKF
     
-	Implemente el algoritmo de Filtro de Kalman Extendido en \lstinline[style=bash]{ekf.py}. Deberá completar \lstinline[style=bash]{ExtendedKalmanFilter.update} y los métodos de campo $G$, $V$ y $H$. Sus resultados de una implementación exitosa de EKF deben ser comparables	a los siguientes resultados.
+	Implementar el algoritmo de Filtro de Kalman Extendido en \lstinline[style=bash]{ekf.py}. Deberá completar \lstinline[style=bash]{ExtendedKalmanFilter.update} y los métodos $G$, $V$ y $H$. Los resultados de una implementación exitosa de EKF deben ser comparables a los siguientes resultados.
 
 \begin{lstlisting}[style=bash] 
 python localization.py ekf --seed 0
@@ -185,22 +185,22 @@ ANEES: 1.472139416194766
 
 
 	\begin{enumerate}
-		\item Trace la ruta del robot real y la ruta del filtro con los parámetros predeterminados (proporcionados).
-		\item  Grafique el error de posición medio a medida que los factores $\alpha$ y $\beta$ varían sobre $r = [1/64, 1/16, 1/4, 4, 16, 64]$\footnote{Dado que los factores se multiplican con varianzas, esto es entre 1/8 y 8 veces los valores de ruido predeterminados.} y analice cualquier cosa interesante que observes.
+		\item Graficar el camino del robot real y el camino estimado por el filtro con los parámetros predeterminados (proporcionados).
+		\item  Graficar el error de posición medio a medida que los factores $\alpha$ y $\beta$ varían sobre $r = [1/64, 1/16, 1/4, 4, 16, 64]$\footnote{Dado que los factores se multiplican con varianzas, esto es entre 1/8 y 8 veces los valores de ruido predeterminados.} y analizar los resultados obtenidos.
 		
-		Debe ejecutar 10 ensayos por valor de $r$. Una ejecución podría ser algo como:
+		Ejecutar 10 ensayos por valor de $r$. Una ejecución podría ser algo como:
 
 \begin{lstlisting}[style=bash] 
 python localización.py ekf --factor de datos 4 --factor de filtro 4
 \end{lstlisting}
 
-		\item Trace el error de posición medio y ANEES (error de estimación normalizado promedio al cuadrado) como el filtro $\alpha$, $\beta$ los factores varían sobre $r$ (como arriba) mientras que los datos se generan con el valor predeterminado. Comentar cualquier cosa que sea de interes observar.
+		\item Graficar el error de posición medio y ANEES (\emph{average normalized estimation error squared}) a medida que los factores $\alpha$, $\beta$ del filtro varían sobre $r$ (como arriba) mientras los datos son generados con los valores por defecto.. Analizar los resultados obtenidos.
 	\end{enumerate}
 
 
 	\ejercicio Implementar PF
 	
-	Implemente el algoritmo de filtro de partículas en \lstinline[style=bash]{pf.py}. Deberá completar \lstinline[style=bash]{ParticleFilter.update} y \lstinline[style=bash]{ParticleFilter.resample}.
+	Implementar el algoritmo de Filtro de Partículas en \lstinline[style=bash]{pf.py}. Se debe completar \lstinline[style=bash]{ParticleFilter.update} y \lstinline[style=bash]{ParticleFilter.resample}.
 
 \begin{lstlisting}[style=bash] 
 python localization.py pf --seed 0
@@ -211,12 +211,10 @@ ANEES: 4.914084257035511
 \end{lstlisting}
 
 	\begin{enumerate}
-		\item Trace la ruta del robot real y la ruta del filtro con los parámetros predeterminados.
-		\item Grafique el error de posición medio a medida que los factores $\alpha$, $\beta$ varían sobre $r$ y analice.
-		\item Grafique el error de posición medio y ANEES como el filtro $\alpha$, los factores $\beta$ varían sobre $r$ mientras se generan los datos
-		con el valor predeterminado.
-		\item Grafique el error de posición medio y ANEES a medida que los factores $\alpha$, $\beta$ varían sobre $r$ y el número de partículas varía
-		sobre $[20, 50, 500]$.
+		\item Graficar el camino del robot real y el camino estimado por el filtro con los parámetros predeterminados.
+		\item Graficar el error de posición medio a medida que los factores $\alpha$, $\beta$ varían sobre $r$ y discuta los resultados.
+		\item Graficar el error de posición medio y ANEES a medida que los factores $\alpha$, $\beta$ del filtro varían sobre $r$ mientras los datos son generados con los valores por defecto.
+		\item Graficar el error de posición medio y ANEES a medida que los factores $\alpha$, $\beta$ varían sobre $r$ y el número de partículas varía sobre $[20, 50, 500]$.
 	\end{enumerate}
 
 
