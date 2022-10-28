@@ -175,3 +175,42 @@
 	
 \end{frame}
 
+\begin{frame}
+    \frametitle{Tipos de SLAM Back-ends}
+    
+    \begin{itemize}
+        \item Extended Kalman Filter
+        \item Particle Filter (Rao-Blackwellized Particle Filter (FastSLAM))
+        \item Least-Squares / Graph-SLAM
+        \begin{itemize}
+            \item Pose-Graph (solo contiene las poses del robot, el mapa es marginalizado)
+            \item Factor-Graph (contiene poses y landmarks)
+        \end{itemize}
+            Herramientas de optimización
+            \begin{itemize}
+            \item Ceres
+            \item GTSAM
+            \item g2o
+            \end{itemize}
+    \end{itemize}
+
+    \TODO{agregar imagen de grafo de SLAM.}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Graph-SLAM}
+    
+    Graph-SLAM: construir un grafo y encontrar una configuración de nodos que minimiza el error introducido por las restricciones (aristas)
+    
+    \begin{itemize}
+        \item Se utiliza un grafo para representar el problema.
+        \item Los nodos representan poses o ubicaciones de landmarks.
+        \item Las aristas son observaciones de landmarks o mediciones de odometría
+        \item La minimización optimiza las poses del robot y la ubicación del los landmarks
+        \item Observar áreas previamente vistas genera restricciones en el grafo
+    \end{itemize}
+    
+\end{frame}
+
+
