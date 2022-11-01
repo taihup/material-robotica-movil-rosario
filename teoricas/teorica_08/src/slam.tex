@@ -1,14 +1,15 @@
 \begin{frame}
 	\frametitle{Material}
 	
-	Vídeos para armar estas slides:
+	Material para armar estas slides:
 	\begin{itemize}
 		\item Cyrill Stachniss SLAM \url{https://youtu.be/BuRCJ2fegcc}
+   		\item Cyrill Stachniss Factor Graph \url{https://youtu.be/uuiaqGLFYa4}
 		\item Cyrill Stachniss Graph-based SLAM using Pose Graphs \url{https://youtu.be/uHbRKvD8TWg}
 		\item Cyrill Stachniss Graph-Based SLAM with Landmarks \url{https://youtu.be/mZBdPgBtrCM}
-		\item Cyrill Stachniss Robust Least Squares for Graph-Based SLAM \url{https://youtu.be/z60RbiY18I8}
-		\item Cyrill Stachniss Factor Graph \url{https://youtu.be/uuiaqGLFYa4}
-		\item Cyrill Stachniss Hierarchical Pose Graphs for SLAM \url{https://youtu.be/uRSow8nMEw8}
+        %\item Cyrill Stachniss Least Squares \url{https://youtu.be/yVd-QDy0K6k}
+		%\item Cyrill Stachniss Robust Least Squares for Graph-Based SLAM \url{https://youtu.be/z60RbiY18I8}
+		%\item Cyrill Stachniss Hierarchical Pose Graphs for SLAM \url{https://youtu.be/uRSow8nMEw8}
 		\item Wolfram Burgard, Giorgio Grisetti, and Cyrill Stachniss: Graph-based SLAM \url{https://youtu.be/Alu59K8zvYs}
 		\item Frank Dellaert \url{https://youtu.be/tm4E1o11kGo}
         \item Apunte Frank Dellaert and Michael Kaess \url{https://www.cs.cmu.edu/~kaess/pub/Dellaert17fnt.pdf}
@@ -177,11 +178,11 @@
 
 \begin{frame}
     \frametitle{Tipos de SLAM Back-ends}
-    
+    \note{Información extraída de https://youtu.be/BuRCJ2fegcc y de https://youtu.be/Alu59K8zvYs}
     \begin{itemize}
-        \item Extended Kalman Filter
-        \item Particle Filter (Rao-Blackwellized Particle Filter (FastSLAM))
-        \item Least-Squares / Graph-SLAM
+        \item Basados en Kalman Filter (EKF-SLAM)
+        \item Basados en Particle Filter (FastSLAM, Rao-Blackwellized Particle Filter, Gmapping)
+        \item Basados en Least-Squares (Graph-SLAM, Bundle Adjustment)
         \begin{itemize}
             \item Pose-Graph (solo contiene las poses del robot, el mapa es marginalizado)
             \item Factor-Graph (contiene poses y landmarks)
@@ -194,7 +195,9 @@
             \end{itemize}
     \end{itemize}
 
-    \TODO{agregar imagen de grafo de SLAM.}
+	\begin{figure}[!h]
+        \includegraphics[width=0.2\textwidth]{images/slam-landmarks.pdf}
+    \end{figure}
     
 \end{frame}
 
@@ -214,6 +217,26 @@
 	\begin{figure}[!h]
         \includegraphics[width=0.3\textwidth]{images/slam-landmarks.pdf}
     \end{figure}
+    
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Factor-Graph}
+    \note{Información extraída de https://youtu.be/uuiaqGLFYa4}
+    
+    \begin{block}{Factor-Graph}
+        Un Factor-graph es un término matemático, un grafo bipartito representando la factorización de una función. Esto significa que podemos tomar una función por ejemplo $g(.)$ y descomponerla mediante el producto de funciones $f(.)$,
+        
+        \begin{equation*}
+            g(X_{1}, \dots, X_{n}) = \prod_{i} f_{i}(S_{i}) \quad \text{con} \quad S_{i} 	\subseteq \{ X_{1},\dots, X_{n} \}
+        \end{equation*}
+    \end{block}
+
+    \TODO{agregar ejemplo de https://youtu.be/uuiaqGLFYa4}
+
+
+    \note{Por ejemplo, si la función g depende de 10 variables podemos descomponerla en el profucto de varias funciones f, donde cada función f depende de un subconjunto de esas variables.}
     
 \end{frame}
 
