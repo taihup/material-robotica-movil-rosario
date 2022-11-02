@@ -214,8 +214,15 @@
         \item Observar áreas previamente vistas genera restricciones en el grafo
     \end{itemize}
 
-	\begin{figure}[!h]
-        \includegraphics[width=0.3\textwidth]{images/slam-landmarks.pdf}
+    \begin{figure}
+    \subfloat[]
+    {
+        \fbox{\includegraphics[width=0.25\textwidth]{images/slam-landmarks.pdf}}
+    }\hspace{1em}
+    \subfloat[]
+    {
+        \fbox{\includegraphics[width=0.375\textwidth]{images/factor_graph.pdf}}
+    }
     \end{figure}
     
 \end{frame}
@@ -233,10 +240,41 @@
         \end{equation*}
     \end{block}
 
-    \TODO{agregar ejemplo de https://youtu.be/uuiaqGLFYa4}
-
+    Los grafos de factores nos permiten representar una distribución de probabilidad conjunta (distribución que gobierna sobre todas las variables) como un producto de probabilidades más chicas (que dependen de un menor número de variables).
+    
+    Al igual que las redes de bayes o redes de markov, podemos utilizar los Factor-graph para describir relaciones de independencia entre variables. Y podemos correr diferentes algoritmos sobre estos factor-graphs para inferir información de una manera eficiente.
 
     \note{Por ejemplo, si la función g depende de 10 variables podemos descomponerla en el profucto de varias funciones f, donde cada función f depende de un subconjunto de esas variables.}
+    
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Factor-Graph}
+    \note{Información extraída de https://youtu.be/uuiaqGLFYa4}
+    
+    
+    Los Factor-Graph nos permiten representar una distribución de probabilidad conjunta (distribución que gobierna sobre todas las variables) como un producto de probabilidades más chicas (que dependen de un menor número de variables).
+    
+    Al igual que las redes de bayes o redes de markov, podemos utilizar los Factor-Graph para describir relaciones de independencia entre variables. Y podemos correr diferentes algoritmos sobre estos Factor-Graph para inferir información de una manera eficiente.
+    
+    \note{Por ejemplo, si la función g depende de 10 variables podemos descomponerla en el profucto de varias funciones f, donde cada función f depende de un subconjunto de esas variables.}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Bundle Adjustment}
+    \note{Información extraída de https://youtu.be/BuRCJ2fegcc y de https://youtu.be/mZBdPgBtrCM}
+    
+    Bundle Adjustment es un caso
+    
+    \begin{itemize}
+        \item Reconstrucción 3D basada en imágenes tomadas de diferentes puntos de vista
+        \item Minimiza el error de reproyección en el plano de la imagen 2D
+        \item No hay noción de odometría (pose-pose constraints)
+        \item En general utiliza como método de minimización Levenberg-Marquart
+        \item Desarrollado en el área de Fotogrametría\footnote{Fotogrametría es la técnica cuyo objeto es estudiar y definir con precisión la forma, dimensiones y posición en el espacio de un objeto cualquiera, utilizando esencialmente medidas hechas sobre una o varias fotografías de ese objeto} durante la década de 1950
+    \end{itemize}
     
 \end{frame}
 
