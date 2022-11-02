@@ -537,18 +537,25 @@ tenemos entonces:
         \end{equation*}
     \end{itemize}
     
-    Entonces, el valor de la celda $i$ en el instante $t$ se actualiza con la suma del $inv\_sensor\_model$ (término que depende de mi observación actual) y el valor anterior que tenía la celda $i$, menos el prior de información. The occupancygrid mapping algorithm requires a marginalize dinverse mea-surement model,p(mi|x, z). This probability is called inverse since it rea-sons from effects to causes: it provides information about the world condi-tionedonameasurementcausedbythisworld.
-    
-    Inversemodelsareoftenusedinsituationswheremeasurementsaremorecomplexthanthebinarystate. Anexampleofsuchasituationistheproblemofestimatingwhetherornotadoorisclosedfromcameraimages. Herethestate is extremely simple, but the space of all measurements is huge. It iseasiertodeviseafunctionthatcalculatesaprobabilityofadoorbeingclosedfromacameraimage,thandescribingthedistributionoverallcameraimagesthatshowacloseddoor. Inotherwords,itiseasiertoimplementaninversethanaforwardsensormodel.
-    
-    forward measurement model vs inverse measurement model
-    \url{https://www.cs.cmu.edu/~thrun/papers/thrun.occ-journal.pdf}
-    \url{http://robots.stanford.edu/papers/thrun.iros01-occmap.pdf}
-    
-    Forward models describe the physics of the environment, from causes (occupancy) to effects (measurements). They will be denoted $p(\observation | \map)$.
+    Entonces, el valor de la celda $i$ en el instante $t$ se actualiza con la suma del $inv\_sensor\_model$ (término que depende de mi observación actual) y el valor anterior que tenía la celda $i$, menos el prior de información.
     
 \end{frame}
 
+\begin{frame}
+	\frametitle{Forward measurement model vs inverse measurement model}
+	\note{información extraída de https://youtu.be/v-Rm9TUG9LA}
+	
+	The occupancy grid mapping algorithm requires a marginalized inverse measurement model, $p(\map_{i}|\state, \observation )$. This probability is called inverse since it reasons from effects to causes: it provides information about the world conditioned on a measurement caused by this world.
+	
+	Inverse models are often used in situations where measurements are more complex than the binary state. An example of such a situation is the problem of estimating whether or not a door is closed from camera images. Here the state is extremely simple, but the space of all measurements is huge. It is easier to devise a function that calculates a probability of a door being closed from a camera image, than describing the distribution over all camera images that show a closed door. In other words, it is easier to implement an inverse than a forward sensor model.
+	
+	forward measurement model vs inverse measurement model
+	\url{https://www.cs.cmu.edu/~thrun/papers/thrun.occ-journal.pdf}
+	\url{http://robots.stanford.edu/papers/thrun.iros01-occmap.pdf}
+	
+	Forward models describe the physics of the environment, from causes (occupancy) to effects (measurements). They will be denoted $p(\observation | \map)$.
+	
+\end{frame}
 
 \begin{frame}
     \frametitle{Algoritmo de Mapeo de Ocupación}
