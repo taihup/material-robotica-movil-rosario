@@ -241,7 +241,7 @@
     \end{block}
 
     \begin{figure}
-        \includegraphics[width=0.5\textwidth]{images/factor_graph_example.pdf}
+        \includegraphics[width=0.7\textwidth]{images/factor_graph_example.pdf}
     \end{figure}
 
     \note{Por ejemplo, si la función g depende de 10 variables podemos descomponerla en el profucto de varias funciones f, donde cada función f depende de un subconjunto de esas variables.}
@@ -255,12 +255,28 @@
     
     \begin{itemize}
         \item Los Factor-Graph nos permiten representar una distribución de probabilidad conjunta (distribución que gobierna sobre todas las variables) como un producto de probabilidades más chicas (que dependen de un menor número de variables).
-        \item Al igual que las redes de Bayes o redes de Markov, podemos utilizar los Factor-Graph para describir relaciones de independencia entre variables. Y podemos correr diferentes algoritmos sobre estos Factor-Graph para inferir información de una manera eficiente.
+        \item Al igual que las redes de Bayes o redes de Markov, podemos utilizar los Factor-Graph para describir cómo las variables dependen entre si. Y podemos correr diferentes algoritmos sobre estos Factor-Graph para inferir información de una manera eficiente.
+        \item Ejemplo de algorimo que trabaja sobre Factor-graph, es el Algoritmo de Sum-product para el computo de distribuciones marginales (distribuciones que solamente dependen un subconjunto de variables).
+        \item En el contexto de robótica los Factor-graph son utilizados para especificar problemas de mínimos cuadrados. El factor graph nos permite representar cómo ciertos estados dependen o estan relacionados entre sí basados en la información que tenemos de las mediciones de los sensores (almacenada en los factores).
     \end{itemize}
     
     \note{Por ejemplo, si la función g depende de 10 variables podemos descomponerla en el profucto de varias funciones f, donde cada función f depende de un subconjunto de esas variables.}
     
 \end{frame}
+
+\begin{frame}
+    \frametitle{Graph-based SLAM usando Pose-Graph}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Graph-Based SLAM con landmarks}
+    \note{Información extraída de https://youtu.be/mZBdPgBtrCM}
+    
+\end{frame}
+
 
 \begin{frame}
     \frametitle{Bundle Adjustment}
