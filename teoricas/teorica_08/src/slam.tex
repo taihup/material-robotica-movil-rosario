@@ -13,6 +13,7 @@
 		\item Wolfram Burgard, Giorgio Grisetti, and Cyrill Stachniss: Graph-based SLAM \url{https://youtu.be/Alu59K8zvYs}
 		\item Frank Dellaert \url{https://youtu.be/tm4E1o11kGo}
         \item Apunte Frank Dellaert and Michael Kaess \url{https://www.cs.cmu.edu/~kaess/pub/Dellaert17fnt.pdf}
+        \item \url{http://ais.informatik.uni-freiburg.de/teaching/ss13/robotics/slides/16-graph-slam.pdf}
 	\end{itemize}
 	
 \end{frame}
@@ -267,10 +268,60 @@
 \begin{frame}
     \frametitle{Graph-based SLAM usando Pose-Graph}
     \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    \begin{itemize}
+        content...
+    \end{itemize}
     
-    \begin{figure}[!h]
-        \includegraphics[width=0.7\textwidth]{images/factor_graph_edge_example.pdf}
-    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Graph-based SLAM usando Pose-Graph}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Graph-based SLAM usando Pose-Graph}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+        \begin{itemize}
+            \item<1-2> Cada nodo es una pose del robot junto con su medición de laser (no hay landmarks)
+            \item<1-2> Cada arista corresponde a una restricción espacial entre los nodos que relaciona.
+            \item<3-> Una vez que tenemos el grafo, obtenemos el mapa mas probable mediante la corrección de los nodos
+            \item<4-> así...
+            \item<5> Dibujamos el mapa basandonos en las poses corregidas
+        \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}  %%<--- here
+                \only<1>{\includegraphics[width=0.7\textwidth]{images/pose_graph_map.png}}
+                \only<2>{\includegraphics[width=0.7\textwidth]{images/pose_graph_constraints_with_map.png}}
+                \only<3>{\includegraphics[width=0.7\textwidth]{images/pose_graph_constraints.png}}
+                \only<4>{\includegraphics[width=0.5\textwidth]{images/pose_graph_optimized.png}}
+                \only<5>{\includegraphics[width=0.5\textwidth]{images/pose_graph_optimized_with_map.png}}
+        \end{column}
+    \end{columns}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Graph-based SLAM usando Pose-Graph}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item Cada nodo es una pose del robot (no hay landmarks)
+                \item Cada arista corresponde a una restricción espacial entre los nodos que relaciona.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}  %%<--- here
+            \begin{figure}[!h]
+                \includegraphics[width=0.7\textwidth]{images/factor_graph_edge_example.pdf}
+            \end{figure}
+        \end{column}
+    \end{columns}
     
 \end{frame}
 
