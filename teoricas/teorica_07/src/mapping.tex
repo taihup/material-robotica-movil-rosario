@@ -148,7 +148,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{TSDF: Truncated Signed Sistance Function}
+    \frametitle{TSDF: Truncated Signed Distance Function}
    
    	\begin{figure}[!h]
 	   	\centering
@@ -233,19 +233,19 @@
     \end{figure}
 
 
-	Los \emph{Occupancy Grid Maps} hacen asunciones acerca del mundo.
+	Los \emph{Occupancy Grid Maps} hacen suposiciones acerca del mundo.
        
 \end{frame}
 
 \begin{frame}
-    \frametitle{Asunciones Occupancy Grid Maps}
+    \frametitle{Suposiciones de Occupancy Grid Maps}
     \note{información extraída de https://youtu.be/v-Rm9TUG9LA}
     
-    \begin{block}{Asunción 1}
+    \begin{block}{Suposición 1}
 	    El área de una celda esta o completamente libre u ocupada.
     \end{block}
 
-	Esta asunción no sucede en la realidad ya que puede haber objetos que sean menores que el tamaño de la celda u objetos que cubran parcialmente una celda.
+	Esta suposición no sucede en la realidad ya que puede haber objetos que sean menores que el tamaño de la celda u objetos que cubran parcialmente una celda.
 	
   	\begin{figure}[!h]
 		\includegraphics[width=0.7\columnwidth]{./images/grid_map.pdf}
@@ -284,7 +284,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Asunción 2}
+    \frametitle{Suposición 2}
     \note{información extraída de https://youtu.be/v-Rm9TUG9LA}
     El mundo es estático.
     
@@ -297,7 +297,7 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Asunción 3}
+	\frametitle{Suposición 3}
 	\note{información extraída de https://youtu.be/v-Rm9TUG9LA}
 	Las celdas (las variables aleatorias) son independientes entre sí.
 	
@@ -585,7 +585,7 @@ tenemos entonces:
 \end{frame}
 
 \begin{frame}
-    \frametitle{Algoritmo de Mapeo de Ocupación}
+    \frametitle{Inverse sensor model para Laser Range Finder}
     \note{información extraída de https://youtu.be/v-Rm9TUG9LA}
     
    	\begin{figure}[!h]
@@ -594,5 +594,26 @@ tenemos entonces:
     
 \end{frame}
 
+\begin{frame}
+    \frametitle{Bresenham's line algorithm}
+    \note{información extraída de https://youtu.be/v-Rm9TUG9LA}
+    
+    
+    \TODO{agregar imagen de Bresenham's line algorithm como hace cyrill stachniss}
+\end{frame}
 
+\begin{frame}
+    \frametitle{Agregar vídeo de ejemplo}
+    \note{información extraída de https://youtu.be/v-Rm9TUG9LA}
+   
+    
+    \TODO{agregar vídeo de ejemplo de grid mapping como hace cyrill stachniss}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Resumen: Occupancy Grid Map}
+    \note{información extraída de https://youtu.be/v-Rm9TUG9LA}
+    
+    \TODO{agregar resumen de Occupancy Grid Map como hace cyrill stachniss}
+\end{frame}
 
