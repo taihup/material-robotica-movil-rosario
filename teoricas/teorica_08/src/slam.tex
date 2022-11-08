@@ -268,15 +268,29 @@
 \begin{frame}
     \frametitle{Graph-based SLAM usando Pose-Graph}
     \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    
     \begin{itemize}
-		\item asdf
+		\item Las restricciones conectan las poses del robot mientras se desplaza
+		\item Las restricciones tiene ruido
     \end{itemize}
+
+	\begin{figure}[!h]
+		\includegraphics[width=0.7\textwidth]{images/pose_graph_example.pdf}
+	\end{figure}
     
 \end{frame}
 
 \begin{frame}
     \frametitle{Graph-based SLAM usando Pose-Graph}
     \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    
+    \begin{itemize}
+    	\item Observando áreas previamente vistas se generan restricciones entre poses no consecutivas (\emph{Loop Closure})
+    \end{itemize}
+    
+   	\begin{figure}[!h]
+    	\includegraphics[width=0.4\textwidth]{images/pose_graph_loop_example.pdf}
+    \end{figure}
     
 \end{frame}
 
@@ -308,8 +322,11 @@
 \begin{frame}
 	\frametitle{Graph-based SLAM usando Pose-Graph}
 	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
-	\begin{itemize}
-		\item asdf
+    \begin{itemize}
+		\item Hay un interplay entre el front-end y el back-end
+		\item El mapa ayuda a determinar las restricciones reduciendo el espacio de búsqueda
+		\item El front-end se encarga de convertir las mediciones crudas de los sensores en restricciones en el grafo.
+		\item El back-end se encarga de tomar las restricciones dadas por el front-end y optimizar el grafo.
 	\end{itemize}
 	
 	\begin{figure}[!h]
