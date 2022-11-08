@@ -320,6 +320,30 @@
 \end{frame}
 
 \begin{frame}
+	\frametitle{El grafo en pose-graph}
+	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+	
+	\begin{itemize}
+		\item Consiste en $n$ nodos $x=x_{1:n}$
+		\item Cada $x_{i}$ es una pose del robot en el tiempo $t_{i}$
+		\item Una restricción/arista existe entre el nodo $x_{i}$ y $x_{j}$ si el robot se muede de $x_{i}$ a $x_{i+1}$
+		\item Las aristas corresponden a odometría
+	\end{itemize}
+	
+ \begin{figure}
+		\subfloat[]
+		{
+			\fbox{\includegraphics[width=0.3\textwidth]{pose_graph_loop_example.pdf}}
+		}\hfill{}
+		\subfloat[]
+		{
+			\fbox{\includegraphics[width=0.44\textwidth]{pose_graph_odometry_edge.pdf}}
+		}
+	\end{figure}
+	
+\end{frame}
+
+\begin{frame}
 	\frametitle{Graph-based SLAM usando Pose-Graph}
 	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
     \begin{itemize}
