@@ -352,6 +352,8 @@
 \begin{frame}
 	\frametitle{Filtro de Bayes Binario para Estado Estático}
 	\note{información extraída de https://youtu.be/v-Rm9TUG9LA}
+    
+    \TODO{colorear los resultados de los términos que cambian}
 	
 	\begin{align*}
 		\only<1->{
@@ -367,9 +369,9 @@
 		\overset{\text{independencia}}{=}& \dfrac{p(\map_{i} | \observation_{t}, \state_{t}) p(\observation_{t} | \state_{t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\map_{i})p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}}
 	\end{align*}
 
-	\only<2>{Aplicamos Markov: La observación de ahora es independiente de las mediciones y poses anteriores.	También, en el segundo término podemos ignorar xt. Esto es, saber mi posición en el instante $t$ sin tener mediciones en dicho instante, no me va a servir de determinar si una celda esta libre u ocupada. El único caso dónde esto puede servir en la práctica es si el robot se encuentra encima de esa celda, y por tanto la celda esta libre de obstáculos ya que estoy parada sobre ella.}
+	\only<2>{Aplicamos Markov: La observación de ahora es independiente de las mediciones y poses anteriores. También, en el segundo término podemos ignorar $x_{t}$. Esto es, saber mi posición en el instante $t$ sin tener mediciones en dicho instante, no me va a servir de determinar si una celda esta libre u ocupada. El único caso dónde esto puede servir en la práctica es si el robot se encuentra encima de esa celda, y por tanto la celda esta libre de obstáculos ya que está parada sobre ella.}
 	
-	\only<3>{Aplicamos regla de bayes en el primer término de la multiplicación}
+	\only<3>{Aplicamos Regla de Bayes en el primer término de la multiplicación}
 	
 	\only<4>{Asumimos Independencia: nuevamente saber donde estamos no nos sirve para saber si una celda está libre u ocupada.}
 	
@@ -544,14 +546,11 @@ tenemos entonces:
 \begin{frame}
 	\frametitle{Forward measurement model vs inverse measurement model}
 	\note{información extraída de https://youtu.be/v-Rm9TUG9LA}
-	
-	%The occupancy grid mapping algorithm requires a marginalized inverse measurement model, $p(\map_{i}|\state, \observation )$. This probability is called inverse since it reasons from effects to causes: it provides information about the world conditioned on a measurement caused by this world.
-	
+    
+    \TODO{explicar mejor invese sensor model y formard sensor model}
+   
 	El algoritmo \emph{occupancy grid mapping} requiere un modelo marginalized inverse measurement model, $p(\map_{i}|\state, \observation )$. Esta probabilidad se llama inversa ya que razona de efectos a causas: proporciona información sobre el mundo condicionada a una medida provocada por este mundo.
-	
-	%Inverse models are often used in situations where measurements are more complex than the binary state. An example of such a situation is the problem of estimating whether or not a door is closed from camera images. Here the state is extremely simple, but the space of all measurements is huge. It is easier to devise a function that calculates a probability of a door being closed from a camera image, than describing the distribution over all camera images that show a closed door. In other words, it is easier to implement an inverse than a forward sensor model.
-	
-	
+
 	Los \emph{inverse models} se utilizan a menudo en situaciones en las que las medidas son más complejas que el estado binario. Un ejemplo de tal situación es el problema de estimar si una puerta está cerrada o no a partir de imágenes de una cámara. Aquí el estado es extremadamente simple, pero el espacio de todas las mediciones es enorme. Es más fácil entonces idear una función que calcule la probabilidad de que una puerta este cerrada a partir de una imagen, que describir la distribución de probabilidad sobre todas las imágenes que muestran una puerta cerrada. En otras palabras, es más fácil implementar un modelo de sensor inverso que uno directo.
 	
 	
