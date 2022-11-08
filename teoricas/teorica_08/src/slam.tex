@@ -326,20 +326,49 @@
 	\begin{itemize}
 		\item Consiste en $n$ nodos $x=x_{1:n}$
 		\item Cada $x_{i}$ es una pose del robot en el tiempo $t_{i}$
-		\item Una restricción/arista existe entre el nodo $x_{i}$ y $x_{j}$ si el robot se muede de $x_{i}$ a $x_{i+1}$
+		\item Una restricción/arista existe entre el nodo $x_{i}$ y $x_{j}$ si ...
+	\end{itemize}
+	
+ 	\begin{figure}[!h]
+		\includegraphics[width=0.3\textwidth]{pose_graph_loop_example.pdf}
+	\end{figure}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Crear una arista si...}
+	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+	
+	\begin{itemize}
+		\item Una restricción/arista existe entre el nodo $x_{i}$ y $x_{j}$ si el robot se mueve de $x_{i}$ a $x_{i+1}$
 		\item Las aristas corresponden a odometría
 	\end{itemize}
 	
- \begin{figure}
-		\subfloat[]
-		{
-			\fbox{\includegraphics[width=0.3\textwidth]{pose_graph_loop_example.pdf}}
-		}\hfill{}
-		\subfloat[]
-		{
-			\fbox{\includegraphics[width=0.44\textwidth]{pose_graph_odometry_edge.pdf}}
-		}
+	\begin{figure}[!h]
+		\includegraphics[width=0.44\textwidth]{pose_graph_odometry_edge.pdf}
 	\end{figure}
+	
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Crear una arista si...}
+	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+	
+	\begin{itemize}
+		\item<1-> Una restricción/arista existe entre el nodo $x_{i}$ y $x_{j}$ si el robot observa la misma parte del entorno desde $x_{i}$ y desde $x_{j}$
+		\item<2>  Construimos una restricción virtual entre la posición de $x_{j}$ vista desde $x_{i}$
+	\end{itemize}
+	\only<1>{
+		\begin{figure}
+			\includegraphics[width=0.44\textwidth]{pose_graph_edge_lidar.pdf}
+		\end{figure}
+	}
+	\only<2>{
+		\begin{figure}
+			\includegraphics[width=0.44\textwidth]{pose_graph_edge_lidar2.pdf}
+		\end{figure}
+	}
 	
 \end{frame}
 
