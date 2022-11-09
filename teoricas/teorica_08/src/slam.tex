@@ -527,7 +527,7 @@
 
 
 \begin{frame}
-	\frametitle{Jacobianos y problema esparso}
+	\frametitle{Jacobianos y problema disperso}
 	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
 	
 	\begin{itemize}
@@ -554,16 +554,16 @@
 
 
 \begin{frame}
-	\frametitle{Consecuencia de que sea un problema esparso}
+	\frametitle{Consecuencia de que sea un problema disperso}
 	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
 	
 	\begin{itemize}
-		\item Necesitamos computar el vector de coeficientes
+		\item Necesitamos computar el vector coeficiente
 		\begin{align*}
 			\linearSystemb^{\top} &= \sum_{ij} \linearSystemb_{ij}^{\top} = \sum_{ij} \error_{ij}^{\top}\Omega_{ij}\jacobian_{ij}\\
 			\linearSystemH &= \sum_{ij} \linearSystemH_{ij} = \sum_{ij} \jacobian_{ij}^{\top}\Omega_{ij}\jacobian_{ij}
 		\end{align*}
-		\item La estructura esparsa de $\jacobian_{ij}$ resultará en una estructura esparsa de $\linearSystemH$
+		\item La estructura dispersa de $\jacobian_{ij}$ resultará en una estructura dispersa de $\linearSystemH$
 		\item Esta estructura refleja la matriz de adyacencia del grafo
 	\end{itemize}
 	
@@ -580,18 +580,92 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Consecuencia de que sea un problema esparso}
+	\frametitle{Consecuencia de que sea un problema disperso}
 	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
 	
- \begin{figure}
+ 	\begin{figure}
 		\includegraphics[width=0.9\textwidth]{linear_system_sparsity2.pdf}
 	\end{figure}
 	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Resumen del problema esparso}
+	\frametitle{Consecuencia de que sea un problema disperso}
 	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+	
+	\begin{itemize}
+		\item Una arista contribuye al sistema lineal a través de $\linearSystemb_{ij}$ y $\linearSystemH_{ij}$
+		\item El vector coeficiente es
+		
+		\begin{align*}
+			\linearSystemb_{ij}^{\top} &= \error_{ij}^{\top}\informationMatrix_{ij}\jacobian_{ij}\\
+			&= \error_{ij}^{\top}\informationMatrix_{ij}
+				\begin{bmatrix}
+					0 & \dots & \vec{A}_{ij} & \dots & \vec{B}_{ij} & \dots & 0
+				\end{bmatrix}\\
+			&= 
+				\begin{bmatrix}
+					0 & \dots & \error_{ij}^{\top}\informationMatrix_{ij}\vec{A}_{ij} & \dots & \error_{ij}^{\top}\informationMatrix_{ij}\vec{B}_{ij} & \dots & 0
+				\end{bmatrix}
+		\end{align*}
+		\item Es diferente a cero solamente en los índices correspondientes de $\stateBold_{i}$ y $\stateBold_{j}$		
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Consecuencia de que sea un problema disperso}
+	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+	
+	\begin{itemize}
+		\item La matriz coeficiente de una arista es
+
+		\begin{align*}
+			\linearSystemH_{ij}^{\top} &= \jacobian_{ij}^{\top}\informationMatrix_{ij}\jacobian_{ij}\\
+			&= 
+			\begin{bmatrix}
+				\vdots \\
+				\vec{A}_{ij}^{\top}\\
+				\vdots \\
+				\vec{B}_{ij}^{\top}\\
+				\vdots
+			\end{bmatrix} \informationMatrix_{ij}
+			\begin{bmatrix}
+				\cdots & \vec{A}_{ij} & \cdots & \vec{B}_{ij} & \cdots
+			\end{bmatrix}\\
+			&= 
+			\begin{bmatrix}
+				\vec{A}_{ij}^{\top}\informationMatrix_{ij}\vec{A}_{ij} & \vec{A}_{ij}^{\top}\informationMatrix_{ij}\vec{B}_{ij}\\
+				\vec{B}_{ij}^{\top}\informationMatrix_{ij}\vec{A}_{ij} & \vec{B}_{ij}^{\top}\informationMatrix_{ij}\vec{B}_{ij}
+			\end{bmatrix}
+		\end{align*}
+		\item Es diferente a cero en los bloques relacionados con $i,j$
+	\end{itemize}
+	
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Resumen del problema disperso}
+	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+	
+	\begin{itemize}
+		\item Una arista ij solo contribuye a
+		\begin{itemize}
+			\item i-ésimo y j-ésimo bloques de $\linearSystemb_{ij}$
+			\item los bloques $ii$, $jj$, $ij$ y $jj$ de $\linearSystemH_{ij}$ç
+		\end{itemize}
+		\item el sistema resultante es disperso
+		\item El sistema se puede computar sumando las contribuciones de cada arista
+		\item Se pueden utilizar diferentes solvers
+		\begin{itemize}
+			\item Descoposición de Sparse Cholesky
+			\item Gradiente conjudado
+			\item muchos más...
+		\end{itemize}
+
+	\end{itemize}
+	
 	
 \end{frame}
 
@@ -599,6 +673,33 @@
 	\frametitle{El sistema Lineal}
 	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
 	
+	\begin{itemize}
+		\item Vector de incrementos de estado
+		\begin{equation*}
+			\Delta\stateBold^{\top} =
+			\begin{bmatrix}
+			\Delta\stateBold_{1}^{\top}	& \Delta\stateBold_{2}^{\top} & \cdots & \Delta\stateBold_{n}^{\top}
+			\end{bmatrix}
+		\end{equation*}
+	\item Vector coeficiente
+		\begin{equation*}
+			\linearSystemb^{\top} =
+			\begin{bmatrix}
+				\overline{\linearSystemb}_{1}^{\top} & \overline{\linearSystemb}_{2}^{\top} & \cdots & \overline{\linearSystemb}_{n}^{\top}
+			\end{bmatrix}
+		\end{equation*}
+	\item Matriz de ecuaciones normales
+		\begin{equation*}
+			\linearSystemH =
+			\begin{bmatrix}
+			\overline{\linearSystemH}_{11} & \overline{\linearSystemH}_{12} & \cdots & \overline{\linearSystemH}_{1n}\\
+			\overline{\linearSystemH}_{21} & \overline{\linearSystemH}_{22} & \cdots & \overline{\linearSystemH}_{2n}\\
+			\vdots & \vdots & \ddots & \vdots\\
+			\overline{\linearSystemH}_{n1} & \overline{\linearSystemH}_{n2} & \cdots & \overline{\linearSystemH}_{nn}\\
+			\end{bmatrix}
+		\end{equation*}
+	\end{itemize}
+
 \end{frame}
 
 \begin{frame}
