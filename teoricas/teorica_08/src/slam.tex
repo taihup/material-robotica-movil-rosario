@@ -505,18 +505,20 @@
         
         \item<3-> Pregunta: ¿Hay alguna consecuencia en la estructura del Jacobiano?
         
-        \only<4->{Si, será diferente a cerosolamente en las filas correspondientes a  $\stateBold_{i}$ y $\stateBold_{j}$}
+        \only<4->{
+        	Si, será diferente a cero solamente en las filas correspondientes a  $\stateBold_{i}$ y $\stateBold_{j}$
         
-        \begin{align*}
-            \dfrac{\partial\error_{ij}(\stateBold)}{\partial\stateBold} &= 
-            \begin{bmatrix}
-                0 & \dots & \dfrac{\error_{ij}(\stateBold_{i})}{\partial\stateBold_{i}} & \dots & 0 & \dots & \dfrac{\error_{ij}(\stateBold_{j})}{\partial\stateBold_{j}} & \dots & 0
-            \end{bmatrix} \\
-            \jacobian_{ij} &= 
-                \begin{bmatrix}
-                    0 & \dots & \vec{A}_{ij} & \dots & 0 & \dots & \vec{B}_{ij} & \dots & 0
-                \end{bmatrix}
-        \end{align*}
+	        \begin{align*}
+	            \dfrac{\partial\error_{ij}(\stateBold)}{\partial\stateBold} &= 
+	            \begin{bmatrix}
+	                0 & \dots & \dfrac{\error_{ij}(\stateBold_{i})}{\partial\stateBold_{i}} & \dots & 0 & \dots & \dfrac{\error_{ij}(\stateBold_{j})}{\partial\stateBold_{j}} & \dots & 0
+	            \end{bmatrix} \\
+	            \jacobian_{ij} &= 
+	                \begin{bmatrix}
+	                    0 & \dots & \vec{A}_{ij} & \dots & 0 & \dots & \vec{B}_{ij} & \dots & 0
+	                \end{bmatrix}
+	        \end{align*}
+	    }
         
         
     \end{itemize}
@@ -528,6 +530,26 @@
 	\frametitle{Jacobianos y problema esparso}
 	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
 	
+	\begin{itemize}
+		\item El error $\error_{ij}(\stateBold)$ depende solamente de los bloques de parámetros $\stateBold_{i}$ y $\stateBold_{j}$
+		
+		\begin{equation*}
+			\error_{ij}(\stateBold) =\error_{ij}(\stateBold_{i} ,\stateBold_{j})
+		\end{equation*}
+	
+		\item El Jacobiano será cero en todos lados excepto en las columnas $\stateBold_{i}$ y $\stateBold_{j}$
+		
+   		\begin{equation*}
+			\jacobian_{ij} = 
+			\begin{bmatrix}
+				0 & \dots & 0 & \dfrac{\error_{ij}(\stateBold_{i})}{\partial\stateBold_{i}} & 0 & \dots & 0 & \dfrac{\error_{ij}(\stateBold_{j})}{\partial\stateBold_{j}} & 0 & \dots & 0
+			\end{bmatrix}
+		\end{equation*}
+		
+	\end{itemize}
+
+	Esto nos permite resolver SLAM de manera eficiente!
+	
 \end{frame}
 
 
@@ -535,11 +557,25 @@
 	\frametitle{Consecuencia de que sea un problema esparso}
 	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
 	
+	\begin{itemize}
+		\item Necesitamos computar el vector de coeficientes
+		\begin{align*}
+			\linearSystemb^{\top} &= \sum_{ij} \linearSystemb_{ij}^{\top} = \sum_{ij} \error_{ij}^{\top}\Omega_{ij}\jacobian_{ij}\\
+			\linearSystemH &= \sum_{ij} \linearSystemH_{ij} = \sum_{ij} \jacobian_{ij}^{\top}\Omega_{ij}\jacobian_{ij}
+		\end{align*}
+		\item La estructura esparsa de $\jacobian_{ij}$ resultará en una estructura esparsa de $\linearSystemH$
+		\item Esta estructura refleja la matriz de adyacencia del grafo
+	\end{itemize}
+	
 \end{frame}
 
 \begin{frame}
 	\frametitle{Ilustración de la estructura}
 	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+	
+    \begin{figure}
+		\includegraphics[width=0.9\textwidth]{linear_system_sparsity.pdf}
+	\end{figure}
 	
 \end{frame}
 
