@@ -498,6 +498,28 @@
 \begin{frame}
 	\frametitle{Derivada de la función de error}
 	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    \begin{itemize}
+        \item<1-> Pregunta: ¿Depende un término de error $\error_{ij}(\stateBold)$ de todas las variables de estado?
+        
+        \only<2->{No, solo depende de $\stateBold_{i}$ y $\stateBold_{j}$}
+        
+        \item<3-> Pregunta: ¿Hay alguna consecuencia en la estructura del Jacobiano?
+        
+        \only<4->{Si, será diferente a cerosolamente en las filas correspondientes a  $\stateBold_{i}$ y $\stateBold_{j}$}
+        
+        \begin{align*}
+            \dfrac{\partial\error_{ij}(\stateBold)}{\partial\stateBold} &= 
+            \begin{bmatrix}
+                0 & \dots & \dfrac{\error_{ij}(\stateBold_{i})}{\partial\stateBold_{i}} & \dots & 0 & \dots & \dfrac{\error_{ij}(\stateBold_{j})}{\partial\stateBold_{j}} & \dots & 0
+            \end{bmatrix} \\
+            \jacobian_{ij} &= 
+                \begin{bmatrix}
+                    0 & \dots & \vec{A}_{ij} & \dots & 0 & \dots & \vec{B}_{ij} & \dots & 0
+                \end{bmatrix}
+        \end{align*}
+        
+        
+    \end{itemize}
 	
 \end{frame}
 
