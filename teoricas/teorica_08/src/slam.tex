@@ -730,6 +730,18 @@
 	\frametitle{Algoritmo}
 	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
 	
+	\begin{algorithmic}[1]
+		\Procedure{optimize}{$\stateBold$}
+		\While (!converged)
+		\State $(\linearSystemH,\linearSystemb) = buildLinearSystem(\stateBold)$
+		\State $\vec{\Delta}\stateBold = solveSparse(\linearSystemH\vec{\Delta}\stateBold = -\linearSystemb)$
+		\State $\stateBold = \stateBold + \vec{\Delta}\stateBold$
+		\EndWhile
+
+		\State \Return $\stateBold$
+		\EndProcedure
+	\end{algorithmic}
+	
 \end{frame}
 
 
