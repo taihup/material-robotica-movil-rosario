@@ -431,7 +431,7 @@
 	   		  &= \argmin_{\state} \sum_{k} \error^{\top}_{k}(\state) \informationMatrix_{k} \error_{k}(\state)
 	\end{align*}
 	
-	El vector estado es la concatenación de los nodos pose $\state = (\state_{1}^{\top} \state_{2}^{\top} \dots \state_{n}^{\top})$
+	El vector estado es la concatenación de los nodos pose $\state = (\state_{1}^{\top} \state_{2}^{\top} \dots \state_{n}^{\top})$ (cada nodo pose es un vector con la posición y orientación)
 	
 	Tenemos que definir la función de error...
 \end{frame}
@@ -440,18 +440,58 @@
 \begin{frame}
 	\frametitle{Función de error}
 	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    
+    \begin{itemize}
+    \item Función de error para una sola restricción
+       	\begin{figure}
+            \includegraphics[width=0.44\textwidth]{pose_graph_error_function.pdf}
+        \end{figure}
+    
+    \item Error como una función de un vector estado completo
+    
+    \begin{equation*}
+        \error_{ij}(\state) = t2v(\inverse{\observationBold}_{ij}(\inverse{\stateBold}_{i}\stateBold_{j}))
+    \end{equation*}\footnote{$t2v(.)$ mapea transformaciones a vectores}
+
+    \item El error toma el valor 0 cuando
+    
+    \begin{equation*}
+        \inverse{\observationBold}_{ij} = (\inverse{\stateBold}_{i}\stateBold_{j})
+    \end{equation*}
+    
+    \end{itemize}
+    
+    
 	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Gauss-Newton para la minimización del error}
+	\frametitle{Método de Gauss-Newton para la minimización del error}
 	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    
+    \begin{itemize}
+        \item Definir la función de error
+        \item Linearizar la función de error
+        \item Calcular las derivadas
+        \item Igualar las derivadas a cero
+        \item Resolver el sistema lineal
+        \item Iterar este procedimiento hasta que converja
+    \end{itemize}
+    
 	
 \end{frame}
 
 \begin{frame}
 	\frametitle{Linearizar la función de error}
 	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    
+    \begin{itemize}
+        \item Podemos aproximar el error al rededor de una estimación inicial $\state$ a través de una expansión de Taylor
+    \end{itemize}
+
+    \begin{equation*}
+        \error_{ij}(\stateBold + \vec{\Delta}\stateBold) \simeq  \error_{ij}(\stateBold) + \jacobian_{ij} \quad \text{con} \quad \jacobian_{ij} = \dfrac{\partial\error_{ij}(\stateBold)}{\partial\stateBold}
+    \end{equation*}
 	
 \end{frame}
 
