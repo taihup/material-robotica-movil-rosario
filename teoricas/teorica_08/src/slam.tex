@@ -511,7 +511,7 @@
 	        \begin{align*}
 	            \dfrac{\partial\error_{ij}(\stateBold)}{\partial\stateBold} &= 
 	            \begin{bmatrix}
-	                0 & \dots & \dfrac{\error_{ij}(\stateBold_{i})}{\partial\stateBold_{i}} & \dots & 0 & \dots & \dfrac{\error_{ij}(\stateBold_{j})}{\partial\stateBold_{j}} & \dots & 0
+	                0 & \dots & \dfrac{\partial\error_{ij}(\stateBold_{i})}{\partial\stateBold_{i}} & \dots & 0 & \dots & \dfrac{\partial\error_{ij}(\stateBold_{j})}{\partial\stateBold_{j}} & \dots & 0
 	            \end{bmatrix} \\
 	            \jacobian_{ij} &= 
 	                \begin{bmatrix}
@@ -542,7 +542,7 @@
    		\begin{equation*}
 			\jacobian_{ij} = 
 			\begin{bmatrix}
-				0 & \dots & 0 & \dfrac{\error_{ij}(\stateBold_{i})}{\partial\stateBold_{i}} & 0 & \dots & 0 & \dfrac{\error_{ij}(\stateBold_{j})}{\partial\stateBold_{j}} & 0 & \dots & 0
+				0 & \dots & 0 & \dfrac{\partial\error_{ij}(\stateBold_{i})}{\partial\stateBold_{i}} & 0 & \dots & 0 & \dfrac{\partial\error_{ij}(\stateBold_{j})}{\partial\stateBold_{j}} & 0 & \dots & 0
 			\end{bmatrix}
 		\end{equation*}
 		
@@ -705,6 +705,24 @@
 \begin{frame}
 	\frametitle{Construcción del sistema lineal}
 	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+	Para cada restricción:
+	\begin{itemize}
+		\item Computar el error $\error_{ij} = t2v(\inverse{\observationBold}_{ij}(\inverse{\stateBold}_{i}\stateBold_{j}))$
+		\item Computar los bloques de los jacobianos:
+			\begin{equation*}
+				\vec{A}_{ij} = \dfrac{\partial\error_{ij}(\stateBold_{i}, \stateBold_{j})}{\partial\stateBold_{i}} \quad \quad \vec{B}_{ij} = \dfrac{\partial\error_{ij}(\stateBold_{i}, \stateBold_{j})}{\partial\stateBold_{j}}
+			\end{equation*}
+	\item Actualizar el vector coeficiente:
+		\begin{equation*}
+			\overline{\linearSystemb}_{i}^{\top} += \error_{ij}^{\top}\informationMatrix_{ij}\vec{A}_{ij} \quad \quad \overline{\linearSystemb}_{j}^{\top} += \error_{ij}^{\top}\informationMatrix_{ij}\vec{B}_{ij}
+		\end{equation*}
+
+	\item Actualizar el vector coeficiente:
+		\begin{align*}
+			\overline{\linearSystemH}_{ij}^{\top} &+= \vec{A}_{ij}^{\top}\informationMatrix_{ij}\vec{A}_{ij} \quad \quad \overline{\linearSystemH}_{ij}^{\top} += \vec{A}_{ij}^{\top}\informationMatrix_{ij}\vec{B}_{ij} \\
+			\overline{\linearSystemH}_{ij}^{\top} &+= \vec{B}_{ij}^{\top}\informationMatrix_{ij}\vec{A}_{ij} \quad \quad \overline{\linearSystemH}_{ij}^{\top} += \vec{B}_{ij}^{\top}\informationMatrix_{ij}\vec{B}_{ij}
+		\end{align*}
+	\end{itemize}	
 	
 \end{frame}
 
