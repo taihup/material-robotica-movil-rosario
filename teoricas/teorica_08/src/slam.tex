@@ -14,6 +14,7 @@
 		\item Frank Dellaert \url{https://youtu.be/tm4E1o11kGo}
         \item Apunte Frank Dellaert and Michael Kaess \url{https://www.cs.cmu.edu/~kaess/pub/Dellaert17fnt.pdf}
         \item \url{http://ais.informatik.uni-freiburg.de/teaching/ss13/robotics/slides/16-graph-slam.pdf}
+        \item A Technical Walkthrough of the SLAM Back-end \url{https://youtu.be/FhwFyA0NQkE}
 	\end{itemize}
 	
 \end{frame}
@@ -847,11 +848,24 @@
     \frametitle{Fijando un subconjunto de variables}
     \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
     
+    \begin{itemize}
+        \item Asumimos que el valor de ciertas variables durante la optimización es conocido a priori
+        \item Queremos optimizar todos las demás variables pero manteniendo estas como fijas
+        \item Podemos hacer como hicimos con el prior anterior, pero el problema es que es solo una \emph{soft constraint} y no es realmente no es un fix. Y puede suceder que otra constraint mueva a este nodo y no podamos asegurar que una cierta variable tenga un valor fijo.
+        \item Para efectivamente hacer que una variable quede fija, tenemos que hacer que no sea optimizada y por tanto debemos removerla del sistema lineal. Removerla del sistema lineal hace que no sea actualizada y que todas las demás variables esten restringidas por esta. Esto se hace construyendo todo el sistema lineal y luego sencillamente suprimiendo la fila y columna correspondiente a la variable. Finalmente se resuelve el sistema lineal.
+        \item La supresión de la columna y fila funciona como una {\bf condicionamiento}, es decir, es una condición que dice ``dado que este nodo toma este valor cómo afecta a los demás`''
+        
+    \end{itemize}
+    
 \end{frame}
 
 \begin{frame}
     \frametitle{Podemos suprimir las columnas y las filas de las variables correspondientes}
     \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    El porqué podemos hacer resulta del condicionamiento de distribuciones Gaussianas.
+    Condicionamiento en el espacio de información significa que podemos remover una parte de la matriz de información y esto corresponde una operación de condicionamiento de la distribución Gaussiana y nuestra $\linearSystemH$ es una matriz de información de todo nuestro problema con todas las restricciones juntas. Por tanto removiendo una fila y una columna estamos condicionando al sistema haciendo que estas esten fijas y no se puedan actualizar y todas las demás variables queden restrigidas por estas.
+    
+    Mas info en paper: Exactly sparse delayed-state filters for view-based SLAM. Eustice, Ryan M., Singh, Hanumant, Leonard, John J.
     
 \end{frame}
 
@@ -859,17 +873,42 @@
     \frametitle{Incertidumbre}
     \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
     
+    \begin{itemize}
+        \item $\linearSystemH$ representa la matriz de información dado el punto de linearización
+        \item La inversa de $\linearSystemH$ es la matriz de covarianza (densa). Calcular la inversa es muy costoso computacionalmente. Sin embargo, podemos computar partes de la matriz de covarianza.
+        \item Los bloques de la diagonal de la matriz de covarianza representan las incertidumbres de las variables correspondientes
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{Incertidumbre relativa}
     \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
     
+    Determinar la incertidumbre relativa entre $\stateBold_{i}$ y $\stateBold_{j}$. Esto es especialmente útil para la detección de ciclos, ya que podemos computar la incertidumbre de la pose actual con respecto a una pose anterior. De manera de poder determinar si es posible que haya un ciclo entre las poses o no (si la pose anterior se encuentra dentro de la covarianza entonces detectamos un ciclo).
+    
+    Para Determina la incertidumbre relativa entre $\stateBold_{i}$ y $\stateBold_{j}$ vamos a:    
+    \begin{itemize}
+        \item Construir la matriz completa $\linearSystemH$
+        \item Suprimir las filas y columnas de $\stateBold_{i}$ (equivalente a no optimizar/fijar la variable)
+        \item Computar el bloque $j,j$ de la inversa
+        \item Este bloque contiene la matriz de covarianza de $\stateBold_{j}$ con respecto a $\stateBold_{i}$ la cuál está fija.
+    \end{itemize}
+
+ 	\begin{figure}[!h]
+    \includegraphics[width=0.2\textwidth]{pose_graph_relative_uncertainty.png}
+    \end{figure}
+    
 \end{frame}
 
 \begin{frame}
     \frametitle{Resumen hasta ahora}
     \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    
+    \begin{itemize}
+        \item El back-end del problema de SLAM puede ser resuelto aplicando Gauss-Newton
+        \item La matriz $\linearSystemH$ es dispersa
+        \item Que $\linearSystemH$ sea dispersa nos permite resolver el sistema lineal de manera eficiente
+    \end{itemize}
     
 \end{frame}
 
