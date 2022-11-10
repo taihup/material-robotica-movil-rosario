@@ -794,7 +794,7 @@
     \begin{itemize}
         \item La restricción especifica una restricción relativa entre ambos nodos
         \item Cualquier pose de los nodos va a estar bien si se cumple la restricción relativa entre ellos. Este problema se lo conoce como {\bf Gauge Freedom}
-        \item Para resolverlo tenemos que {\bf fijar} un nodo 
+        \item Para resolverlo tenemos que {\bf fijar} un nodo. Al fijar un nodo estamos agregando un {\bf Prior}!
     \end{itemize}
 
     \begin{align*}
@@ -816,27 +816,60 @@
     \end{align*}
     
     Con esto hacemos que el update del nodo $\stateBold_{1}$ sea 0 y que el update de $\stateBold_{2}$ sea actualizado con 1.
-	
 \end{frame}
 
-
 \begin{frame}
-    \frametitle{Graph-based SLAM usando Pose-Graph}
+    \frametitle{Rol del Prior}
     \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
     
-    \begin{columns}
-        \begin{column}{0.5\textwidth}
-            \begin{itemize}
-                \item Cada nodo es una pose del robot (no hay landmarks)
-                \item Cada arista corresponde a una restricción espacial entre los nodos que relaciona.
-            \end{itemize}
-        \end{column}
-        \begin{column}{0.5\textwidth}  %%<--- here
-            \begin{figure}[!h]
-                \includegraphics[width=0.7\textwidth]{images/factor_graph_edge_example.pdf}
-            \end{figure}
-        \end{column}
-    \end{columns}
+    \begin{itemize}
+        \item Vimos que la matriz de información $\linearSystemH$ no es de rango completa, y por tanto no es invertible
+        \item Un marco de referencia global no ha sido fijado
+        \item Fijar un marco de referencia global está fuertemente relacionado con el prior $p(\stateBold_{0})$
+        \item Una estimación Gaussiana de $\stateBold_{0}$ resulta en en agregar una restricción
+        \item Ejemplo: primera pose debe estar fija en el origen de coordenadas
+        \begin{equation*}
+            \error(\stateBold_{0}) = t2v(\stateBold_{0})
+        \end{equation*}
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ejemplo real}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    
+    \TODO{Agregar vídeo de pose-graph con lidar como Cyrill}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Fijando un subconjunto de variables}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Podemos suprimir las columnas y las filas de las variables correspondientes}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Incertidumbre}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Incertidumbre relativa}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Resumen hasta ahora}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
     
 \end{frame}
 
