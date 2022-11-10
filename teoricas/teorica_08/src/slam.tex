@@ -573,7 +573,7 @@
 	\frametitle{Ilustración de la estructura}
 	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
 	
-    \begin{figure}
+    \begin{figure}[!h]
 		\includegraphics[width=0.9\textwidth]{linear_system_sparsity.pdf}
 	\end{figure}
 	
@@ -583,7 +583,7 @@
 	\frametitle{Consecuencia de que sea un problema disperso}
 	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
 	
- 	\begin{figure}
+ 	\begin{figure}[!h]
 		\includegraphics[width=0.9\textwidth]{linear_system_sparsity2.pdf}
 	\end{figure}
 	
@@ -746,14 +746,76 @@
 
 
 \begin{frame}
-	\frametitle{Ejemplo 1D}
+	\frametitle{Ejemplo Trivial 1D}
 	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
 	
+    Dos nodos y una observación
+
+ 	\begin{figure}[!h]
+        \includegraphics[width=0.2\textwidth]{pose_graph_1d_example.pdf}
+    \end{figure}
+
+    \small
+
+    \begin{align*}
+        \stateBold &=
+        \begin{bmatrix}
+            \stateBold_{1} & \stateBold_{2}
+        \end{bmatrix}^{\top}
+        =
+        \begin{bmatrix}
+            0 & 0
+        \end{bmatrix}\\
+        \observationBold_{12} &= 1\\
+        \informationMatrix &= 2\\
+        \error_{12} &= \observationBold_{12} - (\stateBold_{2} - \stateBold_{1}) = 1 - (0 - 0) = 1\\
+        \jacobian_{12} &= (1 - 1)\\
+        \linearSystemb_{12}^{\top} &= \error_{12}^{\top} \informationMatrix_{12} \jacobian_{12} =
+        \begin{bmatrix}
+            1 & -2
+        \end{bmatrix}\\
+        \linearSystemH_{12} &= \jacobian_{12}^{\top} \informationMatrix_{12} \jacobian_{12} = 
+        \begin{bmatrix}
+            2 & -2\\
+            -2 & 2
+        \end{bmatrix}\\
+    \vec{\Delta}\stateBold &= -\inverse{\linearSystemH}_{12} \linearSystemb_{12}\\
+    \end{align*}
+
+    \begin{center}
+    \alert{Problema:} $\det(\linearSystemH) = 0$ no podemos invertir $\linearSystemH$
+    \end{center}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Problemas...}
+	\frametitle{¿Qué es lo que anda mal?}
 	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    
+    \begin{itemize}
+        \item La restricción especifica una restricción relativa entre ambos nodos
+        \item Cualquier pose de los nodos va a estar bien si se cumple la restricción relativa entre ellos. Este problema se lo conoce como {\bf Gauge Freedom}
+        \item Para resolverlo tenemos que {\bf fijar} un nodo 
+    \end{itemize}
+
+    \begin{align*}
+        \linearSystemH &=
+        \begin{bmatrix}
+            2 & -2\\
+            -2 & 2
+        \end{bmatrix}
+        +
+        \begin{bmatrix}
+            1 & 0\\
+            0 & 0
+        \end{bmatrix} \leftarrow \text{restricción que pone } \vec{\Delta}\stateBold_{1} = 0\\
+        \vec{\Delta}\stateBold &= -\inverse{\linearSystemH}_{12} \linearSystemb_{12}\\
+        \vec{\Delta}\stateBold &=
+        \begin{bmatrix}
+            0 & 1
+        \end{bmatrix}^{\top}
+    \end{align*}
+    
+    Con esto hacemos que el update del nodo $\stateBold_{1}$ sea 0 y que el update de $\stateBold_{2}$ sea actualizado con 1.
 	
 \end{frame}
 
