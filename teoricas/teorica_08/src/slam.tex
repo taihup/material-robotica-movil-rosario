@@ -12,8 +12,8 @@
 		%\item Cyrill Stachniss Hierarchical Pose Graphs for SLAM \url{https://youtu.be/uRSow8nMEw8}
 		\item Wolfram Burgard, Giorgio Grisetti, and Cyrill Stachniss: Graph-based SLAM \url{https://youtu.be/Alu59K8zvYs}
 		\item Frank Dellaert \url{https://youtu.be/tm4E1o11kGo}
-        \item Apunte Frank Dellaert and Michael Kaess \url{https://www.cs.cmu.edu/~kaess/pub/Dellaert17fnt.pdf}
-        \item \url{http://ais.informatik.uni-freiburg.de/teaching/ss13/robotics/slides/16-graph-slam.pdf}
+        \item Frank Dellaert and Michael Kaess - Factor Graphs for Robot Perception \url{https://www.cs.cmu.edu/~kaess/pub/Dellaert17fnt.pdf}
+        \item Cyrill Stachniss Slides \url{http://ais.informatik.uni-freiburg.de/teaching/ss13/robotics/slides/16-graph-slam.pdf}
         \item A Technical Walkthrough of the SLAM Back-end \url{https://youtu.be/FhwFyA0NQkE}
 	\end{itemize}
 	
@@ -25,6 +25,7 @@
 	Material para armar estas slides:
 	\begin{itemize}
 		\item Joan Solá - Lie theory for the roboticist \url{https://youtu.be/gy8U7S4LWzs}
+		\item Joan Solá - Course on SLAM \url{https://raw.githubusercontent.com/joansola/slamtb/graph/courseSLAM.pdf}
 		\item Michael Kaess - Factor Graphs for Robot Perception \url{https://youtu.be/Q313pTMAdcM}
 		\item Philipp Hennig - Probabilistic Machine Learning - Lecture 17 - Factor Graphs \url{https://youtu.be/fXD6KJB1U20}
 		\item Lennart Svensson - Machile Learning Tutorial: Factor Graphs, Belief Propagation and Variational Techniques \url{https://youtu.be/yQg34-2QhvE}
@@ -200,7 +201,7 @@
         \item Basados en Particle Filter (FastSLAM, Rao-Blackwellized Particle Filter, Gmapping)
         \item Basados en Least-Squares (Graph-SLAM, Bundle Adjustment)
         \begin{itemize}
-            \item Pose-Graph (solo contiene las poses del robot, el mapa es marginalizado)
+            \item Pose-Graph (solo contiene las poses del robot, el mapa es marginalizado\footnote{Marginalizar es el proceso de remover variables sin perder información.})
             \item Factor-Graph (contiene poses y landmarks)
         \end{itemize}
             Herramientas de optimización
