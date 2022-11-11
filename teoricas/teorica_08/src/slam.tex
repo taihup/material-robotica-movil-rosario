@@ -1046,8 +1046,17 @@
     \frametitle{Rango}
     \note{Información extraída de https://youtu.be/mZBdPgBtrCM}
     \begin{itemize}
-		
+		\item En SLAM con landmark, el sistema puede quedar indeterminado
+		\item El rango de $\linearSystemH$ es {\bf menor o igual} que la suma de los rangos de todas las observaciones
+		\item Para determinar una {\bf solución única}, el sistema debe tener {\bf rango completo}
     \end{itemize}
+	\only<2>{
+		Preguntas:
+		\begin{itemize}
+			\item ¿Cuantas observaciones de landmarks 2D se necesitan para resolver la pose de un robot?
+			\item ¿Cuantas observaciones bearing-only se necesitan para resolver la pose de un robot?
+		\end{itemize}
+	}
 \end{frame}
 
 \begin{frame}
