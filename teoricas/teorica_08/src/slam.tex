@@ -938,33 +938,116 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Graph-Based SLAM con landmarks}
+    \frametitle{Observaciones de landmarks}
     \note{Información extraída de https://youtu.be/mZBdPgBtrCM}
+    
+    \begin{itemize}
+		\item Observación esperada para un (x-y sensor\footnote{x-y sensor es un sensor cuyas mediciones tiene la forma (x,y), un punto de la escena. En un mundo 2D.})
+   		\begin{figure}[!h]
+			\includegraphics[width=0.6\textwidth]{images/pose_landmark_graph_expected_observation.pdf}
+		\end{figure}
+	\item Función error
+	\begin{align*}
+		\error_{ij}(\stateBold_{i}, \stateBold_{j}) &= \hat{\observationBold}_{ij} - \observationBold_{ij}\\
+					&= \rotation_{i}^{\top}(\stateBold_{j}-\translation_{i}) - \observationBold_{ij}
+	\end{align*}
+    \end{itemize}
     
 \end{frame}
 
 \begin{frame}
-    \frametitle{Graph-Based SLAM con landmarks}
+    \frametitle{Bearing only obsevations (observaciones de ángulo)}
     \note{Información extraída de https://youtu.be/mZBdPgBtrCM}
+    
+    \begin{itemize}
+		\item Un landmark es un punto 2D
+		\item El robot observa el ángulo hacia el landmark
+		\item Función de observación
+   		\begin{figure}[!h]
+			\includegraphics[width=0.6\textwidth]{images/pose_landmark_graph_bearing_observation.pdf}
+		\end{figure}
+		\item Función error
+		\begin{equation*}
+			\error_{ij}(\stateBold_{i},\stateBold_{j}) = \arctan{\dfrac{(\stateBold_{j}-\translation_{i}).y}{(\stateBold_{j}-\translation_{i}).x}} - \theta_{i} - \observationBold_{j}
+		\end{equation*}
+    \end{itemize}
+
     
 \end{frame}
 
 \begin{frame}
-    \frametitle{Graph-Based SLAM con landmarks}
+    \frametitle{Rango de la matriz H}
     \note{Información extraída de https://youtu.be/mZBdPgBtrCM}
-    
+    \begin{itemize}
+		\item ¿Cuál es el rango de la matriz $\linearSystemH_{ij}$ para restricción pose-landmark 2D?
+		\begin{itemize}
+			\item El rango de $\linearSystemH_{ij}$ está determinado por el rando del Jacobiano $\jacobian_{ij}$ que a lo sumo es una matriz de $2 \times 5$. 2 porque la medición da información 2D y 5 por $\begin{bmatrix}	x & y & theta & l_{x} & l_{y} \end{bmatrix}$
+			\item $\linearSystemH_{ij}$ no puede tener más que rango 2
+			
+				$rank(A^{\top} A) = rank(A^{\top}) = rank(A)$
+		\end{itemize}
+	
+		\item ¿Cuál es el rango de la matriz $\linearSystemH_{ij}$ para restricción pose-landmark 2D?
+		\begin{itemize}
+			\item El rango de $\linearSystemH_{ij}$ está determinado por el rando del Jacobiano $\jacobian_{ij}$ que a lo sumo es una matriz de $1 \times 5$. 1 porque la medición da información 1D y 5 por $\begin{bmatrix}	x & y & theta & l_{x} & l_{y} \end{bmatrix}$
+			\item $\linearSystemH_{ij}$ tiene rango 1
+		\end{itemize}
+		
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Graph-Based SLAM con landmarks}
+    \frametitle{¿Dónde está el robot?}
     \note{Información extraída de https://youtu.be/mZBdPgBtrCM}
-    
+    \begin{itemize}
+		\item El robot observa un landmark $(x,y)$
+		\item ¿Dónde puede estar el robot relativo al landmark?
+    \end{itemize}
+
+	\only<1>{
+	 	\begin{figure}[!h]
+    	\includegraphics[width=0.3\textwidth]{images/robot_pose_landmark_with_xy_sensor1.pdf}
+    	\end{figure}
+	}
+ 	
+ 	\only<2>{
+ 	\begin{figure}[!h]
+		\includegraphics[width=0.3\textwidth]{images/robot_pose_landmark_with_xy_sensor2.pdf}
+	\end{figure}
+	El robot puede estar en cualquier lugar del círculo.\\
+	Es un espacio de soluciones 1D (restringido por la distancia y la orientación del robot)
+	}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Graph-Based SLAM con landmarks}
+	\frametitle{¿Dónde está el robot?}
+	\note{Información extraída de https://youtu.be/mZBdPgBtrCM}
+	\begin{itemize}
+		\item El robot observa un landmark (bearing-only)
+		\item ¿Dónde puede estar el robot relativo al landmark?
+	\end{itemize}
+	
+	\only<1>{
+		\begin{figure}[!h]
+			\includegraphics[width=0.3\textwidth]{images/robot_pose_landmark_with_bearing_sensor1.pdf}
+		\end{figure}
+	}
+	
+	\only<2>{
+		\begin{figure}[!h]
+			\includegraphics[width=0.3\textwidth]{images/robot_pose_landmark_with_bearing_sensor2.pdf}
+		\end{figure}
+		El robot puede estar en cualquier lugar lugar del plano xy. Siempre estará apuntando hacia el landmark.
+		Es un espacio soluciones 2D (restringido por la orientación del robot).
+	}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Rango}
     \note{Información extraída de https://youtu.be/mZBdPgBtrCM}
-    
+    \begin{itemize}
+		
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
