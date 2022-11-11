@@ -27,13 +27,13 @@ El objetivo del trabajo práctico es la realización de los pasos básicos para 
 
 \section{Entrega}
 \begin{itemize}
-	\item Se debe proveer un repositorio git que contenga el código desarrollado, una imagen docker y un archivo \lstinline{README.md} con las instrucciones de compilación y ejecución.
+	\item Se debe proveer un repositorio git que contenga el código desarrollado y un archivo \lstinline{README.md} con las instrucciones de compilación y ejecución. Se recomienda hacer una imagen Docker para facilitar la reproducción de los resuldatos.
     
 	\item Se debe entregar un informe en Lyx o \LaTeX\  explicando el trabajo realizado y analizando los resultados obtenidos.
 \end{itemize}
 
 \section{Datos}
-Para trabajar se utilizarán los datos del dataset EuRoC\footnote{\url{https://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets}}. Debera convertir la secuencia de calibración a formato ROS2. El resto de las secuencias ya se encuentra en formato ROS2 y pueden ser descargadas de \url{https://docs.openvins.com/gs-datasets.html}
+Para trabajar se utilizarán los datos provistos por la cátedra. Caso contrario puede hacer uso del dataset EuRoC\footnote{\url{https://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets}}. Debera convertir la secuencia de calibración a formato ROS2. El resto de las secuencias ya se encuentra en formato ROS2 y pueden ser descargadas de \url{https://docs.openvins.com/gs-datasets.html}
 
 \section{Calibración}
 Antes de comenzar a trabajar con un dataset se debe realizar una calibración de los sensores. En este trabajo solo deben calibrar una cámara estéreo.
@@ -49,7 +49,25 @@ Para la calibración se puede utilizar cualquiera de las aplicaciones que se det
 Desarrollar un programa que lea un par de imágenes estéreo cualquiera y realice los siguientes pasos:
 
 \section{Rectificación de imágenes}
-Con los parámetros íntrinsecos y extrínsecos de la cámara estéreo, rectificar un par imágenes haciendo uso de la librería OpenCV. Para esto se deberan utilizar las funciones:  \lstinline{cv::stereoRectify()},  \lstinline{cv::initUndistortRectifyMap()} y  \lstinline{remap()}.
+
+Con los parámetros íntrinsecos y extrínsecos de la cámara estéreo, rectificar las imágenes haciendo:
+
+\begin{itemize}
+    \item Utilizando ROS2: por medio del paquete \lstinline{stereo_image_proc}
+    
+\begin{lstlisting}[style=bash]     
+ros2 launch stereo\_image\_proc stereo\_image\_proc.launch.py
+\end{lstlisting}
+
+Para reproducir el rosbag y remapear los tópicos a los que el paquete \lstinline{stereo_image_proc} requiere puede hacer:
+\begin{lstlisting}[style=bash]   
+ros2 bag play CARPETA_ROSBAG --remap /stereo/left/image_raw:=/left/image_raw /stereo/left/camera_info:=/left/camera_info /stereo/right/image_raw:=/right/image_raw /stereo/right/camera_info:=/right/camera_info
+\end{lstlisting}
+
+
+    \item o bien, utilizando la librería OpenCV. Por medio de las funciones: \lstinline{cv::stereoRectify()},  \lstinline{cv::initUndistortRectifyMap()} y  \lstinline{remap()}.
+
+\end{itemize}
 
 \section{Extracción de feaures: Keypoints y descriptores}
 Selecionar un detector de keypoints (FAST, ORB, SIFT, SURF, GFTT, BRISK, etc.) y un descriptor (BRIEF, ORB, BRISK, etc.), y extraer features en ambas imágenes.
