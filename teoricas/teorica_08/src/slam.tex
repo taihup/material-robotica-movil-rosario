@@ -863,14 +863,6 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Ejemplo real}
-    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
-    
-    \TODO{Agregar vídeo de pose-graph con lidar como Cyrill}
-    
-\end{frame}
-
-\begin{frame}
     \frametitle{Fijando un subconjunto de variables}
     \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
     
@@ -1088,10 +1080,34 @@
 \begin{frame}
     \frametitle{Levenberg–Marquardt}
     \note{Información extraída de https://youtu.be/mZBdPgBtrCM}
+    
+    \footnotesize
+    
     \begin{itemize}
 		\item El damping factor $\lambda \vec{I}$ hace que el sistema sea definido positivo
 		\item Es una suma ponderada del método de Gauss-Newton y el método de descenso por el gradiente
+		\item El damping factor regula la convergencia usando acciones de backup/restore
     \end{itemize}
+
+	\begin{algorithmic}[1]
+		\Procedure{Levenberg–Marquardt}{$\stateBold$} \Comment{$\stateBold$: semilla inicial}
+		\While (!converged)
+		\State $\lambda =  \lambda_{\textrm{init}}$
+		\State $<\linearSystemH, \linearSystemb> = buildLinearSystem(\stateBold)$
+		\State $E = error(\stateBold)$
+		\State $\stateBold_{\textrm{old}} = \stateBold$
+		\State $\vec{\Delta}\stateBold = solveSparse((\linearSystemH + \lambda \vec{I}) \vec{\Delta} \stateBold = - \linearSystemb)$
+		\State $\stateBold \mathrel{+}= \vec{\Delta}\stateBold$
+		\If{$E < error(\stateBold)$}
+		\State $\stateBold = \stateBold_{\textrm{old}}$
+		\State $\lambda \mathrel{*}= 2$
+		\Else
+		\State $\lambda \mathrel{/}= 2$
+		\EndIf
+		\EndWhile
+		\EndProcedure
+	\end{algorithmic}
+
 \end{frame}
 
 
