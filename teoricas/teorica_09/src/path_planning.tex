@@ -9,10 +9,25 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Planeamiento de movimiento}
+	\frametitle{Espacio de configuraciones}
+	
+	
+	Espacio de configuraciones es el estado total del robot y el entorno, incluidas las articulaciones y/o movimiento de ruedas)
+	
+\end{frame}
 
+\begin{frame}
+	\frametitle{Planeamiento de movimiento}
+	
 	\begin{block}{Motion Planning}
-		Planificando movimientos para que los robots se muevan del punto 𝐴 al punto 𝐵 (como para robots móviles, etc.) o posen 𝐴 para posar 𝐵 (como para manipuladores, etc.). Para hacerlo, es necesario tener en cuenta una serie de restricciones: prevención de colisiones, límites de juntas, límites de velocidad/aceleración, límites de tirones, equilibrio dinámico, límites de par y muchos más. En este sentido, no solo se considera el robot sino también su entorno (p. ej., para evitar colisiones, cómo mantener el equilibrio). Teniendo esto en cuenta, la planificación de movimiento es una especie de generación de trayectoria con muchas restricciones.
+		Problema de encontrar rutas sin colisiones a través del espacio de configuraciones. Los obstáculos son convertidos (implícitamente con un verificador de colisiones booleano) al espacio de configuraciones. Se utilizan varios algoritmos geométricos o aleatorios/probabilísticos para buscar a través del espacio de configuraciones un camino desde el principio hasta la meta que no choque con ningún obstáculo.
 	\end{block}
 
+	\begin{block}{Trajectory Planning}
+		Una vez que se tiene un plan de movimiento, este es simplemente un camino geométrico a través del espacio, {\bf no está asociado a un tiempo}. Hay infinitas trayectorias por  cada camino, ya que se puede mover a través del camino con patrones de velocidad variables ilimitados. Durante el planeamiento de movimiento, solo se desea que el movimiento cumpla con algunas restricciones físicas, como qué tan rápido se puede mover el robot y que sea lo más suave posible (por razones de control). Sin embargo, si hay obstáculos dinámicos en el entorno, se tiene que introducir el tiempo en la planificación (el tiempo es una dimensión monótona, es decir, solo puede avanzar, no retroceder). Entonces, el camino debe especificar el momento correcto; de lo contrario, el camino no será válido porque el robot podría colisionar con algunos de los objetos dinámicos.
+	\end{block}
+
+	\begin{block}{Path Planning}
+	Un camino NO es igual a una trayectoria. Una trayectoria es un camino con información adicional de cómo se atravesar dicho camino con respecto al tiempo, es decir tiene información de velocidad.
+	\end{block}
 \end{frame}
