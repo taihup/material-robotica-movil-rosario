@@ -351,9 +351,9 @@
 	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
 	
 	\begin{itemize}
-		\item Consiste en $n$ nodos $x=x_{1:n}$
-		\item Cada $x_{i}$ es una pose del robot en el tiempo $t_{i}$
-		\item Una restricción/arista existe entre el nodo $x_{i}$ y $x_{j}$ si ...
+		\item Consiste en $n$ nodos $\stateBold = \stateBold_{1:n}$
+		\item Cada $\stateBold_{i}$ es una pose del robot en el tiempo $t_{i}$
+		\item Una restricción/arista existe entre el nodo $\stateBold_{i}$ y $\stateBold_{j}$ si ...
 	\end{itemize}
 	
  	\begin{figure}[!h]
@@ -367,7 +367,7 @@
 	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
 	
 	\begin{itemize}
-		\item Una restricción/arista existe entre el nodo $x_{i}$ y $x_{j}$ si el robot se mueve de $x_{i}$ a $x_{i+1}$
+		\item Una restricción/arista existe entre el nodo $\stateBold_{i}$ y $\stateBold_{j}$ si el robot se mueve de $\stateBold_{i}$ a $\stateBold_{i+1}$
 		\item Las aristas corresponden a odometría
 	\end{itemize}
 	
@@ -383,8 +383,8 @@
 	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
 	
 	\begin{itemize}
-		\item<1-> Una restricción/arista existe entre el nodo $x_{i}$ y $x_{j}$ si el robot observa la misma parte del entorno desde $x_{i}$ y desde $x_{j}$
-		\item<2>  Construimos una restricción virtual entre la posición de $x_{j}$ vista desde $x_{i}$
+		\item<1-> Una restricción/arista existe entre el nodo $\stateBold_{i}$ y $\stateBold_{j}$ si el robot observa la misma parte del entorno desde $\stateBold_{i}$ y desde $\stateBold_{j}$
+		\item<2>  Construimos una {\bf restricción virtual} entre la posición de $\stateBold_{j}$ vista desde $\stateBold_{i}$
 	\end{itemize}
 	\only<1>{
 		\begin{figure}
@@ -398,29 +398,6 @@
 	}
 	
 \end{frame}
-
-
-\begin{frame}
-	\frametitle{Crear una arista si...}
-	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
-	
-	\begin{itemize}
-		\item<1-> Una restricción/arista existe entre el nodo $x_{i}$ y $x_{j}$ si el robot observa la misma parte del entorno desde $x_{i}$ y desde $x_{j}$
-		\item<2>  Construimos una restricción virtual entre la posición de $x_{j}$ vista desde $x_{i}$
-	\end{itemize}
-	\only<1>{
-		\begin{figure}
-			\includegraphics[width=0.44\textwidth]{pose_graph_edge_lidar.pdf}
-		\end{figure}
-	}
-	\only<2>{
-		\begin{figure}
-			\includegraphics[width=0.44\textwidth]{pose_graph_edge_lidar2.pdf}
-		\end{figure}
-	}
-	
-\end{frame}
-
 
 \begin{frame}
 	\frametitle{La matriz de información de las aristas}
@@ -428,7 +405,7 @@
     \begin{itemize}
 		\item Las observaciones tienen ruido
 		\item La matriz de información $\informationMatrix_{ij}$ para cada arista codifica su incertidumbre
-		\item Mitras más grande $\informationMatrix_{ij}$, más importa la arista en al optimización.
+		\item Mientras más grande $\informationMatrix_{ij}$, más importa la arista en al optimización.
 	\end{itemize}
 	
 \end{frame}
@@ -442,7 +419,7 @@
 
 	Objetivo:
 	\begin{equation*}
-		x^{*} = \argmin_{\state} \sum_{ij} \error^{\top}_{ij} \informationMatrix_{ij} \error_{ij}
+		\stateBold^{*} = \argmin_{\stateBold} \sum_{ij} \error^{\top}_{ij} \informationMatrix_{ij} \error_{ij}
 	\end{equation*}
 	
 \end{frame}
@@ -454,13 +431,14 @@
 	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
 	Podemos minimizar el error utilizaremos mínimos cuadrados (\emph{Least Square})
 	\begin{align*}
-		\state^{*} &= \argmin_{\state} \sum_{ij} \error^{\top}_{ij}(\state_{i},\state_{j}) \informationMatrix_{ij} \error_{ij}(\state_{i},\state_{j})\\
-	   		  &= \argmin_{\state} \sum_{k} \error^{\top}_{k}(\state) \informationMatrix_{k} \error_{k}(\state)
+		\state^{*} &= \argmin_{\stateBold} \sum_{ij} \error^{\top}_{ij}(\stateBold_{i},\stateBold_{j}) \informationMatrix_{ij} \error_{ij}(\stateBold_{i},\stateBold_{j})\\
+	   		  &= \argmin_{\stateBold} \sum_{k} \error^{\top}_{k}(\stateBold) \informationMatrix_{k} \error_{k}(\stateBold)
 	\end{align*}
 	
-	El vector estado es la concatenación de los nodos pose $\state = (\state_{1}^{\top} \state_{2}^{\top} \dots \state_{n}^{\top})$ (cada nodo pose es un vector con la posición y orientación)
+	El {\bf vector estado} es la concatenación de los nodos pose $\stateBold = (\stateBold_{1}^{\top} \stateBold_{2}^{\top} \dots \stateBold_{n}^{\top})$. Cada nodo es una pose (posición u orientación).
 	
-	Tenemos que definir la función de error...
+    \vspace{2em}
+	{\bf Tenemos que definir la función de error...}
 \end{frame}
 
 
@@ -473,12 +451,13 @@
        	\begin{figure}
             \includegraphics[width=0.44\textwidth]{pose_graph_error_function.pdf}
         \end{figure}
+    \footnotetext{$t2v(.)$ mapea transformaciones a vectores}
     
     \item Error como una función de un vector estado completo
     
     \begin{equation*}
         \error_{ij}(\state) = t2v(\inverse{\observationBold}_{ij}(\inverse{\stateBold}_{i}\stateBold_{j}))
-    \end{equation*}\footnote{$t2v(.)$ mapea transformaciones a vectores}
+    \end{equation*}
 
     \item El error toma el valor 0 cuando
     
@@ -487,14 +466,13 @@
     \end{equation*}
     
     \end{itemize}
-    
-    
-	
 \end{frame}
 
 \begin{frame}
 	\frametitle{Método de Gauss-Newton para la minimización del error}
 	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    
+    \TODO{especificar metamáticamente estos pasos, sino no se entiende porque hay que linearizar el error. Ni cómo llegamos a construir el sistema lineal ni por qué.}
     
     \begin{itemize}
         \item Definir la función de error
@@ -517,7 +495,7 @@
     \end{itemize}
 
     \begin{equation*}
-        \error_{ij}(\stateBold + \vec{\Delta}\stateBold) \simeq  \error_{ij}(\stateBold) + \jacobian_{ij} \quad \text{con} \quad \jacobian_{ij} = \dfrac{\partial\error_{ij}(\stateBold)}{\partial\stateBold}
+        \error_{ij}(\stateBold + \vec{\Delta}\stateBold) \simeq  \error_{ij}(\stateBold) + \jacobian_{ij}\vec{\Delta}\stateBold \quad \text{con} \quad \jacobian_{ij} = \dfrac{\partial\error_{ij}(\stateBold)}{\partial\stateBold}
     \end{equation*}
 	
 \end{frame}
@@ -575,7 +553,7 @@
 		
 	\end{itemize}
 
-	Esto nos permite resolver SLAM de manera eficiente!
+	{\bf Esto nos permite resolver SLAM de manera eficiente!}
 	
 \end{frame}
 
@@ -680,7 +658,7 @@
 		\item Una arista ij solo contribuye a
 		\begin{itemize}
 			\item i-ésimo y j-ésimo bloques de $\linearSystemb_{ij}$
-			\item los bloques $ii$, $jj$, $ij$ y $jj$ de $\linearSystemH_{ij}$ç
+			\item los bloques $ii$, $jj$, $ij$ y $ji$ de $\linearSystemH_{ij}$
 		\end{itemize}
 		\item el sistema resultante es disperso
 		\item El sistema se puede computar sumando las contribuciones de cada arista
@@ -853,8 +831,8 @@
         \item Vimos que la matriz de información $\linearSystemH$ no es de rango completa, y por tanto no es invertible
         \item Un marco de referencia global no ha sido fijado
         \item Fijar un marco de referencia global está fuertemente relacionado con el prior $p(\stateBold_{0})$
-        \item Una estimación Gaussiana de $\stateBold_{0}$ resulta en en agregar una restricción
-        \item Ejemplo: primera pose debe estar fija en el origen de coordenadas
+        \item Una estimación Gaussiana de $\stateBold_{0}$ resulta en agregar una restricción
+        \item Ejemplo: La primera pose debe estar fija en el origen de coordenadas
         \begin{equation*}
             \error(\stateBold_{0}) = t2v(\stateBold_{0})
         \end{equation*}
@@ -869,9 +847,9 @@
     \begin{itemize}
         \item Asumimos que el valor de ciertas variables durante la optimización es conocido a priori
         \item Queremos optimizar todos las demás variables pero manteniendo estas como fijas
-        \item Podemos hacer como hicimos con el prior anterior, pero el problema es que es solo una \emph{soft constraint} y no es realmente no es un fix. Y puede suceder que otra constraint mueva a este nodo y no podamos asegurar que una cierta variable tenga un valor fijo.
+        \item Podemos hacer como hicimos con el prior anterior, pero el problema es que es solo una \emph{soft constraint} y no es realmente un fix. Ya que puede suceder que otra constraint mueva a este nodo, y por tanto no podemos asegurar que tenga un valor fijo.
         \item Para efectivamente hacer que una variable quede fija, tenemos que hacer que no sea optimizada y por tanto debemos removerla del sistema lineal. Removerla del sistema lineal hace que no sea actualizada y que todas las demás variables esten restringidas por esta. Esto se hace construyendo todo el sistema lineal y luego sencillamente suprimiendo la fila y columna correspondiente a la variable. Finalmente se resuelve el sistema lineal.
-        \item La supresión de la columna y fila funciona como una {\bf condicionamiento}, es decir, es una condición que dice ``dado que este nodo toma este valor cómo afecta a los demás`''
+        \item La supresión de la columna y fila funciona como una {\bf condicionamiento}, es decir, es una condición que dice ``Dado que un nodo toma un valor, las demás se ven afectadas de esta manera''
         
     \end{itemize}
     
@@ -880,10 +858,14 @@
 \begin{frame}
     \frametitle{Podemos suprimir las columnas y las filas de las variables correspondientes}
     \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
-    El porqué podemos hacer resulta del condicionamiento de distribuciones Gaussianas.
-    Condicionamiento en el espacio de información significa que podemos remover una parte de la matriz de información y esto corresponde una operación de condicionamiento de la distribución Gaussiana y nuestra $\linearSystemH$ es una matriz de información de todo nuestro problema con todas las restricciones juntas. Por tanto removiendo una fila y una columna estamos condicionando al sistema haciendo que estas esten fijas y no se puedan actualizar y todas las demás variables queden restrigidas por estas.
     
-    Mas info en paper: Exactly sparse delayed-state filters for view-based SLAM. Eustice, Ryan M., Singh, Hanumant, Leonard, John J.
+    \begin{itemize}
+        \item El porqué podemos hacer esto, resulta del {\bf condicionamiento de distribuciones Gaussianas}.
+        \item {\bf Condicionamiento en el espacio de información}, significa que podemos remover una parte de la matriz de información y esto corresponde una operación de condicionamiento de la distribución Gaussiana.
+        \item La $\linearSystemH$ es una matriz de información de todo nuestro problema con todas las restricciones juntas. Por tanto, removiendo una fila y una columna estamos condicionando al sistema haciendo que estas esten fijas y no se puedan actualizar y todas las demás variables queden restringidas por estas.
+    \end{itemize}
+   
+    \footnotetext{Mas info en paper: Exactly sparse delayed-state filters for view-based SLAM. Eustice, Ryan M., Singh, Hanumant, Leonard, John J.}
     
 \end{frame}
 
@@ -902,7 +884,9 @@
     \frametitle{Incertidumbre relativa}
     \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
     
-    Determinar la incertidumbre relativa entre $\stateBold_{i}$ y $\stateBold_{j}$. Esto es especialmente útil para la detección de ciclos, ya que podemos computar la incertidumbre de la pose actual con respecto a una pose anterior. De manera de poder determinar si es posible que haya un ciclo entre las poses o no (si la pose anterior se encuentra dentro de la covarianza entonces detectamos un ciclo).
+    Determinar la incertidumbre relativa entre $\stateBold_{i}$ y $\stateBold_{j}$.
+    
+    Esto es especialmente útil para la detección de ciclos, ya que podemos computar la incertidumbre de la pose actual con respecto a una pose anterior. De manera de poder determinar si es posible que haya un ciclo entre las poses o no (si la pose anterior se encuentra dentro de la covarianza entonces detectamos un ciclo).
     
     Para Determina la incertidumbre relativa entre $\stateBold_{i}$ y $\stateBold_{j}$ vamos a:    
     \begin{itemize}
