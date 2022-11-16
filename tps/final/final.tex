@@ -21,38 +21,49 @@
 	\maketitle
 	
 	
-	\section{Introducción}
+	\section{Temas}
+	\begin{itemize}
+		
+		\item Implementación de \emph{Iterative Closest Point} (ICP) utilizando sensor LiDAR o RGB-D
+		\item Implementación de EKF-SLAM utilizando sensor LiDAR y odometría de ruedas
+		\item Implementación de Particle Filter SLAM utilizando sensor LiDAR y odometría de ruedas
+		\item Implementación de un sistema Visual-Odometry
+		\item Trabajo propuesta por el grupo, a confirmar por la cátedra
+		%\item Implementación de un sistema de un Mapeo
+		%\item Evaluación de un sistema de SLAM, o path planning con reporte explicando y analizando los resultados.
+		%\item Implementación de un sistema de planeamiento de trayectorias.
 	
-	El objetivo del Trabajo Práctico es comprender cómo funciona el Filtro de Kalman Extendido(EKF) y el Filtro de Partículas (PF) para la localización de un robot móvil y desarrollar una implementación de cada uno.
-	
-	Para este trabajo se utilizará el framework de Python provisto por la cátedra. Sin embargo, se alienta a que el trabajo se desarrolle utilizando ROS2 y Gazebo.
+	\end{itemize}
 		
 	\section{Entrega}
 	\begin{itemize}
 		
-		\item El código del trabajo debe ser realizado en los lenguajes de programación Python o C++.
+		\item Realizar el código en los lenguajes de programación Python o C++. El código debe ser legible y estar comentado adecuadamente. Se recomienda utilizar Doxygen\footnote{\url{https://doxygen.nl/}} para la documentación del código.
 		
-		\item Proveer un repositorio git que contenga el código desarrollado, una imagen docker y un archivo \lstinline{README.md} con las instrucciones de compilación y ejecución.
+		\item Proveer un repositorio Git que contenga el código desarrollado, una imagen Docker y un archivo \lstinline{README.md} con las instrucciones de compilación y ejecución.
 		
 		\item Entregar un informe en Lyx o \LaTeX\  explicando el trabajo realizado y analizando los resultados obtenidos.
 		
-		\item Realizar la presentación del trabajo con slides ante la cátedra y los alumnos en día y horario acordado.
+		\item Realizar la presentación del trabajo con slides en día y horario a acordar.		
 	\end{itemize}
 
 	
 	\section{Experimentación con dataset y robot}
 	\begin{itemize}
-		\item Se debe grabar datos con los sensores seleccionados utilizando el robot Create 3 provisto por la cátedra.
+		\item Grabar un dataset con los sensores seleccionados utilizando el robot Create 3 provisto por la cátedra. Estos datos serán los utilizados para el desarrollo del sistema.
 		
-		\item Se utilizará el robot Create 3 provisto por la cátedra para la recolección de datos y para la experimentación online.
+		\item Realizar experimentos con el robot Create 3 provisto por la cátedra.
+		
+		\item No es necesario que el sistema funcione en tiempo real.
 	\end{itemize}
 	
 	
-	\section{Evaluación}
-	\begin{itemize}
-		\item Se debe hacer un análisis del sistema desarrollado. Estimar el error obtenido con las métricas estándares utilizadas en robótica. Para evaluar la localización de un sistema se puede utilizar la herramienta evo \url{https://github.com/MichaelGrupp/evo} o rpg\_trajectory\_evaluation \url{https://github.com/uzh-rpg/rpg_trajectory_evaluation}. La misma permite calcular los errores \emph{Absolut Trajectory Error} (ATE) y \emph{Relative Pose Error} (RPE).
-	\end{itemize}
-	
+	\section{Análisis de Resultados}
+		\begin{itemize}
+			\item Calcular el error obtenido con las métricas estándares utilizadas en robótica. Para evaluar un sistema de localización se recomienda utilizar la herramienta evo\footnote{\url{https://github.com/MichaelGrupp/evo}} o rpg\_trajectory\_evaluation\footnote{\url{https://github.com/uzh-rpg/rpg_trajectory_evaluation}}. La misma permite calcular los errores \emph{Absolut Trajectory Error} (ATE) y \emph{Relative Pose Error} (RPE).
+		
+			\item Comentar los casos donde el sistema no funciona adecuadamente, y las posibles mejoras que se podrían realizar.
+		\end{itemize}
 
 	\printbibliography
 	
