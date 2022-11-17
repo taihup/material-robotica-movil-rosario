@@ -42,16 +42,32 @@
 	\note{Información extraída de http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/slides/19-pathplanning-long.pdf}
 	
 	\begin{figure}[!h]
-		\includegraphics[width=0.3\textwidth]{images/path_planning_architecture.pdf}
+		\includegraphics[width=0.8\textwidth]{images/path_planning_architecture.pdf}
 	\end{figure}
 	
 \end{frame}
 
 
 \begin{frame}
-	\frametitle{Motion Planning Formulation}
+	\frametitle{Dynamic Window Approach}
 	\note{Información extraída de http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/slides/19-pathplanning-long.pdf}
 	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Motion Planning Formulation}
+	\note{Información extraída de http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/slides/19-pathplanning-long.pdf}
+
+	\begin{itemize}
+		\item El problema de la planificación del movimiento se puede declarar de la siguiente manera. Dado:
+		\begin{itemize}
+			\item Una pose inicial del robot
+			\item Una pose final deseada
+			\item Una descripción geométrica del robot
+			\item Una representación geométrica del entorno
+		\end{itemize}
+		\item Encontrar un camino que conduzca al robot gradualmente desde el punto de inicio al punto final sin tocar los obstáculos
+	\end{itemize}
 \end{frame}
 
 
@@ -61,7 +77,21 @@
 	
 	Espacio de configuraciones es el estado total del robot y el entorno, incluidas las articulaciones y/o movimiento de ruedas)
 	
+	\begin{figure}[!h]
+		\includegraphics[width=0.8\textwidth]{images/configuration_space_obstacle.pdf}
+	\end{figure}
+	
 \end{frame}
+
+\begin{frame}
+	\frametitle{Espacio de configuraciones}
+	
+	\begin{figure}[!h]
+		\includegraphics[width=0.8\textwidth]{images/workspace_configuration_space.pdf}
+	\end{figure}
+	
+\end{frame}
+
 
 \begin{frame}
 	\frametitle{Motion Planning Formulation}
