@@ -968,18 +968,21 @@
 \begin{frame}
     \frametitle{Rango de la matriz H}
     \note{Información extraída de https://youtu.be/mZBdPgBtrCM}
+    
+    \TODO{Explicar bien cómo una medición restringe los parámetros a optimizar y cuantas mediciones son necesarias para estimar la pose y por qué.}
+    
     \begin{itemize}
-		\item ¿Cuál es el rango de la matriz $\linearSystemH_{ij}$ para restricción pose-landmark 2D?
+		\item ¿Cuál es el rango de la matriz $\linearSystemH_{ij}$ para una restricción pose-landmark 2D?
 		\begin{itemize}
-			\item El rango de $\linearSystemH_{ij}$ está determinado por el rando del Jacobiano $\jacobian_{ij}$ que a lo sumo es una matriz de $2 \times 5$ (2 porque la medición da información 2D y 5 por $\begin{bmatrix}	x & y & theta & l_{x} & l_{y} \end{bmatrix}$)
+			\item El rango de $\linearSystemH_{ij}$ está determinado por el rango del Jacobiano $\jacobian_{ij}$ que a lo sumo es una matriz de $2 \times 5$ (2 porque la medición da información 2D y 5 por $\begin{bmatrix}	x & y & theta & l_{x} & l_{y} \end{bmatrix}$)
 			\item $\linearSystemH_{ij}$ no puede tener más que rango 2
 			
 				$rank(A^{\top} A) = rank(A^{\top}) = rank(A)$
 		\end{itemize}
 	
-		\item ¿Cuál es el rango de la matriz $\linearSystemH_{ij}$ para restricción pose-landmark 2D?
+		\item ¿Cuál es el rango de la matriz $\linearSystemH_{ij}$ para una restricción pose-landmark bearing-only?
 		\begin{itemize}
-			\item El rango de $\linearSystemH_{ij}$ está determinado por el rando del Jacobiano $\jacobian_{ij}$ que a lo sumo es una matriz de $1 \times 5$. 1 porque la medición da información 1D y 5 por $\begin{bmatrix}	x & y & theta & l_{x} & l_{y} \end{bmatrix}$
+			\item El rango de $\linearSystemH_{ij}$ está determinado por el rango del Jacobiano $\jacobian_{ij}$ que a lo sumo es una matriz de $1 \times 5$. 1 porque la medición da información 1D y 5 por $\begin{bmatrix}	x & y & theta & l_{x} & l_{y} \end{bmatrix}$
 			\item $\linearSystemH_{ij}$ tiene rango 1
 		\end{itemize}
 		
@@ -1027,7 +1030,7 @@
 		\begin{figure}[!h]
 			\includegraphics[width=0.3\textwidth]{images/robot_pose_landmark_with_bearing_sensor2.pdf}
 		\end{figure}
-		El robot puede estar en cualquier lugar lugar del plano xy. Siempre estará apuntando hacia el landmark.
+		El robot puede estar en cualquier lugar del plano xy. Siempre estará apuntando hacia el landmark.
 		Es un espacio soluciones 2D (restringido por la orientación del robot).
 	}
 \end{frame}
@@ -1036,7 +1039,7 @@
     \frametitle{Rango}
     \note{Información extraída de https://youtu.be/mZBdPgBtrCM}
     \begin{itemize}
-		\item En SLAM con landmark, el sistema puede quedar indeterminado
+		\item En SLAM con landmarks, el sistema puede quedar indeterminado
 		\item El rango de $\linearSystemH$ es {\bf menor o igual} que la suma de los rangos de todas las observaciones
 		\item Para determinar una {\bf solución única}, el sistema debe tener {\bf rango completo}
     \end{itemize}
@@ -1055,7 +1058,7 @@
     \begin{itemize}
 		\item No hay garantía que que un sistema tenga rango completo
 		\begin{itemize}
-			\item Los landmarks puede ser observados una sola vez
+			\item Los landmarks puede ser observados una sola vez \TODO{no quedan claros estos items como influyen a la intederminación de H}
 			\item El robot puede que no tenga información de odometría
 		\end{itemize}
 		\item Podemos lidiar con estos problemas utilizando un \emph{damping factor} para $\linearSystemH$
@@ -1072,7 +1075,7 @@
     
     \begin{itemize}
 		\item El damping factor $\lambda \vec{I}$ hace que el sistema sea definido positivo
-		\item Es una suma ponderada del método de Gauss-Newton y el método de descenso por el gradiente
+		\item Es una suma ponderada del método de Gauss-Newton y el método de descenso por el gradiente \TODO{explicar bien esto, quizas con un grafico}
 		\item El damping factor regula la convergencia usando acciones de backup/restore
     \end{itemize}
 
@@ -1101,6 +1104,8 @@
 \begin{frame}
     \frametitle{Bundle Adjustment}
     \note{Información extraída de https://youtu.be/BuRCJ2fegcc y de https://youtu.be/mZBdPgBtrCM}
+    
+    \TODO{explicar mejor el hilo conductor de Levenberg–Marquardt a BA}
     
     Bundle Adjustment es un caso
     
