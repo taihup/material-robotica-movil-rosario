@@ -25,8 +25,8 @@
 	\begin{itemize}
 		
 		\item Implementación de \emph{Iterative Closest Point} (ICP) utilizando sensor LiDAR o RGB-D
-		\item Implementación de EKF-SLAM utilizando sensor LiDAR y odometría de ruedas
-		\item Implementación de Particle Filter SLAM utilizando sensor LiDAR y odometría de ruedas
+		\item Implementación de EKF-SLAM utilizando landmarks (LiDAR: Postes o líneas, Visual: fiducial markers) y odometría de ruedas
+		\item Implementación de Particle Filter SLAM utilizando utilizando landmarks (LiDAR: postes o líneas, Visual: fiducial markers) y odometría de ruedas
 		\item Implementación de un sistema Visual-Odometry
 		\item Trabajo propuesta por el grupo, a confirmar por la cátedra
 		%\item Implementación de un sistema de un Mapeo
@@ -44,13 +44,15 @@
 		
 		\item Entregar un informe en Lyx o \LaTeX\  explicando el trabajo realizado y analizando los resultados obtenidos.
 		
-		\item Realizar la presentación del trabajo con slides en día y horario a acordar.		
+		\item Realizar la presentación del trabajo con slides en día y horario a acordar.
+        
+        \item Realizar un vídeo dónde se muestre el funcionamiento del sistema.         
 	\end{itemize}
 
 	
 	\section{Experimentación con dataset y robot}
 	\begin{itemize}
-		\item Grabar un dataset con los sensores seleccionados utilizando el robot Create 3 provisto por la cátedra. Estos datos serán los utilizados para el desarrollo del sistema.
+		\item Grabar un dataset con los sensores seleccionados utilizando el robot Create 3 provisto por la cátedra. Estos datos serán los utilizados para el desarrollo del sistema. El dataset debera contar con ground-truth de localización, es decir, contar con la localización real del robot. El ground-truth será utilizado para comparar la localización estimada por el sistema de localización desarrollado. Para el ground-truth se puede utilizar el paquete \lstinline{ros2_aruco}\footnote{\url{https://github.com/JMU-ROBOTICS-VIVA/ros2_aruco}}. 
 		
 		\item Realizar experimentos con el robot Create 3 provisto por la cátedra.
 		
@@ -60,7 +62,7 @@
 	
 	\section{Análisis de Resultados}
 		\begin{itemize}
-			\item Calcular el error obtenido con las métricas estándares utilizadas en robótica. Para evaluar un sistema de localización se recomienda utilizar la herramienta evo\footnote{\url{https://github.com/MichaelGrupp/evo}} o rpg\_trajectory\_evaluation\footnote{\url{https://github.com/uzh-rpg/rpg_trajectory_evaluation}}. La misma permite calcular los errores \emph{Absolut Trajectory Error} (ATE) y \emph{Relative Pose Error} (RPE).
+			\item Calcular el error obtenido con las métricas estándares utilizadas en robótica. Para evaluar un sistema de localización se recomienda utilizar la herramienta \lstinline{evo}\footnote{\url{https://github.com/MichaelGrupp/evo}} o \lstinline{rpg_trajectory_evaluation}\footnote{\url{https://github.com/uzh-rpg/rpg_trajectory_evaluation}}. La misma permite calcular los errores \emph{Absolut Trajectory Error} (ATE) y \emph{Relative Pose Error} (RPE).
 		
 			\item Comentar los casos donde el sistema no funciona adecuadamente, y las posibles mejoras que se podrían realizar.
 		\end{itemize}
