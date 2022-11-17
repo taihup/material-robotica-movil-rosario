@@ -61,7 +61,10 @@ ros2 launch stereo\_image\_proc stereo\_image\_proc.launch.py
 
 Para reproducir el rosbag y remapear los tópicos a los que el paquete \lstinline{stereo_image_proc} requiere puede hacer:
 \begin{lstlisting}[style=bash]   
-ros2 bag play CARPETA_ROSBAG --remap /stereo/left/image_raw:=/left/image_raw /stereo/left/camera_info:=/left/camera_info /stereo/right/image_raw:=/right/image_raw /stereo/right/camera_info:=/right/camera_info
+ros2 bag play CARPETA_ROSBAG --remap /stereo/left/image_raw:=/left/image_raw \
+/stereo/left/camera_info:=/left/camera_info \
+/stereo/right/image_raw:=/right/image_raw \
+/stereo/right/camera_info:=/right/camera_info
 \end{lstlisting}
 
 
