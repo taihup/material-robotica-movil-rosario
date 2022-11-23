@@ -52,14 +52,18 @@
 	\frametitle{Dynamic Window Approach}
 	\note{Información extraída de http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/slides/19-pathplanning-long.pdf}
 	
+	
+	\TODO{Completar con slides: \url{http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/slides/19-pathplanning-long.pdf}}
+	
+	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Motion Planning Formulation}
+	\frametitle{Formulación de Motion Planning}
 	\note{Información extraída de http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/slides/19-pathplanning-long.pdf}
 
 	\begin{itemize}
-		\item El problema de la planificación del movimiento se puede declarar de la siguiente manera. Dado:
+		\item El {\bf problema de la planificación del movimiento} se puede declarar de la siguiente manera. Dado:
 		\begin{itemize}
 			\item Una pose inicial del robot
 			\item Una pose final deseada
@@ -74,7 +78,7 @@
 	\frametitle{Espacio de configuraciones}
 	
 	\begin{itemize}
-		\item Aunque el problema de planificación de movimiento es 		definido en el mundo regular, vive en otro espacio: el espacio de configuración
+		\item Aunque el problema de planificación de movimiento es 		definido en el mundo regular, vive en otro espacio: el {\bf espacio de configuración}
 		\item Una configuración de robot q es una especificación de las posiciones de todos los puntos del robot en relación con un sistema de coordenadas fijo
 		\item Por lo general, una configuración se expresa como un vector de posiciones y orientaciones
 	\end{itemize}
@@ -123,6 +127,16 @@
 	
 \end{frame}
 
+
+
+\begin{frame}
+	\frametitle{Global Planner vs Local Planner}
+	
+	\begin{figure}[!h]
+		\includegraphics[width=0.5\textwidth]{images/global_local_plan.pdf}
+	\end{figure}
+	
+\end{frame}
 
 \begin{frame}
 	\frametitle{Motion Planning Formulation}
