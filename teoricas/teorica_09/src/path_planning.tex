@@ -82,6 +82,25 @@
 	
 \end{frame}
 
+\begin{frame}
+	\frametitle{Espacio de configuraciones}
+	\begin{itemize}
+		\item Hay dos tipos de regiones: libres u ocupadas (con obstáculos)
+		\item Sea $\workSpace = \mathbb{R}^{m}$ el \emph{work space}, $\obstaclesSet \in \workSpace$ el conjunto de obstáculos, $\robotInConfiguration(\robotConfiguration)$ en la configuración $\robotConfiguration \in \configurationSpace$
+		\begin{align*}
+			 \freeConfigurationSpace &= \left\lbrace \robotConfiguration \in \configurationSpace | \robotInConfiguration(\robotConfiguration) \cap \obstaclesSet =  \emptyset \right\rbrace\\
+			 \goalConfiguration &= \configurationSpace / \freeConfigurationSpace
+		\end{align*}
+	
+		\item Definimos:\\
+		$\startConfiguration$: configuración \emph{start}\\
+		$\goalConfiguration$: configuración \emph{goal}
+		
+	
+	\end{itemize}
+	
+\end{frame}
+
 
 \begin{frame}
 	\frametitle{Espacio de configuraciones}
