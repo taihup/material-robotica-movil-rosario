@@ -48,6 +48,34 @@ Para la calibración se puede utilizar cualquiera de las aplicaciones que se det
 
 Desarrollar un programa que lea un par de imágenes estéreo cualquiera y realice los siguientes pasos:
 
+
+\section{Sincronización de imágenes}
+Dado que el rosbag tiene las imágenes izquierda y derecha desincronizadas (diferente timestamp) debido a un bug en el driver de la cámara. Vamos a tener que sincronizar los mensajes de las imágenes utilizar el paquete \lstinline{message_filters}\footnote{\url{http://wiki.ros.org/message_filters}}. Para esto hay que 
+
+\begin{lstlisting}[style=python]
+# Importamos del paquete
+import message_filters
+\end{lstlisting}
+
+\begin{lstlisting}[style=python] 
+# Creamos subscribers a las cámaras izq y der
+self.left_rect = message_filters.Subscriber(self, Image, '/left/image_rect')
+self.right_rect = message_filters.Subscriber(self, Image, '/right/image_rect')
+\end{lstlisting}
+
+\begin{lstlisting}[style=python] 
+# Creamos el objeto ts del tipo TimeSynchronizer encargado de sincronizar los mensajes recibidos.
+ts = message_filters.TimeSynchronizer([self.left_rect, self.right_rect], 10)
+# Registramos un callback para procesar los mensajes sincronizados.
+ts.registerCallback(self.callback)
+La función callback es un método del nodo con esta asignatura:
+def callback(self, left_msg, right_msg):
+\end{lstlisting}
+
+
+
+
+
 \section{Rectificación de imágenes}
 
 Con los parámetros íntrinsecos y extrínsecos de la cámara estéreo, rectificar las imágenes haciendo:
