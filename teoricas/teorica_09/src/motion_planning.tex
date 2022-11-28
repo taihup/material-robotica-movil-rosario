@@ -47,6 +47,18 @@
 	
 \end{frame}
 
+\begin{frame}
+    \frametitle{Arquitectura clásica}
+    \note{Información extraída de slides Martin Saska}
+    
+    \begin{figure}[!h]
+        \includegraphics[width=0.5\textwidth]{images/motion_planning_architecture.pdf}
+    \end{figure}
+
+    Motion planning is a part of the mission replanning loop off-line algorithms turn out to on-line planning
+    
+\end{frame}
+
 
 \begin{frame}
 	\frametitle{Dynamic Window Approach}
@@ -134,6 +146,22 @@
     
 \end{frame}
 
+
+\begin{frame}
+    \frametitle{Path vs Trajectory}
+    
+    Path is a continuous mapping in C-space such that
+%π : [0, 1] → Cfree , with π(0) = q0 , and π(1) = qf ,
+where q0 is the initial and qf the final robot configurations.
+Only geometric considerations
+• Trajectory is a path with explicit parametrization of the robot
+motion, e.g.,
+• accompanied by a description of the motion laws
+% γ : [0, 1] → U,
+where U is the robot’s action space.
+It includes dynamics.
+%The planning problem is a determination of the function π(·).    
+\end{frame}
 
 \begin{frame}
 	\frametitle{Espacio de configuraciones}
