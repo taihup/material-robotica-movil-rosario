@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="42.351421mm"
+   height="42.351421mm"
+   viewBox="0 0 42.351421 42.351421"
+   version="1.1"
+   id="svg930"
+   inkscape:version="1.2.1 (1:1.2.1+202210291243+9c6d41e410)"
+   sodipodi:docname="motion_planning_geometrical_representation_example.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview932"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="2.561279"
+     inkscape:cx="167.10401"
+     inkscape:cy="114.59119"
+     inkscape:window-width="1920"
+     inkscape:window-height="1020"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs927">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath218">
+      <path
+         d="M 0,0 H 420 V 420 H 0 Z"
+         id="path216" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath278">
+      <path
+         d="M 0,0 H 420 V 420 H 0 Z"
+         id="path276" />
+    </clipPath>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-44.133369,-70.569165)">
+    <g
+       id="g208"
+       transform="matrix(0.10163528,0,0,-0.10163528,44.006325,113.04763)">
+      <g
+         id="g210">
+        <g
+           id="g212">
+          <g
+             id="g214"
+             clip-path="url(#clipPath218)">
+            <g
+               id="g220"
+               transform="scale(0.1)">
+              <path
+                 d="M 26,26 H 4166 V 4166 H 26 Z"
+                 style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none"
+                 id="path222" />
+              <path
+                 d="M 26,26 H 4166 V 4166 H 26 Z"
+                 style="fill:none;stroke:#decba5;stroke-width:27;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                 id="path224" />
+              <path
+                 d="M 1691,1691 2096,3131 881,3356 1061,2096"
+                 style="fill:#decba5;fill-opacity:1;fill-rule:evenodd;stroke:none"
+                 id="path226" />
+              <path
+                 d="M 1064,746 C 1064,570.375 921.625,428 746,428 570.375,428 428,570.375 428,746 c 0,175.625 142.375,318 318,318 175.625,0 318,-142.375 318,-318"
+                 style="fill:#94cf9c;fill-opacity:1;fill-rule:evenodd;stroke:none"
+                 id="path228" />
+              <path
+                 d="M 1064,746 C 1064,570.375 921.625,428 746,428 570.375,428 428,570.375 428,746 c 0,175.625 142.375,318 318,318 175.625,0 318,-142.375 318,-318 z"
+                 style="fill:none;stroke:#000000;stroke-width:4.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                 id="path230" />
+              <path
+                 d="m 3764,3446 c 0,-175.62 -142.38,-318 -318,-318 -175.62,0 -318,142.38 -318,318 0,175.62 142.38,318 318,318 175.62,0 318,-142.38 318,-318"
+                 style="fill:#94cf9c;fill-opacity:1;fill-rule:evenodd;stroke:none"
+                 id="path232" />
+              <path
+                 d="m 3764,3446 c 0,-175.62 -142.38,-318 -318,-318 -175.62,0 -318,142.38 -318,318 0,175.62 142.38,318 318,318 175.62,0 318,-142.38 318,-318 z"
+                 style="fill:none;stroke:#000000;stroke-width:4.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                 id="path234" />
+              <g
+                 id="g236"
+                 transform="scale(10)">
+                <text
+                   xml:space="preserve"
+                   transform="matrix(1,0,0,-1,88.1,25.1)"
+                   style="font-variant:normal;font-weight:normal;font-size:21.6px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                   id="text240"><tspan
+                     x="0 15.5952 20.3904 31.190399 41.990398 47.995201 55.188 67.197601 79.207199 91.216797"
+                     y="0"
+                     sodipodi:role="line"
+                     id="tspan238">Disc robot</tspan></text>
+                <text
+                   xml:space="preserve"
+                   transform="matrix(1,0,0,-1,304.1,389.6)"
+                   style="font-style:oblique;font-variant:normal;font-size:14.4px;font-family:Helvetica;-inkscape-font-specification:Helvetica-Oblique;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                   id="text244"><tspan
+                     x="0 11.2032 19.2096 27.216 30.4128 34.416 42.422401 50.428799 57.628799 60.8256 64.828796 68.025597 76.031998"
+                     y="0"
+                     sodipodi:role="line"
+                     id="tspan242">Goal position</tspan></text>
+              </g>
+              <path
+                 d="M 2096,1061 3356,836 3131,2096 2501,2501"
+                 style="fill:#decba5;fill-opacity:1;fill-rule:evenodd;stroke:none"
+                 id="path246" />
+              <g
+                 id="g248"
+                 transform="scale(10)">
+                <text
+                   xml:space="preserve"
+                   transform="matrix(1,0,0,-1,61.1,110.6)"
+                   style="font-style:oblique;font-variant:normal;font-size:14.4px;font-family:Helvetica;-inkscape-font-specification:Helvetica-Oblique;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                   id="text252"><tspan
+                     x="0 9.6048002 13.608 21.614401 26.409599 30.4128 34.416 42.422401 50.428799 57.628799 60.8256 64.828796 68.025597 76.031998"
+                     y="0"
+                     sodipodi:role="line"
+                     id="tspan250">Start position</tspan></text>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
