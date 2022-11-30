@@ -55,7 +55,7 @@
         \includegraphics[width=0.5\textwidth]{images/motion_planning_architecture.pdf}
     \end{figure}
 
-    Motion planning is a part of the mission replanning loop off-line algorithms turn out to on-line planning
+    {\bf Motion planning} es parte del ciclo de {\bf mission planning}. Los algoritmos offline se convierten en planificaciones online.
     
 \end{frame}
 
@@ -102,7 +102,7 @@
 	\frametitle{Espacio de configuraciones}
 	\begin{itemize}
 		\item Hay dos tipos de regiones: libres u ocupadas (con obstáculos)
-		\item Sea $\workSpace = \mathbb{R}^{m}$ el \emph{work space} (para un mundo 2D, $\workSpace = \mathbb{R}^{2}$), $\obstaclesSet \in \workSpace$ el conjunto de obstáculos, $\robotInConfiguration(\robotConfiguration)$ en la configuración $\robotConfiguration \in \configurationSpace$
+		\item Sea $\workSpace = \mathbb{R}^{m}$ el \emph{work space} (para un mundo 2D, $\workSpace = \mathbb{R}^{2}$), $\obstaclesSet \in \workSpace$ el conjunto de obstáculos, $\robotInConfiguration(\robotConfiguration)$ en la configuración $\robotConfiguration \in \configurationSpace$.
         La configuración del robot especifica completamente la pose del robot en $\workSpace$ incluyendo la especificación de todos los grados de libertad. (E.g., un robot con un cuerpo rígido en el plano $\configurationSpace = \begin{bmatrix}
             x & y & \theta
         \end{bmatrix} = \mathbb{R}^{2} \times S_{1}$ .)
@@ -151,29 +151,49 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Discretización de C-Space}
+    \frametitle{Ejemplo de espacio de configuraciones}
     
+    \begin{figure}[!h]
+        \includegraphics[width=0.8\textwidth]{images/configuration_space_manipulator.pdf}
+    \end{figure}
+    
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Problema de Motion Planning}
+    \note{Información extraída de slides Martin Saska}
+    \footnotesize
+    Teniendo 
     \begin{itemize}
-        \item El terreno continuo necesita ser discretizado para la planificación de caminos
-        \item Hay dos enfoques generales para discretizar C-Space:
-        \begin{itemize}
-            \item {\bf Combinatorial planning}
-            
-            Caracteriza $\freeConfigurationSpace$ explícitamente al capturar el conectividad de $\freeConfigurationSpace$ en un gráfico y encuentra soluciones usando búsqueda
-            
-            \item {\bf Sampling-based planning}
-            
-            Utiliza la detección de colisiones para sondear y buscar incrementalmente el C-Space para una solución
-        \end{itemize}
+        \item La dinámica de un sistema con estado $\state$ y $\controlCommand$
+        \begin{equation*}
+            \dfrac{\partial \state}{\partial t} = f(\state,\controlCommand)
+        \end{equation*}
+        \item Un conjunto de obstáculos $\obstaclesSet \subset \workSpace$ y un conjunto objetivo $\goalSet \subset \workSpace$     
     \end{itemize}
+    El problema de Motion Planning consiste en encontrar el comando de control $\controlCommand$ tal que 
+    \begin{equation*}
+        \state(t) \notin \obstaclesSet \, \text{para} \,  t \in \mathcal{R}_{+} \, \text{y} \, \state(t) \in \goalSet \,  \forall t \ge T_{f} \, \text{para algún finito} \, T_{f} \geq 0,
+    \end{equation*}    
+    o, retorna que no existe tal señal de control.
     
-    
+    \begin{equation*}
+        t \in [T_{0} , T_{f}] \rightarrow i \in [0, 1] : \robotConfiguration(t) = \continuousPath(i) \in \freeConfigurationSpace
+    \end{equation*}
+
+    Se pueden agregar requerimientos adicionales como
+    \begin{itemize}
+        \item Suavizado del camino
+        \item Restricciones Kinodynamicas\footnote{La planificación kinodinámica se refiere a la tarea de conducir un robot desde un estado inicial hasta un estado objetivo mientras se evaden los obstáculos y se obedecen las restricciones cinemáticas y dinámicas (en resumen, kinodinámicas) que dictan la relación entre los controles del robot y su movimiento.} (\emph{e.g. considerando fuerzas de fricción})
+        \item Criterio de Optimalidad (\emph{e.g. shortest vs fastest})
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Espacio de configuraciones}
 
-	Espacio de configuraciones es el estado total del robot y el entorno, incluidas las articulaciones y/o movimiento de ruedas)
+	%Espacio de configuraciones es el estado total del robot y el entorno, incluidas las articulaciones y/o movimiento de ruedas)
 	
 	\begin{figure}[!h]
 		\includegraphics[width=0.8\textwidth]{images/configuration_space_obstacle.pdf}
@@ -191,6 +211,16 @@
 \end{frame}
 
 
+\begin{frame}
+    \frametitle{Ejemplo de planeamiento sencillo en el C-Space}
+    \note{Información extraída de slides Martin Saska}
+    
+    \begin{figure}[!h]
+        \includegraphics[width=0.8\textwidth]{images/workspace_configuration_space.pdf}
+    \end{figure}
+    
+\end{frame}
+
 
 \begin{frame}
 	\frametitle{Global Planner vs Local Planner}
@@ -207,21 +237,21 @@
 \end{frame}
 
 
-\begin{frame}
-	\frametitle{Planeamiento de movimiento}
-	
-	\begin{block}{Motion Planning}
-		Problema de encontrar rutas sin colisiones a través del espacio de configuraciones. Los obstáculos son convertidos (implícitamente con un verificador de colisiones booleano) al espacio de configuraciones. Se utilizan varios algoritmos geométricos o aleatorios/probabilísticos para buscar a través del espacio de configuraciones un camino desde el principio hasta la meta que no choque con ningún obstáculo.
-	\end{block}
-
-	\begin{block}{Trajectory Planning}
-		Una vez que se tiene un plan de movimiento, este es simplemente un camino geométrico a través del espacio, {\bf no está asociado a un tiempo}. Hay infinitas trayectorias por  cada camino, ya que se puede mover a través del camino con patrones de velocidad variables ilimitados. Durante el planeamiento de movimiento, solo se desea que el movimiento cumpla con algunas restricciones físicas, como qué tan rápido se puede mover el robot y que sea lo más suave posible (por razones de control). Sin embargo, si hay obstáculos dinámicos en el entorno, se tiene que introducir el tiempo en la planificación (el tiempo es una dimensión monótona, es decir, solo puede avanzar, no retroceder). Entonces, el camino debe especificar el momento correcto; de lo contrario, el camino no será válido porque el robot podría colisionar con algunos de los objetos dinámicos.
-	\end{block}
-
-	\begin{block}{Path Planning}
-	Un camino NO es igual a una trayectoria. Una trayectoria es un camino con información adicional de cómo se atravesar dicho camino con respecto al tiempo, es decir tiene información de velocidad.
-	\end{block}
-\end{frame}
+%\begin{frame}
+%	\frametitle{Planeamiento de movimiento}
+%	
+%	\begin{block}{Motion Planning}
+%		Problema de encontrar rutas sin colisiones a través del espacio de configuraciones. Los obstáculos son convertidos (implícitamente con un verificador de colisiones booleano) al espacio de configuraciones. Se utilizan varios algoritmos geométricos o aleatorios/probabilísticos para buscar a través del espacio de configuraciones un camino desde el principio hasta la meta que no choque con ningún obstáculo.
+%	\end{block}
+%
+%	\begin{block}{Trajectory Planning}
+%		Una vez que se tiene un plan de movimiento, este es simplemente un camino geométrico a través del espacio, {\bf no está asociado a un tiempo}. Hay infinitas trayectorias por  cada camino, ya que se puede mover a través del camino con patrones de velocidad variables ilimitados. Durante el planeamiento de movimiento, solo se desea que el movimiento cumpla con algunas restricciones físicas, como qué tan rápido se puede mover el robot y que sea lo más suave posible (por razones de control). Sin embargo, si hay obstáculos dinámicos en el entorno, se tiene que introducir el tiempo en la planificación (el tiempo es una dimensión monótona, es decir, solo puede avanzar, no retroceder). Entonces, el camino debe especificar el momento correcto; de lo contrario, el camino no será válido porque el robot podría colisionar con algunos de los objetos dinámicos.
+%	\end{block}
+%
+%	\begin{block}{Path Planning}
+%	Un camino NO es igual a una trayectoria. Una trayectoria es un camino con información adicional de cómo se atravesar dicho camino con respecto al tiempo, es decir tiene información de velocidad.
+%	\end{block}
+%\end{frame}
 
 
 \begin{frame}
