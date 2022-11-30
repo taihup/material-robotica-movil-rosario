@@ -102,7 +102,11 @@
 	\frametitle{Espacio de configuraciones}
 	\begin{itemize}
 		\item Hay dos tipos de regiones: libres u ocupadas (con obstáculos)
-		\item Sea $\workSpace = \mathbb{R}^{m}$ el \emph{work space}, $\obstaclesSet \in \workSpace$ el conjunto de obstáculos, $\robotInConfiguration(\robotConfiguration)$ en la configuración $\robotConfiguration \in \configurationSpace$
+		\item Sea $\workSpace = \mathbb{R}^{m}$ el \emph{work space} (para un mundo 2D, $\workSpace = \mathbb{R}^{2}$), $\obstaclesSet \in \workSpace$ el conjunto de obstáculos, $\robotInConfiguration(\robotConfiguration)$ en la configuración $\robotConfiguration \in \configurationSpace$
+        La configuración del robot especifica completamente la pose del robot en $\workSpace$ incluyendo la especificación de todos los grados de libertad. (E.g., un robot con un cuerpo rígido en el plano $\configurationSpace = \begin{bmatrix}
+            x & y & \theta
+        \end{bmatrix} = \mathbb{R}^{2} \times S_{1}$ .)
+        
 		\begin{align*}
 			 \freeConfigurationSpace &= \left\lbrace \robotConfiguration \in \configurationSpace | \robotInConfiguration(\robotConfiguration) \cap \obstaclesSet =  \emptyset \right\rbrace\\
 			 \goalConfiguration &= \configurationSpace / \freeConfigurationSpace
@@ -111,8 +115,6 @@
 		\item Definimos:\\
 		$\startConfiguration$: configuración \emph{start}\\
 		$\goalConfiguration$: configuración \emph{goal}
-		
-	
 	\end{itemize}
 	
 \end{frame}
@@ -127,40 +129,45 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{Path vs Trajectory}
+    \begin{itemize}
+    \item {\bf Path}: es un mapeo continuo en C-space tal que
+        \begin{equation*}
+            \continuousPath : [0,1] \rightarrow \freeConfigurationSpace \quad \text{con} \quad \continuousPath(0) = \startConfiguration \quad \text{y} \quad  \continuousPath(1) = \goalConfiguration \quad \text{(\emph{solo hay consideraciones goemétricas})}
+        \end{equation*} 
+    \item {\bf Trajectory} es un camino con una parametrización explícita del movimiento del robot
+    \begin{itemize}
+        \item Ejemplo: acompañada por una descripción del las leyes de movimiento del robot
+            \begin{equation*}
+                \motionLaw : [0, 1] \rightarrow \robotActionSpace,
+            \end{equation*}
+            donde $\robotActionSpace$ es el espacio de acciones del robot. (\emph{incluye la dinámica del robot})
+        \end{itemize}
+        \vspace{3em}
+        \begin{center}
+            \alert{El problema de planeamiento consiste en determinar la función $\continuousPath(.)$}  
+        \end{center}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
     \frametitle{Discretización de C-Space}
     
     \begin{itemize}
-    \item El terreno continuo necesita ser discretizado para la planificación de caminos
-    \item Hay dos enfoques generales para discretizar C-Space:
+        \item El terreno continuo necesita ser discretizado para la planificación de caminos
+        \item Hay dos enfoques generales para discretizar C-Space:
         \begin{itemize}
-        \item {\bf Combinatorial planning}
-        
-        Caracteriza $\freeConfigurationSpace$ explícitamente al capturar el conectividad de $\freeConfigurationSpace$ en un gráfico y encuentra soluciones usando búsqueda
-        
-        \item {\bf Sampling-based planning}
-        
+            \item {\bf Combinatorial planning}
+            
+            Caracteriza $\freeConfigurationSpace$ explícitamente al capturar el conectividad de $\freeConfigurationSpace$ en un gráfico y encuentra soluciones usando búsqueda
+            
+            \item {\bf Sampling-based planning}
+            
             Utiliza la detección de colisiones para sondear y buscar incrementalmente el C-Space para una solución
         \end{itemize}
     \end{itemize}
-
     
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Path vs Trajectory}
     
-    Path is a continuous mapping in C-space such that
-%π : [0, 1] → Cfree , with π(0) = q0 , and π(1) = qf ,
-where q0 is the initial and qf the final robot configurations.
-Only geometric considerations
-• Trajectory is a path with explicit parametrization of the robot
-motion, e.g.,
-• accompanied by a description of the motion laws
-% γ : [0, 1] → U,
-where U is the robot’s action space.
-It includes dynamics.
-%The planning problem is a determination of the function π(·).    
 \end{frame}
 
 \begin{frame}
