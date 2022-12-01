@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="163.9912mm"
+   height="163.15544mm"
+   viewBox="0 0 163.9912 163.15544"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.1 (1:1.2.1+202210291243+9c6d41e410)"
+   sodipodi:docname="cspace_representation.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.37861252"
+     inkscape:cx="157.15276"
+     inkscape:cy="369.77119"
+     inkscape:window-width="1366"
+     inkscape:window-height="731"
+     inkscape:window-x="0"
+     inkscape:window-y="223"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g2451" />
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible"
+       id="Arrow1L"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Arrow1L"
+       markerWidth="8.75"
+       markerHeight="5"
+       viewBox="0 0 8.75 5"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="arrow1L"
+         transform="scale(-0.5)" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1L-0"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Arrow1L"
+       markerWidth="8.75"
+       markerHeight="5"
+       viewBox="0 0 8.75 5"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="arrow1L-6"
+         transform="scale(-0.5)" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-40.290842,-63.617274)">
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:1.05833;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1L)"
+       d="M 122.28644,81.675832 V 93.956213"
+       id="path697" />
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:1.05833;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1L-0)"
+       d="m 122.28644,158.51379 v 12.28038"
+       id="path697-2" />
+    <g
+       id="g2441"
+       transform="translate(4.8055153)">
+      <text
+         xml:space="preserve"
+         style="font-size:8.46667px;line-height:1.25;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';stroke-width:0.264583"
+         x="49.363297"
+         y="202.07335"
+         id="text236-6-5-5"><tspan
+           sodipodi:role="line"
+           id="tspan234-7-3-6"
+           style="stroke-width:0.264583"
+           x="49.363297"
+           y="202.07335">- BFS</tspan><tspan
+           sodipodi:role="line"
+           style="stroke-width:0.264583"
+           x="49.363297"
+           y="212.65669"
+           id="tspan462-2">- Gradient Search</tspan><tspan
+           sodipodi:role="line"
+           style="stroke-width:0.264583"
+           x="49.363297"
+           y="223.24002"
+           id="tspan466-1">- A</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:8.46667px;line-height:1.25;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';stroke-width:0.264583"
+         x="52.014347"
+         y="188.42291"
+         id="text236-3"><tspan
+           sodipodi:role="line"
+           id="tspan234-6"
+           style="font-weight:bold;stroke-width:0.264583"
+           x="52.014347"
+           y="188.42291">Técnicas de búsqueda en grafos</tspan></text>
+      <rect
+         style="fill:none;fill-opacity:1;stroke:#f50000;stroke-width:1.05833;stroke-dasharray:none;stroke-opacity:1"
+         id="rect1597"
+         width="146.06709"
+         height="48.429676"
+         x="44.447376"
+         y="177.81387" />
+    </g>
+    <g
+       id="g2456">
+      <text
+         xml:space="preserve"
+         style="font-size:8.46667px;line-height:1.25;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';stroke-width:0.264583"
+         x="43.743202"
+         y="75.999458"
+         id="text236"><tspan
+           sodipodi:role="line"
+           id="tspan234"
+           style="font-weight:bold;stroke-width:0.264583"
+           x="43.743202"
+           y="75.999458">Representación Continua de C-space</tspan></text>
+      <rect
+         style="fill:none;fill-opacity:1;stroke:#f50000;stroke-width:1.05833;stroke-dasharray:none;stroke-opacity:1"
+         id="rect1597-1"
+         width="162.93286"
+         height="17.237242"
+         x="40.820007"
+         y="64.146439" />
+    </g>
+    <g
+       id="g2451"
+       transform="translate(12.732979)">
+      <text
+         xml:space="preserve"
+         style="font-size:8.46667px;line-height:1.25;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';stroke-width:0.264583"
+         x="85.559921"
+         y="110.97336"
+         id="text236-6"><tspan
+           sodipodi:role="line"
+           id="tspan234-7"
+           style="font-weight:bold;stroke-width:0.264583"
+           x="85.559921"
+           y="110.97336">Discretización</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:8.46667px;line-height:1.25;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';stroke-width:0.264583"
+         x="36.465946"
+         y="123.2347"
+         id="text236-6-5"><tspan
+           sodipodi:role="line"
+           id="tspan234-7-3"
+           style="stroke-width:0.264583"
+           x="36.465946"
+           y="123.2347">- Procesamiento de eventos geométricos</tspan><tspan
+           sodipodi:role="line"
+           style="stroke-width:0.264583"
+           x="36.465946"
+           y="133.81804"
+           id="tspan462">- Random sampling roadmaps</tspan><tspan
+           sodipodi:role="line"
+           style="stroke-width:0.264583"
+           x="36.465946"
+           y="144.40138"
+           id="tspan464">- Cell decomposition</tspan><tspan
+           sodipodi:role="line"
+           style="stroke-width:0.264583"
+           x="36.465946"
+           y="154.98471"
+           id="tspan466">- Potential field</tspan></text>
+      <rect
+         style="fill:none;fill-opacity:1;stroke:#f50000;stroke-width:1.05833;stroke-dasharray:none;stroke-opacity:1"
+         id="rect1597-6"
+         width="154.20284"
+         height="59.10273"
+         x="32.452042"
+         y="99.821526"
+         ry="0" />
+    </g>
+  </g>
+</svg>

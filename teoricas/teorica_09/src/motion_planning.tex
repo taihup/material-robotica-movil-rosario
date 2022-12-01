@@ -130,6 +130,8 @@
 
 \begin{frame}
     \frametitle{Path vs Trajectory}
+    \note{Información extraída de slides Martin Saska}
+    
     \begin{itemize}
     \item {\bf Path}: es un mapeo continuo en C-space tal que
         \begin{equation*}
@@ -153,7 +155,9 @@
 \begin{frame}
     \frametitle{Problema de Motion Planning}
     \note{Información extraída de slides Martin Saska}
+    
     \footnotesize
+    
     Teniendo 
     \begin{itemize}
         \item La dinámica de un sistema con estado $\state$ y $\controlCommand$
@@ -180,14 +184,46 @@
     \end{itemize}
 \end{frame}
 
+%\begin{frame}
+%	\frametitle{Espacio de configuraciones}
+%
+%	%Espacio de configuraciones es el estado total del robot y el entorno, incluidas las articulaciones y/o movimiento de ruedas)
+%	
+%	\begin{figure}[!h]
+	%		\includegraphics[width=0.8\textwidth]{images/configuration_space_obstacle.pdf}
+	%	\end{figure}
+%	
+%\end{frame}
+%
+%\begin{frame}
+%	\frametitle{Espacio de configuraciones}
+%	
+%	\begin{figure}[!h]
+	%		\includegraphics[width=0.8\textwidth]{images/workspace_configuration_space.pdf}
+	%	\end{figure}
+%	
+%\end{frame}
+%
+%
+%\begin{frame}
+%    \frametitle{Espacio de configuraciones}
+%    \note{Información extraída de slides Martin Saska}
+%    
+%    \begin{figure}[!h]
+	%        \includegraphics[width=0.8\textwidth]{images/workspace_configuration_space.pdf}
+	%    \end{figure}
+%    
+%\end{frame}
+
 \begin{frame}
-	\frametitle{Espacio de configuraciones}
+	\frametitle{Ejemplo de planeamiento sencillo en el C-Space}
+	\note{Información extraída de slides Martin Saska}
 	
 	\begin{figure}
 		\subfloat[Problema Motion planning en representación geométrica de $\workSpace$]
 		{
 			\fbox{\includegraphics[width=0.33\textwidth]{images/motion_planning_geometrical_example.pdf}}
-		}\hfill{}
+		}\hspace{1em}
 		\subfloat[Problema de Motion planning en representación C-space ]
 		{
 			\fbox{\includegraphics[width=0.33\textwidth]{images/motion_planning_cspace_example.pdf}}
@@ -200,6 +236,7 @@ En este ejemplo, C-space es obtenido por medio de agrandar los obstáculos por e
 
 \begin{frame}
 	\frametitle{Ejemplo $\obstableConfigurationSpace$ para un robot con rotación}
+	\note{Información extraída de slides Martin Saska}
 	
 	\begin{figure}[!h]
 		\includegraphics[width=0.6\textwidth]{images/cspace_representation_motivation.pdf}
@@ -213,34 +250,41 @@ En este ejemplo, C-space es obtenido por medio de agrandar los obstáculos por e
 \end{frame}
 
 \begin{frame}
-	\frametitle{Espacio de configuraciones}
-
-	%Espacio de configuraciones es el estado total del robot y el entorno, incluidas las articulaciones y/o movimiento de ruedas)
+	\frametitle{Representación de C-space}
+	\note{Información extraída de slides Martin Saska}
+	
+	¿Cómo podemos lidiar con una representación continua de C-space?
 	
 	\begin{figure}[!h]
-		\includegraphics[width=0.8\textwidth]{images/configuration_space_obstacle.pdf}
-	\end{figure}
-	
-\end{frame}
-
-\begin{frame}
-	\frametitle{Espacio de configuraciones}
-	
-	\begin{figure}[!h]
-		\includegraphics[width=0.8\textwidth]{images/workspace_configuration_space.pdf}
+		\includegraphics[width=0.4\textwidth]{images/cspace_representation.pdf}
 	\end{figure}
 	
 \end{frame}
 
 
 \begin{frame}
-    \frametitle{Ejemplo de planeamiento sencillo en el C-Space}
-    \note{Información extraída de slides Martin Saska}
-    
-    \begin{figure}[!h]
-        \includegraphics[width=0.8\textwidth]{images/workspace_configuration_space.pdf}
-    \end{figure}
-    
+	\frametitle{Métodos de planning}
+	\note{Información extraída de slides Martin Saska}
+	
+	Algoritmos clásicos de Planeamiento de caminos
+	
+	\begin{itemize}
+		\item Métodos basados en Roadmap (crear un grafo de conectividad del espacio libre)
+		\begin{itemize}
+			\item Visibility graph
+			\item Cell decomposition
+			\item Voronoi diagram
+		\end{itemize}
+		\item Métodos basados en Potential field
+	\end{itemize}
+
+	Randomized path/motion planning approaches
+	\begin{itemize}
+		\item Probabilistic roadmaps (PRM)
+		\item Expansive-Spaces Tree (EST)
+		\item Rapidly-Exploring Random Tree (RRT) $\leftarrow$ Permite considerar restricciones kinodynamicas.
+		\item Optimal sampling based Planner - RRT*
+	\end{itemize}
 \end{frame}
 
 
