@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="33.145306mm"
+   height="33.145306mm"
+   viewBox="0 0 33.145306 33.145306"
+   version="1.1"
+   id="svg7935"
+   inkscape:version="1.2.1 (1:1.2.1+202210291243+9c6d41e410)"
+   sodipodi:docname="visibility_graph_shortest_path.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7937"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="4.2835116"
+     inkscape:cx="62.098583"
+     inkscape:cy="69.218909"
+     inkscape:window-width="1846"
+     inkscape:window-height="1016"
+     inkscape:window-x="1440"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs7932">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath1786">
+      <path
+         d="M 0,0 H 480 V 480 H 0 Z"
+         id="path1784" />
+    </clipPath>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-93.841465,-68.683814)">
+    <g
+       id="g1778"
+       transform="matrix(0.06905272,0,0,-0.06905272,93.841465,101.82912)">
+      <g
+         id="g1780">
+        <g
+           id="g1782" />
+        <g
+           id="g1826">
+          <g
+             clip-path="url(#clipPath1786)"
+             id="g1824">
+            <g
+               id="g1822">
+              <path
+                 d="M 0,0 H 480 V 480 H 0 Z"
+                 style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 id="path1788" />
+              <path
+                 d="M 0,0 H 480 V 480 H 0 Z"
+                 style="fill:#cdb79e;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 id="path1790" />
+              <path
+                 d="M 469,10 V 469 H 10 V 10 Z"
+                 style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#cdb79e;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                 id="path1792" />
+              <path
+                 d="m 283.406,65.43 69.18,16.863 1.969,-52.871 26.707,-2.012 -22.098,-12.812 -57.394,0.285 -273.485,18.191 172.559,-9.535 78.386,9.723 z"
+                 style="fill:#cdb79e;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 id="path1794" />
+              <path
+                 d="m 186.324,110.359 75.059,67.75 82.762,-31.718 -1.368,-3.145 13.375,-50.934 -72.668,17.309 -8.144,-31.676 -7.18,-30.343 -66.195,-5.911 -18.801,47.266 z"
+                 style="fill:#cdb79e;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 id="path1796" />
+              <path
+                 d="m 201.996,328.926 -180.832,-28.684 20.328,142.653 72.75,16.464 46.957,9.02 21.102,-4.426 27.715,-17.914 91.382,-39.348 -67.222,-69.48 z"
+                 style="fill:#cdb79e;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 id="path1798" />
+              <path
+                 d="m 441.332,132.25 7.41,-53.047 -12.691,-5.195 -6.504,22.871 z"
+                 style="fill:#cdb79e;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 id="path1800" />
+              <path
+                 d="m 346.301,373.219 110.301,-11.86 -60.465,-95.144 -76.793,31.293 8.98,94.57 14.188,19.797 -28.211,6.633 -0.59,9.887 -11.242,35.746 100.058,-43.621 15.024,-16.106 z"
+                 style="fill:#cdb79e;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 id="path1802" />
+              <path
+                 d="m 359.312,154.098 33.204,72.695 13.714,-20 61.711,33.035 -29.66,-58.344 z"
+                 style="fill:#cdb79e;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 id="path1804" />
+              <path
+                 d="m 203.039,253.332 7.399,49.086 36.437,-61.516 -8.965,-6.05 -31.086,-33.262 z"
+                 style="fill:#cdb79e;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 id="path1806" />
+              <path
+                 d="m 69.641,212.91 49.023,-63.82 46.992,-7.309 L 110.918,82.977 85.355,144.758 78.16,172.539 67.227,130.695 62.16,97.352 63.727,77.121 40.824,62.918 24.398,277.988 Z"
+                 style="fill:#cdb79e;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 id="path1808" />
+              <path
+                 d="m 31.875,434.438 c 0,-4 -6,-4 -6,0 0,4 6,4 6,0"
+                 style="fill:#ff7f00;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                 id="path1810" />
+              <path
+                 d="m 391.332,96.789 c 0,-4 -6,-4 -6,0 0,4 6,4 6,0"
+                 style="fill:#ff7f00;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                 id="path1812" />
+              <path
+                 d="M 28.875,434.438 21.164,300.242"
+                 style="fill:none;stroke:#00ff00;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                 id="path1814" />
+              <path
+                 d="M 21.164,300.242 206.824,201.59"
+                 style="fill:none;stroke:#00ff00;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                 id="path1816" />
+              <path
+                 d="M 206.824,201.59 344.145,146.391"
+                 style="fill:none;stroke:#00ff00;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                 id="path1818" />
+              <path
+                 d="M 344.145,146.391 388.332,96.789"
+                 style="fill:none;stroke:#00ff00;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                 id="path1820" />
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
