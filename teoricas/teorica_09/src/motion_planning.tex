@@ -30,7 +30,7 @@
 	\note{Información extraída de http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/slides/19-pathplanning-long.pdf}
 	
 	\begin{itemize}
-		\item Calcular el camino optimo considerando potenciales incertidumbres en las acciones
+		\item Calcular el camino óptimo considerando potenciales incertidumbres en las acciones
 		\item Generar rápidamente acciones en el caso de objetos imprevistos
 	\end{itemize}
 	
@@ -182,6 +182,38 @@
 
 \begin{frame}
 	\frametitle{Espacio de configuraciones}
+	
+	\begin{figure}
+		\subfloat[Problema Motion planning en representación geométrica de $\workSpace$]
+		{
+			\fbox{\includegraphics[width=0.33\textwidth]{images/motion_planning_geometrical_example.pdf}}
+		}\hfill{}
+		\subfloat[Problema de Motion planning en representación C-space ]
+		{
+			\fbox{\includegraphics[width=0.33\textwidth]{images/motion_planning_cspace_example.pdf}}
+		}
+	\end{figure}
+	
+En este ejemplo, C-space es obtenido por medio de agrandar los obstáculos por el disco $\robotActionSpace$ con radio $\rho$. Aplicando la suma de Minkowski: $\obstaclesSet + \robotActionSpace = \{ x \oplus y | x \in \obstaclesSet, y \in \robotActionSpace \}$
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Ejemplo $\obstableConfigurationSpace$ para un robot con rotación}
+	
+	\begin{figure}[!h]
+		\includegraphics[width=0.6\textwidth]{images/cspace_representation_motivation.pdf}
+		\caption{Un simple obstáculo 2D tiene un complicado $\obstableConfigurationSpace$}
+	\end{figure}
+
+	\begin{itemize}
+		\item Existe un algoritmo determinístico\footnote{J. Canny, PAMI, 8(2):200–209, 1986} pero requiere tiempo exponencial en el número de dimensiones de $\configurationSpace$
+		\item Una representación explícita de $\freeConfigurationSpace$ en computacionalmente intratable.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Espacio de configuraciones}
 
 	%Espacio de configuraciones es el estado total del robot y el entorno, incluidas las articulaciones y/o movimiento de ruedas)
 	
@@ -189,19 +221,6 @@
 		\includegraphics[width=0.8\textwidth]{images/configuration_space_obstacle.pdf}
 	\end{figure}
 	
-\end{frame}
-
-\begin{frame}
-    \frametitle{Espacio de configuraciones}
-    
-    \begin{figure}[!h]
-        \includegraphics[width=0.2\textwidth]{images/motion_planning_geometrical_example.pdf}
-    \end{figure}
-
-    \begin{figure}[!h]
-        \includegraphics[width=0.2\textwidth]{images/motion_planning_cspace_example.pdf}
-    \end{figure}
-    
 \end{frame}
 
 \begin{frame}
