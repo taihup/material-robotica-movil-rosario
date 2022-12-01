@@ -287,6 +287,80 @@ En este ejemplo, C-space es obtenido por medio de agrandar los obstáculos por e
 	\end{itemize}
 \end{frame}
 
+\begin{frame}
+	\frametitle{Visibility Graph}
+	\note{Información extraída de slides Martin Saska}
+	
+	\begin{figure}
+		\subfloat[Problem]
+		{
+			\fbox{\includegraphics[width=0.2\textwidth]{images/visibility_graph_problem.pdf}}
+		}\hspace{1em}
+		\subfloat[Visibility graph]
+		{
+			\fbox{\includegraphics[width=0.2\textwidth]{images/visibility_graph.pdf}}
+		}\hspace{1em}
+		\subfloat[Camino más corto encontrado]
+		{
+			\fbox{\includegraphics[width=0.2\textwidth]{images/visibility_graph_path.pdf}}
+		}
+	\end{figure}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Voronoi Diagram}
+	\note{Información extraída de slides Martin Saska}
+	
+	\begin{figure}
+		\subfloat[Problem]
+		{
+			\fbox{\includegraphics[width=0.2\textwidth]{images/voronoi_diagram_problem.pdf}}
+		}\hspace{1em}
+		\subfloat[Visibility graph]
+		{
+			\fbox{\includegraphics[width=0.2\textwidth]{images/voronoi_diagram.pdf}}
+		}\hspace{1em}
+		\subfloat[Camino más corto encontrado]
+		{
+			\fbox{\includegraphics[width=0.2\textwidth]{images/voronoi_diagram_path.pdf}}
+		}
+	\end{figure}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Cell Decomposition}
+	\note{Información extraída de slides Martin Saska}
+	
+	\begin{figure}
+		\subfloat[Problem]
+		{
+			\fbox{\includegraphics[width=0.2\textwidth]{images/cell_decomposition_centroids.pdf}}
+		}\hspace{1em}
+		\subfloat[Visibility graph]
+		{
+			\fbox{\includegraphics[width=0.2\textwidth]{images/cell_decomposition_adjacency_cells.pdf}}
+		}\hspace{1em}
+		\subfloat[Camino más corto encontrado]
+		{
+			\fbox{\includegraphics[width=0.2\textwidth]{images/cell_decomposition_path.pdf}}
+		}
+	\end{figure}
+	
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Potential Field}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Randomized Road Maps}
+	
+\end{frame}
+
 
 \begin{frame}
 	\frametitle{Global Planner vs Local Planner}
@@ -298,46 +372,12 @@ En este ejemplo, C-space es obtenido por medio de agrandar los obstáculos por e
 \end{frame}
 
 \begin{frame}
-	\frametitle{Motion Planning Formulation}
-	
-\end{frame}
-
-
-%\begin{frame}
-%	\frametitle{Planeamiento de movimiento}
-%	
-%	\begin{block}{Motion Planning}
-%		Problema de encontrar rutas sin colisiones a través del espacio de configuraciones. Los obstáculos son convertidos (implícitamente con un verificador de colisiones booleano) al espacio de configuraciones. Se utilizan varios algoritmos geométricos o aleatorios/probabilísticos para buscar a través del espacio de configuraciones un camino desde el principio hasta la meta que no choque con ningún obstáculo.
-%	\end{block}
-%
-%	\begin{block}{Trajectory Planning}
-%		Una vez que se tiene un plan de movimiento, este es simplemente un camino geométrico a través del espacio, {\bf no está asociado a un tiempo}. Hay infinitas trayectorias por  cada camino, ya que se puede mover a través del camino con patrones de velocidad variables ilimitados. Durante el planeamiento de movimiento, solo se desea que el movimiento cumpla con algunas restricciones físicas, como qué tan rápido se puede mover el robot y que sea lo más suave posible (por razones de control). Sin embargo, si hay obstáculos dinámicos en el entorno, se tiene que introducir el tiempo en la planificación (el tiempo es una dimensión monótona, es decir, solo puede avanzar, no retroceder). Entonces, el camino debe especificar el momento correcto; de lo contrario, el camino no será válido porque el robot podría colisionar con algunos de los objetos dinámicos.
-%	\end{block}
-%
-%	\begin{block}{Path Planning}
-%	Un camino NO es igual a una trayectoria. Una trayectoria es un camino con información adicional de cómo se atravesar dicho camino con respecto al tiempo, es decir tiene información de velocidad.
-%	\end{block}
-%\end{frame}
-
-
-\begin{frame}
 	\frametitle{Rapidly Exploring Random Trees (RTTs)}
 	
 \end{frame}
 
 \begin{frame}
 	\frametitle{Road Map Planning}
-	
-\end{frame}
-
-
-\begin{frame}
-	\frametitle{Generalized Voronoi Diagram}
-	
-\end{frame}
-
-\begin{frame}
-	\frametitle{Voronoi Diagram}
 	
 \end{frame}
 
@@ -348,11 +388,6 @@ En este ejemplo, C-space es obtenido por medio de agrandar los obstáculos por e
 
 \begin{frame}
 	\frametitle{From Road Maps to Paths}
-	
-\end{frame}
-
-\begin{frame}
-	\frametitle{Randomized Road Maps}
 	
 \end{frame}
 
