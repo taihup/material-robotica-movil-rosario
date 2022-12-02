@@ -8,7 +8,7 @@
 		\url{http://ais.informatik.uni-freiburg.de/teaching/ss16/robotics/recordings/19-path-and-motion-planning-part1.mp4}
 		\url{http://ais.informatik.uni-freiburg.de/teaching/ss16/robotics/recordings/19-path-and-motion-planning-part2.mp4}
 		\url{http://ais.informatik.uni-freiburg.de/teaching/ss16/robotics/recordings/19-path-and-motion-planning-part3.mp4}
-		\item Martin Saska - ECI Slides 2015
+		\item Martin Saska - ECI Slides 2015. Slides del la misma universidad: \url{https://cw.fel.cvut.cz/b181/_media/courses/b4m36uir/lectures/b4m36uir-lec03-handout-3x3.pdf}
 	\end{itemize}
 \end{frame}
 
@@ -269,7 +269,7 @@ En este ejemplo, $\configurationSpace$-space es obtenido por medio de agrandar l
 	\frametitle{Métodos de planning}
 	\note{Información extraída de slides Martin Saska}
 	
-	Algoritmos clásicos de Planeamiento de caminos
+	{\bf Algoritmos clásicos de Planeamiento de caminos}
 	
 	\begin{itemize}
 		\item Métodos basados en Roadmap (crear un grafo de conectividad del espacio libre)
@@ -281,11 +281,11 @@ En este ejemplo, $\configurationSpace$-space es obtenido por medio de agrandar l
 		\item Métodos basados en Potential field
 	\end{itemize}
 
-	Randomized path/motion planning approaches
+	{\bf Randomized path/motion planning approaches}
 	\begin{itemize}
 		\item Probabilistic roadmaps (PRM)
 		\item Expansive-Spaces Tree (EST)
-		\item Rapidly-Exploring Random Tree (RRT) $\leftarrow$ Permite considerar restricciones kinodynamicas.
+		\item Rapidly-Exploring Random Tree (RRT) $\leftarrow$ Permite considerar restricciones kinodinámicas.
 		\item Optimal sampling based Planner - RRT*
 	\end{itemize}
 \end{frame}
@@ -373,7 +373,7 @@ En este ejemplo, $\configurationSpace$-space es obtenido por medio de agrandar l
 	\note{Información extraída de slides Martin Saska}
 	
 	\begin{enumerate}
-		\item Descomponga el espacio libre en partes. Dos puntos cualesquiera en una región convexa pueden estar directamente conectado por un segmento.
+		\item Descomponer el espacio libre en partes. Dos puntos cualesquiera en una región convexa pueden estar directamente conectado por un segmento.
 		\item Crear un grafo de adyacencia que represente la conectividad del espacio libre.
 		\item Encuentra un camino en el grafo.
 	\end{enumerate}
@@ -399,6 +399,31 @@ En este ejemplo, $\configurationSpace$-space es obtenido por medio de agrandar l
 \begin{frame}
 	\frametitle{Potential Field}
 	
+	\begin{figure}
+		\includegraphics[width=0.6\textwidth]{images/potential_field_concept.pdf}
+	\end{figure}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Potential Field}
+	\note{Información extraída de slides Martin Saska}
+	
+	\begin{figure}
+	\subfloat[]
+	{
+		\includegraphics[width=0.25\textwidth]{images/potential_field_example.pdf}
+	}\hfill
+	\subfloat[]
+	{
+		\includegraphics[width=0.25\textwidth]{images/potential_field_path_example.pdf}
+	}\hfill
+	\subfloat[]
+	{
+		\includegraphics[width=0.4\textwidth]{images/potential_field_3d_representation.pdf}
+	}
+	\end{figure}
+
 \end{frame}
 
 \begin{frame}
@@ -433,6 +458,22 @@ En este ejemplo, $\configurationSpace$-space es obtenido por medio de agrandar l
 \end{frame}
 
 \begin{frame}
+	\frametitle{Local Path Planning - Vector Field Histogram (VFH)}
+	\note{Información extraída de slides Martin Saska}
+	
+	\TODO{Completar con slides ECI2015 Martín Saska}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Local Path Planning - Vector Field Histogram+ (VFH+)}
+	\note{Información extraída de slides Martin Saska}
+	
+	\TODO{Completar con slides ECI2015 Martín Saska}
+	
+\end{frame}
+
+\begin{frame}
 	\frametitle{Global Planner vs Local Planner}
 	
 	\begin{figure}[!h]
@@ -462,13 +503,14 @@ En este ejemplo, $\configurationSpace$-space es obtenido por medio de agrandar l
 \begin{frame}
 	\frametitle{Probabilistic Roadmap}
 	\note{Información extraída de slides Martin Saska}
+	
 	Una representación discreta del espacio C continuo generado
 	por configuraciones muestreadas aleatoriamente en Cfree que están conectadas
 	en un gráfico.
 	\begin{itemize}
-		\item Los nodos del grafo representan la configuración admisible de
+		\item Los {\bf nodos} del grafo representan la configuración admisible de
 		el robot.
-		\item Los bordes representan un camino factible (trayectoria) entre el
+		\item Las {\bf aristas} representan un camino factible (trayectoria) entre el
 		configuraciones particulares.
 	\end{itemize}
 
