@@ -469,7 +469,19 @@ En este ejemplo, $\configurationSpace$-space es obtenido por medio de agrandar l
 	\frametitle{Local Path Planning - Vector Field Histogram (VFH)}
 	\note{Información extraída de slides Martin Saska}
 	
-	\TODO{Completar con slides ECI2015 Martín Saska}
+	\begin{itemize}
+		\item Rayo láser virtual en 360 grados
+		\item Obtenido por range-finder sensor
+		\item Se selecciona la dirección con la función de menor costo G
+	\end{itemize}
+
+	\begin{equation*}
+		G = a.targetDirection + b.wheelOrientation + c.previousDirection
+	\end{equation*}
+	
+	\begin{figure}
+		\includegraphics[width=0.7\textwidth]{images/obstacle_avoidande_plor_histogram.pdf}
+	\end{figure}
 	
 \end{frame}
 
@@ -477,7 +489,15 @@ En este ejemplo, $\configurationSpace$-space es obtenido por medio de agrandar l
 	\frametitle{Local Path Planning - Vector Field Histogram+ (VFH+)}
 	\note{Información extraída de slides Martin Saska}
 	
-	\TODO{Completar con slides ECI2015 Martín Saska}
+	\begin{itemize}
+		\item E.g. para robot car-like
+		\item Considera las restricciones de movimiento cinemático de los robots
+		\item Es necesaria la construcción de un mapa local
+	\end{itemize}
+	
+	\begin{figure}
+		\includegraphics[width=0.5\textwidth]{images/vfh_plus.pdf}
+	\end{figure}
 	
 \end{frame}
 
