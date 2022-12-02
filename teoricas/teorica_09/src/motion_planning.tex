@@ -291,20 +291,31 @@ En este ejemplo, C-space es obtenido por medio de agrandar los obstáculos por e
 	\frametitle{Visibility Graph}
 	\note{Información extraída de slides Martin Saska}
 	
+	\begin{enumerate}
+		\item Computar el visibility graph
+		\item Encontrar el camino más corto (e.g. utilizando el algoritmo de Dijkstra)
+	\end{enumerate}
+	
 	\begin{figure}
 		\subfloat[Problem]
 		{
-			\fbox{\includegraphics[width=0.2\textwidth]{images/visibility_graph_problem.pdf}}
+			\includegraphics[width=0.2\textwidth]{images/visibility_graph_problem.pdf}
 		}\hspace{1em}
 		\subfloat[Visibility graph]
 		{
-			\fbox{\includegraphics[width=0.2\textwidth]{images/visibility_graph.pdf}}
+			\includegraphics[width=0.2\textwidth]{images/visibility_graph.pdf}
 		}\hspace{1em}
 		\subfloat[Camino más corto encontrado]
 		{
-			\fbox{\includegraphics[width=0.2\textwidth]{images/visibility_graph_path.pdf}}
+			\includegraphics[width=0.2\textwidth]{images/visibility_graph_path.pdf}
 		}
 	\end{figure}
+
+	Construcción del visibility graph:
+	\begin{enumerate}
+		\item Naïve -- todos los segmentos entre $n$ vértices del mapa $O(n^{3})$
+		\item Utilizar árboles de rotación\footnote{M. H. Overmars and E. Welzl, 1988} para un conjunto de segmentos $O(n^{2})$
+	\end{enumerate}
 	
 \end{frame}
 
@@ -312,39 +323,70 @@ En este ejemplo, C-space es obtenido por medio de agrandar los obstáculos por e
 	\frametitle{Voronoi Diagram}
 	\note{Información extraída de slides Martin Saska}
 	
+	\begin{enumerate}
+		\item La hoja de ruta es un diagrama de Voronoi que {\bf maximiza el espacio libre}
+		de los obstáculos
+		\item Las posiciones de inicio y meta están conectadas al grafo
+		\item La ruta se encuentra usando un algoritmo de búsqueda de grafos
+	\end{enumerate}
+	
 	\begin{figure}
-		\subfloat[Problem]
+		\subfloat[Voronoi diagram]
 		{
-			\fbox{\includegraphics[width=0.2\textwidth]{images/voronoi_diagram_problem.pdf}}
+			\includegraphics[width=0.2\textwidth]{images/voronoi_diagram_problem.pdf}
 		}\hspace{1em}
-		\subfloat[Visibility graph]
+		\subfloat[Camino en el grafo]
 		{
-			\fbox{\includegraphics[width=0.2\textwidth]{images/voronoi_diagram.pdf}}
+			\includegraphics[width=0.2\textwidth]{images/voronoi_diagram.pdf}
 		}\hspace{1em}
-		\subfloat[Camino más corto encontrado]
+		\subfloat[Camino encontrado]
 		{
-			\fbox{\includegraphics[width=0.2\textwidth]{images/voronoi_diagram_path.pdf}}
+			\includegraphics[width=0.2\textwidth]{images/voronoi_diagram_path.pdf}
 		}
 	\end{figure}
 	
 \end{frame}
 
+
+\begin{frame}
+	\frametitle{Visibility Graph vs Voronoi Diagram}
+	\note{Información extraída de slides Martin Saska}
+	
+	\TODO{Completar con slides ECI2015 Martín Saska}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Visibility - Voronoi complex}
+	\note{Información extraída de slides Martin Saska}
+	
+	\TODO{Completar con slides ECI2015 Martín Saska}
+	
+\end{frame}
+
+
 \begin{frame}
 	\frametitle{Cell Decomposition}
 	\note{Información extraída de slides Martin Saska}
 	
+	\begin{enumerate}
+		\item Descomponga el espacio libre en partes. Dos puntos cualesquiera en una región convexa pueden estar directamente conectado por un segmento.
+		\item Crear un grafo de adyacencia que represente la conectividad del espacio libre.
+		\item Encuentra un camino en el grafo.
+	\end{enumerate}
+	
 	\begin{figure}
-		\subfloat[Problem]
+		\subfloat[Los centroides reprensetan celdas]
 		{
-			\fbox{\includegraphics[width=0.2\textwidth]{images/cell_decomposition_centroids.pdf}}
+			\includegraphics[width=0.2\textwidth]{images/cell_decomposition_centroids.pdf}
 		}\hspace{1em}
-		\subfloat[Visibility graph]
+		\subfloat[Conectar celdas adyacentes]
 		{
-			\fbox{\includegraphics[width=0.2\textwidth]{images/cell_decomposition_adjacency_cells.pdf}}
+			\includegraphics[width=0.2\textwidth]{images/cell_decomposition_adjacency_cells.pdf}
 		}\hspace{1em}
-		\subfloat[Camino más corto encontrado]
+		\subfloat[Encontrar el camino en el grafo de adyacencia]
 		{
-			\fbox{\includegraphics[width=0.2\textwidth]{images/cell_decomposition_path.pdf}}
+			\includegraphics[width=0.2\textwidth]{images/cell_decomposition_path.pdf}
 		}
 	\end{figure}
 	
@@ -395,6 +437,37 @@ En este ejemplo, C-space es obtenido por medio de agrandar los obstáculos por e
 	\end{figure}
 \end{frame}
 
+
+\begin{frame}
+	\frametitle{Local Path Planning - Bug1}
+	\note{Información extraída de slides Martin Saska}
+
+	\begin{itemize}
+		\item Rodear el obstáculo para esquivarlo
+		\item Cada obstáculo encontrado se rodea completamente una vez, antes de que sea
+		dejado en el punto más cercano a la meta
+		\item No retorna un camino óptimo; funciona bien con pequeños obstáculos convexos
+	\end{itemize}
+
+	\begin{figure}
+		\includegraphics[width=0.6\textwidth]{images/bug1.pdf}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Local Path Planning - Bug2}
+	\note{Información extraída de slides Martin Saska}
+	
+	\begin{itemize}
+		\item Rodear el obstáculo siempre por el lado izquierdo o derecho
+		\item Dejar el obstáculo si la conexión directa entre inicio y meta se cruzan
+	\end{itemize}
+	
+	\begin{figure}
+		\includegraphics[width=0.7\textwidth]{images/bug2.pdf}
+	\end{figure}
+	
+\end{frame}
 
 \begin{frame}
 	\frametitle{Global Planner vs Local Planner}
