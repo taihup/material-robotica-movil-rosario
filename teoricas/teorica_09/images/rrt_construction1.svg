@@ -25,12 +25,12 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="2.1417558"
-     inkscape:cx="105.98781"
-     inkscape:cy="92.680967"
+     inkscape:cx="93.848234"
+     inkscape:cy="86.144275"
      inkscape:window-width="1452"
      inkscape:window-height="752"
      inkscape:window-x="1775"
-     inkscape:window-y="344"
+     inkscape:window-y="291"
      inkscape:window-maximized="0"
      inkscape:current-layer="layer1" />
   <defs
@@ -248,17 +248,6 @@
         </g>
       </g>
     </g>
-    <text
-       xml:space="preserve"
-       style="font-variant:normal;font-size:3.51458px;font-family:'Nimbus Sans';-inkscape-font-specification:NimbusSanL-Regu;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.352778"
-       id="text296"
-       x="103.26758"
-       y="124.76262"><tspan
-         x="103.26758 105.22169 108.15285 110.10696 111.99078 115.50536 116.64057 118.59468 120.54879 122.5029 124.45701 128.36171 130.119 132.0731 134.02722 135.78452 137.73862 139.69273 140.82794 142.78204 143.75909 144.53934 146.49344"
-         y="124.76262"
-         sodipodi:role="line"
-         id="tspan294"
-         style="stroke-width:0.352778">#1newrandomconfguration</tspan></text>
     <g
        id="g298"
        transform="matrix(0.35277777,0,0,-0.35277777,102.07237,95.556854)">

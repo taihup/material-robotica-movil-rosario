@@ -8,19 +8,22 @@
 		\url{http://ais.informatik.uni-freiburg.de/teaching/ss16/robotics/recordings/19-path-and-motion-planning-part1.mp4}
 		\url{http://ais.informatik.uni-freiburg.de/teaching/ss16/robotics/recordings/19-path-and-motion-planning-part2.mp4}
 		\url{http://ais.informatik.uni-freiburg.de/teaching/ss16/robotics/recordings/19-path-and-motion-planning-part3.mp4}
+		\item Martin Saska - ECI Slides 2015
 	\end{itemize}
-	
 \end{frame}
 
 \begin{frame}
 	\frametitle{Motion Planning}
 	\note{Información extraída de http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/slides/19-pathplanning-long.pdf}
 	
-	Latombe (1991): ``... eminently necessary since, by definition, a robot accomplishes tasks by moving in the real world.''
+	\begin{block}{Latombe (1991)}
+		``... eminently necessary since, by definition, a robot accomplishes tasks by moving in the real world.''
+	\end{block}
+
 	
 	Objetivos:
 	\begin{itemize}
-		\item Trayectorias sin colisiones.
+		\item Generar trayectorias sin colisiones.
 		\item El robot debe llegar a la ubicación de destino lo más rápido posible.
 	\end{itemize}
 \end{frame}
@@ -52,7 +55,7 @@
     \note{Información extraída de slides Martin Saska}
     
     \begin{figure}[!h]
-        \includegraphics[width=0.5\textwidth]{images/motion_planning_architecture.pdf}
+        \includegraphics[width=0.6\textwidth]{images/motion_planning_architecture.pdf}
     \end{figure}
 
     {\bf Motion planning} es parte del ciclo de {\bf mission planning}. Los algoritmos offline se convierten en planificaciones online.
@@ -75,7 +78,7 @@
 	\note{Información extraída de http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/slides/19-pathplanning-long.pdf}
 
 	\begin{itemize}
-		\item El {\bf problema de la planificación del movimiento} se puede declarar de la siguiente manera. Dado:
+		\item El {\bf problema de la motion planning} se puede declarar de la siguiente manera. Dado:
 		\begin{itemize}
 			\item Una pose inicial del robot
 			\item Una pose final deseada
@@ -90,9 +93,9 @@
 	\frametitle{Espacio de configuraciones}
 	
 	\begin{itemize}
-		\item Aunque el problema de planificación de movimiento es 		definido en el mundo regular, vive en otro espacio: el {\bf espacio de configuración}
-		\item Una configuración de robot q es una especificación de las posiciones de todos los puntos del robot en relación con un sistema de coordenadas fijo
-		\item Por lo general, una configuración se expresa como un vector de posiciones y orientaciones
+		\item Aunque el problema de motion planning es definido en el mundo regular, vive en otro espacio: el {\bf Espacio de configuraciones}
+		\item Una {\bf configuración de robot}, q, es una especificación de las posiciones de todos los puntos del robot en relación con un sistema de coordenadas fijo
+		\item Por lo general, una configuración se expresa como un {\bf vector de posiciones y orientaciones}
 	\end{itemize}
 
 	
@@ -399,56 +402,16 @@ En este ejemplo, C-space es obtenido por medio de agrandar los obstáculos por e
 \end{frame}
 
 \begin{frame}
-	\frametitle{Randomized Road Maps}
-	
-\end{frame}
-
-\begin{frame}
-	\frametitle{Rapidly Exploring Random Trees (RTTs)}
-	\note{Información extraída de slides Martin Saska}
-	
-	\begin{figure}
-		\subfloat[]
-		{
-			\fbox{\includegraphics[width=0.3\textwidth]{images/rrt_construction1.pdf}}
-		}\hspace{1em}
-		\subfloat[]
-		{
-			\fbox{\includegraphics[width=0.3\textwidth]{images/rrt_construction2.pdf}}
-		}\\
-		\subfloat[]
-		{
-			\fbox{\includegraphics[width=0.3\textwidth]{images/rrt_construction3.pdf}}
-		}\hspace{1em}
-		\subfloat[]
-		{
-			\fbox{\includegraphics[width=0.3\textwidth]{images/rrt_construction4.pdf}}
-		}\\
-	\end{figure}
-\end{frame}
-
-
-\begin{frame}
-	\frametitle{Sampleo basado en control}
-	\note{Información extraída de slides Martin Saska}
-	
-	\begin{figure}
-		\includegraphics[width=0.5\textwidth]{images/rrt_control_based_sampling.pdf}
-	\end{figure}
-\end{frame}
-
-
-\begin{frame}
 	\frametitle{Local Path Planning - Bug1}
 	\note{Información extraída de slides Martin Saska}
-
+	
 	\begin{itemize}
 		\item Rodear el obstáculo para esquivarlo
 		\item Cada obstáculo encontrado se rodea completamente una vez, antes de que sea
 		dejado en el punto más cercano a la meta
 		\item No retorna un camino óptimo; funciona bien con pequeños obstáculos convexos
 	\end{itemize}
-
+	
 	\begin{figure}
 		\includegraphics[width=0.6\textwidth]{images/bug1.pdf}
 	\end{figure}
@@ -478,40 +441,212 @@ En este ejemplo, C-space es obtenido por medio de agrandar los obstáculos por e
 	
 \end{frame}
 
-
-
 \begin{frame}
-	\frametitle{Road Map Planning}
+	\frametitle{Sampling-based Motion Planning}
+	\note{Información extraída de slides Martin Saska}
+	
+	\begin{itemize}
+		\item Evita la representación explícita de obstáculos en el espacio C
+        \item Se utiliza una función de “caja negra” para evaluar una configuración q
+		es libre de colisiones (Por ejemplo, basado en modelos geométricos y pruebas
+		colisiones de los modelos)
+		\item Crea una representación discreta de Cfree
+		\item Las configuraciones en Cfree se muestrean aleatoriamente y se conectan
+		a una hoja de ruta (hoja de ruta probabilística)
+		\item En lugar de una completa exhaustividad, proporcionan datos probabilísticos
+		completitud o resolución completitud. Algoritmos probabilísticos completos: con un número creciente de muestras se encontraría una solución admisible (si existe)
+	\end{itemize}
 	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Randomized Road Maps}
+	\frametitle{Probabilistic Roadmap}
+	\note{Información extraída de slides Martin Saska}
+	Una representación discreta del espacio C continuo generado
+	por configuraciones muestreadas aleatoriamente en Cfree que están conectadas
+	en un gráfico.
+	\begin{itemize}
+		\item Los nodos del grafo representan la configuración admisible de
+		el robot.
+		\item Los bordes representan un camino factible (trayectoria) entre el
+		configuraciones particulares.
+	\end{itemize}
+
+	Teniendo el grafo, la ruta final (trayectoria) se encuentra mediante una técnica de búsqueda de grafos.
+\end{frame}
+
+\begin{frame}
+	\frametitle{Probabilistic Roadmap Strategies}
+	\note{Información extraída de slides Martin Saska}
+	
+	{\bf Multi-Query (Batch)}:
+	\begin{itemize}
+	\item Generar una hoja de ruta única que luego se utiliza para planificar consultas varias veces.
+		\begin{itemize}
+			\item Probabilistic RoadMap – PRM
+		\end{itemize}
+	\end{itemize}
+
+	{\bf Single-Query (Batch)}:
+	\begin{itemize}
+		\item Para cada problema de planificación construye una nueva hoja de ruta para
+		caracterizar el subespacio del C-espacio que es relevante para el
+		problema.
+		\begin{itemize}
+			\item Rapidly-exploring Random Tree -- RRT\footnote{LaValle, 1998}
+			\item Expansive-Space Tree -- EST\footnote{Hsu et al., 1997}
+			\item Sampling-based Roadmap of Trees – SRT\footnote{Plaku et al., 2005}
+		\end{itemize}
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Probabilistic RoadMap (PRM) Planner}
+	\note{Información extraída de slides Martin Saska}
+	
+	Construir una hoja de ruta (gráfico) que represente el medio ambiente
+	\begin{itemize}
+		\item Etapa de aprendizaje
+		\begin{enumerate}
+			\item Muestrar n puntos en Cfree
+			\item Conectar las configuraciones aleatorias usando un local planner
+		\end{enumerate}
+		\item Etapa de consulta
+		\begin{enumerate}
+			\item Conectar las configuraciones de inicio y meta con el PRM. Por ejemplo, usando un local planner
+			\item Usar la búsqueda grafo para encontrar la ruta
+		\end{enumerate}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{PRM Construction/Query}
+	\note{Información extraída de slides Martin Saska}
+	
+
+	\only<1>{
+		\begin{figure}[!h]
+			\includegraphics[width=0.6\textwidth]{images/prm_problem.pdf}
+			\caption{Domino del problema}
+		\end{figure}
+	}
+	\only<2>{
+		\begin{figure}[!h]
+			\includegraphics[width=0.6\textwidth]{images/prm_random_configurations.pdf}
+			\caption{Configuraciones aleatorias}
+		\end{figure}
+	}
+	\only<3>{
+		\begin{figure}[!h]
+			\includegraphics[width=0.6\textwidth]{images/prm_connect_random_samples.pdf}
+			\caption{Conectando configuraciones aleatorias}
+		\end{figure}
+	}
+	\only<4>{
+		\begin{figure}[!h]
+			\includegraphics[width=0.6\textwidth]{images/prm_connected_roadmap.pdf}
+			\caption{Ruta conectada}
+		\end{figure}
+	}
+	\only<5>{
+		\begin{figure}[!h]
+			\includegraphics[width=0.6\textwidth]{images/prm_query_configuration.pdf}
+			\caption{Consultar configuraciones}
+		\end{figure}
+	}
+	\only<6>{
+		\begin{figure}[!h]
+			\includegraphics[width=0.6\textwidth]{images/prm_find_final_path.pdf}
+			\caption{Encontrar el camino final}
+		\end{figure}
+	}
+	
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Rapidly Exploring Random Trees (RTTs)}
+	\note{Información extraída de slides Martin Saska}
+	
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\item Construcción incremental
+				\item Conectar nodos en un radio $\rho$
+				\item El local planner prueba las colisiones hasta la resolución seleccionada $\delta$
+				\item La ruta se puede encontrar mediante el algoritmo de Dijkstra
+			\end{itemize}
+		\end{column}
+		\begin{column}{0.5\textwidth}  %%<--- here
+			\begin{figure}[!h]
+				\includegraphics[width=\columnwidth]{images/prm_summary.pdf}
+			\end{figure}
+		\end{column}
+	\end{columns}
 	
 \end{frame}
 
 \begin{frame}
-	\frametitle{From Road Maps to Paths}
+	\frametitle{Rapidly Exploring Random Trees (RTTs)}
+	\note{Información extraída de slides Martin Saska}
+	
+	\begin{itemize}
+		\item La motivación es una única consulta y una búsqueda de ruta basada en el control
+		\item Construye incrementalmente un grafo (árbol) hacia el área objetivo.
+	\end{itemize}
 	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Randomized Road Maps}
+	\frametitle{Rapidly Exploring Random Trees (RTTs)}
+	\note{Información extraída de slides Martin Saska}
 	
+	\begin{figure}
+		\subfloat[1. Nueva configuración aleatoria]
+		{
+			\includegraphics[width=0.25\textwidth]{images/rrt_construction1.pdf}
+		}\hspace{1em}
+		\subfloat[2. Seleccionar el nodo más cercano]
+		{
+			\includegraphics[width=0.25\textwidth]{images/rrt_construction2.pdf}
+		}\\
+		\subfloat[3. Posibles acciones desde $\robotConfiguration_{near}$]
+		{
+			\includegraphics[width=0.25\textwidth]{images/rrt_construction3.pdf}
+		}\hspace{1em}
+		\subfloat[4. Extender el árbol]
+		{
+			\includegraphics[width=0.25\textwidth]{images/rrt_construction4.pdf}
+		}\\
+	\end{figure}
+
+	La expansión se repite hasta que se alcanza el $\goalConfiguration$ o la iteración máxima.
+
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Propiedades de los algoritmos RRT}
+	\note{Información extraída de slides Martin Saska}
+
+	\begin{itemize}
+		\item Explora rápidamente el espacio qnew probablemente se generará en zonas grandes todavía no cubiertas de $\freeConfigurationSpace$.
+		\item Permite considerar restricciones cinedinámicas/dinámicas durante la expansión
+		\item Puede proporcionar una trayectoria o una secuencia de comandos de control directo.
+		\item Una prueba de detección de colisiones generalmente se usa como una ``caja negra''. Por ejemplo, las librerías RAPID, Bullet.
+		\item Rendimiento deficiente en problemas de paso angosto similar a PRM
+		\item Proporciona caminos factibles (más expansiones pueden mejorar los caminos)
+		\item Se han propuesto muchas variantes de RRT
+	\end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Randomized Road Maps}
+	\frametitle{Sampleo basado en control}
+	\note{Información extraída de slides Martin Saska}
 	
-\end{frame}
-
-\begin{frame}
-	\frametitle{Randomized Road Maps}
-	
-\end{frame}
-
-\begin{frame}
-	\frametitle{Markov Decision Process}
-	
+	\begin{figure}
+		\includegraphics[width=0.5\textwidth]{images/rrt_control_based_sampling.pdf}
+	\end{figure}
 \end{frame}
 
