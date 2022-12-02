@@ -93,7 +93,7 @@
 	\frametitle{Espacio de configuraciones}
 	
 	\begin{itemize}
-		\item Aunque el problema de motion planning es definido en el mundo regular, vive en otro espacio: el {\bf Espacio de configuraciones}
+		\item Aunque el problema de motion planning es definido en el mundo regular, vive en otro espacio: el {\bf Espacio de configuraciones} (lo notaremos con $\configurationSpace$)
 		\item Una {\bf configuración de robot}, q, es una especificación de las posiciones de todos los puntos del robot en relación con un sistema de coordenadas fijo
 		\item Por lo general, una configuración se expresa como un {\bf vector de posiciones y orientaciones}
 	\end{itemize}
@@ -136,7 +136,7 @@
     \note{Información extraída de slides Martin Saska}
     
     \begin{itemize}
-    \item {\bf Path}: es un mapeo continuo en C-space tal que
+    \item {\bf Path}: es un mapeo continuo en $\configurationSpace$-space tal que
         \begin{equation*}
             \continuousPath : [0,1] \rightarrow \freeConfigurationSpace \quad \text{con} \quad \continuousPath(0) = \startConfiguration \quad \text{y} \quad  \continuousPath(1) = \goalConfiguration \quad \text{(\emph{solo hay consideraciones goemétricas})}
         \end{equation*} 
@@ -163,7 +163,7 @@
     
     Teniendo 
     \begin{itemize}
-        \item La dinámica de un sistema con estado $\state$ y $\controlCommand$
+        \item La dinámica de un sistema con estado $\state$ y comandos de control $\controlCommand$
         \begin{equation*}
             \dfrac{\partial \state}{\partial t} = f(\state,\controlCommand)
         \end{equation*}
@@ -171,7 +171,7 @@
     \end{itemize}
     El problema de Motion Planning consiste en encontrar el comando de control $\controlCommand$ tal que 
     \begin{equation*}
-        \state(t) \notin \obstaclesSet \, \text{para} \,  t \in \mathcal{R}_{+} \, \text{y} \, \state(t) \in \goalSet \,  \forall t \ge T_{f} \, \text{para algún finito} \, T_{f} \geq 0,
+        \state(t) \notin \obstaclesSet \, \text{para} \,  t \in \mathbb{R}_{+} \, \text{y} \, \state(t) \in \goalSet \,  \forall t \ge T_{f} \, \text{para algún finito} \, T_{f} \geq 0,
     \end{equation*}    
     o, retorna que no existe tal señal de control.
     
@@ -219,21 +219,21 @@
 %\end{frame}
 
 \begin{frame}
-	\frametitle{Ejemplo de planeamiento sencillo en el C-Space}
+	\frametitle{Ejemplo de planeamiento sencillo en el $\configurationSpace$-space}
 	\note{Información extraída de slides Martin Saska}
 	
 	\begin{figure}
 		\subfloat[Problema Motion planning en representación geométrica de $\workSpace$]
 		{
-			\fbox{\includegraphics[width=0.33\textwidth]{images/motion_planning_geometrical_example.pdf}}
+			\includegraphics[width=0.33\textwidth]{images/motion_planning_geometrical_example.pdf}
 		}\hspace{1em}
-		\subfloat[Problema de Motion planning en representación C-space ]
+		\subfloat[Problema de Motion planning en representación $\configurationSpace$-space]
 		{
-			\fbox{\includegraphics[width=0.33\textwidth]{images/motion_planning_cspace_example.pdf}}
+			\includegraphics[width=0.33\textwidth]{images/motion_planning_cspace_example.pdf}
 		}
 	\end{figure}
 	
-En este ejemplo, C-space es obtenido por medio de agrandar los obstáculos por el disco $\robotActionSpace$ con radio $\rho$. Aplicando la suma de Minkowski: $\obstaclesSet + \robotActionSpace = \{ x \oplus y | x \in \obstaclesSet, y \in \robotActionSpace \}$
+En este ejemplo, $\configurationSpace$-space es obtenido por medio de agrandar los obstáculos por el disco $\robotActionSpace$ con radio $\rho$. Aplicando la suma de Minkowski: $\obstaclesSet + \robotActionSpace = \{ x \oplus y | x \in \obstaclesSet, y \in \robotActionSpace \}$
 	
 \end{frame}
 
@@ -253,10 +253,10 @@ En este ejemplo, C-space es obtenido por medio de agrandar los obstáculos por e
 \end{frame}
 
 \begin{frame}
-	\frametitle{Representación de C-space}
+	\frametitle{Representación de $\configurationSpace$-space}
 	\note{Información extraída de slides Martin Saska}
 	
-	¿Cómo podemos lidiar con una representación continua de C-space?
+	¿Cómo podemos lidiar con una representación continua de $\configurationSpace$-space?
 	
 	\begin{figure}[!h]
 		\includegraphics[width=0.4\textwidth]{images/cspace_representation.pdf}
