@@ -94,7 +94,7 @@
 	
 	\begin{itemize}
 		\item Aunque el problema de motion planning es definido en el mundo regular, vive en otro espacio: el {\bf Espacio de configuraciones} (lo notaremos con $\configurationSpace$)
-		\item Una {\bf configuración de robot}, q, es una especificación de las posiciones de todos los puntos del robot en relación con un sistema de coordenadas fijo
+		\item Una {\bf configuración de robot}, $\robotConfiguration$, es una especificación de las posiciones de todos los puntos del robot en relación con un sistema de coordenadas fijo
 		\item Por lo general, una configuración se expresa como un {\bf vector de posiciones y orientaciones}
 	\end{itemize}
 
@@ -470,8 +470,8 @@ En este ejemplo, $\configurationSpace$-space es obtenido por medio de agrandar l
 	
 	\begin{itemize}
 		\item Rayo láser virtual en 360 grados
-		\item Obtenido por range-finder sensor
-		\item Se selecciona la dirección con la función de menor costo G
+		\item Obtenido por sensor range-finder
+		\item Se selecciona la dirección con la función de menor costo $G$
 	\end{itemize}
 
 	\begin{equation*}
@@ -511,9 +511,8 @@ En este ejemplo, $\configurationSpace$-space es obtenido por medio de agrandar l
 		colisiones de los modelos)
 		\item Crea una representación discreta de $\freeConfigurationSpace$
 		\item Las configuraciones en $\freeConfigurationSpace$ se muestrean aleatoriamente y se conectan
-		a una roadmap (Prbabilistic roadmap)
-		\item En lugar de una completa exhaustividad, proporcionan datos probabilísticos
-		completitud o resolución completitud. Algoritmos probabilísticos completos: con un número creciente de muestras se encontraría una solución admisible (si existe)
+		a una roadmap (Probabilistic roadmap)
+		\item En lugar de una completa exhaustividad, proporcionan datos probabilísticos completitud o resolución completitud. Algoritmos probabilísticos completos: con un número creciente de muestras se encontraría una solución admisible (si existe)
 	\end{itemize}
 	
 \end{frame}
@@ -541,17 +540,16 @@ En este ejemplo, $\configurationSpace$-space es obtenido por medio de agrandar l
 	
 	{\bf Multi-Query (Batch)}:
 	\begin{itemize}
-	\item Generar una hoja de ruta única que luego se utiliza para planificar consultas varias veces.
+	\item Generar un único roadmap (mapa de rutas) que luego se utiliza para planificar varias veces.
 		\begin{itemize}
 			\item Probabilistic RoadMap – PRM
 		\end{itemize}
 	\end{itemize}
 
-	{\bf Single-Query (Batch)}:
+	{\bf Single-Query (Incremental)}:
 	\begin{itemize}
-		\item Para cada problema de planificación construye una nueva hoja de ruta para
-		caracterizar el subespacio del C-espacio que es relevante para el
-		problema.
+		\item Para cada problema de planificación se construye un nuevo roadmap para
+		caracterizar el subespacio del $\configurationSpace$-space que es relevante.
 		\begin{itemize}
 			\item Rapidly-exploring Random Tree -- RRT\footnote{LaValle, 1998}
 			\item Expansive-Space Tree -- EST\footnote{Hsu et al., 1997}
@@ -565,7 +563,7 @@ En este ejemplo, $\configurationSpace$-space es obtenido por medio de agrandar l
 	\frametitle{Probabilistic RoadMap (PRM) Planner}
 	\note{Información extraída de slides Martin Saska}
 	
-	Construir una roadman (grafo)) que represente el entorno
+	Construir una roadman (grafo) que represente el entorno
 	\begin{itemize}
 		\item Etapa de aprendizaje
 		\begin{enumerate}
@@ -699,6 +697,14 @@ En este ejemplo, $\configurationSpace$-space es obtenido por medio de agrandar l
 		\item Proporciona caminos factibles (más expansiones pueden mejorar los caminos)
 		\item Se han propuesto muchas variantes de RRT
 	\end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Car-Like Robot}
+    \note{Información extraída de slides Martin Saska}
+    
+    \TODO{Completar con slides ECI2015 Martín Saska}
+    
 \end{frame}
 
 \begin{frame}
