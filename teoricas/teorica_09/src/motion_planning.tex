@@ -105,14 +105,14 @@
 	\frametitle{Espacio de configuraciones}
 	\begin{itemize}
 		\item Hay dos tipos de regiones: libres u ocupadas (con obstáculos)
-		\item Sea $\workSpace = \mathbb{R}^{m}$ el \emph{work space} (para un mundo 2D, $\workSpace = \mathbb{R}^{2}$), $\obstaclesSet \in \workSpace$ el conjunto de obstáculos, $\robotInConfiguration(\robotConfiguration)$ en la configuración $\robotConfiguration \in \configurationSpace$.
+		\item Sea $\workSpace = \mathbb{R}^{m}$ el \emph{work space} (para un mundo 2D, $\workSpace = \mathbb{R}^{2}$), $\obstaclesSet \in \workSpace$ el conjunto de obstáculos, un robot $\robotInConfiguration(\robotConfiguration)$ en la configuración $\robotConfiguration \in \configurationSpace$.
         La configuración del robot especifica completamente la pose del robot en $\workSpace$ incluyendo la especificación de todos los grados de libertad. (E.g., un robot con un cuerpo rígido en el plano $\configurationSpace = \begin{bmatrix}
             x & y & \theta
         \end{bmatrix} = \mathbb{R}^{2} \times S_{1}$ .)
         
 		\begin{align*}
 			 \freeConfigurationSpace &= \left\lbrace \robotConfiguration \in \configurationSpace | \robotInConfiguration(\robotConfiguration) \cap \obstaclesSet =  \emptyset \right\rbrace\\
-			 \goalConfiguration &= \configurationSpace / \freeConfigurationSpace
+			 \obstableConfigurationSpace &= \configurationSpace / \freeConfigurationSpace
 		\end{align*}
 	
 		\item Definimos:\\
@@ -327,9 +327,8 @@ En este ejemplo, $\configurationSpace$-space es obtenido por medio de agrandar l
 	\note{Información extraída de slides Martin Saska}
 	
 	\begin{enumerate}
-		\item La hoja de ruta es un diagrama de Voronoi que {\bf maximiza el espacio libre}
-		de los obstáculos
-		\item Las posiciones de inicio y meta están conectadas al grafo
+		\item El roadmap es un diagrama de Voronoi que {\bf maximiza el espacio libre} entre los obstáculos
+		\item Las posiciones de inicio y meta se conectan al grafo
 		\item La ruta se encuentra usando un algoritmo de búsqueda de grafos
 	\end{enumerate}
 	
@@ -506,13 +505,13 @@ En este ejemplo, $\configurationSpace$-space es obtenido por medio de agrandar l
 	\note{Información extraída de slides Martin Saska}
 	
 	\begin{itemize}
-		\item Evita la representación explícita de obstáculos en el espacio C
-        \item Se utiliza una función de “caja negra” para evaluar una configuración q
+		\item Evita la representación explícita de obstáculos en el $\configurationSpace$-space
+        \item Se utiliza una función de ``caja negra'' para evaluar una configuración $\robotConfiguration$
 		es libre de colisiones (Por ejemplo, basado en modelos geométricos y pruebas
 		colisiones de los modelos)
-		\item Crea una representación discreta de Cfree
-		\item Las configuraciones en Cfree se muestrean aleatoriamente y se conectan
-		a una hoja de ruta (hoja de ruta probabilística)
+		\item Crea una representación discreta de $\freeConfigurationSpace$
+		\item Las configuraciones en $\freeConfigurationSpace$ se muestrean aleatoriamente y se conectan
+		a una roadmap (Prbabilistic roadmap)
 		\item En lugar de una completa exhaustividad, proporcionan datos probabilísticos
 		completitud o resolución completitud. Algoritmos probabilísticos completos: con un número creciente de muestras se encontraría una solución admisible (si existe)
 	\end{itemize}
@@ -566,11 +565,11 @@ En este ejemplo, $\configurationSpace$-space es obtenido por medio de agrandar l
 	\frametitle{Probabilistic RoadMap (PRM) Planner}
 	\note{Información extraída de slides Martin Saska}
 	
-	Construir una hoja de ruta (gráfico) que represente el medio ambiente
+	Construir una roadman (grafo)) que represente el entorno
 	\begin{itemize}
 		\item Etapa de aprendizaje
 		\begin{enumerate}
-			\item Muestrar n puntos en Cfree
+			\item Muestrar $n$ puntos en $\freeConfigurationSpace$
 			\item Conectar las configuraciones aleatorias usando un local planner
 		\end{enumerate}
 		\item Etapa de consulta
@@ -627,7 +626,7 @@ En este ejemplo, $\configurationSpace$-space es obtenido por medio de agrandar l
 
 
 \begin{frame}
-	\frametitle{Rapidly Exploring Random Trees (RTTs)}
+	\frametitle{PRM - Resumen}
 	\note{Información extraída de slides Martin Saska}
 	
 	\begin{columns}
@@ -649,7 +648,7 @@ En este ejemplo, $\configurationSpace$-space es obtenido por medio de agrandar l
 \end{frame}
 
 \begin{frame}
-	\frametitle{Rapidly Exploring Random Trees (RTTs)}
+	\frametitle{Rapidly-exploring Random Trees (RRTs)}
 	\note{Información extraída de slides Martin Saska}
 	
 	\begin{itemize}
@@ -660,7 +659,7 @@ En este ejemplo, $\configurationSpace$-space es obtenido por medio de agrandar l
 \end{frame}
 
 \begin{frame}
-	\frametitle{Rapidly Exploring Random Trees (RTTs)}
+	\frametitle{Rapidly-exploring Random Trees (RRTs)}
 	\note{Información extraída de slides Martin Saska}
 	
 	\begin{figure}
@@ -688,12 +687,12 @@ En este ejemplo, $\configurationSpace$-space es obtenido por medio de agrandar l
 
 
 \begin{frame}
-	\frametitle{Propiedades de los algoritmos RRT}
+	\frametitle{Propiedades de los algoritmos RRTs}
 	\note{Información extraída de slides Martin Saska}
 
 	\begin{itemize}
 		\item Explora rápidamente el espacio qnew probablemente se generará en zonas grandes todavía no cubiertas de $\freeConfigurationSpace$.
-		\item Permite considerar restricciones cinedinámicas/dinámicas durante la expansión
+		\item Permite considerar restricciones cinemáticas/dinámicas durante la expansión
 		\item Puede proporcionar una trayectoria o una secuencia de comandos de control directo.
 		\item Una prueba de detección de colisiones generalmente se usa como una ``caja negra''. Por ejemplo, las librerías RAPID, Bullet.
 		\item Rendimiento deficiente en problemas de paso angosto similar a PRM
