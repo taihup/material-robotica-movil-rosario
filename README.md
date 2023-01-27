@@ -6,8 +6,6 @@ Los vídeos de las clases están en youtube: [https://youtube.com/playlist?list=
 
 La página de la materia del DCC-FCEIA-UNR es: [https://dcc.fceia.unr.edu.ar/es/lcc/521k](https://dcc.fceia.unr.edu.ar/es/lcc/521k). Todo el contenido (slides, tps, etc) está subido en el campus virtual de la UNR: [https://comunidades.campusvirtualunr.edu.ar/course/view.php?id=5797](https://comunidades.campusvirtualunr.edu.ar/course/view.php?id=5797)
 
-## Latex slides compilation
-
 # Compilación Latex
 
 ## Dependencias
