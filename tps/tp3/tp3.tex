@@ -117,6 +117,12 @@ Computar el mapa de disparidad con las librerías utilizando la función \lstinl
 Utilizando el mapa de disparidad obtenido en el paso anterior realizar una reconstrucción densa de la escena observada utilizando la función \lstinline{cv::reprojectImageTo3D()}. Para esto debe utilizar la matríz de reproyección Q retornada por la función \lstinline{cv::stereoRectify()}. Visualizar la nube de puntos 3D.
 
 \section{Estimación de pose Monocular}
-Utilizando \lstinline{cv::recoverPose()} estimar la transformación entre la imagen izquierda y la imagen derecha. Para esto deberá calcular la matríz esencial utilizando la función \lstinline{cv::findEssentialMat()}. Visualizar la trayectoria realizada por la cámara.
+Utilizando \lstinline{cv::recoverPose()} estimar la transformación entre la imagen izquierda y la imagen derecha. Para esto deberá calcular la matríz esencial utilizando la función \lstinline{cv::findEssentialMat()}. Notar que \lstinline{cv::recoverPose()} retorna el vector unitario de traslación, por lo tanto deberá multiplicarlo por el factor de escala (en este caso el baseline) para obtener la traslación estimada. Una vez hecho esto se pide:
+
+
+\begin{itemize}
+    \item Visualizar la pose estimada de ambas cámaras.
+    \item Estimar y visualizar la trayectoría realizada por la cámara izquierda a un factor de escala.
+\end{itemize}
 
 \end{document}
