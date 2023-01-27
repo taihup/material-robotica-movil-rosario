@@ -50,9 +50,7 @@ Desarrollar un programa que lea un par de imágenes estéreo cualquiera y realic
 
 
 \section{Sincronización de imágenes}
-\TODO{Hacer que el driver de la TARA funcione correctamente y genere las imágenes izquierda, derecha y los camera\_info con los mimos timestamps.}
-
-Dado que el rosbag tiene las imágenes izquierda y derecha desincronizadas (diferente timestamp) debido a un bug en el driver de la cámara. Vamos a tener que sincronizar los mensajes de las imágenes utilizar el paquete \lstinline{message_filters}\footnote{\url{http://wiki.ros.org/message_filters}}. Para esto hay que 
+Debido a que en el rosbag las imágenes izquierda y derecha se almacenaron en un instante (timestamp en el rosbag) distinto al que fueron capturadas (timestamp en el header de las imágenes). Vamos a tener que sincronizar las imágenes utilizando el timestamp que figura en el header, esto se hace mediante el paquete \lstinline{message_filters}\footnote{\url{http://wiki.ros.org/message_filters}}. Para esto hay que 
 
 \begin{lstlisting}[style=python]
 # Importamos del paquete
@@ -117,12 +115,12 @@ Computar el mapa de disparidad con las librerías utilizando la función \lstinl
 Utilizando el mapa de disparidad obtenido en el paso anterior realizar una reconstrucción densa de la escena observada utilizando la función \lstinline{cv::reprojectImageTo3D()}. Para esto debe utilizar la matríz de reproyección Q retornada por la función \lstinline{cv::stereoRectify()}. Visualizar la nube de puntos 3D.
 
 \section{Estimación de pose Monocular}
-Utilizando \lstinline{cv::recoverPose()} estimar la transformación entre la imagen izquierda y la imagen derecha. Para esto deberá calcular la matríz esencial utilizando la función \lstinline{cv::findEssentialMat()}. Notar que \lstinline{cv::recoverPose()} retorna el vector unitario de traslación, por lo tanto deberá multiplicarlo por el factor de escala (en este caso el baseline) para obtener la traslación estimada. Una vez hecho esto se pide:
+Utilizando \lstinline{cv::recoverPose()} estimar la transformación entre la cámara izquierda y la cámara derecha. Para esto deberá calcular la matríz esencial utilizando la función \lstinline{cv::findEssentialMat()}. Notar que \lstinline{cv::recoverPose()} retorna el vector unitario de traslación, por lo tanto deberá multiplicarlo por el factor de escala (en este caso el baseline entre las cámaras) para obtener la traslación estimada. Una vez hecho esto se pide:
 
 
 \begin{itemize}
     \item Visualizar la pose estimada de ambas cámaras.
-    \item Estimar y visualizar la trayectoría realizada por la cámara izquierda a un factor de escala.
+    \item Estimar y visualizar la trayectoría realizada por la cámara izquierda a un factor de escala cualquiera.
 \end{itemize}
 
 \end{document}
