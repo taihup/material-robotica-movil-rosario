@@ -42,9 +42,14 @@
 \begin{frame}
     \frametitle{Locomoción}
 
-    Manipulación: un brazo robótica está fijo y mueve objetos en su espacio de trabajo aplicando fuerza sobre ellos.
+	\begin{block}{Manipulación}
+    	Un brazo robótica está fijo y mueve objetos en su espacio de trabajo aplicando fuerza sobre ellos.
+	\end{block}
+   
+    \begin{block}{Locomoción}
+		El entorno está fijo y el robot se mueve impartiendo fuerza sobre el entorno.
+	\end{block}
 
-    Locomoción: el entorno está fijo y el robot se mueve impartiendo fuerza sobre el entorno.
     \begin{itemize}
         \item Estabilidad
         \begin{itemize}
@@ -154,7 +159,7 @@
         \subfloat[Car-like]
         {
             \includegraphics[height=0.3\textheight]{./images/carlike_robot.png}
-        }\\
+        }
         \subfloat[Omni-wheel]
         {
             \includegraphics[height=0.3\textheight]{./images/omni_robot.png}
@@ -164,6 +169,18 @@
             \includegraphics[height=0.3\textheight]{./images/mecanum_robot.png}
         }
     \end{figure}
+    
+    \begin{block}{Robot Holonómico}
+ 		El robot puede ir en todas las direcciones X e Y y no está restringido.
+    \end{block}
+    
+    \begin{block}{Robot No-Holonómico}
+    	    El robot está restringido a solo ciertos movimientos. Un ejemplo, es un automóvil que no es capaz de conducir de lado (modelo de Ackermann).
+    \end{block}
+    
+
+
+    
     \TODO{se puede agregar las descripciones de ismael para dejar las slides completas.}
 \end{frame}
 
