@@ -218,17 +218,33 @@
 \end{frame}
 
 \begin{frame}
+	\frametitle{Rotaciones Generales 3D: Rotaciones Extrínsecas vs Rotaciones Intrínsecas}
+
+	\begin{block}{Rotación Intrínseca}
+	Describe una rotación en relación con el sistema de coordenadas local del objeto. Los ejes del objeto pueden cambiar durante la rotación.
+	\end{block}
+
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=0.5\columnwidth]{./images/intrinsic_rotation.pdf}
+	\end{figure}  
+	
+	\begin{block}{Rotación Extrínseca}
+		Describe una rotación en relación con un sistema de coordenadas global fijo en el espacio. El sistema de referencia es externo al objeto que está siendo rotado.
+	\end{block}
+	
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=0.5\columnwidth]{./images/extrinsic_rotation.pdf}
+	\end{figure}   
+	
+	\note{Copiar slides donde se muestra que las rotaciones intrínsecas son equivalentes a las rotaciones extrínsecas: https://www.youtube.com/watch?v=icczqt73B7o}
+	
+\end{frame}
+
+\begin{frame}
     \frametitle{Rotaciones generales 3D}
     \tiny
-    
-    \begin{block}{Rotación Extrínseca}
-  	 	Describe una rotación en relación con un sistema de coordenadas global fijo en el espacio. El sistema de referencia es externo al objeto que está siendo rotado.
-    \end{block}
-
-    \begin{block}{Rotación Intrínseca}
-    	Describe una rotación en relación con el sistema de coordenadas local del objeto. Los ejes del objeto pueden cambiar durante la rotación.
-	\end{block}
-    
     
     Rotación intrínseca con ángulos yaw, pitch y roll como $\alpha$, $\beta$ y $\gamma$. Formalmente, es una rotación intrínseca con ángulos Tait–Bryan angles $\alpha$, $\beta$ y $\gamma$ sobre los ejes $z$, $y$, $x$.
     \begin{equation*}
@@ -266,14 +282,28 @@ En consecuencia, las descomposiciones de las rotaciones encadenadas de Euler y d
 
 
 \begin{frame}
-    \frametitle{Rotaciones generales 3D}
-    \tiny
-    
-    
-    \TODO{Copiar slides donde se muestra que las rotaciones intrínsecas son equivalentes a las rotaciones extrínsecas: https://www.youtube.com/watch?v=icczqt73B7o}
-    
-\end{frame}
+	\frametitle{Rotaciones generales 3D}
 
+	
+	Una rotación de un marco de referencia a otro se puede obtener mediante la multiplicación de varias rotaciones.
+	
+	Rotación Intrínseca
+	$R = R_{x} R_{y} R_{z}$
+	
+	
+	\TODO{SLIDE a realizar...}
+	
+	$x-y\prime-z\prime\prime$ (intrinsic rotations) or $z-y-x$ (extrinsic rotations)\\
+	$y-z\prime-x\prime\prime$ (intrinsic rotations) or $x-z-y$ (extrinsic rotations)\\
+	$z-x\prime-y\prime\prime$ (intrinsic rotations) or $y-x-z$ (extrinsic rotations)\\
+	$x-\prime-y\prime\prime$ (intrinsic rotations) or $y-z-x$ (extrinsic rotations)\\
+	$z-y\prime-x\prime\prime$ (intrinsic rotations) or $x-y-z$ (extrinsic rotations): the intrinsic rotations are known as: yaw, pitch and roll\\
+	$y-x\prime-\prime\prime$ (intrinsic rotations) or $z-x-y$ (extrinsic rotations)\\
+	
+	
+	\note{Copiar slides donde se muestra que las rotaciones intrínsecas son equivalentes a las rotaciones extrínsecas: https://www.youtube.com/watch?v=icczqt73B7o}
+	
+\end{frame}
 
 
 \begin{frame}
