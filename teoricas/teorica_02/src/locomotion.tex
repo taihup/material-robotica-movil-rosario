@@ -1,56 +1,70 @@
+\begin{frame}
+	\frametitle{Cinemática vs Dinámica}
+	\begin{block}{Cinemática}
+		La cinemática es la rama de la mecánica que describe el movimiento de los objetos sólidos sin considerar las causas que lo originan (las fuerzas) y se limita, principalmente, al estudio de la trayectoria en función del tiempo. Para ello utiliza \textbf{velocidades} y \textbf{aceleraciones}, que describen cómo cambia la \textbf{posición en función del tiempo}.
+	\end{block}
+	\note{La velocidad se determina como el cociente entre el desplazamiento y el tiempo utilizado, mientras que la aceleración es el cociente entre el cambio de velocidad y el tiempo utilizado.}
+	
+	\begin{block}{Dinámica}
+		La dinámica es la parte de la física que estudia la relación existente entre las \textbf{fuerzas} que actúan sobre un cuerpo y los efectos que se producirán sobre el movimiento de ese cuerpo. La dinámica permite entender por qué los objetos cambian su estado de movimiento y cómo responden a las fuerzas aplicadas.
+	\end{block}
+	
+	En este curso nos enfocaremos en la cinemática de los robots.
+	
+	\note{Los antiguos pensadores griegos creían que la velocidad y la constancia del movimiento en la línea recta de un cuerpo (fenómeno descripto años más tarde como movimiento rectilíneo uniforme o MRU) estaban proporcionalmente relacionadas con una fuerza constante. Por extensión, se creía que la caída de un cuerpo pertenecía a esa categoría, por lo que se suponía que caería más rápido el cuerpo que más pesara.
+		\\
+		Luego, Galileo Galilei entendió que la caída de los cuerpos no podía ser un movimiento uniforme, y que desde una misma altura, dos cuerpos de distinto peso tardan lo mismo en caer. Este contexto fue lo que posibilitó que algunos años después, Isaac Newton estableciera las tres leyes fundamentales de la dinámica, que explicaban las pautas fundamentales del comportamiento de los cuerpos.}
+	
+\end{frame}
+
+
+\begin{frame}<presentation:0>[noframenumbering]
+	\frametitle{Locomoción}
+	
+	\begin{block}{Locomoción de un robot móvil}
+		El entorno está fijo y el robot se mueve impartiendo fuerza sobre el entorno.
+	\end{block}
+	
+	\begin{block}{Locomoción de un Brazo Robótico (Manipulación)}
+		Un brazo robótico está fijo y mueve objetos en su espacio de trabajo aplicando fuerza sobre ellos.
+	\end{block}
+	
+	En este curso nos enfocaremos en la Locomoción de robots móviles.
+	
+\end{frame}
+
 
 \begin{frame}
     \frametitle{Locomoción}
     \footnotesize
 
     \begin{block}{Locomoción}
-        Traslación de un lugar a otro.
+        La locomoción en robótica se refiere al movimiento y desplazamiento de robots. 
     \end{block}
+    
+    Tipos de Locomoción:
+    
+   	
+   	\begin{figure}[!h]
+   		\centering
+   		\subfloat[Fija]
+   		{
+   			\includegraphics[width=0.15\columnwidth]{./images/fix_wheel.png}
+   		}
+   		\subfloat[Direccional]
+   		{
+       		\includegraphics[width=0.15\columnwidth]{images/hexapod_phantomX_mark_II.jpg}
+   		}
+   	\end{figure}
 
-    El humano copia a la naturaleza para construir tipos de locomoción.
+    
 
-    \begin{figure}
-        \includegraphics[width=0.4\columnwidth]{images/biological_locomotion_systems.pdf}
-    \end{figure}
-
-    La naturaleza tuvo que adaptar a los animales para terrenos irregulares!
-
-    \note{Los insectos por ejemplo tienen que sortear cambios de altura que superan en ordenes de magnitud su tamaño.}
+    La elección del método de locomoción depende de varios factores, como el tipo de entorno en el que el robot operará, los objetivos de la misión y las limitaciones de diseño. 
 
     Utilizamos ruedas por que son muy eficientes en terrenos planos y firmes.
 \end{frame}
 
 
-\begin{frame}
-    \frametitle{Cinemática y Dinámica}
-    \begin{block}{Cinemática}
-        La cinemática es la rama de la mecánica que describe el movimiento de los objetos sólidos sin considerar las causas que lo originan (las fuerzas) y se limita, principalmente, al estudio de la trayectoria en función del tiempo. Para ello utiliza \textbf{velocidades} y \textbf{aceleraciones}, que describen cómo cambia la \textbf{posición en función del tiempo}.
-    \end{block}
-    \note{La velocidad se determina como el cociente entre el desplazamiento y el tiempo utilizado, mientras que la aceleración es el cociente entre el cambio de velocidad y el tiempo utilizado.}
-
-    \begin{block}{Dinámica}
-        La dinámica es la parte de la física que estudia la relación existente entre las \textbf{fuerzas} que actúan sobre un cuerpo y los efectos que se producirán sobre el movimiento de ese cuerpo. La dinámica permite entender por qué los objetos cambian su estado de movimiento y cómo responden a las fuerzas aplicadas.
-    \end{block}
-
-    \note{Los antiguos pensadores griegos creían que la velocidad y la constancia del movimiento en la línea recta de un cuerpo (fenómeno descripto años más tarde como movimiento rectilíneo uniforme o MRU) estaban proporcionalmente relacionadas con una fuerza constante. Por extensión, se creía que la caída de un cuerpo pertenecía a esa categoría, por lo que se suponía que caería más rápido el cuerpo que más pesara.
-    \\
-    Luego, Galileo Galilei entendió que la caída de los cuerpos no podía ser un movimiento uniforme, y que desde una misma altura, dos cuerpos de distinto peso tardan lo mismo en caer. Este contexto fue lo que posibilitó que algunos años después, Isaac Newton estableciera las tres leyes fundamentales de la dinámica, que explicaban las pautas fundamentales del comportamiento de los cuerpos.}
-
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Locomoción}
-
-    \begin{block}{Locomoción de un robot móvil}
-		El entorno está fijo y el robot se mueve impartiendo fuerza sobre el entorno.
-	\end{block}
-
-	\begin{block}{Locomoción de un Brazo Robótico (Manipulación)}
-    	Un brazo robótico está fijo y mueve objetos en su espacio de trabajo aplicando fuerza sobre ellos.
-	\end{block}
-
-\end{frame}
 
 \begin{frame}<presentation:0>[noframenumbering]
 	\frametitle{Características de un robot}
@@ -109,11 +123,15 @@
         \includegraphics[width=0.15\columnwidth]{images/hexapod_static_walking_gait.pdf}
     \end{center}
 
-    Un gait es una secuencia de eventos de elevación y liberación para las piernas individuales. Para un robot móvil con $k$ patas, el número total de secuencias de eventos distintas para una máquina para caminar es
-    \begin{equation*}
-        N = \left( 2k - 1\right)!
-    \end{equation*}
+	
+	\begin{block}{Gait}
+    	Un \textbf{Gait} es una \textbf{secuencia de eventos de elevación y liberación} para las patas individuales de un robot.
+	\end{block}
 
+
+    
+    Para un robot móvil con $k$ patas, el número total de \textbf{Gaits} distintos para desplazarse es $N = \left( 2k - 1\right)!$
+    
     \note{Hay diferentes formas de desplazarse}
 \end{frame}
 
