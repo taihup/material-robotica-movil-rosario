@@ -44,7 +44,7 @@
     
     Tipos de Locomoción:
     
-   	
+   	\only<1>{
    	\begin{figure}[!h]
    		\centering
    		\subfloat[ACM-R5H (Anfíbio)]
@@ -63,19 +63,27 @@
    		{
    			\includegraphics[width=0.15\columnwidth]{./images/weed_removal_robot.jpg}
    		}
-  		\subfloat[Drone Amazon]
-        {
-            \includegraphics[width=0.15\columnwidth]{images/drone.jpg}
-        }
-  		\subfloat[Drone Amazon]
-        {
-        	\includegraphics[width=0.15\columnwidth]{images/wingtra_hybrid_aerial_robot.jpg}
-        }
-      	\subfloat[]
-        {
-            \includegraphics[width=0.15\columnwidth]{images/aqua.png}
-        }
    	\end{figure}
+    }
+    
+    \only<2>{
+    	\begin{figure}[!h]
+    		\centering
+    		\subfloat[Drone Amazon]
+    		{
+    			\includegraphics[width=0.15\columnwidth]{images/drone.jpg}
+    		}
+    		\subfloat[Drone Amazon]
+    		{
+    			\includegraphics[width=0.15\columnwidth]{images/wingtra_hybrid_aerial_robot.jpg}
+    		}
+    		\subfloat[]
+    		{
+    			\includegraphics[width=0.15\columnwidth]{images/aqua.png}
+    		}
+    	\end{figure}
+    }
+    
 
     La elección del método de locomoción depende de varios factores, como el tipo de entorno en el que el robot operará, los objetivos de la misión y las limitaciones de diseño. 
 
@@ -220,8 +228,6 @@
     	    El robot está restringido a solo ciertos movimientos. Un ejemplo, es un automóvil que no es capaz de conducir de lado (modelo de Ackermann).
     \end{block}
     
-  
-    \TODO{se puede agregar las descripciones de ismael para dejar las slides completas.}
 \end{frame}
 
 \begin{frame}
