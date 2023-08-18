@@ -1,15 +1,15 @@
-\begin{frame}
+\begin{frame}<presentation:0>[noframenumbering]
     \frametitle{Representación de pose en 2D}
     \footnotesize
     Modelamos el robot como un cuerpo rígido sobre ruedas, que opera en un plano horizontal. La dimensionalidad total de este chasis de robot en el plano es de 3: 2 para la posición en el plano y 1 para la orientación a lo largo del eje vertical, que es ortogonal al plano.
 
     \begin{figure}[!h]
-        \includegraphics[width=0.3\columnwidth]{./images/coordinate_systems.pdf}
+        \includegraphics[width=0.2\columnwidth]{./images/coordinate_systems.pdf}
         \caption{El marco de referencia global y el marco de referencia local del robot.}
     \end{figure}
 
     Para especificar la posición del robot en el plano, establecemos una relación entre el {\bf marco de referencia global} y el {\bf marco de referencia local del robot}.
-
+    
 \end{frame}
 
 
@@ -18,26 +18,32 @@
     \footnotesize
 
     \begin{figure}
-        \includegraphics[width=0.3\columnwidth]{./images/coordinate_systems.pdf}
+        \includegraphics[width=0.2\columnwidth]{./images/coordinate_systems.pdf}
     \end{figure}
 
     \note{Un marco de referencia inercial es un marco de referencia que no está experimentando aceleración. La física de un sistema en un marco inercial no tiene fuerzas externas al sistema.}
 
     \note{Ejemplo de sistema no inercial: una bola que cae hacia el suelo no va exactamente hacia abajo porque la Tierra está girando, lo que significa que el marco de referencia de un observador en la Tierra no es inercial. La física debe tener en cuenta el efecto Coriolis, en este caso considerado como una fuerza, para predecir el movimiento horizontal.}
 
-    Los ejes $X_I$ y $Y_I$ definen una {\bf base inercial} arbitraria en el plano como marco de referencia global de algún {\bf origen} $O:\left\lbrace X_I,Y_I \right\rbrace$.Para especificar la posición del robot, elegimos un punto $p$ en el chasis del robot como su punto de referencia de posición. La base $\left\lbrace X_R,Y_R \right\rbrace$ define dos ejes en relación con $p$ en el chasis del robot y, por lo tanto, es el {\bf marco de referencia local del robot}. La posición de $p$ en el {\bf marco de referencia global} se especifica mediante las coordenadas $x$ e $y$, y la diferencia angular entre los marcos de referencia global y local está dada por $\theta$.
-
+    Los ejes $X_I$ y $Y_I$ definen un \textbf{marco de referencia global} en el plano con origen $O$. En este caso, utilizamos el sub-índice $I$ para identificar que es un marco de referencia inercial, es decir, es un marco de referencia que no está experimentando aceleración 
+    
+    Para especificar la posición del robot, elegimos un punto $p$ en el chasis del robot como su punto de referencia de posición.
+    
+    El marco de referencia $\left\lbrace X_R,Y_R \right\rbrace$ define dos ejes en relación con $p$ en el chasis del robot y, por lo tanto, es el {\bf marco de referencia local del robot}.
+    
 \end{frame}
 
 
 \begin{frame}
-    \frametitle{Cinemática de un robot diferencial}
+    \frametitle{Representación de pose en 2D}
 
     \begin{figure}
-        \includegraphics[width=0.3\columnwidth]{./images/coordinate_systems.pdf}
+        \includegraphics[width=0.2\columnwidth]{./images/coordinate_systems.pdf}
     \end{figure}
+    
+    La {\bf pose del robot} en el marco de referencia global se especifica mediante las coordenadas $x$ e $y$ del punto $p$, y el ángulo de orientación $\theta$ (diferencia angular entre los marcos de referencia global y local).
 
-    La pose del robot estará dada por la posición y la orientación:
+    La pose del robot está dada por la posición y la orientación:
 
     \begin{equation*}
         \transform{I}{} =
@@ -52,53 +58,60 @@
 
 \begin{frame}
     \frametitle{Cinemática de un robot diferencial}
-    \small
+    \scriptsize
     \begin{center}
         \includegraphics[width=0.2\columnwidth]{./images/coordinate_frame_rotation.pdf}
     \end{center}
 
-    Para {\bf describir el movimiento del robot} en términos de movimientos de componentes, será necesario {\bf mapear el movimiento a lo largo de los ejes del marco de referencia global al movimiento a lo largo de los ejes del marco de referencia local del robot}. Por supuesto, el mapeo es una función de la pose actual del robot. Este mapeo se logra usando la matriz de rotación ortogonal:
+    Para {\bf describir el movimiento del robot} en términos de movimientos de componentes, es necesario {\bf mapear el movimiento a lo largo de los ejes del marco de referencia global, al movimiento a lo largo de los ejes del marco de referencia local del robot}. Por supuesto, el mapeo está en función de la pose actual del robot. Este mapeo se logra usando la matriz de rotación ortogonal:
 
     \begin{equation*}
-    R(\theta)=
-    \begin{bmatrix}
-        \cos\theta & \sin\theta & 0\\
-        -\sin \theta & \cos \theta & 0\\
-        0 & 0 & 1
-    \end{bmatrix}
-\end{equation*}
+	    \rotationCoord{R}{I} = R(\theta)=
+	    \begin{bmatrix}
+	        \cos\theta & \sin\theta & 0\\
+	        -\sin \theta & \cos \theta & 0\\
+	        0 & 0 & 1
+	    \end{bmatrix}
+	\end{equation*}
 
-    Esta matriz se puede utilizar para mapear el movimiento en el marco de referencia global $\left\lbrace X_I,Y_I \right\rbrace$ al movimiento en términos del marco de referencia local $\left\lbrace X_R,Y_R \right\rbrace$. Esta operación se denota por $R(\theta)\transform{I}{}$ · Porque el cálculo de esta operación depende del valor de $\theta$.
+    Esta matriz se puede utilizar para mapear velocidades $(\dot{x}, \dot{y}, \dot{\theta})$ en el marco de referencia global $\left\lbrace X_I,Y_I \right\rbrace$ a velocidades en términos del marco de referencia local $\left\lbrace X_R,Y_R \right\rbrace$. Esta operación se denota por:
+    
+    \begin{equation*}
+    	\dot{\transform{R}{}} = \rotationCoord{R}{I}\dot{\transform{I}{}}
+	\end{equation*}
 \end{frame}
 
 \begin{frame}
     \frametitle{Cinemática de un robot diferencial}
-
+	\scriptsize
     \begin{center}
         \includegraphics[width=0.2\columnwidth]{./images/coordinate_frame_rotation.pdf}
     \end{center}
 
-    Dada alguna velocidad $(\dot{x}, \dot{y}, \dot{\theta})$ en el marco de referencia global, podemos calcular las componentes del movimiento a lo largo de los ejes locales $X_R$ y $Y_R$ del robot. En este caso, debido al ángulo específico del robot, el movimiento a lo largo de $X_R$ es igual a $\dot{y}$, y el movimiento a lo largo de $Y_R$ es $-\dot{x}$:
+    Dada alguna velocidad $(\dot{x}, \dot{y}, \dot{\theta})$ en el marco de referencia global, podemos calcular las componentes del movimiento a lo largo de los ejes locales $X_R$ y $Y_R$ del robot.
+    
+    En este caso, debido al ángulo específico ($\frac{\pi}{2}$) del robot, el movimiento a lo largo de $X_R$ es igual a $\dot{y}$, y el movimiento a lo largo de $Y_R$ es $-\dot{x}$:
 
-    \begin{equation*}
-        \dot{\transform{R}{}} = R(\frac{\pi}{2})\dot{\transform{I}{}} =
-        \begin{bmatrix}
-            0 & 1 & 0 \\
-            -1 & 0 & 0 \\
-            0 & 0 & 1
-        \end{bmatrix}
-        \begin{bmatrix}
-            \dot{x}\\
-            \dot{y}\\
-            \dot{\theta}
-        \end{bmatrix}
-         =
-        \begin{bmatrix}
-            \dot{y}\\
-            -\dot{x}\\
-            \dot{\theta}
-        \end{bmatrix}
-    \end{equation*}
+    \begin{align*}
+        \dot{\transform{R}{}} &= 
+        \rotationCoord{R}{I}\dot{\transform{I}{}}\\
+        \toCoord{\begin{bmatrix}
+        			\dot{y}\\
+        			-\dot{x}\\
+        			\dot{\theta}
+         		 \end{bmatrix}}{R}
+        &=
+        \fromCoord{\toCoord{\begin{bmatrix}
+        	0 & 1 & 0 \\
+        	-1 & 0 & 0 \\
+        	0 & 0 & 1
+        \end{bmatrix}}{R}}{I}
+        \toCoord{\begin{bmatrix}
+        			\dot{x}\\
+        			\dot{y}\\
+        			\dot{\theta}
+        		 \end{bmatrix}}{I}
+    \end{align*}
 \end{frame}
 
 \begin{frame}
@@ -108,13 +121,15 @@
         \centering
         \subfloat[]
         {
-            \includegraphics[width=0.3\columnwidth]{./images/differential_drive.pdf}
+            \includegraphics[width=0.2\columnwidth]{./images/differential_drive.pdf}
         }
         \subfloat[]
         {
-            \includegraphics[width=0.25\columnwidth]{./images/wheel_parameters.pdf}
+            \includegraphics[width=0.15\columnwidth]{./images/wheel_parameters.pdf}
         }
     \end{figure}
+    
+   El Modelo de cinemática directa de un robot diferencial está dado por
 
     \begin{equation*}
         \dot{\transform{I}{}} =
@@ -133,7 +148,7 @@
         \item $\dot{\varphi}_{1}$ y $\dot{\varphi}_{2}$ la velocidad de giro de cada rueda
     \end{itemize}
 
-    Podemos calcular el movimiento del robot en el marco de referencia global a partir del movimiento en su marco de referencia local:  $\dot{\transform{I}{}} = \inverse{R(\frac{\pi}{2})}\dot{\transform{R}{}}$. Por lo tanto, la estrategia será calcular primero la contribución de cada una de las dos ruedas en el marco de referencia local $\dot{\transform{R}{}}$.
+    Podemos calcular el movimiento del robot en el marco de referencia global a partir del movimiento en su marco de referencia local:  $\dot{\transform{I}{}} = \inverse{R(\theta)}\dot{\transform{R}{}}$. Por lo tanto, la estrategia será calcular primero la contribución de cada una de las dos ruedas en el marco de referencia local $\dot{\transform{R}{}}$.
 \end{frame}
 
 \begin{frame}
