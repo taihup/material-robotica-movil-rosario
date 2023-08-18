@@ -148,7 +148,7 @@
         \item $\dot{\varphi}_{1}$ y $\dot{\varphi}_{2}$ la velocidad de giro de cada rueda
     \end{itemize}
 
-    Podemos calcular el movimiento del robot en el marco de referencia global a partir del movimiento en su marco de referencia local:  $\dot{\transform{I}{}} = \inverse{R(\theta)}\dot{\transform{R}{}}$. Por lo tanto, la estrategia será calcular primero la contribución de cada una de las dos ruedas en el marco de referencia local $\dot{\transform{R}{}}$.
+    Podemos calcular el movimiento del robot en el marco de referencia global a partir del movimiento en su marco de referencia local:  $\dot{\transform{I}{}} = \inverse{\rotationCoord{R}{I}}\dot{\transform{R}{}}$. Por lo tanto, la estrategia será calcular primero la contribución de cada una de las dos ruedas en el marco de referencia local $\dot{\transform{R}{}}$.
 \end{frame}
 
 \begin{frame}
