@@ -153,65 +153,87 @@
 
 \begin{frame}
     \frametitle{Rototraslación en 2D}
-
+\scriptsize
+Solo traslación:
+    \begin{equation*}
+        \begin{bmatrix}
+            \toCoord{x}{B}\\
+            \toCoord{y}{B}
+        \end{bmatrix} =
+        \begin{bmatrix}
+            \toCoord{x}{A}\\
+            \toCoord{y}{A}
+        \end{bmatrix} +
+        \begin{bmatrix}
+            \toCoord{t_{x}}{A}\\
+            \toCoord{t_{y}}{A}
+        \end{bmatrix}
+    \end{equation*}
+Agregando Rotación:
     \begin{align*}
         \begin{bmatrix}
-            \toCoord{x}{A}\\
-            \toCoord{y}{A}
-        \end{bmatrix} &=
-        \begin{bmatrix}
             \toCoord{x}{B}\\
             \toCoord{y}{B}
-        \end{bmatrix} +
-        \begin{bmatrix}
-            t_x\\
-            t_y
-        \end{bmatrix}\\
+        \end{bmatrix} &=
+       \toCoord{\fromCoord{\begin{bmatrix}
+                                \cos \theta & -\sin \theta \\
+                                \sin \theta & \cos \theta
+                            \end{bmatrix}}{A}}{B}
         \begin{bmatrix}
             \toCoord{x}{A}\\
             \toCoord{y}{A}
-        \end{bmatrix} &=
-        \begin{bmatrix}
-            \cos \theta &-\sin \theta \\
-            \sin \theta &\cos \theta \\
-        \end{bmatrix}
-        \begin{bmatrix}
-            \toCoord{x}{B}\\
-            \toCoord{y}{B}
         \end{bmatrix} +
         \begin{bmatrix}
-            t_x\\
-            t_y\\
+            \toCoord{t_{x}}{A}\\
+            \toCoord{t_{y}}{A}
         \end{bmatrix}
     \end{align*}
 
+Representamos las matrices y vectores simbólicamente:
+
     \begin{equation*}
         \begin{bmatrix}
-            \toCoord{x}{A}\\
-            \toCoord{y}{A}\\
-            1
-        \end{bmatrix} =
+            \toCoord{x}{B}\\
+            \toCoord{y}{B}\\
+        \end{bmatrix} = \rotationCoord{B}{A}
         \begin{bmatrix}
-            \rotationCoord{A}{B} & \translation\\
-            \vec{0} & 1
-        \end{bmatrix}
+            \toCoord{x}{A}\\
+            \toCoord{y}{A}
+        \end{bmatrix} + \toCoord{\translation}{A}
+    \end{equation*}
+
+
+Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
+
+    \begin{align*}
         \begin{bmatrix}
             \toCoord{x}{B}\\
             \toCoord{y}{B}\\
             1
+        \end{bmatrix} &=
+        \begin{bmatrix}
+            \rotationCoord{B}{A} & \toCoord{\translation}{A}\\
+            \vec{0} & 1
         \end{bmatrix}
-    \end{equation*}
-
-    \begin{equation*}
         \begin{bmatrix}
             \toCoord{x}{A}\\
             \toCoord{y}{A}\\
-        \end{bmatrix} = R(\theta )
+            1
+        \end{bmatrix}\\
         \begin{bmatrix}
             \toCoord{x}{B}\\
-            \toCoord{y}{B}
-       \end{bmatrix} + \translation
-    \end{equation*}
+            \toCoord{y}{B}\\
+            1
+        \end{bmatrix} &=
+        \transform{B}{A}
+        \begin{bmatrix}
+            \toCoord{x}{A}\\
+            \toCoord{y}{A}\\
+            1
+        \end{bmatrix}
+    \end{align*}
+
+
 \end{frame}
 
 
