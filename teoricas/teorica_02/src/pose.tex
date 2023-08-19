@@ -59,19 +59,31 @@
             \end{equation*}
 
             \begin{equation*}
-                {\displaystyle {\begin{bmatrix}x'\\y'\\\end{bmatrix}}={\begin{bmatrix}\cos \theta &-\sin \theta \\\sin \theta &\cos \theta \\\end{bmatrix}}{\begin{bmatrix}x\\y\\\end{bmatrix}}.}
+                \begin{bmatrix}
+                    x'\\
+                    y'
+                \end{bmatrix} =
+                \begin{bmatrix}
+                    \cos \theta &-\sin \theta \\
+                    \sin \theta &\cos \theta
+                \end{bmatrix}
+                \begin{bmatrix}
+                    x\\
+                    y
+                \end{bmatrix}
             \end{equation*}
 
-            \begin{equation*}
-                \begin{aligned}x'&=x\cos \theta -y\sin \theta \,\\y'&=x\sin \theta +y\cos \theta \,\end{aligned}
-            \end{equation*}
+            \begin{align*}
+                x' &= x \cos \theta -y \sin \theta\\
+                y' &= x\sin \theta + y\cos \theta
+            \end{align*}
 
             \begin{equation*}
                 \begin{bmatrix}
-                    \toCoord{x}{V}\\
-                    \toCoord{y}{V}
+                    \toCoord{x}{A}\\
+                    \toCoord{y}{A}
                 \end{bmatrix} =
-                \rotationCoord{V}{B}
+                \rotationCoord{A}{B}
                 \begin{bmatrix}
                     \toCoord{x}{B}\\
                     \toCoord{y}{B}
@@ -80,6 +92,59 @@
         \end{minipage}
     \end{center}
 \end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: Rotación en 2D}
+    
+    \begin{center}
+        \begin{minipage}{0.5\linewidth}
+            \includegraphics[width=\columnwidth]{coordinate_system_rotation.pdf}
+        \end{minipage}
+        \hspace{1em}
+        \begin{minipage}{0.38\linewidth}
+            \begin{equation*}
+                R\left(\frac{\pi}{2}\right) =
+                \begin{bmatrix}
+                    \cos \frac{\pi}{2} & -\sin \frac{\pi}{2} \\
+                    \sin \frac{\pi}{2} & \cos \frac{\pi}{2}
+                \end{bmatrix} =
+                \begin{bmatrix}
+                    0 & 1 \\
+                    -1 & 0
+                \end{bmatrix}
+            \end{equation*}
+            
+            \begin{equation*}
+                \toCoord{\begin{bmatrix}
+                    0\\
+                    -1
+                \end{bmatrix}}{B} =
+                \toCoord{\fromCoord{\begin{bmatrix}
+                    0 & 1 \\
+                    -1 & 0
+                \end{bmatrix}}{A}}{B}
+                \toCoord{\begin{bmatrix}
+                    1\\
+                    0
+                \end{bmatrix}}{A}
+            \end{equation*}
+            
+            \begin{equation*}
+                \begin{bmatrix}
+                    \toCoord{x}{B}\\
+                    \toCoord{y}{B}
+                \end{bmatrix} =
+                \rotationCoord{B}{A}
+                \begin{bmatrix}
+                    \toCoord{x}{A}\\
+                    \toCoord{y}{A}
+                \end{bmatrix}
+            \end{equation*}
+        \end{minipage}
+    \end{center}
+\end{frame}
+
 
 
 \begin{frame}
