@@ -49,44 +49,48 @@
     \frametitle{Rotación en 2D}
 
         \begin{center}
-        \begin{minipage}{0.5\linewidth}
+        \begin{minipage}{0.4\linewidth}
             \includegraphics[width=\columnwidth]{coordinate_system_rotation.pdf}
         \end{minipage}
         \hspace{1em}
-        \begin{minipage}{0.38\linewidth}
+        \begin{minipage}{0.5\linewidth}
             \begin{equation*}
-                {\displaystyle R(\theta )={\begin{bmatrix}\cos \theta &-\sin \theta \\\sin \theta &\cos \theta \\\end{bmatrix}}.}
+                R(\theta) =
+                \toCoord{\fromCoord{\begin{bmatrix}
+                    \cos \theta & -\sin \theta \\
+                    \sin \theta & \cos \theta
+                \end{bmatrix}}{A}}{B}
             \end{equation*}
 
             \begin{equation*}
                 \begin{bmatrix}
-                    x'\\
-                    y'
+                    \toCoord{x}{B}\\
+                    \toCoord{y}{B}
                 \end{bmatrix} =
-                \begin{bmatrix}
+                \toCoord{\fromCoord{\begin{bmatrix}
                     \cos \theta &-\sin \theta \\
                     \sin \theta &\cos \theta
-                \end{bmatrix}
+                \end{bmatrix}}{A}}{B}
                 \begin{bmatrix}
-                    x\\
-                    y
+                    \toCoord{x}{A}\\
+                    \toCoord{y}{A}
                 \end{bmatrix}
             \end{equation*}
 
             \begin{align*}
-                x' &= x \cos \theta -y \sin \theta\\
-                y' &= x\sin \theta + y\cos \theta
+                \toCoord{x}{B} &= \toCoord{x}{A} \cos \theta -\toCoord{y}{A} \sin \theta\\
+                \toCoord{y}{B} &= \toCoord{x}{A} \sin \theta + \toCoord{y}{A}\cos \theta
             \end{align*}
 
             \begin{equation*}
                 \begin{bmatrix}
-                    \toCoord{x}{A}\\
-                    \toCoord{y}{A}
-                \end{bmatrix} =
-                \rotationCoord{A}{B}
-                \begin{bmatrix}
                     \toCoord{x}{B}\\
                     \toCoord{y}{B}
+                \end{bmatrix} =
+                \rotationCoord{B}{A}
+                \begin{bmatrix}
+                    \toCoord{x}{A}\\
+                    \toCoord{y}{A}
                 \end{bmatrix}
             \end{equation*}
         \end{minipage}
@@ -98,21 +102,21 @@
     \frametitle{Ejemplo: Rotación en 2D}
     
     \begin{center}
-        \begin{minipage}{0.5\linewidth}
+        \begin{minipage}{0.4\linewidth}
             \includegraphics[width=\columnwidth]{coordinate_system_rotation.pdf}
         \end{minipage}
         \hspace{1em}
-        \begin{minipage}{0.38\linewidth}
+        \begin{minipage}{0.5\linewidth}
             \begin{equation*}
                 R\left(\frac{\pi}{2}\right) =
-                \begin{bmatrix}
+                \toCoord{\fromCoord{\begin{bmatrix}
                     \cos \frac{\pi}{2} & -\sin \frac{\pi}{2} \\
                     \sin \frac{\pi}{2} & \cos \frac{\pi}{2}
-                \end{bmatrix} =
-                \begin{bmatrix}
+                \end{bmatrix}}{A}}{B} =
+                \toCoord{\fromCoord{\begin{bmatrix}
                     0 & 1 \\
                     -1 & 0
-                \end{bmatrix}
+                \end{bmatrix}}{A}}{B}
             \end{equation*}
             
             \begin{equation*}
