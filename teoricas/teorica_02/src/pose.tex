@@ -278,12 +278,12 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
 	
 	La Pose (posición y orientación) de un robot es la transformación rototraslacional dada por la posición y orientación del robot en el espacio.
 	
-	Ejemplo: Dado el vector posición $\position$ y la matriz orientación $\orientation$ del robot $\bodyCoordSystem$ en el mundo $\worldCoordSystem$, notamos la pose como $\transform{\worldCoordSystem}{\bodyCoordSystem}$
+	Ejemplo: Dado el vector posición $\toCoord{\position}{\worldCoordSystem}$ y la matriz orientación $\toCoord{\fromCoord{\orientation}{\bodyCoordSystem}}{\worldCoordSystem}$ del robot $\bodyCoordSystem$ en el mundo $\worldCoordSystem$, notamos la pose como $\transform{\worldCoordSystem}{\bodyCoordSystem}$
 	
 	\begin{equation*}
 		\transform{\worldCoordSystem}{\bodyCoordSystem}=
 		\begin{bmatrix}
-			\orientation & \position\\
+			\toCoord{\fromCoord{\orientation}{\bodyCoordSystem}}{\worldCoordSystem} & \toCoord{\position}{\worldCoordSystem}\\
 			\vec{0} & 1
 		\end{bmatrix}
 	\end{equation*}
@@ -294,10 +294,13 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
 
 \begin{frame}
     \frametitle{Coordenadas Homogeneas e Hinomogeneas}
-    Un vector $\point = (x, y)$ se escribe en forma homogénea como $\homo{\point} \in P^2$, $\homo{\point} = (x1, x2, x3)$ donde $x = \dfrac{x_1}{x_3}$, $y= \dfrac{x_2}{x_3}$ y $x_3 \neq 0$. La dimensión se ha incrementado en uno y un punto en un plano ahora está representado por un 3-vector. Para convertir un punto a una forma homogénea, normalmente agregamos un elemento igual a uno $\homo{\point} = (x, y, 1)$. La tilde indica que el vector es homogéneo.
-
-
-    Los vectores homogéneos tienen la propiedad importante de que $\homo{\point}$ es equivalente a $\lambda \homo{\point}$ para todo $\lambda \neq 0$ que escribimos como $\homo{\point} = \lambda \homo{\point}$. Es decir, $\homo{\point}$ representa el mismo punto en el plano independientemente del factor de escala general.
+    
+    \begin{itemize}
+        \item Un vector $\point = (x, y)$ se escribe en forma homogénea como $\homo{\point} \in P^2$, $\homo{\point} = (x1, x2, x3)$ donde $x = \dfrac{x_1}{x_3}$, $y= \dfrac{x_2}{x_3}$ y $x_3 \neq 0$. La dimensión se ha incrementado en uno y un punto en un plano ahora está representado por un vector de tres dimensiones.
+        \item Para convertir un punto a una forma homogénea, normalmente agregamos un elemento igual a uno $\homo{\point} = (x, y, 1)$. La tilde indica que el vector es homogéneo.
+        \item Los vectores homogéneos tienen la propiedad importante de que $\homo{\point}$ es equivalente a $\lambda \homo{\point}$ para todo $\lambda \neq 0$ que escribimos como $\homo{\point} = \lambda \homo{\point}$. Es decir, $\homo{\point}$ representa el mismo punto en el plano independientemente del factor de escala general.
+    \end{itemize}
+    
 \end{frame}
 
 \begin{frame}
