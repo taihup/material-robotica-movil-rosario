@@ -99,52 +99,54 @@
 
 
 \begin{frame}
-    \frametitle{Ejemplo: Rotación en 2D}
+    \frametitle{Ejercicio: Rotación en 2D}
+    
+    \centering
     
     \begin{center}
         \begin{minipage}{0.4\linewidth}
-            \includegraphics[width=\columnwidth]{coordinate_system_rotation.pdf}
+            \includegraphics[width=\columnwidth]{rotation_2D_example.pdf}
         \end{minipage}
         \hspace{1em}
         \begin{minipage}{0.5\linewidth}
-            \begin{equation*}
-                R\left(\frac{\pi}{2}\right) =
-                \toCoord{\fromCoord{\begin{bmatrix}
-                    \cos \frac{\pi}{2} & -\sin \frac{\pi}{2} \\
-                    \sin \frac{\pi}{2} & \cos \frac{\pi}{2}
-                \end{bmatrix}}{A}}{B} =
-                \toCoord{\fromCoord{\begin{bmatrix}
-                    0 & 1 \\
-                    -1 & 0
-                \end{bmatrix}}{A}}{B}
-            \end{equation*}
             
-            \begin{equation*}
-                \toCoord{\begin{bmatrix}
-                    0\\
-                    -1
-                \end{bmatrix}}{B} =
-                \toCoord{\fromCoord{\begin{bmatrix}
-                    0 & 1 \\
-                    -1 & 0
-                \end{bmatrix}}{A}}{B}
-                \toCoord{\begin{bmatrix}
-                    1\\
-                    0
-                \end{bmatrix}}{A}
-            \end{equation*}
-            
-            \begin{equation*}
-                \begin{bmatrix}
-                    \toCoord{x}{B}\\
-                    \toCoord{y}{B}
-                \end{bmatrix} =
-                \rotationCoord{B}{A}
-                \begin{bmatrix}
-                    \toCoord{x}{A}\\
-                    \toCoord{y}{A}
-                \end{bmatrix}
-            \end{equation*}
+            \only<1>{
+                \begin{equation*}
+                    \toCoord{\point}{B} = \, ?
+                \end{equation*}
+            }
+            \only<2>{
+                \begin{equation*}
+                    \toCoord{\point}{B} = \rotationCoord{B}{A} \toCoord{\point}{A}
+                \end{equation*}
+               
+                \begin{equation*}
+                    R\left(\frac{\pi}{2}\right) =
+                    \toCoord{\fromCoord{\begin{bmatrix}
+                        \cos \frac{\pi}{2} & -\sin \frac{\pi}{2} \\
+                        \sin \frac{\pi}{2} & \cos \frac{\pi}{2}
+                    \end{bmatrix}}{A}}{B} =
+                    \toCoord{\fromCoord{\begin{bmatrix}
+                        0 & 1 \\
+                        -1 & 0
+                    \end{bmatrix}}{A}}{B}
+                \end{equation*}
+                
+                \begin{equation*}
+                    \toCoord{\begin{bmatrix}
+                        0\\
+                        -1
+                    \end{bmatrix}}{B} =
+                    \toCoord{\fromCoord{\begin{bmatrix}
+                        0 & 1 \\
+                        -1 & 0
+                    \end{bmatrix}}{A}}{B}
+                    \toCoord{\begin{bmatrix}
+                        1\\
+                        0
+                    \end{bmatrix}}{A}
+                \end{equation*}                
+            }
         \end{minipage}
     \end{center}
 \end{frame}
@@ -296,7 +298,13 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
     \frametitle{Coordenadas Homogeneas e Hinomogeneas}
     
     \begin{itemize}
-        \item Un vector $\point = (x, y)$ se escribe en forma homogénea como $\homo{\point} \in P^2$, $\homo{\point} = (x1, x2, x3)$ donde $x = \dfrac{x_1}{x_3}$, $y= \dfrac{x_2}{x_3}$ y $x_3 \neq 0$. La dimensión se ha incrementado en uno y un punto en un plano ahora está representado por un vector de tres dimensiones.
+        \item Un vector $\point = (x, y)$ se escribe en forma homogénea como $\homo{\point} \in P^2$, $\homo{\point} = (x1, x2, x3)$ donde
+        
+       \begin{equation*}
+            x = \dfrac{x_1}{x_3} \quad y= \dfrac{x_2}{x_3} \quad \text{con} \quad x_3 \neq 0
+       \end{equation*}
+        
+        La dimensión se ha incrementado en uno y un punto en un plano ahora está representado por un vector de tres dimensiones.
         \item Para convertir un punto a una forma homogénea, normalmente agregamos un elemento igual a uno $\homo{\point} = (x, y, 1)$. La tilde indica que el vector es homogéneo.
         \item Los vectores homogéneos tienen la propiedad importante de que $\homo{\point}$ es equivalente a $\lambda \homo{\point}$ para todo $\lambda \neq 0$ que escribimos como $\homo{\point} = \lambda \homo{\point}$. Es decir, $\homo{\point}$ representa el mismo punto en el plano independientemente del factor de escala general.
     \end{itemize}
@@ -316,7 +324,7 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
 
     Ejemplo:
     \begin{equation*}
-        {\displaystyle R_{z}(90^{\circ }){\begin{bmatrix}1\\0\\0\\\end{bmatrix}}={\begin{bmatrix}\cos 90^{\circ }&-\sin 90^{\circ }&0\\\sin 90^{\circ }&\quad \cos 90^{\circ }&0\\0&0&1\\\end{bmatrix}}{\begin{bmatrix}1\\0\\0\\\end{bmatrix}}={\begin{bmatrix}0&-1&0\\1&0&0\\0&0&1\\\end{bmatrix}}{\begin{bmatrix}1\\0\\0\\\end{bmatrix}}={\begin{bmatrix}0\\1\\0\\\end{bmatrix}}}
+        {\displaystyle R_{z}\left(\frac{\pi}{2}\right){\begin{bmatrix}1\\0\\0\\\end{bmatrix}}={\begin{bmatrix}\cos \frac{\pi}{2}&-\sin \frac{\pi}{2}&0\\\sin \frac{\pi}{2}&\quad \cos \frac{\pi}{2}&0\\0&0&1\\\end{bmatrix}}{\begin{bmatrix}1\\0\\0\\\end{bmatrix}}={\begin{bmatrix}0&-1&0\\1&0&0\\0&0&1\\\end{bmatrix}}{\begin{bmatrix}1\\0\\0\\\end{bmatrix}}={\begin{bmatrix}0\\1\\0\\\end{bmatrix}}}
     \end{equation*}
 
 \end{frame}
