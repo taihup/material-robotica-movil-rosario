@@ -410,8 +410,6 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
     \frametitle{Rotaciones generales 3D}
     \tiny
     
-
-
 \note{Davenport demostró que se puede lograr descomponer cualquier orientación mediante la sucesión de tres rotaciones elementales utilizando ejes no ortogonales. Las rotaciones elementales pueden darse respecto a los ejes del sistema de coordenadas fijo (rotaciones extrínsecas) o sobre los ejes de un sistema de coordenadas giratorio, que inicialmente se alinea con el sistema de ejes fijo y modifica su orientación después de cada rotación elemental (rotaciones intrínsecas).
 
 Según el teorema de Davenport, es posible una descomposición única si y solo si el segundo eje es perpendicular a los otros dos ejes. Por lo tanto, los ejes 1 y 3 deben estar en el plano ortogonal al eje 2.
@@ -437,7 +435,7 @@ En consecuencia, las descomposiciones de las rotaciones encadenadas de Euler y d
     Una rotación de un de referencia a otro se puede obtener mediante la multiplicación de varias rotaciones.
     
     \begin{block}{Ángulos de Euler}
-        Se denomina Ángulos de Euler a los ángulos $\alpha$, $\beta$ y $\gamma$ cuando estos deben ser aplicados utilizando el siguiente orden: $zxz$ $yxy$ $xyx$ $zyz$ $yzy$ $xzx$. Los ángulos de Euler se aplican sobre el sistema de coordenadas local del objeto (Rotaciones intrínsecas).
+        Se denomina Ángulos de Euler a los ángulos $\alpha$, $\beta$ y $\gamma$ cuando estos deben ser aplicados utilizando el siguiente orden: $zxz$, $yxy$, $xyx$, $zyz$, $yzy$ y $xzx$. Los ángulos de Euler se aplican sobre el sistema de coordenadas local del objeto (Rotaciones intrínsecas).
     \end{block}
    
     Ejemplo de aplicación de Ángulos de Euler $\alpha$, $\beta$ y $\gamma$ utilizando la combinación $zxz$:
@@ -461,9 +459,7 @@ En consecuencia, las descomposiciones de las rotaciones encadenadas de Euler y d
                \includegraphics[width=0.2\columnwidth]{./images/euler_angles_gamma_rotation.pdf}
            }
     \end{figure}
-   
 
-   
 
     \note{Copiar slides donde se muestra que las rotaciones intrínsecas son equivalentes a las rotaciones extrínsecas: https://www.youtube.com/watch?v=icczqt73B7o}    
 \end{frame}
@@ -471,15 +467,44 @@ En consecuencia, las descomposiciones de las rotaciones encadenadas de Euler y d
 
 \begin{frame}
     \frametitle{Ángulos de Tait-Bryann}
-    
+    \small
     \begin{block}{Ángulos de Tait-Bryann}
-        Combinaciones de giros con Ángulos de Tait-Bryann (o ángulos de navegación): $xyz$ $xzy$ $yxz$ $yzx$ $zxy$ $zyx$. Los ángulos Tait-Bryann se usan normalmente para definir la posición de aeronaves, satélites o embarcaciones. Los ángulos Tait-Bryann se aplican utilizando un sistema de coordenadas fijo (Rotaciones extrínsecas).
+        Combinaciones de giros con Ángulos de Tait-Bryann (o ángulos de navegación): $xyz$ $xzy$, $yxz$, $yzx$, $zxy$ y $zyx$. Los ángulos Tait-Bryann se usan normalmente para definir la posición de aeronaves, satélites o embarcaciones. Los ángulos Tait-Bryann se aplican utilizando un sistema de coordenadas fijo (Rotaciones extrínsecas).
     \end{block}
     
     \begin{block}{Ángulos de Yaw-Pitch-Roll}
-        Específicamente, la combinación de Ángulos de Tait-Bryann $zyx$ se denomina Yaw, Pitch y Roll.
+        Específicamente, la combinación $zyx$ de Ángulos de Tait-Bryann se denomina $Yaw$, $Pitch$ y $Roll$.
     \end{block}
     
+    Matríz de Rotación resultante utilizando ángulos Yaw-Pitch-Roll:
+    \scriptsize
+    \begin{align*}
+        R = R_{z}(\gamma) \, R_{y}(\beta) \, R_{x}(\alpha) &=
+        \overset {\text{Yaw}}{
+        \begin{bmatrix}
+            \cos \gamma & -\sin \gamma & 0\\
+            \sin \gamma & \cos \gamma &0\\
+            0 & 0 & 1\\
+        \end{bmatrix}}
+        \overset {\text{Pitch}}{
+        \begin{bmatrix}
+            \cos \beta &0&\sin \beta\\
+            0 & 1 & 0\\
+            -\sin \beta &0&\cos \beta\\
+        \end{bmatrix}}
+        \overset {\text{Roll}}{
+        \begin{bmatrix}
+            1 & 0 & 0 \\
+            0 & \cos \alpha & -\sin \alpha \\
+            0& \sin \alpha & \cos \alpha \\
+        \end{bmatrix}}\\
+        &=
+        \begin{bmatrix}
+            \cos \beta \cos \gamma & \sin \alpha \sin \beta \cos \gamma - \cos \alpha \sin \gamma & \cos \alpha \sin \beta \cos \gamma + \sin \alpha \sin \gamma \\
+            \cos \beta \sin \gamma & \sin \alpha \sin \beta \sin \gamma + \cos \alpha \cos \gamma & \cos \alpha \sin \beta \sin \gamma - \sin \alpha \cos \gamma \\
+            -\sin \beta & \sin \alpha \cos \beta & \cos \alpha \cos \beta
+        \end{bmatrix}
+    \end{align*}
     
     \note{Copiar slides donde se muestra que las rotaciones intrínsecas son equivalentes a las rotaciones extrínsecas: https://www.youtube.com/watch?v=icczqt73B7o}
     
