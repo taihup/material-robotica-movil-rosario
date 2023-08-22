@@ -263,7 +263,7 @@
      inkscape:window-x="1436"
      inkscape:window-y="27"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer5"
+     inkscape:current-layer="layer4"
      showgrid="false" />
   <title
      id="title1">Eulerangles</title>
@@ -345,7 +345,7 @@
      style="display:inline">
     <path
        d="m 280.674,531.717 c 28.413,6.91 41.81395,8.29003 67.70223,4.22974"
-       style="display:none;fill:none;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-opacity:1;marker-end:url(#marker3050)"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-opacity:1;marker-end:url(#marker3050)"
        id="arrowline_alpha"
        sodipodi:nodetypes="cc"
        transform="translate(9.5e-6,-10.220517)"
@@ -353,7 +353,7 @@
     <text
        x="310"
        y="564.77948"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:48px;line-height:125%;font-family:'Times New Roman';text-align:start;writing-mode:lr-tb;text-anchor:start;display:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:48px;line-height:125%;font-family:'Times New Roman';text-align:start;writing-mode:lr-tb;text-anchor:start;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        id="text22598"
        xml:space="preserve"
        inkscape:label="alpha"><tspan
@@ -423,7 +423,7 @@
          id="tspan1">z</tspan></text>
     <g
        id="g1"
-       style="display:none;stroke:#000000;stroke-width:12.0209;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="display:inline;stroke:#000000;stroke-width:12.0209;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        transform="matrix(-0.22959142,-0.00851956,-0.01005262,0.27090555,383.73642,-9.4767277)"
        inkscape:label="rotation_arrow">
       <path
@@ -444,7 +444,7 @@
      style="display:inline">
     <path
        d="M 272.50624,401.33979 C 289.36545,385.0989 301.787,384.585 325.316,383.17"
-       style="display:none;fill:none;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-opacity:1;marker-start:url(#marker4043)"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-opacity:1;marker-start:url(#marker4043)"
        id="arrowline_beta"
        sodipodi:nodetypes="cc"
        transform="translate(9.5e-6,-10.220517)"
@@ -452,7 +452,7 @@
     <text
        x="271.40201"
        y="346.51483"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:48px;line-height:125%;font-family:'Times New Roman';text-align:start;writing-mode:lr-tb;text-anchor:start;display:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:48px;line-height:125%;font-family:'Times New Roman';text-align:start;writing-mode:lr-tb;text-anchor:start;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        id="text22604"
        xml:space="preserve"
        inkscape:label="beta"><tspan
@@ -473,7 +473,7 @@
        sodipodi:nodetypes="cc" />
     <g
        id="g2"
-       style="display:none;stroke:#000000;stroke-width:12.0209;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="display:inline;stroke:#000000;stroke-width:12.0209;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        transform="matrix(-0.0676519,0.21956326,0.25907286,0.0798256,226.55014,441.63446)"
        inkscape:label="rotation_arrow">
       <path
@@ -497,7 +497,7 @@
        x="410.14331"
        y="718.13519"
        transform="scale(1.0868608,0.92008102)"
-       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:48px;line-height:100%;font-family:'Times New Roman';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff9600;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:48px;line-height:100%;font-family:'Times New Roman';text-align:start;writing-mode:lr-tb;text-anchor:start;display:inline;fill:#ff9600;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        id="text2"
        xml:space="preserve"
        inkscape:label="third_text_x"><tspan
@@ -581,11 +581,11 @@
          d="M 465.28124,703.73346 A 72.333641,32.582722 0 1 1 355.36445,675.89408"
          transform="matrix(0.8937721,0,0,0.9182214,-123.77822,32.981407)"
          id="path3197-6-0"
-         style="fill:none;stroke:#000000;stroke-width:13.2693;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         style="display:inline;fill:none;stroke:#000000;stroke-width:13.2693;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <path
          d="m 192.28309,670.45404 v 0 c 0,0 0,0 2.60662,-18.24632 -18.24633,-3.90993 -18.24633,-3.90993 -18.24633,-3.90993"
          id="path3199-1-2"
-         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:12.0209;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         style="display:inline;fill:none;fill-opacity:1;stroke:#000000;stroke-width:12.0209;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     </g>
     <text
        x="6.9815655"
@@ -615,7 +615,7 @@
        x="482.04626"
        y="541.09662"
        transform="scale(1.0868608,0.92008102)"
-       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:48px;line-height:100%;font-family:'Times New Roman';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:48px;line-height:100%;font-family:'Times New Roman';text-align:start;writing-mode:lr-tb;text-anchor:start;display:inline;fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        id="text2-7"
        xml:space="preserve"
        inkscape:label="final_text_x"><tspan
@@ -646,7 +646,7 @@
     <text
        x="500.92575"
        y="760.36462"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:100%;font-family:'Times New Roman';text-align:start;writing-mode:lr-tb;text-anchor:start;display:inline;fill:#00aa4f;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:100%;font-family:'Times New Roman';text-align:start;writing-mode:lr-tb;text-anchor:start;display:none;fill:#00aa4f;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        id="text13359"
        xml:space="preserve"
        inkscape:label="final_text_N"><tspan
@@ -656,7 +656,7 @@
          id="tspan13361">N</tspan></text>
     <path
        d="M 214.453,293.719 491.484,723.813"
-       style="display:inline;fill:none;stroke:#00aa4f;stroke-width:3;stroke-linecap:butt;stroke-opacity:1;marker-end:url(#marker5084)"
+       style="display:none;fill:none;stroke:#00aa4f;stroke-width:3;stroke-linecap:butt;stroke-opacity:1;marker-end:url(#marker5084)"
        id="arrowline_N"
        transform="translate(9.5e-6,-10.220517)" />
   </g>
