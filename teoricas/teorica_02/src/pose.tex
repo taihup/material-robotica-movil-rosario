@@ -36,12 +36,12 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Transformaciones...}
-	
-	\begin{figure}[!h]
-		\includegraphics[width=\columnwidth]{./images/joke_coordinate_systems.png}
-	\end{figure}
-	
+    \frametitle{Transformaciones...}
+    
+    \begin{figure}[!h]
+        \includegraphics[width=\columnwidth]{./images/joke_coordinate_systems.png}
+    \end{figure}
+    
 \end{frame}
 
 
@@ -242,7 +242,7 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
 \begin{frame}
     \frametitle{Algunas Propiedades de las transformaciones}
 
-	Composición:
+    Composición:
     \begin{equation*}
         \transform{}{1}\transform{}{2} =
         \begin{bmatrix}
@@ -259,7 +259,7 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
         \end{bmatrix}
     \end{equation*}
 
-	Inversa:
+    Inversa:
     \begin{equation*}
         \transform{}{}^{-1}=
         \begin{bmatrix}
@@ -276,21 +276,21 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
 
 
 \begin{frame}
-	\frametitle{Pose}
-	
-	La Pose (posición y orientación) de un robot es la transformación rototraslacional dada por la posición y orientación del robot en el espacio.
-	
-	Ejemplo: Dado el vector posición $\toCoord{\position}{\worldCoordSystem}$ y la matriz orientación $\toCoord{\fromCoord{\orientation}{\bodyCoordSystem}}{\worldCoordSystem}$ del robot $\bodyCoordSystem$ en el mundo $\worldCoordSystem$, notamos la pose como $\transform{\worldCoordSystem}{\bodyCoordSystem}$
-	
-	\begin{equation*}
-		\transform{\worldCoordSystem}{\bodyCoordSystem}=
-		\begin{bmatrix}
-			\toCoord{\fromCoord{\orientation}{\bodyCoordSystem}}{\worldCoordSystem} & \toCoord{\position}{\worldCoordSystem}\\
-			\vec{0} & 1
-		\end{bmatrix}
-	\end{equation*}
+    \frametitle{Pose}
+    
+    La Pose (posición y orientación) de un robot es la transformación rototraslacional dada por la posición y orientación del robot en el espacio.
+    
+    Ejemplo: Dado el vector posición $\toCoord{\position}{\worldCoordSystem}$ y la matriz orientación $\toCoord{\fromCoord{\orientation}{\bodyCoordSystem}}{\worldCoordSystem}$ del robot $\bodyCoordSystem$ en el mundo $\worldCoordSystem$, notamos la pose como $\transform{\worldCoordSystem}{\bodyCoordSystem}$
+    
+    \begin{equation*}
+        \transform{\worldCoordSystem}{\bodyCoordSystem}=
+        \begin{bmatrix}
+            \toCoord{\fromCoord{\orientation}{\bodyCoordSystem}}{\worldCoordSystem} & \toCoord{\position}{\worldCoordSystem}\\
+            \vec{0} & 1
+        \end{bmatrix}
+    \end{equation*}
 
-	Observar que la pose es una transformación que toma elementos en coordenadas del robot y los devuelve en coordenadas del mundo.
+    Observar que la pose es una transformación que toma elementos en coordenadas del robot y los devuelve en coordenadas del mundo.
 \end{frame}
 
 
@@ -383,27 +383,27 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
 \end{frame}
 
 \begin{frame}
-	\frametitle{Rotaciones Generales 3D: Rotaciones Extrínsecas vs Rotaciones Intrínsecas}
+    \frametitle{Rotaciones Generales 3D: Rotaciones Extrínsecas vs Rotaciones Intrínsecas}
 
-	\begin{block}{Rotación Intrínseca}
-	Describe una rotación en relación con el sistema de coordenadas local del objeto. Los ejes del objeto pueden cambiar durante la rotación.
-	\end{block}
+    \begin{block}{Rotación Intrínseca}
+    Describe una rotación en relación con el sistema de coordenadas local del objeto. Los ejes del objeto pueden cambiar durante la rotación.
+    \end{block}
 
     \begin{center}
         \includegraphics[width=0.7\columnwidth]{./images/intrinsic_rotation.pdf}
     \end{center}
 
-	\begin{block}{Rotación Extrínseca}
-		Describe una rotación en relación con un sistema de coordenadas global fijo en el espacio. El sistema de referencia es externo al objeto que está siendo rotado.
-	\end{block}
-	
+    \begin{block}{Rotación Extrínseca}
+        Describe una rotación en relación con un sistema de coordenadas global fijo en el espacio. El sistema de referencia es externo al objeto que está siendo rotado.
+    \end{block}
+    
     \begin{center}
         \includegraphics[width=0.7\columnwidth]{./images/extrinsic_rotation.pdf}
     \end{center}
-		
-	
-	\note{Copiar slides donde se muestra que las rotaciones intrínsecas son equivalentes a las rotaciones extrínsecas: https://www.youtube.com/watch?v=icczqt73B7o}
-	
+        
+    
+    \note{Copiar slides donde se muestra que las rotaciones intrínsecas son equivalentes a las rotaciones extrínsecas: https://www.youtube.com/watch?v=icczqt73B7o}
+    
 \end{frame}
 
 \begin{frame}
@@ -446,61 +446,71 @@ En consecuencia, las descomposiciones de las rotaciones encadenadas de Euler y d
 
 
 \begin{frame}
-	\frametitle{Rotaciones generales 3D}
+    \frametitle{Ángulos de Euler}
 
+    \note{Euler se pruncia oiler.}
 
-    buen material:
-    https://www.youtube.com/watch?v=d5sGRhjMXbY
-    https://www.youtube.com/watch?v=geaUKjEYHtM
-    https://www.youtube.com/watch?v=oaq4Z4rbKkA
+    \note{buen material:
+        https://www.youtube.com/watch?v=d5sGRhjMXbY
+        https://www.youtube.com/watch?v=geaUKjEYHtM
+        https://www.youtube.com/watch?v=oaq4Z4rbKkA
+    }
 
-	
-	Una rotación de un marco de referencia a otro se puede obtener mediante la multiplicación de varias rotaciones.
-	
-   
-   Ángulos de Euler:
-   
-       \begin{figure}[!h]
-   	\centering
-   	\subfloat[]
-   	{
-   		\includegraphics[width=0.2\columnwidth]{./images/euler_angles_initial.pdf}
-   	}
-   	\subfloat[]
-   	{
-   		\includegraphics[width=0.2\columnwidth]{./images/euler_angles_alpha_rotation.pdf}
-   	}
-   	\subfloat[]
-   	{
-   		\includegraphics[width=0.2\columnwidth]{./images/euler_angles_beta_rotation.pdf}
-   	}
-   	\subfloat[]
-   	{
-   		\includegraphics[width=0.2\columnwidth]{./images/euler_angles_gamma_rotation.pdf}
-   	}
-   \end{figure}
-   
-      
-  
-	Rotación Intrínseca
-	$R = R_{x} R_{y} R_{z}$
     
-    $z-x-z$ 
-	
-	\TODO{SLIDE a realizar...}
-	
-	$x-y\prime-z\prime\prime$ (intrinsic rotations) or $z-y-x$ (extrinsic rotations)\\
-	$y-z\prime-x\prime\prime$ (intrinsic rotations) or $x-z-y$ (extrinsic rotations)\\
-	$z-x\prime-y\prime\prime$ (intrinsic rotations) or $y-x-z$ (extrinsic rotations)\\
-	$x-\prime-y\prime\prime$ (intrinsic rotations) or $y-z-x$ (extrinsic rotations)\\
-	$z-y\prime-x\prime\prime$ (intrinsic rotations) or $x-y-z$ (extrinsic rotations): the intrinsic rotations are known as: yaw, pitch and roll\\
-	$y-x\prime-\prime\prime$ (intrinsic rotations) or $z-x-y$ (extrinsic rotations)\\
-	
-	
-	\note{Copiar slides donde se muestra que las rotaciones intrínsecas son equivalentes a las rotaciones extrínsecas: https://www.youtube.com/watch?v=icczqt73B7o}
-	
+    Una rotación de un de referencia a otro se puede obtener mediante la multiplicación de varias rotaciones.
+    
+    \begin{block}{Ángulos de Euler}
+        Se denomina Ángulos de Euler a los ángulos $\alpha$, $\beta$ y $\gamma$ cuando estos deben ser aplicados utilizando las combinaciones: $zxz$ $yxy$ $xyx$ $zyz$ $yzy$ $xzx$. Los ángulos de Euler se aplican sobre sistema de coordenadas local del objeto (Rotaciones intrínsecas).
+    \end{block}
+   
+       Ejemplo de aplicación de Ángulos de Euler $\alpha$, $\beta$ y $\gamma$ utilizando la combinación $zxz$:
+   
+    \begin{figure}[!h]
+           \centering
+           \subfloat[]
+           {
+               \includegraphics[width=0.2\columnwidth]{./images/euler_angles_initial.pdf}
+           }
+           \subfloat[]
+           {
+               \includegraphics[width=0.2\columnwidth]{./images/euler_angles_alpha_rotation.pdf}
+           }
+           \subfloat[]
+           {
+               \includegraphics[width=0.2\columnwidth]{./images/euler_angles_beta_rotation.pdf}
+           }
+           \subfloat[]
+           {
+               \includegraphics[width=0.2\columnwidth]{./images/euler_angles_gamma_rotation.pdf}
+           }
+    \end{figure}
+   
+    Las Rotaciones íntrinsecas se aplican utilizando premultiplicación:
+   
+    \begin{equation*}
+    \rotationCoord{B}{A}
+    \end{equation*}
+   
+
+    \note{Copiar slides donde se muestra que las rotaciones intrínsecas son equivalentes a las rotaciones extrínsecas: https://www.youtube.com/watch?v=icczqt73B7o}    
 \end{frame}
 
+
+\begin{frame}
+    \frametitle{Ángulos de Tait-Bryann}
+    
+    \begin{block}{Ángulos de Tait-Bryann}
+        Combinaciones de giros con Ángulos de Tait-Bryann (o ángulos de navegación): $xyz$ $xzy$ $yxz$ $yzx$ $zxy$ $zyx$. Los ángulos Tait-Bryann se usan normalmente para definir la posición de aeronaves, satélites o embarcaciones. Los ángulos Tait-Bryann se aplican utilizando un sistema de coordenadas fijo (Rotaciones extrínsecas).
+    \end{block}
+    
+    \begin{block}{Ángulos de Yaw-Pitch-Roll}
+        Específicamente, la combinación de Ángulos de Tait-Bryann $zyx$ se denomina Yaw, Pitch y Roll.
+    \end{block}
+    
+    
+    \note{Copiar slides donde se muestra que las rotaciones intrínsecas son equivalentes a las rotaciones extrínsecas: https://www.youtube.com/watch?v=icczqt73B7o}
+    
+\end{frame}
 
 \begin{frame}
     \frametitle{Propiedades de matrices Rotación}
@@ -539,7 +549,7 @@ En consecuencia, las descomposiciones de las rotaciones encadenadas de Euler y d
         \begin{minipage}{0.38\linewidth}
             \centering
             \begin{figure}
-	           \includegraphics[width=0.3\columnwidth]{images/axis_angle_vector.pdf}
+               \includegraphics[width=0.3\columnwidth]{images/axis_angle_vector.pdf}
             \end{figure}
         \end{minipage}
     \end{center}
