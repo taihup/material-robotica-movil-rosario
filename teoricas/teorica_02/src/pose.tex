@@ -311,6 +311,8 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
     
 \end{frame}
 
+
+
 \begin{frame}
     \frametitle{Rotación en 3D}
     \small
@@ -323,10 +325,61 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
     \end{equation*}
 
     Ejemplo:
-    \begin{equation*}
-        {\displaystyle R_{z}\left(\frac{\pi}{2}\right){\begin{bmatrix}1\\0\\0\\\end{bmatrix}}={\begin{bmatrix}\cos \frac{\pi}{2}&-\sin \frac{\pi}{2}&0\\\sin \frac{\pi}{2}&\quad \cos \frac{\pi}{2}&0\\0&0&1\\\end{bmatrix}}{\begin{bmatrix}1\\0\\0\\\end{bmatrix}}={\begin{bmatrix}0&-1&0\\1&0&0\\0&0&1\\\end{bmatrix}}{\begin{bmatrix}1\\0\\0\\\end{bmatrix}}={\begin{bmatrix}0\\1\\0\\\end{bmatrix}}}
-    \end{equation*}
 
+    \begin{center}
+    \begin{minipage}{0.26\linewidth}
+        \includegraphics[width=\columnwidth]{./images/3d_rotation_example.pdf}
+    \end{minipage}
+    \hspace{1em}
+    \begin{minipage}{0.70\linewidth}
+        \small
+        \begin{equation*}
+            {\displaystyle R_{z}\left(\frac{\pi}{2}\right){\begin{bmatrix}1\\0\\0\\\end{bmatrix}}={\begin{bmatrix}\cos \frac{\pi}{2}&-\sin \frac{\pi}{2}&0\\\sin \frac{\pi}{2}&\quad \cos \frac{\pi}{2}&0\\0&0&1\\\end{bmatrix}}{\begin{bmatrix}1\\0\\0\\\end{bmatrix}}={\begin{bmatrix}0&-1&0\\1&0&0\\0&0&1\\\end{bmatrix}}{\begin{bmatrix}1\\0\\0\\\end{bmatrix}}={\begin{bmatrix}0\\1\\0\\\end{bmatrix}}}
+        \end{equation*}
+    \end{minipage}
+\end{center}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Right-hand rule}
+    En Robótica la disposición de los ejes de coordenadas y el sentido de rotación de los mismos está dado por la regla de la mano derecha (Right-hand rule).
+    
+    \begin{figure}[!h]
+        \centering
+        \subfloat[]
+        {
+            \includegraphics[width=0.4\columnwidth]{./images/right_hand_rule.pdf}
+        }\hspace{1cm}
+        \subfloat[]
+        {
+            \includegraphics[width=0.4\columnwidth]{./images/right_hand_rule_positive_rotation.pdf}
+        }
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Roll Pitch Yaw }
+    
+    \begin{figure}[!h]
+        \includegraphics[width=0.4\columnwidth]{./images/roll_pitch_yaw.pdf}
+    \end{figure}
+    \TODO{Gimbal-Lock Video explanation: https://youtu.be/-WXfEPg8eMM}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Left-hand vs Right-hand rule}
+    
+    \only<1>{
+        \begin{figure}
+            \includegraphics[width=0.9\columnwidth]{./images/left_right_hand_rule.pdf}
+        \end{figure}
+    }
+    \only<2>{
+        \begin{figure}
+            \includegraphics[width=0.9\columnwidth]{./images/left_right_hand_rule_cross.pdf}
+        \end{figure}
+    }
 \end{frame}
 
 \begin{frame}
@@ -493,45 +546,3 @@ En consecuencia, las descomposiciones de las rotaciones encadenadas de Euler y d
         \end{bmatrix}
     \end{align*}
 \end{frame}
-
-\begin{frame}
-    \frametitle{Right-hand rule}
-    En Robótica la disposición de los ejes de coordenadas y el sentido de rotación de los mismos está dado por la regla de la mano derecha (Right-hand rule).
-
-    \begin{figure}[!h]
-        \centering
-        \subfloat[]
-        {
-            \includegraphics[width=0.4\columnwidth]{./images/right_hand_rule.pdf}
-        }\hspace{1cm}
-        \subfloat[]
-        {
-            \includegraphics[width=0.4\columnwidth]{./images/right_hand_rule_positive_rotation.pdf}
-        }
-    \end{figure}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Roll Pitch Yaw }
-    
-    \begin{figure}[!h]
-        \includegraphics[width=0.4\columnwidth]{./images/roll_pitch_yaw.pdf}
-    \end{figure}
-    \TODO{Gimbal-Lock Video explanation: https://youtu.be/-WXfEPg8eMM}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Left-hand vs Right-hand rule}
-
-        \only<1>{
-        	    \begin{figure}
-        	    	\includegraphics[width=0.9\columnwidth]{./images/left_right_hand_rule.pdf}
-	    	    \end{figure}
-            	}
-        \only<2>{
-        	\begin{figure}
-    	    	\includegraphics[width=0.9\columnwidth]{./images/left_right_hand_rule_cross.pdf}
-	        \end{figure}
-        }
-\end{frame}
-
