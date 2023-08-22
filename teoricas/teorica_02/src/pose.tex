@@ -384,9 +384,9 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
 
 \begin{frame}
     \frametitle{Rotaciones Generales 3D: Rotaciones Extrínsecas vs Rotaciones Intrínsecas}
-
+    \scriptsize
     \begin{block}{Rotación Intrínseca}
-    Describe una rotación en relación con el sistema de coordenadas local del objeto. Los ejes del objeto pueden cambiar durante la rotación.
+    Describe una rotación en relación con el sistema de coordenadas local del objeto. Los ejes del objeto pueden cambiar durante la rotación. La Rotación final se construye Posmultiplicación: $R = R_{x}(\alpha) \, R_{y}(\beta) \, R_{z}(\gamma)$.
     \end{block}
 
     \begin{center}
@@ -394,7 +394,7 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
     \end{center}
 
     \begin{block}{Rotación Extrínseca}
-        Describe una rotación en relación con un sistema de coordenadas global fijo en el espacio. El sistema de referencia es externo al objeto que está siendo rotado.
+        Describe una rotación en relación con un sistema de coordenadas global fijo en el espacio. El sistema de referencia es externo al objeto que está siendo rotado. La Rotación final se construye Premultiplicación: $R = R_{z}(\gamma) \, R_{y}(\beta) \, R_{x}(\alpha)$.
     \end{block}
     
     \begin{center}
@@ -410,30 +410,7 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
     \frametitle{Rotaciones generales 3D}
     \tiny
     
-    Rotación intrínseca con ángulos yaw, pitch y roll como $\alpha$, $\beta$ y $\gamma$. Formalmente, es una rotación intrínseca con ángulos Tait–Bryan angles $\alpha$, $\beta$ y $\gamma$ sobre los ejes $z$, $y$, $x$.
-    \begin{equation*}
-        {\displaystyle
-            {
-                \begin{aligned}
-                    R=R_{z}(\alpha )\,R_{y}(\beta )\,R_{x}(\gamma )&={\overset {\text{yaw}}{\begin{bmatrix}\cos \alpha &-\sin \alpha &0\\\sin \alpha &\cos \alpha &0\\0&0&1\\\end{bmatrix}}}{\overset {\text{pitch}}{\begin{bmatrix}\cos \beta &0&\sin \beta \\0&1&0\\-\sin \beta &0&\cos \beta \\\end{bmatrix}}}{\overset {\text{roll}}{\begin{bmatrix}1&0&0\\0&\cos \gamma &-\sin \gamma \\0&\sin \gamma &\cos \gamma \\\end{bmatrix}}}\\
-                    &={\begin{bmatrix}\cos \alpha \cos \beta &\cos \alpha \sin \beta \sin \gamma -\sin \alpha \cos \gamma &\cos \alpha \sin \beta \cos \gamma +\sin \alpha \sin \gamma \\\sin \alpha \cos \beta &\sin \alpha \sin \beta \sin \gamma +\cos \alpha \cos \gamma &\sin \alpha \sin \beta \cos \gamma -\cos \alpha \sin \gamma \\-\sin \beta &\cos \beta \sin \gamma &\cos \beta \cos \gamma \\\end{bmatrix}
-                    }
-                \end{aligned}
-            }
-        }
-    \end{equation*}
-    De manera similar rotación extínseca con ángulos de Euler $\alpha$, $\beta$ y $\gamma$ sobre los ejes $x$, $y$ y $z$.
-    \begin{equation*}
-        {\displaystyle \begin{aligned}
-                R=R_{z}(\gamma )\,R_{y}(\beta )\,R_{x}(\alpha )&={\begin{bmatrix}\cos \gamma &-\sin \gamma &0\\\sin \gamma &\cos \gamma &0\\0&0&1\\\end{bmatrix}}{\begin{bmatrix}\cos \beta &0&\sin \beta \\0&1&0\\-\sin \beta &0&\cos \beta \\\end{bmatrix}}{\begin{bmatrix}1&0&0\\0&\cos \alpha &-\sin \alpha \\0&\sin \alpha &\cos \alpha \\\end{bmatrix}}\\
-                &={\begin{bmatrix}
-                        \cos \beta \cos \gamma & \sin \alpha \sin \beta \cos \gamma - \cos \alpha \sin \gamma & \cos \alpha \sin \beta \cos \gamma + \sin \alpha \sin \gamma \\
-                        \cos \beta \sin \gamma & \sin \alpha \sin \beta \sin \gamma + \cos \alpha \cos \gamma & \cos \alpha \sin \beta \sin \gamma - \sin \alpha \cos \gamma \\
-                        -\sin \beta & \sin \alpha \cos \beta & \cos \alpha \cos \beta \\
-                \end{bmatrix}}
-            \end{aligned}
-        }
-    \end{equation*}
+
 
 \note{Davenport demostró que se puede lograr descomponer cualquier orientación mediante la sucesión de tres rotaciones elementales utilizando ejes no ortogonales. Las rotaciones elementales pueden darse respecto a los ejes del sistema de coordenadas fijo (rotaciones extrínsecas) o sobre los ejes de un sistema de coordenadas giratorio, que inicialmente se alinea con el sistema de ejes fijo y modifica su orientación después de cada rotación elemental (rotaciones intrínsecas).
 
@@ -460,10 +437,10 @@ En consecuencia, las descomposiciones de las rotaciones encadenadas de Euler y d
     Una rotación de un de referencia a otro se puede obtener mediante la multiplicación de varias rotaciones.
     
     \begin{block}{Ángulos de Euler}
-        Se denomina Ángulos de Euler a los ángulos $\alpha$, $\beta$ y $\gamma$ cuando estos deben ser aplicados utilizando las combinaciones: $zxz$ $yxy$ $xyx$ $zyz$ $yzy$ $xzx$. Los ángulos de Euler se aplican sobre sistema de coordenadas local del objeto (Rotaciones intrínsecas).
+        Se denomina Ángulos de Euler a los ángulos $\alpha$, $\beta$ y $\gamma$ cuando estos deben ser aplicados utilizando el siguiente orden: $zxz$ $yxy$ $xyx$ $zyz$ $yzy$ $xzx$. Los ángulos de Euler se aplican sobre el sistema de coordenadas local del objeto (Rotaciones intrínsecas).
     \end{block}
    
-       Ejemplo de aplicación de Ángulos de Euler $\alpha$, $\beta$ y $\gamma$ utilizando la combinación $zxz$:
+    Ejemplo de aplicación de Ángulos de Euler $\alpha$, $\beta$ y $\gamma$ utilizando la combinación $zxz$:
    
     \begin{figure}[!h]
            \centering
@@ -485,11 +462,7 @@ En consecuencia, las descomposiciones de las rotaciones encadenadas de Euler y d
            }
     \end{figure}
    
-    Las Rotaciones íntrinsecas se aplican utilizando premultiplicación:
-   
-    \begin{equation*}
-    \rotationCoord{B}{A}
-    \end{equation*}
+
    
 
     \note{Copiar slides donde se muestra que las rotaciones intrínsecas son equivalentes a las rotaciones extrínsecas: https://www.youtube.com/watch?v=icczqt73B7o}    
