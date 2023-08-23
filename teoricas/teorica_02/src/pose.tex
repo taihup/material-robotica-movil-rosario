@@ -508,6 +508,63 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
 \begin{frame}
     \frametitle{Ángulos de Euler y Gimbal Lock (Bloqueo de Cardan)}
     \scriptsize
+    A los ángulos de Euler se los puede pensar como una función $\mathbb{R}^{3} -> SO(3)$.
+    
+    Veamos un ejemplo
+    
+    \note{https://wang-yimu.com/gimbal-lock/}
+    \note{https://www.youtube.com/watch?v=wg9bI8-Qx2Q}
+    
+    \begin{equation*}
+        R_{y}\left(\frac{\pi}{2}\right) = 
+        \begin{bmatrix}
+            \cos \beta &0&\sin \beta\\
+            0 & 1 & 0\\
+            -\sin \beta &0&\cos \beta\\
+        \end{bmatrix}
+    \end{equation*}
+
+    Luego,
+   
+    \begin{align*}
+        R = R_{x}(\alpha) \, R_{y}\left(\frac{\pi}{2}\right) \, R_{z}(\gamma) &=
+        \begin{bmatrix}
+            1 & 0 & 0 \\
+            0 & \cos \alpha & -\sin \alpha \\
+            0& \sin \alpha & \cos \alpha \\
+        \end{bmatrix}
+        \begin{bmatrix}
+                0 & 0 & 1\\
+                0 & 1 & 0\\
+                -1 & 0 & 0\\
+        \end{bmatrix}
+        \begin{bmatrix}
+            \cos \gamma & -\sin \gamma & 0\\
+            \sin \gamma & \cos \gamma &0\\
+            0 & 0 & 1\\
+        \end{bmatrix}\\
+        &=
+        \begin{bmatrix}
+            0 & 0 & 1\\
+            \sin \theta + \cos \theta \sin \gamma& -\sin \theta \cos \gamma + \cos \theta \cos \gamma& 0\\
+            \cos \theta \cos \gamma + \sin \theta \sin \gamma & \cos \theta \sin \gamma + \sin \theta \cos \gamma & 0
+        \end{bmatrix}\\
+        &=
+        \begin{bmatrix}
+            0 & 0 & 1\\
+            \sin(\theta + \gamma) & \cos(\theta + \gamma) & 0\\
+            -\cos(\theta + \gamma) & \sin(\theta + \gamma)& 0
+        \end{bmatrix}
+    \end{align*}
+    
+    Cuando el ángulo de Pitch, $\beta = \pm \frac{\pi}{2}$ el ángulo de Roll $\alpha$ no puede diferenciarse de el ángulo de Yaw $\gamma$.
+    
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ángulos de Euler y Gimbal Lock (Bloqueo de Cardan)}
+    \scriptsize
 
     Cuando representamos una Rotación con ángulos de Euler se puede producir una situación similar al Bloqueo de Cardan (\emph{Gimbal Lock}).    
     
@@ -530,7 +587,7 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
 
     \note{El Gimbal Lock ocurre cuando dos de los ejes de rotación se vuelven paralelos entre sí. Esto elimina un grado de libertad y limita la capacidad del objeto para rotar libremente en todas las direcciones. En términos más simples, el objeto queda atrapado en un estado en el que solo puede rotar alrededor de dos ejes en lugar de tres. Esto puede dificultar el control y la representación precisa de la orientación del objeto.}
       
-    Los ángulos de Euler proporcionan una descripción numérica de cualquier rotación en el espacio tridimensional usando tres reales $\alpha$, $\beta$ y $\gamma$. Pero no sólo no es esta descripción única sino que además existen puntos sobre los que \textbf{no todo cambio en el espacio de rotaciones puede ser expresado como un cambio en el espacio de los ángulos de Euler}.
+    Los ángulos de Euler proporcionan una descripción numérica de cualquier rotación en el espacio tridimensional usando tres reales $\alpha$, $\beta$ y $\gamma$, esto es una función $\mathbb{R}^{3} -> SO(3)$. Pero no sólo no es esta descripción única sino que además existen puntos sobre los que \textbf{no todo cambio en el espacio de rotaciones puede ser expresado como un cambio en el espacio de los ángulos de Euler}.
     
     El Gimbal Lock generó un incidente en el Apolo 11.
     
