@@ -506,33 +506,35 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
 \end{frame}
 
 \begin{frame}
-    \frametitle{Gimbal Lock (Bloqueo de Cardan)}
+    \frametitle{Ángulos de Euler y Gimbal Lock (Bloqueo de Cardan)}
     \scriptsize
+
+    Cuando representamos una Rotación con ángulos de Euler se puede producir una situación similar al Bloqueo de Cardan (\emph{Gimbal Lock}).    
     
     \begin{center}
         \movie[autostart,loop,poster]{\includegraphics[width=0.2\textwidth]{./images/gimbal_rotation.png}}{./videos/gimbal_rotation.mp4}\hspace{1em}
         \movie[autostart,loop,poster]{\includegraphics[width=0.2\textwidth]{./images/gimbal_lock_video.png}}{./videos/gimbal_lock.mp4}
     \end{center}
     
-    
-    Cuando representamos una Rotación con ángulos de Euler se puede producir una situación similar al Bloqueo de Cardan (\emph{Gimbal Lock}).    
-    
-    La palabra ``bloqueo'' puede ser confusa: ninguno de los cardanes está bloqueado. Los tres pueden todavía moverse libremente sobre sus ejes de suspensión respectivos. Sin embargo, debido a la orientación paralela de los ejes de dos de los cardanes, existe un eje sobre el que ninguno de los cardanes puede girar.
+    \note{La palabra ``bloqueo'' puede ser confusa: ninguno de los cardanes (\emph{gimbals}) está bloqueado. Los tres pueden todavía moverse libremente sobre sus ejes de suspensión respectivos. Sin embargo, debido a la orientación paralela de los ejes de dos de los cardanes, existe un eje sobre el que ninguno de los cardanes puede girar.}
     
     \begin{itemize}
         \item Pérdida de un grado de libertad cuando dos de los tres ejes de giro se colocan en paralelo.
-        \item Existe un eje sobre el que no se puede girar. En la práctica esto puede ser que un robot se rompa, impidiendo a que haga fuerza.
+        \item Existe un eje sobre el que no se puede girar. En la práctica, por ejemplo, puede hacer que un brazo robótica no pueda realizar cierto giro. Solución: \emph{wrist flip}
     \end{itemize}
     
+    En el caso de los ángulos de Euler, lo que sucede es que dos de los tres ángulos describen un mismo giro. El Gimbal Lock ocurre específicamente en los ángulos de Euler cuando los giros se aplican en un orden particular, generalmente cuando el ángulo de Pitch se acerca a 90 grados.
     
     Tool Online para mostrar Gimbal Lock: \url{https://danceswithcode.net/engineeringnotes/rotations_in_3d/demo3D/rotations_in_3d_tool.html}
     
-    En el caso de los ángulos de Euler, lo que sucede es que dos de los tres ángulos describen un mismo giro.   
-    
-    Los ángulos de Euler proporcionan una descripción numérica de cualquier rotación en el espacio tridimensional usando tres reales $\alpha$ $\beta$ y $\gamma$. Pero no sólo no es esta descripción única sino que además existen puntos sobre los que \textbf{no todo cambio en el espacio de rotaciones puede ser expresado como un cambio en el espacio de los ángulos de Euler}.
-    
-    El gimbal lock generó el accidente del apolo 13.
 
+    \note{El Gimbal Lock ocurre cuando dos de los ejes de rotación se vuelven paralelos entre sí. Esto elimina un grado de libertad y limita la capacidad del objeto para rotar libremente en todas las direcciones. En términos más simples, el objeto queda atrapado en un estado en el que solo puede rotar alrededor de dos ejes en lugar de tres. Esto puede dificultar el control y la representación precisa de la orientación del objeto.}
+      
+    Los ángulos de Euler proporcionan una descripción numérica de cualquier rotación en el espacio tridimensional usando tres reales $\alpha$, $\beta$ y $\gamma$. Pero no sólo no es esta descripción única sino que además existen puntos sobre los que \textbf{no todo cambio en el espacio de rotaciones puede ser expresado como un cambio en el espacio de los ángulos de Euler}.
+    
+    El Gimbal Lock generó un incidente en el Apolo 11.
+    
+    \note{Problema del Apollo 11 con Gimbal Lock: https://history.nasa.gov/alsj/gimbals.html}
 
     \TODO{https://youtu.be/Mm8tzzfy1Uw}
     \TODO{https://youtu.be/oaq4Z4rbKkA}
