@@ -22,7 +22,7 @@
 \maketitle
 
 \section{Entrega}
-Se deberá entregar un informe realizado en Lyx\footnote{\url{https://www.lyx.org/}} o latex con los ejercicios resueltos y explicando la solución según lo vea necesario para su comprensión. Para realizar gráficos se recomienda la utilización de la herramienta inkscape\footnote{\url{https://inkscape.org/}}. Para el código se debe proveer el link de un repositorio git junto con un archivo README.md con las instrucciones de ejecución.
+Se deberá entregar un informe realizado en Lyx\footnote{\url{https://www.lyx.org/}} o \LaTeX\ con los ejercicios resueltos y explicando la solución según lo vea necesario para su comprensión. Para realizar gráficos se recomienda la utilización de la herramienta inkscape\footnote{\url{https://inkscape.org/}}. Para el código se debe proveer el link de un repositorio git junto con un archivo README.md con las instrucciones de ejecución.
 
 \section{Ejercicios}
 Esta práctica es para ponerse a punto con transformaciones.
@@ -51,11 +51,11 @@ Esta práctica es para ponerse a punto con transformaciones.
     \end{figure}
     
     
-\ejercicio Dada los siguientes ángulos de Euler $(\alpha = \frac{4\pi}{7}, \beta = \frac{\pi}{2}, \gamma = -\frac{\pi}{3})$, con órden $xyz$ utilizando Rotación Intrínseca (primero rotación en $x$, luego en $y$ y finalmente en $z$). Se pide:
+\ejercicio Dada los siguientes ángulos de Euler $(\alpha = \frac{4\pi}{7}, \beta = \frac{\pi}{2}, \gamma = -\frac{\pi}{3})$, con órden $xyz$ (primero rotación en $x$, luego en $y$ y finalmente en $z$) utilizando Rotación Intrínseca. Se pide:
 
 \begin{enumerate}
     \item Calcular la matríz de Rotación resultante $R = R_{x}(\alpha) R_{y}(\beta) R_{z}(\gamma)$.
-    \item Utilizando la matríz de rotación calculada $R$, extraer matemáticamente los Ángulos de Euler. Explique.
+    \item Utilizando la matríz de rotación calculada $R$, extraer matemáticamente los Ángulos de Euler. Explicar.
 \end{enumerate}
 
 \begin{solucion}
@@ -78,7 +78,7 @@ Resuelva:
     \item ¿Cuál es la pose (posición y orientación) del robot B en coordenadas del Mundo?
 \end{enumerate}
 
-\ejercicio Data la pose del robot (Body) en el mundo: $\transform{W}{B_{0}}$. Si se tiene el camino (conjunto de poses $\transform{C_{0}}{C_{i}}$ con $i = 1 \dots n$) realizado por la cámara $C$ (montada sobre el robot) en el marco de coordenadas de la cámara inicial $C_{0}$. Sabiendo la transformación $\transform{B}{C}$, 
+\ejercicio Data la pose del robot (Body) en el mundo: $\transform{\worldCoordSystem}{\bodyCoordSystem_{0}}$. Si se tiene el camino (conjunto de poses $\transform{\cameraCoordSystem_{0}}{\cameraCoordSystem_{i}}$ con $i = 1 \dots n$) realizado por la cámara $\cameraCoordSystem$ (montada sobre el robot) en el marco de coordenadas de la cámara inicial $\cameraCoordSystem_{0}$. Sabiendo la transformación $\transform{\bodyCoordSystem}{\cameraCoordSystem}$, 
 \begin{itemize}
 	\item ¿Qué procedimiento hay que realizar para obtener el camino realizado por la cámara en el sistema de coordenadas del mundo?.
 	\item ¿Qué procedimiento hay que realizar para obtener el camino realizado por el robot (Body) en el sistema de coordenadas del mundo?
