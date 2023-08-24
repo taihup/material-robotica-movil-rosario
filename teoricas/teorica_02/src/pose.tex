@@ -546,14 +546,14 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
         &=
         \begin{bmatrix}
             0 & 0 & 1\\
-            \sin \theta + \cos \theta \sin \gamma& -\sin \theta \cos \gamma + \cos \theta \cos \gamma& 0\\
-            \cos \theta \cos \gamma + \sin \theta \sin \gamma & \cos \theta \sin \gamma + \sin \theta \cos \gamma & 0
+            \sin \alpha \cos \gamma + \cos \alpha \sin \gamma& -\sin \alpha \cos \gamma + \cos \alpha \cos \gamma& 0\\
+            \cos \alpha \cos \gamma + \sin \alpha \sin \gamma & \cos \alpha \sin \gamma + \sin \alpha \cos \gamma & 0
         \end{bmatrix}\\
         &=
         \begin{bmatrix}
             0 & 0 & 1\\
-            \sin(\theta + \gamma) & \cos(\theta + \gamma) & 0\\
-            -\cos(\theta + \gamma) & \sin(\theta + \gamma)& 0
+            \sin(\alpha + \gamma) & \cos(\alpha + \gamma) & 0\\
+            -\cos(\alpha + \gamma) & \sin(\alpha + \gamma)& 0
         \end{bmatrix}
     \end{align*}
     
