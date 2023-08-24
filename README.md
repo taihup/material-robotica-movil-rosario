@@ -20,3 +20,11 @@ sudo apt-get install biber
 
 ## Configurar Texstudio
 Usar biber biblatex para bibliography compilation.
+
+## Configuración de Vídeos
+Utilizar el comando `ffmpeg -i inputfile.gif -movflags faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" output_video.mp4` para convertir un gif en vídeo mp4.
+
+Utilizar el comando `ffmpeg -i inputfile.mp4 -vf "select=eq(n\,0)" -q:v 3 output_image.jpg` para extraer el primer frame del vídeo y utilizarlo en las slides.
+
+
+
