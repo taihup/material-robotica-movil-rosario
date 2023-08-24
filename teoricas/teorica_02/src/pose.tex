@@ -432,24 +432,28 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
     \end{block}
    
     Ejemplo de aplicación de Ángulos de Euler $\alpha$, $\beta$ y $\gamma$ utilizando la combinación $zxz$:
-   \begin{figure}[!h]
-           \centering
-           \subfloat[$R = R_{z}(\alpha) \, R_{x}(\beta) \, R_{z}(\gamma)$]
-           {
-               \includegraphics[width=0.23\columnwidth]{./images/euler_angles_initial.pdf}
-           }
-           \subfloat[$R_{z}(\alpha)$]
-           {
-               \includegraphics[width=0.23\columnwidth]{./images/euler_angles_alpha_rotation.pdf}
-           }
-           \subfloat[$R_{x}(\beta)$]
-           {
-               \includegraphics[width=0.23\columnwidth]{./images/euler_angles_beta_rotation.pdf}
-           }
-           \subfloat[$R_{z}(\gamma)$]
-           {
-               \includegraphics[width=0.23\columnwidth]{./images/euler_angles_gamma_rotation.pdf}
-           }
+    \begin{figure}[!h]
+        \centering
+        \subfloat[]
+        {
+            \movie[autostart,loop,poster]{\includegraphics[width=0.1\columnwidth,valign=m]{./images/euler_angles_video.jpg}}{./videos/euler_angles.mp4}
+        }
+        \subfloat[$R = R_{z}(\alpha) \, R_{x}(\beta) \, R_{z}(\gamma)$]
+        {
+            \includegraphics[width=0.21\columnwidth,valign=m]{./images/euler_angles_initial.pdf}
+        }
+        \subfloat[$R_{z}(\alpha)$]
+        {
+            \includegraphics[width=0.21\columnwidth,valign=m]{./images/euler_angles_alpha_rotation.pdf}
+        }
+        \subfloat[$R_{x}(\beta)$]
+        {
+           \includegraphics[width=0.21\columnwidth,valign=m]{./images/euler_angles_beta_rotation.pdf}
+        }
+        \subfloat[$R_{z}(\gamma)$]
+        {
+            \includegraphics[width=0.21\columnwidth,valign=m]{./images/euler_angles_gamma_rotation.pdf}
+        }
     \end{figure}
 \end{frame}
 
