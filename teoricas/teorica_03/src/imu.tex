@@ -2,13 +2,17 @@
     \frametitle{Giróscopo o Giroscopio}
     \scriptsize
     \begin{center}
-        \includegraphics[width=0.2\columnwidth]{images/gyroscope.pdf}
+        \includegraphics[width=0.15\columnwidth]{images/gyroscope.pdf}
+        \hspace{1em}
+        \includegraphics[width=0.4\columnwidth]{images/gyroscope_precession.pdf}
     \end{center}
 
     \begin{block}{Principio de funcionamiento}
-        Un giróscopo es todo cuerpo simétrico en Rotación a una velocidad suficiente como para experimentar los efectos giroscópicos.
+        \begin{itemize}
+            \item Un giróscopo es todo cuerpo simétrico en rotación a una velocidad suficiente como para experimentar los efectos giroscópicos.
+            \item Los giroscopios son dispositivos que miden o mantienen el movimiento de rotación.
+        \end{itemize}
 
-        Los giroscopios son dispositivos que miden o mantienen el movimiento de rotación.
     \end{block}
 
     \begin{itemize}
@@ -28,27 +32,33 @@
     \frametitle{Giróscopo: Pricipios giroscópicos}
     \note{https://www.youtube.com/watch?v=nhNg-8RSuKY}
     \scriptsize
-
-    \begin{block}{Rigidez en el espacio}
-        Al rotar, un giróscopo permanece en una posición fija en su plano de rotación, independientemente del movimiento de los soportes o el marco.
-
-        La cantidad de rigidez que presenta el giróscopo es directamente proporcional a su velocidad de rotación (RPM) y su momento de inercia.
-        Mayor velocidad de rotación, entonces mayor rigidez en el espacio.
-        Mayor masa y radio efectivo, entonces mayor rigidez en el espacio.
-    \end{block}
-
-    \begin{block}{Precesión}
-    Toda fuerza aplicada perpendicularmente sobre el plano de rotación de un giróscopo se verá reflejada a $\SI{90}{\degree}$ en el sentido de la rotación.
-
-    La magnitud de la precesión que pesenta el giróscopo es directamente proporcional a la fuerza aplicada e inversamente proporcional a la velocidad de rotación (RPM).
-
-    \begin{figure}[!h]
-        \centering
+    
+    \begin{center}
+        \includegraphics[width=0.15\columnwidth]{images/gyroscope.pdf}
+        \hspace{1em}
         \includegraphics[width=0.4\columnwidth]{images/gyroscope_precession.pdf}
-    \end{figure}
-\end{block}
+    \end{center}
 
-\note{Un trompo es un giróscopo! cuando esta por caerse muestra el efecto de precesión. La fuerza que se le aplica es la de la gravedad y hace que se mueva de realizando una circunsferencia con su eje.}
+    \only<1>{
+    \begin{block}{Rigidez en el espacio}
+        \begin{itemize}
+            \item Al rotar, un giróscopo permanece en una posición fija en su plano de rotación, independientemente del movimiento de los soportes o el marco.
+            \item La cantidad de rigidez que presenta el giróscopo es directamente proporcional a su velocidad de rotación (RPM) y su momento de inercia.
+            \item Mayor velocidad de rotación, entonces mayor rigidez en el espacio.
+            \item Mayor masa y radio efectivo, entonces mayor rigidez en el espacio.
+        \end{itemize}
+    \end{block}
+    }
+    \only<2>{
+    \begin{block}{Precesión}
+        \begin{itemize}
+            \item Toda fuerza aplicada perpendicularmente sobre el plano de rotación de un giróscopo se verá reflejada a $\SI{90}{\degree}$ en el sentido de la rotación.
+            \item La magnitud de la precesión que pesenta el giróscopo es directamente proporcional a la fuerza aplicada e inversamente proporcional a la velocidad de rotación (RPM).
+        \end{itemize}
+    \end{block}
+    }
+
+    \note{Un trompo es un giróscopo! cuando esta por caerse muestra el efecto de precesión. La fuerza que se le aplica es la de la gravedad y hace que se mueva realizando una circunsferencia con su eje.}
 \end{frame}
 
 
@@ -66,7 +76,8 @@
         \includegraphics[width=0.2\columnwidth]{images/gyroscope_mems_1.png}
     \end{figure}
 
-    Ejemplo de aceleración de Coriolis. Una persona que se mueve hacia el norte hacia el borde exterior de una plataforma giratoria debe aumentar el componente de velocidad hacia el oeste (flechas azules) para mantener un rumbo hacia el norte. La aceleración requerida es la aceleración de Coriolis.
+    Ejemplo de aceleración de Coriolis:
+    Una persona que se mueve hacia el norte hacia el borde exterior de una plataforma giratoria debe aumentar el componente de velocidad hacia el oeste (flechas azules) para mantener un rumbo hacia el norte. La aceleración requerida es la aceleración de Coriolis.
 
     \note{Considérese parado en una plataforma giratoria, cerca del centro. Su velocidad relativa al suelo se muestra como la longitud de la flecha azul. Si tuviera que moverse a un punto cerca del borde exterior de la plataforma, su velocidad aumentaría en relación con el suelo, como lo indica la flecha azul más larga. La tasa de aumento de su velocidad tangencial, causada por su velocidad radial, es la aceleración de Coriolis.}
 
