@@ -1,0 +1,709 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="186.53125mm"
+   height="67.21936mm"
+   viewBox="0 0 186.53125 67.21936"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3 (1:1.3+202307231459+0e150ed6c4)"
+   sodipodi:docname="time_of_flight_camera_continuous_wave.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.74297138"
+     inkscape:cx="462.33275"
+     inkscape:cy="452.23815"
+     inkscape:window-width="1850"
+     inkscape:window-height="1016"
+     inkscape:window-x="1436"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#pattern_wave"
+       id="pattern63"
+       patternTransform="translate(50,10)" />
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#pattern_wave"
+       id="pattern62"
+       patternTransform="translate(0,-70)" />
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#pattern_wave"
+       id="pattern61"
+       patternTransform="translate(50,80)" />
+    <pattern
+       id="pattern_a3"
+       patternUnits="userSpaceOnUse"
+       width="7"
+       height="7">
+      <path
+         d="M 5,0 v 10"
+         stroke="#006699"
+         id="path7" />
+    </pattern>
+    <pattern
+       id="pattern1"
+       patternUnits="userSpaceOnUse"
+       width="7"
+       height="7">
+      <path
+         d="M 5,0 v 10"
+         stroke="#006699"
+         id="path1" />
+    </pattern>
+    <pattern
+       id="pattern_a4"
+       patternUnits="userSpaceOnUse"
+       width="7"
+       height="7">
+      <path
+         d="M 0,5 h 10"
+         stroke="#000099"
+         id="path8" />
+    </pattern>
+    <pattern
+       id="pattern2"
+       patternUnits="userSpaceOnUse"
+       width="7"
+       height="7">
+      <path
+         d="M 0,5 h 10"
+         stroke="#000099"
+         id="path2" />
+    </pattern>
+    <pattern
+       id="pattern_wave"
+       patternUnits="userSpaceOnUse"
+       width="160"
+       height="60">
+      <path
+         d="M 0,50 H 40 V 10 H 120 V 50 H 160"
+         stroke-width="2"
+         stroke="#000000"
+         fill="none"
+         id="path9" />
+    </pattern>
+    <pattern
+       id="pattern3"
+       patternUnits="userSpaceOnUse"
+       width="160"
+       height="60">
+      <path
+         d="M 0,50 H 40 V 10 H 120 V 50 H 160"
+         stroke-width="2"
+         stroke="#000000"
+         fill="none"
+         id="path3" />
+    </pattern>
+    <pattern
+       id="pattern_a1"
+       patternUnits="userSpaceOnUse"
+       width="10"
+       height="10">
+      <path
+         d="M 15,0 l -10,10 M 5,0 l -10,10"
+         stroke="#0066ff"
+         id="path5" />
+    </pattern>
+    <pattern
+       id="pattern4"
+       patternUnits="userSpaceOnUse"
+       width="10"
+       height="10">
+      <path
+         d="M 15,0 l -10,10 M 5,0 l -10,10"
+         stroke="#0066ff"
+         id="path4" />
+    </pattern>
+    <pattern
+       id="pattern_a2"
+       patternUnits="userSpaceOnUse"
+       width="10"
+       height="10">
+      <path
+         d="M -5,0 l 10,10 M 5,0 l 10,10"
+         stroke="#0000ff"
+         id="path6" />
+    </pattern>
+    <pattern
+       id="pattern10"
+       patternUnits="userSpaceOnUse"
+       width="10"
+       height="10">
+      <path
+         d="M -5,0 l 10,10 M 5,0 l 10,10"
+         stroke="#0000ff"
+         id="path10" />
+    </pattern>
+    <pattern
+       id="pattern11"
+       patternUnits="userSpaceOnUse"
+       width="160"
+       height="60">
+      <path
+         d="M 0,50 H 40 V 10 H 120 V 50 H 160"
+         stroke-width="2"
+         stroke="#000000"
+         fill="none"
+         id="path11" />
+    </pattern>
+    <pattern
+       id="pattern12"
+       patternUnits="userSpaceOnUse"
+       width="160"
+       height="60">
+      <path
+         d="M 0,50 H 40 V 10 H 120 V 50 H 160"
+         stroke-width="2"
+         stroke="#000000"
+         fill="none"
+         id="path12" />
+    </pattern>
+    <radialGradient
+       id="grad_sphere"
+       cx="0.5"
+       cy="0.5"
+       r="0.5"
+       fx="0.5"
+       fy="0.89999998">
+      <stop
+         offset="0%"
+         stop-color="#000000"
+         stop-opacity="0"
+         id="stop1" />
+      <stop
+         offset="99%"
+         stop-color="#000000"
+         stop-opacity="0.3"
+         id="stop2" />
+    </radialGradient>
+    <linearGradient
+       id="grad_highlight"
+       x1="0"
+       y1="0"
+       x2="0"
+       y2="1">
+      <stop
+         offset="10%"
+         stop-color="#ffffff"
+         stop-opacity="0.9"
+         id="stop3" />
+      <stop
+         offset="99%"
+         stop-color="#ffffff"
+         stop-opacity="0"
+         id="stop4" />
+    </linearGradient>
+    <filter
+       id="filter_blur"
+       x="-0.068571429"
+       y="-0.096"
+       width="1.1371429"
+       height="1.192">
+      <feGaussianBlur
+         stdDeviation="4"
+         id="feGaussianBlur1" />
+    </filter>
+    <radialGradient
+       id="radialGradient13"
+       cx="0.5"
+       cy="0.5"
+       r="0.5"
+       fx="0.5"
+       fy="0.89999998">
+      <stop
+         offset="0%"
+         stop-color="#000000"
+         stop-opacity="0"
+         id="stop12" />
+      <stop
+         offset="99%"
+         stop-color="#000000"
+         stop-opacity="0.3"
+         id="stop13" />
+    </radialGradient>
+    <filter
+       id="filter15"
+       x="-0.068571426"
+       y="-0.096000001"
+       width="1.1371429"
+       height="1.192">
+      <feGaussianBlur
+         stdDeviation="4"
+         id="feGaussianBlur15" />
+    </filter>
+    <pattern
+       id="pattern15"
+       patternUnits="userSpaceOnUse"
+       width="10"
+       height="10">
+      <path
+         d="M 15,0 l -10,10 M 5,0 l -10,10"
+         stroke="#0066ff"
+         id="path15" />
+    </pattern>
+    <pattern
+       id="pattern16"
+       patternUnits="userSpaceOnUse"
+       width="10"
+       height="10">
+      <path
+         d="M 15,0 l -10,10 M 5,0 l -10,10"
+         stroke="#0066ff"
+         id="path16" />
+    </pattern>
+    <pattern
+       id="pattern17"
+       patternUnits="userSpaceOnUse"
+       width="10"
+       height="10">
+      <path
+         d="M -5,0 l 10,10 M 5,0 l 10,10"
+         stroke="#0000ff"
+         id="path17" />
+    </pattern>
+    <pattern
+       id="pattern18"
+       patternUnits="userSpaceOnUse"
+       width="10"
+       height="10">
+      <path
+         d="M -5,0 l 10,10 M 5,0 l 10,10"
+         stroke="#0000ff"
+         id="path18" />
+    </pattern>
+    <pattern
+       id="pattern19"
+       patternUnits="userSpaceOnUse"
+       width="160"
+       height="60">
+      <path
+         d="M 0,50 H 40 V 10 H 120 V 50 H 160"
+         stroke-width="2"
+         stroke="#000000"
+         fill="none"
+         id="path19" />
+    </pattern>
+    <pattern
+       id="pattern20"
+       patternUnits="userSpaceOnUse"
+       width="160"
+       height="60">
+      <path
+         d="M 0,50 H 40 V 10 H 120 V 50 H 160"
+         stroke-width="2"
+         stroke="#000000"
+         fill="none"
+         id="path20" />
+    </pattern>
+    <radialGradient
+       id="radialGradient21"
+       cx="0.5"
+       cy="0.5"
+       r="0.5"
+       fx="0.5"
+       fy="0.89999998">
+      <stop
+         offset="0%"
+         stop-color="#000000"
+         stop-opacity="0"
+         id="stop20" />
+      <stop
+         offset="99%"
+         stop-color="#000000"
+         stop-opacity="0.3"
+         id="stop21" />
+    </radialGradient>
+    <filter
+       id="filter23"
+       x="-0.068571426"
+       y="-0.096000001"
+       width="1.1371429"
+       height="1.192">
+      <feGaussianBlur
+         stdDeviation="4"
+         id="feGaussianBlur23" />
+    </filter>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#grad_sphere"
+       id="radialGradient64"
+       cx="0"
+       cy="0"
+       fx="0"
+       fy="79.999992"
+       r="100"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#grad_highlight"
+       id="linearGradient64"
+       x1="-68.877861"
+       y1="-120.88296"
+       x2="-68.877861"
+       y2="16.872768"
+       gradientTransform="scale(1.1556688,0.86529978)"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(17.443896,-28.839583)">
+    <g
+       transform="matrix(0.26458333,0,0,0.26458333,-17.443896,56.53815)"
+       id="g52">
+      <text
+         x="15"
+         y="-75"
+         font-size="40px"
+         id="text40">2</text>
+      <rect
+         x="90"
+         y="90"
+         width="70"
+         height="40"
+         fill="url(#pattern_a3)"
+         id="rect40" />
+      <text
+         x="120"
+         y="145"
+         id="text41"><tspan
+           id="tspan40">q</tspan><tspan
+           dy="0.69999999ex"
+           id="tspan41">3</tspan></text>
+      <rect
+         x="250"
+         y="90"
+         width="70"
+         height="40"
+         fill="url(#pattern_a3)"
+         id="rect41" />
+      <text
+         x="280"
+         y="145"
+         id="text43"><tspan
+           id="tspan42">q</tspan><tspan
+           dy="0.69999999ex"
+           id="tspan43">3</tspan></text>
+      <rect
+         x="160"
+         y="90"
+         width="10"
+         height="40"
+         fill="url(#pattern_a4)"
+         id="rect43" />
+      <text
+         x="170"
+         y="145"
+         id="text45"><tspan
+           id="tspan44">q</tspan><tspan
+           dy="0.69999999ex"
+           id="tspan45">4</tspan></text>
+      <rect
+         x="320"
+         y="90"
+         width="10"
+         height="40"
+         fill="url(#pattern_a4)"
+         id="rect45" />
+      <text
+         x="330"
+         y="145"
+         id="text47"><tspan
+           id="tspan46">q</tspan><tspan
+           dy="0.69999999ex"
+           id="tspan47">4</tspan></text>
+      <path
+         id="use47"
+         d="M 80,-15 V 140"
+         stroke-width="1"
+         stroke-dasharray="4, 4"
+         stroke="#666666" />
+      <path
+         id="use48"
+         d="M 160,-15 V 140"
+         stroke-width="1"
+         stroke-dasharray="4, 4"
+         stroke="#666666" />
+      <path
+         id="use49"
+         d="M 240,-15 V 140"
+         stroke-width="1"
+         stroke-dasharray="4, 4"
+         stroke="#666666" />
+      <path
+         id="use50"
+         d="M 320,-15 V 140"
+         stroke-width="1"
+         stroke-dasharray="4, 4"
+         stroke="#666666" />
+      <rect
+         id="use51"
+         x="50"
+         y="80"
+         width="320"
+         height="60"
+         fill="url(#pattern_wave)"
+         style="fill:url(#pattern61);fill-opacity:0.5" />
+      <g
+         id="use52">
+        <rect
+           x="90"
+           y="20"
+           width="30"
+           height="40"
+           fill="url(#pattern_a1)"
+           id="rect13" />
+        <text
+           x="105"
+           y="75"
+           id="text14"><tspan
+             id="tspan13">q</tspan><tspan
+             dy="0.69999999ex"
+             id="tspan14">1</tspan></text>
+        <rect
+           x="250"
+           y="20"
+           width="30"
+           height="40"
+           fill="url(#pattern_a1)"
+           id="rect14" />
+        <text
+           x="265"
+           y="75"
+           id="text16"><tspan
+             id="tspan15">q</tspan><tspan
+             dy="0.69999999ex"
+             id="tspan16">1</tspan></text>
+        <rect
+           x="120"
+           y="20"
+           width="50"
+           height="40"
+           fill="url(#pattern_a2)"
+           id="rect19" />
+        <text
+           x="145"
+           y="75"
+           id="text26"><tspan
+             id="tspan25">q</tspan><tspan
+             dy="0.69999999ex"
+             id="tspan26">2</tspan></text>
+        <rect
+           x="280"
+           y="20"
+           width="50"
+           height="40"
+           fill="url(#pattern_a2)"
+           id="rect26" />
+        <text
+           x="305"
+           y="75"
+           id="text28"><tspan
+             id="tspan27">q</tspan><tspan
+             dy="0.69999999ex"
+             id="tspan28">2</tspan></text>
+        <path
+           id="use39"
+           d="M 40,-15 V 140"
+           stroke-width="1"
+           stroke-dasharray="4, 4"
+           stroke="#666666" />
+        <path
+           id="use40"
+           d="M 120,-15 V 140"
+           stroke-width="1"
+           stroke-dasharray="4, 4"
+           stroke="#666666" />
+        <path
+           id="use41"
+           d="M 200,-15 V 140"
+           stroke-width="1"
+           stroke-dasharray="4, 4"
+           stroke="#666666" />
+        <path
+           id="use42"
+           d="M 280,-15 V 140"
+           stroke-width="1"
+           stroke-dasharray="4, 4"
+           stroke="#666666" />
+        <rect
+           id="use43"
+           x="0"
+           y="-70"
+           width="320"
+           height="60"
+           fill="url(#pattern_wave)"
+           style="fill:url(#pattern62)" />
+        <rect
+           id="use44"
+           x="50"
+           y="10"
+           width="320"
+           height="60"
+           fill="url(#pattern_wave)"
+           style="fill:url(#pattern63)" />
+        <g
+           id="use45"
+           transform="translate(390,-40)">
+          <circle
+             cx="0"
+             cy="0"
+             r="20"
+             fill="#ff9900"
+             id="circle65" />
+          <path
+             id="path65"
+             d="M 25,0 H 40"
+             stroke-width="4"
+             stroke="#ff9900" />
+          <path
+             id="path66"
+             d="M 17.67767,17.67767 28.284271,28.284271"
+             stroke-width="4"
+             stroke="#ff9900" />
+          <path
+             id="path67"
+             d="M 0,25 V 40"
+             stroke-width="4"
+             stroke="#ff9900" />
+          <path
+             id="path68"
+             d="M -17.67767,17.67767 -28.284271,28.284271"
+             stroke-width="4"
+             stroke="#ff9900" />
+          <path
+             id="path69"
+             d="M -25,0 H -40"
+             stroke-width="4"
+             stroke="#ff9900" />
+          <path
+             id="path70"
+             d="M -17.67767,-17.67767 -28.284271,-28.284271"
+             stroke-width="4"
+             stroke="#ff9900" />
+          <path
+             id="path71"
+             d="M 0,-25 V -40"
+             stroke-width="4"
+             stroke="#ff9900" />
+          <path
+             id="path72"
+             d="M 17.67767,-17.67767 28.284271,-28.284271"
+             stroke-width="4"
+             stroke="#ff9900" />
+        </g>
+        <g
+           id="use46"
+           transform="translate(390,40)">
+          <path
+             d="M -10,0 40,-20 V 20 Z"
+             fill="#660099"
+             id="path60" />
+          <rect
+             x="-40"
+             y="-30"
+             width="60"
+             height="60"
+             rx="5"
+             ry="5"
+             fill="#990099"
+             id="rect60" />
+        </g>
+        <path
+           id="use53"
+           d="M 440.97319,-33.91731 639.02681,-6.0826894 M 620.61318,-18.768832 639.02681,-6.0826894 617.82972,1.0365292"
+           stroke="#ff0000"
+           fill="none" />
+        <path
+           id="use54"
+           d="M 639.0268,6.0826897 440.97319,33.91731 m 21.19709,7.119219 -21.19709,-7.119219 18.41363,-12.686143"
+           stroke="#ff0000"
+           fill="none" />
+        <g
+           id="use55"
+           style="fill:#99ff00"
+           transform="matrix(0.3,0,0,0.3,675,0)">
+          <circle
+             cx="0"
+             cy="0"
+             r="100"
+             id="circle63" />
+          <circle
+             cx="0"
+             cy="0"
+             r="100"
+             fill="url(#grad_sphere)"
+             id="circle64"
+             style="fill:url(#radialGradient64)" />
+          <ellipse
+             cx="0"
+             cy="-45"
+             rx="70"
+             ry="50"
+             fill="url(#grad_highlight)"
+             stroke="none"
+             filter="url(#filter_blur)"
+             id="ellipse64"
+             style="fill:url(#linearGradient64)" />
+        </g>
+        <path
+           d="m 40,-75 h 80"
+           stroke="#999999"
+           id="path55" />
+        <text
+           x="80"
+           y="-80"
+           id="text55">t</text>
+        <path
+           id="use56"
+           d="m 48,-71 q -1,-3 -8,-4 7,-1 8,-4"
+           stroke="#999999"
+           fill="none" />
+        <path
+           id="use57"
+           d="m 112,-79 q 1,3 8,4 -7,1 -8,4"
+           stroke="#999999"
+           fill="none" />
+        <path
+           id="use58"
+           d="m 438,-71 q -1,-3 -8,-4 7,-1 8,-4"
+           stroke="#999999"
+           fill="none" />
+        <path
+           id="use59"
+           d="m 642,-79 q 1,3 8,4 -7,1 -8,4"
+           stroke="#999999"
+           fill="none" />
+        <path
+           d="M 430,-75 H 650"
+           stroke="#999999"
+           id="path59" />
+        <text
+           x="540"
+           y="-80"
+           id="text59">d</text>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
    width="705"
-   height="471.38"
-   viewBox="-5 -8 705 471.38"
+   height="243.92"
+   viewBox="-5 -8 705 243.92"
    version="1.1"
    id="svg53"
    sodipodi:docname="time_of_flight_camera.svg"
@@ -25,14 +25,14 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="1.186368"
-     inkscape:cx="389.42384"
-     inkscape:cy="306.81878"
+     inkscape:cx="335.05624"
+     inkscape:cy="335.47769"
      inkscape:window-width="1850"
      inkscape:window-height="1016"
      inkscape:window-x="1436"
      inkscape:window-y="27"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg53" />
+     inkscape:current-layer="g53" />
   <title
      id="title1">Time of flight camera principle</title>
   <desc
@@ -399,95 +399,6 @@
       <use
          xlink:href="#common"
          id="use39" />
-    </g>
-    <g
-       transform="translate(0,315)"
-       id="g52">
-      <text
-         x="15"
-         y="-75"
-         font-size="40px"
-         id="text40">2</text>
-      <rect
-         x="90"
-         y="90"
-         width="70"
-         height="40"
-         fill="url(#pattern_a3)"
-         id="rect40" />
-      <text
-         x="120"
-         y="145"
-         id="text41"><tspan
-           id="tspan40">q</tspan><tspan
-           dy="0.69999999ex"
-           id="tspan41">3</tspan></text>
-      <rect
-         x="250"
-         y="90"
-         width="70"
-         height="40"
-         fill="url(#pattern_a3)"
-         id="rect41" />
-      <text
-         x="280"
-         y="145"
-         id="text43"><tspan
-           id="tspan42">q</tspan><tspan
-           dy="0.69999999ex"
-           id="tspan43">3</tspan></text>
-      <rect
-         x="160"
-         y="90"
-         width="10"
-         height="40"
-         fill="url(#pattern_a4)"
-         id="rect43" />
-      <text
-         x="170"
-         y="145"
-         id="text45"><tspan
-           id="tspan44">q</tspan><tspan
-           dy="0.69999999ex"
-           id="tspan45">4</tspan></text>
-      <rect
-         x="320"
-         y="90"
-         width="10"
-         height="40"
-         fill="url(#pattern_a4)"
-         id="rect45" />
-      <text
-         x="330"
-         y="145"
-         id="text47"><tspan
-           id="tspan46">q</tspan><tspan
-           dy="0.69999999ex"
-           id="tspan47">4</tspan></text>
-      <use
-         transform="translate(80)"
-         xlink:href="#guide"
-         id="use47" />
-      <use
-         transform="translate(160)"
-         xlink:href="#guide"
-         id="use48" />
-      <use
-         transform="translate(240)"
-         xlink:href="#guide"
-         id="use49" />
-      <use
-         transform="translate(320)"
-         xlink:href="#guide"
-         id="use50" />
-      <use
-         transform="translate(50,80)"
-         xlink:href="#wave"
-         fill-opacity="0.5"
-         id="use51" />
-      <use
-         xlink:href="#common"
-         id="use52" />
     </g>
   </g>
   <metadata
