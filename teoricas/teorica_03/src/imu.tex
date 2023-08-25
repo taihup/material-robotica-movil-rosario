@@ -102,17 +102,22 @@
 
 \begin{frame}
     \frametitle{Giróscopo MEMS (Microelectromechanical Systems)}
-    \footnotesize
+
     \note{https://www.analog.com/en/technical-articles/mems-gyroscope-provides-precision-inertial-sensing.html}
-
-    Cuando se hace girar el giróscopo, una pequeña masa de resonancia se desplaza con los cambios de velocidad angular. Este movimiento se convierte en señales eléctricas de muy bajas corrientes que se pueden amplificar para ser leídas por un microcontrolador.
-
+    
+    \begin{itemize}
+        \item Cuando se hace girar el giróscopo, una pequeña masa de resonancia se desplaza con los cambios de velocidad angular. Este movimiento se convierte en señales eléctricas de muy bajas corrientes que se pueden amplificar para ser leídas por un microcontrolador.
+    \end{itemize}
+    
     \begin{figure}[!h]
         \centering
         \includegraphics[width=0.4\columnwidth]{images/gyroscope_mems_2.png}
     \end{figure}
-
-    Cuando la masa resonante se mueve hacia el borde exterior de la rotación, se acelera hacia la derecha y ejerce sobre el marco una fuerza de reacción hacia la izquierda. Cuando se mueve hacia el centro de la rotación, ejerce una fuerza hacia la derecha, como lo indican las flechas verdes.
+    
+    \begin{itemize}
+        \item Cuando la masa resonante se mueve hacia el borde exterior de la rotación, se acelera hacia la derecha y ejerce sobre el marco una fuerza de reacción hacia la izquierda (flecha verde). Cuando se mueve hacia el centro de la rotación, ejerce una fuerza hacia la derecha (flecha verde).
+    \end{itemize}
+    
 \end{frame}
 
 \begin{frame}
@@ -122,46 +127,61 @@
 
     \begin{figure}[!h]
         \centering
-        \includegraphics[width=0.2\columnwidth]{images/gyroscope_mems_structure.png}
+        \includegraphics[width=0.5\columnwidth]{images/gyroscope_mems_structure.png}
+        \caption{Estructura mecánica de un Giróscopo}
     \end{figure}
 
-
-    Para medir la aceleración de Coriolis, el marco que contiene la masa resonante está sujeto al sustrato por resortes a $\SI{90}{\degree}$ en relación con el movimiento resonante, como se muestra en la figura. Esta figura también muestra los dedos de detección de Coriolis que se utilizan para detectar el desplazamiento de la trama mediante transducción capacitiva en respuesta a la fuerza ejercida por la masa.
-
-    \begin{figure}[!h]
-        \centering
-        \includegraphics[width=0.3\columnwidth]{images/gyroscope_mems_3.png}
-    \end{figure}
-
-    A medida que la masa resonante se mueve y la superficie en la que está montado el giroscopio gira, la masa y su marco experimentan la aceleración de Coriolis y se trasladan 90 ° del movimiento vibratorio. A medida que aumenta la velocidad de rotación, también cambia el desplazamiento de la masa y la señal derivada de la capacitancia correspondiente.
+    \begin{itemize}
+        \item Para medir la aceleración de Coriolis, el marco que contiene la masa resonante está sujeto a un marco externo por resortes a $\SI{90}{\degree}$ en relación con el movimiento resonante (de la masa). Esta figura también muestra los ``dedos'' de detección de Coriolis que se utilizan para detectar el desplazamiento de la trama mediante transducción capacitiva en respuesta a la fuerza ejercida por la masa.
+    \end{itemize}
 \end{frame}
 
+\begin{frame}
+    \frametitle{Giróscopo MEMS (Microelectromechanical Systems)}
+    
+    \note{https://www.analog.com/en/technical-articles/mems-gyroscope-provides-precision-inertial-sensing.html}
+        
+    \begin{itemize}
+        \item A medida que la masa resonante se mueve y la superficie en la que está montado el giróscopo gira, la masa y su marco experimentan la aceleración de Coriolis, y se trasladan $\SI{90}{\degree}$ con respecto al movimiento vibratorio.
+        
+        \item A medida que aumenta la velocidad de rotación, también aumenta el desplazamiento de la masa y la señal derivada de la capacitancia correspondiente cambia.
+    \end{itemize}
+    
+    \begin{center}
+        \includegraphics[width=0.5\columnwidth]{images/gyroscope_mems_3.png}
+    \end{center}
 
+\end{frame}
 
 \begin{frame}
     \frametitle{Acelerómetro}
     
     \begin{figure}[!h]
-    	\centering
+    	\subfloat[]
+        {
+            \movie[autostart,loop,poster]{\includegraphics[width=0.3\columnwidth,valign=m]{./images/accelerometer_mems_video.jpg}}{./videos/accelerometer_mems.mp4}
+        }
+        \hspace{1em}
     	\subfloat[]
     	{
-    		\includegraphics[width=0.2\columnwidth]{images/accelerometer_mems.pdf}
+    		\includegraphics[width=0.2\columnwidth,valign=m]{images/accelerometer_mems.pdf}
     	}
+        \hspace{1em}
     	\subfloat[]
     	{
-    		\includegraphics[width=0.2\columnwidth]{images/accelerometer_mems2.pdf}
+    		\includegraphics[width=0.2\columnwidth,valign=m]{images/accelerometer_mems2.pdf}
     	}
     \end{figure}
     \scriptsize
     \begin{block}{Principio de Funcionamiento}
-        Mide la aceleración midiendo el cambio en la capacitancia. Su microestructura se parece a esto. Tiene una masa unida a un resorte que se limita a moverse en una dirección y placas exteriores fijas. Entonces, cuando se aplicará una aceleración en la dirección particular, la masa se moverá y la capacitancia entre las placas y la masa cambiará. Este cambio de capacitancia será medido, procesado y corresponderá a un valor de aceleración particular.
+        Mide la aceleración midiendo el cambio en la capacitancia. Tiene una masa unida a un resorte que se limita a moverse en una dirección y placas exteriores fijas. Entonces, cuando se aplica una aceleración, la masa se mueve y la capacitancia entre las placas y la masa cambiará. Este cambio de capacitancia es medido, y se corresponde a un valor de aceleración particular.
     \end{block}
     
     \begin{itemize}
         \item Introceptivo
         \item Pasivo
         \item Mide aceleración
-        \item Unidad de medición $\si{\meter\over\square\second}$
+        \item Unidad de medición $\si{\meter\per\square\second}$
     \end{itemize}
     
 \end{frame}
@@ -177,10 +197,10 @@
     \begin{itemize}
         \item 3 giróscopos ortogonales y 3 acelerómetros ortogonales.
         \item Permite estimar: posición, orientación, velocidad lineal, velocidad angular y aceleración 
-        \item La orientación se obtiene integrando (con el tiempo) el giróscopo
-        \item La velocidad lineal se obtiene integrando el acelerómetro
-        \item La posición se obtiene integrando la velocidad
-        \item Debido a que los datos del acelerómetro se integran dos veces para obtener la posición, cualquier error residual da como resultado un error cuadrático en la posición.
+        \item La orientación se obtiene integrando el giróscopo en el tiempo
+        \item La velocidad lineal se obtiene integrando el acelerómetro en el tiempo
+        \item La posición se obtiene integrando la velocidad en el tiempo
+        \item \textbf{Debido a que los datos del acelerómetro se integran dos veces para obtener la posición, cualquier error residual da como resultado un error cuadrático en la posición}
         \item Mediciones absolutas (GPS o cámaras) permiten cancelar esta deriva de error.
     \end{itemize}
     
