@@ -706,8 +706,8 @@ publish_tf:=$(arg publish_tf)"/>
 
 \begin{frame}
     \frametitle{Simulation Description Format (SDF)}
- 
-     	\begin{columns}
+    \footnotesize
+   	\begin{columns}
     	\begin{column}{0.5\textwidth}
     		\begin{itemize}
     			\item Se define en un archivo XML para describir
@@ -716,7 +716,7 @@ publish_tf:=$(arg publish_tf)"/>
 					\item Sensores
 					\item Robots
     			\end{itemize}
-			\item SDF es el foramto estándar de Gazebo
+			\item SDF es el formato estándar de Gazebo
 			\item Gazebo convierte automáticamente URDF a SDF 
     		\end{itemize}
     	\end{column}
@@ -751,7 +751,7 @@ publish_tf:=$(arg publish_tf)"/>
         \item Dividir el programa en pequeños pasos y verificar resultados intermedios (ROS\_INFO, ROS\_DEBUG, etc)
         \item Hacer el código robusto verificando argumentos de entrada y utilizar try-catch para atrapar excepciones
         \item Extender y optimizar el código solo cuando la versión básica este funcionando
-        \item si las cosas no tienen sentido, limpiar el workspace
+        \item Si las cosas no tienen sentido, limpiar el workspace
         \item Debugguear con una IDE (utilizar breakpoints)
         \item Escribir Unit-tests y test de integración para encontrar regresiones
     \end{itemize}
@@ -770,6 +770,7 @@ publish_tf:=$(arg publish_tf)"/>
 		\item rqt\_graph
 		\item rqt\_multiplot
 		\item rqt\_image\_view
+        \item foxglove (Alternativa a RViz)
 	\end{itemize}
 	
 \end{frame}
