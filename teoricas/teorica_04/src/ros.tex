@@ -157,9 +157,11 @@ ros2 action list
 
 \begin{frame}[fragile]
 	\frametitle{Ejemplo: Turtlesim}
-    Abrir rqt
-    
-	Plugins -> Services -> Service Caller y spawn una nueva tortuga.
+    Abrir \lstinline[style=bash]{rqt}
+\begin{lstlisting}[style=bash]    
+rqt
+\end{lstlisting}
+	Plugins $\rightarrow$ Services $\rightarrow$ Service Caller y spawn una nueva tortuga.
 
 \footnotesize
 \begin{lstlisting}[style=bash]    
@@ -195,23 +197,24 @@ ros2 run turtlesim turtle_teleop_key --ros-args --remap turtle1/cmd_vel:=turtle2
 \begin{frame}[fragile]
     \frametitle{Volvamos al Turtlesim para ver otros conceptos}
     
-    El comando ros2 run corre un ejecutable desde un paquete.
+    El comando \lstinline[style=bash]{ros2 run} corre un ejecutable desde un paquete.
 \begin{lstlisting}[style=bash]    
 ros2 run <package_name> <executable_name>
 \end{lstlisting}
 
-    La ros2 node list muestra los nombres de todos los nodos en ejecución.
+    La \lstinline[style=bash]{ros2 node list} muestra los nombres de todos los nodos en ejecución.
 
 \begin{lstlisting}[style=bash]    
 ros2 node list
 \end{lstlisting}
 
-    Remapping permite mapear propiedades de nodo predeterminadas, como nombre de nodo, nombres de tópicos, nombres de servicio, etc., a valores personalizados.
+    Es posible hacer \emph{remapping}, es decir mapear propiedades predeterminadas de un nodo, como nombre de nodo, nombres de tópicos, nombres de servicio, etc., a valores personalizados.
     
 \begin{lstlisting}[style=bash]    
 ros2 run turtlesim turtlesim_node --ros-args --remap __node:=my_turtle
 \end{lstlisting}
 
+    Obtener información de un nodo
 \begin{lstlisting}[style=bash]    
 ros2 node info <node_name>
 \end{lstlisting}
@@ -246,7 +249,7 @@ Obtener información acerca de los publicadores y subscriptores de un tópico:
 ros2 topic info
 \end{lstlisting}
     
-Obtener detallels sobre un tipo de mensaje:
+Obtener detalles sobre un tipo de mensaje:
 \begin{lstlisting}[style=bash]  
 ros2 interface show <msg type>
 \end{lstlisting}    
@@ -265,7 +268,7 @@ Publicar mensajes utilizando la línea de comandos:
 ros2 topic pub <topic_name> <msg_type> '<args>'
 \end{lstlisting}    
 Ejemplo:
-\begin{lstlisting}[style=bash]  
+\begin{lstlisting}[style=bash,basicstyle=\tiny]  
 ros2 topic pub --rate 1 /turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.8}}"
 \end{lstlisting}    
 Saber la prefuencia en que se publica un mensaje
@@ -278,12 +281,13 @@ ros2 topic hz <topic_name>
 \begin{frame}[fragile]
 	\frametitle{Archivos launch}
 	
-	A medida que se crean sistemas más complejos con más y más nodos ejecutándose simultáneamente, abrir terminales y volver a ingresar los detalles de configuración se vuelve tedioso.
-	
-	Los archivos launch permiten iniciar y configurar varios ejecutables que contienen nodos ROS 2 de manera simultáneamente.
-	
-	Ejecutar un solo archivo launch con el comando ros2 launch iniciará todo su sistema, todos los nodos y sus configuraciones, a la vez.
-	
+    \begin{itemize}
+        \item A medida que se crean sistemas más complejos con más y más nodos ejecutándose simultáneamente, abrir terminales y volver a ingresar los detalles de configuración se vuelve tedioso.
+
+        \item Los archivos \emph{launch} permiten iniciar y configurar varios ejecutables que contienen nodos ROS 2 de manera simultáneamente.
+
+        \item Ejecutar un solo archivo launch con el comando \lstinline[style=bash]{ros2 launch} iniciará todo su sistema, todos los nodos y sus configuraciones, a la vez.
+
 Correr un archivo launch
 \begin{lstlisting}[style=bash] 
 ros2 launch <package_name> <launch_file_name> <launch_arguments>
@@ -293,21 +297,31 @@ Ejemplo:
 \begin{lstlisting}[style=bash] 
 ros2 launch turtlesim multisim.launch.py
 \end{lstlisting}
-	
+
+    \end{itemize}
 \end{frame}
 
 
 \begin{frame}[fragile]
     \frametitle{Crear workspace}
     
-Un workspace es un directorio que contiene paquetes de ROS 2. Antes de usar ROS 2, es necesario obtener su espacio de trabajo de instalación de ROS 2 en la terminal en la que planea trabajar. Esto hace que los paquetes de ROS 2 estén disponibles para que los use en esa terminal.
-
-\begin{lstlisting}[style=bash] 
-mkdir -p ~/dev_ws/src\\
+    \begin{itemize}
+        \item Crear workspace
+        \begin{lstlisting}[style=bash] 
+mkdir -p ~/dev_ws/src
 cd ~/dev\_ws/src
+        \end{lstlisting}
+        
+        \item Un \emph{workspace} es un directorio que contiene paquetes de ROS 2.
+        \item Antes de usar ROS 2, es necesario obtener su espacio de trabajo de instalación de ROS 2 en la terminal en la que planea trabajar. Esto hace que los paquetes de ROS 2 estén disponibles para que los use en esa terminal. Para esto hacemos:
+        
+\begin{lstlisting}[style=bash] 
+source /opt/ros/<distro>/setup.bash
 \end{lstlisting}
+        
 
-Agregar un paquete de ejemplo al workspace (dentro de ~/dev\_ws/src)
+
+\item Agregar un paquete de ejemplo al workspace (dentro de \lstinline[style=bash]{~/dev\_ws/src})
 \begin{lstlisting}[style=bash] 
 git clone https://github.com/ros2/examples examples -b <distro>
 \end{lstlisting}
@@ -315,26 +329,27 @@ git clone https://github.com/ros2/examples examples -b <distro>
 \begin{lstlisting}[style=bash] 
 git clone https://github.com/ros/ros\_tutorials.git -b <distro>-devel
 \end{lstlisting}
-	 
+    \end{itemize}
 \end{frame}
 
 
 \begin{frame}[fragile]
 	\frametitle{Compilar el workspace}
-
-Instalar colcon
+\begin{itemize}
+    \item Instalar colcon
 \begin{lstlisting}[style=bash] 
 sudo apt install python3-colcon-common-extensions
 \end{lstlisting}
 
-En la raíz del worklspace, ejecutar
+    \item En la raíz del worklspace, ejecutar
 \begin{lstlisting}[style=bash] 
 colcon build --symlink-install
 \end{lstlisting}
 
-	El flag --symlink-install permite usar enlaces simbólicos en lugar de copiar archivos a las carpetas de ROS2 durante la instalación, siempre que sea posible. Cada paquete en ROS2 debe instalarse y todos los archivos utilizados por los nodos deben copiarse en las carpetas de instalación.
+	El flag \lstinline[style=bash]{--symlink-install} permite usar enlaces simbólicos, en lugar de copiar archivos a las carpetas de ROS2 durante la instalación, siempre que sea posible. Cada paquete en ROS2 debe instalarse y todos los archivos utilizados por los nodos deben copiarse en las carpetas de instalación.
 	
-	El build genera los directorios: build, install y log.
+	\item El build genera los directorios: \lstinline[style=bash]{build}, \lstinline[style=bash]{install} y \lstinline[style=bash]{log}.
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
