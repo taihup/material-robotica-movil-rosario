@@ -90,29 +90,34 @@ ROS_DISTRO=humble
 \begin{frame}[fragile]
 	\frametitle{Configuración de entorno de ROS}
 
-Los nodos ROS 2 en el mismo dominio pueden descubrir y enviarse mensajes libremente, mientras que los nodos ROS 2 en diferentes dominios no pueden. Todos los nodos ROS 2 utilizan el ID de dominio 0 de forma predeterminada.
+\begin{itemize}
+    \item Los nodos ROS 2 en el mismo dominio pueden descubrir y enviarse mensajes libremente, mientras que los nodos ROS 2 en diferentes dominios no pueden.
 
+    \item Todos los nodos ROS 2 utilizan el ID de dominio 0 de forma predeterminada.
+    
 \begin{lstlisting}[style=bash]
 echo "export ROS_DOMAIN_ID=<your_domain_id>" >> ~/.bashrc
 \end{lstlisting}
+\end{itemize}
 
 \end{frame}
-
 
 \begin{frame}[fragile]
 	\frametitle{Ejemplo: talker y listener}
 	
-	En una terminal ejecutar (un talker en c++):
+    \begin{itemize}
+	   \item En una terminal ejecutar (un talker en c++):
 \begin{lstlisting}[style=bash]
 source /opt/ros/<distro>/setup.bash
 ros2 run demo_nodes_cpp talker
 \end{lstlisting}
 
-	En otra terminal ejecutar (un listener en python):
+	   \item En otra terminal ejecutar (un listener en python):
 \begin{lstlisting}[style=bash]
 source /opt/ros/<distro>/setup.bash
 ros2 run demo_nodes_py listener
 \end{lstlisting}
+\end{itemize}
 
 \end{frame}
 
@@ -120,7 +125,7 @@ ros2 run demo_nodes_py listener
     \frametitle{Ejemplo: Turtlesim}
     \footnotesize
 \begin{lstlisting}[style=bash]
-sudo apt install ros-humble-tur`tlesim
+sudo apt install ros-humble-turtlesim
 \end{lstlisting}
     Verificamos los ejecutables dentro del paquete
 \begin{lstlisting}[style=bash]
@@ -152,10 +157,11 @@ ros2 action list
 
 \begin{frame}[fragile]
 	\frametitle{Ejemplo: Turtlesim}
-	\footnotesize
-	
     Abrir rqt
+    
 	Plugins -> Services -> Service Caller y spawn una nueva tortuga.
+
+\footnotesize
 \begin{lstlisting}[style=bash]    
 ros2 run turtlesim turtle_teleop_key --ros-args --remap turtle1/cmd_vel:=turtle2/cmd_vel
 \end{lstlisting}
@@ -164,11 +170,16 @@ ros2 run turtlesim turtle_teleop_key --ros-args --remap turtle1/cmd_vel:=turtle2
 
 \begin{frame}
     \frametitle{ROS graph}
-    El grafo de ROS es una red de elementos ROS 2 que procesan datos juntos al mismo tiempo. Abarca todos los ejecutables y las conexiones entre ellos si tuviera que mapearlos y visualizarlos.
     
-    Cada nodo en ROS debe ser responsable de un solo propósito de módulo (por ejemplo, un nodo para controlar los motores de las ruedas, un nodo para controlar un telémetro láser, etc.). Cada nodo puede enviar y recibir datos a otros nodos a través de tópicos, servicios, acciones o parámetros.
+    \begin{itemize}
+    \item El grafo de ROS es una red de elementos ROS 2 que procesan datos juntos al mismo tiempo. Abarca todos los ejecutables y las conexiones entre ellos si tuviera que mapearlos y visualizarlos.
+
+    \item Cada nodo en ROS debe ser responsable de un solo propósito de módulo (por ejemplo, un nodo para controlar los motores de las ruedas, un nodo para controlar un telémetro láser, etc.). Cada nodo puede enviar y recibir datos a otros nodos a través de tópicos, servicios, acciones o parámetros.
+
+    \item Un sistema robótico completo se compone de muchos nodos que trabajan en conjunto. En ROS 2, un único ejecutable (programa C++, programa Python, etc.) puede contener uno o más nodos.
+    \end{itemize}
     
-    Un sistema robótico completo se compone de muchos nodos que trabajan en conjunto. En ROS 2, un único ejecutable (programa C++, programa Python, etc.) puede contener uno o más nodos.
+
 \end{frame}
 
 \begin{frame}[fragile]
@@ -723,7 +734,7 @@ publish_tf:=$(arg publish_tf)"/>
 \begin{frame}
     \frametitle{rqt\_bag}
     
-    \TODO{rat\_bag todavía no fue portado a ROS 2}
+    \TODO{rqt\_bag todavía no fue portado a ROS 2}
 
     
 \end{frame}
