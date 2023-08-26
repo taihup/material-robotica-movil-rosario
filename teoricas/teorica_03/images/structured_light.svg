@@ -2,12 +2,12 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="88.570587mm"
-   height="72.598839mm"
-   viewBox="0 0 88.570587 72.598839"
+   width="78.045341mm"
+   height="68.393913mm"
+   viewBox="0 0 78.045341 68.393913"
    version="1.1"
    id="svg3960"
-   inkscape:version="1.2 (1:1.2+202206011327+fc4e4096c5)"
+   inkscape:version="1.3 (1:1.3+202307231459+0e150ed6c4)"
    sodipodi:docname="structured_light.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -25,15 +25,15 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="1.6819304"
-     inkscape:cx="112.37088"
-     inkscape:cy="144.47685"
+     inkscape:zoom="1.3255448"
+     inkscape:cx="189.3561"
+     inkscape:cy="100.3361"
      inkscape:window-width="1920"
-     inkscape:window-height="1023"
+     inkscape:window-height="988"
      inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-y="32"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g1927" />
+     inkscape:current-layer="g1889" />
   <defs
      id="defs3957">
     <clipPath
@@ -76,7 +76,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-58.574292,-99.091311)">
+     transform="translate(-64.065495,-101.05148)">
     <g
        id="g1883"
        transform="matrix(0.36299421,0,0,-0.36299421,58.574292,173.14213)">
@@ -89,17 +89,6 @@
              clip-path="url(#clipPath1893)">
             <g
                id="g1895" />
-            <g
-               id="g1897">
-              <g
-                 id="g1899"
-                 clip-path="url(#clipPath1903)">
-                <path
-                   d="M -23,204 H 277 V 4 H -23 Z"
-                   style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
-                   id="path1905" />
-              </g>
-            </g>
             <g
                id="g1907">
               <g
