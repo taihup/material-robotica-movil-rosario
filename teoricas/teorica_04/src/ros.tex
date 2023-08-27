@@ -378,43 +378,44 @@ ros2 run examples_rclcpp_minimal_publisher publisher_member_function
     \begin{itemize}
         \item Un paquete puede considerarse un contenedor para código ROS 2. 
 
-        \item La creación de paquetes en ROS 2 utiliza \lstinline|ament| como sistema de compilación y \lstinline|colcon| como herramienta de compilación.
+        \item La creación de paquetes en ROS 2 utiliza \lstinline[style=bash]{ament} como sistema de compilación y \lstinline[style=bash]{colcon} como herramienta de compilación.
         
-        \item Hay paquetes que utilizan CMake y otros Python:
-
-        CMake:
+        \item Hay paquetes que utilizan CMake, y otros Python:
         \begin{itemize}
-        	\item \lstinline|package.xml| contiene meta información del paquete
-        
-        	\item \lstinline|CMakeLists.txt| describe cómo compilar el código dentro del paquete
-        \end{itemize}
+            \item CMake:
+            \begin{itemize}
+            	\item \lstinline[style=bash]{package.xml} contiene meta información del paquete
+            
+            	\item \lstinline[style=bash]{CMakeLists.txt} describe cómo compilar el código dentro del paquete
+            \end{itemize}
     
-        Python:
-        \begin{itemize}
-            \item \lstinline|package.xml package.xml| contiene meta información del paquete
-            
-            \item \lstinline|setup.py| contiene instrucciones para de cómo instalar el paquete
-            
-            \item \lstinline|setup.cfg| es requerido cuando un paquete tiene ejecutables, así ROS 2 puede encontrarlos
-            
-            \item \lstinline|/<package_name>| un directorio con el mismo nombre del paquete. Este es usado por ROS 2 para encontrar el paquete, contiene el \lstinline|__init__.py|
+            \item Python:
+            \begin{itemize}
+                \item \lstinline[style=bash]{package.xml} contiene meta información del paquete
+                
+                \item \lstinline[style=bash]{setup.py} contiene instrucciones para de cómo instalar el paquete
+                
+                \item \lstinline[style=bash]{setup.cfg} es requerido cuando un paquete tiene ejecutables, así ROS 2 puede encontrarlos
+                
+                \item \lstinline[style=bash]{/<package_name>} un directorio con el mismo nombre del paquete. Este es usado por ROS 2 para encontrar el paquete, contiene el \lstinline[style=bash]{__init__.py}
+            \end{itemize}
         \end{itemize}
     \end{itemize}	
 \end{frame}
 
 \begin{frame}[fragile]
 	\frametitle{Creando un paquete en ROS2}
-	
-Crear un paquete:
-\begin{lstlisting}[style=bash] 
+    \begin{itemize}
+        \item Crear un paquete:
+        \begin{lstlisting}[style=bash] 
 ros2 pkg create test_pkg --build-type ament_cmake
-\end{lstlisting}
+        \end{lstlisting}
 
-El argumento opcional \lstinline|--node-name| permite crear un ejecutable Hello World en el paquete.
-\begin{lstlisting}[style=bash] 
+        \item El argumento opcional \lstinline[style=bash]{--node-name} permite crear un ejecutable con un nombre dado en el paquete.
+        \begin{lstlisting}[style=bash] 
 ros2 pkg create test_pkg --build-type ament_cmake --node-name <node_name> <package_name>
-\end{lstlisting}
-
+        \end{lstlisting}
+    \end{itemize}	
 \end{frame}
 
 \begin{frame}[fragile]
