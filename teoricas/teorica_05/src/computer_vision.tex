@@ -10,7 +10,6 @@
 	\begin{itemize}
 		\item Alta repetitibilidad
 		\item Alta precisión
-		\item Robustez
 		\item Invarianza (luminosidad, puntos de vista, etc)
 		\item Computacionalmente eficientes
 		\item Algunos detectores: HARRIS, SIFT, SURF, Shi-Tomasi, FAST, ORB, BRISK
@@ -26,12 +25,12 @@
 
 
 \begin{frame}
-	\frametitle{Matcheo de keypoints}
+	\frametitle{Matcheo de Keypoints}
 	\footnotesize
 	Propiedades deseables del matcheo de keypoints para SLAM / SfM:
 	\begin{itemize}
 		\item Alto recall
-		\item precisión
+		\item Precisión
 		\item Robustez
 		\item Computacionalmente eficientes
 		\item Posibles enfoques: patches o descriptores
@@ -56,12 +55,12 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Desciptores de features Locales}
+	\frametitle{Descriptores de Features Locales}
 	\footnotesize
 	
 	Propiedades deseables para SLAM / SfM: distinguibles, robustos, invariantes
 	\begin{itemize}
-		\item Extraer firmas sobre regiones de la imagen ejemplos:
+		\item Extraer firmas sobre regiones de la imagen, ejemplos:
 		\begin{itemize}
 			\item Histogramas sobre gradientes de la imagen (SIFT)
 			\item Histogramas sobre respuestas Haar-wavelet (SURF)
@@ -72,23 +71,22 @@
 		\item Invariante a escala: Adaptar la región descripta a la escala de keypoint
 	\end{itemize}
 
- \begin{figure}[!h]
-		\centering
+    \begin{figure}[!h]
 		\subfloat[]
 		{
-			\includegraphics[width=0.4\columnwidth]{images/sift_gradient_pooling.pdf}
+			\includegraphics[width=0.6\columnwidth]{images/sift_gradient_pooling.pdf}
 		}
 		\hspace{1cm}
 		\subfloat[]
 		{
-			\includegraphics[width=0.2\columnwidth]{images/brief}
+			\includegraphics[width=0.3\columnwidth]{images/brief}
 		}
 	\end{figure}
 	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Local Features invariantes}
+	\frametitle{Invarianza de Features Locales}
 	\footnotesize
 	
 	\begin{itemize}
@@ -116,7 +114,7 @@
 	\frametitle{Harris}
 	\footnotesize
 	
-	\TODO{Agregar slides de SIFT, HARRIS, FAST y ORB https://youtu.be/ebMyBbkkHWk}
+	\TODO{Agregar slides de SIFT, HARRIS, FAST y ORB \url{https://youtu.be/ebMyBbkkHWk}}
 	
 \end{frame}
 
@@ -127,7 +125,7 @@
 		\includegraphics[width=0.8\textwidth]{./images/camera/fast}
 	\end{figure}
 	
-	El valor de intensidad del pixel $p$ es comparado con cada uno de los 16 pixeles del círculo de Bresenham alrededor de $p$. $p$ es detectado como corner si hay $12$ píxeles continuos en el circulo de Bresenham más brillosos o oscuros que $p$ dado un cierto umbral.
+	El valor de intensidad del pixel $p$ es comparado con cada uno de los 16 pixeles del círculo de Bresenham alrededor de $p$. $p$ es detectado como corner si hay $12$ píxeles continuos en el circulo de Bresenham más brillosos u oscuros que $p$ dado un cierto umbral.
 \end{frame}
 
 \begin{frame}
