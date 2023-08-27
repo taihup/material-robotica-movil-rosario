@@ -586,15 +586,15 @@ ros2 launch nav2_bringup tb3_simulation_launch.py headless:=False
 				\item Se puede consultar una transformación específica al árbol de transformaciones
 			\end{itemize}
 \begin{lstlisting}[style=bash] 
-tf2\_msgs/TFMessage.msg
-geometry\_msgs/TransformStamped[] transforms
-std\_msgs/Header header
+tf2_msgs/TFMessage.msg
+geometry_msgs/TransformStamped[] transforms
+std_msgs/Header header
 uint32 seqtime stamp
-string frame\_id
-string child\_frame\_id
-geometry\_msgs/Transform transform
-geometry\_msgs/Vector3 translation
-geometry\_msgs/Quaternion rotation
+string frame_id
+string child_frame_id
+geometry_msgs/Transform transform
+geometry_msgs/Vector3 translation
+geometry_msgs/Quaternion rotation
 \end{lstlisting}
     	\end{column}
     	\begin{column}{0.5\textwidth}
@@ -603,17 +603,21 @@ geometry\_msgs/Quaternion rotation
     \end{columns}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
     \frametitle{TF: transformaciones en ROS}
     
-    Visualizar el árbol de transformaciones:
-    
-    ros2 run tf2\_tools view\_frames
-    
-    Imprimir información a cerca de la transformación entre dos marcos de coordenadas:
-    
-    ros2 run tf2\_ros tf2\_echo [reference\_frame] [target\_frame]
-   
+    \begin{itemize}
+        \item Visualizar el árbol de transformaciones:
+        \begin{lstlisting}[style=bash] 
+ros2 run tf2_tools view_frames
+        \end{lstlisting}
+
+        \item Imprimir información a cerca de la transformación entre dos marcos de coordenadas:
+        \begin{lstlisting}[style=bash] 
+ros2 run tf2_ros tf2_echo [reference_frame] [target_frame]
+        \end{lstlisting}
+    \end{itemize}
+
 \end{frame}
 
 \begin{frame}
