@@ -419,17 +419,23 @@ ros2 pkg create test_pkg --build-type ament_cmake --node-name <node_name> <packa
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Rosbag}
-	ros2 bag es una herramienta de línea de comandos para registrar datos publicados sobre temas en su sistema. Acumula los datos transmitidos sobre cualquier número de tópicos y los guarda en una base de datos. Luego puede reproducir los datos para reproducir los resultados de sus pruebas y experimentos. Grabar temas también es una excelente manera de compartir su trabajo y permitir que otros lo recreen.
+	\frametitle{Rosbags (ros2 bag)}
+    \begin{itemize}
+	   \item \lstinline[style=bash]{ros2 bag} es una herramienta de línea de comandos para grabar datos publicados sobre tópicos en su sistema.
+       \item Acumula los datos transmitidos sobre cualquier número de tópicos y los guarda en una base de datos. 
+       \item Luego, puede reproducir los datos para reproducir los resultados de sus pruebas y experimentos.
+       \item Grabar tópicos también es una excelente manera de compartir el trabajo y permitir que otros lo reproduzcan.
 
-\begin{lstlisting}[style=bash] 
+        \begin{lstlisting}[style=bash] 
 ros2 bag record <topic_name>
 ros2 bag info <bag_file_name>
 ros2 bag play <bag_file_name>
 ros2 bag compress <bag_file_name>
 ros2 bag decompress <bag_file_name>
 ...
-\end{lstlisting}
+        \end{lstlisting}
+    \end{itemize}
+
 	
 \end{frame}
 
