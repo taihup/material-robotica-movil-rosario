@@ -354,10 +354,12 @@ colcon build --symlink-install
 
 \begin{frame}[fragile]
 	\frametitle{Compilar el workspace}
-	
-	Cuando colcon haya completado el build, la salida estará en el directorio de install.  colcon genera archivos bash/bat en el directorio install para ayudar a configurar el entorno. Estos archivos agregarán todos los elementos requeridos a su ruta y rutas de biblioteca, así como también proporcionarán cualquier comando bash o shell exportado por los paquetes.
+	\begin{itemize}
 
-Ejemplo de uso: (no olvidar source install/setup.bash)
+	   \item Cuando \lstinline[style=bash]{colcon} haya completado el build, la salida estará en el directorio  \lstinline[style=bash]{install}.
+       \item \lstinline[style=bash]{colcon} genera archivos \lstinline[style=bash]{bash/bat} en el directorio \lstinline[style=bash]{install} para ayudar a configurar el entorno. Estos archivos agregarán todos los elementos requeridos a su ruta y rutas de biblioteca, así como también proporcionarán cualquier comando bash o shell exportado por los paquetes.
+
+        \item Ejemplo de uso: (no olvidar \lstinline[style=bash]{source install/setup.bash})
 \begin{lstlisting}[style=bash] 
 ros2 run examples_rclcpp_minimal_subscriber subscriber_member_function
 \end{lstlisting}
@@ -365,36 +367,39 @@ ros2 run examples_rclcpp_minimal_subscriber subscriber_member_function
 \begin{lstlisting}[style=bash] 
 ros2 run examples_rclcpp_minimal_publisher publisher_member_function
 \end{lstlisting}
-El comando colcon\_cd le permite cambiar rápidamente el directorio de trabajo actual al de un paquete.
+\item El comando \lstinline[style=bash]{colcon_cd} le permite cambiar rápidamente el directorio de trabajo actual al de un paquete.
+    \end{itemize}
 
 \end{frame}
 
 \begin{frame}[fragile]
 	\frametitle{Creando un paquete en ROS2}
-	
-Un paquete puede considerarse un contenedor para código ROS 2. 
+    
+    \begin{itemize}
+        \item Un paquete puede considerarse un contenedor para código ROS 2. 
 
-La creación de paquetes en ROS 2 utiliza \lstinline|ament| como sistema de compilación y \lstinline|colcon| como herramienta de compilación.
+        \item La creación de paquetes en ROS 2 utiliza \lstinline|ament| como sistema de compilación y \lstinline|colcon| como herramienta de compilación.
+        
+        \item Hay paquetes que utilizan CMake y otros Python:
 
-Hay paquetes que utilizan CMake y otros Python:
-
-CMake:
-\begin{itemize}
-	\item \lstinline|package.xml| contiene meta información del paquete
-
-	\item \lstinline|CMakeLists.txt| describe cómo compilar el código dentro del paquete
-\end{itemize}
-
-Python:
-\begin{itemize}
-\item \lstinline|package.xml package.xml| contiene meta información del paquete
-
-\item \lstinline|setup.py| contiene instrucciones para de cómo instalar el paquete
-
-\item \lstinline|setup.cfg| es requerido cuando un paquete tiene ejecutables, así ROS 2 puede encontrarlos
-
-\item \lstinline|/<package_name>| un directorio con el mismo nombre del paquete. Este es usado por ROS 2 para encontrar el paquete, contiene el \lstinline|__init__.py|
-\end{itemize}
+        CMake:
+        \begin{itemize}
+        	\item \lstinline|package.xml| contiene meta información del paquete
+        
+        	\item \lstinline|CMakeLists.txt| describe cómo compilar el código dentro del paquete
+        \end{itemize}
+    
+        Python:
+        \begin{itemize}
+            \item \lstinline|package.xml package.xml| contiene meta información del paquete
+            
+            \item \lstinline|setup.py| contiene instrucciones para de cómo instalar el paquete
+            
+            \item \lstinline|setup.cfg| es requerido cuando un paquete tiene ejecutables, así ROS 2 puede encontrarlos
+            
+            \item \lstinline|/<package_name>| un directorio con el mismo nombre del paquete. Este es usado por ROS 2 para encontrar el paquete, contiene el \lstinline|__init__.py|
+        \end{itemize}
+    \end{itemize}	
 \end{frame}
 
 \begin{frame}[fragile]
