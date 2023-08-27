@@ -783,9 +783,9 @@ publish_tf:=$(arg publish_tf)"/>
     \begin{itemize}
         \item Compilar y correr código frecuentemente para atrapar errores tempranamente
         \item Entender los mensajes de error de compilación y ejecución
-        \item Usar herramientas de análisis para verificar el flujo de los datos: ros2 node info, ros2 topic echo, ros2 wtf, rqt\_graph, etc.
-        \item Visualizar y plotear los datos: RViz, RQT Multiplot, rqt\_bag, etc.
-        \item Dividir el programa en pequeños pasos y verificar resultados intermedios (ROS\_INFO, ROS\_DEBUG, etc)
+        \item Usar herramientas de análisis para verificar el flujo de los datos: \lstinline[style=bash]{ros2 node info}, \lstinline[style=bash]{ros2 topic echo}, \lstinline[style=bash]{ros2 wtf}, \lstinline[style=bash]{rqt\_graph}, etc.
+        \item Visualizar y plotear los datos: \lstinline[style=bash]{RViz}, \lstinline[style=bash]{RQT Multiplot}, \lstinline[style=bash]{rqt_bag}, etc.
+        \item Dividir el programa en pequeños pasos y verificar resultados intermedios (\lstinline[style=bash]{ROS_INFO}, \lstinline[style=bash]{ROS_DEBUG}, etc)
         \item Hacer el código robusto verificando argumentos de entrada y utilizar try-catch para atrapar excepciones
         \item Extender y optimizar el código solo cuando la versión básica este funcionando
         \item Si las cosas no tienen sentido, limpiar el workspace
@@ -802,12 +802,12 @@ publish_tf:=$(arg publish_tf)"/>
 		\item Ver cómo crear servicios
 		\item Ver cómo crear mensajes
 		\item Uso de parámetros en un nodo
-		\item rqt\_logger\_level
-		\item rqt\_console
-		\item rqt\_graph
-		\item rqt\_multiplot
-		\item rqt\_image\_view
-        \item foxglove (Alternativa a RViz)
+		\item \lstinline[style=bash]{rqt_logger_level}
+		\item \lstinline[style=bash]{rqt_console}
+		\item \lstinline[style=bash]{rqt_graph}
+		\item \lstinline[style=bash]{rqt_multiplot}
+		\item \lstinline[style=bash]{rqt_image_view}
+        \item \lstinline[style=bash]{foxglove} (Alternativa a \lstinline[style=bash]{RViz})
 	\end{itemize}
 	
 \end{frame}
