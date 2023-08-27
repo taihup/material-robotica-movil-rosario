@@ -440,7 +440,7 @@ ros2 bag decompress <bag_file_name>
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Ejemplo Publicador y subscriptor}
+	\frametitle{Ejemplo: Publicador y Subscriptor}
     
     \begin{columns}
         \begin{column}{0.5\textwidth}
@@ -461,7 +461,7 @@ ros2 run cpp_pubsub listener
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{Ejemplo Publicador y subscriptor}
+    \frametitle{Ejemplo: Publicador y Subscriptor}
     
     \begin{columns}
         \begin{column}{0.5\textwidth}
@@ -475,7 +475,7 @@ ros2 run cpp_pubsub listener
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{Ejemplo Publicador y subscriptor}
+    \frametitle{Ejemplo: Publicador y Subscriptor}
     
     \begin{columns}
         \begin{column}{0.5\textwidth}
@@ -499,39 +499,45 @@ ros2 run cpp\_pubsub listener
 \begin{frame}[fragile]
 	\frametitle{Ejemplo completo: Navegación con Turtlebot3}
 
-\footnotesize
+    \footnotesize
+    \begin{itemize}
+
+
+        \item Ver la Guía: \url{https://navigation.ros.org}
     
-Guía: \url{https://navigation.ros.org}
+        \item Instalar los paquetes de Nav2 
+        
+        \begin{lstlisting}[style=bash] 
+sudo apt install ros-<ros2-distro>-navigation2 ros-<ros2-distro>-nav2-bringup
+        \end{lstlisting}
     
-Instalar los paquetes de Nav2 
-\begin{lstlisting}[style=bash] 
-sudo apt install ros-<ros2-distro>-navigation2
-sudo apt install ros-<ros2-distro>-nav2-bringup
-\end{lstlisting}
-    
-Instalar los paquetes de Turtlebot 3
-\begin{lstlisting}[style=bash] 
+        \item Instalar los paquetes de Turtlebot 3
+        
+        \begin{lstlisting}[style=bash] 
 sudo apt install ros-<ros2-distro>-turtlebot3*
-\end{lstlisting}
+        \end{lstlisting}
     
-Setear las variables de entorno y sourcear Gazebo (recuerde agregar estas líneas a .bashrc):
-\begin{lstlisting}[style=bash] 
+        \item Setear las variables de entorno y sourcear Gazebo (recuerde agregar estas líneas a \lstinline[style=bash]{.bashrc}):
+        
+        \begin{lstlisting}[style=bash] 
 export TURTLEBOT3_MODEL=waffle
 export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/opt/ros/<ros2-distro>/share/turtlebot3_gazebo/models
 source /usr/share/gazebo/setup.bash
-\end{lstlisting}
-
-\begin{lstlisting}[style=bash] 
+        \end{lstlisting}
+    
+        \item Lanzar la simulación. El parámetro \lstinline[style=bash]{headless:=False} permite visualizar el simulador Gazebo.
+        
+        \begin{lstlisting}[style=bash] 
 ros2 launch nav2_bringup tb3_simulation_launch.py headless:=False
-\end{lstlisting}
-
-    El parámetro \lstinline{headless:=False} permite visualizar el simulador Gazebo.
+        \end{lstlisting}
      
+    \end{itemize}
+    \tiny
     \url{https://ros2-industrial-workshop.readthedocs.io/en/latest/\_source/navigation/ROS2-Navigation.html}
         
     \url{https://docs.ros.org/en/humble/Tutorials/Advanced/Simulators/Ignition.html}
         
-    \url{https://navigation.ros.org/index.html} 
+    \url{https://navigation.ros.org/index.html}
 
 \end{frame}
 
