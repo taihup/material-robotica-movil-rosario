@@ -95,7 +95,7 @@ Descargue el archivo \emph{ground-truth} (trayectoria real realizada por el robo
 \end{nota}
 
 \begin{enumerate}
-    \item El \emph{ground-truth} se encuentra en coordenadas de la IMU (Body). Se pide crear un script en python que dada la trayectoría ground-truth (timestamp, x, y, z, qw, qx, qy, qz) (primeras 8 columnas del archivo \lstinline{MH_01/state_groundtruth_estimate0.csv}) genere el ground-truth pero que este esté dado en el sistema de coordenadas de la cámara inicial. Para esto deberá utilizar las transformaciones provistas en el dataset.
+    \item El \emph{ground-truth} se encuentra en coordenadas de la IMU (Body). Se pide crear un script en python que dada la trayectoría ground-truth (timestamp, x, y, z, qw, qx, qy, qz) (primeras 8 columnas del archivo \lstinline{MH_01/mav0/state_groundtruth_estimate0/data.csv}) genere el ground-truth pero que este esté dado en el sistema de coordenadas de la cámara inicial. Para esto deberá utilizar las transformaciones provistas en el dataset.
     
     \item Modifique el script para que el timestamp del nuevo \emph{ground-truth} este en segundos con precisión de nanosegundos. Agregar las primeras 5 filas del ground-truth resultante y las del original del dataset al informe.
     
