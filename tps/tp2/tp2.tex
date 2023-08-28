@@ -92,7 +92,7 @@ ros2 launch nav2_bringup tb3_simulation_launch.py headless:=False
 
 	%\item Crear un launch que permita lanzar la simulación pero sin un mapa y sin el sistema de localización. Se recomienda copiar y modificar los archivos \lstinline{tb3_simulation_launch.py} comentando el código relacionado a la localización (\lstinline{slam}) y al mapa (\lstinline{map}); y \lstinline{world_only.model} comentando el código relacionado al modelo del mundo a utilizar. Entre otros cambios, en el archivo launch deberá modificar el path al world modificado.
 	
-	\item Utilizar el launch y el modelo world provisto por la cátedra  para lanzar la simulación pero sin un mapa y sin el sistema de localización. El launch provisto es una modificación del  archivo \lstinline{tb3_simulation_launch.py} donde se comentó el código relacionado a la localización (\lstinline{slam}) y al mapa (\lstinline{map}). El modelo world \lstinline{world_only.model} resulta de comentar el código relacionado al modelo del mundo a utilizar.
+	\item Utilizar el launch y el modelo world provisto por la cátedra  para lanzar la simulación pero sin un mapa y sin el sistema de localización. El launch provisto es una modificación del  archivo \lstinline[style=bash]{tb3_simulation_launch.py} donde se comentó el código relacionado a la localización (\lstinline[style=bash]{slam}) y al mapa (\lstinline[style=bash]{map}). El modelo world \lstinline[style=bash]{world_only.model} resulta de comentar el código relacionado al modelo del mundo a utilizar.
 	
 
 	\item Una vez teniendo el robot corriendo en un mundo sin obstáculos y sin un sistema de localización, enviar comandos de velocidad para mover el robot:
@@ -130,8 +130,7 @@ resulta demasiado agresivo)
 
 \ejercicio  Calcular las velocidades lineales y angulares de las ruedas (izquierda y derecha) del robot para el camino circular del punto anterior.
 
-\ejercicio Generar un registro (log) de odometría y velocidad del robot, para lo cual hay que ejecutar nuevamente
-la simulación y utilizar el script ’dump odom.py’. Este script muestra en pantalla 6 columnas con los siguientes datos: tiempo (timestamp), coordenadas x, y, orientación, velocidad lineal y angular.
+\ejercicio Generar un registro (log) de odometría y velocidad del robot, para lo cual hay que ejecutar nuevamente la simulación y utilizar el script \lstinline[style=bash]{dump odom.py}. Este script muestra en pantalla 6 columnas con los siguientes datos: tiempo (timestamp), coordenadas x, y, orientación, velocidad lineal y angular.
 
 \ejercicio Obtener un registro de datos con el robot en movimiento mediante teleoperación por teclado. Para guardar los datos generados por el script hay que redireccionar la salida a un archivo como:
 
