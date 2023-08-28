@@ -189,10 +189,15 @@ En base a los gráficos anteriores:
     \label{fig:trajectories}
 \end{figure}
 
-\ejercicio El mundo deberá contar con varios cilindros de un mismo radio $r$. Los cilindros deben estar distribuidos en el entorno y ser todos observados por el láser del robot al momento de inicio de la simulación.
+\ejercicio Realizar una simulación donde:
+\begin{itemize}
+    \item El mundo debe contar con varios cilindros de un mismo radio $r$. Los cilindros deben estar distribuidos en el entorno y ser todos observados por el láser del robot al momento de inicio de la simulación.
+    \item Utilizar una medición láser para generar un mapa de la escena observada por el robot en simulación. Para esto debe detectar los cilindros en la medición laser obtenida. Cada cilindro es utilizado como un landmark en el mapa virtual del robot. Debe estimar el centro del cilindro, dicha posición será la posición de un landmark en el mapa virtual del robot.
+    \item Debe crear un mapa de landmarks, publicarlo y visualizarlo en RVIZ utilizando el marker de cilindro. Obtenga una captura de pantalla de RViz donde se visualice las mediciones del láser y los landmarks reconstruidos.
+\end{itemize}
 
-Utilizar una medición láser para generar un mapa de la escena observada por el robot en simulación. Para esto deberá detectar los cilindros en la medición laser obtenida. Cada cilindro será utilizado como un landmark en el mapa virtual del robot. Deberá estimar el centro del cilindro, dicha posición será la posición de un landmark en el mapa virtual del robot. Debera crear un mapa de landmarks, publicarlo y visualizarlo en RVIZ utilizando el marker de cilindro.
-Obtenga una captura de pantalla de RViz donde se visualice las mediciones del láser y los landmarks reconstruidos.
+
+
 
 
 \printbibliography
