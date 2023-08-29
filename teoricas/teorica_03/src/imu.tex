@@ -1,5 +1,5 @@
 \begin{frame}
-    \frametitle{Giróscopo o Giroscopio}
+    \frametitle{Giróscopo o Giroscopio Mecánico}
     \scriptsize
     \begin{center}
         \movie[autostart,loop,poster]{\includegraphics[width=0.25\columnwidth]{./images/gyroscope_video.jpg}}{./videos/gyroscope.mp4}
@@ -14,15 +14,9 @@
             \item Un giróscopo es todo cuerpo simétrico en rotación a una velocidad suficiente como para experimentar los efectos giroscópicos.
             \item Los giróscopos son dispositivos que miden o mantienen el movimiento de rotación.
         \end{itemize}
-
     \end{block}
-
-    \begin{itemize}
-        \item Introceptivo
-        \item Pasivo
-        \item Mide Velocidad Angular
-        \item Unidad de medición $\si{\degree\per\second}$ o Revoluciones por Minuto (RPM)
-    \end{itemize}
+    
+    \TODO{Ver vídeo: https://www.youtube.com/watch?v=V6XSsNAWg00 para extraer sub-videos y aplicaciones (orientación abosuoluta y calculo de velocidad de angular)}
 
     \note{https://answeringatpl.com/instrumentation/gyroscopic-principles/\\
           https://www.5hertz.com/index.php?route=tutoriales/tutorial&tutorial_id=13
@@ -57,10 +51,12 @@
     \begin{block}{Movimiento de Precesión}
         \begin{itemize}
             \item Toda fuerza aplicada perpendicularmente sobre el plano de rotación de un giróscopo se verá reflejada a $\SI{90}{\degree}$ en el sentido de la rotación.
-            \item La magnitud de la precesión que pesenta el giróscopo es directamente proporcional a la fuerza aplicada e inversamente proporcional a la velocidad de rotación (RPM).
+            \item La magnitud de la precesión que presenta el giróscopo es directamente proporcional a la fuerza aplicada e inversamente proporcional a la velocidad de rotación (RPM).
         \end{itemize}
     \end{block}
     }
+    
+
 
     \note{Un trompo es un giróscopo! cuando esta por caerse muestra el efecto de precesión. La fuerza que se le aplica es la de la gravedad y hace que se mueva realizando una circunsferencia con su eje.}
 \end{frame}
@@ -142,7 +138,7 @@
 
 \begin{frame}
     \frametitle{Giróscopo MEMS (Microelectromechanical Systems)}
-    
+    \scriptsize
     \note{https://www.analog.com/en/technical-articles/mems-gyroscope-provides-precision-inertial-sensing.html}
         
     \begin{itemize}
@@ -154,6 +150,13 @@
     \begin{center}
         \includegraphics[width=0.5\columnwidth]{images/gyroscope_mems_3.png}
     \end{center}
+    
+    \begin{itemize}
+        \item Introceptivo
+        \item Pasivo
+        \item Mide Velocidad Angular
+        \item Unidad de medición $\si{\degree\per\second}$ o Revoluciones por Minuto (RPM)
+    \end{itemize}
 
 \end{frame}
 
