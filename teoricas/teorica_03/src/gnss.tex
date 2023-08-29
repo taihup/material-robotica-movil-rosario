@@ -14,12 +14,15 @@
     \note{En el caso del GNSS estamos midiendo una señal de radio, que sabemos que viaja a la velocidad de la luz, alrededor de 300.000 km por segundo.}
     \note{La señal que recibe un receptor de GNSS no es solamente un Código Pseudo Aleatorio con fines de timing. También contiene un mensaje de navegación con información sobre la órbita exacta del satélite}
     \note{Otra manera de manejar los errores inducidos por la atmósfera es comparar la velocidad relativa de dos señales diferentes. Esta medición de doble frecuencia es muy sofisticada y solo es posible en receptores GNSS muy avanzados. Estos son los GNSS-RTK!}
-    \note{Los receptores "normales" basados navegación por satélite, comparan una señal pseudoaleatoria que es enviada desde el satélite con una copia interna generada por la misma señal. Puesto que la senal del satelite tarda tiempo en alcanzar al receptor, las dos senales no se alinean correctamente, la copia del satelite se retrasa en referencia a la copia local. Al retrasar progresivamente la copia local, las dos señales se alinearán correctamente en algún momento. Este retraso es el tiempo necesario para que la señal alcance al receptor, y del resultado de esto puede ser calculada la distancia al satélite. La precisión de la medición resultante es generalmente una función de la capacidad  electrónica del receptor para comparar exactamente las dos señales.}
+    \note{Los receptores "normales" basados navegación por satélite, comparan una señal pseudoaleatoria que es enviada desde el satélite con una copia interna generada por la misma señal. Puesto que la señal del satélite tarda tiempo en alcanzar al receptor, las dos señales no se alinean correctamente, la copia del satélite se retrasa en referencia a la copia local. Al retrasar progresivamente la copia local, las dos señales se alinearán correctamente en algún momento. Este retraso es el tiempo necesario para que la señal alcance al receptor, y del resultado de esto puede ser calculada la distancia al satélite. La precisión de la medición resultante es generalmente una función de la capacidad  electrónica del receptor para comparar exactamente las dos señales.}
     
     \begin{itemize}
         \item Fuentes de ruido (Retrasos ionosféricos y atmosféricos, Efecto Multitrayectoria, Dilución de la Precisión, reloj del satélite)
         \item Error de posicionamiento métrico ($\sim\SI{2}{\meter}$)
     \end{itemize}
+    
+    \note{La Dilución de la Precisión (DOP) es una medida de la fortaleza de la geometría de los satélites y está relacionada con la distancia entre los estos y su posición en el cielo. El DOP puede incrementar el efecto del error en la medición de distancia a los satélites.\\
+    Un ejemplo de Dilución de la Precisión, si los satélites están en una misma línea (colineales) uno arriba del otro, queda como mal condicionado.}
 
 \end{frame}
 
