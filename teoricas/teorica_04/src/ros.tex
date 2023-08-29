@@ -56,44 +56,50 @@
 
 \begin{frame}[fragile]
 	\frametitle{Configuración de entorno de ROS}
-    
-    \href{https://docs.ros.org/en/<distro>/Tutorials.html}{https://docs.ros.org/en/<distro>/Tutorials.html}
-    
-Instalar ROS
-\begin{lstlisting}[style=bash]
+    \small
+    \begin{itemize}
+        \item Seguiremos la guía: \href{https://docs.ros.org/en/<distro>/Tutorials.html}{https://docs.ros.org/en/<distro>/Tutorials.html}
+        \item Instalar ROS
+        \begin{lstlisting}[style=bash]
 sudo apt install ros-<distro>-<package>
-\end{lstlisting}
+        \end{lstlisting}
 
-Sourcear los archivos de setup
-\begin{lstlisting}[style=bash]source /usr/share/gazebo/setup.bash
+        \item Sourcear los archivos de setup
+        \begin{lstlisting}[style=bash]source /usr/share/gazebo/setup.bash
 source /opt/ros/<distro>/setup.bash
-\end{lstlisting}
-    
-Agregar el source al .bashrc
-\begin{lstlisting}[style=bash]
+        \end{lstlisting}
+
+        \item Agregar el source al .bashrc
+        \begin{lstlisting}[style=bash]
 echo "source /opt/ros/<distro>/setup.bash" >> ~/.bashrc
-\end{lstlisting}
+        \end{lstlisting}
 
-Chequear las variables de entorno
-\begin{lstlisting}[style=bash]
+        \item Chequear las variables de entorno
+        \begin{lstlisting}[style=bash]
 printenv | grep -i ROS
-\end{lstlisting}
+        \end{lstlisting}
 
-Output:
-\begin{lstlisting}[style=bash]
+        \item Output:
+        \begin{lstlisting}[style=bash]
 ROS_VERSION=2
 ROS_PYTHON_VERSION=3
 ROS_DISTRO=humble
-\end{lstlisting}	
+        \end{lstlisting}	
+    \end{itemize} 
+
+    
+
 \end{frame}
 
 \begin{frame}[fragile]
 	\frametitle{Configuración de entorno de ROS}
 
 \begin{itemize}
-    \item Los nodos ROS 2 en el mismo dominio pueden descubrir y enviarse mensajes libremente, mientras que los nodos ROS 2 en diferentes dominios no pueden.
+    
+    \item El middleware predeterminado que utiliza ROS para la comunicación es DDS (\emph{Data Distribution Service}). En DDS, los ID de Dominio permiten que diferentes redes lógicas (cada red lógica tendrá asociado un ID de dominio) compartan una misma red física.
+    \item Los nodos en el mismo dominio pueden descubrir y enviarse mensajes libremente, mientras que los nodos en diferentes dominios no pueden.
 
-    \item Todos los nodos ROS 2 utilizan el ID de dominio 0 de forma predeterminada.
+    \item Todos los nodos utilizan el ID de dominio 0 de forma predeterminada.
     
 \begin{lstlisting}[style=bash]
 echo "export ROS_DOMAIN_ID=<your_domain_id>" >> ~/.bashrc
