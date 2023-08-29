@@ -394,7 +394,7 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
     \frametitle{Rotaciones Generales 3D: Rotaciones Extrínsecas vs Rotaciones Intrínsecas}
     \scriptsize
     \begin{block}{Rotación Intrínseca}
-    Describe una rotación en relación con el sistema de coordenadas local del objeto. Los ejes del objeto pueden cambiar durante la rotación. Dado por ejemplo el orden de rotación xyz (primero rotar en $x$, luego en $y$ y luego en $z$), la matríz de rotación final $R$ se construye Posmultiplicación: $R = R_{x}(\alpha) \, R_{y}(\beta) \, R_{z}(\gamma)$.
+    Describe una rotación en relación con el sistema de coordenadas local del objeto. Los ejes del objeto pueden cambiar durante la rotación. Dado por ejemplo el orden de rotación $xy^{\prime}z^{\prime\prime}$ (primero rotar en $x$, luego en $y$ y luego en $z$), la matríz de rotación final $R$ se construye Posmultiplicación: $R = R_{x}(\alpha) \, R_{y^{\prime}}(\beta) \, R_{z^{\prime\prime}}(\gamma)$.
     \end{block}
 
     \begin{center}
@@ -402,7 +402,7 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
     \end{center}
 
     \begin{block}{Rotación Extrínseca}
-        Describe una rotación en relación con un sistema de coordenadas global fijo en el espacio. El sistema de referencia es externo al objeto que está siendo rotado. Dado por ejemplo el orden de rotación xyz, la matríz de Rotación final $R$ se construye Premultiplicación: $R = R_{z}(\gamma) \, R_{y}(\beta) \, R_{x}(\alpha)$.
+        Describe una rotación en relación con un sistema de coordenadas global fijo en el espacio. El sistema de referencia es externo al objeto que está siendo rotado. Dado por ejemplo el orden de rotación $zyx$ (primero rotar en $z$, luego en $y$ y luego en $x$), la matríz de Rotación final $R$ se construye Premultiplicación: $R = R_{x}(\alpha) \, R_{y}(\beta) \, R_{z}(\gamma)$.
     \end{block}
     
     \begin{center}
@@ -420,11 +420,11 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
     La matríz de Rotación intrínseca obtenida por el orden de rotación $xy^{\prime}z^{\prime\prime}$ es igual a la matríz extrínseca obtenida en el orden $xyz$.
     
     \begin{equation*}
-        \underbrace{R_{x}(\alpha) \, R_{y^{\prime}}(\beta) \, R_{z^{\prime\prime}}(\gamma)}_{\text{Rotación intrínseca}} = \underbrace{R_{z}(\gamma) \, R_{y}(\beta) \, R_{x}(\alpha)}_{\text{Rotación extrínseca}}
+        \underbrace{R_{z}(\alpha) \, R_{y^{\prime}}(\beta) \, R_{x^{\prime\prime}}(\gamma)}_{\text{Rotación intrínseca}} = \underbrace{R_{z}(\alpha) \, R_{y}(\beta) \, R_{x}(\gamma)}_{\text{Rotación extrínseca}}
     \end{equation*}
     
     \begin{figure}[!h]
-        \subfloat[$R = R_{x}(\SI{180}{\degree}) \, R_{y^{\prime}}(\SI{45}{\degree}) \, R_{z^{\prime\prime}}(\SI{90}{\degree})$]
+        \subfloat[$R = R_{z}(\SI{180}{\degree}) \, R_{y^{\prime}}(\SI{45}{\degree}) \, R_{x^{\prime\prime}}(\SI{90}{\degree})$]
         {
             \movie[autostart,loop,poster]{\includegraphics[width=0.4\columnwidth,valign=m]{./images/intrinsic_rotation_video.jpg}}{./videos/intrinsic_rotation.mp4}    
         }
@@ -453,10 +453,10 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
     Una rotación de un de referencia a otro se puede obtener mediante la multiplicación de varias rotaciones.
     
     \begin{block}{Ángulos de Euler}
-        Se denomina Ángulos de Euler a los ángulos $\alpha$, $\beta$ y $\gamma$ cuando estos deben ser aplicados utilizando el siguiente orden: $zxz$, $yxy$, $xyx$, $zyz$, $yzy$ y $xzx$. Los ángulos de Euler se aplican sobre el sistema de coordenadas local del objeto (Rotaciones intrínsecas).
+        Se denomina Ángulos de Euler a los ángulos $\alpha$, $\beta$ y $\gamma$ cuando estos deben ser aplicados utilizando el siguiente orden: $zx^{\prime}zx^{\prime\prime}$, $yx^{\prime}y^{\prime\prime}$, $xy^{\prime}x^{\prime\prime}$, $zy^{\prime}z^{\prime\prime}$, $yz^{\prime}y^{\prime\prime}$ y $xz^{\prime}x^{\prime\prime}$. Los ángulos de Euler se aplican sobre el sistema de coordenadas local del objeto (Rotaciones intrínsecas).
     \end{block}
    
-    Ejemplo de aplicación de Ángulos de Euler $\alpha$, $\beta$ y $\gamma$ utilizando la combinación $zxz$:
+    Ejemplo de aplicación de Ángulos de Euler $\alpha$, $\beta$ y $\gamma$ utilizando la combinación $zx^{\prime}z^{\prime\prime}$:
     \begin{figure}[!h]
         \centering
         \subfloat[]
