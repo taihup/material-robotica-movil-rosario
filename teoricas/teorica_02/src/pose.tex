@@ -394,25 +394,48 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
     \frametitle{Rotaciones Generales 3D: Rotaciones Extrínsecas vs Rotaciones Intrínsecas}
     \scriptsize
     \begin{block}{Rotación Intrínseca}
-    Describe una rotación en relación con el sistema de coordenadas local del objeto. Los ejes del objeto pueden cambiar durante la rotación. La Rotación final se construye Posmultiplicación: $R = R_{x}(\alpha) \, R_{y}(\beta) \, R_{z}(\gamma)$.
+    Describe una rotación en relación con el sistema de coordenadas local del objeto. Los ejes del objeto pueden cambiar durante la rotación. Dado por ejemplo el orden de rotación xyz (primero rotar en $x$, luego en $y$ y luego en $z$), la matríz de rotación final $R$ se construye Posmultiplicación: $R = R_{x}(\alpha) \, R_{y}(\beta) \, R_{z}(\gamma)$.
     \end{block}
 
     \begin{center}
-        \includegraphics[width=0.7\columnwidth]{./images/intrinsic_rotation.pdf}
+        \includegraphics[width=0.65\columnwidth]{./images/intrinsic_rotation.pdf}
     \end{center}
 
     \begin{block}{Rotación Extrínseca}
-        Describe una rotación en relación con un sistema de coordenadas global fijo en el espacio. El sistema de referencia es externo al objeto que está siendo rotado. La Rotación final se construye Premultiplicación: $R = R_{z}(\gamma) \, R_{y}(\beta) \, R_{x}(\alpha)$.
+        Describe una rotación en relación con un sistema de coordenadas global fijo en el espacio. El sistema de referencia es externo al objeto que está siendo rotado. Dado por ejemplo el orden de rotación xyz, la matríz de Rotación final $R$ se construye Premultiplicación: $R = R_{z}(\gamma) \, R_{y}(\beta) \, R_{x}(\alpha)$.
     \end{block}
     
     \begin{center}
-        \includegraphics[width=0.7\columnwidth]{./images/extrinsic_rotation.pdf}
+        \includegraphics[width=0.65\columnwidth]{./images/extrinsic_rotation.pdf}
     \end{center}
         
     
     \note{Copiar slides donde se muestra que las rotaciones intrínsecas son equivalentes a las rotaciones extrínsecas: https://www.youtube.com/watch?v=icczqt73B7o}
     
 \end{frame}
+
+\begin{frame}
+    \frametitle{Rotaciones Generales 3D: Rotaciones Extrínsecas vs Rotaciones Intrínsecas}
+
+    La matríz de Rotación intrínseca obtenida por el orden de rotación $xy^{\prime}z^{\prime\prime}$ es igual a la matríz extrínseca obtenida en el orden $xyz$.
+    
+    \begin{equation*}
+        \underbrace{R_{x}(\alpha) \, R_{y^{\prime}}(\beta) \, R_{z^{\prime\prime}}(\gamma)}_{\text{Rotación intrínseca}} = \underbrace{R_{z}(\gamma) \, R_{y}(\beta) \, R_{x}(\alpha)}_{\text{Rotación extrínseca}}
+    \end{equation*}
+    
+    \begin{figure}[!h]
+        \subfloat[$R = R_{x}(\SI{180}{\degree}) \, R_{y^{\prime}}(\SI{45}{\degree}) \, R_{z^{\prime\prime}}(\SI{90}{\degree})$]
+        {
+            \movie[autostart,loop,poster]{\includegraphics[width=0.4\columnwidth,valign=m]{./images/intrinsic_rotation_video.jpg}}{./videos/intrinsic_rotation.mp4}    
+        }
+        \subfloat[$R = R_{z}(\SI{90}{\degree}) \, R_{y}(\SI{45}{\degree}) \, R_{x}(\SI{180}{\degree})$]
+        {
+            \movie[autostart,loop,poster]{\includegraphics[width=0.4\columnwidth,valign=m]{./images/extrinsic_rotation_video.jpg}}{./videos/extrinsic_rotation.mp4}
+        }
+    \end{figure}
+    
+\end{frame}
+
 
 \begin{frame}
     \frametitle{Ángulos de Euler}
