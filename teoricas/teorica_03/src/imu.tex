@@ -54,7 +54,7 @@
     \end{block}
     }
     \only<2>{
-    \begin{block}{Movimiento dePrecesión}
+    \begin{block}{Movimiento de Precesión}
         \begin{itemize}
             \item Toda fuerza aplicada perpendicularmente sobre el plano de rotación de un giróscopo se verá reflejada a $\SI{90}{\degree}$ en el sentido de la rotación.
             \item La magnitud de la precesión que pesenta el giróscopo es directamente proporcional a la fuerza aplicada e inversamente proporcional a la velocidad de rotación (RPM).
@@ -67,17 +67,14 @@
 
 
 \begin{frame}
-    \frametitle{Giróscopo MEMS (Microelectromechanical Systems)}
+    \frametitle{Giróscopo MEMS: Aceleración de Coriolis}
     \note{https://www.analog.com/en/technical-articles/mems-gyroscope-provides-precision-inertial-sensing.html}
     \footnotesize
-    \begin{block}{Principio de Funcionamiento}
-        Los giróscopos MEMS utilizan la fuerza de Coriolis, la fuerza tangencial experimentada por un objeto giratorio en movimiento radial.
-    \end{block}
-
+    
     \begin{figure}
         \subfloat[]
         {
-            \movie[autostart,loop,poster]{\includegraphics[width=0.19\columnwidth,valign=m]{./images/coriolis_force_video.jpg}}{./videos/coriolis_force.mp4}
+            \movie[autostart,loop,poster]{\includegraphics[width=0.1\columnwidth,valign=m]{./images/coriolis_force_video.jpg}}{./videos/coriolis_force.mp4}
         }
         \hspace{2em}
         \subfloat[]
@@ -90,13 +87,20 @@
             \includegraphics[width=0.2\columnwidth,valign=m]{images/gyroscope_mems_1.png}
         }
     \end{figure}
+    
+    \begin{block}{Principio de Funcionamiento}
+        Los giróscopos MEMS utilizan la \textbf{fuerza de Coriolis}, fuerza tangencial experimentada por un objeto giratorio en movimiento radial.
+    \end{block}
 
     Ejemplo de aceleración de Coriolis:
     Una persona que se mueve hacia el borde exterior Norte de una plataforma giratoria en sentido horario, debe aumentar el componente de velocidad hacia el Oeste (flechas azules) para mantener su rumbo hacia el Norte. La aceleración requerida es la \textbf{aceleración de Coriolis}.
+    
+    
+    \note{Si $\Omega$ es la velocidad angular y $r$ es el radio, la velocidad tangencial es $\Omega r$. Entonces, si $r$ cambia con una velocidad $v$, habrá una aceleración tangencial $\Omega v$. Esta es la mitad de la aceleración de Coriolis. Falta otra mitad para cambiar la dirección de la velocidad radial dando un total de $2 \Omega v$. Si tiene una masa ($M$), la plataforma debe aplicar una fuerza ($2 M \Omega v$) para provocar esa aceleración, y la masa experimenta una fuerza correspondiente de reacción. El Giróscopo aprovecha este efecto utilizando una masa resonante análoga a la persona que se dirige hacia adentro y fuera de una plataforma giratoria. La masa está micromecanizada a partir de polisilicio y está unida a un marco de polisilicio para que pueda resonar sólo en una dirección.}
 
     \note{Considérese parado en una plataforma giratoria, cerca del centro. Su velocidad relativa al suelo se muestra como la longitud de la flecha azul. Si tuviera que moverse a un punto cerca del borde exterior de la plataforma, su velocidad aumentaría en relación con el suelo, como lo indica la flecha azul más larga. La tasa de aumento de su velocidad tangencial, causada por su velocidad radial, es la aceleración de Coriolis.}
 
-    \note{MEMS (sistemas microelectromecánicos) giroscopios son pequeños sensores, de bajo costo para medir la velocidad angular.  El sensor MEMS dentro de un giroscopio es muy pequeño (entre 1 a 100 micrómetros, el tamaño de un cabello humano).}
+    \note{Los giróscopos MEMS (sistemas microelectromecánicos) son pequeños sensores, de bajo costo para medir la velocidad angular.  El sensor MEMS dentro de un giroscopio es muy pequeño (entre 1 a 100 micrómetros, el tamaño de un cabello humano).}
 
 \end{frame}
 
@@ -106,7 +110,7 @@
     \note{https://www.analog.com/en/technical-articles/mems-gyroscope-provides-precision-inertial-sensing.html}
     
     \begin{itemize}
-        \item Cuando se hace girar el giróscopo, una pequeña masa de resonancia se desplaza con los cambios de velocidad angular. Este movimiento se convierte en señales eléctricas de muy bajas corrientes que se pueden amplificar para ser leídas por un microcontrolador.
+        \item Un Giróscopo internamente tiene una masa resonante (vibrando constantemente) dentro de un marco, que permise que solo pueda vibrar en una sola dirección. Este movimiento se convierte en señales eléctricas de muy bajas corrientes que se pueden amplificar para ser leídas por un microcontrolador.
     \end{itemize}
     
     \begin{figure}[!h]
@@ -115,7 +119,7 @@
     \end{figure}
     
     \begin{itemize}
-        \item Cuando la masa resonante se mueve hacia el borde exterior de la rotación, se acelera hacia la derecha y ejerce sobre el marco una fuerza de reacción hacia la izquierda (flecha verde). Cuando se mueve hacia el centro de la rotación, ejerce una fuerza hacia la derecha (flecha verde).
+        \item Cuando la masa resonante se mueve (o vibra) hacia el borde exterior de la rotación, se acelera hacia la derecha y ejerce sobre el marco una fuerza de reacción hacia la izquierda (flecha verde). Cuando se mueve hacia el centro de la rotación, ejerce una fuerza hacia la derecha (flecha verde).
     \end{itemize}
     
 \end{frame}
@@ -132,7 +136,7 @@
     \end{figure}
 
     \begin{itemize}
-        \item Para medir la aceleración de Coriolis, el marco que contiene la masa resonante está sujeto a un marco externo por resortes a $\SI{90}{\degree}$ en relación con el movimiento resonante (de la masa). Esta figura también muestra los ``dedos'' de detección de Coriolis que se utilizan para detectar el desplazamiento de la trama mediante transducción capacitiva en respuesta a la fuerza ejercida por la masa.
+        \item Para medir la aceleración de Coriolis, el marco que contiene la masa resonante está sujeto a un marco externo por resortes a $\SI{90}{\degree}$ en relación con el movimiento resonante (de la masa). Esta figura también muestra los ``dedos'' de detección de Coriolis que se utilizan para detectar el desplazamiento del marco mediante transducción capacitiva en respuesta a la fuerza ejercida por la masa.
     \end{itemize}
 \end{frame}
 
@@ -207,7 +211,7 @@
     \end{itemize}
     
     \note{
-    Una unidad de medida inercial (IMU) es un dispositivo que utiliza giroscopios y acelerómetros para estimar la posición relativa, la velocidad y la aceleración de un vehículo en movimiento. Una IMU también se conoce como Sistema de Navegación Inercial (INS).
+    Una unidad de medida inercial (IMU) es un dispositivo que utiliza giróscopos y acelerómetros para estimar la posición relativa, la velocidad y la aceleración de un vehículo en movimiento. Una IMU también se conoce como Sistema de Navegación Inercial (INS).
     Una IMU estima la pose de seis grados de libertad (DOF) del vehículo: posición (x, y, z) y orientación (pitch, yaw, roll). También estima velocidad y aceleración.
     
     Los datos del giroscopio se integran para estimar la orientación del vehículo, mientras que los tres acelerómetros se utilizan para estimar la aceleración instantánea del vehículo. A continuación, la aceleración se transforma en el marco de navegación local por medio de la estimación actual de la orientación del vehículo en relación con la gravedad. En este punto, el vector de gravedad se puede restar de la medición. Luego, la aceleración resultante se integra para obtener la velocidad y luego se integra nuevamente para obtener la posición, siempre que tanto la velocidad inicial como la posición sean conocidas a priori. Para superar la necesidad de conocer la velocidad inicial, la integración generalmente comienza en reposo (es decir, velocidad igual a cero).
