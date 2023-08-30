@@ -55,7 +55,7 @@
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Configuración de entorno de ROS}
+	\frametitle{Instalar ROS}
     \scriptsize
     \begin{itemize}
         \item Seguiremos la guía: \href{https://docs.ros.org/en/<distro>/Tutorials.html}{https://docs.ros.org/en/<distro>/Tutorials.html}
@@ -91,10 +91,7 @@ ROS_DISTRO=humble
         \begin{lstlisting}[style=bash]
 ros2 doctor --report
         \end{lstlisting}
-    \end{itemize} 
-
-    
-
+    \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -702,9 +699,26 @@ ros2 run rviz2 rviz2 -d $(ros2 pkg prefix --share turtle_tf2_py)/rviz/turtle_rvi
         \end{lstlisting}
         
     \end{itemize}
-
-	
 \end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Sistemas de coordenadas para plataformas Móviles}
+    \TODO{mejorar slide con REP-103 y REP-105}
+    \begin{itemize}
+        \item Ver documento REP-105: \url{https://ros.org/reps/rep-0105.html#coordinate-frames}
+        
+        \item Ver documento REP-103: \url{https://www.ros.org/reps/rep-0103.html}
+        
+        \item \lstinline[style=bash]{/base_link}
+        
+        \item \lstinline[style=bash]{/odom} es el nombre estandarizado del marco mundial del componente de odometría (el movimiento del robot es continuo pero el marco \lstinline[style=bash]{/odom} se desplaza)
+        
+        \item \lstinline[style=bash]{/map} es el nombre estandarizado del marco mundial del componente de localización (no se desvía, pero el movimiento no es continuo)
+        
+    \end{itemize}
+    
+\end{frame}
+
 
 \begin{frame}
 	\frametitle{Unified Robot description Format (URDF)}
