@@ -56,7 +56,7 @@
 
 \begin{frame}[fragile]
 	\frametitle{Configuración de entorno de ROS}
-    \small
+    \scriptsize
     \begin{itemize}
         \item Seguiremos la guía: \href{https://docs.ros.org/en/<distro>/Tutorials.html}{https://docs.ros.org/en/<distro>/Tutorials.html}
         \item Instalar ROS
@@ -85,6 +85,12 @@ ROS_VERSION=2
 ROS_PYTHON_VERSION=3
 ROS_DISTRO=humble
         \end{lstlisting}	
+        
+        \item Chequear el setup de ROS y problemas potenciales (lista de paquetes instalados, versiones, etc)
+        
+        \begin{lstlisting}[style=bash]
+ros2 doctor --report
+        \end{lstlisting}
     \end{itemize} 
 
     
@@ -92,7 +98,7 @@ ROS_DISTRO=humble
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Configuración de entorno de ROS}
+	\frametitle{Configuración de entorno de ROS: \lstinline[style=bash]{ROS_DOMAIN_ID}}
 
 \begin{itemize}
     
@@ -112,53 +118,61 @@ echo "export ROS_DOMAIN_ID=<your_domain_id>" >> ~/.bashrc
 	\frametitle{Ejemplo: talker y listener}
 	
     \begin{itemize}
-	   \item En una terminal ejecutar (un talker en c++):
-\begin{lstlisting}[style=bash]
+        \item Primero verifiquemos que esten instalados los ejecutables \lstinline[style=bash]{talker} y \lstinline[style=bash]{listener} de los paquetes \lstinline[style=bash]{demo_nodes_cpp} y \lstinline[style=bash]{demo_nodes_py}
+        
+        \begin{lstlisting}[style=bash]
+ros2 pkg executables
+        \end{lstlisting}
+        
+	    \item En una terminal ejecutar (un talker en c++):
+        \begin{lstlisting}[style=bash]
 source /opt/ros/<distro>/setup.bash
 ros2 run demo_nodes_cpp talker
-\end{lstlisting}
+        \end{lstlisting}
 
-	   \item En otra terminal ejecutar (un listener en python):
-\begin{lstlisting}[style=bash]
+	    \item En otra terminal ejecutar (un listener en python):
+        \begin{lstlisting}[style=bash]
 source /opt/ros/<distro>/setup.bash
 ros2 run demo_nodes_py listener
-\end{lstlisting}
-\end{itemize}
+        \end{lstlisting}
+    \end{itemize}
 
 \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{Ejemplo: Turtlesim}
-    \footnotesize
-\begin{lstlisting}[style=bash]
+    \scriptsize
+    \begin{itemize}
+
+        \item Instalamos el paquete \lstinline[style=bash]{ros-humble-turtlesim}
+        \begin{lstlisting}[style=bash]
 sudo apt install ros-humble-turtlesim
-\end{lstlisting}
-    Verificamos los ejecutables dentro del paquete
-\begin{lstlisting}[style=bash]
+        \end{lstlisting}
+        \item Verificamos los ejecutables dentro del paquete
+        \begin{lstlisting}[style=bash]
 ros2 pkg executables turtlesim
-\end{lstlisting}
-    output:
-\begin{lstlisting}[style=bash]
+        \end{lstlisting}
+        \begin{lstlisting}[style=bash]
 turtlesim draw_square
 turtlesim mimic
 turtlesim turtle_teleop_key
 turtlesim turtlesim_node
-\end{lstlisting}
-
-\begin{lstlisting}[style=bash]
+        \end{lstlisting}
+        \item Corremos los ejecutables:
+        \begin{lstlisting}[style=bash]
 ros2 run turtlesim turtlesim_node
-\end{lstlisting}
+        \end{lstlisting}
 
-\begin{lstlisting}[style=bash]
+        \begin{lstlisting}[style=bash]
 ros2 run turtlesim turtle_teleop_key
-\end{lstlisting}
-\begin{lstlisting}[style=bash]
+        \end{lstlisting}
+        \begin{lstlisting}[style=bash]
 ros2 node list
 ros2 topic list
 ros2 service list
 ros2 action list
-\end{lstlisting}
-
+        \end{lstlisting}
+    \end{itemize}    
 \end{frame}
 
 \begin{frame}[fragile]
@@ -177,14 +191,14 @@ ros2 run turtlesim turtle_teleop_key --ros-args --remap turtle1/cmd_vel:=turtle2
 \end{frame}
 
 \begin{frame}
-    \frametitle{ROS graph}
+    \frametitle{ROS Graph}
     
     \begin{itemize}
-    \item El grafo de ROS es una red de elementos ROS 2 que procesan datos juntos al mismo tiempo. Abarca todos los ejecutables y las conexiones entre ellos si tuviera que mapearlos y visualizarlos.
+    \item El grafo de ROS es una red de elementos que procesan datos al mismo tiempo. Abarca todos los ejecutables y las conexiones entre ellos.
 
     \item Cada nodo en ROS debe ser responsable de un solo propósito de módulo (por ejemplo, un nodo para controlar los motores de las ruedas, un nodo para controlar un telémetro láser, etc.). Cada nodo puede enviar y recibir datos a otros nodos a través de tópicos, servicios, acciones o parámetros.
 
-    \item Un sistema robótico completo se compone de muchos nodos que trabajan en conjunto. En ROS 2, un único ejecutable (programa C++, programa Python, etc.) puede contener uno o más nodos.
+    \item Un sistema robótico completo se compone de muchos nodos que trabajan en conjunto. En ROS, un único ejecutable (programa C++, programa Python, etc.) puede contener uno o más nodos.
     \end{itemize}
     
 
