@@ -176,22 +176,30 @@ ros2 action list
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Ejemplo: Turtlesim}
-    Abrir \lstinline[style=bash]{rqt}
-\begin{lstlisting}[style=bash]    
+	\frametitle{Ejemplo: Turtlesim (Continuación)}
+    
+    \begin{itemize}
+        \item Abrir \lstinline[style=bash]{rqt}
+        \begin{lstlisting}[style=bash]    
 rqt
-\end{lstlisting}
-	Plugins $\rightarrow$ Services $\rightarrow$ Service Caller y spawn una nueva tortuga.
+        \end{lstlisting}
+        \item Plugins $\rightarrow$ Services $\rightarrow$ Service Caller y spawn una nueva tortuga.
+        
+        \footnotesize
+        \begin{lstlisting}[style=bash]    
+            ros2 run turtlesim turtle_teleop_key --ros-args --remap turtle1/cmd_vel:=turtle2/cmd_vel
+        \end{lstlisting}
+    \end{itemize}
 
-\footnotesize
-\begin{lstlisting}[style=bash]    
-ros2 run turtlesim turtle_teleop_key --ros-args --remap turtle1/cmd_vel:=turtle2/cmd_vel
-\end{lstlisting}
 
 \end{frame}
 
 \begin{frame}
     \frametitle{ROS Graph}
+    \scriptsize
+   	\begin{center}
+        \movie[loop]{\includegraphics[width=0.5\columnwidth]{images/ros2_nodes_video.jpg}}{videos/ros2_nodes.mp4}
+    \end{center}
     
     \begin{itemize}
     \item El grafo de ROS es una red de elementos que procesan datos al mismo tiempo. Abarca todos los ejecutables y las conexiones entre ellos.
@@ -203,16 +211,6 @@ ros2 run turtlesim turtle_teleop_key --ros-args --remap turtle1/cmd_vel:=turtle2
     
 
 \end{frame}
-
-\begin{frame}[fragile]
-	\frametitle{ROS graph}
-	
-	\begin{center}
-		\movie[loop]{\includegraphics[width=0.9\columnwidth]{images/ros2_nodes_video.jpg}}{videos/ros2_nodes.mp4}
-	\end{center}
-	
-\end{frame}
-
 
 \begin{frame}[fragile]
     \frametitle{Volvamos al Turtlesim para ver otros conceptos}
@@ -602,11 +600,11 @@ ros2 launch nav2_bringup tb3_simulation_launch.py headless:=False
         \begin{columns}
     	\begin{column}{0.5\textwidth}
 		    \begin{itemize}
-				\item TF listeners usan un buffer para escuchar las transformaciones broadcasteads
+				\item TF listeners usan un buffer para escuchar las transformaciones broadcasteadas
 				\item Se puede consultar una transformación específica al árbol de transformaciones
+                \item El tipo de mensaje de tf2 (\lstinline[style=bash]{tf2_msgs/TFMessage.msg}) está compuesto por:
 			\end{itemize}
 \begin{lstlisting}[style=bash] 
-tf2_msgs/TFMessage.msg
 geometry_msgs/TransformStamped[] transforms
 std_msgs/Header header
 uint32 seqtime stamp
@@ -699,7 +697,7 @@ ros2 run tf2_ros tf2_echo [reference_frame] [target_frame]
 \end{frame}
 
 \begin{frame}
-	\frametitle{URDF}
+	\frametitle{Unified Robot description Format (URDF)}
 	
 	\begin{itemize}
 		\item La descripción consiste en un conjunto de elementos links y un conjunto de elementos joints
@@ -713,7 +711,7 @@ ros2 run tf2_ros tf2_echo [reference_frame] [target_frame]
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{URDF}
+    \frametitle{Unified Robot description Format (URDF)}
     
 \footnotesize
 
