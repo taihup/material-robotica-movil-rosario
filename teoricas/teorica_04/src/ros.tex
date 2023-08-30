@@ -639,7 +639,7 @@ ros2 run tf2_ros tf2_echo [reference_frame] [target_frame]
 \end{frame}
 
 \begin{frame}
-	\frametitle{Visualizar transformaciones en RViz}
+	\frametitle{Visualizar transformaciones en RViz (\lstinline[style=bash]{rviz2})}
 	
    	\begin{figure}[!h]
 		\centering
@@ -649,7 +649,7 @@ ros2 run tf2_ros tf2_echo [reference_frame] [target_frame]
 \end{frame}
 
 \begin{frame}
-	\frametitle{Visualizar transformaciones en RViz}
+	\frametitle{Visualizar transformaciones en RViz (\lstinline[style=bash]{rviz2})}
 	\begin{figure}[!h]
 		\centering
 		\includegraphics[width=\columnwidth]{images/tf2_tree_robot_rviz.png}
@@ -657,11 +657,52 @@ ros2 run tf2_ros tf2_echo [reference_frame] [target_frame]
 	
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
 	\frametitle{Ejemplo: TF2 con turtles}
-	
-	
-	\TODO{https://docs.ros.org/en/humble/Tutorials/Intermediate/Tf2/Introduction-To-Tf2.html}
+    \scriptsize
+	\begin{itemize}
+        \item Tutorial: \url{https://docs.ros.org/en/humble/Tutorials/Intermediate/Tf2/Introduction-To-Tf2.html}
+        \item Instalación
+        \begin{lstlisting}[style=bash] 
+sudo apt-get install ros-<distro>-turtle-tf2-py ros-<distro>-tf2-tools ros-humble-tf-transformations
+        \end{lstlisting}
+        
+        \item En una terminal, lanzar el launch \lstinline[style=bash]{turtle_tf2_demo.launch.py}
+        
+        \begin{lstlisting}[style=bash] 
+ros2 launch turtle_tf2_py turtle_tf2_demo.launch.py
+        \end{lstlisting}
+        
+        \item En otra terminal, ejecutar \lstinline[style=bash]{turtle_teleop_key}
+        
+        \begin{lstlisting}[style=bash] 
+ros2 run turtlesim turtle_teleop_key
+        \end{lstlisting}
+        
+        \item Visualizar el árbol de transformaciones:
+        
+        \begin{lstlisting}[style=bash] 
+ros2 run tf2_tools view_frames
+        \end{lstlisting}
+        
+        \item \lstinline[style=bash]{tf2_echo} informa la transformación entre dos cuadros cualesquiera transmitidos a través de ROS.
+        
+        \begin{lstlisting}[style=bash] 
+ros2 run tf2_ros tf2_echo [source_frame] [target_frame]
+        \end{lstlisting}
+
+        \begin{lstlisting}[style=bash] 
+ros2 run tf2_ros tf2_echo turtle2 turtle1
+        \end{lstlisting}
+        
+        \item Visualizar en rviz2
+        
+        \begin{lstlisting}[style=bash] 
+ros2 run rviz2 rviz2 -d $(ros2 pkg prefix --share turtle_tf2_py)/rviz/turtle_rviz.rviz
+        \end{lstlisting}
+        
+    \end{itemize}
+
 	
 \end{frame}
 
