@@ -715,11 +715,14 @@ ros2 run rviz2 rviz2 -d $(ros2 pkg prefix --share turtle_tf2_py)/rviz/turtle_rvi
         
         \item Ver documento REP-103: \url{https://www.ros.org/reps/rep-0103.html}
         
-        \item \lstinline[style=bash]{/base_link}
+        \item El marco de coordenadas llamado \lstinline[style=bash]{/base_link} está rígidamente unido a la base del robot móvil. El \lstinline[style=bash]{/base_link} es el marco de referencia del robot.
         
-        \item \lstinline[style=bash]{/odom} es el nombre estandarizado del marco mundial del componente de odometría (el movimiento del robot es continuo pero el marco \lstinline[style=bash]{/odom} se desplaza)
+        \item El marco \lstinline[style=bash]{/odom} contiene la pose del robot en el mundo según lo informado por algún sensor de odometría (Ej: odometría de ruedas, Visual-Inertial Odometry, etc). La pose del robot en el marco de coordenadas \lstinline[style=bash]{/odom} es continua; sin embargo, debido a errores en la odometría, el error se acumula con el tiempo.
         
-        \item \lstinline[style=bash]{/map} es el nombre estandarizado del marco mundial del componente de localización (no se desvía, pero el movimiento no es continuo)
+        \item Para corregir la desviación de los sensores odométricos, algunos métodos de localización introducen una transformación entre \lstinline[style=bash]{/map} $\rightarrow$ \lstinline[style=bash]{/odom}. Esta transformación es la corrección que se ha calculado en función de la entrada de sensores, como LiDAR o GNSS. La pose del robot en \lstinline[style=bash]{/map} no es continua (puede saltar en varios intervalos de tiempo) porque los métodos de localización que dan este tipo de pose normalmente realizan correcciones a una frecuencia más baja.
+        
+        \item Si tienes un sensor de odometría perfecto y un GNSS perfecto, la transformación \lstinline[style=bash]{/map} mapa $\rightarrow$ \lstinline[style=bash]{/odom} tf será la identidad.
+    
         
     \end{itemize}
     
