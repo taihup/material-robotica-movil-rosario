@@ -35,11 +35,8 @@
         \movie[autostart,loop,poster]{\includegraphics[width=0.25\columnwidth]{./images/gyroscope_video.jpg}}{./videos/gyroscope.mp4}
         \hspace{1em}
         \includegraphics[width=0.15\columnwidth]{images/gyroscope.pdf}
-        \hspace{1em}
-        \includegraphics[width=0.4\columnwidth]{images/gyroscope_precession.pdf}
     \end{center}
 
-    \only<1>{
     \begin{block}{Rigidez en el espacio}
         \begin{itemize}
             \item Al rotar, un giróscopo permanece en una posición fija en su plano de rotación, independientemente del movimiento de los soportes o el marco.
@@ -48,18 +45,31 @@
             \item Mayor masa y radio efectivo, entonces mayor rigidez en el espacio.
         \end{itemize}
     \end{block}
-    }
-    \only<2>{
-    \begin{block}{Movimiento de Precesión}
-        \begin{itemize}
-            \item Toda fuerza aplicada perpendicularmente sobre el plano de rotación de un giróscopo se verá reflejada a $\SI{90}{\degree}$ en el sentido de la rotación.
-            \item La magnitud de la precesión que presenta el giróscopo es directamente proporcional a la fuerza aplicada e inversamente proporcional a la velocidad de rotación (RPM).
-        \end{itemize}
-    \end{block}
-    }
 
     \note{Un trompo es un giróscopo! cuando esta por caerse muestra el efecto de precesión. La fuerza que se le aplica es la de la gravedad y hace que se mueva realizando una circunsferencia con su eje.}
 \end{frame}
+
+
+\begin{frame}
+    \frametitle{Giróscopo Mecánico: Principios giroscópicos}
+    \note{https://www.youtube.com/watch?v=nhNg-8RSuKY}
+    \scriptsize
+    
+    \begin{center}
+        \movie[autostart,loop,poster]{\includegraphics[width=0.5\columnwidth,valign=m]{./images/mechanical_gyroscope_angular_velocity.jpg}}{./videos/mechanical_gyroscope_angular_velocity.mp4}
+        \hspace{1em}
+        \includegraphics[width=0.4\columnwidth,valign=m]{images/gyroscope_precession.pdf}
+    \end{center}
+    \begin{block}{Movimiento de Precesión}
+            \begin{itemize}
+                \item Toda fuerza aplicada perpendicularmente sobre el plano de rotación de un giróscopo se verá reflejada a $\SI{90}{\degree}$ en el sentido de la rotación.
+                \item La magnitud de la precesión que presenta el giróscopo es directamente proporcional a la fuerza aplicada e inversamente proporcional a la velocidad de rotación (RPM).
+            \end{itemize}
+    \end{block}
+    
+    \note{Un trompo es un giróscopo! cuando esta por caerse muestra el efecto de precesión. La fuerza que se le aplica es la de la gravedad y hace que se mueva realizando una circunsferencia con su eje.}
+\end{frame}
+
 
 
 \begin{frame}
@@ -149,6 +159,10 @@
     
     \begin{center}
         \includegraphics[width=0.5\columnwidth]{images/gyroscope_mems_3.png}
+    \end{center}
+    
+    \begin{center}
+        
     \end{center}
     
     \begin{itemize}
