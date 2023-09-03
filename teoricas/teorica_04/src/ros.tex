@@ -707,14 +707,15 @@ ros2 run rviz2 rviz2 -d $(ros2 pkg prefix --share turtle_tf2_py)/rviz/turtle_rvi
     \end{itemize}
 \end{frame}
 
+
 \begin{frame}[fragile]
     \frametitle{Sistemas de coordenadas para plataformas Móviles}
-    \TODO{mejorar slide con REP-103 y REP-105}
+    \scriptsize
+    \begin{center}
+        \includegraphics[width=0.3\columnwidth]{images/ros_coordinate_systems.pdf}
+    \end{center}
+    
     \begin{itemize}
-        \item Ver documento REP-105: \url{https://ros.org/reps/rep-0105.html#coordinate-frames}
-        
-        \item Ver documento REP-103: \url{https://www.ros.org/reps/rep-0103.html}
-        
         \item El marco de coordenadas llamado \lstinline[style=bash]{/base_link} está rígidamente unido a la base del robot móvil. El \lstinline[style=bash]{/base_link} es el marco de referencia del robot.
         
         \item El marco \lstinline[style=bash]{/odom} contiene la pose del robot en el mundo según lo informado por algún sensor de odometría (Ej: odometría de ruedas, Visual-Inertial Odometry, etc). La pose del robot en el marco de coordenadas \lstinline[style=bash]{/odom} es continua; sin embargo, debido a errores en la odometría, el error se acumula con el tiempo.
@@ -722,8 +723,21 @@ ros2 run rviz2 rviz2 -d $(ros2 pkg prefix --share turtle_tf2_py)/rviz/turtle_rvi
         \item Para corregir la desviación de los sensores odométricos, algunos métodos de localización introducen una transformación entre \lstinline[style=bash]{/map} $\rightarrow$ \lstinline[style=bash]{/odom}. Esta transformación es la corrección que se ha calculado en función de la entrada de sensores, como LiDAR o GNSS. La pose del robot en \lstinline[style=bash]{/map} no es continua (puede saltar en varios intervalos de tiempo) porque los métodos de localización que dan este tipo de pose normalmente realizan correcciones a una frecuencia más baja.
         
         \item Si tienes un sensor de odometría perfecto y un GNSS perfecto, la transformación \lstinline[style=bash]{/map} mapa $\rightarrow$ \lstinline[style=bash]{/odom} tf será la identidad.
-    
         
+        
+    \end{itemize}
+    
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+    \frametitle{Sistemas de coordenadas para plataformas Móviles}
+    \TODO{mejorar slide con REP-103 y REP-105}
+    \begin{itemize}
+        \item Ver documento REP-105: \url{https://ros.org/reps/rep-0105.html#coordinate-frames}
+        
+        \item Ver documento REP-103: \url{https://www.ros.org/reps/rep-0103.html}
     \end{itemize}
     
 \end{frame}

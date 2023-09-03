@@ -7,7 +7,7 @@
    id="svg4951"
    version="1.1"
    inkscape:version="1.3 (1:1.3+202307231459+0e150ed6c4)"
-   sodipodi:docname="coordsystems_img.svg"
+   sodipodi:docname="ros_coordinate_systems.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -18,18 +18,98 @@
   <defs
      id="defs4953">
     <marker
+       style="overflow:visible"
+       id="ConcaveTriangle"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Concave triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="M -2,-4 9,0 -2,4 c 2,-2.33 2,-5.66 0,-8 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="path7" />
+    </marker>
+    <marker
        inkscape:stockid="Arrow1Mend"
        orient="auto"
        refY="0"
        refX="0"
        id="Arrow1Mend"
-       style="overflow:visible">
+       style="overflow:visible"
+       viewBox="0 0 8.88692697 5.07824398"
+       markerWidth="8.88692697"
+       markerHeight="5.07824398"
+       preserveAspectRatio="xMidYMid">
       <path
          id="path3897"
          d="M 0,0 5,-5 -12.5,0 5,5 Z"
          style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
          transform="matrix(-0.4,0,0,-0.4,-4,0)"
          inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="ConcaveTriangle-0"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Concave triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="M -2,-4 9,0 -2,4 c 2,-2.33 2,-5.66 0,-8 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="path7-8" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="ConcaveTriangle-0-9"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Concave triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="M -2,-4 9,0 -2,4 c 2,-2.33 2,-5.66 0,-8 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="path7-8-9" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="ConcaveTriangle-0-9-8"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Concave triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="M -2,-4 9,0 -2,4 c 2,-2.33 2,-5.66 0,-8 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="path7-8-9-2" />
     </marker>
   </defs>
   <sodipodi:namedview
@@ -39,9 +119,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.83150799"
-     inkscape:cx="126.2766"
-     inkscape:cy="149.12665"
+     inkscape:zoom="1.2010456"
+     inkscape:cx="168.18679"
+     inkscape:cy="211.4824"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -118,6 +198,12 @@
        id="path5553"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccc" />
+    <circle
+       style="fill:#00ff00;fill-opacity:1"
+       id="path1-9-5-9"
+       cx="480.97217"
+       cy="310.85144"
+       r="4.9531255" />
     <path
        style="opacity:0.5;fill:#0000ff;fill-opacity:1;stroke:#0000ff;stroke-width:2.70769;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 450,377.36218 -12.02089,-31.63953 -2.87632,1.09281 0.6907,-6.84546 5.06195,4.65984 -2.87633,1.09281"
@@ -128,6 +214,17 @@
        d="m 450,377.36218 31.63954,-12.02089 -1.0928,-2.87632 6.84545,0.6907 -4.65983,5.06195 -1.09282,-2.87633"
        id="path4961-7-4-7"
        inkscape:connector-curvature="0" />
+    <circle
+       style="fill:#00ff00;fill-opacity:1"
+       id="path1-9-5"
+       cx="450.28427"
+       cy="376.98056"
+       r="4.9531255" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#ConcaveTriangle-0-9-8)"
+       d="m 449.83063,377.48353 27.43839,-59.70876"
+       id="path2-1-7-5"
+       sodipodi:nodetypes="cc" />
     <path
        style="opacity:0.5;fill:#0000ff;fill-opacity:1;stroke:#0000ff;stroke-width:2.70769;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 480.58245,310.82718 -2.22515,-33.77292 -3.07026,0.20228 2.66569,-6.34282 3.47484,5.93825 -3.07027,0.20229"
@@ -153,11 +250,44 @@
        d="m 450,377.36218 h 33.84616 v -3.07692 l 6.15385,3.07692 -6.15385,3.07693 v -3.07693"
        id="path4961-7-4-0"
        inkscape:connector-curvature="0" />
+    <circle
+       style="fill:#00ff00;fill-opacity:1"
+       id="path1"
+       cx="155.23399"
+       cy="480.93936"
+       r="4.9531255" />
+    <circle
+       style="fill:#00ff00;fill-opacity:1"
+       id="path1-9"
+       cx="250.12134"
+       cy="480.93677"
+       r="4.9531255" />
+    <circle
+       style="fill:#00ff00;fill-opacity:1"
+       id="path1-9-1"
+       cx="450.52792"
+       cy="480.19034"
+       r="4.9531255" />
     <path
        style="fill:#0000ff;fill-opacity:1;stroke:#0000ff;stroke-width:2.70769;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 155,481.20833 v -33.84615 h -3.07692 L 155,441.20833 l 3.07693,6.15385 H 155"
        id="path4961-2-8"
        inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#ConcaveTriangle)"
+       d="m 154.41586,481.17984 h 87.59525"
+       id="path2"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#ConcaveTriangle-0)"
+       d="M 250.21087,481.23354 H 442.3102"
+       id="path2-1"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#ConcaveTriangle-0-9)"
+       d="M 450.00971,480.08005 V 385.5796"
+       id="path2-1-7"
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:#0000ff;fill-opacity:1;stroke:#0000ff;stroke-width:0.0387692;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 152.47158,447.03454 c 0,-0.0629 2.49357,-4.99236 2.52539,-4.99236 0.0318,0 2.52538,4.92946 2.52538,4.99236 0,0.0108 -1.13642,0.0196 -2.52538,0.0196 -1.38896,0 -2.52539,-0.009 -2.52539,-0.0196 z"
