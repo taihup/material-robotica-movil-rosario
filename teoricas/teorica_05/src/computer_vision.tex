@@ -9,7 +9,6 @@
 	Propiedades deseables para SLAM / SfM:
 	\begin{itemize}
 		\item Alta repetitibilidad
-		\item Alta precisión
 		\item Invarianza (luminosidad, puntos de vista, etc)
 		\item Computacionalmente eficientes
 		\item Algunos detectores: HARRIS, SIFT, SURF, Shi-Tomasi, FAST, ORB, BRISK
@@ -102,15 +101,15 @@
 	\footnotesize
 
 	\begin{itemize}
-	\item Locales: los features al ser locales son robustos a oclusiones
-	\item Distintivos: pueden diferenciar un gran conjunto de objetos
-	\item Cuantiosos: puede haber cientos o miles en una misma imagen
-	\item Eficientes: al discretizar la imagen, se puede obtener tiempo real.
+	\item \textbf{Locales}: los features al ser locales son robustos a oclusiones
+	\item \textbf{Distintivos}: pueden diferenciar un gran conjunto de objetos
+	\item \textbf{Cuantiosos}: puede haber cientos o miles en una misma imagen
+	\item \textbf{Eficientes}: al discretizar la imagen, se puede obtener tiempo real.
 \end{itemize}
 	
 \end{frame}
 
-\begin{frame}
+\begin{frame}<presentation:0>[noframenumbering]
 	\frametitle{Harris}
 	\footnotesize
 	
@@ -121,11 +120,15 @@
 \begin{frame}
 	\frametitle{Características Visuales: Detector FAST}
 	
-	\begin{figure}
-		\includegraphics[width=0.8\textwidth]{./images/camera/fast}
-	\end{figure}
+	\begin{center}
+		\includegraphics[width=0.7\textwidth]{./images/camera/fast}
+	\end{center}
 	
-	El valor de intensidad del pixel $p$ es comparado con cada uno de los 16 pixeles del círculo de Bresenham alrededor de $p$. $p$ es detectado como corner si hay $12$ píxeles continuos en el circulo de Bresenham más brillosos u oscuros que $p$ dado un cierto umbral.
+    \begin{itemize}
+        \item El valor de intensidad del pixel $p$ es comparado con cada uno de los 16 pixeles del círculo de Bresenham alrededor de $p$.
+        \item $p$ es detectado como corner si hay $12$ píxeles continuos en el circulo de Bresenham más brillosos u oscuros que $p$ dado un cierto umbral.
+    \end{itemize}
+
 \end{frame}
 
 \begin{frame}
