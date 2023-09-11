@@ -2,13 +2,13 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="210mm"
-   height="297mm"
-   viewBox="0 0 210 297"
+   width="259.12228mm"
+   height="131.04396mm"
+   viewBox="0 0 259.12228 131.04396"
    version="1.1"
    id="svg1"
    inkscape:version="1.3 (1:1.3+202307231459+0e150ed6c4)"
-   sodipodi:docname="trajectory_sample.svg"
+   sodipodi:docname="trajectory_example.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -25,8 +25,8 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="0.43521862"
-     inkscape:cx="-9.1907832"
-     inkscape:cy="443.45529"
+     inkscape:cx="528.47004"
+     inkscape:cy="337.76128"
      inkscape:window-width="1920"
      inkscape:window-height="988"
      inkscape:window-x="0"
@@ -248,7 +248,8 @@
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     transform="translate(142.13234,-27.76507)">
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#ConcaveTriangle);marker-end:url(#marker2)"
        d="M 16.314744,32.901204 V 68.287176 H 113.76545"
