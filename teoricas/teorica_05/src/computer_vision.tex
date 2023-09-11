@@ -1062,7 +1062,7 @@
 		\begin{itemize}
 		\item Error de reproyección:
 	    \begin{center}
-		$f(\transform{a}{b}, \mapPointsSet)= \sum_{i=1}^{N} \Vert \measurement_{a,i} - \prediction^{\mathrm{s}}(\transform{a}{\worldCoordSystem},\worldPoint_{i}) \Vert^{2} + \Vert \measurement_{b,i} - \prediction^{\mathrm{s}}(\inverse{\transform{a}{b}}\transform{a}{\worldCoordSystem},\worldPoint_{i}) \Vert^{2}$
+            $f(\transform{a}{b}, \mapPointsSet)= \sum_{i=1}^{N} \Vert \measurement_{a,i} - \prediction^{\mathrm{s}}(\transform{a}{\worldCoordSystem},\worldPoint_{i}) \Vert^{2} + \Vert \measurement_{b,i} - \prediction^{\mathrm{s}}(\inverse{\transform{a}{b}}\transform{a}{\worldCoordSystem},\worldPoint_{i}) \Vert^{2}$
         \end{center}
 		\item Algoritmos lineales: 8-point, 5-point
 		\end{itemize}
@@ -1080,7 +1080,7 @@
 		\begin{itemize}
 			\item Error de reproyección:
 			\begin{center}
-			$f(\transform{\worldCoordSystem}{a})= \sum_{i=1}^{N} \Vert \measurement_{a,i} - \prediction(\inverse{\transform{\worldCoordSystem}{a}},\worldPoint_{i}) \Vert^{2}$
+    			$f(\transform{\worldCoordSystem}{a})= \sum_{i=1}^{N} \Vert \measurement_{a,i} - \prediction(\inverse{\transform{\worldCoordSystem}{a}},\worldPoint_{i}) \Vert^{2}$
             \end{center}
 			\item Algoritmos lineales: DLT, PnP
 		\end{itemize}
@@ -1097,7 +1097,7 @@
 			\begin{itemize}
 				\item Error de reproyección:
 				\begin{center}
-				$f(\transform{a}{b})= \sum_{i=1}^{N} \Vert \pointCoord{a}_{i} - \transform{a}{b} \pointCoord{b}_{i} \Vert^{2}$
+    				$f(\transform{a}{b})= \sum_{i=1}^{N} \Vert \pointCoord{a}_{i} - \transform{a}{b} \pointCoord{b}_{i} \Vert^{2}$
                 \end{center}
 				\item Algoritmos lineales: Atun, Horn
 			\end{itemize}
