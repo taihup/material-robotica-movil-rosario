@@ -1055,14 +1055,15 @@
 	\scriptsize
 	\note{imagenes extraidas de https://vision.in.tum.de/_media/teaching/ss2020/visnav_ss2020/visnav_lecture3.pdf}
 	
-	2D-2D
+    \underline{\textbf{2D-2D}}
+    
     \begin{columns}
 	\begin{column}{0.7\textwidth}
 		\begin{itemize}
 		\item Error de reproyección:
-		\[
-		f(\transform{a}{b}, \mapPointsSet)= \sum_{i=1}^{N} \Vert \measurement_{a,i} - \prediction^{\mathrm{s}}(\transform{a}{\worldCoordSystem},\worldPoint_{i}) \Vert^{2} + \Vert \measurement_{b,i} - \prediction^{\mathrm{s}}(\inverse{\transform{a}{b}}\transform{a}{\worldCoordSystem},\worldPoint_{i}) \Vert^{2}
-		\]
+	    \begin{center}
+		$f(\transform{a}{b}, \mapPointsSet)= \sum_{i=1}^{N} \Vert \measurement_{a,i} - \prediction^{\mathrm{s}}(\transform{a}{\worldCoordSystem},\worldPoint_{i}) \Vert^{2} + \Vert \measurement_{b,i} - \prediction^{\mathrm{s}}(\inverse{\transform{a}{b}}\transform{a}{\worldCoordSystem},\worldPoint_{i}) \Vert^{2}$
+        \end{center}
 		\item Algoritmos lineales: 8-point, 5-point
 		\end{itemize}
 	\end{column}
@@ -1073,14 +1074,14 @@
 	\end{column}
 	\end{columns}
 
-	3D-2D
+	\underline{\textbf{3D-2D}}
     \begin{columns}
 	\begin{column}{0.7\textwidth}
 		\begin{itemize}
 			\item Error de reproyección:
-			\[
-			f(\transform{\worldCoordSystem}{a}, \mapPointsSet)= \sum_{i=1}^{N} \Vert \measurement_{a,i} - \prediction(\inverse{\transform{\worldCoordSystem}{a}},\worldPoint_{i}) \Vert^{2}
-			\]
+			\begin{center}
+			$f(\transform{\worldCoordSystem}{a})= \sum_{i=1}^{N} \Vert \measurement_{a,i} - \prediction(\inverse{\transform{\worldCoordSystem}{a}},\worldPoint_{i}) \Vert^{2}$
+            \end{center}
 			\item Algoritmos lineales: DLT, PnP
 		\end{itemize}
 	\end{column}
@@ -1090,14 +1091,14 @@
 		\end{figure}
 	\end{column}
 	\end{columns}
-	3D-3D
+	\underline{\textbf{3D-3D}}
 	\begin{columns}
 		\begin{column}{0.7\textwidth}
 			\begin{itemize}
 				\item Error de reproyección:
-				\[
-				f(\transform{a}{b})= \sum_{i=1}^{N} \Vert \pointCoord{a}_{i} - \transform{a}{b} \pointCoord{b}_{i} \Vert^{2}
-				\]
+				\begin{center}
+				$f(\transform{a}{b})= \sum_{i=1}^{N} \Vert \pointCoord{a}_{i} - \transform{a}{b} \pointCoord{b}_{i} \Vert^{2}$
+                \end{center}
 				\item Algoritmos lineales: Atun, Horn
 			\end{itemize}
 		\end{column}
@@ -1115,7 +1116,7 @@
 	\footnotesize
 	
 	\begin{itemize}
-		\item dados los matches 2D-2D $\{(\measurement_{a}, \measurement_{b})_{i}\}$ de puntos 3D desconocidos $\mapPointsSet_{i}$ encontrar el movimiento relativo $\transform{a}{b}$ entre los frames.
+		\item Dados matches 2D-2D $\{(\measurement_{a}, \measurement_{b})_{i}\}$ de puntos 3D desconocidos $\mapPointsSet_{i}$ encontrar el movimiento relativo $\transform{a}{b}$ entre los frames.
 		\item Error de reproyección (Bundle Adjustment):
 		\[
 		f(\transform{a}{b}, \mapPointsSet)= \sum_{i=1}^{N} \Vert \measurement_{a,i} - \prediction^{\mathrm{s}}(\transform{a}{\worldCoordSystem},\worldPoint_{i}) \Vert^{2} + \Vert \measurement_{b,i} - \prediction^{\mathrm{s}}(\inverse{\transform{a}{b}}\transform{a}{\worldCoordSystem},\worldPoint_{i}) \Vert^{2}
@@ -1138,7 +1139,7 @@
 		\item Dado un conjunto de correspondencias 3D-2D $\{(\worldPoint, \measurement_{a})_{i}\}$ queremos encontrar la pose $\transform{w}{a}$ de la cámara en el mundo.
 		\item Error de reproyección:
 		\[
-		f(\transform{\worldCoordSystem}{a}, \mapPointsSet)= \sum_{i=1}^{N} \Vert \measurement_{a,i} - \prediction(\inverse{\transform{\worldCoordSystem}{a}},\worldPoint_{i}) \Vert^{2}
+		f(\transform{\worldCoordSystem}{a})= \sum_{i=1}^{N} \Vert \measurement_{a,i} - \prediction(\inverse{\transform{\worldCoordSystem}{a}},\worldPoint_{i}) \Vert^{2}
 		\]
 		Se puede optimizar con métodos no lineales pero requieren de una buena semilla inicial. Es no convexo, solución no única (ambigüedad de escala)
 		\item Este problema es conocido como \emph{Perspective-n-Points} (PnP) y existen diferentes enfoques para resolverlo:
@@ -1256,13 +1257,12 @@
 \end{frame}
 
 
-\begin{frame}
+\begin{frame}<presentation:0>[noframenumbering]
     \frametitle{Direct Linear Transformation (DLT) algorithm}
     \footnotesize
     \TODO{Book Multiview Geometry: 4.1 The Direct Linear Transformation (DLT) algorithm}
     
 \end{frame}
-
 
 
 \begin{frame}
