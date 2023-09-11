@@ -518,11 +518,11 @@
             1
         \end{bmatrix}
     \end{align*}
-    Usando notación matricial;
+    Usando notación matricial, nos queda
     \begin{equation*}
-        \underset{3 \times 4}{\projectionMatrix}=\underset{3 \times 3}{\intrinsicMatrix}\underset{3 \times 4}{\begin{bmatrix} \underset{3 \times 3}{\vec{I}} & \underset{3 \times 1}{\vec{0}}\end{bmatrix}}
+        \underset{3 \times 4}{\projectionMatrix}=\underset{3 \times 3}{\intrinsicMatrix}\underset{3 \times 4}{\begin{bmatrix} \underset{3 \times 3}{\vec{I}} & \underset{3 \times 1}{\vec{0}}\end{bmatrix}},
     \end{equation*}
-    donde $\intrinsicMatrix$ es la matriz de calibración de la cámara y está definida como,
+    donde $\intrinsicMatrix$ es la \textbf{matriz de calibración} o \textbf{matriz intrínseca}  de la cámara y está definida como,
     
     \begin{equation*}
         \intrinsicMatrix=
@@ -539,7 +539,7 @@
     \footnotesize
     
     \begin{figure}[!h]
-        \includegraphics[width=0.4\columnwidth]{images/camera/camera_world_coordinate.pdf}
+        \includegraphics[width=0.6\columnwidth]{images/camera/camera_world_coordinate.pdf}
     \end{figure}
     
     En el caso general, la cámara no está ubicada en el centro del sistema de coordenadas del mundo. Tenemos que agregar esta transformación (rotación y traslación) entre el mundo y los sistemas de coordenadas de la cámara a la transformación.
@@ -577,7 +577,7 @@
     \end{bmatrix}
     \end{equation*}
 
-    Reescribiendo $\translation = -\rotationCoord{\cameraCoordSystem}{\worldCoordSystem} \worldCameraCenter$
+    Reescribiendo $\toCoord{\translation}{\cameraCoordSystem} = -\rotationCoord{\cameraCoordSystem}{\worldCoordSystem} \worldCameraCenter$
     
     \begin{equation*}
     \homoCameraPoint = 
@@ -586,7 +586,7 @@
             1
     \end{bmatrix}}{\cameraCoordSystem} = 
     \begin{bmatrix}
-        \rotationCoord{\cameraCoordSystem}{\worldCoordSystem} & \translation \\
+        \rotationCoord{\cameraCoordSystem}{\worldCoordSystem} & \toCoord{\translation}{\cameraCoordSystem} \\
         \vec{0} & 1
     \end{bmatrix}
     \begin{bmatrix}
@@ -595,14 +595,14 @@
     \end{bmatrix}
     \end{equation*}
     Luego si, $\imagePoint=\intrinsicMatrix\begin{bmatrix} \vec{I} & \vec{0}\end{bmatrix} \cameraPoint$ y $\homoCameraPoint =     \begin{bmatrix}
-        \rotationCoord{\cameraCoordSystem}{\worldCoordSystem} & \translation \\
+        \rotationCoord{\cameraCoordSystem}{\worldCoordSystem} & \toCoord{\translation}{\cameraCoordSystem} \\
         \vec{0} & 1
     \end{bmatrix}
     \homoWorldPoint$, entonces
     
    	\begin{equation*}
         \imagePoint=\intrinsicMatrix\begin{bmatrix} \vec{I} & \vec{0}\end{bmatrix} \begin{bmatrix}
-            \rotationCoord{\cameraCoordSystem}{\worldCoordSystem} & \translation \\
+            \rotationCoord{\cameraCoordSystem}{\worldCoordSystem} & \toCoord{\translation}{\cameraCoordSystem} \\
             \vec{0} & 1
         \end{bmatrix}
         \homoWorldPoint
@@ -611,7 +611,7 @@
     La matriz de proyección para el caso en que la cámara pueda ubicarse fuera del origen del mundo entonces queda:
     
    	\begin{equation*}
-       \projectionMatrix=\intrinsicMatrix\begin{bmatrix}\rotation & \translation\end{bmatrix}
+       \projectionMatrix=\intrinsicMatrix\begin{bmatrix}\rotationCoord{\cameraCoordSystem}{\worldCoordSystem} & \toCoord{\translation}{\cameraCoordSystem}\end{bmatrix}
     \end{equation*}
 \end{frame}
 
