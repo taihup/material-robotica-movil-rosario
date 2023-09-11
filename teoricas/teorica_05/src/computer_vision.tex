@@ -21,131 +21,131 @@
 
 
 \begin{frame}
-	\frametitle{Detección de Keypoints}
-	
-	\note{Slides fuertemente basadas de https://youtu.be/ebMyBbkkHWk}
-	
-	\note{https://3d.bk.tudelft.nl/courses/geo1016/slides/Lecture_03_Calibration.pdf}
-	
-	\footnotesize
-	Propiedades deseables para SLAM / SfM:
-	\begin{itemize}
-		\item Alta repetitibilidad
-		\item Invarianza (luminosidad, puntos de vista, etc)
-		\item Computacionalmente eficientes
-		\item Algunos detectores: HARRIS, SIFT, SURF, Shi-Tomasi, FAST, ORB, BRISK
-	\end{itemize}
+    \frametitle{Detección de Keypoints}
+    
+    \note{Slides fuertemente basadas de https://youtu.be/ebMyBbkkHWk}
+    
+    \note{https://3d.bk.tudelft.nl/courses/geo1016/slides/Lecture_03_Calibration.pdf}
+    
+    \footnotesize
+    Propiedades deseables para SLAM / SfM:
+    \begin{itemize}
+        \item Alta repetitibilidad
+        \item Invarianza (luminosidad, puntos de vista, etc)
+        \item Computacionalmente eficientes
+        \item Algunos detectores: HARRIS, SIFT, SURF, Shi-Tomasi, FAST, ORB, BRISK
+    \end{itemize}
 
-	
-	\begin{figure}
-		\includegraphics[width=0.5\textwidth]{./images/keypoints_fast}
-		\caption{Keypoints FAST}
-	\end{figure}
+    
+    \begin{figure}
+        \includegraphics[width=0.5\textwidth]{./images/keypoints_fast}
+        \caption{Keypoints FAST}
+    \end{figure}
 
 \end{frame}
 
 
 \begin{frame}
-	\frametitle{Matcheo de Keypoints}
-	\footnotesize
-	Propiedades deseables del matcheo de keypoints para SLAM / SfM:
-	\begin{itemize}
-		\item Alto recall
-		\item Precisión
-		\item Robustez
-		\item Computacionalmente eficientes
-		\item Posibles enfoques: patches o descriptores
-	\end{itemize}
-	
-	\begin{figure}
-		\includegraphics[width=0.4\textwidth]{./images/matching_notredam.jpg}
-		\caption{Keypoints Harris + Descriptor SIFT}
-	\end{figure}
-	\note{Imagen extraida de https://www.cc.gatech.edu/classes/AY2016/cs4476_fall/results/proj2/html/cpolack6/index.html}
+    \frametitle{Matcheo de Keypoints}
+    \footnotesize
+    Propiedades deseables del matcheo de keypoints para SLAM / SfM:
+    \begin{itemize}
+        \item Alto recall
+        \item Precisión
+        \item Robustez
+        \item Computacionalmente eficientes
+        \item Posibles enfoques: patches o descriptores
+    \end{itemize}
+    
+    \begin{figure}
+        \includegraphics[width=0.4\textwidth]{./images/matching_notredam.jpg}
+        \caption{Keypoints Harris + Descriptor SIFT}
+    \end{figure}
+    \note{Imagen extraida de https://www.cc.gatech.edu/classes/AY2016/cs4476_fall/results/proj2/html/cpolack6/index.html}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Precision - Recall}
-	\footnotesize
-	
-	\note{https://upload.wikimedia.org/wikipedia/commons/2/26/Precisionrecall.svg}
-	
-	\begin{figure}
-		\includegraphics[width=0.9\textwidth]{./images/precision_recall.pdf}
-	\end{figure}
+    \frametitle{Precision - Recall}
+    \footnotesize
+    
+    \note{https://upload.wikimedia.org/wikipedia/commons/2/26/Precisionrecall.svg}
+    
+    \begin{figure}
+        \includegraphics[width=0.9\textwidth]{./images/precision_recall.pdf}
+    \end{figure}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Descriptores de Features Locales}
-	\footnotesize
-	
-	Propiedades deseables para SLAM / SfM: distinguibles, robustos, invariantes
-	\begin{itemize}
-		\item Extraer firmas sobre regiones de la imagen, ejemplos:
-		\begin{itemize}
-			\item Histogramas sobre gradientes de la imagen (SIFT)
-			\item Histogramas sobre respuestas Haar-wavelet (SURF)
-			\item Patrones binarios (BRIEF, BRISK, FREAK, ORB)
-			\item Descriptores basados en aprendizaje
-		\end{itemize}
-		\item Invariante rotación: Alineado con la orientación dominante de la región local
-		\item Invariante a escala: Adaptar la región descripta a la escala de keypoint
-	\end{itemize}
+    \frametitle{Descriptores de Features Locales}
+    \footnotesize
+    
+    Propiedades deseables para SLAM / SfM: distinguibles, robustos, invariantes
+    \begin{itemize}
+        \item Extraer firmas sobre regiones de la imagen, ejemplos:
+        \begin{itemize}
+            \item Histogramas sobre gradientes de la imagen (SIFT)
+            \item Histogramas sobre respuestas Haar-wavelet (SURF)
+            \item Patrones binarios (BRIEF, BRISK, FREAK, ORB)
+            \item Descriptores basados en aprendizaje
+        \end{itemize}
+        \item Invariante rotación: Alineado con la orientación dominante de la región local
+        \item Invariante a escala: Adaptar la región descripta a la escala de keypoint
+    \end{itemize}
 
     \begin{figure}[!h]
-		\subfloat[]
-		{
-			\includegraphics[width=0.6\columnwidth]{images/sift_gradient_pooling.pdf}
-		}
-		\hspace{1cm}
-		\subfloat[]
-		{
-			\includegraphics[width=0.3\columnwidth]{images/brief}
-		}
-	\end{figure}
-	
+        \subfloat[]
+        {
+            \includegraphics[width=0.6\columnwidth]{images/sift_gradient_pooling.pdf}
+        }
+        \hspace{1cm}
+        \subfloat[]
+        {
+            \includegraphics[width=0.3\columnwidth]{images/brief}
+        }
+    \end{figure}
+    
 \end{frame}
 
 \begin{frame}
-	\frametitle{Invarianza de Features Locales}
-	\footnotesize
-	
-	\begin{itemize}
-		\item Invarianza geométrica: traslación, rotación, escala.
-		\item Invarianza fotométrica: brillo, exposición, etc.
-	\end{itemize}
-	 
+    \frametitle{Invarianza de Features Locales}
+    \footnotesize
+    
+    \begin{itemize}
+        \item Invarianza geométrica: traslación, rotación, escala.
+        \item Invarianza fotométrica: brillo, exposición, etc.
+    \end{itemize}
+     
 
 \end{frame}
 
 \begin{frame}
-	\frametitle{Ventajas de features locales}
-	\footnotesize
+    \frametitle{Ventajas de features locales}
+    \footnotesize
 
-	\begin{itemize}
-	\item \textbf{Locales}: los features al ser locales son robustos a oclusiones
-	\item \textbf{Distintivos}: pueden diferenciar un gran conjunto de objetos
-	\item \textbf{Cuantiosos}: puede haber cientos o miles en una misma imagen
-	\item \textbf{Eficientes}: al discretizar la imagen, se puede obtener tiempo real.
+    \begin{itemize}
+    \item \textbf{Locales}: los features al ser locales son robustos a oclusiones
+    \item \textbf{Distintivos}: pueden diferenciar un gran conjunto de objetos
+    \item \textbf{Cuantiosos}: puede haber cientos o miles en una misma imagen
+    \item \textbf{Eficientes}: al discretizar la imagen, se puede obtener tiempo real.
 \end{itemize}
-	
+    
 \end{frame}
 
 \begin{frame}<presentation:0>[noframenumbering]
-	\frametitle{Harris}
-	\footnotesize
-	
-	\TODO{Agregar slides de SIFT, HARRIS, FAST y ORB \url{https://youtu.be/ebMyBbkkHWk}}
-	
+    \frametitle{Harris}
+    \footnotesize
+    
+    \TODO{Agregar slides de SIFT, HARRIS, FAST y ORB \url{https://youtu.be/ebMyBbkkHWk}}
+    
 \end{frame}
 
 \begin{frame}
-	\frametitle{Características Visuales: Detector FAST}
-	
-	\begin{center}
-		\includegraphics[width=0.7\textwidth]{./images/camera/fast}
-	\end{center}
-	
+    \frametitle{Características Visuales: Detector FAST}
+    
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{./images/camera/fast}
+    \end{center}
+    
     \begin{itemize}
         \item El valor de intensidad del pixel $p$ es comparado con cada uno de los 16 pixeles del círculo de Bresenham alrededor de $p$.
         \item $p$ es detectado como corner si hay $12$ píxeles continuos en el circulo de Bresenham más brillosos u oscuros que $p$ dado un cierto umbral.
@@ -154,161 +154,161 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Características Visuales: Descriptor BRIEF}
-	\begin{minipage}[t]{0.35\columnwidth}
-		\begin{figure}
-			\includegraphics[width=\columnwidth]{./images/brief}
-		\end{figure}
-	\end{minipage}\hfill{}
-	\begin{minipage}[t]{0.6\columnwidth}
-		\centering
-		256 Comparaciones entre píxeles (1 a 1)
-		\begin{equation*}
-			\tau(p;x,y) =
-			\begin{cases}
-				1 & \text{if $p(x) < p(y)$}\\
-				0 & \text{otherwise}\\
-			\end{cases}     
-		\end{equation*}
-		$s = \overbrace{01010010101110010...}^{256\ \text{bits}}$
-	\end{minipage}
-	\begin{block}{Matching distance}
-		$\text{Hamming distance} = sum (XOR(s_{1}, s_{2}))$
-	\end{block}
-	\note{utilizamos la distancia de hamming para la distancia de matcheo entre descriptores.}
+    \frametitle{Características Visuales: Descriptor BRIEF}
+    \begin{minipage}[t]{0.35\columnwidth}
+        \begin{figure}
+            \includegraphics[width=\columnwidth]{./images/brief}
+        \end{figure}
+    \end{minipage}\hfill{}
+    \begin{minipage}[t]{0.6\columnwidth}
+        \centering
+        256 Comparaciones entre píxeles (1 a 1)
+        \begin{equation*}
+            \tau(p;x,y) =
+            \begin{cases}
+                1 & \text{if $p(x) < p(y)$}\\
+                0 & \text{otherwise}\\
+            \end{cases}     
+        \end{equation*}
+        $s = \overbrace{01010010101110010...}^{256\ \text{bits}}$
+    \end{minipage}
+    \begin{block}{Matching distance}
+        $\text{Hamming distance} = sum (XOR(s_{1}, s_{2}))$
+    \end{block}
+    \note{utilizamos la distancia de hamming para la distancia de matcheo entre descriptores.}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Extracción de features a diferentes escalas}
-	
-	\begin{figure}
-		\includegraphics[width=0.5\textwidth]{./images/image_pyramid.pdf}
-	\end{figure}
+    \frametitle{Extracción de features a diferentes escalas}
+    
+    \begin{figure}
+        \includegraphics[width=0.5\textwidth]{./images/image_pyramid.pdf}
+    \end{figure}
 
 \end{frame}
 
 \begin{frame}
-	\frametitle{RANSAC: Random Sample Consensus}
-	\footnotesize
-	
-	\begin{itemize}
-		\item Permite encontrar un modelo que ajusta datos en presencia de ruido y outliers
-		\item Separa el conjunto de datos entre inliers y outliers
-%		\item Encuentra la mejor partición de puntos en un conjunto de inliers y outliers. Estima un modelo utilizando el conjunto de inliers.
-		\item Ejemplo: dado un conjunto de puntos 2D, ajustar una línea 
-	\end{itemize}
-	
-	\begin{figure}
-		\includegraphics[width=0.5\textwidth]{./images/ransac1.pdf}
-	\end{figure}
-	
+    \frametitle{RANSAC: Random Sample Consensus}
+    \footnotesize
+    
+    \begin{itemize}
+        \item Permite encontrar un modelo que ajusta datos en presencia de ruido y outliers
+        \item Separa el conjunto de datos entre inliers y outliers
+%        \item Encuentra la mejor partición de puntos en un conjunto de inliers y outliers. Estima un modelo utilizando el conjunto de inliers.
+        \item Ejemplo: dado un conjunto de puntos 2D, ajustar una línea 
+    \end{itemize}
+    
+    \begin{figure}
+        \includegraphics[width=0.5\textwidth]{./images/ransac1.pdf}
+    \end{figure}
+    
 \end{frame}
 
 
 \begin{frame}
-	\frametitle{RANSAC: Random Sample Consensus}
-	\footnotesize
-	
-	\only<1>{
-		Podemos Ajustar una recta utilizando mínimos cuadrados, asumiendo ruido constante para todos los puntos
-		\begin{figure}
-			\includegraphics[width=0.5\textwidth]{./images/ransac2.pdf}
-		\end{figure}
-	}
-	\only<2>{
-   		Podemos Ajustar una recta utilizando mínimos cuadrados, asumiendo ruido constante para todos los puntos
-		\begin{figure}
-			\includegraphics[width=0.5\textwidth]{./images/ransac2.pdf}
-		\end{figure}
-   		Solo necesitamos 2 puntos para ajustar una recta!
+    \frametitle{RANSAC: Random Sample Consensus}
+    \footnotesize
+    
+    \only<1>{
+        Podemos Ajustar una recta utilizando mínimos cuadrados, asumiendo ruido constante para todos los puntos
+        \begin{figure}
+            \includegraphics[width=0.5\textwidth]{./images/ransac2.pdf}
+        \end{figure}
+    }
+    \only<2>{
+           Podemos Ajustar una recta utilizando mínimos cuadrados, asumiendo ruido constante para todos los puntos
+        \begin{figure}
+            \includegraphics[width=0.5\textwidth]{./images/ransac2.pdf}
+        \end{figure}
+           Solo necesitamos 2 puntos para ajustar una recta!
         Probemos con 2 puntos aleatorios...
-	}
-	\only<3>{
+    }
+    \only<3>{
         Probando con 2 puntos aleatorios
-		\begin{figure}
-			\includegraphics[width=0.5\textwidth]{./images/ransac3.pdf}
-		\end{figure}
-	}
-	\only<4>{
-		Probando con otros 2 puntos aleatorios
-		\begin{figure}
-			\includegraphics[width=0.5\textwidth]{./images/ransac4.pdf}
-		\end{figure}
-	}
-	\only<5>{
-		Probando con otros 2 puntos aleatorios
-		\begin{figure}
-			\includegraphics[width=0.5\textwidth]{./images/ransac5.pdf}
-		\end{figure}
-	}
-	\only<6>{
-		Utilicemos los inliers obtenidos con el mejor intento hasta ahora para realizar un ajuste con mínimos cuadrados
-		\begin{figure}
-			\includegraphics[width=0.5\textwidth]{./images/ransac6.pdf}
-		\end{figure}
-	}
+        \begin{figure}
+            \includegraphics[width=0.5\textwidth]{./images/ransac3.pdf}
+        \end{figure}
+    }
+    \only<4>{
+        Probando con otros 2 puntos aleatorios
+        \begin{figure}
+            \includegraphics[width=0.5\textwidth]{./images/ransac4.pdf}
+        \end{figure}
+    }
+    \only<5>{
+        Probando con otros 2 puntos aleatorios
+        \begin{figure}
+            \includegraphics[width=0.5\textwidth]{./images/ransac5.pdf}
+        \end{figure}
+    }
+    \only<6>{
+        Utilicemos los inliers obtenidos con el mejor intento hasta ahora para realizar un ajuste con mínimos cuadrados
+        \begin{figure}
+            \includegraphics[width=0.5\textwidth]{./images/ransac6.pdf}
+        \end{figure}
+    }
 \end{frame}
 
 
 \begin{frame}
-	\frametitle{RANSAC: Random Sample Consensus}
-	\footnotesize
+    \frametitle{RANSAC: Random Sample Consensus}
+    \footnotesize
 
-	\begin{enumerate}
-		\item {\bf Samplear} de manera aleatoria el número de puntos requerido para ajustar el modelo.
-		\item {\bf Computar} el modelo usando los datos sampleados
-		\item {\bf Contar} el número de inliers y quedarse con el modelo que mejor ajusta los datos
-		\item Iterar pasos 1-3 hasta que el mejor modelo es hallado
-	\end{enumerate}
+    \begin{enumerate}
+        \item {\bf Samplear} de manera aleatoria el número de puntos requerido para ajustar el modelo.
+        \item {\bf Computar} el modelo usando los datos sampleados
+        \item {\bf Contar} el número de inliers y quedarse con el modelo que mejor ajusta los datos
+        \item Iterar pasos 1-3 hasta que el mejor modelo es hallado
+    \end{enumerate}
 
 \end{frame}
 
 \begin{frame}
-	\frametitle{RANSAC: Random Sample Consensus}
-	\footnotesize
-	
-	Pero...¿cuantas iteraciones realizar?
-	
-	\begin{itemize}
-		\item Número de puntos sampleados $s$ (número de puntos mínimos requeridos para ajustar el modelo)
-		\item Ratio de outliers $e = \dfrac{\# outliers}{\# puntos totales}$
-		\item Número de intentos $T$.
-		Elegimos $T$, con probabilidad $p$ de éxito (la probabilidad de al menos obtener un muestreo aleatorio libre de outliers en las $T$ iteraciones).
-	\end{itemize}
-	
-	Probabilidad de fallar en una iteración, es decir de no seleccionar todos inliers.
-	\begin{equation*}
-		1-p = 1 - (1 - e)^{s}
-	\end{equation*} 
-	\note{(1-e)^s es la probabilidad de seleccionar todos inliers}
-	
-	
-	Probabilidad de fallar en $T$ iteraciones, es decir seleccionar un outlier en todas las iteraciones.
-	
-	\begin{equation*}
-		1-p = (1 - (1 - e)^{s})^{T}
-	\end{equation*} 
-	despejando $T$,
-	\begin{equation*}
-		T = \dfrac{\log(1-p)}{\log(1-(1-e)^{s})}
-	\end{equation*} 
-	
+    \frametitle{RANSAC: Random Sample Consensus}
+    \footnotesize
+    
+    Pero...¿cuantas iteraciones realizar?
+    
+    \begin{itemize}
+        \item Número de puntos sampleados $s$ (número de puntos mínimos requeridos para ajustar el modelo)
+        \item Ratio de outliers $e = \dfrac{\# outliers}{\# puntos totales}$
+        \item Número de intentos $T$.
+        Elegimos $T$, con probabilidad $p$ de éxito (la probabilidad de al menos obtener un muestreo aleatorio libre de outliers en las $T$ iteraciones).
+    \end{itemize}
+    
+    Probabilidad de fallar en una iteración, es decir de no seleccionar todos inliers.
+    \begin{equation*}
+        1-p = 1 - (1 - e)^{s}
+    \end{equation*} 
+    \note{(1-e)^s es la probabilidad de seleccionar todos inliers}
+    
+    
+    Probabilidad de fallar en $T$ iteraciones, es decir seleccionar un outlier en todas las iteraciones.
+    
+    \begin{equation*}
+        1-p = (1 - (1 - e)^{s})^{T}
+    \end{equation*} 
+    despejando $T$,
+    \begin{equation*}
+        T = \dfrac{\log(1-p)}{\log(1-(1-e)^{s})}
+    \end{equation*} 
+    
 \end{frame}
 
 \begin{frame}
-	\frametitle{RANSAC: ventajas y desventajas}
-	\footnotesize
-	Ventajas:
-	\begin{itemize}
-		\item Robusto en presencia de outliers
-		\item funciona bien para modelos de 1 a 10 parámetros (dependiendo del número de outliers)
-		\item Fácil de implementar y entender
-	\end{itemize}
-	Desventajas:
-	\begin{itemize}
-		\item El tiempo computacional crece rápido con el porcentaje de outliers y el número de parámetros necesarios para ajustar el modelo
-		\item No es bueno para obtener múltiples modelos (e.g. ajustar más de una línea en 2D)
-	\end{itemize}
+    \frametitle{RANSAC: ventajas y desventajas}
+    \footnotesize
+    Ventajas:
+    \begin{itemize}
+        \item Robusto en presencia de outliers
+        \item funciona bien para modelos de 1 a 10 parámetros (dependiendo del número de outliers)
+        \item Fácil de implementar y entender
+    \end{itemize}
+    Desventajas:
+    \begin{itemize}
+        \item El tiempo computacional crece rápido con el porcentaje de outliers y el número de parámetros necesarios para ajustar el modelo
+        \item No es bueno para obtener múltiples modelos (e.g. ajustar más de una línea en 2D)
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -600,7 +600,7 @@
     \end{bmatrix}
     \homoWorldPoint$, entonces
     
-   	\begin{equation*}
+       \begin{equation*}
         \imagePoint=\intrinsicMatrix\begin{bmatrix} \vec{I} & \vec{0}\end{bmatrix} \begin{bmatrix}
             \rotationCoord{\cameraCoordSystem}{\worldCoordSystem} & \toCoord{\translation}{\cameraCoordSystem} \\
             \vec{0} & 1
@@ -610,7 +610,7 @@
     
     La matriz de proyección para el caso en que la cámara pueda ubicarse fuera del origen del mundo entonces queda:
     
-   	\begin{equation*}
+       \begin{equation*}
        \projectionMatrix=\intrinsicMatrix\begin{bmatrix}\rotationCoord{\cameraCoordSystem}{\worldCoordSystem} & \toCoord{\translation}{\cameraCoordSystem}\end{bmatrix}
     \end{equation*}
 \end{frame}
@@ -678,111 +678,111 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Cámara - Modelo Pin-Hole}
-	
-	Denotamos con $\homo{\point}=\begin{bmatrix}x & y & z & 1\end{bmatrix}^{\top}$ la representación homogénea de un punto $\point=\begin{bmatrix}x & y & z\end{bmatrix}^{\top}$. Ahora, definimos el modelo de cámara:
-	\begin{equation*}
-		\imagePoint=f\proj(\cameraPoint)+\principalPoint
-	\end{equation*}
-	
-	donde $f$ es la distancia focal, $\principalPoint$ es el punto principal, $\cameraPoint$ es el punto en el sistema de coordenadas de la cámara y la función $\proj:\mathbb{R}^{n}\rightarrow\mathbb{R}^{n- 1}$ se puede usar para transformar puntos de coordenadas homogéneas a no homogéneas, y también se puede usar para proyectar puntos del espacio 3D al plano de imagen 2D.	
+    \frametitle{Cámara - Modelo Pin-Hole}
+    
+    Denotamos con $\homo{\point}=\begin{bmatrix}x & y & z & 1\end{bmatrix}^{\top}$ la representación homogénea de un punto $\point=\begin{bmatrix}x & y & z\end{bmatrix}^{\top}$. Ahora, definimos el modelo de cámara:
+    \begin{equation*}
+        \imagePoint=f\proj(\cameraPoint)+\principalPoint
+    \end{equation*}
+    
+    donde $f$ es la distancia focal, $\principalPoint$ es el punto principal, $\cameraPoint$ es el punto en el sistema de coordenadas de la cámara y la función $\proj:\mathbb{R}^{n}\rightarrow\mathbb{R}^{n- 1}$ se puede usar para transformar puntos de coordenadas homogéneas a no homogéneas, y también se puede usar para proyectar puntos del espacio 3D al plano de imagen 2D.    
 \end{frame}
 
 \begin{frame}
-	\frametitle{Cámara - Modelo Pin-Hole}
-	
-    \footnotesize	
-	\begin{equation*}
-		\proj(\vec{a})=
-		\frac{1}{a_{n}}\begin{bmatrix}a_{1}\\
-			\vdots\\
-			a_{n-1}
-		\end{bmatrix}.
-	\end{equation*}
-	
-	Por ejemplo, si $\point=\begin{bmatrix}x & y & z\end{bmatrix}^{\top}$, entonces $\proj(\point)=\begin{bmatrix}x/z & y/z\end{bmatrix}$.
-	
-	Se puede ver que $x/z=u/f$. Análogamente podemos decir que $y/z=v/f$. De estas ecuaciones podemos ver que $u=f(x/z)$ y que $v=f(y/z)$, por lo que la ecuación de proyección se cumple.
-	
+    \frametitle{Cámara - Modelo Pin-Hole}
+    
+    \footnotesize    
+    \begin{equation*}
+        \proj(\vec{a})=
+        \frac{1}{a_{n}}\begin{bmatrix}a_{1}\\
+            \vdots\\
+            a_{n-1}
+        \end{bmatrix}.
+    \end{equation*}
+    
+    Por ejemplo, si $\point=\begin{bmatrix}x & y & z\end{bmatrix}^{\top}$, entonces $\proj(\point)=\begin{bmatrix}x/z & y/z\end{bmatrix}$.
+    
+    Se puede ver que $x/z=u/f$. Análogamente podemos decir que $y/z=v/f$. De estas ecuaciones podemos ver que $u=f(x/z)$ y que $v=f(y/z)$, por lo que la ecuación de proyección se cumple.
+    
 \end{frame}
 
 \begin{frame}
-	\frametitle{Cámara - Modelo Pin-Hole}
-	
-	\footnotesize
-	
-	En el caso general, la cámara no está ubicada en el centro del sistema de coordenadas del mundo. Tenemos que agregar esta transformación entre el mundo y los sistemas de coordenadas de la cámara a la ecuación anterior, lo que da como resultado
-	
-	\begin{equation*}
-		\imagePoint=f\proj(\proj(\seMatrix^{\mathrm{c}\mathrm{w}}\homoWorldPoint))+\principalPoint,
-	\end{equation*}
-	
-	donde $\seMatrix^{\mathrm{c}\mathrm{w}}$ es una matriz de transformación que transforma elementos geométricos del marco de coordenadas del mundo $\mathrm{W}$ al marco de coordenadas de la cámara $\mathrm{C}$. Esto es,
-	\begin{equation*}
-		\homoCameraPoint=\seMatrix^{\mathrm{c}\mathrm{w}}\homoWorldPoint.
-	\end{equation*}
-	
+    \frametitle{Cámara - Modelo Pin-Hole}
+    
+    \footnotesize
+    
+    En el caso general, la cámara no está ubicada en el centro del sistema de coordenadas del mundo. Tenemos que agregar esta transformación entre el mundo y los sistemas de coordenadas de la cámara a la ecuación anterior, lo que da como resultado
+    
+    \begin{equation*}
+        \imagePoint=f\proj(\proj(\seMatrix^{\mathrm{c}\mathrm{w}}\homoWorldPoint))+\principalPoint,
+    \end{equation*}
+    
+    donde $\seMatrix^{\mathrm{c}\mathrm{w}}$ es una matriz de transformación que transforma elementos geométricos del marco de coordenadas del mundo $\mathrm{W}$ al marco de coordenadas de la cámara $\mathrm{C}$. Esto es,
+    \begin{equation*}
+        \homoCameraPoint=\seMatrix^{\mathrm{c}\mathrm{w}}\homoWorldPoint.
+    \end{equation*}
+    
 \end{frame}
 
 \begin{frame}
-	\frametitle{Cámara - Modelo Pin-Hole}
-	
-	\footnotesize
-	
-	En particular, $\seMatrix^{\mathrm{c}\mathrm{w}}$ es una transformación que pertenece al Lie Group SE(3), el grupo de movimientos de cuerpo rígido en el espacio 3D. Por lo tanto, $\seMatrix^{\mathrm{c}\mathrm{w}}$ se define como
-	$\seMatrix^{\mathrm{c}\mathrm{w}}=
-	\begin{bmatrix}\rotation & \translation\\
-		\vec{0} & 1
-	\end{bmatrix}$ donde $\rotation$ es una matriz de rotación y $\translation$ es un vector de traslación. Observe que una de las ventajas de trabajar con coordenadas homogéneas es que permite utilizar el álgebra de Grupos de Lie SE(3).
-	
-	Existe una notación de matriz para el modelo de cámara pin-hole que también se usa comúnmente en visión por computadora.
-	\begin{equation*}
-		\projectionMatrix=\intrinsicMatrix\begin{bmatrix}\rotation & \translation\end{bmatrix}
-	\end{equation*}
-	
-	donde $\projectionMatrix$ es la matriz de proyección y $\intrinsicMatrix$ es la matriz de calibración. La matriz de calibración se define como,
-	
-	\begin{equation*}
-		\intrinsicMatrix=
-		\begin{bmatrix}f & 0 & c_{u}\\
-			0 & f & c_{v}\\
-			0 & 0 & 1
-		\end{bmatrix},
-	\end{equation*}
-	
+    \frametitle{Cámara - Modelo Pin-Hole}
+    
+    \footnotesize
+    
+    En particular, $\seMatrix^{\mathrm{c}\mathrm{w}}$ es una transformación que pertenece al Lie Group SE(3), el grupo de movimientos de cuerpo rígido en el espacio 3D. Por lo tanto, $\seMatrix^{\mathrm{c}\mathrm{w}}$ se define como
+    $\seMatrix^{\mathrm{c}\mathrm{w}}=
+    \begin{bmatrix}\rotation & \translation\\
+        \vec{0} & 1
+    \end{bmatrix}$ donde $\rotation$ es una matriz de rotación y $\translation$ es un vector de traslación. Observe que una de las ventajas de trabajar con coordenadas homogéneas es que permite utilizar el álgebra de Grupos de Lie SE(3).
+    
+    Existe una notación de matriz para el modelo de cámara pin-hole que también se usa comúnmente en visión por computadora.
+    \begin{equation*}
+        \projectionMatrix=\intrinsicMatrix\begin{bmatrix}\rotation & \translation\end{bmatrix}
+    \end{equation*}
+    
+    donde $\projectionMatrix$ es la matriz de proyección y $\intrinsicMatrix$ es la matriz de calibración. La matriz de calibración se define como,
+    
+    \begin{equation*}
+        \intrinsicMatrix=
+        \begin{bmatrix}f & 0 & c_{u}\\
+            0 & f & c_{v}\\
+            0 & 0 & 1
+        \end{bmatrix},
+    \end{equation*}
+    
 \end{frame}
 
 \fi
 
 \begin{frame}
-	\frametitle{Distorción Radial}
-	
-	\footnotesize
-	
-	Previamente, consideramos que el modelo de cámara pin-hole es perfectamente lineal, es decir, el punto en el mundo, el punto en la imagen y el centro óptico son colineales.
-	
-	Esta suposición no es cierta en la práctica porque hay una distorsión radial en la imagen producida por la lente de la cámara real.
-	
-	\begin{figure}[!h]
-		\centering
-		\subfloat[Sin distorción]
-		{
-			\includegraphics[width=0.2\columnwidth]{images/camera/no_distortion.pdf}
-		}
-		\subfloat[Barrel distortion]
-		{
-			\includegraphics[width=0.2\columnwidth]{images/camera/barrel_distortion.pdf}
-		}
-		\subfloat[Pincushion distortion]
-		{
-			\includegraphics[width=0.2\columnwidth]{images/camera/pincushion_distortion.pdf}
-		}
-		\subfloat[Mustache distortion]
-		{
-			\includegraphics[width=0.2\columnwidth]{images/camera/mustache_distortion.pdf}
-		}
-	\end{figure}
-	
+    \frametitle{Distorción Radial}
+    
+    \footnotesize
+    
+    Previamente, consideramos que el modelo de cámara pin-hole es perfectamente lineal, es decir, el punto en el mundo, el punto en la imagen y el centro óptico son colineales.
+    
+    Esta suposición no es cierta en la práctica porque hay una distorsión radial en la imagen producida por la lente de la cámara real.
+    
+    \begin{figure}[!h]
+        \centering
+        \subfloat[Sin distorción]
+        {
+            \includegraphics[width=0.2\columnwidth]{images/camera/no_distortion.pdf}
+        }
+        \subfloat[Barrel distortion]
+        {
+            \includegraphics[width=0.2\columnwidth]{images/camera/barrel_distortion.pdf}
+        }
+        \subfloat[Pincushion distortion]
+        {
+            \includegraphics[width=0.2\columnwidth]{images/camera/pincushion_distortion.pdf}
+        }
+        \subfloat[Mustache distortion]
+        {
+            \includegraphics[width=0.2\columnwidth]{images/camera/mustache_distortion.pdf}
+        }
+    \end{figure}
+    
 \end{frame}
 
 \begin{frame}
@@ -805,110 +805,110 @@
 
 
 \begin{frame}
-	\frametitle{Distorción}
-	
-	Para corregir esta distorsión se calcula un modelo de distorsión radial que relaciona los puntos de la imagen de la imagen real con los puntos ideales, los que se habrían obtenido bajo una cámara lineal perfecta. De esta forma, la cámara se puede representar con un modelo pin-hole lineal. En la figura es posible observar la imagen cruda (distorsionada) tomada por la cámara y la imagen después de la desdistorsión.
-	
-	\begin{figure}[!h]
-		\centering
-		\subfloat[Imagen distorcionada]
-		{
-			\includegraphics[width=0.45\columnwidth]{images/camera/distorted_image.png}
-		}
-		\subfloat[Imagen desdistorcionada]
-		{
-			\includegraphics[width=0.45\columnwidth]{images/camera/undistorted_image.png}
-		}
-	\end{figure}
-	
+    \frametitle{Distorción}
+    
+    Para corregir esta distorsión se calcula un modelo de distorsión radial que relaciona los puntos de la imagen de la imagen real con los puntos ideales, los que se habrían obtenido bajo una cámara lineal perfecta. De esta forma, la cámara se puede representar con un modelo pin-hole lineal. En la figura es posible observar la imagen cruda (distorsionada) tomada por la cámara y la imagen después de la desdistorsión.
+    
+    \begin{figure}[!h]
+        \centering
+        \subfloat[Imagen distorcionada]
+        {
+            \includegraphics[width=0.45\columnwidth]{images/camera/distorted_image.png}
+        }
+        \subfloat[Imagen desdistorcionada]
+        {
+            \includegraphics[width=0.45\columnwidth]{images/camera/undistorted_image.png}
+        }
+    \end{figure}
+    
 \end{frame}
 
 
 \begin{frame}
-	\frametitle{Distorción}
-	
-	\footnotesize
-	
-	Dado el punto proyectado real y el punto ideal, el efecto de distorsión radial se puede modelar mediante
-	\begin{equation}
-		\begin{bmatrix}u_{d}\\
-			v_{d}
-		\end{bmatrix}=L(\tilde{r})\begin{bmatrix}\tilde{u}\\
-			\tilde{v}
-		\end{bmatrix}
-	\end{equation}
-	
-	donde, 
-	$\begin{bmatrix}\tilde{u}\\ 
-		\tilde{v}
-	\end{bmatrix}$
-	es la posición ideal de la imagen referida al centro de la imagen (que obedece a la proyección lineal);
-	$\begin{bmatrix}u_{d}\\
-		v_{d}
-	\end{bmatrix} $
-	es la posición real de la imagen después de la distorsión radial; $\tilde{r}$ es la distancia radial $\sqrt{\tilde{u}^{2}+\tilde{v}^{2}}$ desde el centro para la distorsión radial, y $L(\tilde{r})$ es una factor de distorsión, que es una función del radio $\tilde{r}$.
+    \frametitle{Distorción}
+    
+    \footnotesize
+    
+    Dado el punto proyectado real y el punto ideal, el efecto de distorsión radial se puede modelar mediante
+    \begin{equation}
+        \begin{bmatrix}u_{d}\\
+            v_{d}
+        \end{bmatrix}=L(\tilde{r})\begin{bmatrix}\tilde{u}\\
+            \tilde{v}
+        \end{bmatrix}
+    \end{equation}
+    
+    donde, 
+    $\begin{bmatrix}\tilde{u}\\ 
+        \tilde{v}
+    \end{bmatrix}$
+    es la posición ideal de la imagen referida al centro de la imagen (que obedece a la proyección lineal);
+    $\begin{bmatrix}u_{d}\\
+        v_{d}
+    \end{bmatrix} $
+    es la posición real de la imagen después de la distorsión radial; $\tilde{r}$ es la distancia radial $\sqrt{\tilde{u}^{2}+\tilde{v}^{2}}$ desde el centro para la distorsión radial, y $L(\tilde{r})$ es una factor de distorsión, que es una función del radio $\tilde{r}$.
 \end{frame}
 
 \begin{frame}
-	\frametitle{Distorción}
-	\footnotesize
+    \frametitle{Distorción}
+    \footnotesize
     
     \TODO{Agregar modelo de distorción aplicado en: https://boofcv.org/index.php?title=Tutorial\_Camera\_Calibration}
-	
-	Finalmente, la corrección se puede representar en coordenadas de píxeles como
-	\begin{equation*}
-		\begin{aligned}\hat{u} & =u_{c}+L(r)(u-u_{c})\\
-			\hat{v} & =v_{c}+L(r)(v-v_{c})
-		\end{aligned}
-	\end{equation*}
-	
-	donde 
-	$\begin{bmatrix}u\\
-		v
-	\end{bmatrix}$ 
-	son las coordenadas medidas, 
-	$\begin{bmatrix}\tilde{u}\\
-		\tilde{v}
-	\end{bmatrix}$ 
-	son las coordenadas corregidas, y 
-	$\begin{bmatrix}u_{c}\\
-		v_{c}
-	\end{bmatrix}$ 
-	es el centro de distorsión radial, con $r^{2}=(u-u_{c})^{2}+(v-v_{c})^{2}$.
-	
-	El factor de distorsión $L(r)$ esta definido solo por valores positivos de $r$ y $L(0)=1$. En la práctica, $L(r)$ es aproximado por la expansión de Taylor
-	
-	\begin{equation*}
-		L(r)=1+k_{1}r+k_{2}r^{2}+k_{3}r^{3}+\ldots.
-	\end{equation*}
-	
-	Los coeficientes $\left\{ k_{1},k_{1},k_{1},\ldots,u_{c},v_{c}\right\}$ se consideran parte de la calibración interna de la cámara. Con frecuencia, el punto principal se utiliza como centro de la distorsión radial, aunque no es necesario que coincidan exactamente. Los coeficientes de corrección, junto con la matriz de calibración de la cámara, especifican el mapeo desde un punto de la imagen hasta un rayo en el sistema de coordenadas de la cámara y se denominan parámetros intrínsecos.
+    
+    Finalmente, la corrección se puede representar en coordenadas de píxeles como
+    \begin{equation*}
+        \begin{aligned}\hat{u} & =u_{c}+L(r)(u-u_{c})\\
+            \hat{v} & =v_{c}+L(r)(v-v_{c})
+        \end{aligned}
+    \end{equation*}
+    
+    donde 
+    $\begin{bmatrix}u\\
+        v
+    \end{bmatrix}$ 
+    son las coordenadas medidas, 
+    $\begin{bmatrix}\tilde{u}\\
+        \tilde{v}
+    \end{bmatrix}$ 
+    son las coordenadas corregidas, y 
+    $\begin{bmatrix}u_{c}\\
+        v_{c}
+    \end{bmatrix}$ 
+    es el centro de distorsión radial, con $r^{2}=(u-u_{c})^{2}+(v-v_{c})^{2}$.
+    
+    El factor de distorsión $L(r)$ esta definido solo por valores positivos de $r$ y $L(0)=1$. En la práctica, $L(r)$ es aproximado por la expansión de Taylor
+    
+    \begin{equation*}
+        L(r)=1+k_{1}r+k_{2}r^{2}+k_{3}r^{3}+\ldots.
+    \end{equation*}
+    
+    Los coeficientes $\left\{ k_{1},k_{1},k_{1},\ldots,u_{c},v_{c}\right\}$ se consideran parte de la calibración interna de la cámara. Con frecuencia, el punto principal se utiliza como centro de la distorsión radial, aunque no es necesario que coincidan exactamente. Los coeficientes de corrección, junto con la matriz de calibración de la cámara, especifican el mapeo desde un punto de la imagen hasta un rayo en el sistema de coordenadas de la cámara y se denominan parámetros intrínsecos.
 \end{frame}
 
 \begin{frame}
-	\frametitle{Geometría Epipolar}
-	\footnotesize
-	
-	\begin{itemize}
-		\item La restricción epipolar puede ser computada por medio de puntos 2D en la imagen cuando la pose relative de la cámara es conocida ($\transform{r}{l}$, por ejemplo una cámara estéreo)
-		\item El plano epipolar es definido por $\imagePoint_{l}$ y los dos centros óptico de las cámaras $\cameraCenter_{l}$ y $\cameraCenter_{r}$
-		\item La línea epipolar es la intersección del plano epipolar y el plano de la imagen derecha.
-		\item La restricción epipolar codifica que $\imagePoint_{r}$ debe estar ubicado sobre la linea epipolar en la imagen derecha.
-	\end{itemize}
+    \frametitle{Geometría Epipolar}
+    \footnotesize
+    
+    \begin{itemize}
+        \item La restricción epipolar puede ser computada por medio de puntos 2D en la imagen cuando la pose relative de la cámara es conocida ($\transform{r}{l}$, por ejemplo una cámara estéreo)
+        \item El plano epipolar es definido por $\imagePoint_{l}$ y los dos centros óptico de las cámaras $\cameraCenter_{l}$ y $\cameraCenter_{r}$
+        \item La línea epipolar es la intersección del plano epipolar y el plano de la imagen derecha.
+        \item La restricción epipolar codifica que $\imagePoint_{r}$ debe estar ubicado sobre la linea epipolar en la imagen derecha.
+    \end{itemize}
 
-	\begin{equation*}
-		\homoImagePoint_{l}^{\top} \essentialMatrix \homoImagePoint_{r} = 0 \quad \text{(complanarity constraint)}
-	\end{equation*}
-	donde $\essentialMatrix = \transform{l}{r}$, y se denomina \emph{Essential Matrix}
-	
-	La línea epipolar permite que restrinjamos la búsqueda de correspondencias visuales entre dos cámaras.
-	
-	\TODO{renombrar variables en imágenes}
-	
-	\begin{figure}
-		\includegraphics[width=0.3\textwidth]{./images/epipolar_geometry.pdf}
-	\end{figure}
-	
+    \begin{equation*}
+        \homoImagePoint_{l}^{\top} \essentialMatrix \homoImagePoint_{r} = 0 \quad \text{(complanarity constraint)}
+    \end{equation*}
+    donde $\essentialMatrix = \transform{l}{r}$, y se denomina \emph{Essential Matrix}
+    
+    La línea epipolar permite que restrinjamos la búsqueda de correspondencias visuales entre dos cámaras.
+    
+    \TODO{renombrar variables en imágenes}
+    
+    \begin{figure}
+        \includegraphics[width=0.3\textwidth]{./images/epipolar_geometry.pdf}
+    \end{figure}
+    
 \end{frame}
 
 \begin{frame}
@@ -916,84 +916,82 @@
     \footnotesize
     \note{Ver 9.6 The essential matrix del libro Multiple view geometry}
     
-    La {\bf Matríz Esencial} es una especialización de la {\bf Matríz Fundamental}. La Matríz esencial trabaja sobre {\bf coordenadas  normalizadas}  de la imagen, es decir, requiere tener la calibración de las cámaras, mientras que la Matríz Fundamental relaciona correspondencias desconociendo las calibraciones.
+    La {\bf Matríz Esencial} es una especialización de la {\bf Matríz Fundamental}. La Matríz Esencial trabaja sobre {\bf coordenadas  normalizadas}  de la imagen, es decir, requiere tener la calibración de las cámaras, mientras que la Matríz Fundamental relaciona correspondencias desconociendo las calibraciones.
     
-    	\begin{equation*}
-    	\homoImagePoint^{\prime\top} \fundamentalMatrix \homoImagePoint = 0 \quad \text{(complanarity constraint)}
+        \begin{equation*}
+        \homoImagePoint^{\prime\top} \fundamentalMatrix \homoImagePoint = 0 \quad \text{(complanarity constraint)}
     \end{equation*}
     
     \begin{block}{Coordenadas Normalizadas:}
-	    Dado $\homoImagePoint = \projectionMatrix \homoWorldPoint$, con $\projectionMatrix = \intrinsicMatrix [\rotation|\translation]$, si conocemos la matríz de calibración $\intrinsicMatrix$ entonces $\hat{\imagePoint} = \inverse{\intrinsicMatrix} \homoImagePoint$ decimos que $\hat{\imagePoint}$ está en {\bf coordenadas normalizadas}. Se lo puede pensar como una imagen del punto $\homoWorldPoint$ con respecto a una cámara $[\rotation|\translation]$ teniendo la matriz de calibración como la identidad. $ \inverse{\intrinsicMatrix} \projectionMatrix = [\rotation| \translation]$ se denomina {\bf cámara normalizada} donde los parámetros de calibración han sido removidos.
+        Dado $\homoImagePoint = \projectionMatrix \homoWorldPoint$, con $\projectionMatrix = \intrinsicMatrix [\rotation|\translation]$, si conocemos la matríz de calibración $\intrinsicMatrix$ entonces $\hat{\imagePoint} = \inverse{\intrinsicMatrix} \homoImagePoint$ decimos que $\hat{\imagePoint}$ está en {\bf coordenadas normalizadas}. Se lo puede pensar como una imagen del punto $\homoWorldPoint$ con respecto a una cámara $[\rotation|\translation]$ teniendo la matriz de calibración como la identidad. $ \inverse{\intrinsicMatrix} \projectionMatrix = [\rotation| \translation]$ se denomina {\bf cámara normalizada} donde los parámetros de calibración han sido removidos.
     \end{block}
     
     \begin{align*}
-		\homoImagePoint^{\prime\top} \essentialMatrix \homoImagePoint &= 0\\
-		\left( \inverse{\intrinsicMatrix^{\prime}} \homoImagePoint^{\prime} \right)^{\top} \essentialMatrix \left( \inverse{\intrinsicMatrix} \homoImagePoint \right) &= 0\\
-		\homoImagePoint^{\prime\top} \inverse{\intrinsicMatrix^{\prime\top}} \essentialMatrix \inverse{\intrinsicMatrix} \homoImagePoint&= 0
+        \homoImagePoint^{\prime\top} \essentialMatrix \homoImagePoint &= 0\\
+        \left( \inverse{\intrinsicMatrix^{\prime}} \homoImagePoint^{\prime} \right)^{\top} \essentialMatrix \left( \inverse{\intrinsicMatrix} \homoImagePoint \right) &= 0\\
+        \homoImagePoint^{\prime\top} \inverse{\intrinsicMatrix^{\prime\top}} \essentialMatrix \inverse{\intrinsicMatrix} \homoImagePoint&= 0
     \end{align*}
-	La relación entre la matriz fundamental y la matríz esencial está dada por
+    La relación entre la matriz fundamental y la matríz esencial está dada por
     \begin{equation*}
-		\essentialMatrix = \intrinsicMatrix^{\prime\top} \fundamentalMatrix \intrinsicMatrix
-	\end{equation*}
+        \essentialMatrix = \intrinsicMatrix^{\prime\top} \fundamentalMatrix \intrinsicMatrix
+    \end{equation*}
     
 \end{frame}
 
 \begin{frame}
-	\frametitle{Matríz Fundamental vs Matríz Esencial}
-	\footnotesize
-	\note{Ver vídeo de calse de staschnis https://youtu.be/auhpPoAqprk}
-	
-	\begin{itemize}
-		\item Ambas matrizes tienen rango 2
-		\item La matríz esencial tiene 5 DoF
-		\item La matríz fundamental tiene 7 DoF (ya que tience información sobre los parámetros de calibración)
-		\item Las restricciones coplanares más pares de correspondencias nos permiten encontrar dichas matrices por medio de la solución de un sistema líneal utilizando descomposición SVD (\emph{Singular Value Decomposition}).
-		\item La matríz fundamental puede ser hallada con \emph{8-Point Algorithm}
-		\item La matríz esencial puede ser hallada con \emph{5-Point Algorithm}
-		\item Una vez obtenida la matríz esencial podemos obtener la rotación y traslación (con ambig{\"u}edad de escala)
-		\item La matríz esencial o fundamental nos permiten delimitar la búsqueda de correspondencias en las líneas epipolares únicamente, en vez de tener que buscar en toda la imagen.
-	\end{itemize}
-
-	\begin{figure}
-		\includegraphics[width=\textwidth]{./images/stereo_matches.pdf}
-	\end{figure}
-	
-\end{frame}
-
-
-\begin{frame}
-	\frametitle{Triangulación estéreo (con cámara rectificada)}
-	\footnotesize
-	\begin{figure}
-		\includegraphics[width=0.5\textwidth]{./images/stereo_matches.pdf}
-		\caption{Matching estéreo.}    
-	\end{figure}
-	\vspace{-2em}
-	\begin{minipage}[t]{0.65\textwidth}
-		\begin{figure}
-			\includegraphics[width=0.65\textwidth]{./images/stereo_triangulation.pdf}
-		\end{figure}
-	\end{minipage}
-	\begin{minipage}[t]{0.3\textwidth}
-		\centering
-		\begin{align*}
-			\point&=\begin{bmatrix}x & y & z\end{bmatrix}^{\top}\\
-			x &= \frac{(u_{l}-c_{u})z}{f}\\
-			y &= \frac{(v_{l}-c_{v})z}{f}\\
-			z &= \frac{bf}{u_{l}-u_{r}}
-		\end{align*}
-	\end{minipage}
-	\centering
-	
-	Triangulación estéreo.
-\end{frame}
-
-\begin{frame}
-	\frametitle{Triangulación estéreo (con cámara rectificada)}
-	
-	\TODO{corregir variables}
+    \frametitle{Matríz Fundamental vs Matríz Esencial}
+    \footnotesize
+    \note{Ver vídeo de clase de Staschnis https://youtu.be/auhpPoAqprk}
     
-   	\begin{figure}[!htb]
+    \begin{itemize}
+        \item Ambas matrizes tienen rango 2
+        \item La matríz esencial tiene 5 DoF
+        \item La matríz fundamental tiene 7 DoF (ya que tience información sobre los parámetros de calibración)
+        \item Las restricciones coplanares más pares de correspondencias nos permiten encontrar dichas matrices por medio de la solución de un sistema líneal utilizando descomposición SVD (\emph{Singular Value Decomposition}).
+        \item La matríz fundamental puede ser hallada con \emph{8-Point Algorithm}
+        \item La matríz esencial puede ser hallada con \emph{5-Point Algorithm}
+        \item Una vez obtenida la matríz esencial podemos obtener la rotación y traslación (con ambig{\"u}edad de escala)
+        \item La matríz esencial o fundamental nos permiten delimitar la búsqueda de correspondencias en las líneas epipolares únicamente, en vez de tener que buscar en toda la imagen.
+    \end{itemize}
+
+    \begin{figure}
+        \includegraphics[width=\textwidth]{./images/stereo_matches.pdf}
+    \end{figure}
+    
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Triangulación estéreo (con cámara rectificada)}
+    \footnotesize
+    \begin{figure}
+        \includegraphics[width=0.5\textwidth]{./images/stereo_matches.pdf}
+        \caption{Matching estéreo.}    
+    \end{figure}
+    \vspace{-2em}
+    \begin{minipage}[t]{0.65\textwidth}
+        \begin{figure}
+            \includegraphics[width=0.65\textwidth]{./images/stereo_triangulation.pdf}
+        \end{figure}
+    \end{minipage}
+    \begin{minipage}[t]{0.3\textwidth}
+        \centering
+        \begin{align*}
+            \point&=\begin{bmatrix}x & y & z\end{bmatrix}^{\top}\\
+            x &= \frac{(u_{l}-c_{u})z}{f}\\
+            y &= \frac{(v_{l}-c_{v})z}{f}\\
+            z &= \frac{bf}{u_{l}-u_{r}}
+        \end{align*}
+    \end{minipage}
+    \centering
+    
+    Triangulación estéreo.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Triangulación estéreo (con cámara rectificada)}
+    
+       \begin{figure}[!htb]
         \centering
         \subfloat[]
         {
@@ -1004,20 +1002,20 @@
         {
             \includegraphics[width=0.45\columnwidth]{./images/stereo_triangulation3.pdf}
         }
-	\end{figure}
-	
-	\begin{equation*}
-		\frac{b}{z} = \frac{b - (\imagePoint_{l} - \imagePoint_{r})}{z-f} \Rightarrow z = \frac{fb}{(\imagePoint_{l} - \imagePoint_{r})}  = \frac{fb}{d}
-	\end{equation*}
-	
+    \end{figure}
+    
+    \begin{equation*}
+        \frac{b}{z} = \frac{b - (\imagePoint_{l} - \imagePoint_{r})}{z-f} \Rightarrow z = \frac{fb}{(\imagePoint_{l} - \imagePoint_{r})}  = \frac{fb}{d}
+    \end{equation*}
+    
 \end{frame}
 
 \begin{frame}
-	\frametitle{Disparidad}
-	\footnotesize
-	\begin{figure}[!h]
-		\includegraphics[width=0.6\textwidth]{images/disparity.pdf}
-	\end{figure}
+    \frametitle{Disparidad}
+    \footnotesize
+    \begin{figure}[!h]
+        \includegraphics[width=0.6\textwidth]{images/disparity.pdf}
+    \end{figure}
 
     Ejemplo de disparidad: pongamos un dedo enfrente de nuestros ojos a una distancia \SI{20}{\centi\meter} y alternadamente cerremos y abramos cada ojo.
 
@@ -1025,135 +1023,135 @@
 
 
 \begin{frame}
-	\frametitle{KITTI: error de reconstrucción}
-	\begin{figure}[!htb]
-		\centering
-		\subfloat[Left image]{\includegraphics[width=0.35\columnwidth]{./images/kitti06_frame612_rgb.png}%
-			\label{kitti06_frame612_rgb}}
-		\hfil
-		\subfloat[Ground-truth depth]{\includegraphics[width=0.35\columnwidth]{./images/kitti06_frame612_gt_low-10_high50.png}%
-			\label{kitti06_frame612_gt}}
-		\\
-		\subfloat[LIBELAS depth]{\includegraphics[width=0.35\columnwidth]{./images/kitti06_frame612_libelas_depth_high50.png}%
-			\label{kitti06_frame612_libelas_depth}}
-		\hfil
-		\subfloat[LIBELAS depth errors]{\includegraphics[width=0.35\columnwidth]{./images/kitti06_frame612_libelas_error_low-1_high5.png}%
-			\label{kitti06_frame612_libelas_error}}
-		\\
-		\subfloat[Color metric for depth maps. Gray stands for the largest values.]{\includegraphics[width=0.4\columnwidth]{./images/high50_bar.png}%
-			\label{kitti06_bar}}
-		\hfil
-		\subfloat[Color metric for depth errors. Gray stands for the largest values.]{\includegraphics[width=0.4\columnwidth]{./images/kitti06_bar_low-1_high5.png}%
-			\label{kitti06_bar_low-1_high5}}
-		\caption{Comparison of LIBELAS depth maps against the ground truth, for a single frame (KITTI dataset).}
-		\label{fig:kitti06_frame612}
-	\end{figure}
+    \frametitle{KITTI: error de reconstrucción}
+    \begin{figure}[!htb]
+        \centering
+        \subfloat[Left image]{\includegraphics[width=0.35\columnwidth]{./images/kitti06_frame612_rgb.png}%
+            \label{kitti06_frame612_rgb}}
+        \hfil
+        \subfloat[Ground-truth depth]{\includegraphics[width=0.35\columnwidth]{./images/kitti06_frame612_gt_low-10_high50.png}%
+            \label{kitti06_frame612_gt}}
+        \\
+        \subfloat[LIBELAS depth]{\includegraphics[width=0.35\columnwidth]{./images/kitti06_frame612_libelas_depth_high50.png}%
+            \label{kitti06_frame612_libelas_depth}}
+        \hfil
+        \subfloat[LIBELAS depth errors]{\includegraphics[width=0.35\columnwidth]{./images/kitti06_frame612_libelas_error_low-1_high5.png}%
+            \label{kitti06_frame612_libelas_error}}
+        \\
+        \subfloat[Color metric for depth maps. Gray stands for the largest values.]{\includegraphics[width=0.4\columnwidth]{./images/high50_bar.png}%
+            \label{kitti06_bar}}
+        \hfil
+        \subfloat[Color metric for depth errors. Gray stands for the largest values.]{\includegraphics[width=0.4\columnwidth]{./images/kitti06_bar_low-1_high5.png}%
+            \label{kitti06_bar_low-1_high5}}
+        \caption{Comparison of LIBELAS depth maps against the ground truth, for a single frame (KITTI dataset).}
+        \label{fig:kitti06_frame612}
+    \end{figure}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Estimación de movimiento}
-	\scriptsize
-	\note{imagenes extraidas de https://vision.in.tum.de/_media/teaching/ss2020/visnav_ss2020/visnav_lecture3.pdf}
-	
+    \frametitle{Estimación de movimiento}
+    \scriptsize
+    \note{imagenes extraidas de https://vision.in.tum.de/_media/teaching/ss2020/visnav_ss2020/visnav_lecture3.pdf}
+    
     \underline{\textbf{2D-2D}}
     
     \begin{columns}
-	\begin{column}{0.7\textwidth}
-		\begin{itemize}
-		\item Error de reproyección:
-	    \begin{center}
+    \begin{column}{0.7\textwidth}
+        \begin{itemize}
+        \item Error de reproyección:
+        \begin{center}
             $f(\transform{a}{b}, \mapPointsSet)= \sum_{i=1}^{N} \Vert \measurement_{a,i} - \prediction^{\mathrm{s}}(\transform{a}{\worldCoordSystem},\worldPoint_{i}) \Vert^{2} + \Vert \measurement_{b,i} - \prediction^{\mathrm{s}}(\inverse{\transform{a}{b}}\transform{a}{\worldCoordSystem},\worldPoint_{i}) \Vert^{2}$
         \end{center}
-		\item Algoritmos lineales: 8-point, 5-point
-		\end{itemize}
-	\end{column}
-	\begin{column}{0.3\textwidth}
-	    \begin{figure}
-			\includegraphics[width=0.5\columnwidth]{./images/localization_2d_2d.pdf}
-		\end{figure}
-	\end{column}
-	\end{columns}
+        \item Algoritmos lineales: 8-point, 5-point
+        \end{itemize}
+    \end{column}
+    \begin{column}{0.3\textwidth}
+        \begin{figure}
+            \includegraphics[width=0.5\columnwidth]{./images/localization_2d_2d.pdf}
+        \end{figure}
+    \end{column}
+    \end{columns}
 
-	\underline{\textbf{3D-2D}}
+    \underline{\textbf{3D-2D}}
     \begin{columns}
-	\begin{column}{0.7\textwidth}
-		\begin{itemize}
-			\item Error de reproyección:
-			\begin{center}
-    			$f(\transform{\worldCoordSystem}{a})= \sum_{i=1}^{N} \Vert \measurement_{a,i} - \prediction(\inverse{\transform{\worldCoordSystem}{a}},\worldPoint_{i}) \Vert^{2}$
+    \begin{column}{0.7\textwidth}
+        \begin{itemize}
+            \item Error de reproyección:
+            \begin{center}
+                $f(\transform{\worldCoordSystem}{a})= \sum_{i=1}^{N} \Vert \measurement_{a,i} - \prediction(\inverse{\transform{\worldCoordSystem}{a}},\worldPoint_{i}) \Vert^{2}$
             \end{center}
-			\item Algoritmos lineales: DLT, PnP
-		\end{itemize}
-	\end{column}
-	\begin{column}{0.3\textwidth}
-		\begin{figure}
-			\includegraphics[width=0.5\columnwidth]{./images/localization_3d_2d.pdf}
-		\end{figure}
-	\end{column}
-	\end{columns}
-	\underline{\textbf{3D-3D}}
-	\begin{columns}
-		\begin{column}{0.7\textwidth}
-			\begin{itemize}
-				\item Error de reproyección:
-				\begin{center}
-    				$f(\transform{a}{b})= \sum_{i=1}^{N} \Vert \pointCoord{a}_{i} - \transform{a}{b} \pointCoord{b}_{i} \Vert^{2}$
+            \item Algoritmos lineales: DLT, PnP
+        \end{itemize}
+    \end{column}
+    \begin{column}{0.3\textwidth}
+        \begin{figure}
+            \includegraphics[width=0.5\columnwidth]{./images/localization_3d_2d.pdf}
+        \end{figure}
+    \end{column}
+    \end{columns}
+    \underline{\textbf{3D-3D}}
+    \begin{columns}
+        \begin{column}{0.7\textwidth}
+            \begin{itemize}
+                \item Error de reproyección:
+                \begin{center}
+                    $f(\transform{a}{b})= \sum_{i=1}^{N} \Vert \pointCoord{a}_{i} - \transform{a}{b} \pointCoord{b}_{i} \Vert^{2}$
                 \end{center}
-				\item Algoritmos lineales: Atun, Horn
-			\end{itemize}
-		\end{column}
-		\begin{column}{0.3\textwidth}
-			\begin{figure}
-				\includegraphics[width=0.4\columnwidth]{./images/localization_3d_3d.pdf}
-			\end{figure}
-		\end{column}
-	\end{columns}
+                \item Algoritmos lineales: Atun, Horn
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.3\textwidth}
+            \begin{figure}
+                \includegraphics[width=0.4\columnwidth]{./images/localization_3d_3d.pdf}
+            \end{figure}
+        \end{column}
+    \end{columns}
 
 \end{frame}
 
 \begin{frame}
-	\frametitle{Estimación de movimiento 2D-2D}
-	\footnotesize
-	
-	\begin{itemize}
-		\item Dados matches 2D-2D $\{(\measurement_{a}, \measurement_{b})_{i}\}$ de puntos 3D desconocidos $\mapPointsSet_{i}$ encontrar el movimiento relativo $\transform{a}{b}$ entre los frames.
-		\item Error de reproyección (Bundle Adjustment):
-		\[
-		f(\transform{a}{b}, \mapPointsSet)= \sum_{i=1}^{N} \Vert \measurement_{a,i} - \prediction^{\mathrm{s}}(\transform{a}{\worldCoordSystem},\worldPoint_{i}) \Vert^{2} + \Vert \measurement_{b,i} - \prediction^{\mathrm{s}}(\inverse{\transform{a}{b}}\transform{a}{\worldCoordSystem},\worldPoint_{i}) \Vert^{2}
-		\]
-		Se puede optimizar con métodos no lineales pero requieren de una buena semilla inicial. Es no convexo, solución no única (ambigüedadad de escala)
-		\item Se puede utilizar un enfoque algebraico basado en geometría epipolar para obtener la transformación relativa (a un factor de escala) sin explicitamente computar la posición de los puntos 3D: algoritmos 8-point y 5-point.
-		\item Aplicaciones:
-		\begin{itemize}
-			\item Filtrar matches con RANSAC
-			\item Inicializar una sistemas de SLAM monocular / SfM
-		\end{itemize}
-	\end{itemize}
+    \frametitle{Estimación de movimiento 2D-2D}
+    \footnotesize
+    
+    \begin{itemize}
+        \item Dados matches 2D-2D $\{(\measurement_{a}, \measurement_{b})_{i}\}$ de puntos 3D desconocidos $\mapPointsSet_{i}$ encontrar el movimiento relativo $\transform{a}{b}$ entre los frames.
+        \item Error de reproyección (Bundle Adjustment):
+        \[
+        f(\transform{a}{b}, \mapPointsSet)= \sum_{i=1}^{N} \Vert \measurement_{a,i} - \prediction^{\mathrm{s}}(\transform{a}{\worldCoordSystem},\worldPoint_{i}) \Vert^{2} + \Vert \measurement_{b,i} - \prediction^{\mathrm{s}}(\inverse{\transform{a}{b}}\transform{a}{\worldCoordSystem},\worldPoint_{i}) \Vert^{2}
+        \]
+        Se puede optimizar con métodos no lineales pero requieren de una buena semilla inicial. Es no convexo, solución no única (ambigüedadad de escala)
+        \item Se puede utilizar un enfoque algebraico basado en geometría epipolar para obtener la transformación relativa (a un factor de escala) sin explicitamente computar la posición de los puntos 3D: algoritmos 8-point y 5-point.
+        \item Aplicaciones:
+        \begin{itemize}
+            \item Filtrar matches con RANSAC
+            \item Inicializar una sistemas de SLAM monocular / SfM
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Estimación de movimiento 3D-2D}
-	\footnotesize
-	
-	\begin{itemize}
-		\item Dado un conjunto de correspondencias 3D-2D $\{(\worldPoint, \measurement_{a})_{i}\}$ queremos encontrar la pose $\transform{w}{a}$ de la cámara en el mundo.
-		\item Error de reproyección:
-		\[
-		f(\transform{\worldCoordSystem}{a})= \sum_{i=1}^{N} \Vert \measurement_{a,i} - \prediction(\inverse{\transform{\worldCoordSystem}{a}},\worldPoint_{i}) \Vert^{2}
-		\]
-		Se puede optimizar con métodos no lineales pero requieren de una buena semilla inicial. Es no convexo, solución no única (ambigüedad de escala)
-		\item Este problema es conocido como \emph{Perspective-n-Points} (PnP) y existen diferentes enfoques para resolverlo:
-		\begin{itemize}
-			\item Direct Linear Transform (DLT)
-			\item EPnP
-			\item OPnP
-		\end{itemize}
-		\item Aplicaciones:
-		\begin{itemize}
-			\item Localización de una cámara dado un mapa de puntos (tracking)
-		\end{itemize}
-	\end{itemize}
-	
+    \frametitle{Estimación de movimiento 3D-2D}
+    \footnotesize
+    
+    \begin{itemize}
+        \item Dado un conjunto de correspondencias 3D-2D $\{(\worldPoint, \measurement_{a})_{i}\}$ queremos encontrar la pose $\transform{w}{a}$ de la cámara en el mundo.
+        \item Error de reproyección:
+        \[
+        f(\transform{\worldCoordSystem}{a})= \sum_{i=1}^{N} \Vert \measurement_{a,i} - \prediction(\inverse{\transform{\worldCoordSystem}{a}},\worldPoint_{i}) \Vert^{2}
+        \]
+        Se puede optimizar con métodos no lineales pero requieren de una buena semilla inicial. Es no convexo, solución no única (ambigüedad de escala)
+        \item Este problema es conocido como \emph{Perspective-n-Points} (PnP) y existen diferentes enfoques para resolverlo:
+        \begin{itemize}
+            \item Direct Linear Transform (DLT)
+            \item EPnP
+            \item OPnP
+        \end{itemize}
+        \item Aplicaciones:
+        \begin{itemize}
+            \item Localización de una cámara dado un mapa de puntos (tracking)
+        \end{itemize}
+    \end{itemize}
+    
 \end{frame}
 
 \begin{frame}
@@ -1216,44 +1214,44 @@
 
 
 \begin{frame}
-	\frametitle{Estimación de movimiento 3D-3D}
-	\footnotesize
-	
-	\begin{itemize}
-		\item Dado un conjunto de correspondencias 3D en dos sistemas de coordenadas distintos: $\{(\pointCoord{a}, \pointCoord{b})_{i}\}$ queremos encontrar la transformación relativa $\transform{a}{b}$.
-		\item Error geométrico 3D:
-		\[
-		f(\transform{a}{b})= \sum_{i=1}^{N} \Vert \pointCoord{a}_{i} - \transform{a}{b} \pointCoord{b}_{i} \Vert^{2}
-		\]
-		Corresponde a alineamiento de nube de puntos por mínimos cuadrados.
-		\item Solución cerrada, eg.g Arun et al, 1987
-		\item Aplicaciones:
-		\begin{itemize}
-			\item Obtención de movimiento relativo para cámaras estéreo (mediante el uso de puntos triangulados) o RGB-D (mediciones con profundidad)
-			\item Corrección de Loop Closure (variante con estimación de escala para SLAM monocular)
-		\end{itemize}
-	\end{itemize}
-	
+    \frametitle{Estimación de movimiento 3D-3D}
+    \footnotesize
+    
+    \begin{itemize}
+        \item Dado un conjunto de correspondencias 3D en dos sistemas de coordenadas distintos: $\{(\pointCoord{a}, \pointCoord{b})_{i}\}$ queremos encontrar la transformación relativa $\transform{a}{b}$.
+        \item Error geométrico 3D:
+        \[
+        f(\transform{a}{b})= \sum_{i=1}^{N} \Vert \pointCoord{a}_{i} - \transform{a}{b} \pointCoord{b}_{i} \Vert^{2}
+        \]
+        Corresponde a alineamiento de nube de puntos por mínimos cuadrados.
+        \item Solución cerrada, eg.g Arun et al, 1987
+        \item Aplicaciones:
+        \begin{itemize}
+            \item Obtención de movimiento relativo para cámaras estéreo (mediante el uso de puntos triangulados) o RGB-D (mediciones con profundidad)
+            \item Corrección de Loop Closure (variante con estimación de escala para SLAM monocular)
+        \end{itemize}
+    \end{itemize}
+    
 \end{frame}
 
 \begin{frame}
-	\frametitle{Tipos de transformaciones 2D}
-	\footnotesize
-	
-	\begin{figure}
-		\includegraphics[width=0.9\columnwidth]{./images/transformation_table_2d.pdf}
-	\end{figure}
-	
+    \frametitle{Tipos de transformaciones 2D}
+    \footnotesize
+    
+    \begin{figure}
+        \includegraphics[width=0.9\columnwidth]{./images/transformation_table_2d.pdf}
+    \end{figure}
+    
 \end{frame}
 
 \begin{frame}
-	\frametitle{Tipos de transformaciones 3D}
-	\footnotesize
-	
-	\begin{figure}
-		\includegraphics[width=0.6\columnwidth]{./images/transformation_table_3d.pdf}
-	\end{figure}
-	
+    \frametitle{Tipos de transformaciones 3D}
+    \footnotesize
+    
+    \begin{figure}
+        \includegraphics[width=0.6\columnwidth]{./images/transformation_table_3d.pdf}
+    \end{figure}
+    
 \end{frame}
 
 
@@ -1266,11 +1264,11 @@
 
 
 \begin{frame}
-	\frametitle{Calibración de cámara}
-	\footnotesize
-	
+    \frametitle{Calibración de cámara}
+    \footnotesize
+    
     \TODO{Clase Calibración por Cyrill Stachniss: \url{https://www.youtube.com/watch?v=-9He7Nu3u8s}}
-	
+    
 \end{frame}
 
 
