@@ -786,26 +786,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Distorción Tangencial}
-    
-    \footnotesize
-    
-    \begin{figure}[!h]
-        \subfloat[]
-        {
-            \includegraphics[width=0.3\columnwidth]{images/camera/tangential_distortion2.pdf}
-        }\\
-        \subfloat[]
-        {
-            \includegraphics[width=0.3\columnwidth]{images/camera/tangential_distortion.pdf}
-        }
-    \end{figure}
-    
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Distorción}
+    \frametitle{Distorción Radial}
     
     Para corregir esta distorsión se calcula un modelo de distorsión radial que relaciona los puntos de la imagen de la imagen real con los puntos ideales, los que se habrían obtenido bajo una cámara lineal perfecta. De esta forma, la cámara se puede representar con un modelo pin-hole lineal. En la figura es posible observar la imagen cruda (distorsionada) tomada por la cámara y la imagen después de la desdistorsión.
     
@@ -825,7 +806,7 @@
 
 
 \begin{frame}
-    \frametitle{Distorción}
+    \frametitle{Distorción Radial}
     
     \footnotesize
     
@@ -850,7 +831,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Distorción}
+    \frametitle{Distorción Radial}
     \footnotesize
     
     \TODO{Agregar modelo de distorción aplicado en: https://boofcv.org/index.php?title=Tutorial\_Camera\_Calibration}
@@ -883,6 +864,24 @@
     \end{equation*}
     
     Los coeficientes $\left\{ k_{1},k_{1},k_{1},\ldots,u_{c},v_{c}\right\}$ se consideran parte de la calibración interna de la cámara. Con frecuencia, el punto principal se utiliza como centro de la distorsión radial, aunque no es necesario que coincidan exactamente. Los coeficientes de corrección, junto con la matriz de calibración de la cámara, especifican el mapeo desde un punto de la imagen hasta un rayo en el sistema de coordenadas de la cámara y se denominan parámetros intrínsecos.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Distorción Tangencial}
+    \footnotesize
+    \TODO{Agregar matemática de distorción tangencial}
+    
+    \begin{figure}[!h]
+        \subfloat[]
+        {
+            \includegraphics[width=0.3\columnwidth]{images/camera/tangential_distortion2.pdf}
+        }\\
+        \subfloat[]
+        {
+            \includegraphics[width=0.3\columnwidth]{images/camera/tangential_distortion.pdf}
+        }
+    \end{figure}
+    
 \end{frame}
 
 \begin{frame}
