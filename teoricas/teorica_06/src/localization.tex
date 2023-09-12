@@ -135,21 +135,16 @@
 	\frametitle{Estimación de estado}
 	
 	\note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
-	Estamos interesados en la creencia (\emph{belief}) del sistema de dónde está en el tiempo $t$:
+	Estamos interesados en la creencia (\emph{belief}) del sistema sobre dónde está en el tiempo $t$:
     
-    \begin{columns}[t]
-        \begin{column}{0.5\textwidth}
-        	\begin{equation}
-            bel(\state_{t}) = p\left(\state_{t} | \observation_{1:t}, \controlCommand_{1:t} \right)
-            \end{equation}
-        \end{column}
-        \begin{column}{0.5\textwidth}
-        (ecuación de estimación de estado o definición de distribución de probabilidad)
-        \end{column}
-    \end{columns}
-    \vspace{1cm}
+    \begin{equation*}
+    bel(\state_{t}) = p\left(\state_{t} | \observation_{1:t}, \controlCommand_{1:t} \right) \quad \text{\scriptsize (ecuación de estimación de estado o definición de distribución de probabilidad)}
+    \end{equation*}
+    
     La ecuación se puede leer dónde estoy ahora $\state_{t}$ dada todas las observaciones $\observation_{1:t}$ y todos los comandos de control $\controlCommand_{1:t}$
-
+    
+    \vspace{1cm}
+    
     Ahora vamos a simplificar la distribución utilizando la Regla de Bayes:
 
 \end{frame}
@@ -159,35 +154,56 @@
     \frametitle{Derivación del Filtro de Bayes Recursivo}
     
     \note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
-    \begin{align*}
-        \only<1->{
+    $\begin{aligned}
+        \only<1>{
             bel(\state_{t}) &= p\left(\state_{t} | \observation_{1:t}, \controlCommand_{1:t} \right)\\
-        }
-        \only<2->{
+                }
+        \only<2>{
+            bel(\state_{t}) &= \alert{p\left(\state_{t} | \observation_{1:t}, \controlCommand_{1:t} \right)}\\
                             &= \eta \, p\left(\observation_{t} |\state_{t}, \observation_{1:t-1}, \controlCommand_{1:t} \right) p\left(\state_{t} | \observation_{1:t-1}, \controlCommand_{1:t} \right) \quad \text{donde $\eta$ es una constante de normalización}\\
-            }
-        \only<3->{
+                }
+        \only<3>{
+            bel(\state_{t}) &= p\left(\state_{t} | \observation_{1:t}, \controlCommand_{1:t} \right)\\
+                            &= \eta \, \alert{p\left(\observation_{t} |\state_{t}, \observation_{1:t-1}, \controlCommand_{1:t} \right)} p\left(\state_{t} | \observation_{1:t-1}, \controlCommand_{1:t} \right) \quad \text{donde $\eta$ es una constante de normalización}\\
                             &= \eta \, p\left(\observation_{t} |\state_{t} \right) p\left(\state_{t} | \observation_{1:t-1}, \controlCommand_{1:t} \right)\\
                 }
-        \only<4->{
+        \only<4>{
+            bel(\state_{t}) &= p\left(\state_{t} | \observation_{1:t}, \controlCommand_{1:t} \right)\\
+                            &= \eta \, p\left(\observation_{t} |\state_{t}, \observation_{1:t-1}, \controlCommand_{1:t} \right) p\left(\state_{t} | \observation_{1:t-1}, \controlCommand_{1:t} \right) \quad \text{donde $\eta$ es una constante de normalización}\\
+                            &= \eta \, p\left(\observation_{t} |\state_{t} \right) \alert{p\left(\state_{t} | \observation_{1:t-1}, \controlCommand_{1:t} \right)}\\
                             &= \eta \, p\left(\observation_{t} |\state_{t} \right) \int p\left(\state_{t} | \state_{t-1}, \observation_{1:t-1}, \controlCommand_{1:t} \right) p\left(\state_{t-1} | \observation_{1:t-1}, \controlCommand_{1:t} \right) d \state_{t-1}\\
                 }
-        \only<5->{
+        \only<5>{
+            bel(\state_{t}) &= p\left(\state_{t} | \observation_{1:t}, \controlCommand_{1:t} \right)\\
+                            &= \eta \, p\left(\observation_{t} |\state_{t}, \observation_{1:t-1}, \controlCommand_{1:t} \right) p\left(\state_{t} | \observation_{1:t-1}, \controlCommand_{1:t} \right) \quad \text{donde $\eta$ es una constante de normalización}\\
+                            &= \eta \, p\left(\observation_{t} |\state_{t} \right) p\left(\state_{t} | \observation_{1:t-1}, \controlCommand_{1:t} \right)\\
+                            &= \eta \, p\left(\observation_{t} |\state_{t} \right) \int \alert{p\left(\state_{t} | \state_{t-1}, \observation_{1:t-1}, \controlCommand_{1:t} \right)} p\left(\state_{t-1} | \observation_{1:t-1}, \controlCommand_{1:t} \right) d \state_{t-1}\\
                             &= \eta \, p\left(\observation_{t} |\state_{t} \right) \int p\left(\state_{t} | \state_{t-1}, \controlCommand_{t} \right) p\left(\state_{t-1} | \observation_{1:t-1}, \controlCommand_{1:t} \right) d \state_{t-1}\\
                 }
-        \only<6->{
-                            &= \eta \, p\left(\observation_{t} |\state_{t} \right) \int p\left(\state_{t} | \state_{t-1}, \controlCommand_{t} \right) p\left(\state_{t-1} | \observation_{1:t-1}, \alert{\controlCommand_{1:t-1}} \right) d \state_{t-1}\\
+        \only<6>{
+            bel(\state_{t}) &= p\left(\state_{t} | \observation_{1:t}, \controlCommand_{1:t} \right)\\
+                            &= \eta \, p\left(\observation_{t} |\state_{t}, \observation_{1:t-1}, \controlCommand_{1:t} \right) p\left(\state_{t} | \observation_{1:t-1}, \controlCommand_{1:t} \right) \quad \text{donde $\eta$ es una constante de normalización}\\
+                            &= \eta \, p\left(\observation_{t} |\state_{t} \right) p\left(\state_{t} | \observation_{1:t-1}, \controlCommand_{1:t} \right)\\
+                            &= \eta \, p\left(\observation_{t} |\state_{t} \right) \int p\left(\state_{t} | \state_{t-1}, \observation_{1:t-1}, \controlCommand_{1:t} \right) p\left(\state_{t-1} | \observation_{1:t-1}, \controlCommand_{1:t} \right) d \state_{t-1}\\
+                            &= \eta \, p\left(\observation_{t} |\state_{t} \right) \int p\left(\state_{t} | \state_{t-1}, \controlCommand_{t} \right) p\left(\state_{t-1} | \observation_{1:t-1}, \alert{\controlCommand_{1:t}} \right) d \state_{t-1}\\
+                            &= \eta \, p\left(\observation_{t} |\state_{t} \right) \int p\left(\state_{t} | \state_{t-1}, \controlCommand_{t} \right) p\left(\state_{t-1} | \observation_{1:t-1}, \controlCommand_{1:t-1} \right) d \state_{t-1}\\
                 }
-        \only<7->{
-                            &= \eta \, p\left(\observation_{t} |\state_{t} \right) \int p\left(\state_{t} | \state_{t-1}, \controlCommand_{t} \right) \alert{bel(\state_{t-1})} d \state_{t-1}
+        \only<7>{
+            bel(\state_{t}) &= p\left(\state_{t} | \observation_{1:t}, \controlCommand_{1:t} \right)\\
+                            &= \eta \, p\left(\observation_{t} |\state_{t}, \observation_{1:t-1}, \controlCommand_{1:t} \right) p\left(\state_{t} | \observation_{1:t-1}, \controlCommand_{1:t} \right) \quad \text{donde $\eta$ es una constante de normalización}\\
+                            &= \eta \, p\left(\observation_{t} |\state_{t} \right) p\left(\state_{t} | \observation_{1:t-1}, \controlCommand_{1:t} \right)\\
+                            &= \eta \, p\left(\observation_{t} |\state_{t} \right) \int p\left(\state_{t} | \state_{t-1}, \observation_{1:t-1}, \controlCommand_{1:t} \right) p\left(\state_{t-1} | \observation_{1:t-1}, \controlCommand_{1:t} \right) d \state_{t-1}\\
+                            &= \eta \, p\left(\observation_{t} |\state_{t} \right) \int p\left(\state_{t} | \state_{t-1}, \controlCommand_{t} \right) p\left(\state_{t-1} | \observation_{1:t-1}, \controlCommand_{1:t} \right) d \state_{t-1}\\
+                            &= \eta \, p\left(\observation_{t} |\state_{t} \right) \int p\left(\state_{t} | \state_{t-1}, \controlCommand_{t} \right) \alert{p\left(\state_{t-1} | \observation_{1:t-1}, \controlCommand_{1:t-1} \right)} d \state_{t-1}\\
+                            &= \eta \, p\left(\observation_{t} |\state_{t} \right) \int p\left(\state_{t} | \state_{t-1}, \controlCommand_{t} \right) bel(\state_{t-1}) d \state_{t-1}
                 }
-    \end{align*}
-    \only<2>{Regla de Bayes}
-    \only<3>{Markov assumption. Lo que mido ahora solo depende del estado anterior y es independiente de las mediciones y los comandos anteriores.}
-    \only<4>{Ley de probabilidad total. Es decir, integramos sobre todos los estados anteriores posibles.}
-    \only<5>{Markov assumption.}
-    \only<6>{Independence assumption.} \note{Perdemos información ya que ayumismos independencia. Asumismo que un comando futuro no nos ayuda en saber nuestra pose actual. Esto no siempre es cierto.}
-    \only<7>{Término recursivo!}
+    \end{aligned}$
+    \only<2>{\alert{Regla de Bayes}}
+    \only<3>{\alert{Markov assumption. Lo que mido ahora solo depende del estado anterior y es independiente de las mediciones y los comandos anteriores.}}
+    \only<4>{\alert{Ley de probabilidad total. Es decir, integramos sobre todos los estados anteriores posibles.}}
+    \only<5>{\alert{Markov assumption.}}
+    \only<6>{\alert{Independence assumption.}} \note{Perdemos información ya que ayumismos independencia. Asumismo que un comando futuro no nos ayuda en saber nuestra pose actual. Esto no siempre es cierto.}
+    \only<7>{\alert{Término recursivo!}}
     \note{Luego se pueden seguir haciendo asumciones, por ejemplo asumir que las probabilidades son gaussianas. Lo cual no es cierto en general.}
 \end{frame}
 
