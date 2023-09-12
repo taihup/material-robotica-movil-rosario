@@ -594,14 +594,14 @@
         1
     \end{bmatrix}
     \end{equation*}
-    Luego si, $\imagePoint=\intrinsicMatrix\begin{bmatrix} \vec{I} & \vec{0}\end{bmatrix} \cameraPoint$ y $\homoCameraPoint =     \begin{bmatrix}
+    Luego si, $\homoImagePoint=\intrinsicMatrix\begin{bmatrix} \vec{I} & \vec{0}\end{bmatrix} \homoCameraPoint$ y $\homoCameraPoint =     \begin{bmatrix}
         \rotationCoord{\cameraCoordSystem}{\worldCoordSystem} & \toCoord{\translation}{\cameraCoordSystem} \\
         \vec{0} & 1
     \end{bmatrix}
     \homoWorldPoint$, entonces
     
        \begin{equation*}
-        \imagePoint=\intrinsicMatrix\begin{bmatrix} \vec{I} & \vec{0}\end{bmatrix} \begin{bmatrix}
+        \homoImagePoint=\intrinsicMatrix\begin{bmatrix} \vec{I} & \vec{0}\end{bmatrix} \begin{bmatrix}
             \rotationCoord{\cameraCoordSystem}{\worldCoordSystem} & \toCoord{\translation}{\cameraCoordSystem} \\
             \vec{0} & 1
         \end{bmatrix}
@@ -897,7 +897,7 @@
     \end{itemize}
 
     \begin{equation*}
-        \homoImagePoint_{l}^{\top} \essentialMatrix \homoImagePoint_{r} = 0 \quad \text{(complanarity constraint)}
+        \homoImagePoint_{l}^{\top} \essentialMatrix \homoImagePoint_{r} = 0 \quad \text{(restricción de coplanaridad)}
     \end{equation*}
     donde $\essentialMatrix = \transform{l}{r}$, y se denomina \emph{Essential Matrix}
     
@@ -919,7 +919,7 @@
     La {\bf Matríz Esencial} es una especialización de la {\bf Matríz Fundamental}. La Matríz Esencial trabaja sobre {\bf coordenadas  normalizadas}  de la imagen, es decir, requiere tener la calibración de las cámaras, mientras que la Matríz Fundamental relaciona correspondencias desconociendo las calibraciones.
     
         \begin{equation*}
-        \homoImagePoint^{\prime\top} \fundamentalMatrix \homoImagePoint = 0 \quad \text{(complanarity constraint)}
+        \homoImagePoint^{\prime\top} \fundamentalMatrix \homoImagePoint = 0 \quad \text{(restricción de coplanaridad)}
     \end{equation*}
     
     \begin{block}{Coordenadas Normalizadas:}
