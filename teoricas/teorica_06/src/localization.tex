@@ -38,7 +38,7 @@
 	\note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
 	
 	\begin{itemize}
-		\item  Estimar el estado $\state$ de un systema dada las observaciones $\observation$ y comandos de control $\controlCommand$
+		\item  Estimar el \textbf{estado} $\state$ de un sistema dada las \textbf{observaciones} $\observation$ y \textbf{comandos de control} $\controlCommand$
 		\item Objetivo:
 	\end{itemize}
 	
@@ -58,6 +58,11 @@
             \item Supongamos además que hay tres puertas (\alert{landmarks}), el robot puede detectar si se encuentra al lado de una puerta o no.
         \end{itemize}
     \end{block}
+
+    \begin{center}
+        \includegraphics<1>[height=2cm]{./images/monte_carlo_example.pdf}
+    \end{center}
+
 \end{frame}
 
 \begin{frame}{Filtro de Bayes Recursivo: Posición inicial}
@@ -85,7 +90,7 @@
 
 \begin{frame}{Filtro de Bayes Recursivo: Movimiento}
     
-    Si el robot se mueve hacia la derecha la creencia es cambiada de acuerdo al movimiento.
+    Si \textbf{el robot se mueve hacia la derecha} la creencia es cambiada de acuerdo al movimiento.
     Así mismo como el movimiento del robot es inexacto, al trasladarse su incertidumbre crece, dicho de otra manera, las lomas son aplanadas. Este aplanamiento matemáticamente se lleva a cabo por medio de la operación de \alert{convolución} entre la función Posterior belief y la función que describe la distancia recorrida.
     
     \begin{center}
