@@ -898,11 +898,10 @@
     \begin{equation*}
         \homoImagePoint_{l}^{\top} \essentialMatrix \homoImagePoint_{r} = 0 \quad \text{(restricción de coplanaridad)}
     \end{equation*}
-    donde $\essentialMatrix = \transform{l}{r}$, y se denomina \emph{Essential Matrix}
+    donde $\essentialMatrix = \transform{l}{r}$ \TODO{verificar esto}, y se denomina \emph{Essential Matrix}
     
     La línea epipolar permite que restrinjamos la búsqueda de correspondencias visuales entre dos cámaras.
    
-    
     \begin{figure}
         \includegraphics[width=0.4\textwidth]{./images/epipolar_geometry.pdf}
     \end{figure}
@@ -924,6 +923,8 @@
         Dado $\homoImagePoint = \projectionMatrix \homoWorldPoint$, con $\projectionMatrix = \intrinsicMatrix [\rotation|\translation]$, si conocemos la matríz de calibración $\intrinsicMatrix$ entonces $\hat{\imagePoint} = \inverse{\intrinsicMatrix} \homoImagePoint$ decimos que $\hat{\imagePoint}$ está en {\bf coordenadas normalizadas}. Se lo puede pensar como una imagen del punto $\homoWorldPoint$ con respecto a una cámara $[\rotation|\translation]$ teniendo la matriz de calibración como la identidad. $ \inverse{\intrinsicMatrix} \projectionMatrix = [\rotation| \translation]$ se denomina {\bf cámara normalizada} donde los parámetros de calibración han sido removidos.
     \end{block}
     
+    \TODO{corregir cuentas.}
+    
     \begin{align*}
         \homoImagePoint^{\prime\top} \essentialMatrix \homoImagePoint &= 0\\
         \left( \inverse{\intrinsicMatrix^{\prime}} \homoImagePoint^{\prime} \right)^{\top} \essentialMatrix \left( \inverse{\intrinsicMatrix} \homoImagePoint \right) &= 0\\
@@ -935,6 +936,13 @@
     \end{equation*}
     
 \end{frame}
+
+\begin{frame}
+    \frametitle{Matríz Esencial}
+    
+    \TODO{Agregar imagen de las posibles disposiciones que da la matriz esencial entre dos cámaras. En total da 4 disposiciones posibles para las 2 cámaras. Nos quedamos con la disposición que haga que los puntos triangulados esten delante de la cámara.}
+\end{frame}
+
 
 \begin{frame}
     \frametitle{Matríz Fundamental vs Matríz Esencial}
