@@ -27,7 +27,7 @@
 
 \begin{frame}{Localización}
 	\begin{block}{Localización}
-		Es la habilidad que posee una máquina para localizarse en el espacio.
+		Es la habilidad que posee una máquina (robot) para localizarse en el espacio.
 	\end{block}
 \end{frame}
 
@@ -85,6 +85,8 @@
     Esta nueva función representa otra distribución de probabilidades llamada \alert{Posterior belief}.
     
     La función Posterior belief es la mejor representación de la posición del robot actualmente. Cada ``loma'' representa la evaluación de su posición con respecto a una puerta.
+    
+    La probabilidad $p(\measurement | \state)$ se lee: ``dado que sabemos dónde se encuentra el robot, ¿Cúal es la probabilidad de que observar la puerta?''
     
 \end{frame}
 
@@ -146,7 +148,7 @@
     bel(\state_{t}) = p\left(\state_{t} | \observation_{1:t}, \controlCommand_{1:t} \right) \quad \text{\scriptsize (ecuación de estimación de estado o definición de distribución de probabilidad)}
     \end{equation*}
     
-    La ecuación se puede leer dónde estoy ahora $\state_{t}$ dada todas las observaciones $\observation_{1:t}$ y todos los comandos de control $\controlCommand_{1:t}$
+    La ecuación se puede leer como: ``¿dónde estoy ahora $\state_{t}$?, dada todas las observaciones $\observation_{1:t}$ y todos los comandos de control $\controlCommand_{1:t}$''
     
     \vspace{1cm}
     
@@ -203,11 +205,12 @@
                             &= \eta \, p\left(\observation_{t} |\state_{t} \right) \int p\left(\state_{t} | \state_{t-1}, \controlCommand_{t} \right) bel(\state_{t-1}) d \state_{t-1}
                 }
     \end{aligned}$
-    \only<2>{\alert{Regla de Bayes}}
-    \only<3>{\alert{Markov assumption. Lo que mido ahora solo depende del estado anterior y es independiente de las mediciones y los comandos anteriores.}}
-    \only<4>{\alert{Ley de probabilidad total. Es decir, integramos sobre todos los estados anteriores posibles.}}
-    \only<5>{\alert{Markov assumption.}}
-    \only<6>{\alert{Independence assumption.}} \note{Perdemos información ya que ayumismos independencia. Asumismo que un comando futuro no nos ayuda en saber nuestra pose actual. Esto no siempre es cierto.}
+    \only<2>{\alert{Regla de Bayes}
+             \note{eta codifica la normalización que realiza el término divisor de la regla de Bayes.}}
+    \only<3>{\alert{Markov assumption. Lo que mido ahora $\observation_{t}$ solo depende del estado actual $\state_{t}$ y es independiente de las mediciones anteriores $\observation_{1:t-1}$ y de todos los comandos  $\controlCommand_{1:t}$}}
+    \only<4>{\alert{Ley de probabilidad total. Es decir, integramos sobre todos los estados anteriores posibles. Se puede intepretar como ``¿Dónde estámos ahora, dado el estado anterior $\state_{t-1}$ multiplicado porque tan probable es que se alcance dicho estado  $\state_{t-1}$.''}}
+    \only<5>{\alert{Markov assumption. Si $\state_{t-1}$ es dado, entonces son irrelevantes todas las mediciones $\observation_{1:t-1}$ y comandos $\controlCommand_{t-1}$. Nos Importa $\controlCommand_{t}$ porque nos dice cómo evoluciona de $\state_{t-1}$ a $\state_{t}$ }}
+    \only<6>{\alert{Independence assumption. Asumimos que un comando futuro $\controlCommand_{t}$ no nos ayuda a saber nuestro estado actual $\state_{t}$.}} \note{Perdemos información ya que asumismos independencia. Asumismo que un comando futuro no nos ayuda en saber nuestra pose actual. Esto no siempre es cierto. Por ejemplo cuando un robot se encuentra muy cerca de una pared. El sistema de control difícilmente haría un comando que haga que el robot vaya hacia la pared. Por lo tanto, si sabemos que el siguiente comando del sistema de control nos hace doblar o ir hacia atrás entonces podríamos inferir que estamos cerca de la pared.}
     \only<7>{\alert{Término recursivo!}}
     \note{Luego se pueden seguir haciendo asumciones, por ejemplo asumir que las probabilidades son gaussianas. Lo cual no es cierto en general.}
 \end{frame}

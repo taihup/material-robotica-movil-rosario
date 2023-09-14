@@ -14,17 +14,17 @@
 
 	\begin{figure}[!h]
 		\centering
-		\subfloat[]
+		\subfloat[\scriptsize Distribución Gaussiana en 1D]
 		{
 			\includegraphics[width=0.3\columnwidth]{./images/standard_deviation_diagram.pdf}
 		}
-		\subfloat[]
+		\subfloat[\footnotesize Distribución Gaussiana en 2D]
 		{
 			\includegraphics[width=0.3\columnwidth]{./images/multivariate_normal_sample.pdf}
 		}
-		\subfloat[]
+		\subfloat[\footnotesize Distribución Gaussiana en 3D]
 		{
-			\includegraphics[width=0.2\columnwidth]{./images/ellipsoid.pdf}
+			\includegraphics[width=0.25\columnwidth]{./images/ellipsoid.pdf}
 		}
 	\end{figure}
 \end{frame}
@@ -33,44 +33,36 @@
 \begin{frame}
 	\frametitle{Suposiciones de Kalman Filter}
 	\note{información extraida de https://youtu.be/PiCC-SxWlH8}
-	
+   	\note{Información extraída de  https://www.youtube.com/watch?v=E-6paM\_Iwfc\&t=3442s}
+	\small
 	\begin{itemize}
 		\item Ruido y distribuciones Gaussianas
 		\item Modelos de movimiento y observación lineales
 	\end{itemize}
-
+    
 	\begin{align*}
 		\state_{t} &= \stateEvolutionMatrix_{t} \state_{t-1} + B_{t}\controlCommand_{t} + \motionModelNoise_{t}\\
 		\observation_{t} &= C_{t} \state_{t} + \measurementModelNoise_{t}
 	\end{align*}
+    
+   	\begin{description}
+        \item[$\stateEvolutionMatrix_{t}$] Matriz $(n \times n)$ que describe como el estado evoluciona de $t-1$ a $t$ sin comandos de control o ruido.
+        
+        \item[$B_{t}$] Matriz $(n \times l)$ que describe cómo el control $\controlCommand_{t}$ cambia el estado de $t-1$ a $t$.
+        
+        \item[$C_{t}$] Matriz $(k \times n)$ que describe cómo mapear el estado $\state_{t}$ a una observación $\observation_{t}$.
+        
+        \item[$\motionModelNoise_{t}$] Variable aleatoria representando el ruido gaussiano del {\bf modelo de movimiento}, se asume independiente y con distribución normal con media cero y covarianza $\motionParametersCovariance_{t}$.
+        
+        \item[$\measurementModelNoise_{t}$] Variable aleatoria representando el ruido gaussiano del {\bf modelo de observación}, se asume independiente y con distribución normal con media cero y covarianza $\observationModelCovariance_{t}$.
+        
+    \end{description}
+    
 	\note{Kalman Filter requiere que los ruidos sean gaussianos y que el estado resulte de una combinación lineal.}
 
 	\note{Differencial drive y Ackerman motion models NO son modelos lineales}
 	\note{Los observation models de un láser  o de una cámara tampoco son lineales.}
 \end{frame}
-
-
-\begin{frame}
-	\frametitle{Componentes de Kalman Filter}
-	
-	\note{Información extraída de  https://www.youtube.com/watch?v=E-6paM\_Iwfc\&t=3442s}
-	
-	\begin{description}
-	\item[$\stateEvolutionMatrix_{t}$] Matriz $(n \times n)$ que describe como el estado evoluciona de $t-1$ a $t$ sin comandos de control o ruido.
-	
-	\item[$B_{t}$] Matriz $(n \times l)$ que describe cómo el control $\controlCommand_{t}$ cambia el estado de $t-1$ a $t$.
-	
-	\item[$C_{t}$] Matriz $(k \times n)$ que describe cómo mapear el estado $\state_{t}$ a una observación $\observation_{t}$.
-	
-	\item[$\epsilon_{t}$] Variable aleatoria representando el ruido gaussiano del {\bf modelo de movimiento}, se asume independiente y con distribución normal con media cero y covarianza $\motionParametersCovariance_{t}$.
-	
-	\item[$\delta_{t}$] Variable aleatoria representando el ruido gaussiano del {\bf modelo de observación}, se asume independiente y con distribución normal con media cero y covarianza $\observationModelCovariance_{t}$.
-	
-	\end{description}
-
-	
-\end{frame}
-
 
 \begin{frame}
 	\frametitle{1D Kalman Filter}
