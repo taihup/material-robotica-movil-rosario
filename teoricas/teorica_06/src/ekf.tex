@@ -358,7 +358,7 @@
 			\end{bmatrix} +
 			\begin{bmatrix}
 				\delta_{trans}\cos(\theta+\delta_{rot_{1}}) \\
-				\delta_{trans}\cos(\theta+\delta_{rot_{1}}) \\
+				\delta_{trans}\sin(\theta+\delta_{rot_{1}}) \\
 				\delta_{rot_{1}} + \delta_{rot_{2}}
 			\end{bmatrix}
 			}_{\motionModelFunction{\controlCommand_{t}, \state_{t-1}}} + \normalDistribution{0}{\motionParametersCovariance_{t}}
@@ -397,6 +397,8 @@
 \begin{frame}
 	\frametitle{Jacobianos del modelo de movimiento}
 	\note{información extraida de https://youtu.be/PiCC-SxWlH8}
+    \TODO{Por qué separamos el jacobiano en dos G y V?}
+    
 	Calculamos el Jacobiano con respecto al comando de control
 	\begin{equation*}
 		\motionModelJacobianControl{t} = \dfrac{\delta\motionModelFunction{\controlCommand_{t},\mu_{t-1}}}{\delta \controlCommand_{t}} =
@@ -471,7 +473,7 @@
 \begin{frame}
 	\frametitle{Algoritmo de Filtro de Kalman Extendido}
 	\note{información extraida de https://youtu.be/PiCC-SxWlH8}
-	
+    \footnotesize
  	\begin{algorithmic}[1]
 		\State ExtendedKalmanFilter({$\mu_{t-1}, \covariance_{t-1}, \controlCommand_{t}, \observation_{t}$, $c_{t}$, $m$})
 		\State $\theta = \mu_{t-1,\theta}$
@@ -503,11 +505,14 @@
 		\State $\overline{\mu}_{t} = \mu_{t-1} + 
 			\begin{bmatrix}
 			\delta_{trans}\cos(\theta+\delta_{rot_{1}}) \\
-			\delta_{trans}\cos(\theta+\delta_{rot_{1}}) \\
+			\delta_{trans}\sin(\theta+\delta_{rot_{1}}) \\
 			\delta_{rot_{1}} + \delta_{rot_{2}}
 		\end{bmatrix}$
-		\State $\overline{\covariance}_{t} = \motionModelJacobian_{t} \covariance_{t-1} \motionModelJacobian_{t}^{\top}+\motionModelJacobianControl_{t} \motionModelCovariance_{t} \motionModelJacobianControl_{t}^{\top}$
+		\State $\overline{\covariance}_{t} = \motionModelJacobian_{t} \covariance_{t-1} \motionModelJacobian_{t}^{\top}+\motionModelJacobianControl_{t} \motionModelCovariance_{t} \motionModelJacobianControl_{t}^{\top}$ 
 	\end{algorithmic}
+    \vspace{1em}
+    $M_{t}$ es una covarianza que modela el ruido que hay en los comandos de control.
+    $\motionModelJacobianControl_{t} \motionModelCovariance_{t} \motionModelJacobianControl_{t}^{\top}$ hace referencia a la incertidumbre que es agregada debido al ruido de los comandos de control.
 	
 \end{frame}
 
@@ -571,6 +576,7 @@
 \begin{frame}
 	\frametitle{Medición esperada}
 	\note{información extraida de https://youtu.be/PiCC-SxWlH8}
+    \TODO{Separar las imagenes en distintos archivos y agregarles caption.}
 	
 	\begin{figure}[!h]
 		\includegraphics[width=\columnwidth]{./images/measurement_prediction.pdf}
@@ -595,6 +601,8 @@
 	\begin{figure}[!h]
 		\includegraphics[width=\columnwidth]{./images/ekf_localization_example.pdf}
 	\end{figure}
+    
+    La Línea sólida es el Ground-truth. En el primer gráfico la línea punteada es la odometría y en el segundo gráfico es la estimación dada por el EKF.
 	
 \end{frame}
 
