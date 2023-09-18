@@ -521,7 +521,8 @@
 	\note{información extraida de https://youtu.be/PiCC-SxWlH8}
 	
 	\begin{figure}[!h]
-		\includegraphics[width=0.5\columnwidth]{./images/prediction_step.pdf}
+		\includegraphics[width=0.5\columnwidth]{./images/ekf_prediction_step.pdf}
+        \caption{Predicción de Pose}
 	\end{figure}
 	
 \end{frame}
@@ -574,20 +575,27 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Medición esperada}
+	\frametitle{Predicción de Medición}
 	\note{información extraida de https://youtu.be/PiCC-SxWlH8}
 	
     \begin{figure}[!h]
         \centering
-        \subfloat[Predicción de pose]
+        \subfloat[Predicción de Pose]
         {
-            \includegraphics[width=0.49\columnwidth]{./images/ekf_pose_prediction.pdf}
+            \includegraphics[width=0.45\columnwidth]{./images/ekf_pose_prediction.pdf}
         }
-        \subfloat[Corrección de medición]
+        \subfloat[Predicción de Medición]
         {
-            \includegraphics[width=0.49\columnwidth]{./images/ekf_measurement_correction.pdf}
+            \includegraphics[width=0.45\columnwidth]{./images/ekf_measurement_prediction.pdf}
         }
     \end{figure}
+    \footnotesize
+    \begin{itemize}
+        \item El ground-truth del robot y la medición están indicados por el círculo blanco y la línea en negrita, respectivamente.
+
+        \item La flecha blanca indica la \textbf{innovación}, diferencia entre la observación y predicción de la medición.
+    \end{itemize}
+
     
 	
 \end{frame}
@@ -598,13 +606,13 @@
     
    	\begin{figure}[!h]
         \centering
-        \subfloat[Predicción de medición]
+        \subfloat[Predicción de Medición]
         {
-            \includegraphics[width=0.49\columnwidth]{./images/ekf_measurement_prediction.pdf}
+            \includegraphics[width=0.45\columnwidth]{./images/ekf_measurement_prediction.pdf}
         }
-        \subfloat[Corrección de medición]
+        \subfloat[Corrección de Medición]
         {
-            \includegraphics[width=0.49\columnwidth]{./images/ekf_measurement_correction.pdf}
+            \includegraphics[width=0.45\columnwidth]{./images/ekf_measurement_correction.pdf}
         }
     \end{figure}
 
