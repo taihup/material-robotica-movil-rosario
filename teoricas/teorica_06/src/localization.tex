@@ -26,27 +26,27 @@
 \end{frame}
 
 \begin{frame}{Localización}
-	\begin{block}{Localización}
-		Es la habilidad que posee una máquina (robot) para localizarse en el espacio.
-	\end{block}
+    \begin{block}{Localización}
+        Es la habilidad que posee una máquina (robot) para localizarse en el espacio.
+    \end{block}
 \end{frame}
 
 
 \begin{frame}
-	\frametitle{Estimación de estado}
-	
-	\note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
-	
-	\begin{itemize}
-		\item  Estimar el \textbf{estado} $\state$ de un sistema dada las \textbf{observaciones} $\observation$ y \textbf{comandos de control} $\controlCommand$
-		\item Objetivo:
-	\end{itemize}
-	
-	\begin{equation}
-		p\left(\state_{t} | \observation_{1:t}, \controlCommand_{1:t} \right)
-	\end{equation}
-	
-	Estimación de estado recursiva: Se trata de estimar $\state_{t}$ el estado actual utilizando también el estado inmediatamente anterior $\state_{t-1}$.
+    \frametitle{Estimación de estado}
+    
+    \note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
+    
+    \begin{itemize}
+        \item  Estimar el \textbf{estado} $\state$ de un sistema dada las \textbf{observaciones} $\observation$ y \textbf{comandos de control} $\controlCommand$
+        \item Objetivo:
+    \end{itemize}
+    
+    \begin{equation}
+        p\left(\state_{t} | \observation_{1:t}, \controlCommand_{1:t} \right)
+    \end{equation}
+    
+    Estimación de estado recursiva: Se trata de estimar $\state_{t}$ el estado actual utilizando también el estado inmediatamente anterior $\state_{t-1}$.
 \end{frame}
 
 \begin{frame}{Filtro de Bayes Recursivo}
@@ -112,37 +112,37 @@
 \end{frame}
 
 \begin{frame}{Filtro de Bayes Recursivo: Segundo movimiento}
-	Supongamos que el robot se mueve nuevamente...
-	
-	\begin{center}
-		\includegraphics<1>[height=2cm]{./images/monte_carlo_moving2.pdf}
-	\end{center}
+    Supongamos que el robot se mueve nuevamente...
+    
+    \begin{center}
+        \includegraphics<1>[height=2cm]{./images/monte_carlo_moving2.pdf}
+    \end{center}
 \end{frame}
 
 
 \begin{frame}
-	\frametitle{Estimación de estado}
-	
-	\note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
-	
-	\begin{itemize}
-		\item  Estimar el estado $\state$ de un systema dada las observaciones $\observation$ y comandos de control $\controlCommand$
-		\item Objetivo:
-	\end{itemize}
-	
-	\begin{equation}
-		p\left(\state_{t} | \observation_{1:t}, \controlCommand_{1:t} \right)
-	\end{equation}
-	
-	Estimación de estado recursiva: Se trata de estimar $\state_{t}$ el estado actual utilizando también el estado inmediatamente anterior $\state_{t-1}$.
+    \frametitle{Estimación de estado}
+    
+    \note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
+    
+    \begin{itemize}
+        \item  Estimar el estado $\state$ de un systema dada las observaciones $\observation$ y comandos de control $\controlCommand$
+        \item Objetivo:
+    \end{itemize}
+    
+    \begin{equation}
+        p\left(\state_{t} | \observation_{1:t}, \controlCommand_{1:t} \right)
+    \end{equation}
+    
+    Estimación de estado recursiva: Se trata de estimar $\state_{t}$ el estado actual utilizando también el estado inmediatamente anterior $\state_{t-1}$.
 \end{frame}
 
 
 \begin{frame}
-	\frametitle{Estimación de estado}
-	
-	\note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
-	Estamos interesados en la creencia (\emph{belief}) del sistema sobre dónde está en el tiempo $t$:
+    \frametitle{Estimación de estado}
+    
+    \note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
+    Estamos interesados en la creencia (\emph{belief}) del sistema sobre dónde está en el tiempo $t$:
     
     \begin{equation*}
     bel(\state_{t}) = p\left(\state_{t} | \observation_{1:t}, \controlCommand_{1:t} \right) \quad \text{\scriptsize (ecuación de estimación de estado o definición de distribución de probabilidad)}
@@ -307,21 +307,21 @@
 \end{frame}
 
 \begin{frame}{Ejemplo: Movimiento basado en odometría}
-	\note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
-	
-	\begin{figure}[!h]
-		\centering
-		\subfloat[Covarianza del motion model]
-		{
-			\includegraphics[width=0.6\columnwidth]{./images/covariance_odometry_motion_model.pdf}
-		}\\
-		\subfloat[Muestras del motion model]
-		{
-			\includegraphics[width=0.6\columnwidth]{./images/sampling_odometry_motion_model.pdf}
-		}
-	\end{figure}
-	
-	
+    \note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
+    
+    \begin{figure}[!h]
+        \centering
+        \subfloat[Covarianza del motion model]
+        {
+            \includegraphics[width=0.6\columnwidth]{./images/covariance_odometry_motion_model.pdf}
+        }\\
+        \subfloat[Muestras del motion model]
+        {
+            \includegraphics[width=0.6\columnwidth]{./images/sampling_odometry_motion_model.pdf}
+        }
+    \end{figure}
+    
+    
 \end{frame}
 
 \begin{frame}{Observation model}
@@ -335,12 +335,12 @@
     \note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
     
     \begin{itemize}
-		\item Sensor de rango estimando la distancia a un objeto cercano
-		\item Ruido Gaussiano en la lectura del sensor
+        \item Sensor de rango estimando la distancia a un objeto cercano
+        \item Ruido Gaussiano en la lectura del sensor
     \end{itemize}
     
-   	\begin{figure}[!h]
-   		\includegraphics[width=0.6\columnwidth]{./images/simple_observation_model.pdf}
+       \begin{figure}[!h]
+           \includegraphics[width=0.6\columnwidth]{./images/simple_observation_model.pdf}
     \end{figure}
 
 \end{frame}
