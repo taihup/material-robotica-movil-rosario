@@ -587,11 +587,19 @@
 \begin{frame}
 	\frametitle{Correction step}
 	\note{información extraida de https://youtu.be/PiCC-SxWlH8}
-	
-	\begin{figure}[!h]
-			\includegraphics[width=\columnwidth]{./images/correction_step.pdf}
-	\end{figure}
-	
+    
+   	\begin{figure}[!h]
+        \centering
+        \subfloat[Predicción de medición]
+        {
+            \includegraphics[width=0.45\columnwidth]{./images/ekf_measurement_prediction.pdf}
+        }
+        \subfloat[Corrección de medición]
+        {
+            \includegraphics[width=0.45\columnwidth]{./images/ekf_measurement_correction.pdf}
+        }
+    \end{figure}
+
 \end{frame}
 
 \begin{frame}
