@@ -576,11 +576,19 @@
 \begin{frame}
 	\frametitle{Medición esperada}
 	\note{información extraida de https://youtu.be/PiCC-SxWlH8}
-    \TODO{Separar las imagenes en distintos archivos y agregarles caption.}
 	
-	\begin{figure}[!h]
-		\includegraphics[width=\columnwidth]{./images/measurement_prediction.pdf}
-	\end{figure}
+    \begin{figure}[!h]
+        \centering
+        \subfloat[Predicción de pose]
+        {
+            \includegraphics[width=0.49\columnwidth]{./images/ekf_pose_prediction.pdf}
+        }
+        \subfloat[Corrección de medición]
+        {
+            \includegraphics[width=0.49\columnwidth]{./images/ekf_measurement_correction.pdf}
+        }
+    \end{figure}
+    
 	
 \end{frame}
 
@@ -592,11 +600,11 @@
         \centering
         \subfloat[Predicción de medición]
         {
-            \includegraphics[width=0.45\columnwidth]{./images/ekf_measurement_prediction.pdf}
+            \includegraphics[width=0.49\columnwidth]{./images/ekf_measurement_prediction.pdf}
         }
         \subfloat[Corrección de medición]
         {
-            \includegraphics[width=0.45\columnwidth]{./images/ekf_measurement_correction.pdf}
+            \includegraphics[width=0.49\columnwidth]{./images/ekf_measurement_correction.pdf}
         }
     \end{figure}
 
