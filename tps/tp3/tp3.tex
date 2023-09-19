@@ -46,10 +46,10 @@ Para la calibración se puede utilizar cualquiera de las aplicaciones que se det
 	\item Camera Calibration Toolbox for Matlab:\\ \url{https://www.cs.toronto.edu/pub/psala/VM/cameraCalibrationExample.html}
 \end{itemize}
 
-Desarrollar un programa que lea un par de imágenes estéreo cualquiera y realice los siguientes pasos:
+Se pide desarrollar un programa que lea un par de imágenes estéreo cualquiera y realice los siguientes pasos:
 
 
-\section{Sincronización de imágenes}
+\section{Sincronizar imágenes}
 Debido a que en el rosbag las imágenes izquierda y derecha se almacenaron en un instante (timestamp en el rosbag) distinto al que fueron capturadas (timestamp en el header de las imágenes). Vamos a tener que sincronizar las imágenes utilizando el timestamp que figura en el header, esto se hace mediante el paquete \lstinline{message_filters}\footnote{\url{http://wiki.ros.org/message_filters}}. Para esto hay que 
 
 \begin{lstlisting}[style=python]
@@ -72,7 +72,7 @@ La función callback es un método del nodo con esta asignatura:
 def callback(self, left_msg, right_msg):
 \end{lstlisting}
 
-\section{Rectificación de imágenes}
+\section{Rectificar imágenes}
 
 Con los parámetros íntrinsecos y extrínsecos de la cámara estéreo, rectificar las imágenes haciendo:
 
@@ -80,7 +80,7 @@ Con los parámetros íntrinsecos y extrínsecos de la cámara estéreo, rectific
     \item Utilizando ROS2: por medio del paquete \lstinline{stereo_image_proc}
     
 \begin{lstlisting}[style=bash]     
-ros2 launch stereo\_image\_proc stereo\_image\_proc.launch.py
+ros2 launch stereo_image_proc stereo_image_proc.launch.py
 \end{lstlisting}
 
 Para reproducir el rosbag y remapear los tópicos a los que el paquete \lstinline{stereo_image_proc} requiere puede hacer:
@@ -96,27 +96,26 @@ ros2 bag play CARPETA_ROSBAG --remap /stereo/left/image_raw:=/left/image_raw \
 
 \end{itemize}
 
-\section{Extracción de feaures: Keypoints y descriptores}
+\section{Extraer Feaures Visuales: Keypoints y descriptores}
 Selecionar un detector de keypoints (FAST, ORB, SIFT, SURF, GFTT, BRISK, etc.) y un descriptor (BRIEF, ORB, BRISK, etc.), y extraer features en ambas imágenes.
 
-\section{Búsqueda de correspondencias visuales}
+\section{Buscar correspondencias visuales}
 Realizar la búsqueda de correspondencias entre los feature de ambas imágenes (\emph{matching}). Para esto se debe utilizar la función \lstinline{cv::BFMatcher::BFMatcher()}. 
 
-\section{Triangulación de puntos 3D}
+\section{Triangular Puntos 3D}
 Dadas las correspondencias visuales (\emph{matches}) obtenidas en el paso anterior, realizar la triangulación de los features detectados utilizando la función \lstinline{cv::sfm::triangulatePoints()}. Para la visualización de la nube de puntos 3D se puede publicar un mensaje de tipo \lstinline{sensor_msgs/PointCloud2}\footnote{\url{http://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/PointCloud2.html}} y hacer uso de RViz.
 
-\section{Filtrado de correspondencias espúreas}
+\section{Filtrar de Correspondencias Espúreas}
 Aplicar RANSAC (\emph{Random sample consensus}) para filtrar los matches espúreos y computar la Matríz Fundamental. Para esto puede utilizar la función \lstinline{cv::findHomography()}. Para verificar el impacto del filtrado, visualizar los matches entre las imágenes nuevamente como en la nube de puntos 3D generada.
 
-\section{Computar el mapa de disparidad}
+\section{Computar el Mapa de Disparidad}
 Computar el mapa de disparidad con las librerías utilizando la función \lstinline{cv::StereoMatcher::compute()}. Opcionalmente para tener mejores resultados puede utilizar la librería LIBELAS\footnote{\url{http://www.cvlibs.net/software/libelas/}}. Visualizar el mapa de disparidad.
 
-\section{Reconstrucción 3D densa}
+\section{Reconstruir la Escena 3D de manera Densa}
 Utilizando el mapa de disparidad obtenido en el paso anterior realizar una reconstrucción densa de la escena observada utilizando la función \lstinline{cv::reprojectImageTo3D()}. Para esto debe utilizar la matríz de reproyección Q retornada por la función \lstinline{cv::stereoRectify()}. Visualizar la nube de puntos 3D.
 
-\section{Estimación de pose Monocular}
+\section{Estimar la Pose utilizando Visión Monocular}
 Utilizando \lstinline{cv::recoverPose()} estimar la transformación entre la cámara izquierda y la cámara derecha. Para esto deberá calcular la matríz esencial utilizando la función \lstinline{cv::findEssentialMat()}. Notar que \lstinline{cv::recoverPose()} retorna el vector unitario de traslación, por lo tanto deberá multiplicarlo por el factor de escala (en este caso el baseline entre las cámaras) para obtener la traslación estimada. Una vez hecho esto se pide:
-
 
 \begin{itemize}
     \item Visualizar la pose estimada de ambas cámaras.
