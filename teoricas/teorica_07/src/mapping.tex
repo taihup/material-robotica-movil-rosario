@@ -318,7 +318,12 @@
     \frametitle{Distribución conjunta}
     \note{información extraída de https://youtu.be/v-Rm9TUG9LA}
     
-    Un mapa de ocupación entonces es la distribución de probabilidad representando todo el mapa del entorno. La distribución de probabilidad de todo el mapa es la probabilidad conjunta (\emph{joint belief}) del valor de todas las celdas individuales.
+    \begin{itemize}
+        \item Un mapa de ocupación entonces es la distribución de probabilidad representando todo el mapa del entorno.
+
+        \item La distribución de probabilidad de todo el mapa es la probabilidad conjunta (\emph{joint belief}) del valor de todas las celdas individuales.
+    \end{itemize}
+
     
    	\begin{figure}[!h]
     	\includegraphics[width=0.5\columnwidth]{./images/joint_distribution.pdf}
@@ -374,7 +379,7 @@
 		\overset{\text{independencia}}{=}& \dfrac{p(\map_{i} | \observation_{t}, \state_{t}) p(\observation_{t} | \state_{t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\map_{i})p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}}
 	\end{align*}
 
-	\only<2>{Aplicamos Markov: La observación de ahora es independiente de las mediciones y poses anteriores. También, en el segundo término podemos ignorar $x_{t}$. Esto es, saber mi posición en el instante $t$ sin tener mediciones en dicho instante, no me va a servir de determinar si una celda esta libre u ocupada. El único caso dónde esto puede servir en la práctica es si el robot se encuentra encima de esa celda, y por tanto la celda esta libre de obstáculos ya que está parada sobre ella.}
+	\only<2>{Aplicamos Markov: La observación de ahora es independiente de las mediciones y poses anteriores. También, en el segundo término podemos ignorar $x_{t}$. Esto es, saber mi posición en el instante $t$ sin tener mediciones en dicho instante, no me va a servir para determinar si una celda esta libre u ocupada. El único caso dónde esto puede servir en la práctica es si el robot se encuentra encima de esa celda, y por tanto la celda esta libre de obstáculos ya que está parado sobre ella.}
 	
 	\only<3>{Aplicamos Regla de Bayes en el primer término de la multiplicación}
 	
