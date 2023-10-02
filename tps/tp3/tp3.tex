@@ -100,13 +100,13 @@ ros2 bag play CARPETA_ROSBAG --remap /stereo/left/image_raw:=/left/image_raw \
 Selecionar un detector de keypoints (FAST, ORB, SIFT, SURF, GFTT, BRISK, etc.) y un descriptor (BRIEF, ORB, BRISK, etc.), y extraer features en ambas imágenes.
 
 \section{Buscar correspondencias visuales}
-Realizar la búsqueda de correspondencias entre los feature de ambas imágenes (\emph{matching}). Para esto se debe utilizar la función \lstinline{cv::BFMatcher::BFMatcher()}. 
+Realizar la búsqueda de correspondencias entre los feature de ambas imágenes (\emph{matching}). Para esto se debe utilizar la función \lstinline{cv::BFMatcher::BFMatcher()}. Dibujar todos los matches. Luego, dibujar todos los matches que tengan una distancia de matching menor a 30.
 
 \section{Triangular Puntos 3D}
 Dadas las correspondencias visuales (\emph{matches}) obtenidas en el paso anterior, realizar la triangulación de los features detectados utilizando la función \lstinline{cv::sfm::triangulatePoints()}. Para la visualización de la nube de puntos 3D se puede publicar un mensaje de tipo \lstinline{sensor_msgs/PointCloud2}\footnote{\url{http://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/PointCloud2.html}} y hacer uso de RViz.
 
 \section{Filtrar de Correspondencias Espúreas}
-Aplicar RANSAC (\emph{Random sample consensus}) para filtrar los matches espúreos y computar la Matríz Fundamental. Para esto puede utilizar la función \lstinline{cv::findHomography()}. Para verificar el impacto del filtrado, visualizar los matches entre las imágenes nuevamente como en la nube de puntos 3D generada.
+Aplicar RANSAC (\emph{Random sample consensus}) para filtrar los matches espúreos y computar la Matríz Fundamental. Para esto puede utilizar la función \lstinline{cv::findHomography()}. Para verificar el impacto del filtrado, visualizar los matches entre las imágenes nuevamente como en la nube de puntos 3D generada. También, visualizar en la imagen derecha los puntos de la imagen izquierda transformados por la matríz de homografía. Para esto último utilizar la función  \lstinline{cv::perspectiveTransform()}.
 
 \section{Computar el Mapa de Disparidad}
 Computar el mapa de disparidad con las librerías utilizando la función \lstinline{cv::StereoMatcher::compute()}. Opcionalmente para tener mejores resultados puede utilizar la librería LIBELAS\footnote{\url{http://www.cvlibs.net/software/libelas/}}. Visualizar el mapa de disparidad.
