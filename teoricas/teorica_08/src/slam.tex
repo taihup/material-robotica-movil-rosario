@@ -1,58 +1,58 @@
 \begin{frame}
-	\frametitle{Material}
-	
-	Material para armar estas slides:
-	\begin{itemize}
-		\item Cyrill Stachniss SLAM \url{https://youtu.be/BuRCJ2fegcc}
-   		\item Cyrill Stachniss Factor Graph \url{https://youtu.be/uuiaqGLFYa4}
-		\item Cyrill Stachniss Graph-based SLAM using Pose Graphs \url{https://youtu.be/uHbRKvD8TWg}
-		\item Cyrill Stachniss Graph-Based SLAM with Landmarks \url{https://youtu.be/mZBdPgBtrCM}
+    \frametitle{Material}
+    
+    Material para armar estas slides:
+    \begin{itemize}
+        \item Cyrill Stachniss SLAM \url{https://youtu.be/BuRCJ2fegcc}
+           \item Cyrill Stachniss Factor Graph \url{https://youtu.be/uuiaqGLFYa4}
+        \item Cyrill Stachniss Graph-based SLAM using Pose Graphs \url{https://youtu.be/uHbRKvD8TWg}
+        \item Cyrill Stachniss Graph-Based SLAM with Landmarks \url{https://youtu.be/mZBdPgBtrCM}
         %\item Cyrill Stachniss Least Squares \url{https://youtu.be/yVd-QDy0K6k}
-		%\item Cyrill Stachniss Robust Least Squares for Graph-Based SLAM \url{https://youtu.be/z60RbiY18I8}
-		%\item Cyrill Stachniss Hierarchical Pose Graphs for SLAM \url{https://youtu.be/uRSow8nMEw8}
-		\item Wolfram Burgard, Giorgio Grisetti, and Cyrill Stachniss: Graph-based SLAM \url{https://youtu.be/Alu59K8zvYs}
-		\item Frank Dellaert \url{https://youtu.be/tm4E1o11kGo}
+        %\item Cyrill Stachniss Robust Least Squares for Graph-Based SLAM \url{https://youtu.be/z60RbiY18I8}
+        %\item Cyrill Stachniss Hierarchical Pose Graphs for SLAM \url{https://youtu.be/uRSow8nMEw8}
+        \item Wolfram Burgard, Giorgio Grisetti, and Cyrill Stachniss: Graph-based SLAM \url{https://youtu.be/Alu59K8zvYs}
+        \item Frank Dellaert \url{https://youtu.be/tm4E1o11kGo}
         \item Frank Dellaert and Michael Kaess - Factor Graphs for Robot Perception \url{https://www.cs.cmu.edu/~kaess/pub/Dellaert17fnt.pdf}
         \item Cyrill Stachniss Slides \url{http://ais.informatik.uni-freiburg.de/teaching/ss13/robotics/slides/16-graph-slam.pdf}
         \item A Technical Walkthrough of the SLAM Back-end \url{https://youtu.be/FhwFyA0NQkE}
-	\end{itemize}
-	
+    \end{itemize}
+    
 \end{frame}
 
 \begin{frame}
-	\frametitle{Más material}
-	
-	Material para armar estas slides:
-	\begin{itemize}
-		\item Joan Solá - Lie theory for the roboticist \url{https://youtu.be/gy8U7S4LWzs}
-		\item Joan Solá - Course on SLAM \url{https://raw.githubusercontent.com/joansola/slamtb/graph/courseSLAM.pdf}
-		\item Michael Kaess - Factor Graphs for Robot Perception \url{https://youtu.be/Q313pTMAdcM}
-		\item Philipp Hennig - Probabilistic Machine Learning - Lecture 17 - Factor Graphs \url{https://youtu.be/fXD6KJB1U20}
-		\item Lennart Svensson - Machile Learning Tutorial: Factor Graphs, Belief Propagation and Variational Techniques \url{https://youtu.be/yQg34-2QhvE}
-	\end{itemize}
-	
+    \frametitle{Más material}
+    
+    Material para armar estas slides:
+    \begin{itemize}
+        \item Joan Solá - Lie theory for the roboticist \url{https://youtu.be/gy8U7S4LWzs}
+        \item Joan Solá - Course on SLAM \url{https://raw.githubusercontent.com/joansola/slamtb/graph/courseSLAM.pdf}
+        \item Michael Kaess - Factor Graphs for Robot Perception \url{https://youtu.be/Q313pTMAdcM}
+        \item Philipp Hennig - Probabilistic Machine Learning - Lecture 17 - Factor Graphs \url{https://youtu.be/fXD6KJB1U20}
+        \item Lennart Svensson - Machile Learning Tutorial: Factor Graphs, Belief Propagation and Variational Techniques \url{https://youtu.be/yQg34-2QhvE}
+    \end{itemize}
+    
 \end{frame}
 
 
 \begin{frame}
-	\frametitle{Temario para estas slides}
-	
-	\begin{itemize}
-		\item Graph-SLAM / Factor Graph
-		\item Loop-Closure
-		\item Bundle Adjustment
-	\end{itemize}
-	
+    \frametitle{Temario para estas slides}
+    
+    \begin{itemize}
+        \item Graph-SLAM / Factor Graph
+        \item Loop-Closure
+        \item Bundle Adjustment
+    \end{itemize}
+    
 \end{frame}
 
 \begin{frame}
-	\frametitle{¿Qué es SLAM?}
-	
-	Para que un robot móvil pueda navegar de manera autónoma es necesario que conozca su ubicación y cuente con una representación del entorno donde se encuentra. Estos problemas se conocen como el problema Localización y el problema de Mapeo. En el caso más general, donde no se cuenta con un la localización del robot ni con un mapa a priori del entorno, dichas problemas se abordan de manera simultánea. Esto da origen al problema de SLAM (\emph{Simultaneous Localizacion and Mapping}).
-	\begin{block}{}
-		SLAM es el problema de resolver la localización y el mapeo al mismo tiempo.
-	\end{block}
-	
+    \frametitle{¿Qué es SLAM?}
+    
+    Para que un robot móvil pueda navegar de manera autónoma es necesario que conozca su ubicación y cuente con una representación del entorno donde se encuentra. Estos problemas se conocen como el problema Localización y el problema de Mapeo. En el caso más general, donde no se cuenta con un la localización del robot ni con un mapa a priori del entorno, dichas problemas se abordan de manera simultánea. Esto da origen al problema de SLAM (\emph{Simultaneous Localizacion and Mapping}).
+    \begin{block}{}
+        SLAM es el problema de resolver la localización y el mapeo al mismo tiempo.
+    \end{block}
+    
 \end{frame}
 
 
@@ -185,12 +185,12 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Aquitectura general de SLAM}
-	
-	\begin{figure}[!h]
-			\includegraphics[width=\textwidth]{images/slam_frontend_backend.pdf}
-	\end{figure}
-	
+    \frametitle{Aquitectura general de SLAM}
+    
+    \begin{figure}[!h]
+            \includegraphics[width=\textwidth]{images/slam_frontend_backend.pdf}
+    \end{figure}
+    
 \end{frame}
 
 \begin{frame}
@@ -213,7 +213,7 @@
             \end{itemize}
     \end{itemize}
 
-	\begin{center}
+    \begin{center}
         \includegraphics[width=0.25\textwidth]{images/slam-landmarks.pdf}
     \end{center}
     
@@ -254,7 +254,7 @@
         Un Factor-graph es un término matemático, un grafo bipartito representando la factorización de una función. Esto significa que podemos tomar una función por ejemplo $g(.)$ y descomponerla mediante el producto de funciones $f(.)$,
         
         \begin{equation*}
-            g(X_{1}, \dots, X_{n}) = \prod_{i} f_{i}(S_{i}) \quad \text{con} \quad S_{i} 	\subseteq \{ X_{1},\dots, X_{n} \}
+            g(X_{1}, \dots, X_{n}) = \prod_{i} f_{i}(S_{i}) \quad \text{con} \quad S_{i}     \subseteq \{ X_{1},\dots, X_{n} \}
         \end{equation*}
     \end{block}
 
@@ -287,13 +287,13 @@
     \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
     
     \begin{itemize}
-		\item Las restricciones conectan las poses del robot mientras se desplaza
-		\item Las restricciones tiene ruido
+        \item Las restricciones conectan las poses del robot mientras se desplaza
+        \item Las restricciones tiene ruido
     \end{itemize}
 
-	\begin{figure}[!h]
-		\includegraphics[width=0.7\textwidth]{images/pose_graph_example.pdf}
-	\end{figure}
+    \begin{figure}[!h]
+        \includegraphics[width=0.7\textwidth]{images/pose_graph_example.pdf}
+    \end{figure}
     
 \end{frame}
 
@@ -302,11 +302,11 @@
     \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
     
     \begin{itemize}
-    	\item Observando áreas previamente vistas se generan restricciones entre poses no consecutivas (\emph{Loop Closure})
+        \item Observando áreas previamente vistas se generan restricciones entre poses no consecutivas (\emph{Loop Closure})
     \end{itemize}
     
-   	\begin{figure}[!h]
-    	\includegraphics[width=0.4\textwidth]{images/pose_graph_loop_example.pdf}
+       \begin{figure}[!h]
+        \includegraphics[width=0.4\textwidth]{images/pose_graph_loop_example.pdf}
     \end{figure}
     
 \end{frame}
@@ -315,7 +315,7 @@
     \frametitle{2D Pose-Graph con LiDAR}
     \note{Víðeo extraído de https://youtu.be/E6IvbjZA7Ao}
         
-	\begin{center}
+    \begin{center}
     \movie[loop]{\includegraphics[width=0.5\columnwidth]{./images/pose_graph_2d_video.jpg}}{./videos/pose_graph_2d.mp4}
     \end{center}
     
@@ -348,108 +348,108 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{El grafo en pose-graph}
-	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
-	
-	\begin{itemize}
-		\item Consiste en $n$ nodos $\stateBold = \stateBold_{1:n}$
-		\item Cada $\stateBold_{i}$ es una pose del robot en el tiempo $t_{i}$
-		\item Una restricción/arista existe entre el nodo $\stateBold_{i}$ y $\stateBold_{j}$ si ...
-	\end{itemize}
-	
- 	\begin{figure}[!h]
-		\includegraphics[width=0.3\textwidth]{pose_graph_loop_example.pdf}
-	\end{figure}
-	
-\end{frame}
-
-\begin{frame}
-	\frametitle{Crear una arista si...}
-	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
-	
-	\begin{itemize}
-		\item Una restricción/arista existe entre el nodo $\stateBold_{i}$ y $\stateBold_{j}$ si el robot se mueve de $\stateBold_{i}$ a $\stateBold_{i+1}$
-		\item Las aristas corresponden a odometría
-	\end{itemize}
-	
-	\begin{figure}[!h]
-		\includegraphics[width=0.44\textwidth]{pose_graph_odometry_edge.pdf}
-	\end{figure}
-	
-\end{frame}
-
-
-\begin{frame}
-	\frametitle{Crear una arista si...}
-	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
-	
-	\begin{itemize}
-		\item<1-> Una restricción/arista existe entre el nodo $\stateBold_{i}$ y $\stateBold_{j}$ si el robot observa la misma parte del entorno desde $\stateBold_{i}$ y desde $\stateBold_{j}$
-		\item<2>  Construimos una {\bf restricción virtual} entre la posición de $\stateBold_{j}$ vista desde $\stateBold_{i}$
-	\end{itemize}
-	\only<1>{
-		\begin{figure}
-			\includegraphics[width=0.44\textwidth]{pose_graph_edge_lidar.pdf}
-		\end{figure}
-	}
-	\only<2>{
-		\begin{figure}
-			\includegraphics[width=0.44\textwidth]{pose_graph_edge_lidar2.pdf}
-		\end{figure}
-	}
-	
-\end{frame}
-
-\begin{frame}
-	\frametitle{La matriz de información de las aristas}
-	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    \frametitle{El grafo en pose-graph}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    
     \begin{itemize}
-		\item Las observaciones tienen ruido
-		\item La matriz de información $\informationMatrix_{ij}$ para cada arista codifica su incertidumbre
-		\item Mientras más grande $\informationMatrix_{ij}$, más importa la arista en al optimización.
-	\end{itemize}
-	
+        \item Consiste en $n$ nodos $\stateBold = \stateBold_{1:n}$
+        \item Cada $\stateBold_{i}$ es una pose del robot en el tiempo $t_{i}$
+        \item Una restricción/arista existe entre el nodo $\stateBold_{i}$ y $\stateBold_{j}$ si ...
+    \end{itemize}
+    
+     \begin{figure}[!h]
+        \includegraphics[width=0.3\textwidth]{pose_graph_loop_example.pdf}
+    \end{figure}
+    
 \end{frame}
 
 \begin{frame}
-	\frametitle{La matriz de información de las aristas}
-	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    \frametitle{Crear una arista si...}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    
+    \begin{itemize}
+        \item Una restricción/arista existe entre el nodo $\stateBold_{i}$ y $\stateBold_{j}$ si el robot se mueve de $\stateBold_{i}$ a $\stateBold_{i+1}$
+        \item Las aristas corresponden a odometría
+    \end{itemize}
+    
     \begin{figure}[!h]
-		\includegraphics[width=0.7\textwidth]{images/factor_graph_edge_example.pdf}
-	\end{figure}
+        \includegraphics[width=0.44\textwidth]{pose_graph_odometry_edge.pdf}
+    \end{figure}
+    
+\end{frame}
 
-	Objetivo:
-	\begin{equation*}
-		\stateBold^{*} = \argmin_{\stateBold} \sum_{ij} \error^{\top}_{ij} \informationMatrix_{ij} \error_{ij}
-	\end{equation*}
-	
+
+\begin{frame}
+    \frametitle{Crear una arista si...}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    
+    \begin{itemize}
+        \item<1-> Una restricción/arista existe entre el nodo $\stateBold_{i}$ y $\stateBold_{j}$ si el robot observa la misma parte del entorno desde $\stateBold_{i}$ y desde $\stateBold_{j}$
+        \item<2>  Construimos una {\bf restricción virtual} entre la posición de $\stateBold_{j}$ vista desde $\stateBold_{i}$
+    \end{itemize}
+    \only<1>{
+        \begin{figure}
+            \includegraphics[width=0.44\textwidth]{pose_graph_edge_lidar.pdf}
+        \end{figure}
+    }
+    \only<2>{
+        \begin{figure}
+            \includegraphics[width=0.44\textwidth]{pose_graph_edge_lidar2.pdf}
+        \end{figure}
+    }
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{La matriz de información de las aristas}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    \begin{itemize}
+        \item Las observaciones tienen ruido
+        \item La matriz de información $\informationMatrix_{ij}$ para cada arista codifica su incertidumbre
+        \item Mientras más grande $\informationMatrix_{ij}$, más importa la arista en al optimización.
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{La matriz de información de las aristas}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    \begin{figure}[!h]
+        \includegraphics[width=0.7\textwidth]{images/factor_graph_edge_example.pdf}
+    \end{figure}
+
+    Objetivo:
+    \begin{equation*}
+        \stateBold^{*} = \argmin_{\stateBold} \sum_{ij} \error^{\top}_{ij} \informationMatrix_{ij} \error_{ij}
+    \end{equation*}
+    
 \end{frame}
 
 
 
 \begin{frame}
-	\frametitle{Mínimos cuadrados en SLAM}
-	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
-	Podemos minimizar el error utilizaremos mínimos cuadrados (\emph{Least Square})
-	\begin{align*}
-		\state^{*} &= \argmin_{\stateBold} \sum_{ij} \error^{\top}_{ij}(\stateBold_{i},\stateBold_{j}) \informationMatrix_{ij} \error_{ij}(\stateBold_{i},\stateBold_{j})\\
-	   		  &= \argmin_{\stateBold} \sum_{k} \error^{\top}_{k}(\stateBold) \informationMatrix_{k} \error_{k}(\stateBold)
-	\end{align*}
-	
-	El {\bf vector estado} es la concatenación de los nodos pose $\stateBold = (\stateBold_{1}^{\top} \stateBold_{2}^{\top} \dots \stateBold_{n}^{\top})$. Cada nodo es una pose (posición u orientación).
-	
+    \frametitle{Mínimos cuadrados en SLAM}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    Podemos minimizar el error utilizaremos mínimos cuadrados (\emph{Least Square})
+    \begin{align*}
+        \state^{*} &= \argmin_{\stateBold} \sum_{ij} \error^{\top}_{ij}(\stateBold_{i},\stateBold_{j}) \informationMatrix_{ij} \error_{ij}(\stateBold_{i},\stateBold_{j})\\
+                 &= \argmin_{\stateBold} \sum_{k} \error^{\top}_{k}(\stateBold) \informationMatrix_{k} \error_{k}(\stateBold)
+    \end{align*}
+    
+    El {\bf vector estado} es la concatenación de los nodos pose $\stateBold = (\stateBold_{1}^{\top} \stateBold_{2}^{\top} \dots \stateBold_{n}^{\top})$. Cada nodo es una pose (posición u orientación).
+    
     \vspace{2em}
-	{\bf Tenemos que definir la función de error...}
+    {\bf Tenemos que definir la función de error...}
 \end{frame}
 
 
 \begin{frame}
-	\frametitle{Función de error}
-	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    \frametitle{Función de error}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
     
     \begin{itemize}
     \item Función de error para una sola restricción
-       	\begin{figure}
+           \begin{figure}
             \includegraphics[width=0.44\textwidth]{pose_graph_error_function.pdf}
         \end{figure}
     \footnotetext{$t2v(.)$ mapea transformaciones a vectores}
@@ -470,8 +470,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Método de Gauss-Newton para la minimización del error}
-	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    \frametitle{Método de Gauss-Newton para la minimización del error}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
     
     \TODO{especificar metamáticamente estos pasos, sino no se entiende porque hay que linearizar el error. Ni cómo llegamos a construir el sistema lineal ni por qué.}
     
@@ -484,12 +484,12 @@
         \item Iterar este procedimiento hasta que converja
     \end{itemize}
     
-	
+    
 \end{frame}
 
 \begin{frame}
-	\frametitle{Linearizar la función de error}
-	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    \frametitle{Linearizar la función de error}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
     
     \begin{itemize}
         \item Podemos aproximar el error al rededor de una estimación inicial $\state$ a través de una expansión de Taylor
@@ -498,12 +498,12 @@
     \begin{equation*}
         \error_{ij}(\stateBold + \vec{\Delta}\stateBold) \simeq  \error_{ij}(\stateBold) + \jacobian_{ij}\vec{\Delta}\stateBold \quad \text{con} \quad \jacobian_{ij} = \dfrac{\partial\error_{ij}(\stateBold)}{\partial\stateBold}
     \end{equation*}
-	
+    
 \end{frame}
 
 \begin{frame}
-	\frametitle{Derivada de la función de error}
-	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    \frametitle{Derivada de la función de error}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
     \begin{itemize}
         \item<1-> Pregunta: ¿Depende un término de error $\error_{ij}(\stateBold)$ de todas las variables de estado?
         
@@ -512,252 +512,252 @@
         \item<3-> Pregunta: ¿Hay alguna consecuencia en la estructura del Jacobiano?
         
         \only<4->{
-        	Si, será diferente a cero solamente en las filas correspondientes a  $\stateBold_{i}$ y $\stateBold_{j}$
+            Si, será diferente a cero solamente en las filas correspondientes a  $\stateBold_{i}$ y $\stateBold_{j}$
         
-	        \begin{align*}
-	            \dfrac{\partial\error_{ij}(\stateBold)}{\partial\stateBold} &= 
-	            \begin{bmatrix}
-	                0 & \dots & \dfrac{\partial\error_{ij}(\stateBold_{i})}{\partial\stateBold_{i}} & \dots & 0 & \dots & \dfrac{\partial\error_{ij}(\stateBold_{j})}{\partial\stateBold_{j}} & \dots & 0
-	            \end{bmatrix} \\
-	            \jacobian_{ij} &= 
-	                \begin{bmatrix}
-	                    0 & \dots & \vec{A}_{ij} & \dots & 0 & \dots & \vec{B}_{ij} & \dots & 0
-	                \end{bmatrix}
-	        \end{align*}
-	    }
+            \begin{align*}
+                \dfrac{\partial\error_{ij}(\stateBold)}{\partial\stateBold} &= 
+                \begin{bmatrix}
+                    0 & \dots & \dfrac{\partial\error_{ij}(\stateBold_{i})}{\partial\stateBold_{i}} & \dots & 0 & \dots & \dfrac{\partial\error_{ij}(\stateBold_{j})}{\partial\stateBold_{j}} & \dots & 0
+                \end{bmatrix} \\
+                \jacobian_{ij} &= 
+                    \begin{bmatrix}
+                        0 & \dots & \vec{A}_{ij} & \dots & 0 & \dots & \vec{B}_{ij} & \dots & 0
+                    \end{bmatrix}
+            \end{align*}
+        }
         
         
     \end{itemize}
-	
+    
 \end{frame}
 
 
 \begin{frame}
-	\frametitle{Jacobianos y problema disperso}
-	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
-	
-	\begin{itemize}
-		\item El error $\error_{ij}(\stateBold)$ depende solamente de los bloques de parámetros $\stateBold_{i}$ y $\stateBold_{j}$
-		
-		\begin{equation*}
-			\error_{ij}(\stateBold) =\error_{ij}(\stateBold_{i} ,\stateBold_{j})
-		\end{equation*}
-	
-		\item El Jacobiano será cero en todos lados excepto en las columnas $\stateBold_{i}$ y $\stateBold_{j}$
-		
-   		\begin{equation*}
-			\jacobian_{ij} = 
-			\begin{bmatrix}
-				0 & \dots & 0 & \dfrac{\partial\error_{ij}(\stateBold_{i})}{\partial\stateBold_{i}} & 0 & \dots & 0 & \dfrac{\partial\error_{ij}(\stateBold_{j})}{\partial\stateBold_{j}} & 0 & \dots & 0
-			\end{bmatrix}
-		\end{equation*}
-		
-	\end{itemize}
+    \frametitle{Jacobianos y problema disperso}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    
+    \begin{itemize}
+        \item El error $\error_{ij}(\stateBold)$ depende solamente de los bloques de parámetros $\stateBold_{i}$ y $\stateBold_{j}$
+        
+        \begin{equation*}
+            \error_{ij}(\stateBold) =\error_{ij}(\stateBold_{i} ,\stateBold_{j})
+        \end{equation*}
+    
+        \item El Jacobiano será cero en todos lados excepto en las columnas $\stateBold_{i}$ y $\stateBold_{j}$
+        
+           \begin{equation*}
+            \jacobian_{ij} = 
+            \begin{bmatrix}
+                0 & \dots & 0 & \dfrac{\partial\error_{ij}(\stateBold_{i})}{\partial\stateBold_{i}} & 0 & \dots & 0 & \dfrac{\partial\error_{ij}(\stateBold_{j})}{\partial\stateBold_{j}} & 0 & \dots & 0
+            \end{bmatrix}
+        \end{equation*}
+        
+    \end{itemize}
 
-	{\bf Esto nos permite resolver SLAM de manera eficiente!}
-	
+    {\bf Esto nos permite resolver SLAM de manera eficiente!}
+    
 \end{frame}
 
 
 \begin{frame}
-	\frametitle{Consecuencia de que sea un problema disperso}
-	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
-	
-	\begin{itemize}
-		\item Necesitamos computar el vector coeficiente
-		\begin{align*}
-			\linearSystemb^{\top} &= \sum_{ij} \linearSystemb_{ij}^{\top} = \sum_{ij} \error_{ij}^{\top}\Omega_{ij}\jacobian_{ij}\\
-			\linearSystemH &= \sum_{ij} \linearSystemH_{ij} = \sum_{ij} \jacobian_{ij}^{\top}\Omega_{ij}\jacobian_{ij}
-		\end{align*}
-		\item La estructura dispersa de $\jacobian_{ij}$ resultará en una estructura dispersa de $\linearSystemH$
-		\item Esta estructura refleja la matriz de adyacencia del grafo
-	\end{itemize}
-	
+    \frametitle{Consecuencia de que sea un problema disperso}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    
+    \begin{itemize}
+        \item Necesitamos computar el vector coeficiente
+        \begin{align*}
+            \linearSystemb^{\top} &= \sum_{ij} \linearSystemb_{ij}^{\top} = \sum_{ij} \error_{ij}^{\top}\Omega_{ij}\jacobian_{ij}\\
+            \linearSystemH &= \sum_{ij} \linearSystemH_{ij} = \sum_{ij} \jacobian_{ij}^{\top}\Omega_{ij}\jacobian_{ij}
+        \end{align*}
+        \item La estructura dispersa de $\jacobian_{ij}$ resultará en una estructura dispersa de $\linearSystemH$
+        \item Esta estructura refleja la matriz de adyacencia del grafo
+    \end{itemize}
+    
 \end{frame}
 
 \begin{frame}
-	\frametitle{Ilustración de la estructura}
-	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
-	
+    \frametitle{Ilustración de la estructura}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    
     \begin{figure}[!h]
-		\includegraphics[width=0.9\textwidth]{linear_system_sparsity.pdf}
-	\end{figure}
-	
+        \includegraphics[width=0.9\textwidth]{linear_system_sparsity.pdf}
+    \end{figure}
+    
 \end{frame}
 
 \begin{frame}
-	\frametitle{Consecuencia de que sea un problema disperso}
-	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
-	
- 	\begin{figure}[!h]
-		\includegraphics[width=0.9\textwidth]{linear_system_sparsity2.pdf}
-	\end{figure}
-	
+    \frametitle{Consecuencia de que sea un problema disperso}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    
+     \begin{figure}[!h]
+        \includegraphics[width=0.9\textwidth]{linear_system_sparsity2.pdf}
+    \end{figure}
+    
 \end{frame}
 
 \begin{frame}
-	\frametitle{Consecuencia de que sea un problema disperso}
-	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
-	
-	\begin{itemize}
-		\item Una arista contribuye al sistema lineal a través de $\linearSystemb_{ij}$ y $\linearSystemH_{ij}$
-		\item El vector coeficiente es
-		
-		\begin{align*}
-			\linearSystemb_{ij}^{\top} &= \error_{ij}^{\top}\informationMatrix_{ij}\jacobian_{ij}\\
-			&= \error_{ij}^{\top}\informationMatrix_{ij}
-				\begin{bmatrix}
-					0 & \dots & \vec{A}_{ij} & \dots & \vec{B}_{ij} & \dots & 0
-				\end{bmatrix}\\
-			&= 
-				\begin{bmatrix}
-					0 & \dots & \error_{ij}^{\top}\informationMatrix_{ij}\vec{A}_{ij} & \dots & \error_{ij}^{\top}\informationMatrix_{ij}\vec{B}_{ij} & \dots & 0
-				\end{bmatrix}
-		\end{align*}
-		\item Es diferente a cero solamente en los índices correspondientes de $\stateBold_{i}$ y $\stateBold_{j}$		
-	\end{itemize}
-	
+    \frametitle{Consecuencia de que sea un problema disperso}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    
+    \begin{itemize}
+        \item Una arista contribuye al sistema lineal a través de $\linearSystemb_{ij}$ y $\linearSystemH_{ij}$
+        \item El vector coeficiente es
+        
+        \begin{align*}
+            \linearSystemb_{ij}^{\top} &= \error_{ij}^{\top}\informationMatrix_{ij}\jacobian_{ij}\\
+            &= \error_{ij}^{\top}\informationMatrix_{ij}
+                \begin{bmatrix}
+                    0 & \dots & \vec{A}_{ij} & \dots & \vec{B}_{ij} & \dots & 0
+                \end{bmatrix}\\
+            &= 
+                \begin{bmatrix}
+                    0 & \dots & \error_{ij}^{\top}\informationMatrix_{ij}\vec{A}_{ij} & \dots & \error_{ij}^{\top}\informationMatrix_{ij}\vec{B}_{ij} & \dots & 0
+                \end{bmatrix}
+        \end{align*}
+        \item Es diferente a cero solamente en los índices correspondientes de $\stateBold_{i}$ y $\stateBold_{j}$        
+    \end{itemize}
+    
 \end{frame}
 
 \begin{frame}
-	\frametitle{Consecuencia de que sea un problema disperso}
-	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
-	
-	\begin{itemize}
-		\item La matriz coeficiente de una arista es
+    \frametitle{Consecuencia de que sea un problema disperso}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    
+    \begin{itemize}
+        \item La matriz coeficiente de una arista es
 
-		\begin{align*}
-			\linearSystemH_{ij}^{\top} &= \jacobian_{ij}^{\top}\informationMatrix_{ij}\jacobian_{ij}\\
-			&= 
-			\begin{bmatrix}
-				\vdots \\
-				\vec{A}_{ij}^{\top}\\
-				\vdots \\
-				\vec{B}_{ij}^{\top}\\
-				\vdots
-			\end{bmatrix} \informationMatrix_{ij}
-			\begin{bmatrix}
-				\cdots & \vec{A}_{ij} & \cdots & \vec{B}_{ij} & \cdots
-			\end{bmatrix}\\
-			&= 
-			\begin{bmatrix}
-				\vec{A}_{ij}^{\top}\informationMatrix_{ij}\vec{A}_{ij} & \vec{A}_{ij}^{\top}\informationMatrix_{ij}\vec{B}_{ij}\\
-				\vec{B}_{ij}^{\top}\informationMatrix_{ij}\vec{A}_{ij} & \vec{B}_{ij}^{\top}\informationMatrix_{ij}\vec{B}_{ij}
-			\end{bmatrix}
-		\end{align*}
-		\item Es diferente a cero en los bloques relacionados con $i,j$
-	\end{itemize}
-	
-\end{frame}
-
-
-\begin{frame}
-	\frametitle{Resumen del problema disperso}
-	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
-	
-	\begin{itemize}
-		\item Una arista ij solo contribuye a
-		\begin{itemize}
-			\item i-ésimo y j-ésimo bloques de $\linearSystemb_{ij}$
-			\item los bloques $ii$, $jj$, $ij$ y $ji$ de $\linearSystemH_{ij}$
-		\end{itemize}
-		\item el sistema resultante es disperso
-		\item El sistema se puede computar sumando las contribuciones de cada arista
-		\item Se pueden utilizar diferentes solvers
-		\begin{itemize}
-			\item Descoposición de Sparse Cholesky
-			\item Gradiente conjudado
-			\item muchos más...
-		\end{itemize}
-
-	\end{itemize}
-	
-	
-\end{frame}
-
-\begin{frame}
-	\frametitle{El sistema Lineal}
-	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
-	
-	\begin{itemize}
-		\item Vector de incrementos de estado
-		\begin{equation*}
-			\Delta\stateBold^{\top} =
-			\begin{bmatrix}
-			\Delta\stateBold_{1}^{\top}	& \Delta\stateBold_{2}^{\top} & \cdots & \Delta\stateBold_{n}^{\top}
-			\end{bmatrix}
-		\end{equation*}
-	\item Vector coeficiente
-		\begin{equation*}
-			\linearSystemb^{\top} =
-			\begin{bmatrix}
-				\overline{\linearSystemb}_{1}^{\top} & \overline{\linearSystemb}_{2}^{\top} & \cdots & \overline{\linearSystemb}_{n}^{\top}
-			\end{bmatrix}
-		\end{equation*}
-	\item Matriz de ecuaciones normales
-		\begin{equation*}
-			\linearSystemH =
-			\begin{bmatrix}
-			\overline{\linearSystemH}_{11} & \overline{\linearSystemH}_{12} & \cdots & \overline{\linearSystemH}_{1n}\\
-			\overline{\linearSystemH}_{21} & \overline{\linearSystemH}_{22} & \cdots & \overline{\linearSystemH}_{2n}\\
-			\vdots & \vdots & \ddots & \vdots\\
-			\overline{\linearSystemH}_{n1} & \overline{\linearSystemH}_{n2} & \cdots & \overline{\linearSystemH}_{nn}\\
-			\end{bmatrix}
-		\end{equation*}
-	\end{itemize}
-
-\end{frame}
-
-\begin{frame}
-	\frametitle{Construcción del sistema lineal}
-	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
-	Para cada restricción:
-	\begin{itemize}
-		\item Computar el error $\error_{ij} = t2v(\inverse{\observationBold}_{ij}(\inverse{\stateBold}_{i}\stateBold_{j}))$
-		\item Computar los bloques de los jacobianos:
-			\begin{equation*}
-				\vec{A}_{ij} = \dfrac{\partial\error_{ij}(\stateBold_{i}, \stateBold_{j})}{\partial\stateBold_{i}} \quad \quad \vec{B}_{ij} = \dfrac{\partial\error_{ij}(\stateBold_{i}, \stateBold_{j})}{\partial\stateBold_{j}}
-			\end{equation*}
-	\item Actualizar el vector coeficiente:
-		\begin{equation*}
-			\overline{\linearSystemb}_{i}^{\top} += \error_{ij}^{\top}\informationMatrix_{ij}\vec{A}_{ij} \quad \quad \overline{\linearSystemb}_{j}^{\top} += \error_{ij}^{\top}\informationMatrix_{ij}\vec{B}_{ij}
-		\end{equation*}
-
-	\item Actualizar el vector coeficiente:
-		\begin{align*}
-			\overline{\linearSystemH}_{ij}^{\top} &+= \vec{A}_{ij}^{\top}\informationMatrix_{ij}\vec{A}_{ij} \quad \quad \overline{\linearSystemH}_{ij}^{\top} += \vec{A}_{ij}^{\top}\informationMatrix_{ij}\vec{B}_{ij} \\
-			\overline{\linearSystemH}_{ij}^{\top} &+= \vec{B}_{ij}^{\top}\informationMatrix_{ij}\vec{A}_{ij} \quad \quad \overline{\linearSystemH}_{ij}^{\top} += \vec{B}_{ij}^{\top}\informationMatrix_{ij}\vec{B}_{ij}
-		\end{align*}
-	\end{itemize}	
-	
-\end{frame}
-
-\begin{frame}
-	\frametitle{Algoritmo}
-	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
-	
-	\begin{algorithmic}[1]
-		\Procedure{optimize}{$\stateBold$}
-		\While (!converged)
-		\State $(\linearSystemH,\linearSystemb) = buildLinearSystem(\stateBold)$
-		\State $\vec{\Delta}\stateBold = solveSparse(\linearSystemH\vec{\Delta}\stateBold = -\linearSystemb)$
-		\State $\stateBold = \stateBold + \vec{\Delta}\stateBold$
-		\EndWhile
-
-		\State \Return $\stateBold$
-		\EndProcedure
-	\end{algorithmic}
-	
+        \begin{align*}
+            \linearSystemH_{ij}^{\top} &= \jacobian_{ij}^{\top}\informationMatrix_{ij}\jacobian_{ij}\\
+            &= 
+            \begin{bmatrix}
+                \vdots \\
+                \vec{A}_{ij}^{\top}\\
+                \vdots \\
+                \vec{B}_{ij}^{\top}\\
+                \vdots
+            \end{bmatrix} \informationMatrix_{ij}
+            \begin{bmatrix}
+                \cdots & \vec{A}_{ij} & \cdots & \vec{B}_{ij} & \cdots
+            \end{bmatrix}\\
+            &= 
+            \begin{bmatrix}
+                \vec{A}_{ij}^{\top}\informationMatrix_{ij}\vec{A}_{ij} & \vec{A}_{ij}^{\top}\informationMatrix_{ij}\vec{B}_{ij}\\
+                \vec{B}_{ij}^{\top}\informationMatrix_{ij}\vec{A}_{ij} & \vec{B}_{ij}^{\top}\informationMatrix_{ij}\vec{B}_{ij}
+            \end{bmatrix}
+        \end{align*}
+        \item Es diferente a cero en los bloques relacionados con $i,j$
+    \end{itemize}
+    
 \end{frame}
 
 
 \begin{frame}
-	\frametitle{Ejemplo Trivial 1D}
-	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
-	
+    \frametitle{Resumen del problema disperso}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    
+    \begin{itemize}
+        \item Una arista ij solo contribuye a
+        \begin{itemize}
+            \item i-ésimo y j-ésimo bloques de $\linearSystemb_{ij}$
+            \item los bloques $ii$, $jj$, $ij$ y $ji$ de $\linearSystemH_{ij}$
+        \end{itemize}
+        \item el sistema resultante es disperso
+        \item El sistema se puede computar sumando las contribuciones de cada arista
+        \item Se pueden utilizar diferentes solvers
+        \begin{itemize}
+            \item Descoposición de Sparse Cholesky
+            \item Gradiente conjudado
+            \item muchos más...
+        \end{itemize}
+
+    \end{itemize}
+    
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{El sistema Lineal}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    
+    \begin{itemize}
+        \item Vector de incrementos de estado
+        \begin{equation*}
+            \Delta\stateBold^{\top} =
+            \begin{bmatrix}
+            \Delta\stateBold_{1}^{\top}    & \Delta\stateBold_{2}^{\top} & \cdots & \Delta\stateBold_{n}^{\top}
+            \end{bmatrix}
+        \end{equation*}
+    \item Vector coeficiente
+        \begin{equation*}
+            \linearSystemb^{\top} =
+            \begin{bmatrix}
+                \overline{\linearSystemb}_{1}^{\top} & \overline{\linearSystemb}_{2}^{\top} & \cdots & \overline{\linearSystemb}_{n}^{\top}
+            \end{bmatrix}
+        \end{equation*}
+    \item Matriz de ecuaciones normales
+        \begin{equation*}
+            \linearSystemH =
+            \begin{bmatrix}
+            \overline{\linearSystemH}_{11} & \overline{\linearSystemH}_{12} & \cdots & \overline{\linearSystemH}_{1n}\\
+            \overline{\linearSystemH}_{21} & \overline{\linearSystemH}_{22} & \cdots & \overline{\linearSystemH}_{2n}\\
+            \vdots & \vdots & \ddots & \vdots\\
+            \overline{\linearSystemH}_{n1} & \overline{\linearSystemH}_{n2} & \cdots & \overline{\linearSystemH}_{nn}\\
+            \end{bmatrix}
+        \end{equation*}
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Construcción del sistema lineal}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    Para cada restricción:
+    \begin{itemize}
+        \item Computar el error $\error_{ij} = t2v(\inverse{\observationBold}_{ij}(\inverse{\stateBold}_{i}\stateBold_{j}))$
+        \item Computar los bloques de los jacobianos:
+            \begin{equation*}
+                \vec{A}_{ij} = \dfrac{\partial\error_{ij}(\stateBold_{i}, \stateBold_{j})}{\partial\stateBold_{i}} \quad \quad \vec{B}_{ij} = \dfrac{\partial\error_{ij}(\stateBold_{i}, \stateBold_{j})}{\partial\stateBold_{j}}
+            \end{equation*}
+    \item Actualizar el vector coeficiente:
+        \begin{equation*}
+            \overline{\linearSystemb}_{i}^{\top} += \error_{ij}^{\top}\informationMatrix_{ij}\vec{A}_{ij} \quad \quad \overline{\linearSystemb}_{j}^{\top} += \error_{ij}^{\top}\informationMatrix_{ij}\vec{B}_{ij}
+        \end{equation*}
+
+    \item Actualizar el vector coeficiente:
+        \begin{align*}
+            \overline{\linearSystemH}_{ij}^{\top} &+= \vec{A}_{ij}^{\top}\informationMatrix_{ij}\vec{A}_{ij} \quad \quad \overline{\linearSystemH}_{ij}^{\top} += \vec{A}_{ij}^{\top}\informationMatrix_{ij}\vec{B}_{ij} \\
+            \overline{\linearSystemH}_{ij}^{\top} &+= \vec{B}_{ij}^{\top}\informationMatrix_{ij}\vec{A}_{ij} \quad \quad \overline{\linearSystemH}_{ij}^{\top} += \vec{B}_{ij}^{\top}\informationMatrix_{ij}\vec{B}_{ij}
+        \end{align*}
+    \end{itemize}    
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Algoritmo}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    
+    \begin{algorithmic}[1]
+        \Procedure{optimize}{$\stateBold$}
+        \While (!converged)
+        \State $(\linearSystemH,\linearSystemb) = buildLinearSystem(\stateBold)$
+        \State $\vec{\Delta}\stateBold = solveSparse(\linearSystemH\vec{\Delta}\stateBold = -\linearSystemb)$
+        \State $\stateBold = \stateBold + \vec{\Delta}\stateBold$
+        \EndWhile
+
+        \State \Return $\stateBold$
+        \EndProcedure
+    \end{algorithmic}
+    
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo Trivial 1D}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    
     Dos nodos y una observación
 
- 	\begin{figure}[!h]
+     \begin{figure}[!h]
         \includegraphics[width=0.2\textwidth]{pose_graph_1d_example.pdf}
     \end{figure}
 
@@ -775,9 +775,9 @@
         \observationBold_{12} &= 1\\
         \informationMatrix &= 2\\
         \error_{12} &= \observationBold_{12} - (\stateBold_{2} - \stateBold_{1}) = 1 - (0 - 0) = 1\\
-	    \jacobian_{12} &=
-	    \begin{bmatrix}
-        	1 & -1
+        \jacobian_{12} &=
+        \begin{bmatrix}
+            1 & -1
         \end{bmatrix}\\
         \linearSystemb_{12}^{\top} &= \error_{12}^{\top} \informationMatrix_{12} \jacobian_{12} =
         \begin{bmatrix}
@@ -797,8 +797,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{¿Qué es lo que anda mal?}
-	\note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    \frametitle{¿Qué es lo que anda mal?}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
     
     \begin{itemize}
         \item La restricción especifica una restricción relativa entre ambos nodos
@@ -900,7 +900,7 @@
         \item Este bloque contiene la matriz de covarianza de $\stateBold_{j}$ con respecto a $\stateBold_{i}$ la cuál está fija.
     \end{itemize}
 
- 	\begin{figure}[!h]
+     \begin{figure}[!h]
     \includegraphics[width=0.2\textwidth]{pose_graph_relative_uncertainty.pdf}
     \end{figure}
     
@@ -922,7 +922,7 @@
     \frametitle{Graph-Based SLAM con landmarks}
     \note{Información extraída de https://youtu.be/mZBdPgBtrCM}
     
-   	\begin{figure}[!h]
+       \begin{figure}[!h]
         \includegraphics[width=0.6\textwidth]{images/pose_landmark_graph_example.pdf}
     \end{figure}
     
@@ -933,15 +933,15 @@
     \note{Información extraída de https://youtu.be/mZBdPgBtrCM}
     
     \begin{itemize}
-		\item Observación esperada para un (x-y sensor\footnote{x-y sensor es un sensor cuyas mediciones tiene la forma (x,y), un punto de la escena. En un mundo 2D.})
-   		\begin{figure}[!h]
-			\includegraphics[width=0.6\textwidth]{images/pose_landmark_graph_expected_observation.pdf}
-		\end{figure}
-	\item Función error
-	\begin{align*}
-		\error_{ij}(\stateBold_{i}, \stateBold_{j}) &= \hat{\observationBold}_{ij} - \observationBold_{ij}\\
-					&= \rotation_{i}^{\top}(\stateBold_{j}-\translation_{i}) - \observationBold_{ij}
-	\end{align*}
+        \item Observación esperada para un (x-y sensor\footnote{x-y sensor es un sensor cuyas mediciones tiene la forma (x,y), un punto de la escena. En un mundo 2D.})
+           \begin{figure}[!h]
+            \includegraphics[width=0.6\textwidth]{images/pose_landmark_graph_expected_observation.pdf}
+        \end{figure}
+    \item Función error
+    \begin{align*}
+        \error_{ij}(\stateBold_{i}, \stateBold_{j}) &= \hat{\observationBold}_{ij} - \observationBold_{ij}\\
+                    &= \rotation_{i}^{\top}(\stateBold_{j}-\translation_{i}) - \observationBold_{ij}
+    \end{align*}
     \end{itemize}
     
 \end{frame}
@@ -951,16 +951,16 @@
     \note{Información extraída de https://youtu.be/mZBdPgBtrCM}
     
     \begin{itemize}
-		\item Un landmark es un punto 2D
-		\item El robot observa el ángulo hacia el landmark
-		\item Función de observación
-   		\begin{figure}[!h]
-			\includegraphics[width=0.6\textwidth]{images/pose_landmark_graph_bearing_observation.pdf}
-		\end{figure}
-		\item Función error
-		\begin{equation*}
-			\error_{ij}(\stateBold_{i},\stateBold_{j}) = \arctan{\dfrac{(\stateBold_{j}-\translation_{i}).y}{(\stateBold_{j}-\translation_{i}).x}} - \theta_{i} - \observationBold_{j}
-		\end{equation*}
+        \item Un landmark es un punto 2D
+        \item El robot observa el ángulo hacia el landmark
+        \item Función de observación
+           \begin{figure}[!h]
+            \includegraphics[width=0.6\textwidth]{images/pose_landmark_graph_bearing_observation.pdf}
+        \end{figure}
+        \item Función error
+        \begin{equation*}
+            \error_{ij}(\stateBold_{i},\stateBold_{j}) = \arctan{\dfrac{(\stateBold_{j}-\translation_{i}).y}{(\stateBold_{j}-\translation_{i}).x}} - \theta_{i} - \observationBold_{j}
+        \end{equation*}
     \end{itemize}
 
     
@@ -973,20 +973,20 @@
     \TODO{Explicar bien cómo una medición restringe los parámetros a optimizar y cuantas mediciones son necesarias para estimar la pose y por qué.}
     
     \begin{itemize}
-		\item ¿Cuál es el rango de la matriz $\linearSystemH_{ij}$ para una restricción pose-landmark 2D?
-		\begin{itemize}
-			\item El rango de $\linearSystemH_{ij}$ está determinado por el rango del Jacobiano $\jacobian_{ij}$ que a lo sumo es una matriz de $2 \times 5$ (2 porque la medición da información 2D y 5 por $\begin{bmatrix}	x & y & \theta & l_{x} & l_{y} \end{bmatrix}$)
-			\item $\linearSystemH_{ij}$ no puede tener más que rango 2
-			
-				$rank(A^{\top} A) = rank(A^{\top}) = rank(A)$
-		\end{itemize}
-	
-		\item ¿Cuál es el rango de la matriz $\linearSystemH_{ij}$ para una restricción pose-landmark bearing-only?
-		\begin{itemize}
-			\item El rango de $\linearSystemH_{ij}$ está determinado por el rango del Jacobiano $\jacobian_{ij}$ que a lo sumo es una matriz de $1 \times 5$. 1 porque la medición da información 1D y 5 por $\begin{bmatrix}	x & y & \theta & l_{x} & l_{y} \end{bmatrix}$
-			\item $\linearSystemH_{ij}$ tiene rango 1
-		\end{itemize}
-		
+        \item ¿Cuál es el rango de la matriz $\linearSystemH_{ij}$ para una restricción pose-landmark 2D?
+        \begin{itemize}
+            \item El rango de $\linearSystemH_{ij}$ está determinado por el rango del Jacobiano $\jacobian_{ij}$ que a lo sumo es una matriz de $2 \times 5$ (2 porque la medición da información 2D y 5 por $\begin{bmatrix}    x & y & \theta & l_{x} & l_{y} \end{bmatrix}$)
+            \item $\linearSystemH_{ij}$ no puede tener más que rango 2
+            
+                $rank(A^{\top} A) = rank(A^{\top}) = rank(A)$
+        \end{itemize}
+    
+        \item ¿Cuál es el rango de la matriz $\linearSystemH_{ij}$ para una restricción pose-landmark bearing-only?
+        \begin{itemize}
+            \item El rango de $\linearSystemH_{ij}$ está determinado por el rango del Jacobiano $\jacobian_{ij}$ que a lo sumo es una matriz de $1 \times 5$. 1 porque la medición da información 1D y 5 por $\begin{bmatrix}    x & y & \theta & l_{x} & l_{y} \end{bmatrix}$
+            \item $\linearSystemH_{ij}$ tiene rango 1
+        \end{itemize}
+        
     \end{itemize}
 \end{frame}
 
@@ -994,77 +994,77 @@
     \frametitle{¿Dónde está el robot?}
     \note{Información extraída de https://youtu.be/mZBdPgBtrCM}
     \begin{itemize}
-		\item El robot observa un landmark $(x,y)$
-		\item ¿Dónde puede estar el robot relativo al landmark?
+        \item El robot observa un landmark $(x,y)$
+        \item ¿Dónde puede estar el robot relativo al landmark?
     \end{itemize}
 
-	\only<1>{
-	 	\begin{figure}[!h]
-    	\includegraphics[width=0.3\textwidth]{images/robot_pose_landmark_with_xy_sensor1.pdf}
-    	\end{figure}
-	}
- 	
- 	\only<2>{
- 	\begin{figure}[!h]
-		\includegraphics[width=0.3\textwidth]{images/robot_pose_landmark_with_xy_sensor2.pdf}
-	\end{figure}
-	El robot puede estar en cualquier lugar del círculo.\\
-	Es un espacio de soluciones 1D (restringido por la distancia y la orientación del robot)
-	}
+    \only<1>{
+        \begin{center}
+            \includegraphics[width=0.3\textwidth]{images/robot_pose_landmark_with_xy_sensor1.pdf}
+        \end{center}
+    }
+    
+    \only<2>{
+        \begin{center}
+            \includegraphics[width=0.3\textwidth]{images/robot_pose_landmark_with_xy_sensor2.pdf}
+        \end{center}
+        El robot puede estar en cualquier lugar del círculo.\\
+        Es un espacio de soluciones 1D (restringido por la distancia y la orientación del robot)
+    }
 \end{frame}
 
 \begin{frame}
-	\frametitle{¿Dónde está el robot?}
-	\note{Información extraída de https://youtu.be/mZBdPgBtrCM}
-	\begin{itemize}
-		\item El robot observa un landmark (bearing-only)
-		\item ¿Dónde puede estar el robot relativo al landmark?
-	\end{itemize}
-	
-	\only<1>{
-		\begin{figure}[!h]
-			\includegraphics[width=0.3\textwidth]{images/robot_pose_landmark_with_bearing_sensor1.pdf}
-		\end{figure}
-	}
-	
-	\only<2>{
-		\begin{figure}[!h]
-			\includegraphics[width=0.3\textwidth]{images/robot_pose_landmark_with_bearing_sensor2.pdf}
-		\end{figure}
-		El robot puede estar en cualquier lugar del plano xy. Siempre estará apuntando hacia el landmark.
-		Es un espacio soluciones 2D (restringido por la orientación del robot).
-	}
+    \frametitle{¿Dónde está el robot?}
+    \note{Información extraída de https://youtu.be/mZBdPgBtrCM}
+    \begin{itemize}
+        \item El robot observa un landmark (bearing-only)
+        \item ¿Dónde puede estar el robot relativo al landmark?
+    \end{itemize}
+    
+    \only<1>{
+        \begin{center}
+            \includegraphics[width=0.3\textwidth]{images/robot_pose_landmark_with_bearing_sensor1.pdf}
+        \end{center}
+    }
+    
+    \only<2>{
+        \begin{center}
+            \includegraphics[width=0.3\textwidth]{images/robot_pose_landmark_with_bearing_sensor2.pdf}
+        \end{center}
+        El robot puede estar en cualquier lugar del plano xy. Siempre estará apuntando hacia el landmark.
+        Es un espacio soluciones 2D (restringido por la orientación del robot).
+    }
 \end{frame}
 
 \begin{frame}
     \frametitle{Rango}
     \note{Información extraída de https://youtu.be/mZBdPgBtrCM}
     \begin{itemize}
-		\item En SLAM con landmarks, el sistema puede quedar indeterminado
-		\item El rango de $\linearSystemH$ es {\bf menor o igual} que la suma de los rangos de todas las observaciones
-		\item Para determinar una {\bf solución única}, el sistema debe tener {\bf rango completo}
+        \item En SLAM con landmarks, el sistema puede quedar indeterminado
+        \item El rango de $\linearSystemH$ es {\bf menor o igual} que la suma de los rangos de todas las observaciones
+        \item Para determinar una {\bf solución única}, el sistema debe tener {\bf rango completo}
     \end{itemize}
-	\only<2>{
-		Preguntas:
-		\begin{itemize}
-			\item ¿Cuantas observaciones de landmarks 2D se necesitan para resolver la pose de un robot?
-			\item ¿Cuantas observaciones bearing-only se necesitan para resolver la pose de un robot?
-		\end{itemize}
-	}
+    \only<2>{
+        Preguntas:
+        \begin{itemize}
+            \item ¿Cuantas observaciones de landmarks 2D se necesitan para resolver la pose de un robot?
+            \item ¿Cuantas observaciones bearing-only se necesitan para resolver la pose de un robot?
+        \end{itemize}
+    }
 \end{frame}
 
 \begin{frame}
     \frametitle{Sistema indeterminado}
     \note{Información extraída de https://youtu.be/mZBdPgBtrCM}
     \begin{itemize}
-		\item No hay garantía que que un sistema tenga rango completo
-		\begin{itemize}
-			\item Los landmarks puede ser observados una sola vez \TODO{no quedan claros estos items como influyen a la intederminación de H}
-			\item El robot puede que no tenga información de odometría
-		\end{itemize}
-		\item Podemos lidiar con estos problemas utilizando un \emph{damping factor} para $\linearSystemH$
-		\item En vez de resolver $\linearSystemH \vec{\Delta} \stateBold = - \linearSystemb$, resolvemos
-		$(\linearSystemH + \lambda \vec{I}) \vec{\Delta} \stateBold = - \linearSystemb$
+        \item No hay garantía que que un sistema tenga rango completo
+        \begin{itemize}
+            \item Los landmarks puede ser observados una sola vez \TODO{no quedan claros estos items como influyen a la intederminación de H}
+            \item El robot puede que no tenga información de odometría
+        \end{itemize}
+        \item Podemos lidiar con estos problemas utilizando un \emph{damping factor} para $\linearSystemH$
+        \item En vez de resolver $\linearSystemH \vec{\Delta} \stateBold = - \linearSystemb$, resolvemos
+        $(\linearSystemH + \lambda \vec{I}) \vec{\Delta} \stateBold = - \linearSystemb$
     \end{itemize}
 \end{frame}
 
@@ -1075,29 +1075,29 @@
     \footnotesize
     
     \begin{itemize}
-		\item El damping factor $\lambda \vec{I}$ hace que el sistema sea definido positivo
-		\item Es una suma ponderada del método de Gauss-Newton y el método de descenso por el gradiente \TODO{explicar bien esto, quizas con un grafico}
-		\item El damping factor regula la convergencia usando acciones de backup/restore
+        \item El damping factor $\lambda \vec{I}$ hace que el sistema sea definido positivo
+        \item Es una suma ponderada del método de Gauss-Newton y el método de descenso por el gradiente \TODO{explicar bien esto, quizas con un grafico}
+        \item El damping factor regula la convergencia usando acciones de backup/restore
     \end{itemize}
 
-	\begin{algorithmic}[1]
-		\Procedure{Levenberg–Marquardt}{$\stateBold$} \Comment{$\stateBold$: semilla inicial}
-		\While (!converged)
-		\State $\lambda =  \lambda_{\textrm{init}}$
-		\State $<\linearSystemH, \linearSystemb> = buildLinearSystem(\stateBold)$
-		\State $E = error(\stateBold)$
-		\State $\stateBold_{\textrm{old}} = \stateBold$
-		\State $\vec{\Delta}\stateBold = solveSparse((\linearSystemH + \lambda \vec{I}) \vec{\Delta} \stateBold = - \linearSystemb)$
-		\State $\stateBold \mathrel{+}= \vec{\Delta}\stateBold$
-		\If{$E < error(\stateBold)$}
-		\State $\stateBold = \stateBold_{\textrm{old}}$
-		\State $\lambda \mathrel{*}= 2$
-		\Else
-		\State $\lambda \mathrel{/}= 2$
-		\EndIf
-		\EndWhile
-		\EndProcedure
-	\end{algorithmic}
+    \begin{algorithmic}[1]
+        \Procedure{Levenberg–Marquardt}{$\stateBold$} \Comment{$\stateBold$: semilla inicial}
+        \While (!converged)
+        \State $\lambda =  \lambda_{\textrm{init}}$
+        \State $<\linearSystemH, \linearSystemb> = buildLinearSystem(\stateBold)$
+        \State $E = error(\stateBold)$
+        \State $\stateBold_{\textrm{old}} = \stateBold$
+        \State $\vec{\Delta}\stateBold = solveSparse((\linearSystemH + \lambda \vec{I}) \vec{\Delta} \stateBold = - \linearSystemb)$
+        \State $\stateBold \mathrel{+}= \vec{\Delta}\stateBold$
+        \If{$E < error(\stateBold)$}
+        \State $\stateBold = \stateBold_{\textrm{old}}$
+        \State $\lambda \mathrel{*}= 2$
+        \Else
+        \State $\lambda \mathrel{/}= 2$
+        \EndIf
+        \EndWhile
+        \EndProcedure
+    \end{algorithmic}
 
 \end{frame}
 
@@ -1121,33 +1121,33 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Bundle Adjustment}
-	
-	\begin{figure}
-		\includegraphics[width=\textwidth]{./images/ba_reprojection_error_before.pdf}
-	\end{figure}
-	
-	\note{Ejemplo de ajuste de 3 keyframes que ven 2 puntos del mapa.\\
-		k1 - x1 medición estéreo\\
-		k1 - x2 medición derecha\\
-		k2 - x1 medición estéreo\\
-		k2 - x2 medición estéreo\\
-		k3 - x1 medición izquierda\\
-		k3 - x2 medición estéreo}
-	
+    \frametitle{Bundle Adjustment}
+    
+    \begin{figure}
+        \includegraphics[width=\textwidth]{./images/ba_reprojection_error_before.pdf}
+    \end{figure}
+    
+    \note{Ejemplo de ajuste de 3 keyframes que ven 2 puntos del mapa.\\
+        k1 - x1 medición estéreo\\
+        k1 - x2 medición derecha\\
+        k2 - x1 medición estéreo\\
+        k2 - x2 medición estéreo\\
+        k3 - x1 medición izquierda\\
+        k3 - x2 medición estéreo}
+    
 \end{frame}
 
 \begin{frame}
-	\frametitle{Bundle Adjustment}
-	
-	\begin{figure}
-		\includegraphics[width=\textwidth]{./images/ba_reprojection_error_after.pdf}
-	\end{figure}
-	
-	\note{Ajustamos los keyframes y los puntos!!!\\
-		Una ecuación de error por cada medición (6 en total).\\
-		Nuevamente tenemos en cuenta la transformación rígida entre la cámara izquierda y la cámara derecha para las mediciones derechas.}
-	
+    \frametitle{Bundle Adjustment}
+    
+    \begin{figure}
+        \includegraphics[width=\textwidth]{./images/ba_reprojection_error_after.pdf}
+    \end{figure}
+    
+    \note{Ajustamos los keyframes y los puntos!!!\\
+        Una ecuación de error por cada medición (6 en total).\\
+        Nuevamente tenemos en cuenta la transformación rígida entre la cámara izquierda y la cámara derecha para las mediciones derechas.}
+    
 \end{frame}
 
 
