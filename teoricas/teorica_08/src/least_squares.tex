@@ -47,7 +47,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Explicación Gráfica}
+    \frametitle{Ejemplo}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
     
     \begin{center}
@@ -66,45 +66,142 @@
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
     
     \begin{itemize}
-        \item $\stateBold$ posición de los puntos 3D
-        \item $\observationBold_{i}$ coordenadas de los puntos 3D proyectados en las imágenes
-        \item Estimar la posición 3D más probable de los puntos basado en las proyecciones en las imágenes (dada las poses de la cámara)
+        \item El error $\error_{i}$ suele ser la diferencia entre la medición real y la predicción:
+            \begin{equation*}
+                \error_{i}\left( \stateBold \right) = \observationBold_{i} - f_{i}\left( \stateBold \right)
+            \end{equation*}
+        \item Supongamos que el error tiene una distribución normal con media cero
+        \item Error Gaussiano con matriz de información $\informationMatrix_{i}$
+        \item El error al cuadrado de una medición depende sólo del estado y es un escalar:
+            \begin{equation*}
+                \error_{i}\left( \stateBold \right) = \error_{i}\left( \stateBold \right)^{\top} \informationMatrix_{i} \error_{i}\left( \stateBold \right)
+            \end{equation*}
     \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{Objetivo: Encontrar el Mínimo}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
+    
+    \begin{itemize}
+        \item Encontrar el estado $\stateBold^{*}$ que minimiza el error dados todas las mediciones
+        
+        \begin{center}
+            \includegraphics[width=0.7\textwidth]{images/find_minimum.pdf}
+        \end{center}
+    \end{itemize}
 
 \end{frame}
+
+\begin{frame}
+    \frametitle{Objetivo: Encontrar el Mínimo}
+    \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
+    
+    \begin{itemize}
+        \item Encontrar el estado $\stateBold^{*}$ que minimiza el error dados todas las mediciones
+        
+        \begin{equation*}
+            \stateBold^{*} = \argmin_{\stateBold} \sum_{i} \error_{i}\left( \stateBold \right)^{\top} \informationMatrix_{i} \error_{i}\left( \stateBold \right)
+        \end{equation*}
+        
+        
+        \item Una solución general es derivar la función de error global y encontrar sus nulos
+        \item En general compleja y con solución no cerrada $\rightarrow$ Solución con Métodos numéricos
+    \end{itemize}
+    
+\end{frame}
+
 
 \begin{frame}
     \frametitle{Suposiciones}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
+    \begin{itemize}
+        \item Hay una ``buena'' solución inicial disponible
+        \item Las funciones de error son ``suaves'' en la vecindad del mínimo (con suerte global)
+        \item Entonces, podemos resolver el problema con linearizaciones locales iterativas
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Resolvemos utilizando Linearizaciones locales iterativas}
+    \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
+    \begin{itemize}
+        \item Linealizar los términos de error alrededor del solución actual/solución inicial
+        \item Calcular la primera derivada de la función de error al cuadrado
+        \item Setear en cero y resolver el sistema lineal
+        \item Obtener el nuevo estado (que con suerte estará más cerca del mínimo)
+        \item Iterar
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Linearizar la Función de Error}
+    \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
+    
+    \begin{itemize}
+        \item Podemos aproximar el error al rededor de una estimación inicial $\stateBold$ a través de una expansión de Taylor
+    \end{itemize}
+    
+    \begin{equation*}
+        \error_{i}(\stateBold + \vec{\Delta}\stateBold) \simeq  \underbrace{\error_{i}(\stateBold)}_{\error_{i}} + \jacobian_{i}\vec{\Delta}\stateBold \quad \text{con} \quad \jacobian_{i} = \dfrac{\partial\error_{i}(\stateBold)}{\partial\stateBold}
+    \end{equation*}
     
 \end{frame}
 
 \begin{frame}
-    \frametitle{Solve Via Iterative Local Linearizations}
+    \frametitle{Error Cuadrático}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
     
+    \begin{itemize}
+        \item Con la linealización anterior, podemos fijar $\stateBold$ y llevar a cabo la minimización en los incrementos $\Delta\stateBold$
+        \item Reemplazamos la expansión de Taylor en los términos de error al cuadrado:
+        \only<1>{
+            \begin{align*}
+                \error_{i}(\stateBold + \vec{\Delta}\stateBold) &= \dots
+            \end{align*}
+        }
+        \only<2>{
+            \begin{align*}
+                \error_{i}(\stateBold + \vec{\Delta}\stateBold) &= \error_{i}\left( \stateBold + \Delta \stateBold \right)^{\top} \informationMatrix_{i} \error_{i}\left( \stateBold  + \Delta \stateBold \right)
+            \end{align*}
+        }
+        \only<3>{
+            \begin{align*}
+                \error_{i}(\stateBold + \vec{\Delta}\stateBold) &= \error_{i}\left( \stateBold + \Delta \stateBold \right)^{\top} \informationMatrix_{i} \error_{i}\left( \stateBold  + \Delta \stateBold \right)\\
+                &\simeq \left( \error_{i} + \jacobian_{i} \Delta \stateBold \right)^{\top} \informationMatrix_{i} \left( \error_{i} + \jacobian_{i} \Delta \stateBold \right)
+            \end{align*}
+        }
+        \only<4>{
+            \begin{align*}
+                \error_{i}(\stateBold + \vec{\Delta}\stateBold) &= \error_{i}\left( \stateBold + \Delta \stateBold \right)^{\top} \informationMatrix_{i} \error_{i}\left( \stateBold  + \Delta \stateBold \right)\\
+                &\simeq \left( \error_{i} + \jacobian_{i} \Delta \stateBold \right)^{\top} \informationMatrix_{i} \left( \error_{i} + \jacobian_{i} \Delta \stateBold \right)\\
+                &= \error_{i}^{\top} \informationMatrix_{i} \error_{i} + \error_{i}^{\top} \informationMatrix_{i} \jacobian_{i} \Delta \stateBold + \Delta \stateBold^{\top} \jacobian_{i}^{\top} \informationMatrix_{i} \error_{i} +  \Delta \stateBold^{\top} \jacobian_{i}^{\top} \informationMatrix_{i} \jacobian_{i} \Delta \stateBold
+            \end{align*}
+        }
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Linearizing the Error Function}
+    \frametitle{Error cuadrático (cont.)}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
     
-\end{frame}
-
-\begin{frame}
-    \frametitle{Squared Error}
-    \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
+    \begin{itemize}
+        \item Todos los sumandos son escalares por lo que la transposición no tiene ningún efecto
+        \item Agrupando términos similares obtenemos:
+        \only<1>{
+            \begin{align*}
+                \error_{i}(\stateBold + \vec{\Delta}\stateBold) &\simeq \error_{i}^{\top} \informationMatrix_{i} \error_{i} + \error_{i}^{\top} \informationMatrix_{i} \jacobian_{i} \Delta \stateBold + \Delta \stateBold^{\top} \jacobian_{i}^{\top} \informationMatrix_{i} \error_{i} +  \Delta \stateBold^{\top} \jacobian_{i}^{\top} \informationMatrix_{i} \jacobian_{i} \Delta \stateBold
+            \end{align*}
+        }
+        \only<2>{
+            \begin{align*}
+                \error_{i}(\stateBold + \vec{\Delta}\stateBold) &\simeq \error_{i}^{\top} \informationMatrix_{i} \error_{i} + \error_{i}^{\top} \informationMatrix_{i} \jacobian_{i} \Delta \stateBold + \Delta \stateBold^{\top} \jacobian_{i}^{\top} \informationMatrix_{i} \error_{i} +  \Delta \stateBold^{\top} \jacobian_{i}^{\top} \informationMatrix_{i} \jacobian_{i} \Delta \stateBold \\
+                &= \underbrace{\error_{i}^{\top} \informationMatrix_{i} \error_{i}}_{c_{i}} + 2 \underbrace{\error_{i}^{\top} \informationMatrix_{i} \jacobian_{i}}_{\linearSystemb_{i}} \Delta \stateBold + \Delta \stateBold^{\top} \underbrace{\jacobian_{i}^{\top} \informationMatrix_{i} \jacobian_{i}}_{\linearSystemH_{i}} \Delta \stateBold
+            \end{align*}
+        }
+    \end{itemize}
     
-\end{frame}
-
-\begin{frame}
-    \frametitle{Squared Error (cont.)}
-    \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
     
 \end{frame}
 
