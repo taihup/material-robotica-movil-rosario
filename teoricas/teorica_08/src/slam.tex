@@ -782,7 +782,7 @@
             0 & 0
         \end{bmatrix}\\
         \observationBold_{12} &= 1\\
-        \informationMatrix &= 2\\
+        \informationMatrix_{12} &= 2\\
         \error_{12} &= \observationBold_{12} - (\stateBold_{2} - \stateBold_{1}) = 1 - (0 - 0) = 1\\
         \jacobian_{12} &=
         \begin{bmatrix}
@@ -849,6 +849,7 @@
         \begin{equation*}
             \error(\stateBold_{0}) = t2v(\stateBold_{0})
         \end{equation*}
+        Esto es, al minimizar, el término de error $\error(\stateBold_{0})$ queremos que sea lo más chico posible. Esto sucede cuando $\stateBold_{0}$ tiende a 0.
     \end{itemize}
     
 \end{frame}
