@@ -183,7 +183,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Error cuadrático (cont.)}
+    \frametitle{Error Cuadrático (cont.)}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
     
     \begin{itemize}
@@ -213,7 +213,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Global Error}
+    \frametitle{Error Global}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
     
     \begin{itemize}
@@ -230,7 +230,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Global Error (cont.)}
+    \frametitle{Error Global (cont.)}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
     
     \begin{align*}
@@ -249,7 +249,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Quadratic Form}
+    \frametitle{Forma Cuadrática}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
     
     \begin{itemize}
@@ -268,7 +268,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Deriving a Quadratic Form}
+    \frametitle{Derivando la forma cuadrática}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
     
     \begin{itemize}
@@ -287,7 +287,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Quadratic Form}
+    \frametitle{Forma Cuadrática}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
     
     \begin{itemize}
@@ -304,49 +304,163 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Minimizing the Quadratic Form}
+    \frametitle{Minimizando la forma cuadrática}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
     
     \begin{itemize}
         \item Derivada de $F\left(\stateBold + \Delta \stateBold \right)$
+        \begin{equation*}
+            \dfrac{\partial F\left(\stateBold + \Delta \stateBold \right)}{\partial \Delta \stateBold} \simeq 2 \linearSystemb + 2 \linearSystemH \Delta \stateBold
+        \end{equation*}
+        \item Igualando a 0
+        \begin{equation*}
+            0 = 2 \linearSystemb + 2 \linearSystemH \Delta \stateBold
+        \end{equation*}
+        \item Lo que lleva al sistema lineal
+        \begin{equation*}
+            \linearSystemH \Delta \stateBold = -\linearSystemb 
+        \end{equation*}
+        \item La solución para el incremento $\Delta \stateBold^{*}$ es
+        \begin{equation*}
+             \Delta \stateBold^{*} = - \inverse{\linearSystemH} \linearSystemb 
+        \end{equation*}
     \end{itemize}
     
-
-    
 \end{frame}
 
 \begin{frame}
-    \frametitle{Gauss-Newton Solution}
+    \frametitle{Solución con Gauss-Newton}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
     
-\end{frame}
-
-\begin{frame}
-    \frametitle{Example: Odometry Calibration}
-    \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
+    Iterar los siguientes pasos:
+    \begin{itemize}
+        \item Lineanizar cerca de $\stateBold$ y computar para cada medición
+        \begin{equation*}
+            \error_{i}(\stateBold + \vec{\Delta}\stateBold) \simeq  \error_{i}(\stateBold) + \jacobian_{i}\vec{\Delta}\stateBold
+        \end{equation*}
+        \item Computar los términos del sistema lineal
+        \begin{equation*}
+            \linearSystemb^{\top} = \sum_{i} \error_{i}^{\top} \informationMatrix_{i} \jacobian_{i} \quad \quad \linearSystemH = \sum_{i} \jacobian_{i}^{\top} \informationMatrix_{i} \jacobian_{i}
+        \end{equation*}
+    \item Resolver el sistema lineal
+    \begin{equation*}
+        \Delta \stateBold^{*} = - \inverse{\linearSystemH} \linearSystemb 
+    \end{equation*}
+    \item Actualizar el estado
+    \begin{equation*}
+        \stateBold \leftarrow \stateBold + \Delta \stateBold^{*}
+    \end{equation*} 
+    \end{itemize}
     
 \end{frame}
 
 \begin{frame}
-    \frametitle{Odometry Calibration (cont.)}
+    \frametitle{Ejemplo: Calibración de Odometría}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
+    
+    \begin{itemize}
+        \item Mediciones de Odometría $\controlCommand_{i}$
+        \item Eliminar el error sistemático a través de la calibración
+        \item Suposición: disponemos del ground-truth de odometría $\controlCommand_{i}^{*}$
+        \item Ground-truth dado por sistemas: Motion Capture (Vicon), Scan-Matching o SLAM
+    \end{itemize}
     
 \end{frame}
 
 \begin{frame}
-    \frametitle{Questions}
+    \frametitle{Ejemplo: Calibración de Odometría}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
+    
+    \begin{itemize}
+        \item Hay una función que $f_{i}(\stateBold)$ que dado algunos parámetros de bias $\stateBold$, devuelve una odometría corregida (\emph{unbiased}) para la lectura de $\controlCommand_{i}^{\prime}$ como sigue
+        \begin{equation*}
+            \controlCommand_{i}^{\prime} = f_{i}(\stateBold) =
+            \begin{bmatrix}
+                x_{11} & x_{12} & x_{13} \\
+                x_{21} & x_{22} & x_{23} \\
+                x_{31} & x_{32} & x_{33}
+            \end{bmatrix}
+            \controlCommand_{i}
+        \end{equation*}
+    \item Para obtener la función de corrección $f(\stateBold)$, necesitamos encontrar los parámetros $\stateBold$
+    \end{itemize}
     
 \end{frame}
 
 \begin{frame}
-    \frametitle{How to Efficiently Solve the Linear System?}
+    \frametitle{Calibración de Odoemtría (cont.)}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
+    \begin{itemize}
+
+        \item El vector estado es 
+        \begin{equation*}
+            \stateBold =
+            \begin{bmatrix}
+                x_{11} & x_{12} & x_{13} & x_{21} & x_{22} & x_{23} & x_{31} & x_{32} & x_{33}
+            \end{bmatrix}
+        \end{equation*}
+        \item La función error es
+        \begin{equation*}
+            \error_{i}(\stateBold) = \controlCommand_{i}^{*} - 
+            \begin{bmatrix}
+                x_{11} & x_{12} & x_{13} \\
+                x_{21} & x_{22} & x_{23} \\
+                x_{31} & x_{32} & x_{33}
+            \end{bmatrix}
+            \controlCommand_{i}
+        \end{equation*}
+        \item Su derivada es
+        
+    %    \begin{equation*}
+    %        \jacobian_{i} = \dfrac{\partial \error_{i}(\stateBold)}{\partial \stateBold} = -
+    %        \begin{bmatrix}
+    %            u_{i,x} & u_{i,y} & u_{i,\theta} & 0 & 0 & 0 & 0 & 0 & 0 \\
+    %            0 & 0 & 0 & u_{i,x} & u_{i,y} & u_{i,\theta} & 0 & 0 & 0 \\
+    %            0 & 0 & 0 & 0 & 0 & 0 & u_{i,x} & u_{i,y} & u_{i,\theta}
+    %        \end{bmatrix}
+    %    \end{equation*}
+    
+        \begin{center}
+            \includegraphics[width=0.8\columnwidth]{images/odometry_calibration_jacobian.pdf}
+        \end{center}
+
+    \end{itemize}
+
     
 \end{frame}
 
 \begin{frame}
-    \frametitle{Cholesky Decomposition for Solving a Linear System}
+    \frametitle{Preguntas}
+    \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
+    
+    \begin{equation*}
+        \item ¿Cómo lucen los parámetros si la odometría es perfecta?
+        \item ¿Cuantas mediciones son necesarias para encontrar la solución al problema de calibración?
+        \item $\linearSystemH$ es simétrica. ¿Por qué?
+        \item ¿Cómo afecta la estructura de la función de medición a la estructura de $\linearSystemH$?
+    \end{equation*}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{¿Cómo Resolver de manera eficiente un Sistema Lineal?}
+    \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
+    \begin{itemize}
+        \item Sistema Lineal $\linearSystemH \Delta \stateBold = -\linearSystemb$
+        \item Podemos resolverlo utilizando inversión de matrices (en teoría)
+        \item En la práctica:
+        \begin{itemize}
+            \item Factorización de Cholesky
+            \item Descomposición QR
+            \item Métodos iterativos como el método del Gradiente Conjugado (para sistemas grandes)
+        \end{itemize}
+        
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Descomposición de Cholesky Decomposition for Solving a Linear System}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
     
 \end{frame}

@@ -442,59 +442,34 @@
     {\bf Tenemos que definir la función de error...}
 \end{frame}
 
+\section{Least Squares (Mínimos Cuadrados)}
+\input{src/least_squares.tex}
 
 \begin{frame}
     \frametitle{Función de error}
     \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
     
     \begin{itemize}
-    \item Función de error para una sola restricción
-           \begin{figure}
+        \item Función de error para una sola restricción
+        \begin{figure}
             \includegraphics[width=0.44\textwidth]{pose_graph_error_function.pdf}
         \end{figure}
-    \footnotetext{$t2v(.)$ mapea transformaciones a vectores}
-    
-    \item Error como una función de un vector estado completo
-    
-    \begin{equation*}
-        \error_{ij}(\state) = t2v(\inverse{\observationBold}_{ij}(\inverse{\stateBold}_{i}\stateBold_{j}))
-    \end{equation*}
-
-    \item El error toma el valor 0 cuando
-    
-    \begin{equation*}
-        \observationBold_{ij} = (\inverse{\stateBold}_{i}\stateBold_{j})
-    \end{equation*}
-    
+        \footnotetext{$t2v(.)$ mapea transformaciones a vectores}
+        
+        \item Error como una función de un vector estado completo
+        
+        \begin{equation*}
+            \error_{ij}(\state) = t2v(\inverse{\observationBold}_{ij}(\inverse{\stateBold}_{i}\stateBold_{j}))
+        \end{equation*}
+        
+        \item El error toma el valor 0 cuando
+        
+        \begin{equation*}
+            \observationBold_{ij} = (\inverse{\stateBold}_{i}\stateBold_{j})
+        \end{equation*}
+        
     \end{itemize}
 \end{frame}
-
-\begin{frame}
-    \frametitle{Método de Gauss-Newton para la minimización del error}
-    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
-    
-    \begin{itemize}
-        \item Definir la función de error
-        \item Linearizar la función de error
-        \item Calcular las derivadas
-        \item Igualar las derivadas a cero
-        \item Resolver el sistema lineal
-        \item Iterar este procedimiento hasta que converja
-    \end{itemize}
-
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Ejemplo de Mimimización con Gauss-Newton}
-    \note{Información extraída de https://youtu.be/r2cyMQ5NB1o?si=lRbB_CJmqnsFsktT}
-    
-    %\TODO{Ver \url{https://youtu.be/CJE59i8oxIE?si=3RmiP3UM2ImEj-av} para ejemplo de aplicación de Gauss-Newton}
-   
-    
-   
-\end{frame}
-
 
 \begin{frame}
     \frametitle{Linearizar la función de error}
