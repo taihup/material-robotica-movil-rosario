@@ -423,6 +423,10 @@
         \begin{center}
             \includegraphics[width=0.8\columnwidth]{images/odometry_calibration_jacobian.pdf}
         \end{center}
+        
+        Que la primera derivada (Jacobiano) no dependa de $\stateBold$, es lo menos común, ya que significa que la función $\error$ es lineal!
+        
+        En este caso solo vamos a tener que hacer una sola iteración.
 
     \end{itemize}
 
@@ -434,10 +438,10 @@
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
     
     \begin{itemize}
-        \item ¿Cómo lucen los parámetros si la odometría es perfecta?
-        \item ¿Cuantas mediciones son necesarias para encontrar la solución al problema de calibración?
-        \item $\linearSystemH$ es simétrica. ¿Por qué?
-        \item ¿Cómo afecta la estructura de la función de medición a la estructura de $\linearSystemH$?
+        \item ¿Cómo lucen los parámetros si la odometría es perfecta? \note{la matriz debería ser la identidad. Entonces el error es 0 y por lo tanto ya encontré el mínimo.}
+        \item ¿Cuantas mediciones son necesarias para encontrar la solución al problema de calibración? \note{Tenemos que ver cuantas variables desconocidas tenemos y cuanta información nos provee cada observación. Tenemos 9 variables desconocidas. Cada observación nos da información de 3 variables (nos da 3 ecuaciones). Por lo tanto, vamos a necesitar al menos 3 observaciones.}
+        \item $\linearSystemH$ es simétrica. ¿Por qué? \note{La forma en que H es simétrica porque  H = J Omega J. Omega es simétrica definida postiva y J tambien, y por lo tanto el producto también.}
+        \item ¿Cómo afecta la estructura de la función de medición a la estructura de $\linearSystemH$? \note{H es esparsa porque los jacobianos son esparsos. Los jacobianos son esparsos porque codifican cuanta información nos da una medición sobre todas las variables de estado. Por lo tanto, si nuestras mediciones solo relacionan algunas variables (como es el caso de SLAM), entonces la H será esparsa.}
     \end{itemize}
 
 \end{frame}
