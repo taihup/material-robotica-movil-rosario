@@ -433,12 +433,12 @@
     \frametitle{Preguntas}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
     
-    \begin{equation*}
+    \begin{itemize}
         \item ¿Cómo lucen los parámetros si la odometría es perfecta?
         \item ¿Cuantas mediciones son necesarias para encontrar la solución al problema de calibración?
         \item $\linearSystemH$ es simétrica. ¿Por qué?
         \item ¿Cómo afecta la estructura de la función de medición a la estructura de $\linearSystemH$?
-    \end{equation*}
+    \end{itemize}
 
 \end{frame}
 
@@ -460,14 +460,39 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Descomposición de Cholesky Decomposition for Solving a Linear System}
+    \frametitle{Descomposición de Cholesky para Resolver un Sistema Lineal}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
+    
+    \begin{itemize}
+        \item Sea la matriz $\vec{A} simétrica positiva definida$
+        \item El sistema a resolver es $\vec{A} \vec{x} = \vec{b}$
+        \item Cholesky lleva a $\vec{A} = \vec{L} \vec{L}^{\top}$ con $\vec{L}$ matriz triangular inferior
+        \item<2> Resolvemos primero
+        \begin{equation*}
+            \vec{L} \vec{y} = \vec{b}
+        \end{equation*}
+        \item<2> y luego,
+        \begin{equation*}
+            \vec{L}^{\top} \vec{x} = \vec{y}
+        \end{equation*}
+    
+    \end{itemize}
     
 \end{frame}
 
 \begin{frame}
-    \frametitle{Gauss-Newton Summary}
+    \frametitle{Resumen de Gauss-Newton}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
+    
+    Método para minimizar un error al cuadrado:
+    \begin{itemize} 
+        \item Comenzar con una solución inicial (\emph{initial guess})
+        \item Linealizar las funciones de error individuales
+        \item Esto lleva a una forma cuadrática
+        \item Se obtiene un sistema lineal derivando e igualando a 0
+        \item Resolver el sistema lineale conduce a una actualización del estado
+        \item Iterar
+    \end{itemize}
     
 \end{frame}
 
@@ -475,11 +500,23 @@
     \frametitle{Least Squares vs. Probabilistic State Estimation}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
     
+    \begin{itemize}
+        \item Hasta ahora, minimizamos una función de error
+        \item ¿Cómo se relaciones esto con la estimación de estado en el sentido probabilístico?
+    \end{itemize}
+    
 \end{frame}
 
 \begin{frame}
-    \frametitle{Start with State Estimation}
+    \frametitle{Comencemos con Estimación de estado}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
+    
+    \begin{itemize}
+        \item Regla de Bayes, suposiciones de independencia y Markov nos permiten reescribir
+        \begin{equation*}
+            p\left( \state_{0} | \observation_{1:t}, \controlCommand_{1:t} \right) = \eta p\left( \state_{0} \right) \prod_{t} \left[ p\left( \state_{t} | \state_{t-1}, \controlCommand_{t} \right) p\left( \observation_{t} | \state_{t} \right) \right]
+        \end{equation*}
+    \end{itemize}
     
 \end{frame}
 
@@ -487,52 +524,117 @@
     \frametitle{Log Likelihood}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
     
-\end{frame}
-
-\begin{frame}
-    \frametitle{Gaussian Assumption}
-    \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
+    \begin{itemize}
+        \item Reescribiendo como el log likelihood, lleva a
+        \begin{equation*}
+            \log p\left( \state_{0} | \observation_{1:t}, \controlCommand_{1:t} \right) = \text{const.}  \log p\left( \state_{0} \right) + \sum_{t} \left[ \log p\left( \state_{t} | \state_{t-1}, \controlCommand_{t} \right) + \log p\left( \observation_{t} | \state_{t} \right) \right]
+        \end{equation*}
+    \end{itemize}
     
 \end{frame}
 
 \begin{frame}
-    \frametitle{Log of a Gaussian}
+    \frametitle{Suposición Gaussiana}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
+    
+    \begin{itemize}
+        \item Suponiendo distribución Gaussiana
+        \begin{equation*}
+            \log p\left( \state_{0} | \observation_{1:t}, \controlCommand_{1:t} \right) = \text{const.}  \log \underbrace{p\left( \state_{0} \right)}_{\mathcal{N}} + \sum_{t} \left[ \log \underbrace{p\left( \state_{t} | \state_{t-1}, \controlCommand_{t} \right)}_{\mathcal{N}} + \log \underbrace{p\left( \observation_{t} | \state_{t} \right)}_{\mathcal{N}} \right]
+        \end{equation*}
+    \end{itemize}
     
 \end{frame}
 
 \begin{frame}
-    \frametitle{Error Function as Exponent}
+    \frametitle{Log de una Gaussiana}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
+    
+    \begin{itemize}
+        \item Log likelihood de una Gaussiana
+        \begin{equation*}
+            \log \mathcal{N}(x, \mu, \Sigma) =  \text{const.} - \dfrac{1}{2} (x - \mu)^{\top} \inverse{\Sigma} (x - \mu)
+        \end{equation*}
+    \end{itemize}
     
 \end{frame}
 
 \begin{frame}
-    \frametitle{Log Likelihood with Error Terms}
+    \frametitle{Función de Error como Exponente}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
+    
+    \begin{itemize}
+        \item Log likelihood de una Gaussiana
+        \begin{equation*}
+            \log \mathcal{N}(x, \mu, \Sigma) =  \text{const.} - \dfrac{1}{2} \underbrace{\underbrace{(x - \mu)^{\top}}_{\error^{\top}(x)} \underbrace{\inverse{\Sigma}}_{\informationMatrix} \underbrace{(x - \mu)}_{\error(x)}}_{e(x)}
+        \end{equation*}
+        \item está a una constante de equivalencia de las funciones de error usadas antes
+    \end{itemize}
     
 \end{frame}
 
 \begin{frame}
-    \frametitle{Maximizing the Log Likelihood}
+    \frametitle{Log Likelihood con Términos de Error}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
+    
+    \begin{itemize}
+        \item Suponiendo distribución Gaussiana
+        \begin{equation*}
+            \log p\left( \state_{0:t} | \observation_{1:t}, \controlCommand_{1:t} \right) = \text{const.} - \dfrac{1}{2} e_{p}(\state) -  \dfrac{1}{2} \sum_{t} \left[ e_{\controlCommand_{t}}(\state) + e_{\observation_{t}}(\state)\right]
+        \end{equation*}
+    \end{itemize}
     
 \end{frame}
 
 \begin{frame}
-    \frametitle{Minimizing the Squared Error is Equivalent to Maximizing the Log Likelihood of Independent Gaussian Distributions}
+    \frametitle{Maximizing el Log Likelihood}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
+    
+    \begin{itemize}
+        \item Suponiendo distribución Gaussiana
+        \begin{equation*}
+            \log p\left( \state_{0:t} | \observation_{1:t}, \controlCommand_{1:t} \right) = \text{const.} - \dfrac{1}{2} e_{p}(\state) -  \dfrac{1}{2} \sum_{t} \left[ e_{\controlCommand_{t}}(\state) + e_{\observation_{t}}(\state)\right]
+        \end{equation*}
+        \item Maximizando el log likelihood lleva a 
+        \begin{equation*}
+            \argmax \log p\left( \state_{0:t} | \observation_{1:t}, \controlCommand_{1:t} \right) = \argmin e_{p}(\state) + \sum_{t} \left[ e_{\controlCommand_{t}}(\state) + e_{\observation_{t}}(\state)\right]
+        \end{equation*}
+    \end{itemize}
+    
     
 \end{frame}
 
 \begin{frame}
-    \frametitle{Summary}
+    \frametitle{Minimizar el error cuadrático es equivalente a Maximizar el Log Likelihood de Distribuciones Gaussianas Independientes}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
+    \begin{itemize}
+        \item Con términos de error individuales para los controles, mediciones y un prior:
+        \begin{equation*}
+            \argmax \log p\left( \state_{0:t} | \observation_{1:t}, \controlCommand_{1:t} \right) = \argmin e_{p}(\state) + \sum_{t} \left[ e_{\controlCommand_{t}}(\state) + e_{\observation_{t}}(\state)\right]
+        \end{equation*}
+    \end{itemize}
     
 \end{frame}
 
 \begin{frame}
-    \frametitle{Literature}
+    \frametitle{Resumen}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
     
+    \begin{itemize}
+        \item Técnica para minimizar funciones de error cuadráticas
+        \item Gauss-Newton es un enfoque iterativo para problemas no lineales
+        \item Utiliza linearización (¡aproximación!)
+        \item Equivalente a maximizar el log likelihood de Gaussianas independientes
+        \item Método popular en muchas disciplinas.
+    \end{itemize}
+
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Bibliografía de Gauss-Newton}
+    \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
+    \begin{itemize}
+        \item Capítulo 11.4 de \cite{thrun2005probabilistic}
+    \end{itemize}
 \end{frame}
