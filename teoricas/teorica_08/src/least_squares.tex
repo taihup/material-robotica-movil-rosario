@@ -252,23 +252,62 @@
     \frametitle{Quadratic Form}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
     
+    \begin{itemize}
+        \item<1-> Podemos escribir los términos de error global como una forma cuadrática en $\Delta \stateBold$
+        
+        \begin{equation*}
+            F\left(\stateBold + \Delta \stateBold \right) = c + \linearSystemb^{\top} \Delta \stateBold + \Delta \stateBold^{\top} \linearSystemH \Delta \stateBold
+        \end{equation*}
+        
+        \item<1> \alert{¿Cómo calcular el mínimo de una forma cuadrática?}
+        \item<2-> Calcular la derivada de  $F\left(\stateBold + \Delta \stateBold \right)$ con respecto a $\Delta \stateBold$ (dado $\stateBold$)
+        \item<2-> Derivamos e igualamos a 0
+        \item<2-> resolvemos
+    \end{itemize}
+
 \end{frame}
 
 \begin{frame}
     \frametitle{Deriving a Quadratic Form}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
     
+    \begin{itemize}
+        \item Dada la forma cuadrática
+        \begin{equation*}
+            f(\stateBold) = \stateBold^{\top} \linearSystemH \stateBold + \linearSystemb^{\top} \stateBold
+        \end{equation*}
+        \item La primera derivada es
+        \begin{equation*}
+            \dfrac{\partial f}{\partial \stateBold} = \left( \linearSystemH + \linearSystemH^{\top} \right) \stateBold + \linearSystemb
+        \end{equation*}
+    \end{itemize}
+    
+    Ver: The Matrix Cookbook, sección 2.4.2
+   
 \end{frame}
 
 \begin{frame}
     \frametitle{Quadratic Form}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
     
+    \begin{itemize}
+        \item Podemos escribir los términos de error global de forma cuadrática en $\Delta \stateBold$
+        \begin{equation*}
+            F\left(\stateBold + \Delta \stateBold \right) = c + \linearSystemb^{\top} \Delta \stateBold + \Delta \stateBold^{\top} \linearSystemH \Delta \stateBold
+        \end{equation*}
+        \item La derivada de $F\left(\stateBold + \Delta \stateBold \right)$
+        \begin{equation*}
+            \dfrac{\partial F\left(\stateBold + \Delta \stateBold \right)}{\partial \Delta \stateBold} \simeq 2 \linearSystemb + 2 \linearSystemH \Delta \stateBold
+        \end{equation*}
+    \end{itemize}
+    
 \end{frame}
 
 \begin{frame}
     \frametitle{Minimizing the Quadratic Form}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
+    
+
     
 \end{frame}
 

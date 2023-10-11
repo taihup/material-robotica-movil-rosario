@@ -430,7 +430,7 @@
 \begin{frame}
     \frametitle{Mínimos cuadrados en SLAM}
     \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
-    Podemos minimizar el error utilizaremos mínimos cuadrados (\emph{Least Square})
+    Podemos minimizar el error utilizando mínimos cuadrados (\emph{Least Square})
     \begin{align*}
         \state^{*} &= \argmin_{\stateBold} \sum_{ij} \error^{\top}_{ij}(\stateBold_{i},\stateBold_{j}) \informationMatrix_{ij} \error_{ij}(\stateBold_{i},\stateBold_{j})\\
                  &= \argmin_{\stateBold} \sum_{k} \error^{\top}_{k}(\stateBold) \informationMatrix_{k} \error_{k}(\stateBold)
@@ -501,7 +501,7 @@
     \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
     
     \begin{itemize}
-        \item Podemos aproximar el error al rededor de una estimación inicial $\state$ a través de una expansión de Taylor
+        \item Podemos aproximar el error al rededor de una estimación inicial $\stateBold$ a través de una expansión de Taylor
     \end{itemize}
 
     \begin{equation*}
@@ -897,17 +897,18 @@
 \begin{frame}
     \frametitle{Incertidumbre relativa}
     \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
-    
-    Determinar la incertidumbre relativa entre $\stateBold_{i}$ y $\stateBold_{j}$.
-    
-    Esto es especialmente útil para la detección de ciclos, ya que podemos computar la incertidumbre de la pose actual con respecto a una pose anterior. De manera de poder determinar si es posible que haya un ciclo entre las poses o no (si la pose anterior se encuentra dentro de la covarianza entonces detectamos un ciclo).
-    
-    Para Determina la incertidumbre relativa entre $\stateBold_{i}$ y $\stateBold_{j}$ vamos a:    
     \begin{itemize}
-        \item Construir la matriz completa $\linearSystemH$
-        \item Suprimir las filas y columnas de $\stateBold_{i}$ (equivalente a no optimizar/fijar la variable)
-        \item Computar el bloque $j,j$ de la inversa
-        \item Este bloque contiene la matriz de covarianza de $\stateBold_{j}$ con respecto a $\stateBold_{i}$ la cuál está fija.
+        \item Determinar la incertidumbre relativa entre $\stateBold_{i}$ y $\stateBold_{j}$.
+        
+        Esto es especialmente útil para la detección de ciclos, ya que podemos computar la incertidumbre de la pose actual con respecto a una pose anterior. De manera de poder determinar si es posible que haya un ciclo entre las poses o no (si la pose anterior se encuentra dentro de la covarianza entonces detectamos un ciclo).
+        
+        \item Para determina la incertidumbre relativa entre $\stateBold_{i}$ y $\stateBold_{j}$ vamos a:    
+        \begin{itemize}
+            \item Construir la matriz completa $\linearSystemH$
+            \item Suprimir las filas y columnas de $\stateBold_{i}$ (equivalente a no optimizar/fijar la variable)
+            \item Computar el bloque $j,j$ de la inversa
+            \item Este bloque contiene la matriz de covarianza de $\stateBold_{j}$ con respecto a $\stateBold_{i}$ la cuál está fija.
+        \end{itemize}
     \end{itemize}
 
     \begin{figure}[!h]
