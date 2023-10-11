@@ -625,8 +625,11 @@
             \end{bmatrix}\\
             &= 
             \begin{bmatrix}
-                \vec{A}_{ij}^{\top}\informationMatrix_{ij}\vec{A}_{ij} & \vec{A}_{ij}^{\top}\informationMatrix_{ij}\vec{B}_{ij}\\
-                \vec{B}_{ij}^{\top}\informationMatrix_{ij}\vec{A}_{ij} & \vec{B}_{ij}^{\top}\informationMatrix_{ij}\vec{B}_{ij}
+                & & & &\\
+                & \vec{A}_{ij}^{\top}\informationMatrix_{ij}\vec{A}_{ij} & & \vec{A}_{ij}^{\top}\informationMatrix_{ij}\vec{B}_{ij} & \\
+                & & & &\\
+                & \vec{B}_{ij}^{\top}\informationMatrix_{ij}\vec{A}_{ij} & & \vec{B}_{ij}^{\top}\informationMatrix_{ij}\vec{B}_{ij} &\\
+                & & & &\\
             \end{bmatrix}
         \end{align*}
         \item Es diferente a cero en los bloques relacionados con $i,j$
