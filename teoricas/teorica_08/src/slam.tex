@@ -924,8 +924,10 @@
     \frametitle{Observaciones de landmarks}
     \note{Información extraída de https://youtu.be/mZBdPgBtrCM}
     
-    \TODO{Agregar grafica ejemplificadora de cómo funsiona el sensor x-y}
-    
+    \begin{tikzpicture}[remember picture,overlay]
+        \node[xshift=-2.5cm,yshift=2cm] at (current page.east) { \includegraphics[height=0.5\textheight]{./images/landmark_observation_x_y_sensor.pdf}};
+    \end{tikzpicture}
+    \vspace{4em}
     \begin{itemize}
         \item Observación esperada para un (x-y sensor\footnote{x-y sensor es un sensor cuyas mediciones tiene la forma (x,y), un punto de la escena. En un mundo 2D.})
            \begin{figure}[!h]
@@ -944,7 +946,10 @@
     \frametitle{Bearing only obsevations (observaciones de ángulo)}
     \note{Información extraída de https://youtu.be/mZBdPgBtrCM}
     
-    \TODO{Agregar grafica ejemplificadora de cómo funsiona el sensor bearing only}
+    \begin{tikzpicture}[remember picture,overlay]
+        \node[xshift=-2.5cm,yshift=2cm] at (current page.east) { \includegraphics[height=0.5\textheight]{./images/landmark_observation_bearing_only_sensor.pdf}};
+    \end{tikzpicture}
+    
     
     \begin{itemize}
         \item Un landmark es un punto 2D
