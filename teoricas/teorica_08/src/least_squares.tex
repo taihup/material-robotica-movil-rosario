@@ -372,7 +372,7 @@
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
     
     \begin{itemize}
-        \item Hay una función que $f_{i}(\stateBold)$ que dado algunos parámetros de bias $\stateBold$, devuelve una odometría corregida (\emph{unbiased}) para la lectura de $\controlCommand_{i}^{\prime}$ como sigue
+        \item Hay una función que $f_{i}(\stateBold)$ que dado algunos parámetros de bias $\stateBold$, devuelve una odometría corregida (\emph{unbiased}) para la lectura ruidosa $\controlCommand_{i}^{\prime}$ 
         \begin{equation*}
             \controlCommand_{i}^{\prime} = f_{i}(\stateBold) =
             \begin{bmatrix}
@@ -468,7 +468,7 @@
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
     
     \begin{itemize}
-        \item Sea la matriz $\vec{A} simétrica positiva definida$
+        \item Sea la matriz $\vec{A}$ simétrica positiva definida
         \item El sistema a resolver es $\vec{A} \vec{x} = \vec{b}$
         \item Cholesky lleva a $\vec{A} = \vec{L} \vec{L}^{\top}$ con $\vec{L}$ matriz triangular inferior
         \item<2> Resolvemos primero

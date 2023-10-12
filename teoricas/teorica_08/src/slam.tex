@@ -878,7 +878,11 @@
     \begin{itemize}
         \item Determinar la incertidumbre relativa entre $\stateBold_{i}$ y $\stateBold_{j}$.
         
-        Esto es especialmente útil para la detección de ciclos, ya que podemos computar la incertidumbre de la pose actual con respecto a una pose anterior. De manera de poder determinar si es posible que haya un ciclo entre las poses o no (si la pose anterior se encuentra dentro de la covarianza entonces detectamos un ciclo).
+        \begin{itemize}
+            \item Esto es especialmente útil para la detección de ciclos, ya que podemos computar la incertidumbre de la pose actual con respecto a una pose anterior. De manera de poder determinar si es posible que haya un ciclo entre las poses o no (si la pose anterior se encuentra dentro de la covarianza entonces detectamos un ciclo).
+        \end{itemize}
+        
+
         
         \item Para determina la incertidumbre relativa entre $\stateBold_{i}$ y $\stateBold_{j}$ vamos a:    
         \begin{itemize}
@@ -921,6 +925,8 @@
     \frametitle{Observaciones de landmarks}
     \note{Información extraída de https://youtu.be/mZBdPgBtrCM}
     
+    \TODO{Agregar grafica ejemplificadora de cómo funsiona el sensor x-y}
+    
     \begin{itemize}
         \item Observación esperada para un (x-y sensor\footnote{x-y sensor es un sensor cuyas mediciones tiene la forma (x,y), un punto de la escena. En un mundo 2D.})
            \begin{figure}[!h]
@@ -938,6 +944,8 @@
 \begin{frame}
     \frametitle{Bearing only obsevations (observaciones de ángulo)}
     \note{Información extraída de https://youtu.be/mZBdPgBtrCM}
+    
+    \TODO{Agregar grafica ejemplificadora de cómo funsiona el sensor bearing only}
     
     \begin{itemize}
         \item Un landmark es un punto 2D
@@ -958,8 +966,6 @@
 \begin{frame}
     \frametitle{Rango de la matriz H}
     \note{Información extraída de https://youtu.be/mZBdPgBtrCM}
-    
-    \TODO{Explicar bien cómo una medición restringe los parámetros a optimizar y cuantas mediciones son necesarias para estimar la pose y por qué.}
     
     \begin{itemize}
         \item ¿Cuál es el rango de la matriz $\linearSystemH_{ij}$ para una restricción pose-landmark 2D?
@@ -1048,8 +1054,8 @@
     \begin{itemize}
         \item No hay garantía que que un sistema tenga rango completo
         \begin{itemize}
-            \item Los landmarks puede ser observados una sola vez \TODO{no quedan claros estos items como influyen a la intederminación de H}
-            \item El robot puede que no tenga información de odometría
+            \item Los landmarks puede ser observados una sola vez
+            \item El robot puede que no tenga información de odometría \note{la odometría en general de da información de toda la pose}
         \end{itemize}
         \item Podemos lidiar con estos problemas utilizando un \emph{damping factor} para $\linearSystemH$
         \item En vez de resolver $\linearSystemH \vec{\Delta} \stateBold = - \linearSystemb$, resolvemos
@@ -1065,7 +1071,7 @@
     
     \begin{itemize}
         \item El damping factor $\lambda \vec{I}$ hace que el sistema sea definido positivo
-        \item Es una suma ponderada del método de Gauss-Newton y el método de descenso por el gradiente \TODO{explicar bien esto, quizas con un grafico}
+        \item Es una suma ponderada del método de Gauss-Newton y el método de descenso por el gradiente \note{cuando el lambda crece la H termina siendo despreciable y Levenberg–Marquardt se comporta como el método por el gradiente. Esto es porque el vector b tiene información del Jacobiano, y se podría despejar de manera que se de la ecuación del decenso por el gradiente. Por otro lado, cuando lambda es muy chico Levenberg–Marquardt se comporta como el método de Gauss-Newton. Intuitivamente, Levenberg–Marquardt se comporta como Gauss-Newton cuando está cerca del mínimo (lambda disminuye) y se comporta como el descenso por el gradiente cuando esta lejos del mínimo (lambda aumenta)}
         \item El damping factor regula la convergencia usando acciones de backup/restore
     \end{itemize}
 
