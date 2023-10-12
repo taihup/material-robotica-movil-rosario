@@ -973,7 +973,7 @@
             \item El rango de $\linearSystemH_{ij}$ está determinado por el rango del Jacobiano $\jacobian_{ij}$ que a lo sumo es una matriz de $2 \times 5$ (2 porque la medición da información 2D y 5 por $\begin{bmatrix}    x & y & \theta & l_{x} & l_{y} \end{bmatrix}$)
             \item $\linearSystemH_{ij}$ no puede tener más que rango 2
             
-                $rank(A^{\top} A) = rank(A^{\top}) = rank(A)$
+                $rank(\linearSystemH_{ij}) = rank(\jacobian_{ij}^{\top} \informationMatrix_{ij} \jacobian_{ij}) = rank(\jacobian_{ij}) \quad \text{Ver: The Matrix Cookcook sec. 9.6.9}$ 
         \end{itemize}
     
         \item ¿Cuál es el rango de la matriz $\linearSystemH_{ij}$ para una restricción pose-landmark bearing-only?
@@ -1027,7 +1027,7 @@
             \includegraphics[width=0.3\textwidth]{images/robot_pose_landmark_with_bearing_sensor2.pdf}
         \end{center}
         El robot puede estar en cualquier lugar del plano xy. Siempre estará apuntando hacia el landmark.
-        Es un espacio soluciones 2D (restringido por la orientación del robot).
+        Es un espacio de soluciones 2D (restringido por la orientación del robot).
     }
 \end{frame}
 
@@ -1042,8 +1042,10 @@
     \only<2>{
         Preguntas:
         \begin{itemize}
-            \item ¿Cuantas observaciones de landmarks 2D se necesitan para resolver la pose de un robot?
-            \item ¿Cuantas observaciones bearing-only se necesitan para resolver la pose de un robot?
+            \item<1-> ¿Cuantas observaciones de landmarks $(x,y)$ se necesitan para resolver la pose de un robot?
+            \item<2-> Se necesitan 2 observaciones como mínimo
+            \item<3-> ¿Cuantas observaciones bearing-only se necesitan para resolver la pose de un robot?
+            \item<4-> Se necesitan 3 observaciones como mínimo
         \end{itemize}
     }
 \end{frame}
