@@ -606,10 +606,9 @@
 \begin{frame}
     \frametitle{Consecuencia de que sea un problema disperso}
     \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
-    
+    \small
     \begin{itemize}
         \item La matriz coeficiente de una arista es
-
         \begin{align*}
             \linearSystemH_{ij}^{\top} &= \jacobian_{ij}^{\top}\informationMatrix_{ij}\jacobian_{ij}\\
             &= 
@@ -625,11 +624,11 @@
             \end{bmatrix}\\
             &= 
             \begin{bmatrix}
-                & & & &\\
-                & \vec{A}_{ij}^{\top}\informationMatrix_{ij}\vec{A}_{ij} & & \vec{A}_{ij}^{\top}\informationMatrix_{ij}\vec{B}_{ij} & \\
-                & & & &\\
-                & \vec{B}_{ij}^{\top}\informationMatrix_{ij}\vec{A}_{ij} & & \vec{B}_{ij}^{\top}\informationMatrix_{ij}\vec{B}_{ij} &\\
-                & & & &\\
+                0 & \cdots & 0 & \cdots & 0 \\
+                \vdots & \vec{A}_{ij}^{\top}\informationMatrix_{ij}\vec{A}_{ij} & \vdots & \vec{A}_{ij}^{\top}\informationMatrix_{ij}\vec{B}_{ij} & \vdots\\
+                0 & \cdots & 0 & \cdots & 0 \\
+                \vdots & \vec{B}_{ij}^{\top}\informationMatrix_{ij}\vec{A}_{ij} & \vdots & \vec{B}_{ij}^{\top}\informationMatrix_{ij}\vec{B}_{ij} & \vdots\\
+                0 & \cdots & 0 & \cdots & 0
             \end{bmatrix}
         \end{align*}
         \item Es diferente a cero en los bloques relacionados con $i,j$
