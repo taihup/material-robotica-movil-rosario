@@ -142,7 +142,7 @@ python localization.py --plot none
 \end{lstlisting}
 
 
-	La línea {\color{blue} azul} traza la posición del robot, que es el resultado de acciones ruidosas. La línea {\color{green} verde} traza el la posición del posición asumiendo que las acciones no son ruidosas. Después de implementar un filtro, la posición del robot estimada por el filtro se dibujará en {\color{red} rojo}.
+	La línea {\color{blue} azul} traza la posición del robot (ground-truth), que es el resultado de acciones ruidosas. La línea {\color{green} verde} traza la posición del robot asumiendo que las acciones no son ruidosas (trayectoria deseada pero no la real). Después de implementar un filtro, la posición del robot estimada por el filtro se dibujará en {\color{red} rojo}.
 	
 	
 \begin{lstlisting}[style=bash] 
@@ -191,10 +191,10 @@ ANEES: 1.472139416194766
 		Ejecutar 10 ensayos por valor de $r$. Una ejecución podría ser algo como:
 
 \begin{lstlisting}[style=bash] 
-python localización.py ekf --factor de datos 4 --factor de filtro 4
+python localization.py ekf --data-factor 4 --filter-factor 4
 \end{lstlisting}
 
-		\item Graficar el error de posición medio y ANEES (\emph{average normalized estimation error squared}) a medida que los factores $\alpha$, $\beta$ del filtro varían sobre $r$ (como arriba) mientras los datos son generados con los valores por defecto.. Analizar los resultados obtenidos.
+		\item Graficar el error de posición medio y ANEES (\emph{average normalized estimation error squared}) a medida que los factores $\alpha$, $\beta$ del filtro varían sobre $r$ (como arriba) mientras los datos son generados con los valores por defecto. Analizar los resultados obtenidos.
 	\end{enumerate}
 
 

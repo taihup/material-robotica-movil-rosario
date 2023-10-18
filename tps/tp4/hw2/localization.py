@@ -15,7 +15,7 @@ from pf import ParticleFilter
 def localize(env, policy, filt, x0, num_steps, plot=False):
     # Collect data from an entire rollout
     states_noisefree, states_real, action_noisefree, obs_noisefree, obs_real = \
-            env.rollout(x0, policy, num_steps)
+            env.rollout(x0, policy, num_steps) # Generate all data (actual observations with and without noise) using ground-truth (action wihtout noise)
     states_filter = np.zeros(states_real.shape)
     states_filter[0, :] = x0.ravel()
 
@@ -43,8 +43,8 @@ def localize(env, policy, filt, x0, num_steps, plot=False):
             fig.clear()
             plot_field(env, marker_id)
             plot_robot(env, x_real, z_real)
-            plot_path(env, states_noisefree[:i+1, :], 'g', 0.5)
-            plot_path(env, states_real[:i+1, :], 'b')
+            plot_path(env, states_noisefree[:i+1, :], 'g', 0.5) # Es lo deseado pero NO es el ground-truth
+            plot_path(env, states_real[:i+1, :], 'b') # Es la pose real del robot (ground-truth)
             if filt is not None:
                 plot_path(env, states_filter[:i+1, :2], 'r')
             fig.canvas.flush_events()
@@ -111,9 +111,11 @@ if __name__ == '__main__':
     print('Data factor:', args.data_factor)
     print('Filter factor:', args.filter_factor)
 
+    # Use seed to feed the random generator
     if args.seed is not None:
         np.random.seed(args.seed)
 
+    # The alpha is depicted in localizations slides (theory) 
     alphas = np.array([0.05**2, 0.005**2, 0.1**2, 0.01**2])
     beta = np.diag([np.deg2rad(5)**2])
 

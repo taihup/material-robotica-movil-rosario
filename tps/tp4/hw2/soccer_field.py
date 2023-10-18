@@ -166,11 +166,11 @@ class Field:
         for i in range(num_steps):
             t = i * dt
 
-            u_noisefree = policy(x_real, t)
-            x_noisefree = self.forward(x_noisefree, u_noisefree)
+            u_noisefree = policy(x_real, t) # comando de control sin ruido
+            x_noisefree = self.forward(x_noisefree, u_noisefree) # pose que nos gustaria que tenga el robot (cuadrado verde)
 
-            u_real = self.sample_noisy_action(u_noisefree)
-            x_real = self.forward(x_real, u_real)
+            u_real = self.sample_noisy_action(u_noisefree) # comando real (con ruido) que realizo el robot
+            x_real = self.forward(x_real, u_real) # ground-truth del robot (trayectoria azul)
 
             marker_id = self.get_marker_id(i)
             z_noisefree = self.observe(x_real, marker_id)
