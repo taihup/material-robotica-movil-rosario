@@ -55,7 +55,7 @@
             
             {\scriptsize Ulrich \& Borenstein, 98}
             
-            \item Algorimos de búsqueda: A$^{*}$, D$^{*}$, D$^{*}$ Lite, ARA$^{*}$
+            \item Algorimos de búsqueda: A$^{*}$, D$^{*}$, D$^{*}$ Lite, ARA$^{*}$, MDPs, ...
             
         \end{itemize}
         
@@ -98,6 +98,21 @@
 %    
 %\end{frame}
 
+\begin{frame}
+    \frametitle{Formulación de Motion Planning}
+    \note{Información extraída de http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/slides/19-pathplanning-long.pdf}
+    
+    \begin{itemize}
+        \item El {\bf problema de la motion planning} se puede declarar de la siguiente manera. \textbf{Input:}
+        \begin{itemize}
+            \item Una \textbf{pose inicial} del robot
+            \item Una \textbf{pose final} deseada
+            \item Una \textbf{descripción geométrica del robot}
+            \item Una \textbf{representación geométrica del entorno}
+        \end{itemize}
+        \item \textbf{Output:} Encontrar un camino que conduzca al robot desde el punto de inicio al punto final sin colisionar con los obstáculos
+    \end{itemize}
+\end{frame}
 
 \begin{frame}
 	\frametitle{Dynamic Window Approach}
@@ -215,21 +230,7 @@
 \end{frame}
 
 
-\begin{frame}
-	\frametitle{Formulación de Motion Planning}
-	\note{Información extraída de http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/slides/19-pathplanning-long.pdf}
 
-	\begin{itemize}
-		\item El {\bf problema de la motion planning} se puede declarar de la siguiente manera. Dado:
-		\begin{itemize}
-			\item Una pose inicial del robot
-			\item Una pose final deseada
-			\item Una descripción geométrica del robot
-			\item Una representación geométrica del entorno
-		\end{itemize}
-		\item Encontrar un camino que conduzca al robot gradualmente desde el punto de inicio al punto final sin tocar los obstáculos
-	\end{itemize}
-\end{frame}
 
 \begin{frame}
 	\frametitle{Espacio de configuraciones}
