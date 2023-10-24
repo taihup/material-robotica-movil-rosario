@@ -115,6 +115,56 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{Espacio de configuraciones}
+    \note{Información extrída de Cyrill Stachniss - Robot Motion Planning using A*: https://youtu.be/HR1TNa8Lp7w}
+    
+    \begin{itemize}
+        \item Aunque el problema de motion planning es definido en el mundo regular, vive en otro espacio: el {\bf Espacio de configuraciones} (lo notaremos con $\configurationSpace$)
+        \item C-space: las posiciones de todos los puntos del robot en relación con un sistema de coordenadas fijo
+        \item Una {\bf configuración de robot}, $\robotConfiguration$, es una especificación de las posiciones de todos los puntos del robot en relación con un sistema de coordenadas fijo
+        \item Por lo general, el espacio de configuraciones es discretizado.
+        \item Una configuración se expresa como un {\bf vector de posiciones y orientaciones}
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Espacio de configuraciones}
+    \begin{itemize}
+        \item Hay dos tipos de regiones: libres u ocupadas (con obstáculos)
+        \item Sea $\workSpace = \mathbb{R}^{m}$ el \emph{work space} (para un mundo 2D, $\workSpace = \mathbb{R}^{2}$), $\obstaclesSet \in \workSpace$ el conjunto de obstáculos, un robot $\robotInConfiguration(\robotConfiguration)$ en la configuración $\robotConfiguration \in \configurationSpace$.
+        La configuración del robot especifica completamente la pose del robot en $\workSpace$ incluyendo la especificación de todos los grados de libertad. (E.g., un robot con un cuerpo rígido en el plano $\configurationSpace = \begin{bmatrix}
+            x & y & \theta
+        \end{bmatrix} = \mathbb{R}^{2} \times S_{1}$ .)
+        
+        \begin{align*}
+            \freeConfigurationSpace &= \left\lbrace \robotConfiguration \in \configurationSpace | \robotInConfiguration(\robotConfiguration) \cap \obstaclesSet =  \emptyset \right\rbrace\\
+            \obstableConfigurationSpace &= \configurationSpace / \freeConfigurationSpace
+        \end{align*}
+        
+        \item Definimos:\\
+        $\startConfiguration$: configuración \emph{start}\\
+        $\goalConfiguration$: configuración \emph{goal}
+        
+        
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[xshift=-2.5cm,yshift=-2.5cm] at (current page.east) { \includegraphics[height=0.4\textheight]{./images/configuration_space.pdf}};
+        \end{tikzpicture}
+       
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ejemplo de espacio de configuraciones}
+    
+    \begin{figure}[!h]
+        \includegraphics[width=0.8\textwidth]{images/configuration_space_manipulator.pdf}
+    \end{figure}
+    
+\end{frame}
+
+\begin{frame}
 	\frametitle{Dynamic Window Approach}
 	\note{Información extraída de http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/slides/19-pathplanning-long.pdf}
 	
@@ -163,8 +213,6 @@
     \begin{center}
         \includegraphics[width=0.7\columnwidth]{images/dynamic_window_approach_recheable_velocities.pdf}
     \end{center}
-    
-    
     
 \end{frame}
 
@@ -229,50 +277,6 @@
     
 \end{frame}
 
-
-
-
-\begin{frame}
-	\frametitle{Espacio de configuraciones}
-	
-	\begin{itemize}
-		\item Aunque el problema de motion planning es definido en el mundo regular, vive en otro espacio: el {\bf Espacio de configuraciones} (lo notaremos con $\configurationSpace$)
-		\item Una {\bf configuración de robot}, $\robotConfiguration$, es una especificación de las posiciones de todos los puntos del robot en relación con un sistema de coordenadas fijo
-		\item Por lo general, una configuración se expresa como un {\bf vector de posiciones y orientaciones}
-	\end{itemize}
-
-	
-\end{frame}
-
-\begin{frame}
-	\frametitle{Espacio de configuraciones}
-	\begin{itemize}
-		\item Hay dos tipos de regiones: libres u ocupadas (con obstáculos)
-		\item Sea $\workSpace = \mathbb{R}^{m}$ el \emph{work space} (para un mundo 2D, $\workSpace = \mathbb{R}^{2}$), $\obstaclesSet \in \workSpace$ el conjunto de obstáculos, un robot $\robotInConfiguration(\robotConfiguration)$ en la configuración $\robotConfiguration \in \configurationSpace$.
-        La configuración del robot especifica completamente la pose del robot en $\workSpace$ incluyendo la especificación de todos los grados de libertad. (E.g., un robot con un cuerpo rígido en el plano $\configurationSpace = \begin{bmatrix}
-            x & y & \theta
-        \end{bmatrix} = \mathbb{R}^{2} \times S_{1}$ .)
-        
-		\begin{align*}
-			 \freeConfigurationSpace &= \left\lbrace \robotConfiguration \in \configurationSpace | \robotInConfiguration(\robotConfiguration) \cap \obstaclesSet =  \emptyset \right\rbrace\\
-			 \obstableConfigurationSpace &= \configurationSpace / \freeConfigurationSpace
-		\end{align*}
-	
-		\item Definimos:\\
-		$\startConfiguration$: configuración \emph{start}\\
-		$\goalConfiguration$: configuración \emph{goal}
-	\end{itemize}
-	
-\end{frame}
-
-\begin{frame}
-	\frametitle{Ejemplo de espacio de configuraciones}
-	
-	\begin{figure}[!h]
-		\includegraphics[width=0.8\textwidth]{images/configuration_space_manipulator.pdf}
-	\end{figure}
-	
-\end{frame}
 
 \begin{frame}
     \frametitle{Path vs Trajectory}
