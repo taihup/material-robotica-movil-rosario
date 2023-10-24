@@ -35,8 +35,8 @@
     \begin{itemize}
         \item ¿Cómo reaccionar a objetos imprevistos (dinámicos)?
         \begin{itemize}
-            \item Eficiencia: Tiene que ser eficiente al lidiar con objetos imprevistos imprevistos (dinámicos). Tiene que ser capaz de hacer (\emph{Re-planning}). Ej: Una puerta cerrada o un objeto dinámico.
-            \item Fiable (\emph{reliability}): tiene que ser fiable y no colisionar con un obstáculo.
+            \item \textbf{Eficiencia:} tiene que ser eficiente al lidiar con objetos imprevistos imprevistos (dinámicos). Tiene que ser capaz de replanificar a medida que ejecuta un plan (\emph{Re-planning}). Por ejemplo ante una puerta que ha sido cerrada o una persona que se encuentra en frente.
+            \item \textbf{Fiable (\emph{reliability}):} tiene que ser fiable con respecto a no colisionar con obstáculos.
         \end{itemize}
         
         \begin{itemize}
@@ -55,7 +55,7 @@
             
             {\scriptsize Ulrich \& Borenstein, 98}
             
-            \item A$^{*}$, D$^{*}$, D$^{*}$ Lite, ARA$^{*}$
+            \item Algorimos de búsqueda: A$^{*}$, D$^{*}$, D$^{*}$ Lite, ARA$^{*}$
             
         \end{itemize}
         
@@ -68,26 +68,27 @@
 	\note{Información extraída de http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/slides/19-pathplanning-long.pdf}
 	
 	\begin{itemize}
-		\item Calcular el camino óptimo considerando potenciales incertidumbres en las acciones
-		\item Generar rápidamente acciones en el caso de objetos imprevistos (\emph{Re-planning}). Ej: Una puerta cerrada o un objeto dinámico.
+		\item Calcular el camino óptimo considerando potenciales incertidumbres en las acciones. \note{Puede que tengamos un camino óptimo calculado pero que el robot al intentar ejecutarlo no lo haga correctamente porque tiene error en sus acciones. Un robot con ruedas que anda sobre done sus ruedas patinan pueden hacer que avance menos de lo que dice su acción de control. Por lo tanto, debe replanificar también.}
+		\item Generar \textbf{rápidamente} acciones en el caso de objetos imprevistos (\emph{Re-planning}). Ej: Una puerta cerrada o un objeto dinámico. \note{el robot debe actuar rápidamente ante un imprevisto. La idea es evitar que el robot no demore mucho en computar un nuevo plan.}
 	\end{itemize}
 	
 \end{frame}
 
 
 \begin{frame}
-	\frametitle{Arquitectura clásica}
+	\frametitle{Arquitectura clásica de 2 Capas}
 	\note{Información extraída de http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/slides/19-pathplanning-long.pdf}
 	
 	\begin{figure}[!h]
 		\includegraphics[width=0.8\textwidth]{images/path_planning_architecture.pdf}
 	\end{figure}
+    \note{El método de planning corre a baja frecuencia y genera sub-goals que los envía al método de Evasión de obstáculos. El método de evasión de obstáculos corre a alta frecuencia e intenta alcanzar los sub-goals. Mientras se dirige a un sub-goal evade obstáculos.}
 	
 \end{frame}
 
 \begin{frame}
     \frametitle{Arquitectura clásica}
-    \note{Información extraída de slides Martin Saska}
+    \note{Información extraída de slides de Martin Saska}
     
     \begin{figure}[!h]
         \includegraphics[width=0.6\textwidth]{images/motion_planning_architecture.pdf}
