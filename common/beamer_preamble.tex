@@ -19,3 +19,10 @@
 \newif\ifadditional % conditional to show additional slides
 %\additionaltrue   % uncomment to show additional slides
 \additionalfalse % uncomment to show without additional slides
+
+% Reference cite without footnote mark
+\newrobustcmd*{\footfullcitenomark}{%
+    \AtNextCite{%
+        \let\thefootnote\relax
+        \let\mkbibfootnote\mkbibfootnotetext}%
+    \footfullcite}
