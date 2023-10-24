@@ -29,12 +29,35 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{En entornos dinámicos...}
+    \note{Información extraída de http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/slides/19-pathplanning-long.pdf}
+    
+    \begin{itemize}
+        \item ¿Cómo reaccionar a objetos imprevistos (dinámicos)?
+        \begin{itemizes}
+            \item Eficiencia: Tiene que ser eficiente al lidiar con objetos imprevistos imprevistos (dinámicos). Tiene que ser capaz de hacer (\empph{Re-planning}). Ej: Una puerta cerrada o un objeto dinámico.
+            \item Fiable (\emph{reliability}):
+        \end{itemizes}
+        
+        \begin{itemize}
+            \item Dynamic Window Approaches
+            \item Grid map based planning
+            \item Nearness Diagram Navigation
+            \item Vector-Field-Histogram+
+            \item A$^{*}$, D$^{*}$, D$^{*} Lite$, ARA$^{*}$
+        \end{itemize}
+        
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}
 	\frametitle{Desafíos}
 	\note{Información extraída de http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/slides/19-pathplanning-long.pdf}
 	
 	\begin{itemize}
 		\item Calcular el camino óptimo considerando potenciales incertidumbres en las acciones
-		\item Generar rápidamente acciones en el caso de objetos imprevistos
+		\item Generar rápidamente acciones en el caso de objetos imprevistos (\empph{Re-planning}). Ej: Una puerta cerrada o un objeto dinámico.
 	\end{itemize}
 	
 \end{frame}
