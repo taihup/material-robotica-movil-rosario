@@ -86,17 +86,17 @@
 	
 \end{frame}
 
-\begin{frame}
-    \frametitle{Arquitectura clásica}
-    \note{Información extraída de slides de Martin Saska}
-    
-    \begin{figure}[!h]
-        \includegraphics[width=0.6\textwidth]{images/motion_planning_architecture.pdf}
-    \end{figure}
-
-    {\bf Motion planning} es parte del ciclo de {\bf mission planning}. Los algoritmos offline se convierten en planificaciones online.
-    
-\end{frame}
+%\begin{frame}
+%    \frametitle{Arquitectura clásica}
+%    \note{Información extraída de slides de Martin Saska}
+%    
+%    \begin{figure}[!h]
+%        \includegraphics[width=0.6\textwidth]{images/motion_planning_architecture.pdf}
+%    \end{figure}
+%
+%    {\bf Motion planning} es parte del ciclo de {\bf mission planning}. Los algoritmos offline se convierten en planificaciones online.
+%    
+%\end{frame}
 
 
 \begin{frame}
@@ -104,11 +104,14 @@
 	\note{Información extraída de http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/slides/19-pathplanning-long.pdf}
 	
     \begin{itemize}
-        \item Evasión de colisiones: determine trayectorias libres de colisiones mediante operaciones geométricas
-        \item El robot se mueve en arcos circulares
-        \item Comandos de movimiento: $(v,\omega)$
+        \item \textbf{Evasión de obstáculos}: determine trayectorias libres de colisiones mediante operaciones geométricas
+        \item El robot se mueve en arcos circulares, es decir utilizamos comandos de movimiento: $(v,\omega)$
         \item ¿Cuáles $(v,\omega)$ son admisibles y alcanzables?
     \end{itemize}
+    
+    \begin{center}
+        \includegraphics[width=0.6\columnwidth]{images/dynamic_window_approach_robot_world.pdf}
+    \end{center}
     
 \end{frame}
 
@@ -117,21 +120,41 @@
     \note{Información extraída de http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/slides/19-pathplanning-long.pdf}
     
     \begin{itemize}
-        \item Las velocidades son admisibles si el robot fuera capaz de detenerse antes de alcanzar el obstáculo
+        \item Las velocidades son admisibles si el robot fuera capaz de detenerse antes de alcanzar un obstáculo
     \end{itemize}
     
+    \begin{align*}
+        V_{a} = \{ (v,\omega) \, | \,
+              v &\leq \sqrt{2 dist(v,\omega) a_{trans}} \quad \land \\
+         \omega &\leq \sqrt{2 dist(v,\omega) a_{rot}} \}
+    \end{align*}
+    
     \begin{center}
-        \includegraphics[width=0.6\columnwidth]{images/dynamic_window_approach_admisible_velocities.pdf}
+        \includegraphics[width=0.6\columnwidth]{images/dynamic_window_approach_admissible_velocities.pdf}
     \end{center}
-    
-    
-    \TODO{Completar con slides: \url{http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/slides/19-pathplanning-long.pdf}}
-    
     
 \end{frame}
 
 \begin{frame}
     \frametitle{Velocidades Alcanzables}
+    \note{Información extraída de http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/slides/19-pathplanning-long.pdf}
+    
+    \begin{align*}
+        V_{a} = \{ (v,\omega) \, | \,
+        v &\in \left[ v - a_{trans} t, v + a_{trans} t \right] \quad \land \\
+        \omega &\in \left[ \omega - a_{rot} t, \omega + a_{rot} t \right] \}
+    \end{align*}
+    
+    \begin{center}
+        \includegraphics[width=0.7\columnwidth]{images/dynamic_window_approach_recheable_velocities.pdf}
+    \end{center}
+    
+    
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{DWA Espacio de Búsqueda}
     \note{Información extraída de http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/slides/19-pathplanning-long.pdf}
     
     \begin{center}
@@ -140,18 +163,6 @@
     
     
     \TODO{Completar con slides: \url{http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/slides/19-pathplanning-long.pdf}}
-    
-    
-\end{frame}
-
-\begin{frame}
-    \frametitle{Dynamic Window Approach}
-    \note{Información extraída de http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/slides/19-pathplanning-long.pdf}
-    
-    
-    \TODO{Completar con slides: \url{http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/slides/19-pathplanning-long.pdf}}
-    
-    
 \end{frame}
 
 \begin{frame}
