@@ -116,7 +116,7 @@
 
 \begin{frame}
     \frametitle{Espacio de configuraciones}
-    \note{Información extrída de Cyrill Stachniss - Robot Motion Planning using A*: https://youtu.be/HR1TNa8Lp7w}
+    \note{Información extraída de Cyrill Stachniss - Robot Motion Planning using A*: https://youtu.be/HR1TNa8Lp7w}
     
     \begin{itemize}
         \item Aunque el problema de motion planning es definido en el mundo regular, vive en otro espacio: el {\bf Espacio de configuraciones} (lo notaremos con $\configurationSpace$)
@@ -129,16 +129,8 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{$\configurationSpace$-Space Discretization}
-    
-    
-    \TODO{Seguir las slides de Cyrill y luego con  \url{http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/slides/19-pathplanning-long.pdf} y Martín Saska}
-    
-\end{frame}
-
-\begin{frame}
     \frametitle{Espacio de configuraciones}
-    \note{Información extrída de Cyrill Stachniss - Robot Motion Planning using A*: https://youtu.be/HR1TNa8Lp7w}
+    \note{Información extraída de Cyrill Stachniss - Robot Motion Planning using A*: https://youtu.be/HR1TNa8Lp7w}
     
     \begin{itemize}
         \item Hay dos tipos de regiones: libres u ocupadas (con obstáculos)
@@ -176,7 +168,7 @@
 
 \begin{frame}
     \frametitle{Espacio de Configuración}
-    \note{Información extrída de Cyrill Stachniss - Robot Motion Planning using A*: https://youtu.be/HR1TNa8Lp7w}
+    \note{Información extraída de Cyrill Stachniss - Robot Motion Planning using A*: https://youtu.be/HR1TNa8Lp7w}
     
     Entonces, Motion Planning equivale a 
     
@@ -194,6 +186,47 @@
         \node[xshift=-2.5cm,yshift=-2.5cm] at (current page.east) { \includegraphics[height=0.4\textheight]{./images/configuration_space_with_path.pdf}};
     \end{tikzpicture}
 
+\end{frame}
+
+\begin{frame}
+    \frametitle{Discretización del $\configurationSpace$-Space}
+    \note{Información extraída de Cyrill Stachniss - Robot Motion Planning using A*: https://youtu.be/HR1TNa8Lp7w}
+    
+    \begin{itemize}
+        \item El terreno continuo frecuentemente necesita ser discretizado para el planeamiento de de caminos
+        \item Hay dos enfoques generales para discretizar $\configurationSpace$-spaces:
+        \begin{itemize}
+            \item \emph{Combinatorial Planning}:
+            Caracteriza a $\configurationSpace$-space explícitamente al capturar el conectividad de $\configurationSpace$-space en un gráfico y encuentra soluciones usando la búsqueda
+            \item Planificación basada en muestreo
+            Utiliza detección de colisiones para sondear y
+            buscar incrementalmente en el $\configurationSpace$-space una solución
+        \end{itemize}
+
+    \end{itemize}
+    
+    
+    \TODO{Seguir las slides de Cyrill y luego con  \url{http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/slides/19-pathplanning-long.pdf} y Martín Saska}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Búsqueda}
+    \note{Información extraída de Cyrill Stachniss - Robot Motion Planning using A*: https://youtu.be/HR1TNa8Lp7w}
+
+    \begin{itemize}
+        \item     El problema de búsqueda: encontrar una secuencia.
+        de acciones (un camino) que conduce a lo deseable
+        estados (una meta)
+
+        \begin{itemize}
+            \item Búsqueda desinformada: además del problema definición, no hay más información sobre el dominio (``búsqueda ciega'')
+            \item Lo único que se puede hacer es ampliar nodos de manera diferente
+            \item Algoritmos de ejemplo: amplitud primero, costo uniforme, profundidad primero, bidireccional, etc.
+        \end{itemize}
+        
+    \end{itemize}
+    
 \end{frame}
 
 
