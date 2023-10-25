@@ -196,11 +196,13 @@
         \item El terreno continuo frecuentemente necesita ser discretizado para el planeamiento de de caminos
         \item Hay dos enfoques generales para discretizar $\configurationSpace$-spaces:
         \begin{itemize}
-            \item \emph{Combinatorial Planning}:
-            Caracteriza a $\configurationSpace$-space explícitamente al capturar el conectividad de $\configurationSpace$-space en un gráfico y encuentra soluciones usando la búsqueda
-            \item Planificación basada en muestreo
-            Utiliza detección de colisiones para sondear y
-            buscar incrementalmente en el $\configurationSpace$-space una solución
+            \item \textbf{Combinatorial Planning}
+            
+            Caracteriza a $\configurationSpace$-space explícitamente capturando la conectividad del $\configurationSpace$-space en un grafo, y encuentra soluciones usando algoritmos de búsqueda
+            
+            \item \textbf{Sampling-based planning (Planificación basada en muestreo)}
+            
+            Utiliza detección de colisiones para sondear y buscar incrementalmente en el $\configurationSpace$-space una solución
         \end{itemize}
 
     \end{itemize}
@@ -214,19 +216,14 @@
     \frametitle{Búsqueda}
     \note{Información extraída de Cyrill Stachniss - Robot Motion Planning using A*: https://youtu.be/HR1TNa8Lp7w}
 
-    \begin{itemize}
-        \item     El problema de búsqueda: encontrar una secuencia.
-        de acciones (un camino) que conduce a lo deseable
-        estados (una meta)
+    El problema de \textbf{búsqueda}: encontrar una secuencia de acciones (un camino, \emph{path}) que conduce a los estados deseable (una meta, \emph{goal})
 
-        \begin{itemize}
-            \item Búsqueda desinformada: además del problema definición, no hay más información sobre el dominio (``búsqueda ciega'')
-            \item Lo único que se puede hacer es ampliar nodos de manera diferente
-            \item Algoritmos de ejemplo: amplitud primero, costo uniforme, profundidad primero, bidireccional, etc.
-        \end{itemize}
-        
+    \begin{itemize}
+        \item \textbf{Búsqueda desinformada:} además de la definición del problema, no hay más información sobre el dominio (\emph{blind search})
+        \item Ampliar diferentes nodos con la esperanza de alcanzar el \emph{goal} en algún momento
+        \item Ejemplos: breath-first, uniform-cost, depth-first, bidirectional, etc.
     \end{itemize}
-    
+       
 \end{frame}
 
 
