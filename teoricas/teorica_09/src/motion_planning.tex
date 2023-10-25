@@ -120,7 +120,7 @@
     
     \begin{itemize}
         \item Aunque el problema de motion planning es definido en el mundo regular, vive en otro espacio: el {\bf Espacio de configuraciones} (lo notaremos con $\configurationSpace$)
-        \item C-space: las posiciones de todos los puntos del robot en relación con un sistema de coordenadas fijo
+        \item $\configurationSpace$-space: las posiciones de todos los puntos del robot en relación con un sistema de coordenadas fijo
         \item Una {\bf configuración de robot}, $\robotConfiguration$, es una especificación de las posiciones de todos los puntos del robot en relación con un sistema de coordenadas fijo
         \item Por lo general, el espacio de configuraciones es discretizado.
         \item Una configuración se expresa como un {\bf vector de posiciones y orientaciones}
@@ -129,7 +129,17 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{$\configurationSpace$-Space Discretization}
+    
+    
+    \TODO{Seguir las slides de Cyrill y luego con  \url{http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/slides/19-pathplanning-long.pdf} y Martín Saska}
+    
+\end{frame}
+
+\begin{frame}
     \frametitle{Espacio de configuraciones}
+    \note{Información extrída de Cyrill Stachniss - Robot Motion Planning using A*: https://youtu.be/HR1TNa8Lp7w}
+    
     \begin{itemize}
         \item Hay dos tipos de regiones: libres u ocupadas (con obstáculos)
         \item Sea $\workSpace = \mathbb{R}^{m}$ el \emph{work space} (para un mundo 2D, $\workSpace = \mathbb{R}^{2}$), $\obstaclesSet \in \workSpace$ el conjunto de obstáculos, un robot $\robotInConfiguration(\robotConfiguration)$ en la configuración $\robotConfiguration \in \configurationSpace$.
@@ -155,14 +165,94 @@
     
 \end{frame}
 
+%\begin{frame}
+%    \frametitle{Ejemplo de espacio de configuraciones}
+%    
+%    \begin{figure}[!h]
+%        \includegraphics[width=0.8\textwidth]{images/configuration_space_manipulator.pdf}
+%    \end{figure}
+%    
+%\end{frame}
+
 \begin{frame}
-    \frametitle{Ejemplo de espacio de configuraciones}
+    \frametitle{Espacio de Configuración}
+    \note{Información extrída de Cyrill Stachniss - Robot Motion Planning using A*: https://youtu.be/HR1TNa8Lp7w}
     
-    \begin{figure}[!h]
-        \includegraphics[width=0.8\textwidth]{images/configuration_space_manipulator.pdf}
-    \end{figure}
+    Entonces, Motion Planning equivale a 
     
+    \begin{itemize}
+        \item Encontrar un camino continuo
+        \begin{equation*}
+            \continuousPath : [0,1] \rightarrow \freeConfigurationSpace \quad \text{con} \quad \continuousPath(0) = \startConfiguration \quad \text{y} \quad  \continuousPath(1) = \goalConfiguration \quad \text{(\emph{solo hay consideraciones goemétricas})}
+        \end{equation*} 
+        \item Dada este seteo, podemos hacer planning con el robot siendo un punto en el $\configurationSpace$-space
+    \end{itemize}
+
+    \vspace{3em}
+
+    \begin{tikzpicture}[remember picture,overlay]
+        \node[xshift=-2.5cm,yshift=-2.5cm] at (current page.east) { \includegraphics[height=0.4\textheight]{./images/configuration_space_with_path.pdf}};
+    \end{tikzpicture}
+
 \end{frame}
+
+
+\begin{frame}
+    \frametitle{Path vs Trajectory}
+    \note{Información extraída de slides Martin Saska}
+    
+    \begin{itemize}
+        \item {\bf Path}: es un mapeo continuo en $\configurationSpace$-space tal que
+        \begin{equation*}
+            \continuousPath : [0,1] \rightarrow \freeConfigurationSpace \quad \text{con} \quad \continuousPath(0) = \startConfiguration \quad \text{y} \quad  \continuousPath(1) = \goalConfiguration \quad \text{(\emph{solo hay consideraciones goemétricas})}
+        \end{equation*} 
+        \item {\bf Trajectory} es un camino con una parametrización explícita del movimiento del robot
+        \begin{itemize}
+            \item Ejemplo: acompañada por una descripción del las leyes de movimiento del robot
+            \begin{equation*}
+                \motionLaw : [0, 1] \rightarrow \robotActionSpace,
+            \end{equation*}
+            donde $\robotActionSpace$ es el espacio de acciones del robot. (\emph{incluye la dinámica del robot})
+        \end{itemize}
+        \vspace{3em}
+        \begin{center}
+            \alert{El problema de planeamiento consiste en determinar la función $\continuousPath(.)$}  
+        \end{center}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Problema de Motion Planning}
+    \note{Información extraída de slides Martin Saska}
+    
+    \footnotesize
+    
+    Teniendo 
+    \begin{itemize}
+        \item La dinámica de un sistema con estado $\state$ y comandos de control $\controlCommand$
+        \begin{equation*}
+            \dfrac{\partial \state}{\partial t} = f(\state,\controlCommand)
+        \end{equation*}
+        \item Un conjunto de obstáculos $\obstaclesSet \subset \workSpace$ y un conjunto objetivo $\goalSet \subset \workSpace$     
+    \end{itemize}
+    El problema de Motion Planning consiste en encontrar el comando de control $\controlCommand$ tal que 
+    \begin{equation*}
+        \state(t) \notin \obstaclesSet \, \text{para} \,  t \in \mathbb{R}_{+} \, \text{y} \, \state(t) \in \goalSet \,  \forall t \ge T_{f} \, \text{para algún finito} \, T_{f} \geq 0,
+    \end{equation*}    
+    o, retorna que no existe tal señal de control.
+    
+    \begin{equation*}
+        t \in [T_{0} , T_{f}] \rightarrow i \in [0, 1] : \robotConfiguration(t) = \continuousPath(i) \in \freeConfigurationSpace
+    \end{equation*}
+    
+    Se pueden agregar requerimientos adicionales como
+    \begin{itemize}
+        \item Suavizado del camino
+        \item Restricciones Kinodynamicas\footnote{La planificación kinodinámica se refiere a la tarea de conducir un robot desde un estado inicial hasta un estado objetivo mientras se evaden los obstáculos y se obedecen las restricciones cinemáticas y dinámicas (en resumen, kinodinámicas) que dictan la relación entre los controles del robot y su movimiento.} (\emph{e.g. considerando fuerzas de fricción})
+        \item Criterio de Optimalidad (\emph{e.g. shortest vs fastest})
+    \end{itemize}
+\end{frame}
+
 
 \begin{frame}
 	\frametitle{Dynamic Window Approach}
@@ -266,72 +356,6 @@
     \TODO{Completar con slides: \url{http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/slides/19-pathplanning-long.pdf}}
     
     
-\end{frame}
-
-\begin{frame}
-    \frametitle{C-Space Discretization}
-    
-    
-    \TODO{Seguir las slides de Cyrill y luego con  \url{http://ais.informatik.uni-freiburg.de/teaching/ss18/robotics/slides/19-pathplanning-long.pdf} y Martín Saska}
-    
-    
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Path vs Trajectory}
-    \note{Información extraída de slides Martin Saska}
-    
-    \begin{itemize}
-    \item {\bf Path}: es un mapeo continuo en $\configurationSpace$-space tal que
-        \begin{equation*}
-            \continuousPath : [0,1] \rightarrow \freeConfigurationSpace \quad \text{con} \quad \continuousPath(0) = \startConfiguration \quad \text{y} \quad  \continuousPath(1) = \goalConfiguration \quad \text{(\emph{solo hay consideraciones goemétricas})}
-        \end{equation*} 
-    \item {\bf Trajectory} es un camino con una parametrización explícita del movimiento del robot
-    \begin{itemize}
-        \item Ejemplo: acompañada por una descripción del las leyes de movimiento del robot
-            \begin{equation*}
-                \motionLaw : [0, 1] \rightarrow \robotActionSpace,
-            \end{equation*}
-            donde $\robotActionSpace$ es el espacio de acciones del robot. (\emph{incluye la dinámica del robot})
-        \end{itemize}
-        \vspace{3em}
-        \begin{center}
-            \alert{El problema de planeamiento consiste en determinar la función $\continuousPath(.)$}  
-        \end{center}
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Problema de Motion Planning}
-    \note{Información extraída de slides Martin Saska}
-    
-    \footnotesize
-    
-    Teniendo 
-    \begin{itemize}
-        \item La dinámica de un sistema con estado $\state$ y comandos de control $\controlCommand$
-        \begin{equation*}
-            \dfrac{\partial \state}{\partial t} = f(\state,\controlCommand)
-        \end{equation*}
-        \item Un conjunto de obstáculos $\obstaclesSet \subset \workSpace$ y un conjunto objetivo $\goalSet \subset \workSpace$     
-    \end{itemize}
-    El problema de Motion Planning consiste en encontrar el comando de control $\controlCommand$ tal que 
-    \begin{equation*}
-        \state(t) \notin \obstaclesSet \, \text{para} \,  t \in \mathbb{R}_{+} \, \text{y} \, \state(t) \in \goalSet \,  \forall t \ge T_{f} \, \text{para algún finito} \, T_{f} \geq 0,
-    \end{equation*}    
-    o, retorna que no existe tal señal de control.
-    
-    \begin{equation*}
-        t \in [T_{0} , T_{f}] \rightarrow i \in [0, 1] : \robotConfiguration(t) = \continuousPath(i) \in \freeConfigurationSpace
-    \end{equation*}
-
-    Se pueden agregar requerimientos adicionales como
-    \begin{itemize}
-        \item Suavizado del camino
-        \item Restricciones Kinodynamicas\footnote{La planificación kinodinámica se refiere a la tarea de conducir un robot desde un estado inicial hasta un estado objetivo mientras se evaden los obstáculos y se obedecen las restricciones cinemáticas y dinámicas (en resumen, kinodinámicas) que dictan la relación entre los controles del robot y su movimiento.} (\emph{e.g. considerando fuerzas de fricción})
-        \item Criterio de Optimalidad (\emph{e.g. shortest vs fastest})
-    \end{itemize}
 \end{frame}
 
 %\begin{frame}

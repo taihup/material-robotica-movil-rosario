@@ -8,7 +8,7 @@
    version="1.1"
    id="svg612"
    inkscape:version="1.3 (1:1.3+202307231459+0e150ed6c4)"
-   sodipodi:docname="configuration_space.svg"
+   sodipodi:docname="configuration_space_with_path.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -25,15 +25,15 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="1.7459156"
-     inkscape:cx="134.59987"
-     inkscape:cy="229.10616"
+     inkscape:zoom="1.4889224"
+     inkscape:cx="153.13088"
+     inkscape:cy="171.93642"
      inkscape:window-width="1920"
      inkscape:window-height="988"
      inkscape:window-x="0"
      inkscape:window-y="32"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
+     inkscape:current-layer="g204" />
   <defs
      id="defs609">
     <clipPath
@@ -237,6 +237,11 @@
                      sodipodi:role="line"
                      id="tspan270">obs</tspan></text>
               </g>
+              <path
+                 style="fill:none;stroke:#000000;stroke-width:14.3959px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                 d="M 4097.1043,3005.4315 C 4227.823,2876.2093 4689.1342,2500.1953 4486.3891,2288.4467 3700.8826,2096.2785 2871.8953,1938.9207 3036.0893,1677.7942 3292.0746,1384.1243 2967.3383,389.32509 2722.2939,282.70002 1769.6748,200.84608 1134.8134,416.06788 488.27199,620.36995"
+                 id="path3"
+                 sodipodi:nodetypes="ccccc" />
             </g>
           </g>
         </g>
