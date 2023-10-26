@@ -21,6 +21,7 @@
 \usepackage{algpseudocode} % to write algorithm
 \usepackage{tikz} % to use tikz
 \usepackage[export]{adjustbox} %valign in subfloat
+\usepackage{colortbl} % to paint cells in a table
 
 % Color commands for annotations
 \newcommand\TODO[1]{\textbf{\textcolor{red}{#1}}} %  TODO notes
@@ -83,4 +84,17 @@
     language=python,
 }
 
+
+%%%%% PARA QUE EN LAS TABLAS SE PUEDA PONER UN SALTO DE LINEA DENTRO DE UNA CELDA
+\newcommand{\specialcell}[2][c]{%
+    \begin{tiny}
+        \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}  
+    \end{tiny}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%% PARA QUE LAS TABLAS TENGAN TODAS LAS COLUMNAS CENTRADAS Y DE IGUAL TAMAÃO
+\usepackage{tabularx}
+\renewcommand{\tabularxcolumn}[1]{>{\centering\arraybackslash}m{#1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

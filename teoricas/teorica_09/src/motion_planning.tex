@@ -56,9 +56,8 @@
             {\scriptsize Ulrich \& Borenstein, 98}
             
             \item Algorimos de búsqueda: A$^{*}$, D$^{*}$, D$^{*}$ Lite, ARA$^{*}$, MDPs, ...
-            
         \end{itemize}
-        
+        \note{El problema de path planning puede pensarse como un problema de búsqueda. En un problema de path planning se desea encontrar la menor cantidad de pasos que lleven al robot desde la posición inicial al goal.}
     \end{itemize}
     
 \end{frame}
@@ -218,12 +217,365 @@
 
     El problema de \textbf{búsqueda}: encontrar una secuencia de acciones (un camino, \emph{path}) que conduce a los estados deseable (una meta, \emph{goal})
 
+    \only<1>{
+        \begin{itemize}
+            \item \textbf{Búsqueda desinformada:} además de la definición del problema, no hay más información sobre el dominio (\emph{blind search})
+            \item Ampliar diferentes nodos con la esperanza de alcanzar el \emph{goal} en algún momento
+            \item Ejemplos: breath-first, uniform-cost, depth-first, bidirectional, etc.
+        \end{itemize}
+    }
+
+    \only<2>{
+        \begin{itemize}
+            \item \textbf{Búsqueda informada:} más información sobre el dominio a través de \textbf{heurísticas}
+            \item Capacidad de decir que un nodo es ``más prometedor'' que otro nodo
+            \item Algoritmos de ejemplo: greedy best-first, A*, muchas variantes de A*, D*, etc.
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{Búsqueda}
+    \note{Información extraída de Cyrill Stachniss - Robot Motion Planning using A*: https://youtu.be/HR1TNa8Lp7w}
+    
+    El rendimiento de un algoritmo de búsqueda es medido de cuatro maneras diferentes:
+ 
     \begin{itemize}
-        \item \textbf{Búsqueda desinformada:} además de la definición del problema, no hay más información sobre el dominio (\emph{blind search})
-        \item Ampliar diferentes nodos con la esperanza de alcanzar el \emph{goal} en algún momento
-        \item Ejemplos: breath-first, uniform-cost, depth-first, bidirectional, etc.
+        \item Completitud: ¿El algoritmo encuentra una solución cuando existe una?
+        \item Optimalidad: ¿La solución encontrada es la mejor de todas las soluciones posibles en términos de costo de camino?
+        \item Complejidad Temporal: ¿cuánto tiempo lleva encontrar una solución?
+        \item Complejidad Espacial: ¿cuánta memoria es necesaria para realizar la búsqueda?
     \end{itemize}
-       
+\end{frame}
+
+\begin{frame}
+    \frametitle{Depth-first Search: Grilla de expansión}
+    \begin{footnotesize}
+        \begin{block}{Grilla de expansión}
+            La grilla de expansión contiene información sobre en que paso cada nodo fue expandido.
+            Sabiendo el orden en que fueron expandido los nodos podemos calcular el camino óptimo desde la posición inicial al goal.
+        \end{block}
+    
+        \begin{center}
+            Mapa\\
+            \begin{tabularx}{6cm}{|X|X|X|X|X|X|}
+                \hline
+                Inicio &  & \cellcolor{black} & & & \\
+                \hline
+                & &  & &  & \\
+                \hline
+                & & \cellcolor{black} &  & \cellcolor{black} & \\
+                \hline
+                & & \cellcolor{black} &  & \cellcolor{black} & \\
+                \hline
+                & & \cellcolor{black} & & \cellcolor{black} & $*$\\
+                \hline
+            \end{tabularx}
+        \end{center}
+
+    
+        \begin{columns}[t]
+            \begin{column}{6cm}
+                \centering
+                Grilla de expansión\\
+                \begin{tabularx}{6cm}{|X|X|X|X|X|X|}
+                    \hline
+                    $0$ & $1$ & $-1$ & $11$ & $15$ & $18$ \\
+                    \hline
+                    $2$ & $3$ & $5$ & $8$ & $12$ & $16$ \\
+                    \hline
+                    $4$ & $6$ & $-1$ & $13$ & $-1$ & $19$ \\
+                    \hline
+                    $7$ & $9$ & $-1$ & $17$ & $-1$ & $21$ \\
+                    \hline
+                    $10$ & $14$ & $-1$ & $20$ & $-1$ & $22$ \\
+                    \hline
+                \end{tabularx}
+            \end{column}
+            \begin{column}{6cm}
+                \centering
+                Camino óptimo
+                \begin{tabularx}{6cm}{|X|X|X|X|X|X|}
+                    \hline
+                    $>$ & $\vee$ & \cellcolor{black} & & & \\
+                    \hline
+                    & $>$ & $>$ & $>$ & $>$ & $\vee$ \\
+                    \hline
+                    & & \cellcolor{black} &  & \cellcolor{black} & $\vee$ \\
+                    \hline
+                    & & \cellcolor{black} &  & \cellcolor{black} & $\vee$ \\
+                    \hline
+                    & & \cellcolor{black} & & \cellcolor{black} & $*$\\
+                    \hline
+                \end{tabularx}
+            \end{column}
+        \end{columns}
+    \end{footnotesize}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Búsqueda A* para Path Planning}
+    \note{Información extraída de Cyrill Stachniss - Robot Motion Planning using A*: https://youtu.be/HR1TNa8Lp7w}
+    
+    \begin{itemize}
+        \item Usar A* para planear el camino de un robot desde el inicio al goal
+        \item Asumimos poses conocidas y un mapa del entorno (un \emph{grid map})
+        \item Provee una secuencia de configuraciones para guiar al robot desde el inicio al goal
+        \item Heurística aumenta la velocidad de búsqueda. Ejemplo: distancia en línea recta
+    \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{A$^{*}$: Minimiza el costo acumulado y estimado}
+    \note{Información extraída de Cyrill Stachniss - Robot Motion Planning using A*: https://youtu.be/HR1TNa8Lp7w}
+    
+    \begin{itemize}
+        \item $g(n) =$ costo real desde el estado inicial hasta $n$.
+        \item $h(n) =$ costo estimado desde $n$ hasta el siguiente goal.
+        \item $f(n) = g(n) + h(n)$, costo estimado del solución más barata a través de $n$.
+        \item Sea $h^{*}(n)$ el costo real de la ruta óptima desde $n$ hasta el siguiente goal.
+        \item $h$ es \textbf{admisible} si lo siguiente se cumple para todo $n$:
+        \begin{equation*}
+            h(n) \leq h^{*}(n)
+        \end{equation*}
+        \item Requerimos para A$^{*}$ que $h$ sea \textbf{admisible}
+        \item Ejemplo: la distancia en línea recta es admisible en el Espacio Euclidiano
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ejemplo de A$^{*}$}
+    \note{Información extraída de Cyrill Stachniss - Robot Motion Planning using A*: https://youtu.be/HR1TNa8Lp7w}
+    
+    
+    
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: A$^{*}$}
+    \begin{footnotesize}
+            Dado un mundo compuesto por celdas como el que se debajo, donde:
+            \begin{itemize}
+                \item Posición inicial: celda verde
+                \item Goal: celda roja
+                \item Función heurística: número de pasos necesarios desde cualquier posición al goal si no hay obstáculos.
+                \begin{center}
+                    $h(x,y) =$ \begin{tabularx}{5cm}{|X|X|X|X|X|X|}	
+                        \hline
+                        $9$ & $8$ & $7$ & $6$ & $5$ & $4$ \\\hline
+                        $8$ & $7$ & $6$ & $5$ & $4$ & $3$ \\\hline
+                        $7$ & $6$ & $5$ & $4$ & $3$ & $2$ \\\hline
+                        $6$ & $5$ & $4$ & $3$ & $2$ & $1$ \\\hline
+                        $5$ & $4$ & $3$ & $2$ & $1$ & $0$ \\\hline
+                    \end{tabularx}
+                \end{center}
+                \item Indicar que nodos son expandidos y los valores $g$, $h$ y $f$ de los nodos alcanzados
+            \end{itemize}
+        
+        \begin{tabularx}{\textwidth}{|X|X|X|X|X|X|}	
+            \hline
+            \cellcolor{green} \specialcell{$g = 0$\\$h = 9$ \\$f= 9$} & \cellcolor{black} &  & & & \\
+            \hline
+            & \cellcolor{black} &  & & & \\[0.35cm]
+            \hline
+            & \cellcolor{black} &  & & & \\[0.35cm]
+            \hline
+            & \cellcolor{black} &  & & & \\[0.35cm]
+            \hline
+            & & & \cellcolor{black} & & \cellcolor{red} \\[0.35cm]	
+            \hline
+        \end{tabularx}
+    \end{footnotesize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{A$^{*}$ Algorithm}
+    \begin{footnotesize}
+        \begin{itemize}	
+            \item La celda amarilla indica el nodo a expandir.
+        \end{itemize}
+    
+        \begin{tabularx}{\textwidth}{|X|X|X|X|X|X|}	
+            \hline
+            \cellcolor{green} \specialcell{$g = 0$\\$h = 9$ \\$f= 9$} & \cellcolor{black} &  & & & \\
+            \hline
+            \cellcolor{yellow} \specialcell{$g = 1$\\$h = 8$ \\$f= 9$} & \cellcolor{black} &  & & & \\
+            \hline
+            & \cellcolor{black} &  & & & \\[0.35cm]
+            \hline
+            & \cellcolor{black} &  & & & \\[0.35cm]
+            \hline
+            & & & \cellcolor{black} & & \cellcolor{red} \\[0.35cm]
+            \hline
+        \end{tabularx}
+    \end{footnotesize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{A$^{*}$ Algorithm}
+    \begin{footnotesize}
+        \begin{tabularx}{\textwidth}{|X|X|X|X|X|X|}	
+            \hline
+            \cellcolor{green} \specialcell{$g = 0$\\$h = 9$ \\$f= 9$} & \cellcolor{black} &  & & & \\
+            \hline
+            \specialcell{$g = 1$\\$h = 8$ \\$f= 9$} & \cellcolor{black} &  & & & \\
+            \hline
+            \specialcell{$g = 2$\\$h = 7$ \\$f= 9$} & \cellcolor{black} &  & & & \\
+            \hline
+            \specialcell{$g = 3$\\$h = 6$ \\$f= 9$} & \cellcolor{black} & \cellcolor{yellow} \specialcell{$g = 7$\\$h = 4$ \\$f= 11$} & & & \\
+            \hline
+            \specialcell{$g = 4$\\$h = 5$ \\$f= 9$} & \specialcell{$g = 5$\\$h = 4$ \\$f = 9$} & \specialcell{$g = 6$\\$h = 3$ \\$f = 9$} & \cellcolor{black}& & \cellcolor{red} \\	
+            \hline
+        \end{tabularx}
+        \begin{itemize}
+            \item De acuerdo con la heurística, el nodo $[4,5]$ esta dos pasos más cerca del goal que el nodo $[3,2]$.
+        \end{itemize}
+    \end{footnotesize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{A$^{*}$ Algorithm}
+    \begin{footnotesize}
+        \begin{tabularx}{\textwidth}{|X|X|X|X|X|X|}	
+            \hline
+            \cellcolor{green} \specialcell{$g = 0$\\$h = 9$ \\$f= 9$} & \cellcolor{black} &  & & & \\
+            \hline
+            \specialcell{$g = 1$\\$h = 8$ \\$f= 9$} & \cellcolor{black} &  & & & \\
+            \hline
+            \specialcell{$g = 2$\\$h = 7$ \\$f= 9$} & \cellcolor{black} & \specialcell{$g = 8$\\$h = 5$ \\$f= 13$} & & & \\
+            \hline
+            \specialcell{$g = 3$\\$h = 6$ \\$f= 9$} & \cellcolor{black} & \specialcell{$g = 7$\\$h = 4$ \\$f= 11$} & \cellcolor{yellow} \specialcell{$g = 8$\\$h = 3$ \\$f= 11$} & & \\
+            \hline
+            \specialcell{$g = 4$\\$h = 5$ \\$f= 9$} & \specialcell{$g = 5$\\$h = 4$ \\$f = 9$} & \specialcell{$g = 6$\\$h = 3$ \\$f = 9$} & \cellcolor{black} &  & \cellcolor{red} \\	
+            \hline
+        \end{tabularx}
+    \end{footnotesize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{A$^{*}$ Algorithm}
+    \begin{footnotesize}
+        \begin{tabularx}{\textwidth}{|X|X|X|X|X|X|}	
+            \hline
+            \cellcolor{green} \specialcell{$g = 0$\\$h = 9$ \\$f= 9$} & \cellcolor{black} &  & & & \\
+            \hline
+            \specialcell{$g = 1$\\$h = 8$ \\$f= 9$} & \cellcolor{black} &  & & & \\
+            \hline
+            \specialcell{$g = 2$\\$h = 7$ \\$f= 9$} & \cellcolor{black} & \specialcell{$g = 8$\\$h = 5$ \\$f= 13$} & \specialcell{$g = 9$\\$h = 4$ \\$f= 13$} & & \\
+            \hline
+            \specialcell{$g = 3$\\$h = 6$ \\$f= 9$} & \cellcolor{black} & \specialcell{$g = 7$\\$h = 4$ \\$f= 11$} & \specialcell{$g = 8$\\$h = 3$ \\$f= 11$} & \cellcolor{yellow} \specialcell{$g = 9$\\$h = 2$ \\$f= 11$} & \\
+            \hline
+            \specialcell{$g = 4$\\$h = 5$ \\$f= 9$} & \specialcell{$g = 5$\\$h = 4$ \\$f = 9$} & \specialcell{$g = 6$\\$h = 3$ \\$f = 9$} & \cellcolor{black} & &\cellcolor{red} \\	
+            \hline
+        \end{tabularx}
+    \end{footnotesize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{A$^{*}$ Algorithm}
+    \begin{footnotesize}
+        \begin{tabularx}{\textwidth}{|X|X|X|X|X|X|}	
+            \hline
+            \cellcolor{green} \specialcell{$g = 0$\\$h = 9$ \\$f= 9$} & \cellcolor{black} &  & & & \\
+            \hline
+            \specialcell{$g = 1$\\$h = 8$ \\$f= 9$} & \cellcolor{black} &  & & & \\
+            \hline
+            \specialcell{$g = 2$\\$h = 7$ \\$f= 9$} & \cellcolor{black} & \specialcell{$g = 8$\\$h = 5$ \\$f= 13$} & \specialcell{$g = 9$\\$h = 4$ \\$f= 13$} & \specialcell{$g = 10$\\$h = 3$ \\$f= 13$} & \\
+            \hline
+            \specialcell{$g = 3$\\$h = 6$ \\$f= 9$} & \cellcolor{black} & \specialcell{$g = 7$\\$h = 4$ \\$f= 11$} & \specialcell{$g = 8$\\$h = 3$ \\$f= 11$} & \specialcell{$g = 9$\\$h = 2$ \\$f= 11$} & \cellcolor{yellow} \specialcell{$g = 10$\\$h = 1$ \\$f= 11$}\\
+            \hline
+            \specialcell{$g = 4$\\$h = 5$ \\$f= 9$} & \specialcell{$g = 5$\\$h = 4$ \\$f = 9$} & \specialcell{$g = 6$\\$h = 3$ \\$f = 9$} & \cellcolor{black} & \specialcell{$g = 10$\\$h = 1$ \\$f= 11$}  &\cellcolor{red} \\
+            \hline
+        \end{tabularx}
+    \end{footnotesize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{A$^{*}$ Algorithm}
+    \begin{footnotesize}
+        \begin{tabularx}{\textwidth}{|X|X|X|X|X|X|}	
+            \hline
+            \cellcolor{green} \specialcell{$g = 0$\\$h = 9$ \\$f= 9$} & \cellcolor{black} &  & & & \\
+            \hline
+            \specialcell{$g = 1$\\$h = 8$ \\$f= 9$} & \cellcolor{black} &  & & & \\
+            \hline
+            \specialcell{$g = 2$\\$h = 7$ \\$f= 9$} & \cellcolor{black} & \specialcell{$g = 8$\\$h = 5$ \\$f= 13$} & \specialcell{$g = 9$\\$h = 4$ \\$f= 13$} & \specialcell{$g = 10$\\$h = 3$ \\$f= 13$} & \\
+            \hline
+            \specialcell{$g = 3$\\$h = 6$ \\$f= 9$} & \cellcolor{black} & \specialcell{$g = 7$\\$h = 4$ \\$f= 11$} & \specialcell{$g = 8$\\$h = 3$ \\$f= 11$} & \specialcell{$g = 9$\\$h = 2$ \\$f= 11$} & \specialcell{$g = 10$\\$h = 1$ \\$f= 11$}\\
+            \hline
+            \specialcell{$g = 4$\\$h = 5$ \\$f= 9$} & \specialcell{$g = 5$\\$h = 4$ \\$f = 9$} & \specialcell{$g = 6$\\$h = 3$ \\$f = 9$} & \cellcolor{black} & \specialcell{$g = 10$\\$h = 1$ \\$f= 11$}  &\cellcolor{red} \specialcell{$g = 11$\\$h = 0$ \\$f= 11$} \\
+            \hline
+        \end{tabularx}
+    \end{footnotesize}
+\end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Ejemplo: First Search vs A$^{*}$}
+    \begin{footnotesize}
+        \begin{columns}[t]
+            \begin{column}{5cm}
+                \begin{center}
+                    Grilla de expansión de First Search
+                \end{center}
+                \begin{tabularx}{\columnwidth}{|X|X|X|X|X|X|}	
+                    \hline
+                    $0$ & $-1$ & $13$ & $-1$ & $-1$ & $-1$ \\
+                    \hline
+                    $1$ & $-1$ & $10$ & $14$ & $-1$ & $-1$ \\
+                    \hline
+                    $2$ & $-1$ & $8$ & $11$ & $15$ & $-1$ \\
+                    \hline
+                    $3$ & $-1$ & $7$ & $9$ & $12$ & $16$ \\
+                    \hline
+                    $4$ & $5$ & $6$ & $-1$ & $17$ & $18$ \\
+                    \hline
+                \end{tabularx}
+            \end{column}
+            \begin{column}{5cm}
+                \begin{center}
+                    Grilla de expansión de A$^{*}$
+                \end{center}		
+                \begin{tabularx}{\columnwidth}{|X|X|X|X|X|X|}		
+                    \hline
+                    $0$ & $-1$ & $-1$ & $-1$ & $-1$ & $-1$ \\
+                    \hline
+                    $1$ & $-1$ & $-1$ & $-1$ & $-1$ & $-1$ \\
+                    \hline
+                    $2$ & $-1$ & $-1$ & $-1$ & $-1$ & $-1$ \\
+                    \hline
+                    $3$ & $-1$ & $7$ & $8$ & $9$ & $10$ \\
+                    \hline
+                    $4$ & $5$ & $6$ & $-1$ & $-1$ & $11$ \\
+                    \hline
+                \end{tabularx}
+            \end{column}
+        \end{columns}
+        
+        \begin{center}
+            Camino óptimo\\
+            
+            \begin{tabularx}{5cm}{|X|X|X|X|X|X|}	
+                \hline
+                $\vee$ & \cellcolor{black} &  & & & \\
+                \hline
+                $\vee$ & \cellcolor{black} &  & & & \\
+                \hline
+                $\vee$ & \cellcolor{black} &  & & & \\
+                \hline
+                $\vee$ & \cellcolor{black} & $>$ & $>$ & $>$ & $\vee$\\
+                \hline
+                $>$ & $>$ & $\wedge$ & \cellcolor{black} & & $*$ \\
+                \hline
+            \end{tabularx}
+        \end{center}
+    \end{footnotesize}
 \end{frame}
 
 
