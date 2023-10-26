@@ -60,7 +60,7 @@
     \end{block}
 
     \begin{center}
-        \includegraphics<1>[height=2cm]{./images/monte_carlo_example.pdf}
+        \includegraphics<1>[width=0.7\columnwidth]{./images/monte_carlo_example.pdf}
     \end{center}
 
 \end{frame}
@@ -68,7 +68,7 @@
 \begin{frame}{Filtro de Bayes Recursivo: Posición inicial}
     Como en un principio el robot desconoce cual es su posición entonces es igualmente posible que se encuentre en cualquier punto del mundo (\alert{belief}). Esto lo podemos representar matemáticamente diciendo que la \alert{función de distribución de probabilidad} del robot es \alert{uniforme} sobre el mundo en que se encuentra.
     \begin{center}
-        \includegraphics<1>[height=2cm]{./images/monte_carlo_uniform.pdf}
+        \includegraphics<1>[width=0.7\columnwidth]{./images/monte_carlo_uniform.pdf}
     \end{center}
     
 \end{frame}
@@ -78,7 +78,7 @@
     Si el robot sensa que se encuentra al lado de una puerta entonces la creencia de su ubicación se se ve alterada de la siguiente manera:
     
     \begin{center}
-        \includegraphics<1>[height=2cm]{./images/monte_carlo_sensing.pdf}
+        \includegraphics<1>[width=0.7\columnwidth]{./images/monte_carlo_sensing.pdf}
     \end{center}
     
     
@@ -96,7 +96,7 @@
     Así mismo como el movimiento del robot es inexacto, al trasladarse su incertidumbre crece, dicho de otra manera, las lomas son aplanadas. Este aplanamiento matemáticamente se lleva a cabo por medio de la operación de \alert{convolución} entre la función Posterior belief y la función que describe la distancia recorrida.
     
     \begin{center}
-        \includegraphics<1>[height=2cm]{./images/monte_carlo_moving.pdf}
+        \includegraphics<1>[width=0.7\columnwidth]{./images/monte_carlo_moving.pdf}
     \end{center}
     
     La operación de convolución mide la superposición mientras se desliza una funcion sobre otra.
@@ -107,7 +107,7 @@
     Supongamos que el robot luego de haberse movido sensa nuevamente que se encuentre al lado de una puerta entonces, como antes, la probabilidad se incrementara por un cierto factor la función de probabilidad donde haya una puerta.
     
     \begin{center}
-        \includegraphics<1>[height=2cm]{./images/monte_carlo_sensing2.pdf}
+        \includegraphics<1>[width=0.7\columnwidth]{./images/monte_carlo_sensing2.pdf}
     \end{center}
 \end{frame}
 
@@ -115,7 +115,7 @@
     Supongamos que el robot se mueve nuevamente...
     
     \begin{center}
-        \includegraphics<1>[height=2cm]{./images/monte_carlo_moving2.pdf}
+        \includegraphics<1>[width=0.7\columnwidth]{./images/monte_carlo_moving2.pdf}
     \end{center}
 \end{frame}
 
