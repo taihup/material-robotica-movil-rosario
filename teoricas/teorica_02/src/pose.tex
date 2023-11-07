@@ -317,6 +317,8 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
         \item Para convertir un punto a una forma homogénea, normalmente agregamos un elemento igual a uno $\homo{\point} = (x, y, 1)$. La tilde indica que el vector es homogéneo.
         \item Los vectores homogéneos tienen la propiedad importante de que $\homo{\point}$ es equivalente a $\lambda \homo{\point}$ para todo $\lambda \neq 0$ que escribimos como $\homo{\point} = \lambda \homo{\point}$. Es decir, $\homo{\point}$ representa el mismo punto en el plano independientemente del factor de escala general.
     \end{itemize}
+
+    \note{El operador de igualdad en la expresión (p = lambda p) está definido por nosotros. En materática proyecta esta igualdad se cumple.}
     
 \end{frame}
 
@@ -417,14 +419,14 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
 \begin{frame}
     \frametitle{Rotaciones Generales 3D: Rotaciones Extrínsecas vs Rotaciones Intrínsecas}
 
-    La matríz de Rotación intrínseca obtenida por el orden de rotación $xy^{\prime}z^{\prime\prime}$ es igual a la matríz extrínseca obtenida en el orden $xyz$.
+    La matríz de Rotación intrínseca obtenida por el orden de rotación $zy^{\prime}x^{\prime\prime}$ es igual a la matríz extrínseca obtenida en el orden $xyz$.
     
     \begin{equation*}
         \underbrace{R_{z}(\alpha) \, R_{y^{\prime}}(\beta) \, R_{x^{\prime\prime}}(\gamma)}_{\text{Rotación intrínseca}} = \underbrace{R_{z}(\alpha) \, R_{y}(\beta) \, R_{x}(\gamma)}_{\text{Rotación extrínseca}}
     \end{equation*}
     
     \begin{figure}[!h]
-        \subfloat[$R = R_{z}(\SI{180}{\degree}) \, R_{y^{\prime}}(\SI{45}{\degree}) \, R_{x^{\prime\prime}}(\SI{90}{\degree})$]
+        \subfloat[$R = R_{z}(\SI{90}{\degree}) \, R_{y^{\prime}}(\SI{45}{\degree}) \, R_{x^{\prime\prime}}(\SI{180}{\degree})$]
         {
             \movie[autostart,loop,poster]{\includegraphics[width=0.4\columnwidth,valign=m]{./images/intrinsic_rotation_video.jpg}}{./videos/intrinsic_rotation.mp4}    
         }
@@ -453,7 +455,7 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
     Una rotación de un de referencia a otro se puede obtener mediante la multiplicación de varias rotaciones.
     
     \begin{block}{Ángulos de Euler}
-        Se denomina Ángulos de Euler a los ángulos $\alpha$, $\beta$ y $\gamma$ cuando estos deben ser aplicados utilizando el siguiente orden: $zx^{\prime}zx^{\prime\prime}$, $yx^{\prime}y^{\prime\prime}$, $xy^{\prime}x^{\prime\prime}$, $zy^{\prime}z^{\prime\prime}$, $yz^{\prime}y^{\prime\prime}$ y $xz^{\prime}x^{\prime\prime}$. Los ángulos de Euler se aplican sobre el sistema de coordenadas local del objeto (Rotaciones intrínsecas).
+        Se denomina Ángulos de Euler a los ángulos $\alpha$, $\beta$ y $\gamma$ cuando estos deben ser aplicados utilizando el siguiente orden: $zx^{\prime}z^{\prime\prime}$, $yx^{\prime}y^{\prime\prime}$, $xy^{\prime}x^{\prime\prime}$, $zy^{\prime}z^{\prime\prime}$, $yz^{\prime}y^{\prime\prime}$ y $xz^{\prime}x^{\prime\prime}$. Los ángulos de Euler se aplican sobre el sistema de coordenadas local del objeto (Rotaciones intrínsecas).
     \end{block}
    
     Ejemplo de aplicación de Ángulos de Euler $\alpha$, $\beta$ y $\gamma$ utilizando la combinación $zx^{\prime}z^{\prime\prime}$:
