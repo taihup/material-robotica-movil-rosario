@@ -212,85 +212,98 @@ ros2 run turtlesim turtle_teleop_key --ros-args --remap turtle1/cmd_vel:=turtle2
 \begin{frame}[fragile]
     \frametitle{Volvamos al Turtlesim para ver otros conceptos}
     
-    El comando \lstinline[style=bash]{ros2 run} corre un ejecutable desde un paquete.
+    \begin{itemize}
+    
+
+        \item El comando \lstinline[style=bash]{ros2 run} corre un ejecutable desde un paquete.
 \begin{lstlisting}[style=bash]    
 ros2 run <package_name> <executable_name>
 \end{lstlisting}
 
-    La \lstinline[style=bash]{ros2 node list} muestra los nombres de todos los nodos en ejecución.
+        \item La \lstinline[style=bash]{ros2 node list} muestra los nombres de todos los nodos en ejecución.
 
 \begin{lstlisting}[style=bash]    
 ros2 node list
 \end{lstlisting}
 
-    Es posible hacer \emph{remapping}, es decir mapear propiedades predeterminadas de un nodo, como nombre de nodo, nombres de tópicos, nombres de servicio, etc., a valores personalizados.
+        \item Es posible hacer \emph{remapping}, es decir mapear propiedades predeterminadas de un nodo, como nombre de nodo, nombres de tópicos, nombres de servicio, etc., a valores personalizados.
     
 \begin{lstlisting}[style=bash]    
 ros2 run turtlesim turtlesim_node --ros-args --remap __node:=my_turtle
 \end{lstlisting}
 
-    Obtener información de un nodo
+        \item Obtener información de un nodo
 \begin{lstlisting}[style=bash]    
 ros2 node info <node_name>
 \end{lstlisting}
+
+    \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{Volvamos al Turtlesim para ver otros conceptos (cont.)}
 	\footnotesize
-	
-Visualizar los nodos y la comunicación entre los mismos:
+	\begin{itemize}
+        \item Visualizar los nodos y la comunicación entre los mismos:
 \begin{lstlisting}[style=bash]  
 rqt_graph
 \end{lstlisting}
 
-Devuelve la misma lista de tópicos, esta vez con el tipo de tema entre paréntesis:
+        \item Devuelve la misma lista de tópicos, esta vez con el tipo de tema entre paréntesis:
 \begin{lstlisting}[style=bash]  
 ros2 topic list -t
 \end{lstlisting}
     
-Ver los datos publicados en un tópico:
+        \item Ver los datos publicados en un tópico:
 \begin{lstlisting}[style=bash]  
 ros2 topic echo <topic_name>
 \end{lstlisting}
     
-Ejemplo:
+        Ejemplo:
 \begin{lstlisting}[style=bash]  
 ros2 topic echo /turtle1/cmd_vel
 \end{lstlisting}
     
-Obtener información acerca de los publicadores y subscriptores de un tópico:
+        \item Obtener información acerca de los publicadores y subscriptores de un tópico:
 \begin{lstlisting}[style=bash]  
 ros2 topic info
 \end{lstlisting}
     
-Obtener detalles sobre un tipo de mensaje:
+        \item Obtener detalles sobre un tipo de mensaje:
 \begin{lstlisting}[style=bash]  
 ros2 interface show <msg type>
 \end{lstlisting}    
 
-Ejemplo:
+        Ejemplo:
 \begin{lstlisting}[style=bash]  
 ros2 interface show geometry_msgs/msg/Twist
-\end{lstlisting}    
+\end{lstlisting}
+
+    \end{itemize}
 
 \end{frame}
 
 \begin{frame}[fragile]
 	\frametitle{Volvamos al Turtlesim para ver otros conceptos (cont.)}
-Publicar mensajes utilizando la línea de comandos:
+    \begin{itemize}
+        \item Publicar mensajes utilizando la línea de comandos:
+
 \begin{lstlisting}[style=bash]  
 ros2 topic pub <topic_name> <msg_type> '<args>'
 \end{lstlisting}    
+
 Ejemplo:
-\begin{lstlisting}[style=bash,basicstyle=tiny]  
+
+\begin{lstlisting}[style=bash,basicstyle=\tiny]  
 ros2 topic pub --rate 1 /turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.8}}"
 \end{lstlisting}    
-Saber la prefuencia en que se publica un mensaje
+
+\item Saber la prefuencia en que se publica un mensaje
+
 \begin{lstlisting}[style=bash]  
 ros2 topic hz <topic_name>
 \end{lstlisting}
-    
+    \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -883,11 +896,11 @@ publish_tf:=$(arg publish_tf)"/>
 \end{frame}
 
 \begin{frame}
-	\frametitle{Tarea}
+	\frametitle{Funcionalidades / Herramientas no cubiertas}
 	
 	\begin{itemize}
-		\item Ver cómo crear servicios
-		\item Ver cómo crear mensajes
+		\item Creación y uso de Servicios
+		\item Creación de Mensajes customizados
 		\item Uso de parámetros en un nodo
         \item \lstinline[style=bash]{rqt_bag}
 		\item \lstinline[style=bash]{rqt_logger_level}
