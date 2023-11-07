@@ -202,11 +202,9 @@
 
 \begin{frame}
     \frametitle{Cinemática directa de un robot diferencial}
-    \small
+    \footnotesize
 
     Finalmente, debemos calcular la componente rotacional $\dot{\theta}_{R}$ de $\dot{\transform{R}{}}$. Una vez más, las contribuciones de cada rueda se pueden calcular de forma independiente y simplemente sumarlas. 
-    
-
     
     \begin{itemize}
         \item Consideremos la rueda derecha (denotada con 1). Si la rueda 1 gira sola, el robot pivota alrededor de la rueda 2. El giro hacia adelante de esta rueda da como resultado una rotación en sentido antihorario en el punto $\point$.
@@ -222,6 +220,13 @@
         \begin{equation*}
             \omega_{2} = \dfrac{-r\dot{\varphi_{2}}}{2l}
         \end{equation*}
+    
+        \item Sumando la contribución de cada rueda, obtenemos la velocidad angular del robot
+        
+        \begin{equation*}
+            \dot{\theta}_{R} = \omega_{1} + \omega_{2} = \dfrac{r\dot{\varphi_{1}}}{2l} + \dfrac{-r\dot{\varphi_{2}}}{2l}
+        \end{equation*}
+    
     \end{itemize}
 
 

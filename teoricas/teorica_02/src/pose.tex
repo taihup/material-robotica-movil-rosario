@@ -1,51 +1,4 @@
 \begin{frame}
-    \frametitle{Transformaciones en 2D}
-    \small
-    \begin{center}
-        \includegraphics[width=0.3\columnwidth]{./images/coordinate_frames.pdf}
-    \end{center}
-
-
-    El punto $\point$ puede describirse mediante vectores de coordenadas relativos a cualquier marco $\{\mathrm{A}\}$ o $\{\mathrm{B}\}$. La pose de $\{\mathrm{B}\}$ relativa a $\{\mathrm{A}\}$ es $\transform{A}{B}$.
-    \begin{align*}
-        \pointCoord{A} &= \transform{A}{B}\pointCoord{B}\\
-        \transform{A}{C} &= \transform{A}{B}\transform{B}{C}\\
-        \transform{A}{B} &= \transform{B}{A}^{-1}
-    \end{align*}
-
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Transformaciones en 2D}
-    
-    \begin{figure}[!h]
-        \includegraphics[width=0.6\columnwidth]{./images/multiple_coordinate_frames_2d.pdf}
-    \end{figure}
-
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Transformaciones en 3D}
-
-    \begin{figure}[!h]
-        \includegraphics[width=0.6\columnwidth]{./images/multiple_coordinate_frames_3d.pdf}
-    \end{figure}
-
-\end{frame}
-
-\begin{frame}
-    \frametitle{Transformaciones...}
-    
-    \begin{figure}[!h]
-        \includegraphics[width=\columnwidth]{./images/joke_coordinate_systems.png}
-    \end{figure}
-    
-\end{frame}
-
-
-\begin{frame}
     \frametitle{Rotación en 2D}
 
         \begin{center}
@@ -283,6 +236,42 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
 
 \end{frame}
 
+\begin{frame}
+    \frametitle{Transformaciones en 2D}
+    \small
+    \begin{center}
+        \includegraphics[width=0.3\columnwidth]{./images/coordinate_frames.pdf}
+    \end{center}
+    
+    
+    El punto $\point$ puede describirse mediante vectores de coordenadas relativos a cualquier marco $\{\mathrm{A}\}$ o $\{\mathrm{B}\}$. La pose de $\{\mathrm{B}\}$ relativa a $\{\mathrm{A}\}$ es $\transform{A}{B}$.
+    \begin{align*}
+        \pointCoord{A} &= \transform{A}{B}\pointCoord{B}\\
+        \transform{A}{C} &= \transform{A}{B}\transform{B}{C}\\
+        \transform{A}{B} &= \transform{B}{A}^{-1}
+    \end{align*}
+    
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Transformaciones en 2D}
+    
+    \begin{figure}[!h]
+        \includegraphics[width=0.6\columnwidth]{./images/multiple_coordinate_frames_2d.pdf}
+    \end{figure}
+    
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Transformaciones en 3D}
+    
+    \begin{figure}[!h]
+        \includegraphics[width=0.6\columnwidth]{./images/multiple_coordinate_frames_3d.pdf}
+    \end{figure}
+    
+\end{frame}
 
 \begin{frame}
     \frametitle{Pose}
@@ -298,10 +287,9 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
             \vec{0} & 1
         \end{bmatrix}
     \end{equation*}
-
+    
     Observar que la pose es una transformación que toma elementos en coordenadas del robot y los devuelve en coordenadas del mundo.
 \end{frame}
-
 
 \begin{frame}
     \frametitle{Coordenadas Homogeneas e Hinomogeneas}
@@ -716,4 +704,13 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
         \item Los cuaterniones no sufren de \emph{Gimbal Lock} como los ángulos de Euler.
     \end{itemize}
 
+\end{frame}
+
+\begin{frame}
+    \frametitle{Transformaciones...}
+    
+    \begin{figure}[!h]
+        \includegraphics[width=\columnwidth]{./images/joke_coordinate_systems.png}
+    \end{figure}
+    
 \end{frame}
