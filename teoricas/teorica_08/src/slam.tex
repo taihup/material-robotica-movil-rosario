@@ -1,40 +1,4 @@
 \begin{frame}
-    \frametitle{Material}
-    
-    Material para armar estas slides:
-    \begin{itemize}
-        \item Cyrill Stachniss SLAM \url{https://youtu.be/BuRCJ2fegcc}
-           \item Cyrill Stachniss Factor Graph \url{https://youtu.be/uuiaqGLFYa4}
-        \item Cyrill Stachniss Graph-based SLAM using Pose Graphs \url{https://youtu.be/uHbRKvD8TWg}
-        \item Cyrill Stachniss Graph-Based SLAM with Landmarks \url{https://youtu.be/mZBdPgBtrCM}
-        %\item Cyrill Stachniss Least Squares \url{https://youtu.be/yVd-QDy0K6k}
-        %\item Cyrill Stachniss Robust Least Squares for Graph-Based SLAM \url{https://youtu.be/z60RbiY18I8}
-        %\item Cyrill Stachniss Hierarchical Pose Graphs for SLAM \url{https://youtu.be/uRSow8nMEw8}
-        \item Wolfram Burgard, Giorgio Grisetti, and Cyrill Stachniss: Graph-based SLAM \url{https://youtu.be/Alu59K8zvYs}
-        \item Frank Dellaert \url{https://youtu.be/tm4E1o11kGo}
-        \item Frank Dellaert and Michael Kaess - Factor Graphs for Robot Perception \url{https://www.cs.cmu.edu/~kaess/pub/Dellaert17fnt.pdf}
-        \item Cyrill Stachniss Slides \url{http://ais.informatik.uni-freiburg.de/teaching/ss13/robotics/slides/16-graph-slam.pdf}
-        \item A Technical Walkthrough of the SLAM Back-end \url{https://youtu.be/FhwFyA0NQkE}
-    \end{itemize}
-    
-\end{frame}
-
-\begin{frame}
-    \frametitle{Más material}
-    
-    Material para armar estas slides:
-    \begin{itemize}
-        \item Joan Solá - Lie theory for the roboticist \url{https://youtu.be/gy8U7S4LWzs}
-        \item Joan Solá - Course on SLAM \url{https://raw.githubusercontent.com/joansola/slamtb/graph/courseSLAM.pdf}
-        \item Michael Kaess - Factor Graphs for Robot Perception \url{https://youtu.be/Q313pTMAdcM}
-        \item Philipp Hennig - Probabilistic Machine Learning - Lecture 17 - Factor Graphs \url{https://youtu.be/fXD6KJB1U20}
-        \item Lennart Svensson - Machile Learning Tutorial: Factor Graphs, Belief Propagation and Variational Techniques \url{https://youtu.be/yQg34-2QhvE}
-    \end{itemize}
-    
-\end{frame}
-
-
-\begin{frame}
     \frametitle{Temario para estas slides}
     
     \begin{itemize}
@@ -74,7 +38,7 @@
 
 \begin{frame}
     \frametitle{Ejemplo de SLAM}
-    
+    \TODO{mejorar haciendo que los map points también se ajusten}
     \begin{figure}
         \subfloat[Realidad]
         {
@@ -1043,25 +1007,31 @@
         \item El rango de $\linearSystemH$ es {\bf menor o igual} que la suma de los rangos de todas las observaciones
         \item Para determinar una {\bf solución única}, el sistema debe tener {\bf rango completo}
     \end{itemize}
-    \only<2>{
+
+    \only<2-> {
         Preguntas:
-        \begin{itemize}
-            \item<1-> ¿Cuantas observaciones de landmarks $(x,y)$ se necesitan para resolver la pose de un robot?
-            \item<2-> Se necesitan 2 observaciones como mínimo
-            \item<3-> ¿Cuantas observaciones bearing-only se necesitan para resolver la pose de un robot?
-            \item<4-> Se necesitan 3 observaciones como mínimo
-        \end{itemize}
     }
+
+    \begin{itemize}
+        \item<2-> ¿Cuantas observaciones de landmarks $(x,y)$ se necesitan para resolver la pose de un robot?
+        \begin{itemize}
+            \item<3-> Se necesitan 2 observaciones como mínimo
+        \end{itemize}
+        \item<4-> ¿Cuantas observaciones bearing-only se necesitan para resolver la pose de un robot?
+        \begin{itemize}
+            \item<5-> Se necesitan 3 observaciones como mínimo
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{Sistema indeterminado}
     \note{Información extraída de https://youtu.be/mZBdPgBtrCM}
     \begin{itemize}
-        \item No hay garantía que que un sistema tenga rango completo
+        \item No hay garantía que un sistema tenga rango completo
         \begin{itemize}
             \item Los landmarks puede ser observados una sola vez
-            \item El robot puede que no tenga información de odometría \note{la odometría en general de da información de toda la pose}
+            \item El robot puede que no tenga información de odometría \note{la odometría en general da información de toda la pose}
         \end{itemize}
         \item Podemos lidiar con estos problemas utilizando un \emph{damping factor} para $\linearSystemH$
         \item En vez de resolver $\linearSystemH \vec{\Delta} \stateBold = - \linearSystemb$, resolvemos

@@ -877,8 +877,12 @@
     \frametitle{Geometría Epipolar}
     \footnotesize
     
+    
+    
     \begin{itemize}
-        \item La restricción epipolar puede ser computada por medio de puntos 2D en la imagen cuando la pose relative de la cámara es conocida ($\transform{l}{r}$, por ejemplo una cámara estéreo)
+        \item La restricción epipolar puede ser computada por medio de puntos 2D en la imagen cuando la pose relative de la cámara es conocida ($\begin{bmatrix}
+            \translation 
+        \end{bmatrix}_{\times} \rotation$, por ejemplo una cámara estéreo)
         \item El \textbf{plano epipolar} es definido por $\imagePoint_{l}$ y los dos centros óptico de las cámaras $\cameraCenter_{l}$ y $\cameraCenter_{r}$
         \item La \textbf{línea epipolar} es la intersección del plano epipolar y el plano de la imagen derecha.
         \item La restricción epipolar codifica que $\imagePoint_{r}$ debe estar ubicado sobre la linea epipolar en la imagen derecha.
@@ -887,7 +891,11 @@
     \begin{equation*}
         \homoImagePoint_{l}^{\top} \essentialMatrix \homoImagePoint_{r} = 0 \quad \text{(restricción de coplanaridad)}
     \end{equation*}
-    donde $\essentialMatrix = \transform{l}{r}$ \TODO{verificar esto}, y se denomina \emph{Essential Matrix}
+    donde $\essentialMatrix = \begin{bmatrix}
+        \translation 
+    \end{bmatrix}_{\times} \rotation$, y se denomina \emph{Essential Matrix}
+
+    \note{has only ﬁve degrees of freedom: both the rotation matrix R and the translation t have three degrees of freedom, but there is an overall scale ambiguity - like the fundamental matrix, the essential matrix is a homogeneous quantity.}
     
     La línea epipolar permite que restrinjamos la búsqueda de correspondencias visuales entre dos cámaras.
    
@@ -904,7 +912,7 @@
     
     La {\bf Matríz Esencial} es una especialización de la {\bf Matríz Fundamental}. La Matríz Esencial trabaja sobre {\bf coordenadas  normalizadas}  de la imagen, es decir, requiere tener la calibración de las cámaras, mientras que la Matríz Fundamental relaciona correspondencias desconociendo las calibraciones.
     
-        \begin{equation*}
+    \begin{equation*}
         \homoImagePoint^{\prime\top} \fundamentalMatrix \homoImagePoint = 0 \quad \text{(restricción de coplanaridad)}
     \end{equation*}
     

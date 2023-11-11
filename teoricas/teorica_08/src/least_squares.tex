@@ -1,6 +1,9 @@
 \begin{frame}
     \frametitle{Material para Least Squares}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
+    
+    \TODO{Terminar slides de Least Squares}
+    
     \begin{itemize}
         \item Cyrill Stachniss - Least Squares - An informal Introduction \url{https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
     \end{itemize}
@@ -520,9 +523,11 @@
     \begin{itemize}
         \item Regla de Bayes, suposiciones de independencia y Markov nos permiten reescribir
         \begin{equation*}
-            p\left( \state_{0} | \observation_{1:t}, \controlCommand_{1:t} \right) = \eta p\left( \state_{0} \right) \prod_{t} \left[ p\left( \state_{t} | \state_{t-1}, \controlCommand_{t} \right) p\left( \observation_{t} | \state_{t} \right) \right]
+            p\left( \state_{0:t} | \observation_{1:t}, \controlCommand_{1:t} \right) = \eta p\left( \state_{0} \right) \prod_{t} \left[ p\left( \state_{t} | \state_{t-1}, \controlCommand_{t} \right) p\left( \observation_{t} | \state_{t} \right) \right]
         \end{equation*}
     \end{itemize}
+    
+    \note{p(x0) es un prior. Observar que en x0 no tenemos observaciones ni comandos de control}
     
 \end{frame}
 
@@ -533,7 +538,7 @@
     \begin{itemize}
         \item Reescribiendo como el log likelihood, lleva a
         \begin{equation*}
-            \log p\left( \state_{0} | \observation_{1:t}, \controlCommand_{1:t} \right) = \text{const.}  \log p\left( \state_{0} \right) + \sum_{t} \left[ \log p\left( \state_{t} | \state_{t-1}, \controlCommand_{t} \right) + \log p\left( \observation_{t} | \state_{t} \right) \right]
+            \log p\left( \state_{0:t} | \observation_{1:t}, \controlCommand_{1:t} \right) = \text{const.}  \log p\left( \state_{0} \right) + \sum_{t} \left[ \log p\left( \state_{t} | \state_{t-1}, \controlCommand_{t} \right) + \log p\left( \observation_{t} | \state_{t} \right) \right]
         \end{equation*}
     \end{itemize}
     
@@ -546,7 +551,7 @@
     \begin{itemize}
         \item Suponiendo distribución Gaussiana
         \begin{equation*}
-            \log p\left( \state_{0} | \observation_{1:t}, \controlCommand_{1:t} \right) = \text{const.}  \log \underbrace{p\left( \state_{0} \right)}_{\mathcal{N}} + \sum_{t} \left[ \log \underbrace{p\left( \state_{t} | \state_{t-1}, \controlCommand_{t} \right)}_{\mathcal{N}} + \log \underbrace{p\left( \observation_{t} | \state_{t} \right)}_{\mathcal{N}} \right]
+            \log p\left( \state_{0:t} | \observation_{1:t}, \controlCommand_{1:t} \right) = \text{const.}  \log \underbrace{p\left( \state_{0} \right)}_{\mathcal{N}} + \sum_{t} \left[ \log \underbrace{p\left( \state_{t} | \state_{t-1}, \controlCommand_{t} \right)}_{\mathcal{N}} + \log \underbrace{p\left( \observation_{t} | \state_{t} \right)}_{\mathcal{N}} \right]
         \end{equation*}
     \end{itemize}
     
@@ -555,8 +560,14 @@
 \begin{frame}
     \frametitle{Log de una Gaussiana}
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
+
     
     \begin{itemize}
+        \item La función de distribución de la distribución normal está definida como
+        \begin{equation*}
+            p(x)=\det(2\pi\covariance)^{\frac{1}{2}} \exp\left(-\dfrac{1}{2} (x - \mu )^{\top} \inverse{\covariance} (x - \mu )  \right)
+        \end{equation*}
+        
         \item Log likelihood de una Gaussiana
         \begin{equation*}
             \log \mathcal{N}(x, \mu, \Sigma) =  \text{const.} - \dfrac{1}{2} (x - \mu)^{\top} \inverse{\Sigma} (x - \mu)
