@@ -33,10 +33,10 @@ El objetivo del trabajo práctico es la realización de los pasos básicos para 
 \end{itemize}
 
 \section{Datos}
-Para trabajar se utilizarán los datos provistos por la cátedra. Caso contrario puede hacer uso del dataset EuRoC\footnote{\url{https://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets}}. Debera convertir la secuencia de calibración a formato ROS2. El resto de las secuencias ya se encuentran en formato ROS2 y pueden ser descargadas de \url{https://docs.openvins.com/gs-datasets.html}
+Utilizar el dataset EuRoC\footnote{\url{https://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets}}. Debera convertir la secuencia de calibración a formato ROS2. El resto de las secuencias ya se encuentran en formato ROS2 y pueden ser descargadas de \url{https://docs.openvins.com/gs-datasets.html}
 
 \section{Calibración}
-Antes de comenzar a trabajar con un dataset se debe realizar una calibración de los sensores. En este trabajo solo deben calibrar una cámara estéreo.
+Antes de comenzar a trabajar con el dataset se debe realizar una calibración de los sensores. En este trabajo solo deben calibrar una cámara estéreo.
 
 Para la calibración se puede utilizar cualquiera de las aplicaciones que se detallan a continuación:
 \begin{itemize}
@@ -46,7 +46,7 @@ Para la calibración se puede utilizar cualquiera de las aplicaciones que se det
 	\item Camera Calibration Toolbox for Matlab:\\ \url{https://www.cs.toronto.edu/pub/psala/VM/cameraCalibrationExample.html}
 \end{itemize}
 
-Se pide desarrollar un programa que lea un par de imágenes estéreo cualquiera y realice los siguientes pasos:
+Una vez calibradas las cámaras, se pide desarrollar un programa que lea un par de imágenes estéreo cualquiera y realice los siguientes pasos:
 
 
 \section{Sincronizar imágenes}
@@ -108,18 +108,24 @@ Dadas las correspondencias visuales (\emph{matches}) obtenidas en el paso anteri
 \section{Filtrar de Correspondencias Espúreas}
 Aplicar RANSAC (\emph{Random sample consensus}) para filtrar los matches espúreos y computar la Matríz homográfica que relaciona los puntos. Para esto puede utilizar la función \lstinline{cv::findHomography()}. Para verificar el impacto del filtrado, visualizar los matches entre las imágenes nuevamente como en la nube de puntos 3D generada. También, visualizar en la imagen derecha los puntos de la imagen izquierda transformados por la matríz homográfica. Para esto último utilizar la función  \lstinline{cv::perspectiveTransform()}.
 
+\section{Feature Mapping con Localización Ground-truth}
+Mapear el entorno utilizando las poses dada por el Ground-truth del dataset. Visualizar el mapa reconstruido.
+
 \section{Computar el Mapa de Disparidad}
 Computar el mapa de disparidad con las librerías utilizando la función \lstinline{cv::StereoMatcher::compute()}. Opcionalmente para tener mejores resultados puede utilizar la librería LIBELAS\footnote{\url{http://www.cvlibs.net/software/libelas/}}. Visualizar el mapa de disparidad.
 
 \section{Reconstruir la Escena 3D de manera Densa}
 Utilizando el mapa de disparidad obtenido en el paso anterior realizar una reconstrucción densa de la escena observada utilizando la función \lstinline{cv::reprojectImageTo3D()}. Para esto debe utilizar la matríz de reproyección Q retornada por la función \lstinline{cv::stereoRectify()}. Visualizar la nube de puntos 3D.
 
+\section{Dense Mapping con Localización Ground-truth}
+Mapear el entorno de manera densa utilizando las poses dada por el Ground-truth del dataset. Visualizar el mapa reconstruido.
+
 \section{Estimar la Pose utilizando Visión Monocular}
 Utilizando \lstinline{cv::recoverPose()} estimar la transformación entre la cámara izquierda y la cámara derecha. Para esto deberá calcular la matríz esencial utilizando la función \lstinline{cv::findEssentialMat()}. Notar que \lstinline{cv::recoverPose()} retorna el vector unitario de traslación, por lo tanto deberá multiplicarlo por el factor de escala (en este caso el baseline entre las cámaras) para obtener la traslación estimada. Una vez hecho esto se pide:
 
 \begin{itemize}
     \item Visualizar la pose estimada de ambas cámaras.
-    \item Estimar y visualizar la trayectoría realizada por la cámara izquierda a un factor de escala cualquiera.
+    \item Estimar y visualizar la trayectoría realizada por la cámara izquierda utilizando como factor de escala la distancia entre cada par de frames dada por el \emph{ground-truth}.
 \end{itemize}
 
 \end{document}
