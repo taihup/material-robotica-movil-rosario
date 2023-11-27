@@ -35,97 +35,114 @@ El objetivo del trabajo práctico es la realización de los pasos básicos para 
 \section{Datos}
 Utilizar el dataset EuRoC\footnote{\url{https://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets}}. Debera convertir la secuencia de calibración a formato ROS2. El resto de las secuencias ya se encuentran en formato ROS2 y pueden ser descargadas de \url{https://docs.openvins.com/gs-datasets.html}
 
-\section{Calibración}
-Antes de comenzar a trabajar con el dataset se debe realizar una calibración de los sensores. En este trabajo solo deben calibrar una cámara estéreo.
 
-Para la calibración se puede utilizar cualquiera de las aplicaciones que se detallan a continuación:
-\begin{itemize}
-	\item ROS2 camera\_calibration:  \url{https://navigation.ros.org/tutorials/docs/camera_calibration.html}
-	\item OpenCV tutorial\_camera\_calibration:\\ \url{https://docs.opencv.org/4.x/d4/d94/tutorial_camera_calibration.html}
-	\item Kalibr: \url{https://github.com/ethz-asl/kalibr/wiki/ROS2-Calibration-Using-Kalibr}
-	\item Camera Calibration Toolbox for Matlab:\\ \url{https://www.cs.toronto.edu/pub/psala/VM/cameraCalibrationExample.html}
-\end{itemize}
+\section{Ejercicios}
 
-Una vez calibradas las cámaras, se pide desarrollar un programa que lea un par de imágenes estéreo cualquiera y realice los siguientes pasos:
+\ejercicio Realizar una calibración de la cámara estéreo del robot. Se debe proveer los parámetros intrínsecos y extrínsecos.
 
+\begin{nota}
+    Para la calibración se puede utilizar cualquiera de las aplicaciones que se detallan a continuación:
+    \begin{itemize}
+        \item ROS2 camera\_calibration:  \url{https://navigation.ros.org/tutorials/docs/camera_calibration.html}
+        \item OpenCV tutorial\_camera\_calibration:\\ \url{https://docs.opencv.org/4.x/d4/d94/tutorial_camera_calibration.html}
+        \item Kalibr: \url{https://github.com/ethz-asl/kalibr/wiki/ROS2-Calibration-Using-Kalibr}
+        \item Camera Calibration Toolbox for Matlab:\\ \url{https://www.cs.toronto.edu/pub/psala/VM/cameraCalibrationExample.html}
+    \end{itemize}
+\end{nota}
 
-\section{Sincronizar imágenes}
-Debido a que en el rosbag las imágenes izquierda y derecha se almacenaron en un instante (timestamp en el rosbag) distinto al que fueron capturadas (timestamp en el header de las imágenes). Vamos a tener que sincronizar las imágenes utilizando el timestamp que figura en el header, esto se hace mediante el paquete \lstinline{message_filters}\footnote{\url{http://wiki.ros.org/message_filters}}. Para esto hay que 
+\ejercicio Desarrollar un programa que lea un par de imágenes estéreo cualquiera y realice los siguientes pasos:
 
-\begin{lstlisting}[style=python]
-# Importamos del paquete
-import message_filters
-\end{lstlisting}
-
-\begin{lstlisting}[style=python] 
-# Creamos subscribers a las cámaras izq y der
-self.left_rect = message_filters.Subscriber(self, Image, '/left/image_rect')
-self.right_rect = message_filters.Subscriber(self, Image, '/right/image_rect')
-\end{lstlisting}
-
-\begin{lstlisting}[style=python] 
-# Creamos el objeto ts del tipo TimeSynchronizer encargado de sincronizar los mensajes recibidos.
-ts = message_filters.TimeSynchronizer([self.left_rect, self.right_rect], 10)
-# Registramos un callback para procesar los mensajes sincronizados.
-ts.registerCallback(self.callback)
-La función callback es un método del nodo con esta asignatura:
-def callback(self, left_msg, right_msg):
-\end{lstlisting}
-
-\section{Rectificar imágenes}
-
-Con los parámetros íntrinsecos y extrínsecos de la cámara estéreo, rectificar las imágenes haciendo:
-
-\begin{itemize}
-    \item Utilizando ROS2: por medio del paquete \lstinline{stereo_image_proc}
+\begin{enumerate}
     
-\begin{lstlisting}[style=bash]     
-ros2 launch stereo_image_proc stereo_image_proc.launch.py
-\end{lstlisting}
+    %\item \textbf{Sincronizar imágenes}
+    %Debido a que en el rosbag las imágenes izquierda y derecha se almacenaron en un instante (timestamp en el rosbag) distinto al que fueron capturadas (timestamp en el header de las imágenes). Vamos a tener que sincronizar las imágenes utilizando el timestamp que figura en el header, esto se hace mediante el paquete \lstinline{message_filters}\footnote{\url{http://wiki.ros.org/message_filters}}. Para esto hay que 
+    %
+    %\begin{lstlisting}[style=python]
+    %# Importamos del paquete
+    %import message_filters
+    %\end{lstlisting}
+    %
+    %\begin{lstlisting}[style=python] 
+    %# Creamos subscribers a las cámaras izq y der
+    %self.left_rect = message_filters.Subscriber(self, Image, '/left/image_rect')
+    %self.right_rect = message_filters.Subscriber(self, Image, '/right/image_rect')
+    %\end{lstlisting}
+    %
+    %\begin{lstlisting}[style=python] 
+    %# Creamos el objeto ts del tipo TimeSynchronizer encargado de sincronizar los mensajes recibidos.
+    %ts = message_filters.TimeSynchronizer([self.left_rect, self.right_rect], 10)
+    %# Registramos un callback para procesar los mensajes sincronizados.
+    %ts.registerCallback(self.callback)
+    %La función callback es un método del nodo con esta asignatura:
+    %def callback(self, left_msg, right_msg):
+    %\end{lstlisting}
+    
+    \item \textbf{Rectificar Imágenes}
+    
+    Rectificar las imágenes utilizando los parámetros íntrinsecos y extrínsecos de la cámara estéreo. Esto se puede realizar utilizando:
+    
+    \begin{itemize}
+        \item ROS2, por medio del paquete \lstinline{stereo_image_proc}
+        
+        \begin{lstlisting}[style=bash]     
+            ros2 launch stereo_image_proc stereo_image_proc.launch.py
+        \end{lstlisting}
+        
+        Para reproducir el rosbag y remapear los tópicos a los que el paquete \lstinline{stereo_image_proc} requiere puede hacer:
+        \begin{lstlisting}[style=bash]   
+            ros2 bag play CARPETA_ROSBAG --remap /stereo/left/image_raw:=/left/image_raw \
+            /stereo/left/camera_info:=/left/camera_info \
+            /stereo/right/image_raw:=/right/image_raw \
+            /stereo/right/camera_info:=/right/camera_info
+        \end{lstlisting}
+        
+        
+        \item o bien, OpenCV, por medio de las funciones: \lstinline{cv::stereoRectify()},  \lstinline{cv::initUndistortRectifyMap()} y  \lstinline{remap()}.
+        
+    \end{itemize}
 
-Para reproducir el rosbag y remapear los tópicos a los que el paquete \lstinline{stereo_image_proc} requiere puede hacer:
-\begin{lstlisting}[style=bash]   
-ros2 bag play CARPETA_ROSBAG --remap /stereo/left/image_raw:=/left/image_raw \
-/stereo/left/camera_info:=/left/camera_info \
-/stereo/right/image_raw:=/right/image_raw \
-/stereo/right/camera_info:=/right/camera_info
-\end{lstlisting}
+\item \textbf{Extraer Feaures Visuales: Keypoints y descriptores}
 
-
-    \item o bien, utilizando la librería OpenCV. Por medio de las funciones: \lstinline{cv::stereoRectify()},  \lstinline{cv::initUndistortRectifyMap()} y  \lstinline{remap()}.
-
-\end{itemize}
-
-\section{Extraer Feaures Visuales: Keypoints y descriptores}
 Selecionar un detector de keypoints (FAST, ORB, SIFT, SURF, GFTT, BRISK, etc.) y un descriptor (BRIEF, ORB, BRISK, etc.), y extraer features en ambas imágenes.
 
-\section{Buscar correspondencias visuales}
+\item \textbf{Buscar correspondencias visuales}
+
 Realizar la búsqueda de correspondencias entre los feature de ambas imágenes (\emph{matching}). Para esto se debe utilizar la función \lstinline{cv::BFMatcher::BFMatcher()}. Dibujar todos los matches. Luego, dibujar todos los matches que tengan una distancia de matching menor a 30.
 
-\section{Triangular Puntos 3D}
+\item \textbf{Triangular Puntos 3D}
+
 Dadas las correspondencias visuales (\emph{matches}) obtenidas en el paso anterior, realizar la triangulación de los features detectados utilizando la función \lstinline{cv::sfm::triangulatePoints()}. Para la visualización de la nube de puntos 3D se puede publicar un mensaje de tipo \lstinline{sensor_msgs/PointCloud2}\footnote{\url{http://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/PointCloud2.html}} y hacer uso de RViz.
 
-\section{Filtrar de Correspondencias Espúreas}
+\item \textbf{Filtrar de Correspondencias Espúreas}
+
 Aplicar RANSAC (\emph{Random sample consensus}) para filtrar los matches espúreos y computar la Matríz homográfica que relaciona los puntos. Para esto puede utilizar la función \lstinline{cv::findHomography()}. Para verificar el impacto del filtrado, visualizar los matches entre las imágenes nuevamente como en la nube de puntos 3D generada. También, visualizar en la imagen derecha los puntos de la imagen izquierda transformados por la matríz homográfica. Para esto último utilizar la función  \lstinline{cv::perspectiveTransform()}.
 
-\section{Feature Mapping con Localización Ground-truth}
+\item \textbf{Feature Mapping con Localización Ground-truth}
+
 Mapear el entorno utilizando las poses dada por el Ground-truth del dataset. Visualizar el mapa reconstruido.
 
-\section{Computar el Mapa de Disparidad}
+\item \textbf{Computar el Mapa de Disparidad}
+
 Computar el mapa de disparidad con las librerías utilizando la función \lstinline{cv::StereoMatcher::compute()}. Opcionalmente para tener mejores resultados puede utilizar la librería LIBELAS\footnote{\url{http://www.cvlibs.net/software/libelas/}}. Visualizar el mapa de disparidad.
 
-\section{Reconstruir la Escena 3D de manera Densa}
+\item \textbf{Reconstruir la Escena 3D de manera Densa}
+
 Utilizando el mapa de disparidad obtenido en el paso anterior realizar una reconstrucción densa de la escena observada utilizando la función \lstinline{cv::reprojectImageTo3D()}. Para esto debe utilizar la matríz de reproyección Q retornada por la función \lstinline{cv::stereoRectify()}. Visualizar la nube de puntos 3D.
 
-\section{Dense Mapping con Localización Ground-truth}
+\item \textbf{Dense Mapping con Localización Ground-truth}
+
 Mapear el entorno de manera densa utilizando las poses dada por el Ground-truth del dataset. Visualizar el mapa reconstruido.
 
-\section{Estimar la Pose utilizando Visión Monocular}
+\item \textbf{Estimar la Pose utilizando Visión Monocular}
+
 Utilizando \lstinline{cv::recoverPose()} estimar la transformación entre la cámara izquierda y la cámara derecha. Para esto deberá calcular la matríz esencial utilizando la función \lstinline{cv::findEssentialMat()}. Notar que \lstinline{cv::recoverPose()} retorna el vector unitario de traslación, por lo tanto deberá multiplicarlo por el factor de escala (en este caso el baseline entre las cámaras) para obtener la traslación estimada. Una vez hecho esto se pide:
 
 \begin{itemize}
     \item Visualizar la pose estimada de ambas cámaras.
     \item Estimar y visualizar la trayectoría realizada por la cámara izquierda utilizando como factor de escala la distancia entre cada par de frames dada por el \emph{ground-truth}.
 \end{itemize}
+
+
+\end{enumerate}
 
 \end{document}
