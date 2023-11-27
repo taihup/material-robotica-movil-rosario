@@ -84,17 +84,17 @@ Utilizar el dataset EuRoC\footnote{\url{https://projects.asl.ethz.ch/datasets/do
     \begin{itemize}
         \item ROS2, por medio del paquete \lstinline{stereo_image_proc}
         
-        \begin{lstlisting}[style=bash]     
-            ros2 launch stereo_image_proc stereo_image_proc.launch.py
-        \end{lstlisting}
+\begin{lstlisting}[style=bash]     
+ros2 launch stereo_image_proc stereo_image_proc.launch.py
+\end{lstlisting}
         
         Para reproducir el rosbag y remapear los tópicos a los que el paquete \lstinline{stereo_image_proc} requiere puede hacer:
-        \begin{lstlisting}[style=bash]   
-            ros2 bag play CARPETA_ROSBAG --remap /stereo/left/image_raw:=/left/image_raw \
-            /stereo/left/camera_info:=/left/camera_info \
-            /stereo/right/image_raw:=/right/image_raw \
-            /stereo/right/camera_info:=/right/camera_info
-        \end{lstlisting}
+\begin{lstlisting}[style=bash]   
+ros2 bag play CARPETA_ROSBAG --remap /stereo/left/image_raw:=/left/image_raw \
+/stereo/left/camera_info:=/left/camera_info \
+/stereo/right/image_raw:=/right/image_raw \
+/stereo/right/camera_info:=/right/camera_info
+\end{lstlisting}
         
         
         \item o bien, OpenCV, por medio de las funciones: \lstinline{cv::stereoRectify()},  \lstinline{cv::initUndistortRectifyMap()} y  \lstinline{remap()}.
