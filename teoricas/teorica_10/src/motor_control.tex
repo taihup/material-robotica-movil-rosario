@@ -93,6 +93,59 @@
     
 \end{frame}
 
+\begin{frame}
+    \frametitle{Proportional control}
+    \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
+    
+    \begin{itemize}
+        \item P-Control: $\controlCommand_{t} = K_{p} \error_{t}$ donde $\error_{t} = x_{des} - x_{t}$
+    \end{itemize}
+    
+    \begin{center}
+        \includegraphics[width=0.8\columnwidth]{images/pid_control_proportional.pdf}
+    \end{center}
+    
+    \note{Información extraída dehttps://www.zhinst.com/americas/de/resources/principles-of-pid-controllers}
+    \note{Información extraída de https://newton.ex.ac.uk/teaching/CDHW/Feedback/ControlTypes.html}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Proportional+Derivative control}
+    \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
+    
+    \begin{itemize}
+        \item PD-Control: $\controlCommand_{t} = K_{d} \error_{t}$
+    \end{itemize}
+    
+    \begin{center}
+        \includegraphics[width=0.8\columnwidth]{images/pid_control_derivative.pdf}
+    \end{center}
+    
+    Un damping (amortiguación) demasiado pequeña produce overshoot y ringing, demasiado grande provoca una respuesta innecesariamente lenta.
+    
+    \note{Información extraída dehttps://www.zhinst.com/americas/de/resources/principles-of-pid-controllers}
+    \note{Información extraída de https://newton.ex.ac.uk/teaching/CDHW/Feedback/ControlTypes.html}
+    
+    \note{Esta es la forma de control más sencilla y utilizada por casi todos los termostatos domésticos. Cuando el horno está más frío que la temperatura establecida, el calentador se enciende a la potencia máxima, M, y una vez que el horno está más caliente que la temperatura establecida, el calentador se apaga por completo. Las temperaturas de encendido y apagado se hacen deliberadamente para que difieran en una pequeña cantidad, conocida como histéresis H, para evitar que el ruido encienda el calentador rápidamente e innecesariamente cuando la temperatura está cerca del punto de ajuste. Las fluctuaciones de temperatura mostradas en el gráfico son significativamente mayores que la histéresis debido a la importante capacidad calorífica del elemento calefactor.}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Proportional+Integral+Derivative control}
+    \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
+    
+    \begin{itemize}
+        \item PID-Control: $\controlCommand_{t} = K_{p} \error_{t}$
+    \end{itemize}
+    
+    \begin{center}
+        \includegraphics[width=0.8\columnwidth]{images/pid_control_integral.pdf}
+    \end{center}
+    
+    \note{Información extraída dehttps://www.zhinst.com/americas/de/resources/principles-of-pid-controllers}
+    \note{Información extraída de https://newton.ex.ac.uk/teaching/CDHW/Feedback/ControlTypes.html}
+    
+\end{frame}
 
 \begin{frame}
     \frametitle{PID control}
@@ -112,63 +165,33 @@
     
 \end{frame}
 
+\subsection{Position Control}
 
 \begin{frame}
-    \frametitle{Proportional control}
+    \frametitle{Motivación: Position Control}
     \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
     
     \begin{itemize}
-        \item P-Control: $\controlCommand_{t} = K_{p} e_{t}$ con  $K_{p} = 1$
+        \item Mover el robot a una ubicación deseada $x_{des}$
+        \item ¿Cómo generamos una señal de control adecuada $\controlCommand$?
+        \item La localización del robot se estima mediante mediciones $\measurement$ de un sensor
     \end{itemize}
-    
-    \begin{center}
-        \includegraphics[width=0.8\columnwidth]{images/pid_control_proportional.pdf}
-    \end{center}
-    
-    \note{Información extraída dehttps://www.zhinst.com/americas/de/resources/principles-of-pid-controllers}
-    \note{Información extraída de https://newton.ex.ac.uk/teaching/CDHW/Feedback/ControlTypes.html}
     
 \end{frame}
 
 \begin{frame}
-    \frametitle{Proportional+Derivative control}
+    \frametitle{Cinemática de un cuerpo rígido}
     \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
     
     \begin{itemize}
-        \item PD-Control: $\controlCommand_{t} = K_{p} e_{t}$ con  $K_{p} = 1$
+        \item Consideremos a un robot como un punto de masa
+        \item Moviendo libremente en el espacio 1D
     \end{itemize}
-    
-    \begin{center}
-        \includegraphics[width=0.8\columnwidth]{images/pid_control_derivative.pdf}
-    \end{center}
-    
-    Un damping (amortiguación) demasiado pequeña produce overshoot y ringing, demasiado grande provoca una respuesta innecesariamente lenta.
-    
-    \note{Información extraída dehttps://www.zhinst.com/americas/de/resources/principles-of-pid-controllers}
-    \note{Información extraída de https://newton.ex.ac.uk/teaching/CDHW/Feedback/ControlTypes.html}
     
 \end{frame}
 
 \begin{frame}
-    \frametitle{Proportional+Integral+Derivative control}
-    \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
-    
-    \begin{itemize}
-        \item PID-Control: $\controlCommand_{t} = K_{p} e_{t}$ con  $K_{p} = 1$
-    \end{itemize}
-    
-    \begin{center}
-        \includegraphics[width=0.8\columnwidth]{images/pid_control_integral.pdf}
-    \end{center}
-    
-    \note{Información extraída dehttps://www.zhinst.com/americas/de/resources/principles-of-pid-controllers}
-    \note{Información extraída de https://newton.ex.ac.uk/teaching/CDHW/Feedback/ControlTypes.html}
-    
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Motores DC}
+    \frametitle{P-Control}
     \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
     
     \begin{itemize}
@@ -177,25 +200,21 @@
     
 \end{frame}
 
+
 \begin{frame}
-    \frametitle{Motores DC}
+    \frametitle{PID-Control: Resumen}
     \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
     
     \begin{itemize}
-        \item 
+        \item P = control proportional, suficiente para la mayoría de los casos
+        \item PD = reduce overshoot (por ejemplo, cuando la aceleración del vehículo puede ser controlada)
+        \item PI = compensa errores o bias sistemáticos
+        \item PID = combinación de todas las propiedades anteriores
     \end{itemize}
     
 \end{frame}
 
-\begin{frame}
-    \frametitle{Motores DC}
-    \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
-    
-    \begin{itemize}
-        \item 
-    \end{itemize}
-    
-\end{frame}
+
 
 \begin{frame}
     \frametitle{Motores DC}
