@@ -147,24 +147,6 @@
     
 \end{frame}
 
-\begin{frame}
-    \frametitle{PID control}
-    \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
-    
-    \begin{itemize}
-        \item Estimar el error sistemático...
-        \item PID-Control:
-        \begin{equation*}
-            \controlCommand_{t} = K_{p} \left(x_{des} - x_{t}\right) + K_{d} \left(\dot{x}_{des} - \dot{x}_{t} \right) + K_{i} \int_{0}^{t} \left( x_{des} - x_{t}\right) \, dt
-        \end{equation*}
-        
-    \end{itemize}
-    
-    \note{Información extraída dehttps://www.zhinst.com/americas/de/resources/principles-of-pid-controllers}
-    \note{Información extraída de https://newton.ex.ac.uk/teaching/CDHW/Feedback/ControlTypes.html}
-    
-\end{frame}
-
 \subsection{Position Control}
 
 \begin{frame}
@@ -191,18 +173,79 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{P-Control}
+    \frametitle{Cinemática de un cuerpo rígido}
+    \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
+    
+    
+    
+    \TODO{Agregar imágenes }
+    
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{P-control}
     \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
     
     \begin{itemize}
-        \item 
+        \item \TODO{Agregar imágenes }
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{PD-control}
+    \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
+    
+    \begin{itemize}
+        \item \TODO{Agregar imágenes }
     \end{itemize}
     
 \end{frame}
 
 
 \begin{frame}
-    \frametitle{PID-Control: Resumen}
+\frametitle{PID-control}
+\note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
+
+\begin{itemize}
+    \item \TODO{Agregar imágenes }
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}
+    \frametitle{PID-control}
+    \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
+    
+    \begin{itemize}
+        \item Estimar el error sistemático...
+        \item PID-Control:
+        \begin{equation*}
+            \controlCommand_{t} = K_{p} \left(x_{des} - x_{t}\right) + K_{d} \left(\dot{x}_{des} - \dot{x}_{t} \right) + K_{i} \int_{0}^{t} \left( x_{des} - x_{t}\right) \, dt
+        \end{equation*}
+        
+    \end{itemize}
+    
+    \begin{itemize}
+        \item Funciona razonablemente para sistemas estables (con poco ruido)
+        \item Puede ser peligroso en el caso en que se acumulen errores (\emph{wind-up effect})
+    \end{itemize}
+    
+    \note{Si un robot se traba en un pozo y las ruedas siguen girando, la pose estimada por odometría y la verdadera localización del robot crece constantemente. El término integral del PID va a tomar valores enormes, ya que el error se acumula. En esta situación, si el robot se destrababa, vamos a tener una velocidad enorme y por lo tanto hacer que robot por ejemplo salte. Para esto el término integral puede únicamente tomar una ventana de tiempo (por ejemplo los últimos 5 segundos).}
+    
+    \note{El wind-up effect se refiere a cuando le damos un comando de control al robot pero los actuadores no son capaces de alcanzar el control solicitado. Esto puede ocasionar también que se acumule error.}
+    
+    
+    \note{Información extraída dehttps://www.zhinst.com/americas/de/resources/principles-of-pid-controllers}
+    \note{Información extraída de https://newton.ex.ac.uk/teaching/CDHW/Feedback/ControlTypes.html}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{PID-control: Resumen}
     \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
     
     \begin{itemize}
@@ -214,25 +257,23 @@
     
 \end{frame}
 
-
+\subsection{Trajectory control}
 
 \begin{frame}
-    \frametitle{Motores DC}
+    \frametitle{Aplicación: Siguiendo una trayectoria}
     \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
     
-    \begin{itemize}
-        \item 
-    \end{itemize}
+    \TODO{Agregar imagen}
     
 \end{frame}
 
 \begin{frame}
-    \frametitle{Motores DC}
+    \frametitle{Arquitectura de control}
     \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
     
-    \begin{itemize}
-        \item 
-    \end{itemize}
+    \begin{center}
+        \includegraphics[width=0.8\columnwidth]{images/control_architecture2.pdf}
+    \end{center}
     
 \end{frame}
 
