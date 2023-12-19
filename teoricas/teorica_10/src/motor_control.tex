@@ -93,6 +93,26 @@
     
 \end{frame}
 
+
+\begin{frame}
+    \frametitle{PID control}
+    \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
+    
+    \begin{itemize}
+        \item Estimar el error sistemático...
+        \item PID-Control:
+        \begin{equation*}
+            \controlCommand_{t} = K_{p} \left(x_{des} - x_{t}\right) + K_{d} \left(\dot{x}_{des} - \dot{x}_{t} \right) + K_{i} \int_{0}^{t} \left( x_{des} - x_{t}\right) \, dt
+        \end{equation*}
+        
+    \end{itemize}
+    
+    \note{Información extraída dehttps://www.zhinst.com/americas/de/resources/principles-of-pid-controllers}
+    \note{Información extraída de https://newton.ex.ac.uk/teaching/CDHW/Feedback/ControlTypes.html}
+    
+\end{frame}
+
+
 \begin{frame}
     \frametitle{Proportional control}
     \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
