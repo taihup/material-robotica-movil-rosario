@@ -300,5 +300,37 @@
     
 \end{frame}
 
+\begin{frame}
+    \frametitle{Ackermann Kinematics}
+    \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
+    
+    Estado: $\begin{bmatrix} x & y & \theta & \delta \end{bmatrix}^{\top}$ con $\delta = \tan^{-1}{\left(\frac{d}{r}\right)}$
+    
+    Control: $\begin{bmatrix} v & \dot{\delta} \end{bmatrix}^{\top}$
+    
+    
+    \begin{center}
+        \includegraphics[width=0.6\columnwidth]{images/ackermann_kinematics.pdf}
+    \end{center}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Control}
+    \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
+    
+    Restricciones:
+    
+    $v < v_{\max}$
+    
+    $v < |\delta_{\max}|$
+    
+    
+    \begin{center}
+        \includegraphics[width=0.6\columnwidth]{images/ackermann_kinematics.pdf}
+    \end{center}
+    
+\end{frame}
+
 
 
