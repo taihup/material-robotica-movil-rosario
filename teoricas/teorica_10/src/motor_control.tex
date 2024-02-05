@@ -33,9 +33,9 @@
     \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
     
     \begin{itemize}
-        \item Más corriente = más rotación
+        \item Más corriente implica más rotación
         \item ¿Cómo modular corriente usando una señal digital?
-        \item \emph{Pulse width modulation} (PWM)
+        \item \emph{Pulse Width Modulation} (PWM)
         \item Duty cycle = ratio de tiempo vs periodo
     \end{itemize}
     
@@ -49,11 +49,18 @@
         }
     \end{figure}
     
+    \note{Cuando el pulso está arriba significa que es máxima corriente y por lo tanto la máxima velocidad que el motor puede tener. Duty cycle es cuanto tiempo dura el pulso. Entonces, si queremos ir a 1/4 de la velocidad máxima del motor entonces el pulso solo durará 1/4 del tiempo.}
+    
+    \note{La placa de ejmplo contiene 4 chips controladores, permitiendo controlar 4 motores}
+    
+    
 \end{frame}
 
 \begin{frame}
     \frametitle{Open loop vs feedback control}
     \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
+    
+    \note{En la práctica, los motores no son perfectos. No van a la velocidad exacta que les pedimos (tienen error).}
     
     \begin{figure}[!h]
         \subfloat[Open loop control]{
@@ -64,6 +71,12 @@
             \includegraphics[width=0.7\columnwidth,valign=m]{images/feedback_control.pdf}
         }
     \end{figure}
+    
+    \note{en las figuras system hace referencia al motor.}
+    
+    \note{En Open Loop Control, e da un valor deseado de velocidad (por ejemplo: número de rotaciones por minuto), el controlador envía corriente al motor para cumplir dicha velocidad, el motor se mueve pero no sabemos a qué velocidad exactamente.}
+    
+    \note{En Feedback Control, se da un valor deseado de velocidad (por ejemplo: número de rotaciones por minuto), el controlador envía corriente al motor para cumplir dicha velocidad, el motor se mueve pero ahora podemos sensar a qué velocidad se está moviendo (por ejemplo con un encoder). Si hay una diferencia entra la velocidad deseada y la velocidad de salida, el controlador debería arreglar dicha diferencia.}
     
 \end{frame}
 
