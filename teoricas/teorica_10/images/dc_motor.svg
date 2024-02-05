@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="28.803225mm"
+   height="15.504144mm"
+   viewBox="0 0 28.803225 15.504144"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (1:1.3.2+202311252150+091e20ef0f)"
+   sodipodi:docname="dc_motor.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="2.8284271"
+     inkscape:cx="7.0710678"
+     inkscape:cy="57.275649"
+     inkscape:window-width="1850"
+     inkscape:window-height="1016"
+     inkscape:window-x="1436"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <linearGradient
+       xlink:href="#linearGradient3291"
+       id="linearGradient4678"
+       gradientUnits="userSpaceOnUse"
+       x1="36"
+       y1="18"
+       x2="90"
+       y2="99"
+       gradientTransform="matrix(0.03120863,0.38158564,-0.22679407,0.01854874,642.02628,61.339322)" />
+    <linearGradient
+       id="linearGradient3291">
+      <stop
+         style="stop-color:#b3b3b3;stop-opacity:1;"
+         offset="0"
+         id="stop3293" />
+      <stop
+         style="stop-color:#b3b3b3;stop-opacity:0.35135135;"
+         offset="1"
+         id="stop3295" />
+    </linearGradient>
+    <linearGradient
+       xlink:href="#linearGradient3219"
+       id="linearGradient3375"
+       gradientUnits="userSpaceOnUse"
+       x1="18"
+       y1="9"
+       x2="18"
+       y2="18" />
+    <linearGradient
+       id="linearGradient3219">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop3221" />
+      <stop
+         style="stop-color:#cfcfcf;stop-opacity:1;"
+         offset="1"
+         id="stop3223" />
+    </linearGradient>
+    <linearGradient
+       xlink:href="#linearGradient3414"
+       id="linearGradient4682"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.03120863,0.38158564,-0.45358815,0.03709748,676.72575,58.501366)"
+       x1="72"
+       y1="90"
+       x2="81"
+       y2="90" />
+    <linearGradient
+       id="linearGradient3414">
+      <stop
+         style="stop-color:#e6e6e6;stop-opacity:1;"
+         offset="0"
+         id="stop3416" />
+      <stop
+         id="stop3422"
+         offset="0.5"
+         style="stop-color:#656565;stop-opacity:1;" />
+      <stop
+         style="stop-color:#9f9f9f;stop-opacity:1;"
+         offset="1"
+         id="stop3418" />
+    </linearGradient>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-76.876913,-89.456973)">
+    <g
+       id="g65707"
+       style="font-size:18.5px;font-family:'Comic Sans MS';stroke-width:1.09"
+       transform="matrix(-0.26370793,-0.02150512,0.02150512,-0.26370793,248.20162,134.94389)">
+      <path
+         d="m 606.57442,64.92306 -55.84804,4.567627 -3.25161,6.652241 3.628,44.359322 4.28735,6.01165 55.84804,-4.56762 z"
+         id="MotorHousing"
+         style="display:inline;overflow:visible;visibility:visible;fill:#4d4d4d;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.999996px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;enable-background:accumulate" />
+      <path
+         id="MotorHousingShade"
+         style="display:inline;overflow:visible;visibility:visible;fill:#333333;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.999996px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;enable-background:accumulate"
+         d="m 592.47066,66.07656 -24.49376,2.003263 -3.17924,6.490263 24.49376,-2.003263 z m 5.11734,56.98612 -4.19157,-5.88743 -24.49376,2.00326 4.19156,5.88743 z" />
+      <path
+         id="CapTop"
+         d="m 637.94398,61.6732 4.64406,6.534668 3.65141,44.645522 -3.52055,7.20242 -26.5349,2.1702 -4.64404,-6.53466 -3.65858,-44.733162 3.5277,-7.114786 z"
+         style="display:inline;overflow:visible;visibility:visible;fill:#e6e6e6;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.999996px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;enable-background:accumulate" />
+      <path
+         d="m 642.18009,68.541341 -4.3538,-6.126249 -26.17344,2.14064 -3.31345,6.681298 3.6085,44.12085 4.3538,6.12625 26.18053,-2.14122 3.30051,-6.75227 z"
+         id="CapTopShade"
+         style="display:inline;overflow:visible;visibility:visible;fill:url(#linearGradient4678);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.707106px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;enable-background:accumulate" />
+      <path
+         id="CapTopGrove"
+         d="m 627.47561,108.14849 c -5.29018,0.43267 -10.17447,-6.44004 -10.90244,-15.340868 -0.72797,-8.900831 2.97469,-16.47584 8.26487,-16.908506 5.29016,-0.432665 10.17445,6.440046 10.90242,15.340876 0.72797,8.900828 -2.97469,16.475838 -8.26485,16.908498 z"
+         style="fill:none;fill-rule:evenodd;stroke:#b3b3b3;stroke-width:0.999996px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <g
+         transform="matrix(0.03120863,0.38158563,-0.22679407,0.01854874,642.02628,61.339322)"
+         id="CapTopMountHole0"
+         style="stroke-width:2.61128">
+        <path
+           style="fill:url(#linearGradient3375);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2.39565px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 24.75,18 c 0,3.726 -3.024,6.75 -6.75,6.75 -3.726,0 -6.75,-3.024 -6.75,-6.75 0,-3.726 3.024,-6.75 6.75,-6.75 3.726,0 6.75,3.024 6.75,6.75 z"
+           id="path2388" />
+        <path
+           id="path3177"
+           d="m 22.5,19.771653 c 0,2.484 -2.016,4.5 -4.5,4.5 -2.484,0 -4.5,-2.016 -4.5,-4.5 0,-2.484 2.016,-4.5 4.5,-4.5 2.484,0 4.5,2.016 4.5,4.5 z"
+           style="opacity:0.96;fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:2.39565px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      </g>
+      <use
+         height="450"
+         width="450"
+         transform="translate(3.6514111,44.645521)"
+         id="CapTopMountHole1"
+         xlink:href="#CapTopMountHole0"
+         y="0"
+         x="0"
+         style="stroke-width:2.61128" />
+      <use
+         height="450"
+         width="450"
+         transform="translate(-26.53491,2.1702029)"
+         id="CapTopMountHole2"
+         xlink:href="#CapTopMountHole1"
+         y="0"
+         x="0"
+         style="stroke-width:2.61128" />
+      <use
+         height="450"
+         width="450"
+         transform="translate(-3.6514091,-44.64552)"
+         id="CapTopMountHole3"
+         xlink:href="#CapTopMountHole2"
+         y="0"
+         x="0"
+         style="stroke-width:2.61128" />
+      <path
+         id="CapTopBevelHilite"
+         d="m 627.37322,106.89663 c -4.87947,0.39908 -9.38456,-5.94006 -10.05601,-14.14986 -0.67146,-8.209808 2.74374,-15.196718 7.62321,-15.595794 4.87946,-0.399074 9.38455,5.940061 10.05601,14.149868 0.67145,8.209803 -2.74375,15.196716 -7.62321,15.595786 z"
+         style="fill:#f9f9f9;fill-rule:evenodd;stroke:none;stroke-width:0.999996px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         id="CapTopBevel"
+         d="m 628.28039,106.82244 c -4.87947,0.39907 -9.38456,-5.94006 -10.05601,-14.149865 -0.67146,-8.209808 2.74374,-15.196718 7.62321,-15.595793 4.87947,-0.399076 9.38456,5.940059 10.05602,14.149867 0.67145,8.209803 -2.74375,15.196711 -7.62322,15.595791 z"
+         style="fill:#999999;fill-rule:evenodd;stroke:none;stroke-width:0.999996px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         id="CapTopShaftHole"
+         d="m 627.45103,96.681861 c -1.55255,0.126978 -2.98599,-1.890008 -3.19964,-4.502216 -0.21364,-2.612218 0.87302,-4.835334 2.42556,-4.962312 1.55256,-0.126979 2.98601,1.890027 3.19965,4.502245 0.21364,2.612208 -0.87302,4.835305 -2.42557,4.962283 z"
+         style="fill:#333333;fill-rule:evenodd;stroke:none;stroke-width:0.999996px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         id="Cap"
+         style="fill:#b3b3b3;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.999996px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 611.40908,63.843402 -24.49377,2.003264 -3.52053,7.202423 0.57842,1.489247 7.711,-0.630658 3.40174,41.592842 -7.711,0.63065 -0.32875,1.56344 4.64404,6.53466 24.49377,-2.00326 -4.64404,-6.53466 -3.65141,-44.645525 z m -36.73822,3.004698 -24.49376,2.003264 -3.52054,7.202424 3.65141,44.645522 4.64405,6.53466 24.49376,-2.00326 -4.64405,-6.53466 -1.4856,-1.41505 -4.98947,0.40807 -1.68951,1.67473 -3.65142,-44.645522 1.93919,1.377954 4.98947,-0.408073 1.23593,-1.637636 z" />
+      <path
+         id="CapShade"
+         style="fill:#999999;fill-rule:evenodd;stroke:none;stroke-width:0.999996px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 583.39478,73.049089 3.52053,-7.202423 24.49377,-2.003264 -3.52053,7.202423 z m 3.65141,44.645521 4.64404,6.53466 24.49377,-2.00326 -4.64404,-6.53466 z m -36.74064,3.0049 4.64405,6.53466 24.49376,-2.00326 -4.64405,-6.53466 z m -3.65141,-44.645524 3.52054,-7.202424 24.49376,-2.003264 -3.52054,7.202423 z" />
+      <path
+         id="Shaft"
+         d="m 654.66289,93.095183 -27.32244,2.234613 c -1.10897,0.0907 -2.13285,-1.350025 -2.28545,-3.215875 -0.1526,-1.86587 0.62357,-3.453804 1.73254,-3.544503 l 27.32244,-2.234612 c 1.10897,-0.0907 2.13285,1.350014 2.28546,3.215884 0.1526,1.86585 -0.62359,3.453794 -1.73255,3.544493 z"
+         style="fill:url(#linearGradient4682);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.999996px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         id="ShaftBevel"
+         d="m 654.66289,93.095183 c -1.10898,0.0907 -2.13286,-1.350024 -2.28546,-3.215874 -0.1526,-1.86587 0.62357,-3.453804 1.73255,-3.544503 1.10897,-0.0907 2.13285,1.350014 2.28546,3.215884 0.1526,1.86585 -0.62359,3.453794 -1.73255,3.544493 z"
+         style="fill:#e6e6e6;fill-rule:evenodd;stroke:none;stroke-width:0.999996px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         style="fill:#cccccc;fill-rule:evenodd;stroke:none;stroke-width:0.999996px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 655.52496,92.4696 c -0.92806,0.0759 -1.78493,-1.129802 -1.91264,-2.691288 -0.12771,-1.561506 0.52186,-2.890409 1.44993,-2.966312 0.92807,-0.0759 1.78492,1.129793 1.91263,2.691299 0.12771,1.561486 -0.52185,2.890397 -1.44992,2.966301 z"
+         id="ShaftTop" />
+      <path
+         id="ShaftTopHole"
+         d="m 655.40095,90.953263 c -0.43059,0.03522 -0.82815,-0.524189 -0.8874,-1.24866 -0.0593,-0.724491 0.24213,-1.34105 0.67271,-1.376266 0.43059,-0.03522 0.82815,0.524179 0.8874,1.24867 0.0593,0.724471 -0.24212,1.341039 -0.67271,1.376256 z"
+         style="fill:#666666;fill-rule:evenodd;stroke:none;stroke-width:0.999996px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         id="CapBevelHilite"
+         style="display:inline;overflow:visible;visibility:visible;fill:#f2f2f2;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.999996px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;enable-background:accumulate"
+         d="m 611.40908,63.843402 -1.81435,0.14839 -3.52054,7.202423 3.65141,44.645525 4.64405,6.53466 1.81435,-0.14839 -4.64404,-6.53466 -3.65141,-44.645525 z m -36.74064,3.004896 -1.81436,0.14839 -3.52053,7.202423 1.81435,-0.14839 z m 4.77492,58.382612 -4.64405,-6.53466 -1.81435,0.14839 4.64404,6.53466 z m -14.51844,-49.134678 -1.94161,-1.377756 3.65141,44.645524 1.69194,-1.67493 z" />
+      <path
+         id="CapBevelShade"
+         style="display:inline;overflow:visible;visibility:visible;fill:#1a1a1a;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.999996px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;enable-background:accumulate"
+         d="m 591.6842,73.907678 -1.81435,0.14839 3.40174,41.592842 1.81435,-0.14839 z m -5.11018,-7.348851 -1.81435,0.14839 -3.17924,6.490262 0.57842,1.489247 1.81435,-0.14839 -0.57842,-1.489247 z m 4.66374,57.023213 -4.19157,-5.88743 0.32875,-1.56344 -1.81435,0.14839 -0.32875,1.56344 4.19157,5.88743 z" />
+    </g>
+  </g>
+</svg>
