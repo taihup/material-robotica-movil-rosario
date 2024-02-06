@@ -126,6 +126,8 @@
     
     \note{Información extraída de https://newton.ex.ac.uk/teaching/CDHW/Feedback/ControlTypes.html}
     
+    \note{Esta es la forma de control más sencilla y utilizada por casi todos los termostatos domésticos. Cuando el horno está más frío que la temperatura establecida, el calentador se enciende a la potencia máxima, M, y una vez que el horno está más caliente que la temperatura establecida, el calentador se apaga por completo. Las temperaturas de encendido y apagado se hacen deliberadamente para que difieran en una pequeña cantidad, conocida como histéresis H, para evitar que el ruido encienda el calentador rápida e innecesariamente cuando la temperatura está cerca del punto de ajuste. Las fluctuaciones de temperatura mostradas en el gráfico son significativamente mayores que la histéresis, debido a la importante capacidad calorífica del elemento calefactor.}
+    
 \end{frame}
 
 \begin{frame}
@@ -133,7 +135,10 @@
     \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
     
     \begin{itemize}
-        \item P-Control: $\controlCommand_{t} = K_{p} \error_{t}$ donde $\error_{t} = x_{des} - x_{t}$
+        \item P-Control:
+        \begin{equation*}
+            \controlCommand_{t} = K_{p} \error_{t} \text{ donde } \error_{t} = x_{des} - x_{t}
+        \end{equation*}
     \end{itemize}
     
     \begin{center}
@@ -141,7 +146,10 @@
     \end{center}
     
     \note{Información extraída dehttps://www.zhinst.com/americas/de/resources/principles-of-pid-controllers}
+    
     \note{Información extraída de https://newton.ex.ac.uk/teaching/CDHW/Feedback/ControlTypes.html}
+    
+    \note{Un controlador proporcional intenta funcionar mejor que el tipo On-Off aplicando potencia, W, al calentador en proporción a la diferencia de temperatura entre el horno y el punto de ajuste, donde P se conoce como ganancia proporcional del controlador. A medida que aumenta su ganancia, el sistema responde más rápido a los cambios en el punto de ajuste, pero progresivamente se vuelve subamortiguado y eventualmente inestable. La temperatura final del horno está por debajo del punto de ajuste para este sistema porque se requiere cierta diferencia para mantener el suministro de energía del calentador. La potencia del calentador siempre debe estar entre cero y el máximo M porque solo puede generar calor, no absorberlo.}
     
 \end{frame}
 
@@ -150,7 +158,10 @@
     \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
     
     \begin{itemize}
-        \item PD-Control: $\controlCommand_{t} = K_{d} \error_{t}$
+        \item PD-Control:
+        \begin{equation*}
+            \controlCommand_{t} = K_{d} \left( \frac{d}{d t} \error_{t} \right)
+        \end{equation*}
     \end{itemize}
     
     \begin{center}
@@ -170,7 +181,10 @@
     \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
     
     \begin{itemize}
-        \item PID-Control: $\controlCommand_{t} = K_{p} \error_{t}$
+        \item PID-Control:
+        \begin{equation*}
+            \controlCommand_{t} = K_{p} \int_{0}^{t} \error_{t} \, dt
+        \end{equation*}
     \end{itemize}
     
     \begin{center}
@@ -178,6 +192,28 @@
     \end{center}
     
     \note{Información extraída dehttps://www.zhinst.com/americas/de/resources/principles-of-pid-controllers}
+    
+    \note{Información extraída de https://newton.ex.ac.uk/teaching/CDHW/Feedback/ControlTypes.html}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Proportional+Integral+Derivative control}
+    \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
+    
+    \begin{itemize}
+        \item PID-Control:
+        \begin{equation*}
+            \controlCommand_{t} = K_{p} \left(x_{des} - x_{t}\right) + K_{d} \left(\dot{x}_{des} - \dot{x}_{t} \right) + K_{i} \int_{0}^{t} \left( x_{des} - x_{t}\right) \, dt
+        \end{equation*}
+    \end{itemize}
+    
+    \begin{center}
+        \includegraphics[width=0.6\columnwidth]{images/pid_control_error.pdf}
+    \end{center}
+    
+    \note{Información extraída dehttps://www.zhinst.com/americas/de/resources/principles-of-pid-controllers}
+    
     \note{Información extraída de https://newton.ex.ac.uk/teaching/CDHW/Feedback/ControlTypes.html}
     
 \end{frame}
