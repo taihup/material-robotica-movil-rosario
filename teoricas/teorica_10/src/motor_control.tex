@@ -87,18 +87,31 @@
     \begin{center}
         \includegraphics[width=0.6\columnwidth,valign=m]{images/temperature_feedback_control.pdf}
     \end{center}
-
     
 \end{frame}
 
 \begin{frame}
-    \frametitle{Diagrama de bloques}
+    \frametitle{Diagrama de Bloques}
     \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
     
     \begin{center}
         \includegraphics[width=0.8\columnwidth]{images/feedback_control_math.pdf}
     \end{center}
-   
+    
+    donde
+    \begin{itemize}
+        \item $\state_{des}$ es el estado deseado
+        \item $\observation_{t}$  es la observación del estado en el tiempo $t$
+        \item $e_{t}$ es la diferencia entre el estado deseado y el observado $\norm{\state_{des} - \observation_{t}}$. Puede que el estado no sea completamente observable, es decir que no podamos medir algunas variables del estado. En esta clase, consideraremos que el estado es completamente observable.
+        \item $\controlCommand_{t}$ es el comando de control provisto por el controlador.
+        \item El bloque \emph{System} es un modelo de cómo el sistema evoluciona. Aquí, se ilustra una formula simple de cómo un sistema podría evolucionar (ej: temperatura de la ducha) pero podría ser un modelo mucho más complejo (ej: no-lineal).
+    \end{itemize}
+    
+    
+    \note{En esta clase abordamos el bloque del Controlador.}
+    
+    \note{El ejemplo de ducha anterior se puede expresar de manera matemática con este diagrama de bloques.}
+    
 \end{frame}
 
 \begin{frame}
@@ -109,7 +122,7 @@
         \includegraphics[width=0.8\columnwidth]{images/pid_control_on_off.pdf}
     \end{center}
     
-    \note{Información extraída dehttps://www.zhinst.com/americas/de/resources/principles-of-pid-controllers}
+    \note{Información extraída de https://www.zhinst.com/americas/de/resources/principles-of-pid-controllers}
     
     \note{Información extraída de https://newton.ex.ac.uk/teaching/CDHW/Feedback/ControlTypes.html}
     
@@ -141,10 +154,10 @@
     \end{itemize}
     
     \begin{center}
-        \includegraphics[width=0.8\columnwidth]{images/pid_control_derivative.pdf}
+        \includegraphics[width=0.7\columnwidth]{images/pid_control_derivative.pdf}
     \end{center}
     
-    Un damping (amortiguación) demasiado pequeña produce overshoot y ringing, demasiado grande provoca una respuesta innecesariamente lenta.
+    Un \emph{damping} (amortiguación) demasiado pequeño produce \emph{overshoot} y \emph{ringing}, demasiado grande provoca una respuesta innecesariamente lenta.
     
     \note{Información extraída dehttps://www.zhinst.com/americas/de/resources/principles-of-pid-controllers}
     \note{Información extraída de https://newton.ex.ac.uk/teaching/CDHW/Feedback/ControlTypes.html}
