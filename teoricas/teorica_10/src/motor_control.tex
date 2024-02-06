@@ -269,7 +269,7 @@
         \item Puede ser peligroso en el caso en que se acumulen errores (\emph{wind-up effect})
     \end{itemize}
     
-    \note{Si un robot se traba en un pozo y las ruedas siguen girando, la pose estimada por odometría y la verdadera localización del robot crece constantemente. El término integral del PID va a tomar valores enormes, ya que el error se acumula. En esta situación, si el robot se destrababa, vamos a tener una velocidad enorme y por lo tanto hacer que robot por ejemplo salte. Para esto el término integral puede únicamente tomar una ventana de tiempo (por ejemplo los últimos 5 segundos).}
+    \note{Si un robot se traba en un pozo y las ruedas siguen girando, la pose estimada por odometría y la verdadera localización del robot crece constantemente. El término integral del PID va a tomar valores enormes, ya que el error se acumula. En esta situación, si el robot se destrabara, vamos a tener una velocidad enorme y por lo tanto hacer que robot, por ejemplo, salte. Para esto el término integral puede únicamente tomar una ventana de tiempo (por ejemplo, los últimos 5 segundos).}
     
     \note{El wind-up effect se refiere a cuando le damos un comando de control al robot pero los actuadores no son capaces de alcanzar el control solicitado. Esto puede ocasionar también que se acumule error.}
     
