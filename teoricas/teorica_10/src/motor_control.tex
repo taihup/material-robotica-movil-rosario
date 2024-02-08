@@ -286,6 +286,145 @@
     
 \end{frame}
 
+\begin{frame}
+    \frametitle{Mejor control con ruido}
+    \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
+    
+    \begin{itemize}
+        \item Una menor ganancia ($K_{p} = 0.15$)
+    \end{itemize}
+    
+    \begin{center}
+        \includegraphics[width=0.6\columnwidth]{images/pid_control_proportional_lower_gain.pdf}
+    \end{center}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Efecto de una Ganancia Alta}
+    \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
+    
+    \begin{itemize}
+        \item Una mayor ganancia ($K_{p} = 2$)
+    \end{itemize}
+    
+    \begin{center}
+        \includegraphics[width=0.6\columnwidth]{images/pid_control_proportional_higher_gain.pdf}
+    \end{center}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Qué pasa con un signo negativo?}
+    \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
+    
+    \begin{itemize}
+        \item Si $K_{p}$ es negativo...
+    \end{itemize}
+    
+    \begin{center}
+        \includegraphics[width=0.6\columnwidth]{images/pid_control_proportional_wrong_sign.pdf}
+    \end{center}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Saturación}
+    \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
+    
+    \begin{itemize}
+        \item En la práctica, el conjunto de controles $\controlCommand$ posibles está acotado
+    \end{itemize}
+    
+    \begin{center}
+        \includegraphics[width=0.6\columnwidth]{images/pid_control_proportional_saturation.pdf}
+    \end{center}
+    
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Delays}
+    \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
+    
+    \begin{itemize}
+        \item La mayoría de los sistema reales tienen \emph{delay} (retraso)
+        \item El \emph{delay} puede causar overshoot/oscilaciones
+    \end{itemize}
+    
+    \begin{center}
+        \includegraphics[width=0.6\columnwidth]{images/pid_control_proportional_delay.pdf}
+    \end{center}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Delays}
+    \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
+    
+    \begin{itemize}
+        \item \TODO{Agregar imagen}
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Smith Predictor}
+    \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
+    
+    \begin{itemize}
+        \item \TODO{Agregar imagen}
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Smith Predictor}
+    \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
+    
+    \begin{itemize}
+        \item Asume que se conocer el sistema y el modelo de delay
+        \item Resulta en una compensación perfecta
+    \end{itemize}
+    
+    \begin{center}
+        \includegraphics[width=0.6\columnwidth]{images/pid_control_proportional_smith_predictor.pdf}
+    \end{center}
+    
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Smith Predictor}
+    \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
+    
+    \begin{itemize}
+        \item El Delay y el modelo del sistema no es conocido con precisión o varía en el tiempo (\emph{time-varying})
+        \item ¿Qué pasa si el delay es sobre-estimado?
+    \end{itemize}
+    
+    \begin{center}
+        \includegraphics[width=0.6\columnwidth]{images/pid_control_proportional_smith_predictor_overestimated.pdf}
+    \end{center}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Smith Predictor}
+    \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
+    
+    \begin{itemize}
+        \item El Delay y el modelo del sistema no es conocido con precisión o varía en el tiempo (\emph{time-varying})
+        \item ¿Qué pasa si el delay es bajo-estimado?
+    \end{itemize}
+    
+    \begin{center}
+        \includegraphics[width=0.6\columnwidth]{images/pid_control_proportional_smith_predictor_underestimated.pdf}
+    \end{center}
+    
+\end{frame}
+
+
 
 \begin{frame}
     \frametitle{PD-control}
