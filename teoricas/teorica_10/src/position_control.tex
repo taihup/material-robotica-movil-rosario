@@ -28,12 +28,35 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{Cinemática de un cuerpo rígido}
+    \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
+    
+    \begin{itemize}
+        \item Modelo del sistema: $\state_{t} = \state_{t-1} + \dot{\state} \Delta t$
+        \item Estado Inicial: $\state_{0} = 0, \, \dot{\state} = 0$
+    \end{itemize}
+    
+    
+    \begin{center}
+        \includegraphics[width=0.8\columnwidth]{images/pid_control_position_initial_state.pdf}
+    \end{center}
+    
+\end{frame}
+
+\begin{frame}
     \frametitle{P-control}
     \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
     
     \begin{itemize}
-        \item \TODO{Agregar imágenes }
+        \item P-Control:
+        \begin{equation*}
+            \controlCommand_{t} = K_{p} \error_{t} \text{ donde } \error_{t} = x_{des} - x_{t}
+        \end{equation*}
     \end{itemize}
+
+    \begin{center}
+        \includegraphics[width=0.8\columnwidth]{images/pid_control_position_proportional.pdf}
+    \end{center}
     
 \end{frame}
 
@@ -42,8 +65,15 @@
     \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
     
     \begin{itemize}
-        \item \TODO{Agregar imágenes }
+        \item PD-Control:
+        \begin{equation*}
+            \controlCommand_{t} = K_{d} \left( \frac{d}{d t} \error_{t} \right)
+        \end{equation*}
     \end{itemize}
+    
+    \begin{center}
+        \includegraphics[width=0.8\columnwidth]{images/pid_control_position_proportional_derivative.pdf}
+    \end{center}
     
 \end{frame}
 
@@ -53,8 +83,15 @@
     \note{Información extraída de https://youtu.be/pEVsedl2KO4?si=_cwQpRPPUnQ04B3c}
     
     \begin{itemize}
-        \item \TODO{Agregar imágenes }
+        \item PID-Control:
+        \begin{equation*}
+            \controlCommand_{t} = K_{p} \int_{0}^{t} \error_{t} \, dt
+        \end{equation*}
     \end{itemize}
+    
+    \begin{center}
+        \includegraphics[width=0.8\columnwidth]{images/pid_control_position_proportional_integral_derivative.pdf}
+    \end{center}
     
 \end{frame}
 
