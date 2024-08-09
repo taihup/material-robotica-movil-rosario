@@ -1,4 +1,13 @@
 \begin{frame}
+    \frametitle{Transformaciones...}
+    
+    \begin{figure}[!h]
+        \includegraphics[width=\columnwidth]{./images/joke_coordinate_systems.png}
+    \end{figure}
+    
+\end{frame}
+
+\begin{frame}
     \frametitle{Rotación en 2D}
 
         \begin{center}
@@ -677,7 +686,7 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
         \item $R^{\mathsf {T}}=R^{-1}$ Matriz ortogonal
         \item $\det R = \pm 1$ (esto implica que la longitud del vector no cambia luego de la rotación)
         \item $R \in SO(3)$ entonces $\rotationCoord{A}{C} = \rotationCoord{A}{B} \rotationCoord{B}{C}$ y $\rotationCoord{A}{B} = \rotationCoord{B}{A}^{-1}$
-        \item \TODO{Agregar imagen y explicar mejor: Los vectores columnas de la matriz de Rotación muestran donde se encuentran posicionados los ejes x, y y z luego de aplicar la rotación}
+        \item Los vectores columnas de la matriz de rotación indican la orientación de los ejes x, y y z respectivamente.
     \end{itemize}
 
     Determinar el ángulo de una matriz de rotación utilizando la traza de la matriz (la suma de los elementos de la diagonal del matriz).
@@ -688,6 +697,15 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
     \begin{equation*}
         {\displaystyle |\theta |=\arccos \left({\frac {\operatorname {tr} (R)-1}{2}}\right).}
     \end{equation*}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Propiedades de matrices Rotación}
+    \TODO{Agregar imagen y explicar mejor: Los vectores columnas de la matriz de Rotación muestran donde se encuentran posicionados los ejes x, y y z luego de aplicar la rotación}
+
+
 
 \end{frame}
 
@@ -755,13 +773,4 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
         \item Los cuaterniones no sufren de \emph{Gimbal Lock} como los ángulos de Euler.
     \end{itemize}
 
-\end{frame}
-
-\begin{frame}
-    \frametitle{Transformaciones...}
-    
-    \begin{figure}[!h]
-        \includegraphics[width=\columnwidth]{./images/joke_coordinate_systems.png}
-    \end{figure}
-    
 \end{frame}
