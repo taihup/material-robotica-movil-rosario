@@ -125,7 +125,24 @@
             \only<4>{
                 \begin{align*}
                     %\toCoord{\point}{B} &= \transform{B}{A} \toCoord{\point}{A}\\
-                    \toCoord{\point}{B} &= \toCoord{\point}{A} + \toCoord{\translation}{B}\\
+                    \toCoord{\point}{A} &= \toCoord{\point}{B} + \translationCoord{A}{B}\\
+                    \toCoord{\begin{bmatrix}
+                        1\\
+                        0
+                    \end{bmatrix}}{A} &=
+                    \toCoord{\begin{bmatrix}
+                        0\\
+                        0
+                    \end{bmatrix}}{B} + \translationCoord{A}{B}\\
+                    \translationCoord{A}{B} &= \toCoord{\fromCoord{\begin{bmatrix}
+                        1\\
+                        0
+                    \end{bmatrix}}{B}}{A}
+                \end{align*}             
+            }
+            \only<5>{
+                \begin{align*}
+                    \toCoord{\point}{B} &= \toCoord{\point}{A} - \translationCoord{A}{B}\\
                     \toCoord{\begin{bmatrix}
                         0\\
                         0
@@ -133,12 +150,12 @@
                     \toCoord{\begin{bmatrix}
                         1\\
                         0
-                    \end{bmatrix}}{A} + \toCoord{\translation}{B}\\
-                    \toCoord{\translation}{B} &= \toCoord{\begin{bmatrix}
+                    \end{bmatrix}}{A} + \translationCoord{B}{A}\\
+                    \translationCoord{B}{A} &= \toCoord{\fromCoord{\begin{bmatrix}
                         -1\\
                         0
-                    \end{bmatrix}}{B}
-                \end{align*}             
+                    \end{bmatrix}}{A}}{B}
+                \end{align*}
             }
         \end{minipage}
     \end{center}
@@ -149,81 +166,80 @@
 \scriptsize
 Solo traslación:
     \begin{equation*}
-        \begin{bmatrix}
-            \toCoord{x}{B}\\
-            \toCoord{y}{B}
-        \end{bmatrix} =
-        \begin{bmatrix}
-            \toCoord{x}{A}\\
-            \toCoord{y}{A}
-        \end{bmatrix} +
-        \begin{bmatrix}
-            \toCoord{t_{x}}{B}\\
-            \toCoord{t_{y}}{B}
-        \end{bmatrix}
+        \toCoord{\begin{bmatrix}
+            x\\
+            y
+        \end{bmatrix}}{B} =
+        \toCoord{\begin{bmatrix}
+            x\\
+            y
+        \end{bmatrix}}{A} +
+        \toCoord{\fromCoord{\begin{bmatrix}
+            t_{x}\\
+            t_{y}
+        \end{bmatrix}}{A}}{B}
     \end{equation*}
 Agregando Rotación:
     \begin{align*}
-        \begin{bmatrix}
-            \toCoord{x}{B}\\
-            \toCoord{y}{B}
-        \end{bmatrix} &=
+        \toCoord{\begin{bmatrix}
+            x\\
+            y
+        \end{bmatrix}}{B} &=
        \toCoord{\fromCoord{\begin{bmatrix}
                                 \cos \theta & -\sin \theta \\
                                 \sin \theta & \cos \theta
                             \end{bmatrix}}{A}}{B}
-        \begin{bmatrix}
-            \toCoord{x}{A}\\
-            \toCoord{y}{A}
-        \end{bmatrix} +
-        \begin{bmatrix}
-            \toCoord{t_{x}}{B}\\
-            \toCoord{t_{y}}{B}
-        \end{bmatrix}
+        \toCoord{\begin{bmatrix}
+            x\\
+            y
+        \end{bmatrix}}{A} +
+        \toCoord{\fromCoord{\begin{bmatrix}
+            t_{x}\\
+            t_{y}
+        \end{bmatrix}}{A}}{B}
     \end{align*}
 
 Representamos las matrices y vectores simbólicamente:
 
     \begin{equation*}
-        \begin{bmatrix}
-            \toCoord{x}{B}\\
-            \toCoord{y}{B}\\
-        \end{bmatrix} = \rotationCoord{B}{A}
-        \begin{bmatrix}
-            \toCoord{x}{A}\\
-            \toCoord{y}{A}
-        \end{bmatrix} + \toCoord{\translation}{B}
+        \toCoord{\begin{bmatrix}
+            x\\
+            y
+        \end{bmatrix}}{B} = \rotationCoord{B}{A}
+        \toCoord{\begin{bmatrix}
+            x\\
+            y
+        \end{bmatrix}}{A} + \translationCoord{B}{A}
     \end{equation*}
-
 
 Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
 
     \begin{align*}
-        \begin{bmatrix}
-            \toCoord{x}{B}\\
-            \toCoord{y}{B}\\
+        \toCoord{\begin{bmatrix}
+            x\\
+            y\\
             1
-        \end{bmatrix} &=
+        \end{bmatrix}}{B} &=
         \begin{bmatrix}
-            \rotationCoord{B}{A} & \toCoord{\translation}{B}\\
+            \rotationCoord{B}{A} & \translationCoord{B}{A}\\
             \vec{0} & 1
         \end{bmatrix}
-        \begin{bmatrix}
-            \toCoord{x}{A}\\
-            \toCoord{y}{A}\\
+        \toCoord{\begin{bmatrix}
+            x\\
+            y\\
             1
-        \end{bmatrix}\\
-        \begin{bmatrix}
-            \toCoord{x}{B}\\
-            \toCoord{y}{B}\\
+        \end{bmatrix}}{A}\\
+        \toCoord{\begin{bmatrix}
+            x\\
+            y\\
             1
-        \end{bmatrix} &=
+        \end{bmatrix}}{B} &=
         \transform{B}{A}
-        \begin{bmatrix}
-            \toCoord{x}{B}\\
-            \toCoord{y}{B}\\
+        \toCoord{\begin{bmatrix}
+            x\\
+            y\\
             1
-        \end{bmatrix}
+        \end{bmatrix}}{A}
     \end{align*}
 
 
