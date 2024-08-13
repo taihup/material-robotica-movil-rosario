@@ -10,9 +10,9 @@
 \begin{frame}
     \frametitle{Rotación en 2D}
 
-        \begin{center}
+    \begin{center}
         \begin{minipage}{0.4\linewidth}
-            \includegraphics[width=\columnwidth]{coordinate_system_rotation.pdf}
+            \includegraphics[width=\columnwidth]{coordinate_system_rotation_point.pdf}
         \end{minipage}
         \hspace{1em}
         \begin{minipage}{0.5\linewidth}
@@ -703,11 +703,51 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
 
 \begin{frame}
     \frametitle{Propiedades de matrices Rotación}
-    \TODO{Agregar imagen y explicar mejor: Los vectores columnas de la matriz de Rotación muestran donde se encuentran posicionados los ejes x, y y z luego de aplicar la rotación}
 
     \begin{figure}[!h]
         \includegraphics[width=0.5\columnwidth]{./images/rotation_matrix_column_vectors.pdf}
     \end{figure}
+
+
+    \begin{equation*}
+        \begin{bmatrix}
+            \textcolor{red}{r_{00}} & \textcolor{green}{r_{01}} & \textcolor{blue}{r_{02}}\\
+            \textcolor{red}{r_{10}} & \textcolor{green}{r_{11}} & \textcolor{blue}{r_{12}}\\
+            \textcolor{red}{r_{20}} & \textcolor{green}{r_{21}} & \textcolor{blue}{r_{22}}
+        \end{bmatrix}
+        \begin{bmatrix}
+            1\\
+            0\\
+            0
+        \end{bmatrix} =
+        \begin{bmatrix}
+            \textcolor{red}{r_{00}}\\
+            \textcolor{red}{r_{10}}\\
+            \textcolor{red}{r_{20}}
+        \end{bmatrix}
+    \end{equation*}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Propiedades de matrices Rotación}
+
+    \begin{center}
+        \begin{minipage}{0.4\linewidth}
+            \includegraphics[width=\columnwidth]{coordinate_system_rotation_colors.pdf}
+        \end{minipage}
+        \hspace{1em}
+        \begin{minipage}{0.5\linewidth}
+            \begin{equation*}
+                \toCoord{\fromCoord{\begin{bmatrix}
+                    \textcolor{red}{\cos \theta} & \textcolor{green}{-\sin \theta} & \textcolor{blue}{0}\\
+                    \textcolor{red}{\sin \theta} & \textcolor{green}{\cos \theta} & \textcolor{blue}{0}\\
+                    \textcolor{red}{0} & \textcolor{green}{0} & \textcolor{blue}{1}
+                \end{bmatrix}}{A}}{B}
+            \end{equation*}
+        \end{minipage}
+    \end{center}
 
 \end{frame}
 
