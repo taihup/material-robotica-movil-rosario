@@ -8,7 +8,7 @@
    version="1.1"
    id="svg5"
    inkscape:version="1.3.2 (1:1.3.2+202404261509+091e20ef0f)"
-   sodipodi:docname="coordinate_system_rotation_colors.svg"
+   sodipodi:docname="coordinate_system_rotation.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -28,15 +28,15 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:zoom="2.2287383"
-     inkscape:cx="109.92767"
-     inkscape:cy="51.150017"
+     inkscape:zoom="17.829906"
+     inkscape:cx="76.668939"
+     inkscape:cy="134.15662"
      inkscape:window-width="1854"
      inkscape:window-height="1011"
      inkscape:window-x="1432"
      inkscape:window-y="32"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g830"
+     inkscape:current-layer="layer3"
      inkscape:showpageshadow="2"
      inkscape:deskcolor="#d1d1d1" />
   <defs
@@ -233,7 +233,8 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-75.92988,-196.95647)">
+     transform="translate(-75.92988,-196.95647)"
+     sodipodi:insensitive="true">
     <g
        id="g830"
        inkscape:label="Peter Corke - Robotics, Vision and Control_ Fundamental Algorithms In MATLAB 2ed"
@@ -898,8 +899,7 @@
   <g
      inkscape:groupmode="layer"
      id="layer3"
-     inkscape:label="new_axis"
-     sodipodi:insensitive="true">
+     inkscape:label="new_axis">
     <path
        style="fill:#7d7d7d;fill-opacity:1;stroke:#00ff00;stroke-width:0.388056;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#ConcaveTriangle)"
        d="M 20.319262,38.759055 5.397905,12.064497"
@@ -910,6 +910,21 @@
        d="M 20.208523,38.610498 47.110204,23.104217"
        id="path1-4"
        sodipodi:nodetypes="cc" />
+    <g
+       id="g4">
+      <circle
+         style="fill:#ffffff;fill-opacity:1;stroke:#0000ff;stroke-width:0.388056;stroke-dasharray:none;stroke-opacity:1"
+         id="path4"
+         cx="20.144407"
+         cy="37.971489"
+         r="0.9388237" />
+      <circle
+         style="fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:0.205479;stroke-dasharray:none;stroke-opacity:1"
+         id="path4-3"
+         cx="20.144407"
+         cy="37.971489"
+         r="0.4971154" />
+    </g>
   </g>
   <g
      inkscape:groupmode="layer"
