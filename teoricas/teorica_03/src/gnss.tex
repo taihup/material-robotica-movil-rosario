@@ -1,10 +1,10 @@
 \begin{frame}
-    \frametitle{GNSS (Global Navigation Satellite System)}
+    \frametitle{GNSS (Global Navigation Satellite System) - Single Point Positioning (SPP)}
      \note{Página que explica como funciona un GNSS http://gutovnik.com/como_func_sist_gps.html}
      \note{video explicativo: https://youtu.be/U3eX6QKS9kY}
      
      \begin{center}
-        \includegraphics[width=0.3\columnwidth]{gps.pdf}
+        \includegraphics[width=0.2\columnwidth]{gnss.pdf}
      \end{center}
     
     \begin{block}{Principio de Funcionamiento}
@@ -17,24 +17,25 @@
     \note{Los receptores "normales" basados navegación por satélite, comparan una señal pseudoaleatoria que es enviada desde el satélite con una copia interna generada por la misma señal. Puesto que la señal del satélite tarda tiempo en alcanzar al receptor, las dos señales no se alinean correctamente, la copia del satélite se retrasa en referencia a la copia local. Al retrasar progresivamente la copia local, las dos señales se alinearán correctamente en algún momento. Este retraso es el tiempo necesario para que la señal alcance al receptor, y del resultado de esto puede ser calculada la distancia al satélite. La precisión de la medición resultante es generalmente una función de la capacidad  electrónica del receptor para comparar exactamente las dos señales.}
     
     \begin{itemize}
-        \item Fuentes de ruido (Retrasos ionosféricos y atmosféricos, Efecto Multitrayectoria, Dilución de la Precisión, reloj del satélite)
+        \item Fuentes de ruido (Retrasos ionosféricos y atmosféricos, Efecto Multitrayectoria, Dilución de la Precisión, errores del reloj del satélite, imprecisión de órbita de los satélites)
         \item Error de posicionamiento métrico ($\sim\SI{2}{\meter}$)
     \end{itemize}
     
-    \note{La Dilución de la Precisión (DOP) es una medida de la fortaleza de la geometría de los satélites y está relacionada con la distancia entre los estos y su posición en el cielo. El DOP puede incrementar el efecto del error en la medición de distancia a los satélites.\\
+    \note{La Dilución de la Precisión (DOP) es una medida de la fortaleza de la geometría de los satélites y está relacionada con la distancia entre estos y su posición en el cielo. El DOP puede incrementar el efecto del error en la medición de distancia a los satélites.\\
     Un ejemplo de Dilución de la Precisión, si los satélites están en una misma línea (colineales) uno arriba del otro, queda como mal condicionado.}
 
 \end{frame}
 
 \begin{frame}
     \frametitle{Sistema GNSS-RTK (Real-Time Kinematics)}
+    \footnotesize
     \begin{center}
-        \includegraphics[width=0.3\columnwidth]{gps_rtk_system.pdf}
+        \includegraphics[width=0.2\columnwidth]{gnss_rtk_system.pdf}
     \end{center}
     
     \begin{block}{Principio de Funcionamiento}
         \begin{itemize}
-            \item Se requieren al menos dos receptores GPS (estación base y unidad móvil). 
+            \item Se requieren al menos dos receptores GNSS (estación base y unidad móvil). 
             \item La estación base retransmite la fase de la onda portadora de la señal enviada por el satélite \note{no tiene en cuenta los datos enviados por el satélite}
             \item La unidad móvil compara su medición de fase de la señal con la fase recibida de la estación base (\emph{Resolución de Ambig{\"u}edad})
         \end{itemize}
@@ -43,7 +44,11 @@
     \begin{itemize}
         \item Error de posicionamiento submétrico ($\sim\SI{0.05}{\meter}$).
         \item Alcance de \SI{10}{\km}
+        \item GNSS-RTK es una evolución de DGNSS (Differential-GNSS). GNSS-RTK utiliza un nuevo protocolo de comunicación (RTCM3) y un mejor algoritmo de corrección.
+        \item NTRIP (correcciones por internet desde una estación dedicada)
     \end{itemize}
+
+    \note{DGNSS vs GNSS-RTK: https://youtu.be/SOYDTxbX4mM?si=NmRR0_DU11HEORfo}
 
     %
     \note{ RESOLUCIÓN DE AMBIGUEDAD\\
@@ -67,7 +72,15 @@
 \begin{frame}
     \frametitle{Sistema GNSS-PPP (Precise Point Positioning)}
     \begin{center}
-        \includegraphics[width=0.3\columnwidth]{gps_rtk_system.pdf}
+        \includegraphics[width=0.3\columnwidth]{gnss_rtk_system.pdf}
+    \end{center}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{NTRIP}
+    \begin{center}
+        \includegraphics[width=0.3\columnwidth]{gnss_rtk_system.pdf}
     \end{center}
 
 \end{frame}
