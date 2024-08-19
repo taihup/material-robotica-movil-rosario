@@ -2,10 +2,25 @@
     \frametitle{GNSS (Global Navigation Satellite System) - Single Point Positioning (SPP)}
      \note{Página que explica como funciona un GNSS http://gutovnik.com/como_func_sist_gps.html}
      \note{video explicativo: https://youtu.be/U3eX6QKS9kY}
-     
-     \begin{center}
-        \includegraphics[width=0.2\columnwidth]{gnss.pdf}
-     \end{center}
+     \note{Slides de la estación permanente de la UNR: https://www.fceia.unr.edu.ar/gps/extension/GPSenTiempoReal.pdf}
+
+     \begin{figure}[!h]
+        \centering
+        \subfloat[]
+        {
+            \includegraphics[width=0.2\columnwidth,valign=m]{gnss.pdf}
+        }
+        \hspace*{1cm}
+        \subfloat[]
+        {
+            \movie[autostart,loop,poster]{\includegraphics[width=0.17\columnwidth,valign=m]{./images/gnss_video.jpg}}{./videos/gnss.mp4}
+        }
+        \subfloat[]
+        {
+            \includegraphics[width=0.19\columnwidth,valign=m]{gnss_satellite_orbits.pdf}
+        }
+    \end{figure}
+
     
     \begin{block}{Principio de Funcionamiento}
         Se toma la distancia a cuatro satélites (uno por cada incógnita: latitud, longitud, altitud y offset en tiempo del reloj del receptor) y se estima la pose por triangulación. La distancia a cada satélite se obtiene midiendo el tiempo que tarda en llegar la señal de radio del satélite.
@@ -29,32 +44,47 @@
 \begin{frame}
     \frametitle{Sistema GNSS-RTK (Real-Time Kinematics)}
     \footnotesize
+
     \begin{center}
-        \includegraphics[width=0.2\columnwidth]{gnss_rtk_system.pdf}
+        \includegraphics[width=0.3\columnwidth]{gnss_rtk_system.pdf}    
     \end{center}
     
-    \begin{block}{Principio de Funcionamiento}
-        \begin{itemize}
-            \item Se requieren al menos dos receptores GNSS (estación base y unidad móvil). 
-            \item La estación base retransmite la fase de la onda portadora de la señal enviada por el satélite \note{no tiene en cuenta los datos enviados por el satélite}
-            \item La unidad móvil compara su medición de fase de la señal con la fase recibida de la estación base (\emph{Resolución de Ambig{\"u}edad})
-        \end{itemize}
-    \end{block}
- 
-    \begin{itemize}
-        \item Error de posicionamiento submétrico ($\sim\SI{0.05}{\meter}$).
-        \item Alcance de \SI{10}{\km}
-        \item GNSS-RTK es una evolución de DGNSS (Differential-GNSS). GNSS-RTK utiliza un nuevo protocolo de comunicación (RTCM3) y un mejor algoritmo de corrección.
-        \item NTRIP (correcciones por internet desde una estación dedicada)
-    \end{itemize}
-
-    \note{DGNSS vs GNSS-RTK: https://youtu.be/SOYDTxbX4mM?si=NmRR0_DU11HEORfo}
-
-    %
-    \note{ RESOLUCIÓN DE AMBIGUEDAD\\
+    \only<1>{
+        \begin{block}{Principio de Funcionamiento}
+            \begin{itemize}
+                \item Se requieren al menos dos receptores GNSS (estación base y unidad móvil). 
+                \item La estación base retransmite la fase de la onda portadora de la señal enviada por el satélite \note{no tiene en cuenta los datos enviados por el satélite}
+                \item La unidad móvil compara su medición de fase de la señal con la fase recibida de la estación base (\emph{Resolución de Ambig{\"u}edad})
+            \end{itemize}
+        \end{block}
+        
+        \note{ RESOLUCIÓN DE AMBIGUEDAD\\
         La sincronización entre la portadora de la señal recibida y la réplica generada en recepción permite obtener una medida de la fase de la portadora. Esta medida de fase puede ser utilizada también para estimar la distancia satélite-receptor. Sin embargo, para ello, es necesario conocer el número entero de ciclos de portadora transcurridos desde que la señal deja el satélite hasta que llega al receptor.\\
         Para realizar la sincronización entre la portadora de la señal y la réplica es necesario tener en cuenta el efecto doppler que se produce debido al movimiento relativo satélite receptor. Por ello, la frecuencia de la réplica ha de ser igual a la frecuencia de la señal transmitida con su desplazamiento doppler corregido. La sincronización se realiza mediante circuitos de enganche en fase (Phase Lock Loop, PLL) o en frecuencia (Frecuency Lock Loop, FLL). Los circuitos PLL o FLL permiten obtener medidas de fase con precisiones del orden de 0.01 ciclos de portadora.\\
         Una vez que el receptor se sincroniza con la portadora y con el código, es decir, se produce el enganche con la señal del satélite, el receptor puede medir la fase de la portadora recibida. Esta medida se obtiene de forma parecida a como se obtiene la medida de pseudodistancia, pues será el desfase que es necesario realizar a la réplica de la portadora para que se sincronice con la portadora recibida. La medida de fase se suele expresar en ciclos de portadora. Por tanto, tal como se ha descrito hasta ahora, la medida de fase será un valor decimal, no entero, indicando la fracción de ciclo de portadora transcurrido en el momento de la recepción de la señal. La distancia entre el satélite y el receptor se puede expresar en número de longitudes de onda y será igual al número entero de ciclos de portadora n transcurridos en el origen desde que la señal salió del satélite hasta que llegó al receptor, más la fracción de ciclo medida (la medida de fase). Por tanto, la medida de fase sirve como estimación de la distancia satélite-receptor pero tiene el problema de que el número entero n es desconocido. A dicho número se le denomina ambigüedad entera de ciclos de portadora. Mientras el receptor permanezca enganchado con la señal el número entero n desconocido permanecerá constante, pues el receptor registra la variación del número entero de ciclos en las propias medidas de fase. La figura 1.7 ilustra esta circunstancia. En el instante t 0 se produce el enganche, obteniéndose la medida phi 0 y siendo desconocido el número de ciclos n. A partir de entonces, el receptor registra la variación de ciclos que se van produciendo y en los instantes sucesivos las medidas de fase phi i estarán formadas por una parte fraccional y una parte entera: la diferencia entre el número de ciclos transcurridos y el número n de la medida inicial. Por tanto, el único valor desconocido es el número entero de ciclos n inicial.}
+   }
+    \only<2>{ 
+        \begin{itemize}
+            \item Error de posicionamiento submétrico ($\sim\SI{0.05}{\meter}$).
+            \item Alcance de \SI{10}{\km}
+            \item GNSS-RTK es una evolución de DGNSS (Differential-GNSS). GNSS-RTK utiliza un nuevo protocolo de comunicación (RTCM3) y un mejor algoritmo de corrección.
+            \item NTRIP (\emph{Networked Transport of RTCM via Internet Protocol}) correcciones por internet desde una estación permanente
+        \end{itemize}
+        \note{DGNSS vs GNSS-RTK: https://youtu.be/SOYDTxbX4mM?si=NmRR0_DU11HEORfo}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{Estación Permamente GPS}
+    \begin{center}
+        \includegraphics[width=0.3\columnwidth]{gnss_ppk_system.pdf}
+    \end{center}
+
+    \href{https://www.fceia.unr.edu.ar/gps/}{https://www.fceia.unr.edu.ar/gps/}
+
+    RINEX (\emph{Receiver Independent Exchange Format})  permite posprocesar los datos recibidos para producir un resultado más preciso, generalmente con otros datos desconocidos para el receptor original, como mejores modelos de las condiciones atmosféricas en el momento de la medición.
+    RINEX es el formato estándar que permite la gestión y disposición de las medidas generadas por un receptor, así como su tratamiento off-line por multitud de aplicaciones, sea cual sea el fabricante tanto del receptor como de la aplicación informática.
+
 \end{frame}
 
 
