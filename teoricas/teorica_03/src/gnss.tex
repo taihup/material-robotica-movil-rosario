@@ -1,10 +1,11 @@
 \begin{frame}
     \frametitle{GNSS (Global Navigation Satellite System) - Single Point Positioning (SPP)}
-     \note{Página que explica como funciona un GNSS http://gutovnik.com/como_func_sist_gps.html}
-     \note{video explicativo: https://youtu.be/U3eX6QKS9kY}
-     \note{Slides de la estación permanente de la UNR: https://www.fceia.unr.edu.ar/gps/extension/GPSenTiempoReal.pdf}
+    \note{Página que explica como funciona un GNSS http://gutovnik.com/como_func_sist_gps.html}
+    \note{video explicativo: https://youtu.be/U3eX6QKS9kY}
+    \note{Slides de la estación permanente de la UNR: https://www.fceia.unr.edu.ar/gps/extension/GPSenTiempoReal.pdf}
+    \small
 
-     \begin{figure}[!h]
+    \begin{figure}[!h]
         \centering
         \subfloat[]
         {
@@ -68,20 +69,36 @@
             \item Error de posicionamiento submétrico ($\sim\SI{0.05}{\meter}$).
             \item Alcance de \SI{10}{\km}
             \item GNSS-RTK es una evolución de DGNSS (Differential-GNSS). GNSS-RTK utiliza un nuevo protocolo de comunicación (RTCM3) y un mejor algoritmo de corrección.
-            \item NTRIP (\emph{Networked Transport of RTCM via Internet Protocol}) correcciones por internet desde una estación permanente
         \end{itemize}
         \note{DGNSS vs GNSS-RTK: https://youtu.be/SOYDTxbX4mM?si=NmRR0_DU11HEORfo}
     }
 \end{frame}
 
 \begin{frame}
-    \frametitle{Estación Permamente GPS}
+    \frametitle{GNSS-RTK con NTRIP}
     \begin{center}
-        \includegraphics[width=0.3\columnwidth]{gnss_ppk_system.pdf}
+        \includegraphics[width=0.3\columnwidth]{gnss_rtk_ntrip.pdf}
+    \end{center}
+    
+    \begin{itemize}
+        \item NTRIP (\emph{Networked Transport of RTCM via Internet Protocol}) correcciones por internet desde una estación base local o estación permanente.
+        \item Servidor cáster: transfiere los datos RTCM de dichas estaciones a uno o múltiples rover en terreno.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Estación Permanente GNSS de Rosario (UNRO)}
+    \begin{center}
+        \includegraphics[width=0.3\columnwidth]{permanent_gnss_station_unro.pdf}
     \end{center}
 
-    \href{https://www.fceia.unr.edu.ar/gps/}{https://www.fceia.unr.edu.ar/gps/}
-
+    \begin{itemize}
+        \item \href{https://www.fceia.unr.edu.ar/gps/}{https://www.fceia.unr.edu.ar/gps/}
+        \item Forma parte de la Red Argentina de Monitoreo Satelital Continuo (RAMSAC)
+        \item Forma parte de la red IGS (International GNSS Service)
+        \item Servicio PPK
+    \end{itemize}
+    
     RINEX (\emph{Receiver Independent Exchange Format})  permite posprocesar los datos recibidos para producir un resultado más preciso, generalmente con otros datos desconocidos para el receptor original, como mejores modelos de las condiciones atmosféricas en el momento de la medición.
     RINEX es el formato estándar que permite la gestión y disposición de las medidas generadas por un receptor, así como su tratamiento off-line por multitud de aplicaciones, sea cual sea el fabricante tanto del receptor como de la aplicación informática.
 
@@ -101,14 +118,6 @@
 
 \begin{frame}
     \frametitle{Sistema GNSS-PPP (Precise Point Positioning)}
-    \begin{center}
-        \includegraphics[width=0.3\columnwidth]{gnss_rtk_system.pdf}
-    \end{center}
-
-\end{frame}
-
-\begin{frame}
-    \frametitle{NTRIP}
     \begin{center}
         \includegraphics[width=0.3\columnwidth]{gnss_rtk_system.pdf}
     \end{center}
