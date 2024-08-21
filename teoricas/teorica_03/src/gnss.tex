@@ -96,7 +96,7 @@
         \item \href{https://www.fceia.unr.edu.ar/gps/}{https://www.fceia.unr.edu.ar/gps/}
         \item Forma parte de la Red Argentina de Monitoreo Satelital Continuo (RAMSAC)
         \item Forma parte de la red IGS (International GNSS Service)
-        \item Servicio PPK
+        \item Servicio PPK (\emph{Post-Processing Kinematic}) y Servicio PPP (\emph{Precise Point Positioning}) proveyendo archivos RINEX.
     \end{itemize}
     
     RINEX (\emph{Receiver Independent Exchange Format})  permite posprocesar los datos recibidos para producir un resultado más preciso, generalmente con otros datos desconocidos para el receptor original, como mejores modelos de las condiciones atmosféricas en el momento de la medición.
@@ -106,13 +106,17 @@
 
 
 \begin{frame}
-    \frametitle{Sistema GNSS-PPK (Post Processed Kinematic)}
+    \frametitle{Sistema GNSS-PPK (Post-Processing Kinematic)}
     \begin{center}
         \includegraphics[width=0.3\columnwidth]{gnss_ppk_system.pdf}
     \end{center}
 
-    El PPK (Post Processed Kinematic), a diferencia del RTK, realiza un proceso de datos a posteriori (offline).
-    En la imagen vemos que, tanto la base como el drone, reciben lecturas de las diferentes constelaciones de satélites. Pero, a diferencia del RTK, no hay un enlace de datos constante entre el drone y la base, ya que ambos registran en una memoria esa información que después del vuelo deberemos descargar, normalmente en archivos con formato RINEX, para postprocesar y obtener nuestra solución.
+
+    El PPK (Post-Processing Kinematic), a diferencia del RTK, realiza un proceso de datos a posteriori (offline).
+    En la imagen vemos que, tanto la base como el drone, reciben lecturas de las diferentes constelaciones de satélites. 
+    Pero, a diferencia del RTK, no hay un enlace de datos constante entre el drone y la base, ya que ambos registran en una memoria esa información que después del vuelo deberemos descargar, normalmente en archivos con formato RINEX, para postprocesar y obtener nuestra solución.
+
+    Se puede utilizar la librería RTKLIB para realizar PPK.
     
 \end{frame}
 
