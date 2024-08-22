@@ -29,11 +29,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.7"
-     inkscape:cx="457.85714"
-     inkscape:cy="430.71429"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="362.13969"
+     inkscape:cy="405.57625"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer11"
+     inkscape:current-layer="layer9"
      showgrid="false"
      inkscape:window-width="1854"
      inkscape:window-height="1003"
@@ -1012,25 +1012,6 @@
          style="fill:#fe0000;fill-opacity:1;fill-rule:evenodd;stroke:#fe0000;stroke-width:1pt;stroke-opacity:1"
          d="M 0,0 5,-5 -12.5,0 5,5 Z"
          id="path2112-7-8" />
-    </marker>
-    <marker
-       style="overflow:visible"
-       id="ConcaveTriangle-2"
-       refX="0"
-       refY="0"
-       orient="auto-start-reverse"
-       inkscape:stockid="Concave triangle arrow"
-       markerWidth="1"
-       markerHeight="1"
-       viewBox="0 0 1 1"
-       inkscape:isstock="true"
-       inkscape:collect="always"
-       preserveAspectRatio="xMidYMid">
-      <path
-         transform="scale(0.7)"
-         d="M -2,-4 9,0 -2,4 c 2,-2.33 2,-5.66 0,-8 z"
-         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
-         id="path8-7" />
     </marker>
   </defs>
   <metadata
@@ -2714,7 +2695,7 @@
      sodipodi:insensitive="true">
     <g
        id="g7"
-       transform="translate(120.56133,15.511668)">
+       transform="matrix(0.59789456,0,0,0.59789456,153.8349,63.084886)">
       <g
          id="g6">
         <path
@@ -2747,10 +2728,36 @@
        id="path7"
        sodipodi:nodetypes="cc" />
     <path
-       style="display:inline;fill:none;fill-opacity:1;stroke:#0000ff;stroke-width:1;stroke-dasharray:3, 3;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#ConcaveTriangle-2)"
-       d="M 169.44068,182.09773 H 15.357352 v -32.37041"
+       style="display:inline;fill:none;fill-opacity:1;stroke:#0000ff;stroke-width:1;stroke-dasharray:3, 3;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#ConcaveTriangle)"
+       d="M 145.08939,182.12404 H 18.053016 V 164.1169"
        id="path7-0"
        sodipodi:nodetypes="ccc" />
+    <g
+       id="g9"
+       transform="translate(-3.7790972,0.2575797)">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:4.93889px;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Medium';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;white-space:pre;inline-size:48.4475;display:inline;fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:3, 3;stroke-opacity:1"
+         x="75.025162"
+         y="167.06024"
+         id="text7"
+         transform="translate(107.50341,12.066969)"><tspan
+           x="75.025162"
+           y="167.06024"
+           id="tspan8">Corrección de<tspan
+   y="167.06024"
+   id="tspan9"> </tspan></tspan><tspan
+           x="75.025162"
+           y="173.23386"
+           id="tspan10">mediciones offline</tspan></text>
+      <rect
+         style="fill:none;fill-opacity:1;stroke:#ff0004;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+         id="rect8"
+         width="50.337761"
+         height="16.079678"
+         x="157.36635"
+         y="172.46039" />
+    </g>
   </g>
   <g
      inkscape:groupmode="layer"
