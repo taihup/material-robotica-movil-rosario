@@ -399,11 +399,11 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
                 0\\
                 0
             \end{bmatrix} =
-            \begin{bmatrix}
+            \toCoord{\fromCoord{\begin{bmatrix}
                 \cos \frac{\pi}{2} & -\sin \frac{\pi}{2} & 0\\
                 \sin \frac{\pi}{2} & \quad \cos \frac{\pi}{2} & 0\\
                 0 & 0 & 1
-            \end{bmatrix}
+            \end{bmatrix}}{B}}{A}
             \begin{bmatrix}
                 1\\
                 0\\
@@ -715,7 +715,7 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
         \item $R^{\mathsf {T}}=R^{-1}$ Matriz ortogonal
         \item $\det R = \pm 1$ (esto implica que la longitud del vector no cambia luego de la rotación)
         \item $R \in SO(3)$ entonces $\rotationCoord{A}{C} = \rotationCoord{A}{B} \rotationCoord{B}{C}$ y $\rotationCoord{A}{B} = \rotationCoord{B}{A}^{-1}$
-        \item Los vectores columnas de la matriz de rotación indican la orientación de los ejes x, y y z respectivamente.
+        \item Los vectores columnas de la matriz de rotación indican la orientación de los ejes $x$, $y$ y $z$ respectivamente.
     \end{itemize}
 
     Determinar el ángulo de una matriz de rotación utilizando la traza de la matriz (la suma de los elementos de la diagonal del matriz).
@@ -733,7 +733,7 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
 \begin{frame}
     \frametitle{Matríz de Rotación: Vectores columna}
 
-    Los vectores columna de una matríz de rotación indican la ubicación de cada eje del sistema de coordenadas canónico.
+    Los vectores columna de una matríz de rotación indican la nueva ubicación de cada eje del sistema de coordenadas canónico.
 
     \begin{figure}[!h]
         \includegraphics[width=0.5\columnwidth]{./images/rotation_matrix_column_vectors.pdf}
@@ -774,7 +774,7 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
                     \textcolor{red}{\cos \theta} & \textcolor{green}{-\sin \theta} & \textcolor{blue}{0}\\
                     \textcolor{red}{\sin \theta} & \textcolor{green}{\cos \theta} & \textcolor{blue}{0}\\
                     \textcolor{red}{0} & \textcolor{green}{0} & \textcolor{blue}{1}
-                \end{bmatrix}}{A}}{B}
+                \end{bmatrix}}{B}}{A}
             \end{equation*}
         \end{minipage}
     \end{center}
