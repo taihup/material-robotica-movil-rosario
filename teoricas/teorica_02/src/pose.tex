@@ -1,6 +1,13 @@
 \begin{frame}
     \frametitle{Rotación en 2D}
 
+    \TODO{refactorear slides}
+    \TODO{Mostrar que una misma rotación, traslación o transformación se puede interpretar de dos formas. Se la puede interpretar como a donde van a parar los ejes canonicos o se lee como transformar puntos de un sistema de coordenadas a otro.}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Rotación en 2D}
+
     \begin{center}
         \begin{minipage}{0.4\linewidth}
             \includegraphics[width=\columnwidth]{coordinate_system_rotation_point.pdf}
@@ -327,7 +334,7 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
 \begin{frame}
     \frametitle{Pose}
     
-    La Pose (posición y orientación) de un robot es la transformación rototraslacional dada por la posición y orientación del robot en el espacio.
+    La \textbf{Pose (posición y orientación)} de un robot es la transformación rototraslacional dada por la posición y orientación del robot en el espacio.
     
     Ejemplo: Dado el vector posición $\toCoord{\position}{\worldCoordSystem}$ y la matriz orientación $\toCoord{\fromCoord{\orientation}{\bodyCoordSystem}}{\worldCoordSystem}$ del robot $\bodyCoordSystem$ en el mundo $\worldCoordSystem$, notamos la pose como $\transform{\worldCoordSystem}{\bodyCoordSystem}$
     
