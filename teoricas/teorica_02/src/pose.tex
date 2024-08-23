@@ -12,38 +12,38 @@
                 \toCoord{\fromCoord{\begin{bmatrix}
                     \cos \theta & -\sin \theta \\
                     \sin \theta & \cos \theta
-                \end{bmatrix}}{A}}{B}
+                \end{bmatrix}}{B}}{A}
             \end{equation*}
 
             \begin{equation*}
                 \begin{bmatrix}
-                    \toCoord{x}{B}\\
-                    \toCoord{y}{B}
+                    \toCoord{x}{A}\\
+                    \toCoord{y}{A}
                 \end{bmatrix} =
                 \toCoord{\fromCoord{\begin{bmatrix}
                     \cos \theta &-\sin \theta \\
                     \sin \theta &\cos \theta
-                \end{bmatrix}}{A}}{B}
+                \end{bmatrix}}{B}}{A}
                 \begin{bmatrix}
-                    \toCoord{x}{A}\\
-                    \toCoord{y}{A}
+                    \toCoord{x}{B}\\
+                    \toCoord{y}{B}
                 \end{bmatrix}
             \end{equation*}
 
             \begin{align*}
-                \toCoord{x}{B} &= \toCoord{x}{A} \cos \theta -\toCoord{y}{A} \sin \theta\\
-                \toCoord{y}{B} &= \toCoord{x}{A} \sin \theta + \toCoord{y}{A}\cos \theta
+                \toCoord{x}{A} &= \toCoord{x}{B} \cos \theta -\toCoord{y}{B} \sin \theta\\
+                \toCoord{y}{A} &= \toCoord{x}{B} \sin \theta + \toCoord{y}{B}\cos \theta
             \end{align*}
 
             \begin{equation*}
                 \begin{bmatrix}
-                    \toCoord{x}{B}\\
-                    \toCoord{y}{B}
-                \end{bmatrix} =
-                \rotationCoord{B}{A}
-                \begin{bmatrix}
                     \toCoord{x}{A}\\
                     \toCoord{y}{A}
+                \end{bmatrix} =
+                \rotationCoord{A}{B}
+                \begin{bmatrix}
+                    \toCoord{x}{B}\\
+                    \toCoord{y}{B}
                 \end{bmatrix}
             \end{equation*}
         \end{minipage}
@@ -75,11 +75,11 @@
                     \toCoord{\fromCoord{\begin{bmatrix}
                         \cos \frac{\pi}{2} & -\sin \frac{\pi}{2} \\
                         \sin \frac{\pi}{2} & \cos \frac{\pi}{2}
-                    \end{bmatrix}}{A}}{B} =
+                    \end{bmatrix}}{B}}{A} =
                     \toCoord{\fromCoord{\begin{bmatrix}
-                        0 & 1 \\
-                        -1 & 0
-                    \end{bmatrix}}{A}}{B}\\
+                        0 & -1 \\
+                        1 & 0
+                    \end{bmatrix}}{B}}{A}\\
                     \toCoord{\begin{bmatrix}
                         0\\
                         -1
@@ -499,8 +499,7 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
         https://www.youtube.com/watch?v=geaUKjEYHtM
     }
 
-    
-    Una rotación de un de referencia a otro se puede obtener mediante la multiplicación de varias rotaciones.
+    Una rotación de un sistema de referencia a otro se puede obtener mediante la multiplicación de varias rotaciones.
     
     \begin{block}{Ángulos de Euler}
         Se denomina Ángulos de Euler a los ángulos $\alpha$, $\beta$ y $\gamma$ cuando estos deben ser aplicados utilizando el siguiente orden: $zx^{\prime}z^{\prime\prime}$, $yx^{\prime}y^{\prime\prime}$, $xy^{\prime}x^{\prime\prime}$, $zy^{\prime}z^{\prime\prime}$, $yz^{\prime}y^{\prime\prime}$ y $xz^{\prime}x^{\prime\prime}$. Los ángulos de Euler se aplican sobre el sistema de coordenadas local del objeto (Rotaciones intrínsecas).
@@ -638,7 +637,7 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
         \end{bmatrix}
     \end{align*}
     
-    Cuando el ángulo de Pitch, $\beta = \pm \frac{\pi}{2}$ el ángulo de Roll $\alpha$ no puede diferenciarse de el ángulo de Yaw $\gamma$.
+    Cuando el ángulo de Pitch, $\beta = \pm \frac{\pi}{2}$ el ángulo de Roll $\alpha$ no puede diferenciarse del ángulo de Yaw $\gamma$.
     
 \end{frame}
 
