@@ -1,11 +1,4 @@
 \begin{frame}
-    \frametitle{Rotación en 2D}
-
-    \TODO{refactorear slides}
-    \TODO{Mostrar que una misma rotación, traslación o transformación se puede interpretar de dos formas. Se la puede interpretar como a donde van a parar los ejes canonicos o se lee como transformar puntos de un sistema de coordenadas a otro.}
-\end{frame}
-
-\begin{frame}
     \frametitle{Rotación 2D}
 
     \begin{center}
@@ -87,9 +80,12 @@
                 \end{equation*}
             }
             \only<3>{
-                \begin{align*}
-                    \toCoord{\point^{\prime}}{A} &= \rotationCoord{A}{B} \toCoord{\point}{A}\\
-                    R\left(\frac{\pi}{2}\right) &=
+                \begin{equation*}
+                    \toCoord{\point^{\prime}}{A} = \rotationCoord{A}{B} \toCoord{\point}{A}
+                \end{equation*}
+                Siendo la matriz de rotación,
+                \begin{equation*}
+                    R\left(\frac{\pi}{2}\right) =
                     \toCoord{\fromCoord{\begin{bmatrix}
                         \cos \frac{\pi}{2} & -\sin \frac{\pi}{2} \\
                         \sin \frac{\pi}{2} & \cos \frac{\pi}{2}
@@ -97,11 +93,14 @@
                     \toCoord{\fromCoord{\begin{bmatrix}
                         0 & -1 \\
                         1 & 0
-                    \end{bmatrix}}{B}}{A}\\
+                    \end{bmatrix}}{B}}{A}
+                \end{equation*}
+                Entonces,
+                \begin{equation*}
                     \toCoord{\begin{bmatrix}
                         0\\
                         1
-                    \end{bmatrix}}{A} &=
+                    \end{bmatrix}}{A} =
                     \toCoord{\fromCoord{\begin{bmatrix}
                         0 & -1 \\
                         1 & 0
@@ -110,7 +109,7 @@
                         1\\
                         0
                     \end{bmatrix}}{A}
-                \end{align*}                
+                \end{equation*}                
             }
         \end{minipage}
     \end{center}
@@ -127,21 +126,24 @@
             \only<1>{
                 \includegraphics[width=\columnwidth]{rotation_2D_axis_example_1.pdf}
             }
-            \only<2->{
-                \includegraphics[width=\columnwidth]{rotation_2D_axis_example_2.pdf}
+            \only<2>{
+                \includegraphics[width=\columnwidth]{rotation_2D_axis_example_3.pdf}
             }
         \end{minipage}
         \hspace{1em}
         \begin{minipage}{0.5\linewidth}
-            \only<2>{
+            \only<1>{
                 \begin{equation*}
                     \toCoord{\point}{B} = \, ?
                 \end{equation*}
             }
-            \only<3>{
-                \begin{align*}
-                    \toCoord{\point}{B} &= \rotationCoord{B}{A} \toCoord{\point}{A}\\
-                    R\left(\frac{\pi}{2}\right) &=
+            \only<2>{
+                \begin{equation*}
+                    \toCoord{\point}{B} = \rotationCoord{B}{A} \toCoord{\point}{A}
+                \end{equation*} 
+                La matríz de rotación queda,
+                \begin{equation*}
+                    R\left(\frac{\pi}{2}\right) =
                     \toCoord{\fromCoord{\begin{bmatrix}
                         \cos \frac{\pi}{2} & -\sin \frac{\pi}{2} \\
                         \sin \frac{\pi}{2} & \cos \frac{\pi}{2}
@@ -149,11 +151,14 @@
                     \toCoord{\fromCoord{\begin{bmatrix}
                         0 & -1 \\
                         1 & 0
-                    \end{bmatrix}}{B}}{A}\\
+                    \end{bmatrix}}{B}}{A}
+                \end{equation*}
+                Entonces,
+                \begin{equation*}
                     \toCoord{\begin{bmatrix}
                         0\\
                         -1
-                    \end{bmatrix}}{B} &=
+                    \end{bmatrix}}{B} =
                     \toCoord{\fromCoord{\begin{bmatrix}
                         0 & 1 \\
                         -1 & 0
@@ -162,7 +167,7 @@
                         1\\
                         0
                     \end{bmatrix}}{A}
-                \end{align*}                
+                \end{equation*}                
             }
         \end{minipage}
     \end{center}
@@ -220,86 +225,68 @@
     \end{center}
 \end{frame}
 
-
 \begin{frame}
-    \frametitle{Ejercicio: Rotación en 2D}
-    
-    \centering
-    
+    \frametitle{Ejercicio: Traslación 2D de un punto}
+
     \begin{center}
         \begin{minipage}{0.4\linewidth}
-            \includegraphics[width=\columnwidth]{rotation_2D_example.pdf}
+            \only<1>{
+                \includegraphics[width=\columnwidth]{translation_2D_point_example_1.pdf}
+            }
+            \only<2->{
+                \includegraphics[width=\columnwidth]{translation_2D_point_example_2.pdf}
+            }
         \end{minipage}
         \hspace{1em}
         \begin{minipage}{0.5\linewidth}
             
             \only<1>{
                 \begin{equation*}
-                    \toCoord{\point}{B} = \, ?
+                    \toCoord{\point^{\prime}}{A} = \, ?
                 \end{equation*}
             }
-            \only<2>{
+            \only<2-3>{
+                \begin{equation*}
+                    \toCoord{\point^{\prime}}{A} = \toCoord{\begin{bmatrix}
+                    2\\
+                    0
+                    \end{bmatrix}}{A}
+                \end{equation*}
+            }
+            \only<3>{
+                Observemos que,
                 \begin{align*}
-                    \toCoord{\point}{B} &= \rotationCoord{B}{A} \toCoord{\point}{A}\\
-                    R\left(\frac{\pi}{2}\right) &=
-                    \toCoord{\fromCoord{\begin{bmatrix}
-                        \cos \frac{\pi}{2} & -\sin \frac{\pi}{2} \\
-                        \sin \frac{\pi}{2} & \cos \frac{\pi}{2}
-                    \end{bmatrix}}{B}}{A} =
-                    \toCoord{\fromCoord{\begin{bmatrix}
-                        0 & -1 \\
-                        1 & 0
-                    \end{bmatrix}}{B}}{A}\\
+                    \toCoord{\point^{\prime}}{A} &= \toCoord{\point}{A} + \translationCoord{A}{B}\\
                     \toCoord{\begin{bmatrix}
-                        0\\
-                        -1
+                        2\\
+                        0
                     \end{bmatrix}}{B} &=
-                    \toCoord{\fromCoord{\begin{bmatrix}
-                        0 & 1 \\
-                        -1 & 0
-                    \end{bmatrix}}{A}}{B}
                     \toCoord{\begin{bmatrix}
                         1\\
                         0
-                    \end{bmatrix}}{A}
-                \end{align*}                
+                    \end{bmatrix}}{A} +
+                    \toCoord{\fromCoord{\begin{bmatrix}
+                        1\\
+                        0
+                    \end{bmatrix}}{B}}{A}
+                \end{align*}
             }
         \end{minipage}
     \end{center}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Matríz de Rotación 2D: Vectores columna}
-
-    Los vectores columna de una matríz de rotación indican la nueva ubicación de cada eje del sistema de coordenadas canónico.
-
-    \begin{figure}[!h]
-        \includegraphics[width=0.5\columnwidth]{./images/rotation_matrix_column_vectors.pdf}
-    \end{figure}
-
-    \begin{equation*}
-        \begin{bmatrix}
-            \textcolor{red}{r_{00}} & \textcolor{green}{r_{01}}\\
-            \textcolor{red}{r_{10}} & \textcolor{green}{r_{11}}
-        \end{bmatrix}
-        \begin{bmatrix}
-            1\\
-            0
-        \end{bmatrix} =
-        \begin{bmatrix}
-            \textcolor{red}{r_{00}}\\
-            \textcolor{red}{r_{10}}
-        \end{bmatrix}
-    \end{equation*}
-
-\end{frame}
 
 \begin{frame}
-    \frametitle{Ejercicio: Traslación en 2D}
+    \frametitle{Traslación 2D: Representación de un punto en otro Sist. de Coord.}
 
     \begin{center}
         \begin{minipage}{0.4\linewidth}
-        \includegraphics[width=\columnwidth]{translation_2D_example.pdf}
+            \only<1>{
+                \includegraphics[width=\columnwidth]{translation_2D_coord_example_1.pdf}
+            }
+            \only<2->{
+                \includegraphics[width=\columnwidth]{translation_2D_coord_example_2.pdf}
+            }
         \end{minipage}
         \hspace{1em}
         \begin{minipage}{0.5\linewidth}
@@ -309,19 +296,19 @@
                     \toCoord{\point}{B} = \, ?
                 \end{equation*}
             }
-            \only<2-3>{
+            \only<2->{
                 \begin{equation*}
                     \toCoord{\point}{B} = \toCoord{\begin{bmatrix}
-                    0\\
+                    -1\\
                     0
                     \end{bmatrix}}{B}
                 \end{equation*}
             }
-            \only<3>{Pero, ¿qué traslación me pasa el punto $\toCoord{\point}{A}$ a $\toCoord{\point}{B}$?} 
+            \only<3->{Pero, ¿qué traslación me pasa el punto $\toCoord{\point}{A}$ a $\toCoord{\point}{B}$?} 
             \only<4>{
                 \begin{align*}
                     %\toCoord{\point}{B} &= \transform{B}{A} \toCoord{\point}{A}\\
-                    \toCoord{\point}{A} &= \toCoord{\point}{B} + \translationCoord{A}{B}\\
+                    \toCoord{\point}{A} &= \toCoord{\point}{B} - \translationCoord{A}{B}\\
                     \toCoord{\begin{bmatrix}
                         1\\
                         0
@@ -329,29 +316,12 @@
                     \toCoord{\begin{bmatrix}
                         0\\
                         0
-                    \end{bmatrix}}{B} + \translationCoord{A}{B}\\
-                    \translationCoord{A}{B} &= \toCoord{\fromCoord{\begin{bmatrix}
-                        1\\
-                        0
-                    \end{bmatrix}}{B}}{A}
-                \end{align*}             
-            }
-            \only<5>{
-                \begin{align*}
-                    \toCoord{\point}{B} &= \toCoord{\point}{A} - \translationCoord{A}{B}\\
-                    \toCoord{\begin{bmatrix}
-                        0\\
-                        0
-                    \end{bmatrix}}{B} &=
-                    \toCoord{\begin{bmatrix}
-                        1\\
-                        0
-                    \end{bmatrix}}{A} + \translationCoord{B}{A}\\
+                    \end{bmatrix}}{B} + \translationCoord{B}{A}\\
                     \translationCoord{B}{A} &= \toCoord{\fromCoord{\begin{bmatrix}
                         -1\\
                         0
-                    \end{bmatrix}}{A}}{B}
-                \end{align*}
+                    \end{bmatrix}}{B}}{A}
+                \end{align*}             
             }
         \end{minipage}
     \end{center}
