@@ -248,7 +248,7 @@
             \only<2-3>{
                 \begin{equation*}
                     \toCoord{\point^{\prime}}{A} = \toCoord{\begin{bmatrix}
-                    2\\
+                    1\\
                     0
                     \end{bmatrix}}{A}
                 \end{equation*}
@@ -258,11 +258,11 @@
                 \begin{align*}
                     \toCoord{\point^{\prime}}{A} &= \toCoord{\point}{A} + \translationCoord{A}{B}\\
                     \toCoord{\begin{bmatrix}
-                        2\\
+                        1\\
                         0
                     \end{bmatrix}}{B} &=
                     \toCoord{\begin{bmatrix}
-                        1\\
+                        0\\
                         0
                     \end{bmatrix}}{A} +
                     \toCoord{\fromCoord{\begin{bmatrix}
@@ -308,19 +308,20 @@
             \only<4>{
                 \begin{align*}
                     %\toCoord{\point}{B} &= \transform{B}{A} \toCoord{\point}{A}\\
-                    \toCoord{\point}{A} &= \toCoord{\point}{B} - \translationCoord{A}{B}\\
+                    \toCoord{\point}{B} &= \toCoord{\point}{A} - \translationCoord{A}{B}\\
+                    %\toCoord{\point}{B} &= ( \toCoord{\point}{A} + \translationCoord{A}{B} ) - \translationCoord{A}{B} \\
                     \toCoord{\begin{bmatrix}
-                        1\\
+                        -1\\
                         0
-                    \end{bmatrix}}{A} &=
+                    \end{bmatrix}}{B} &=
                     \toCoord{\begin{bmatrix}
                         0\\
                         0
-                    \end{bmatrix}}{B} + \translationCoord{B}{A}\\
+                    \end{bmatrix}}{A} + \translationCoord{B}{A}\\
                     \translationCoord{B}{A} &= \toCoord{\fromCoord{\begin{bmatrix}
                         -1\\
                         0
-                    \end{bmatrix}}{B}}{A}
+                    \end{bmatrix}}{A}}{B}
                 \end{align*}             
             }
         \end{minipage}
