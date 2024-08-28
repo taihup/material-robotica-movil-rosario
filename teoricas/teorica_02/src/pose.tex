@@ -308,7 +308,7 @@
             \only<4>{
                 \begin{align*}
                     %\toCoord{\point}{B} &= \transform{B}{A} \toCoord{\point}{A}\\
-                    \toCoord{\point}{B} &= \toCoord{\point}{A} - \translationCoord{A}{B}\\
+                    \toCoord{\point}{B} &= \toCoord{\origin}{B} - \translationCoord{A}{B}\\
                     %\toCoord{\point}{B} &= ( \toCoord{\point}{A} + \translationCoord{A}{B} ) - \translationCoord{A}{B} \\
                     \toCoord{\begin{bmatrix}
                         -1\\
@@ -317,7 +317,7 @@
                     \toCoord{\begin{bmatrix}
                         0\\
                         0
-                    \end{bmatrix}}{A} + \translationCoord{B}{A}\\
+                    \end{bmatrix}}{B} + \translationCoord{B}{A}\\
                     \translationCoord{B}{A} &= \toCoord{\fromCoord{\begin{bmatrix}
                         -1\\
                         0
