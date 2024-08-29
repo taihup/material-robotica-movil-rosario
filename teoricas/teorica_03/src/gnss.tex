@@ -88,6 +88,7 @@
 
 \begin{frame}
     \frametitle{Estación Permanente GNSS de Rosario (UNRO)}
+    \footnotesize
     \begin{center}
         \includegraphics[width=0.3\columnwidth]{permanent_gnss_station_unro.pdf}
     \end{center}
@@ -100,7 +101,7 @@
     \end{itemize}
     
     RINEX (\emph{Receiver Independent Exchange Format})  permite posprocesar los datos recibidos para producir un resultado más preciso, generalmente con otros datos desconocidos para el receptor original, como mejores modelos de las condiciones atmosféricas en el momento de la medición.
-    RINEX es el formato estándar que permite la gestión y disposición de las medidas generadas por un receptor, así como su tratamiento off-line por multitud de aplicaciones, sea cual sea el fabricante tanto del receptor como de la aplicación informática.
+    RINEX es el formato estándar que permite la gestión y disposición de las medidas generadas por un receptor, así como su tratamiento off-line por multitud de aplicaciones.
 
 \end{frame}
 
@@ -111,12 +112,14 @@
         \includegraphics[width=0.3\columnwidth]{gnss_ppk_system.pdf}
     \end{center}
 
+    \begin{itemize}
+        \item El PPK (Post-Processing Kinematic), a diferencia del RTK, realiza un proceso de datos a posteriori (offline).
+        
+        \note{En la imagen vemos que, tanto la base como el drone, reciben lecturas de las diferentes constelaciones de satélites. 
+        Pero, a diferencia del RTK, no hay un enlace de datos constante entre el drone y la base, ya que ambos registran en una memoria esa información que después del vuelo deberemos descargar, normalmente en archivos con formato RINEX, para postprocesar y obtener nuestra solución.}
 
-    El PPK (Post-Processing Kinematic), a diferencia del RTK, realiza un proceso de datos a posteriori (offline).
-    En la imagen vemos que, tanto la base como el drone, reciben lecturas de las diferentes constelaciones de satélites. 
-    Pero, a diferencia del RTK, no hay un enlace de datos constante entre el drone y la base, ya que ambos registran en una memoria esa información que después del vuelo deberemos descargar, normalmente en archivos con formato RINEX, para postprocesar y obtener nuestra solución.
-
-    Se puede utilizar la librería RTKLIB para realizar PPK.
+        \item Se puede utilizar la librería RTKLIB para realizar PPK.
+    \end{itemize}
     
 \end{frame}
 
@@ -125,5 +128,11 @@
     \begin{center}
         \includegraphics[width=0.3\columnwidth]{gnss_ppp_rinex.pdf}
     \end{center}
+
+    \begin{itemize}
+        \item No requiere una Estación Base o Permanente que observe los mismos satelites al mismo tiempo.
+        \item La mejora de precisión resulta de efemérides de los satélites corregidas.
+        \item Se utiliza RTKLIB para realizar PPP.
+    \end{itemize}
 
 \end{frame}
