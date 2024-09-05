@@ -1,7 +1,7 @@
 \begin{frame}
 	\frametitle{Motivación}
 	
-	Don’t reinvent the wheel. Create something new and do it faster and better by building on ROS!
+	Don't reinvent the wheel. Create something new and do it faster and better by building on ROS!
 	
 	\note{https://www.ros.org/blog/why-ros/}
 	
@@ -11,6 +11,11 @@
 	\note{https://www.youtube.com/watch?v=O0729K-7VEY&list=PLNw2RD-1J5YYvFGiMafRD_axHrBUGvuIg&index=1}
 	
 	\note{https://youtu.be/ZQezxGadsqw}
+
+    \vspace*{1cm}
+    \begin{figure}
+        \includegraphics[width=0.5\columnwidth]{images/ros_logo.pdf}
+    \end{figure}
 	
 \end{frame}
 
@@ -134,9 +139,9 @@ ros2 run demo_nodes_py listener
     \scriptsize
     \begin{itemize}
 
-        \item Instalamos el paquete \lstinline[style=bash]{ros-humble-turtlesim}
+        \item Instalamos el paquete \lstinline[style=bash]{ros-<distro>-turtlesim}
         \begin{lstlisting}[style=bash]
-sudo apt install ros-humble-turtlesim
+sudo apt install ros-<distro>-turtlesim
         \end{lstlisting}
         \item Verificamos los ejecutables dentro del paquete
         \begin{lstlisting}[style=bash]
@@ -362,7 +367,7 @@ git clone https://github.com/ros/ros\_tutorials.git -b <distro>-devel
 sudo apt install python3-colcon-common-extensions
 \end{lstlisting}
 
-    \item En la raíz del worklspace, ejecutar
+    \item En la raíz del workspace, ejecutar
 \begin{lstlisting}[style=bash] 
 colcon build --symlink-install
 \end{lstlisting}
@@ -556,7 +561,7 @@ ros2 launch nav2_bringup tb3_simulation_launch.py headless:=False
     \tiny
     \url{https://ros2-industrial-workshop.readthedocs.io/en/latest/\_source/navigation/ROS2-Navigation.html}
         
-    \url{https://docs.ros.org/en/humble/Tutorials/Advanced/Simulators/Ignition.html}
+    \url{https://docs.ros.org/en/<distro>/Tutorials/Advanced/Simulators/Ignition.html}
         
     \url{https://navigation.ros.org/index.html}
 
@@ -704,10 +709,10 @@ ros2 run tf2_ros tf2_echo [reference_frame] [target_frame]
 	\frametitle{Ejemplo: TF2 con turtles}
     \scriptsize
 	\begin{itemize}
-        \item Tutorial: \url{https://docs.ros.org/en/humble/Tutorials/Intermediate/Tf2/Introduction-To-Tf2.html}
+        \item Tutorial: \url{https://docs.ros.org/en/<distro>/Tutorials/Intermediate/Tf2/Introduction-To-Tf2.html}
         \item Instalación
         \begin{lstlisting}[style=bash] 
-sudo apt-get install ros-<distro>-turtle-tf2-py ros-<distro>-tf2-tools ros-humble-tf-transformations
+sudo apt-get install ros-<distro>-turtle-tf2-py ros-<distro>-tf2-tools ros-<distro>-tf-transformations
         \end{lstlisting}
         
         \item En una terminal, lanzar el launch \lstinline[style=bash]{turtle_tf2_demo.launch.py}
