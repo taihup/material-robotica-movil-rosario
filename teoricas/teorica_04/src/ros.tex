@@ -591,7 +591,7 @@ ros2 launch nav2_bringup tb3_simulation_launch.py headless:=False
         
         \item Para corregir la desviación de los sensores odométricos, algunos métodos de localización introducen una transformación entre \lstinline[style=bash]{/map} $\rightarrow$ \lstinline[style=bash]{/odom}. Esta transformación es la corrección que se ha calculado en función de la entrada de sensores, como LiDAR o GNSS. La pose del robot en \lstinline[style=bash]{/map} no es continua (puede saltar en varios intervalos de tiempo) porque los métodos de localización que dan este tipo de pose normalmente realizan correcciones a una frecuencia más baja.
         
-        \item Si el sensor de odometría y el GNSS son perfecto, la transformación \lstinline[style=bash]{/map} mapa $\rightarrow$ \lstinline[style=bash]{/odom} tf será la identidad.
+        \item Si el sensor de odometría y el GNSS son perfectos, la transformación \lstinline[style=bash]{/map} mapa $\rightarrow$ \lstinline[style=bash]{/odom} tf será la identidad.
         
         
     \end{itemize}
