@@ -45,7 +45,7 @@ Pasos para trabajar en el simulador Gazebo con el robot TurtleBot3. Mas informac
 
 \begin{enumerate}
 	\item Iniciar sesión en \url{https://www.theconstructsim.com}.
-	\item Crea un proyecto ROSject y seleccionar ROS2 {\bf Humble} como distribución.
+	\item Crea un proyecto ROSject y seleccionar ROS2 {\bf \<distro\>} como distribución.
 \end{enumerate}
 
 
@@ -58,13 +58,13 @@ Actualizar la lista de paquetes de linux
 
 Instalar los paquetes de Nav2 
 \begin{lstlisting}[style=bash] 
-	sudo apt install ros-humble-navigation2
-	sudo apt install ros-humble-nav2-bringup
+	sudo apt install ros-<distro>-navigation2
+	sudo apt install ros-<distro>-nav2-bringup
 \end{lstlisting}
 
 Instalar los paquetes de Turtlebot 3
 \begin{lstlisting}[style=bash] 
-	sudo apt install ros-humble-turtlebot3*
+	sudo apt install ros-<distro>-turtlebot3*
 \end{lstlisting}
 
 	\item Incorporar el script \lstinline[style=bash]{dump_odom.py} provisto por la cátedra
@@ -79,7 +79,7 @@ Instalar los paquetes de Turtlebot 3
 
 \begin{lstlisting}[style=bash] 
 export TURTLEBOT3_MODEL=waffle
-export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/opt/ros/humble/share/turtlebot3_gazebo/models
+export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/opt/ros/<distro>/share/turtlebot3_gazebo/models
 \end{lstlisting}
 	\item Ejecutar simulación
 
