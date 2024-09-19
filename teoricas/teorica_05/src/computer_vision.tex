@@ -643,7 +643,8 @@
     
     \begin{equation*}
         \intrinsicMatrix=
-        \begin{bmatrix}f_{u} & s & \principalPoint_{u}\\
+        \begin{bmatrix}
+            f_{u} & s & \principalPoint_{u}\\
             0 & f_{v} & \principalPoint_{v}\\
             0 & 0 & 1
         \end{bmatrix},
@@ -651,97 +652,36 @@
     
 \end{frame}
 
-\ifadditional
-
 \begin{frame}
-    \frametitle{Cámara - Modelo Pin-Hole}
+    \frametitle{Pin-hole camera model}
     
-    \footnotesize
-    
-    En particular, $\seMatrix^{\mathrm{c}\mathrm{w}}$ es una transformación que pertenece al Lie Group SE(3), el grupo de movimientos de cuerpo rígido en el espacio 3D. Por lo tanto, $\seMatrix^{\mathrm{c}\mathrm{w}}$ se define como
-    $\seMatrix^{\mathrm{c}\mathrm{w}}=
-    \begin{bmatrix}\rotation & \translation\\
-        \vec{0} & 1
-    \end{bmatrix}$ donde $\rotation$ es una matriz de rotación y $\translation$ es un vector de traslación. Observe que una de las ventajas de trabajar con coordenadas homogéneas es que permite utilizar el álgebra de Grupos de Lie SE(3).
-    
-\end{frame}
+    El modelo de cámara Pin-Hole no modela la distorción causada por los lentes.
 
-\begin{frame}
-    \frametitle{Cámara - Modelo Pin-Hole}
-    
-    Denotamos con $\homo{\point}=\begin{bmatrix}x & y & z & 1\end{bmatrix}^{\top}$ la representación homogénea de un punto $\point=\begin{bmatrix}x & y & z\end{bmatrix}^{\top}$. Ahora, definimos el modelo de cámara:
-    \begin{equation*}
-        \imagePoint=f\proj(\cameraPoint)+\principalPoint
-    \end{equation*}
-    
-    donde $f$ es la distancia focal, $\principalPoint$ es el punto principal, $\cameraPoint$ es el punto en el sistema de coordenadas de la cámara y la función $\proj:\mathbb{R}^{n}\rightarrow\mathbb{R}^{n- 1}$ se puede usar para transformar puntos de coordenadas homogéneas a no homogéneas, y también se puede usar para proyectar puntos del espacio 3D al plano de imagen 2D.    
-\end{frame}
+    Las cámaras \emph{narrow} (FOV < 180 grados) utilizan coordenadas de píxeles $(x, y)$ o coordenadas de imagen normalizadas $(x_{n}, y_{n})$. 
+    Las coordenadas de imagen normalizadas representan un vector 3D con la suposición implícita de que $z = 1$, lo que limita el FOV.
 
-\begin{frame}
-    \frametitle{Cámara - Modelo Pin-Hole}
-    
-    \footnotesize    
-    \begin{equation*}
-        \proj(\vec{a})=
-        \frac{1}{a_{n}}\begin{bmatrix}a_{1}\\
-            \vdots\\
-            a_{n-1}
-        \end{bmatrix}.
-    \end{equation*}
-    
-    Por ejemplo, si $\point=\begin{bmatrix}x & y & z\end{bmatrix}^{\top}$, entonces $\proj(\point)=\begin{bmatrix}x/z & y/z\end{bmatrix}$.
-    
-    Se puede ver que $x/z=u/f$. Análogamente podemos decir que $y/z=v/f$. De estas ecuaciones podemos ver que $u=f(x/z)$ y que $v=f(y/z)$, por lo que la ecuación de proyección se cumple.
-    
-\end{frame}
+    Las cámaras \emph{wide} (sin límite de FOV, también conocidas como \emph{fisheye}) utilizan coordenadas esféricas $(x_{s}, y_{s}, z_{s})$, ya que no asumen que los puntos visibles siempre aparecen frente a la cámara.
 
-\begin{frame}
-    \frametitle{Cámara - Modelo Pin-Hole}
-    
-    \footnotesize
-    
-    En el caso general, la cámara no está ubicada en el centro del sistema de coordenadas del mundo. Tenemos que agregar esta transformación entre el mundo y los sistemas de coordenadas de la cámara a la ecuación anterior, lo que da como resultado
-    
     \begin{equation*}
-        \imagePoint=f\proj(\proj(\seMatrix^{\mathrm{c}\mathrm{w}}\homoWorldPoint))+\principalPoint,
-    \end{equation*}
-    
-    donde $\seMatrix^{\mathrm{c}\mathrm{w}}$ es una matriz de transformación que transforma elementos geométricos del marco de coordenadas del mundo $\mathrm{W}$ al marco de coordenadas de la cámara $\mathrm{C}$. Esto es,
-    \begin{equation*}
-        \homoCameraPoint=\seMatrix^{\mathrm{c}\mathrm{w}}\homoWorldPoint.
-    \end{equation*}
-    
-\end{frame}
-
-\begin{frame}
-    \frametitle{Cámara - Modelo Pin-Hole}
-    
-    \footnotesize
-    
-    En particular, $\seMatrix^{\mathrm{c}\mathrm{w}}$ es una transformación que pertenece al Lie Group SE(3), el grupo de movimientos de cuerpo rígido en el espacio 3D. Por lo tanto, $\seMatrix^{\mathrm{c}\mathrm{w}}$ se define como
-    $\seMatrix^{\mathrm{c}\mathrm{w}}=
-    \begin{bmatrix}\rotation & \translation\\
-        \vec{0} & 1
-    \end{bmatrix}$ donde $\rotation$ es una matriz de rotación y $\translation$ es un vector de traslación. Observe que una de las ventajas de trabajar con coordenadas homogéneas es que permite utilizar el álgebra de Grupos de Lie SE(3).
-    
-    Existe una notación de matriz para el modelo de cámara pin-hole que también se usa comúnmente en visión por computadora.
-    \begin{equation*}
-        \projectionMatrix=\intrinsicMatrix\begin{bmatrix}\rotation & \translation\end{bmatrix}
-    \end{equation*}
-    
-    donde $\projectionMatrix$ es la matriz de proyección y $\intrinsicMatrix$ es la matriz de calibración. La matriz de calibración se define como,
-    
-    \begin{equation*}
-        \intrinsicMatrix=
-        \begin{bmatrix}f & 0 & c_{u}\\
-            0 & f & c_{v}\\
+        \begin{bmatrix}
+            x\\
+            y\\
+            1
+        \end{bmatrix} =
+        \begin{bmatrix}
+            f_{u} & s & \principalPoint_{u}\\
+            0 & f_{v} & \principalPoint_{v}\\
             0 & 0 & 1
-        \end{bmatrix},
+        \end{bmatrix}
+        \begin{bmatrix}
+            x_{n}\\
+            y_{n}\\
+            1
+        \end{bmatrix}
     \end{equation*}
     
 \end{frame}
 
-\fi
 
 \begin{frame}
     \frametitle{Distorción Radial}
@@ -794,72 +734,70 @@
 \end{frame}
 
 
-\begin{frame}
-    \frametitle{Distorción Radial}
+% \begin{frame}
+%     \frametitle{Distorción Radial}
     
-    \footnotesize
+%     \footnotesize
     
-    Dado el punto proyectado real y el punto ideal, el efecto de distorsión radial se puede modelar mediante
-    \begin{equation}
-        \begin{bmatrix}u_{d}\\
-            v_{d}
-        \end{bmatrix}=L(\tilde{r})\begin{bmatrix}\tilde{u}\\
-            \tilde{v}
-        \end{bmatrix}
-    \end{equation}
+%     Dado el punto proyectado real y el punto ideal, el efecto de distorsión radial se puede modelar mediante
+%     \begin{equation}
+%         \begin{bmatrix}u_{d}\\
+%             v_{d}
+%         \end{bmatrix}=L(\tilde{r})\begin{bmatrix}\tilde{u}\\
+%             \tilde{v}
+%         \end{bmatrix}
+%     \end{equation}
     
-    donde, 
-    $\begin{bmatrix}\tilde{u}\\ 
-        \tilde{v}
-    \end{bmatrix}$
-    es la posición ideal de la imagen referida al centro de la imagen (que obedece a la proyección lineal);
-    $\begin{bmatrix}u_{d}\\
-        v_{d}
-    \end{bmatrix} $
-    es la posición real de la imagen después de la distorsión radial; $\tilde{r}$ es la distancia radial $\sqrt{\tilde{u}^{2}+\tilde{v}^{2}}$ desde el centro para la distorsión radial, y $L(\tilde{r})$ es una factor de distorsión, que es una función del radio $\tilde{r}$.
-\end{frame}
+%     donde, 
+%     $\begin{bmatrix}\tilde{u}\\ 
+%         \tilde{v}
+%     \end{bmatrix}$
+%     es la posición ideal de la imagen referida al centro de la imagen (que obedece a la proyección lineal);
+%     $\begin{bmatrix}u_{d}\\
+%         v_{d}
+%     \end{bmatrix} $
+%     es la posición real de la imagen después de la distorsión radial; $\tilde{r}$ es la distancia radial $\sqrt{\tilde{u}^{2}+\tilde{v}^{2}}$ desde el centro para la distorsión radial, y $L(\tilde{r})$ es una factor de distorsión, que es una función del radio $\tilde{r}$.
+% \end{frame}
 
-\begin{frame}
-    \frametitle{Distorción Radial}
-    \footnotesize
+% \begin{frame}
+%     \frametitle{Distorción Radial}
+%     \footnotesize
     
-    \TODO{Agregar modelo de distorción aplicado en: https://boofcv.org/index.php?title=Tutorial\_Camera\_Calibration}
+%     \TODO{Agregar modelo de distorción aplicado en: https://boofcv.org/index.php?title=Tutorial\_Camera\_Calibration}
     
-    Finalmente, la corrección se puede representar en coordenadas de píxeles como
-    \begin{equation*}
-        \begin{aligned}\hat{u} & =u_{c}+L(r)(u-u_{c})\\
-            \hat{v} & =v_{c}+L(r)(v-v_{c})
-        \end{aligned}
-    \end{equation*}
+%     Finalmente, la corrección se puede representar en coordenadas de píxeles como
+%     \begin{equation*}
+%         \begin{aligned}\hat{u} & =u_{c}+L(r)(u-u_{c})\\
+%             \hat{v} & =v_{c}+L(r)(v-v_{c})
+%         \end{aligned}
+%     \end{equation*}
     
-    donde 
-    $\begin{bmatrix}u\\
-        v
-    \end{bmatrix}$ 
-    son las coordenadas medidas, 
-    $\begin{bmatrix}\tilde{u}\\
-        \tilde{v}
-    \end{bmatrix}$ 
-    son las coordenadas corregidas, y 
-    $\begin{bmatrix}u_{c}\\
-        v_{c}
-    \end{bmatrix}$ 
-    es el centro de distorsión radial, con $r^{2}=(u-u_{c})^{2}+(v-v_{c})^{2}$.
+%     donde 
+%     $\begin{bmatrix}u\\
+%         v
+%     \end{bmatrix}$ 
+%     son las coordenadas medidas, 
+%     $\begin{bmatrix}\tilde{u}\\
+%         \tilde{v}
+%     \end{bmatrix}$ 
+%     son las coordenadas corregidas, y 
+%     $\begin{bmatrix}u_{c}\\
+%         v_{c}
+%     \end{bmatrix}$ 
+%     es el centro de distorsión radial, con $r^{2}=(u-u_{c})^{2}+(v-v_{c})^{2}$.
     
-    El factor de distorsión $L(r)$ esta definido solo por valores positivos de $r$ y $L(0)=1$. En la práctica, $L(r)$ es aproximado por la expansión de Taylor
+%     El factor de distorsión $L(r)$ esta definido solo por valores positivos de $r$ y $L(0)=1$. En la práctica, $L(r)$ es aproximado por la expansión de Taylor
     
-    \begin{equation*}
-        L(r)=1+k_{1}r+k_{2}r^{2}+k_{3}r^{3}+\ldots.
-    \end{equation*}
+%     \begin{equation*}
+%         L(r)=1+k_{1}r+k_{2}r^{2}+k_{3}r^{3}+\ldots.
+%     \end{equation*}
     
-    Los coeficientes $\left\{ k_{1},k_{1},k_{1},\ldots,u_{c},v_{c}\right\}$ se consideran parte de la calibración interna de la cámara. Con frecuencia, el punto principal se utiliza como centro de la distorsión radial, aunque no es necesario que coincidan exactamente. Los coeficientes de corrección, junto con la matriz de calibración de la cámara, especifican el mapeo desde un punto de la imagen hasta un rayo en el sistema de coordenadas de la cámara y se denominan parámetros intrínsecos.
-\end{frame}
+%     Los coeficientes $\left\{ k_{1},k_{1},k_{1},\ldots,u_{c},v_{c}\right\}$ se consideran parte de la calibración interna de la cámara. Con frecuencia, el punto principal se utiliza como centro de la distorsión radial, aunque no es necesario que coincidan exactamente. Los coeficientes de corrección, junto con la matriz de calibración de la cámara, especifican el mapeo desde un punto de la imagen hasta un rayo en el sistema de coordenadas de la cámara y se denominan parámetros intrínsecos.
+% \end{frame}
 
 \begin{frame}
     \frametitle{Distorción Tangencial}
     \footnotesize
-    \TODO{Agregar matemática de distorción tangencial}
-    
     \begin{figure}[!h]
         \subfloat[]
         {
@@ -874,11 +812,64 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Geometría Epipolar}
+    \frametitle{Brown Camera Model}
+
+    El modelo de cámara Brown es el más popular y modela la distorsión de la lente tanto por distorsión radial como por distorsión tangencial ("descentrante"). Es apropiado para la mayoría de lentes con un campo de visión menor a 180 grados.
+    \begin{equation*}
+        \begin{bmatrix}
+            x \\
+            y \\
+            1
+        \end{bmatrix} \approx K \begin{bmatrix}
+            x_d \\
+            y_d \\
+            1
+        \end{bmatrix}
+    \end{equation*}
+    \begin{equation*}
+        \begin{bmatrix}
+            x_d \\
+            y_d
+        \end{bmatrix} =
+        \sum_{i=0}^{i<rad} k_{i} r^{2i}
+        \begin{bmatrix}
+            x_n \\
+            y_n
+        \end{bmatrix} +
+        \begin{bmatrix}
+            2p_{1} x_n y_n + p_{2} (r^2 + 2x_n^2) \\
+            p_{1} (r^2 + 2y_n^2) + 2p_{2} x_n y_n
+        \end{bmatrix}
+    \end{equation*}
+    donde $r = \sqrt{x_n^2 + y_n^2}$, $k_{i}$ son los coeficientes de distorsión radial y $(p_{1}, p_{2})$ son los coeficientes tangenciales.
+
+    Los coeficientes $\left\{ k_{1}, k_{2}, k_{3}, \ldots , p_{1}, p_{2} \right\}$ se consideran parte de la calibración interna de la cámara. Con frecuencia, el punto principal se utiliza como centro de la distorsión radial, aunque no es necesario que coincidan exactamente. Los coeficientes de corrección, junto con la matriz de calibración de la cámara, especifican el mapeo desde un punto de la imagen hasta un rayo en el sistema de coordenadas de la cámara y se denominan parámetros intrínsecos.
+
+    \note{Más info: https://boofcv.org/index.php?title=Tutorial\_Camera\_Calibration}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Kannala-Brandt Model}
+    Kannala-Brandt es un modelo de cámara \emph{wide} que admite modelos de proyección en perspectiva, estereográfica, equidistante, de ángulo equisólido y ortogonal.
+
+    \TODO{ver \url{https://docs.opencv.org/4.x/db/d58/group__calib3d__fisheye.html}}
+
+    \note{Más info: https://boofcv.org/index.php?title=Tutorial\_Camera\_Calibration}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Calibración de cámara}
     \footnotesize
     
+    \TODO{Ver Clase: Camera Calibration por Cyrill Stachniss: \url{https://www.youtube.com/watch?v=-9He7Nu3u8s}}
     
-    
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Geometría Epipolar}
+    \footnotesize
+
     \begin{itemize}
         \item La restricción epipolar puede ser computada por medio de puntos 2D en la imagen cuando la pose relative de la cámara es conocida ($\begin{bmatrix}
             \translation 
@@ -908,8 +899,7 @@
 \begin{frame}
     \frametitle{Matríz fundamental}
     \footnotesize
-    \note{Ver 9.6 The essential matrix del libro Multiple view geometry}
-    
+
     La {\bf Matríz Esencial} es una especialización de la {\bf Matríz Fundamental}. La Matríz Esencial trabaja sobre {\bf coordenadas  normalizadas}  de la imagen, es decir, requiere tener la calibración de las cámaras, mientras que la Matríz Fundamental relaciona correspondencias desconociendo las calibraciones.
     
     \begin{equation*}
@@ -920,10 +910,8 @@
         Dado $\homoImagePoint = \projectionMatrix \homoWorldPoint$, con $\projectionMatrix = \intrinsicMatrix [\rotation|\translation]$, si conocemos la matríz de calibración $\intrinsicMatrix$ entonces $\hat{\imagePoint} = \inverse{\intrinsicMatrix} \homoImagePoint$ decimos que $\hat{\imagePoint}$ está en {\bf coordenadas normalizadas}. Se lo puede pensar como una imagen del punto $\homoWorldPoint$ con respecto a una cámara $[\rotation|\translation]$ teniendo la matriz de calibración como la identidad. $ \inverse{\intrinsicMatrix} \projectionMatrix = [\rotation| \translation]$ se denomina {\bf cámara normalizada} donde los parámetros de calibración han sido removidos.
     \end{block}
     
-    \TODO{corregir cuentas.}
-    
     \begin{align*}
-        \homoImagePoint^{\prime\top} \essentialMatrix \homoImagePoint &= 0\\
+        \hat{\imagePoint}^{\prime\top} \essentialMatrix \hat{\imagePoint}  &= 0\\
         \left( \inverse{\intrinsicMatrix^{\prime}} \homoImagePoint^{\prime} \right)^{\top} \essentialMatrix \left( \inverse{\intrinsicMatrix} \homoImagePoint \right) &= 0\\
         \homoImagePoint^{\prime\top} \inverse{\intrinsicMatrix^{\prime\top}} \essentialMatrix \inverse{\intrinsicMatrix} \homoImagePoint&= 0
     \end{align*}
@@ -931,7 +919,7 @@
     \begin{equation*}
         \essentialMatrix = \intrinsicMatrix^{\prime\top} \fundamentalMatrix \intrinsicMatrix
     \end{equation*}
-    
+    \note{Ver 9.6 The essential matrix del libro Multiple view geometry}
 \end{frame}
 
 \begin{frame}
@@ -1264,13 +1252,3 @@
     \TODO{Book Multiview Geometry: 4.1 The Direct Linear Transformation (DLT) algorithm}
     
 \end{frame}
-
-
-\begin{frame}
-    \frametitle{Calibración de cámara}
-    \footnotesize
-    
-    \TODO{Clase Calibración por Cyrill Stachniss: \url{https://www.youtube.com/watch?v=-9He7Nu3u8s}}
-    
-\end{frame}
-
