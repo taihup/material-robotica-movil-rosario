@@ -548,10 +548,10 @@
     En coordenadsa homogeneas:
     \begin{equation*}
     \homoCameraPoint = 
-    \toCoord{\begin{bmatrix}
+    \begin{bmatrix}
             \cameraPoint\\
             1
-    \end{bmatrix}}{\cameraCoordSystem} =
+    \end{bmatrix}=
     \begin{bmatrix}
     \left( \rotationCoord{\cameraCoordSystem}{\worldCoordSystem} \worldPoint -\rotationCoord{\cameraCoordSystem}{\worldCoordSystem} \worldCameraCenter \right)\\
     1
@@ -570,10 +570,10 @@
     
     \begin{equation*}
     \homoCameraPoint = 
-    \toCoord{\begin{bmatrix}
+    \begin{bmatrix}
             \cameraPoint\\
             1
-    \end{bmatrix}}{\cameraCoordSystem} = 
+    \end{bmatrix}= 
     \begin{bmatrix}
         \rotationCoord{\cameraCoordSystem}{\worldCoordSystem} & \toCoord{\translation}{\cameraCoordSystem} \\
         \vec{0} & 1
@@ -920,6 +920,7 @@
         \essentialMatrix = \intrinsicMatrix^{\prime\top} \fundamentalMatrix \intrinsicMatrix
     \end{equation*}
     \note{Ver 9.6 The essential matrix del libro Multiple view geometry}
+    \note{La idea es que podamos computar la matriz fundamental y luego utilizando la calibración de la cámara calcular la matríz esencial. La matríz esencial tiene la rotación entre las cámaras y el vector dirección de traslación (a un factor de escala)}
 \end{frame}
 
 \begin{frame}
