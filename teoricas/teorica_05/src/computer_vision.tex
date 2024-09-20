@@ -887,8 +887,25 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{Matríz fundamental}
+    \footnotesize
+
+    La Matríx Fundamental, $\fundamentalMatrix$,  es una matríz que relaciona las dos cámaras y cumple con la siguiente restricción:
+
+    
+    \begin{equation*}
+        \homoImagePoint^{\prime\top} \fundamentalMatrix \homoImagePoint = 0 \quad \text{(restricción de coplanaridad)}
+    \end{equation*}
+    
+    \note{Ver 9.6 The essential matrix del libro Multiple view geometry}
+\end{frame}
+
+
+\begin{frame}
     \frametitle{Matríz Esencial}
     \footnotesize
+
+    La {\bf Matríz Esencial} es una especialización de la {\bf Matríz Fundamental}. La Matríz Esencial trabaja sobre {\bf coordenadas  normalizadas}  de la imagen, es decir, requiere conocer la calibración de las cámaras, mientras que la Matríz Fundamental relaciona correspondencias desconociendo las calibraciones.
 
     \begin{block}{Coordenadas Normalizadas:}
         Dado $\homoImagePoint = \projectionMatrix \homoWorldPoint$, con $\projectionMatrix = \intrinsicMatrix [\rotation|\translation]$, si conocemos la matríz de calibración $\intrinsicMatrix$ entonces $\hat{\imagePoint} = \inverse{\intrinsicMatrix} \homoImagePoint$ decimos que $\hat{\imagePoint}$ está en {\bf coordenadas normalizadas}. Se lo puede pensar como una imagen del punto $\homoWorldPoint$ con respecto a una cámara $[\rotation|\translation]$ teniendo la matriz de calibración como la identidad. $ \inverse{\intrinsicMatrix} \projectionMatrix = [\rotation| \translation]$ se denomina {\bf cámara normalizada} donde los parámetros de calibración han sido removidos.
@@ -899,22 +916,8 @@
     \end{equation*}
     donde $\essentialMatrix = \begin{bmatrix}
         \translation 
-    \end{bmatrix}_{\times} \rotation$, y se denomina \emph{Essential Matrix}
-
-    \note{has only ﬁve degrees of freedom: both the rotation matrix R and the translation t have three degrees of freedom, but there is an overall scale ambiguity - like the fundamental matrix, the essential matrix is a homogeneous quantity.}
-    
-\end{frame}
-
-\begin{frame}
-    \frametitle{Matríz fundamental}
-    \footnotesize
-
-    La {\bf Matríz Esencial} es una especialización de la {\bf Matríz Fundamental}. La Matríz Esencial trabaja sobre {\bf coordenadas  normalizadas}  de la imagen, es decir, requiere tener la calibración de las cámaras, mientras que la Matríz Fundamental relaciona correspondencias desconociendo las calibraciones.
-    
-    \begin{equation*}
-        \homoImagePoint^{\prime\top} \fundamentalMatrix \homoImagePoint = 0 \quad \text{(restricción de coplanaridad)}
-    \end{equation*}
-    
+    \end{bmatrix}_{\times} \rotation$, y se denomina \emph{Essential Matrix}.
+%
     \begin{align*}
         \hat{\imagePoint}^{\prime\top} \essentialMatrix \hat{\imagePoint}  &= 0\\
         \left( \inverse{\intrinsicMatrix^{\prime}} \homoImagePoint^{\prime} \right)^{\top} \essentialMatrix \left( \inverse{\intrinsicMatrix} \homoImagePoint \right) &= 0\\
@@ -924,14 +927,23 @@
     \begin{equation*}
         \essentialMatrix = \intrinsicMatrix^{\prime\top} \fundamentalMatrix \intrinsicMatrix
     \end{equation*}
-    \note{Ver 9.6 The essential matrix del libro Multiple view geometry}
-    \note{La idea es que podamos computar la matriz fundamental y luego utilizando la calibración de la cámara calcular la matríz esencial. La matríz esencial tiene la rotación entre las cámaras y el vector dirección de traslación (a un factor de escala)}
+
+    \note{has only ﬁve degrees of freedom: both the rotation matrix R and the translation t have three degrees of freedom, but there is an overall scale ambiguity - like the fundamental matrix, the essential matrix is a homogeneous quantity.}
+    
 \end{frame}
 
 \begin{frame}
     \frametitle{Matríz Esencial}
+
+    \note{Info: https://3d.bk.tudelft.nl/courses/geo1016/slides/Lecture_05_Reconstruct3DGeometry.pdf}
+
+    El plan es que podamos computar la Matríz Fundamental, y luego utilizando la calibración de la cámara calcular la Matríz Esencial. La Matríz Esencial está compuesta por rotación entre las cámaras y el vector dirección de traslación (a un factor de escala).
     
-    \TODO{Agregar imagen de las posibles disposiciones que da la matriz esencial entre dos cámaras. En total da 4 disposiciones posibles para las 2 cámaras. Nos quedamos con la disposición que haga que los puntos triangulados esten delante de la cámara.}
+    \begin{figure}
+        \includegraphics[width=0.4\textwidth]{./images/essential_matrix_possible_solutions.pdf}
+    \end{figure}
+
+    En total tenemos 4 configuraciones posibles para las 2 cámaras. Nos quedamos con la configuración que haga que los puntos triangulados esten delante de ambas cámaras.
 \end{frame}
 
 
