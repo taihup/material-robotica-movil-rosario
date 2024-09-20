@@ -879,20 +879,29 @@
         \item La restricción epipolar codifica que $\imagePoint_{r}$ debe estar ubicado sobre la linea epipolar en la imagen derecha.
     \end{itemize}
 
+    \begin{figure}
+        \includegraphics[width=0.4\textwidth]{./images/epipolar_geometry.pdf}
+    \end{figure}
+
+    La línea epipolar permite que restrinjamos la búsqueda de correspondencias visuales entre dos cámaras.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Matríz Esencial}
+    \footnotesize
+
+    \begin{block}{Coordenadas Normalizadas:}
+        Dado $\homoImagePoint = \projectionMatrix \homoWorldPoint$, con $\projectionMatrix = \intrinsicMatrix [\rotation|\translation]$, si conocemos la matríz de calibración $\intrinsicMatrix$ entonces $\hat{\imagePoint} = \inverse{\intrinsicMatrix} \homoImagePoint$ decimos que $\hat{\imagePoint}$ está en {\bf coordenadas normalizadas}. Se lo puede pensar como una imagen del punto $\homoWorldPoint$ con respecto a una cámara $[\rotation|\translation]$ teniendo la matriz de calibración como la identidad. $ \inverse{\intrinsicMatrix} \projectionMatrix = [\rotation| \translation]$ se denomina {\bf cámara normalizada} donde los parámetros de calibración han sido removidos.
+    \end{block}
+
     \begin{equation*}
-        \homoImagePoint_{l}^{\top} \essentialMatrix \homoImagePoint_{r} = 0 \quad \text{(restricción de coplanaridad)}
+        \hat{\imagePoint}^{\prime\top} \essentialMatrix \hat{\imagePoint}  = 0 \quad \text{(restricción de coplanaridad)}
     \end{equation*}
     donde $\essentialMatrix = \begin{bmatrix}
         \translation 
     \end{bmatrix}_{\times} \rotation$, y se denomina \emph{Essential Matrix}
 
     \note{has only ﬁve degrees of freedom: both the rotation matrix R and the translation t have three degrees of freedom, but there is an overall scale ambiguity - like the fundamental matrix, the essential matrix is a homogeneous quantity.}
-    
-    La línea epipolar permite que restrinjamos la búsqueda de correspondencias visuales entre dos cámaras.
-   
-    \begin{figure}
-        \includegraphics[width=0.4\textwidth]{./images/epipolar_geometry.pdf}
-    \end{figure}
     
 \end{frame}
 
@@ -905,10 +914,6 @@
     \begin{equation*}
         \homoImagePoint^{\prime\top} \fundamentalMatrix \homoImagePoint = 0 \quad \text{(restricción de coplanaridad)}
     \end{equation*}
-    
-    \begin{block}{Coordenadas Normalizadas:}
-        Dado $\homoImagePoint = \projectionMatrix \homoWorldPoint$, con $\projectionMatrix = \intrinsicMatrix [\rotation|\translation]$, si conocemos la matríz de calibración $\intrinsicMatrix$ entonces $\hat{\imagePoint} = \inverse{\intrinsicMatrix} \homoImagePoint$ decimos que $\hat{\imagePoint}$ está en {\bf coordenadas normalizadas}. Se lo puede pensar como una imagen del punto $\homoWorldPoint$ con respecto a una cámara $[\rotation|\translation]$ teniendo la matriz de calibración como la identidad. $ \inverse{\intrinsicMatrix} \projectionMatrix = [\rotation| \translation]$ se denomina {\bf cámara normalizada} donde los parámetros de calibración han sido removidos.
-    \end{block}
     
     \begin{align*}
         \hat{\imagePoint}^{\prime\top} \essentialMatrix \hat{\imagePoint}  &= 0\\
