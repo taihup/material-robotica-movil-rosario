@@ -324,7 +324,7 @@
     \end{block}
     
     \begin{itemize}
-        \item $f$ es la \textbf{distancia focal}
+        \item $f$ es la \textbf{distancia focal}  (espcificada en \si{\milli\meter} o \si{\meter})
         \item $\principalPoint = \begin{bmatrix}0 & 0 & f\end{bmatrix}^{\top}$ es el \textbf{punto principal}
         \item el eje $Z$ es el {\bf eje principal}
         \item $\worldPoint$ es el punto en el sistema de coordenadas del mundo
@@ -437,7 +437,7 @@
         \includegraphics[width=0.2\columnwidth]{images/camera/principal_point_coordinates.pdf}
     \end{figure}
 
-    Sin embargo si el origen de coordenadas del plano de la imagen no coincide con el punto principal $\principalPoint = \begin{bmatrix}0 & 0 & f\end{bmatrix}^{\top}$, se realiza una traslación y la correspondencia es:
+    Como el origen de coordenadas del plano de la imagen (esquina superior izquierda) no coincide con el punto principal $\principalPoint = \begin{bmatrix}0 & 0 & f\end{bmatrix}^{\top}$, se aplica una traslación, quedando:
     
     \begin{equation}
         \begin{bmatrix}x & y & z\end{bmatrix}^{\top} \rightarrow  \begin{bmatrix} u=\dfrac{fx}{z} + \principalPoint_{u}& v=\dfrac{fy}{z} + \principalPoint_{v}\end{bmatrix}^{\top}
@@ -609,14 +609,20 @@
     \frametitle{Cámara CCD}
     \footnotesize
     
-    En cámaras CCD, los pixels pueden no ser cuadrados. Si las coordenadas de la imagen son medidas en píxeles, entonces hay que tener en cuenta las dimensiones del pixel en cada dirección.
+    Los pixels del sensor CCD pueden no ser cuadrados. Si las coordenadas de la imagen son medidas en píxeles, entonces hay que tener en cuenta las dimensiones del pixel en cada dirección.
     
+    \begin{figure}[!h]
+        \centering
+        \includegraphics[width=0.6\columnwidth]{images/camera/rectangular_pixels.pdf}
+    \end{figure}
+
+
     Sean
     \begin{itemize}
-        \item $m_{u}$ : número de píxeles por unidad de distancia en coordenadas de la
-        imagen en la dirección $u$
-        \item $m_{v}$ : el número de píxeles por unidad de distancia en coordenadas de
-        la imagen en la dirección $v$
+        \item $m_{u}$ : número de píxeles por milímetro (pixels/mm) en coordenadas de la
+        imagen en la dirección $u$.
+        \item $m_{v}$ : número de píxeles por milímetro (pixels/mm) en coordenadas de
+        la imagen en la dirección $v$.
     \end{itemize}
 
     \begin{equation*}
