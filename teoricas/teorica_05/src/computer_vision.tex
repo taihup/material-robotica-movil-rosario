@@ -437,7 +437,13 @@
         \includegraphics[width=0.2\columnwidth]{images/camera/principal_point_coordinates.pdf}
     \end{figure}
 
-    Como el origen de coordenadas del plano de la imagen (esquina superior izquierda) no coincide con el punto principal $\principalPoint = \begin{bmatrix}0 & 0 & f\end{bmatrix}^{\top}$, se aplica una traslación, quedando:
+    \begin{itemize}
+        \item El origen de coordenadas del plano de la imagen es el punto principal $\principalPoint = \begin{bmatrix}0 & 0 & f\end{bmatrix}^{\top}$
+        \item Pero, el origen de coordenadas de la imagen digital es en la esquina superior izquierda. Por lo tanto, debemos aplicar una traslación, quedando:
+    \end{itemize}
+    
+
+    %Como el origen de coordenadas del plano de la imagen (esquina superior izquierda) no coincide con el punto principal $\principalPoint = \begin{bmatrix}0 & 0 & f\end{bmatrix}^{\top}$, se aplica una traslación, quedando:
     
     \begin{equation}
         \begin{bmatrix}x & y & z\end{bmatrix}^{\top} \rightarrow  \begin{bmatrix} u=\dfrac{fx}{z} + \principalPoint_{u}& v=\dfrac{fy}{z} + \principalPoint_{v}\end{bmatrix}^{\top}
@@ -567,7 +573,7 @@
     \end{bmatrix}
     \end{equation*}
 
-    Reescribiendo $\toCoord{\translation}{\cameraCoordSystem} = -\rotationCoord{\cameraCoordSystem}{\worldCoordSystem} \worldCameraCenter$
+    Reescribiendo $\translationCoord{\cameraCoordSystem}{\worldCoordSystem} = -\rotationCoord{\cameraCoordSystem}{\worldCoordSystem} \worldCameraCenter$
     
     \begin{equation*}
     \homoCameraPoint = 
@@ -576,7 +582,7 @@
             1
     \end{bmatrix}= 
     \begin{bmatrix}
-        \rotationCoord{\cameraCoordSystem}{\worldCoordSystem} & \toCoord{\translation}{\cameraCoordSystem} \\
+        \rotationCoord{\cameraCoordSystem}{\worldCoordSystem} & \translationCoord{\cameraCoordSystem}{\worldCoordSystem} \\
         \vec{0} & 1
     \end{bmatrix}
     \begin{bmatrix}
@@ -585,14 +591,14 @@
     \end{bmatrix}
     \end{equation*}
     Luego si, $\homoImagePoint=\intrinsicMatrix\begin{bmatrix} \vec{I} & \vec{0}\end{bmatrix} \homoCameraPoint$ y $\homoCameraPoint =     \begin{bmatrix}
-        \rotationCoord{\cameraCoordSystem}{\worldCoordSystem} & \toCoord{\translation}{\cameraCoordSystem} \\
+        \rotationCoord{\cameraCoordSystem}{\worldCoordSystem} & \translationCoord{\cameraCoordSystem}{\worldCoordSystem} \\
         \vec{0} & 1
     \end{bmatrix}
     \homoWorldPoint$, entonces
     
        \begin{equation*}
         \homoImagePoint=\intrinsicMatrix\begin{bmatrix} \vec{I} & \vec{0}\end{bmatrix} \begin{bmatrix}
-            \rotationCoord{\cameraCoordSystem}{\worldCoordSystem} & \toCoord{\translation}{\cameraCoordSystem} \\
+            \rotationCoord{\cameraCoordSystem}{\worldCoordSystem} & \translationCoord{\cameraCoordSystem}{\worldCoordSystem} \\
             \vec{0} & 1
         \end{bmatrix}
         \homoWorldPoint
@@ -601,7 +607,7 @@
     La matriz de proyección para el caso en que la cámara pueda ubicarse fuera del origen del mundo entonces queda:
     
        \begin{equation*}
-       \projectionMatrix=\intrinsicMatrix\begin{bmatrix}\rotationCoord{\cameraCoordSystem}{\worldCoordSystem} & \toCoord{\translation}{\cameraCoordSystem}\end{bmatrix}
+       \projectionMatrix=\intrinsicMatrix\begin{bmatrix}\rotationCoord{\cameraCoordSystem}{\worldCoordSystem} & \translationCoord{\cameraCoordSystem}{\worldCoordSystem}\end{bmatrix}
     \end{equation*}
 \end{frame}
 
@@ -633,14 +639,14 @@
         \end{bmatrix},
     \end{equation*}
 
-    donde $f_{u} = f m_{u} $ y $f_{v} = f m_{v}$ representan la distancia focal de la cámara en términos de dimensiones de píxeles en la dirección $u$ e $v$ respectivamente.
+    donde $f_{u} = f m_{u} $ y $f_{v} = f m_{v}$ representan la distancia focal de la cámara en píxeles, en las direcciones $u$ e $v$ respectivamente.
 \end{frame}
 
 \begin{frame}
     \frametitle{Cámara proyectiva finita}
     \footnotesize
     
-    Agregando más generalidad, puede ser que los píxeles estén ``torcidos'', aunque no es el caso usual.
+    Agregando más generalidad, puede ser que los píxeles estén ``torcidos'' debido a error de fabricación, aunque no es el caso usual.
     
     \begin{figure}[!h]
         \includegraphics[width=0.3\columnwidth]{images/camera/pixel_skew.pdf}
@@ -805,9 +811,9 @@
 \begin{frame}
     \frametitle{Distorción Tangencial}
     \footnotesize
-    \begin{center}
+    \begin{figure}
         \includegraphics[width=0.4\columnwidth]{images/camera/tangential_distortion2.pdf}\\
-    \end{center}
+    \end{figure}
     
 \end{frame}
 
