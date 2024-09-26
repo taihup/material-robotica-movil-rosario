@@ -1,0 +1,53 @@
+\documentclass[apunte]{lcc}
+
+% add latex preamble
+\input{../../common/latex_preamble}
+
+% add math preamble
+\input{../../common/math_preamble}
+
+\codigo{R-521}
+\materia{Robótica Móvil}
+\titulo{}
+
+% Mostrar soluciones
+%\soluciones
+%\commentstrue
+
+
+\usepackage{biblatex}
+%\addbibresource{refs.bib}
+
+\begin{document}
+\maketitle
+
+\section{TARA stereo Camera}
+
+Ir a \url{https://github.com/CIFASIS/tara-stereo-camera} y seguir el README.md
+
+Luego,
+
+Instalar el calibrador:
+
+\begin{lstlisting}[style=bash]
+sudo apt install ros-jazzy-camera-calibration
+\end{lstlisting}
+
+y 
+
+seguir las instrucciones de \url{https://docs.nav2.org/tutorials/docs/camera_calibration.html}
+
+
+Ejecutar el calibrador:
+
+\begin{lstlisting}[style=bash]
+ros2 run camera_calibration cameracalibrator --size 8x6 --square 0.108 right:=/stereo/right/image_raw left:=/stereo/left/image_raw  --no-service-check
+\end{lstlisting}
+
+\end{document}
+
+
+
+
+
+
