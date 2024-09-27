@@ -25,9 +25,7 @@
 
 Ir a \url{https://github.com/CIFASIS/tara-stereo-camera} y seguir el README.md
 
-Luego,
-
-Instalar el calibrador:
+Luego, instalar el calibrador:
 
 \begin{lstlisting}[style=bash]
 sudo apt install ros-jazzy-camera-calibration
@@ -41,11 +39,51 @@ seguir las instrucciones de \url{https://docs.nav2.org/tutorials/docs/camera_cal
 Ejecutar el calibrador:
 
 \begin{lstlisting}[style=bash]
-ros2 run camera_calibration cameracalibrator --approximate 0.1 --size 8x6 --square 0.108 right:=/stereo/right/image_raw left:=/stereo/left/image_raw right_camera:=/stereo/right left_camera:=/stereo/left --no-service-check\end{lstlisting}
+ros2 run camera_calibration cameracalibrator --approximate 0.1 --size 8x6 --square 0.108 right:=/stereo/right/image_raw left:=/stereo/left/image_raw right_camera:=/stereo/right left_camera:=/stereo/left --no-service-check
+\end{lstlisting}
+
+
+\section{Intel D455}
+
+\begin{lstlisting}[style=bash]
+sudo apt-get install ros-<ROS-DISTRO>-diagnostic-updater
+sudo apt install ros-<ROS-DISTRO>-librealsense2*
+\end{lstlisting}
+
+Clonar en el workspace:
+\begin{lstlisting}[style=bash]
+git clone https://github.com/IntelRealSense/realsense-ros
+\end{lstlisting}
+
+Luego ir al root del workspace y compilar con colcon:
+\begin{lstlisting}[style=bash]
+cd ~/ros_ws
+colcon build --symlink-install
+\end{lstlisting}
+
+Sourcear:
+
+\begin{lstlisting}[style=bash]
+source install/setup.bash
+\end{lstlisting}
+
+Abrir el SDK:
+\begin{lstlisting}[style=bash]
+realsense-viewer
+\end{lstlisting}
+
+\begin{lstlisting}[style=bash]
+ros2 launch realsense2_camera rs_launch.py
+\end{lstlisting}
+
+\begin{lstlisting}[style=bash]
+ros2 launch realsense2_camera rs_launch.py initial_reset:=true enable_infra1:=true enable_infra2:=true enable_gyro:=true enable_accel:=true unite_imu_method:=1 rgb_camera.color_profile:=640x480x30 depth_module.infra_profile:=640x480x30 depth_module.depth_profile:=640x480x30
+\end{lstlisting}
+
+Se puede apagar el emisor laser con
+
+\begin{lstlisting}[style=bash]
+ros2 param set /camera/camera depth_module.emitter_enabled 0
+\end{lstlisting}
+
 \end{document}
-
-
-
-
-
-
