@@ -76,6 +76,8 @@ realsense-viewer
 ros2 launch realsense2_camera rs_launch.py
 \end{lstlisting}
 
+Por defecto da ya las imágenes estéreo rectificadas con una calibración interna que tiene almacenada. Por tanto, hay que configurarlar con una cierta resolución para que de las imágenes RAW\footnote{https://github.com/IntelRealSense/librealsense/issues/3294}.
+
 \begin{lstlisting}[style=bash]
 ros2 launch realsense2_camera rs_launch.py initial_reset:=true enable_infra1:=true enable_infra2:=true enable_gyro:=true enable_accel:=true unite_imu_method:=1 rgb_camera.color_profile:=640x480x30 depth_module.infra_profile:=640x480x30 depth_module.depth_profile:=640x480x30
 \end{lstlisting}
