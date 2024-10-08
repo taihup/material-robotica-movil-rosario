@@ -243,7 +243,46 @@
         \item El Jacobiano es la orientación del plano tangente a la función vectorial en un punto dado
         \item El Jacobiano es la generalización del gradiente de una función escalar
     \end{itemize}
+
+    \note{Info: https://angeloyeo.github.io/2020/07/24/Jacobian_en.html}
+
 \end{frame}
+
+
+\begin{frame}
+    \frametitle{Jacobiano en acción: Transformación Lineal}
+
+    \begin{center}
+        \movie[autostart,loop,poster]{\includegraphics[width=0.6\columnwidth]{images/matrix_as_linear_transformation_video.jpg}}{videos/matrix_as_linear_transformation.mp4}
+    \end{center}
+
+    \note{Info: https://angeloyeo.github.io/2020/07/24/Jacobian_en.html}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Jacobiano en acción: Transformación No-Lineal}
+
+    \begin{center}
+        \movie[autostart,loop,poster]{\includegraphics[width=0.5\columnwidth]{images/jacobian_nonlinear_transform_video.jpg}}{videos/jacobian_nonlinear_transform.mp4}
+    \end{center}
+
+    \note{Info: https://angeloyeo.github.io/2020/07/24/Jacobian_en.html}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Jacobiano en acción: Localmente Lineal}
+
+    \begin{center}
+        \movie[autostart,loop,poster]{\includegraphics[width=\columnwidth]{images/jacobian_locally_linear_video.jpg}}{videos/jacobian_locally_linear.mp4}
+    \end{center}
+
+    \note{Info: https://angeloyeo.github.io/2020/07/24/Jacobian_en.html}
+
+\end{frame}
+
 
 \begin{frame}
     \frametitle{Linearización en EKF}
@@ -538,7 +577,7 @@
                 0 & \sigma_{\phi}^{2}
             \end{bmatrix}
         $
-        \For todos los features observados $z_{t}^{i} = (r_{t}^{i}, \phi_{t}^{i})^{\top}$
+        \For {todos los features observados $z_{t}^{i} = (r_{t}^{i}, \phi_{t}^{i})^{\top}$}
         
         \State $ j = c_{t}^{i}$
         \State $ q = (m_{j,x}-\overline{\mu}_{t,x})^{2} + (m_{j,y}-\overline{\mu}_{t,y})^{2} $
