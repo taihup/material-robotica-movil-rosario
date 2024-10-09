@@ -349,7 +349,7 @@
 	Dadas las mediciones $\observation_{i:t}$ y las poses $\state_{1:t}$ del sensor, estimamos el mapa como
 	
    	\begin{figure}[!h]
-    \includegraphics[width=0.3\columnwidth]{./images/map_from_sensor_data.pdf}
+    \includegraphics[width=0.5\columnwidth]{./images/map_from_sensor_data.pdf}
     \end{figure}
 
     En este caso, utilizaremos sensores de rango, pero necesitamos un sensor que nos diga si una celda está ocupada o libre.
@@ -363,19 +363,28 @@
 	\frametitle{Filtro de Bayes Binario para Estado Estático}
 	\note{información extraída de https://youtu.be/v-Rm9TUG9LA}
     
-    \TODO{colorear los resultados de los términos que cambian}
-	
 	\begin{align*}
-		\only<1->{
+		\only<1>{
 			p(\map_{i}| \observation_{1:t}, \state_{1:t}) \overset{\text{Regla de Bayes}}{=}& \dfrac{p(\observation_{t} | \map_{i}, \observation_{1:t-1}, \state_{1:t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t})}{p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}}
+		\only<2>{
+            p(\map_{i}| \observation_{1:t}, \state_{1:t}) \overset{\text{Regla de Bayes}}{=}& \dfrac{p(\observation_{t} | \map_{i}, \alert{\observation_{1:t-1}}, \state_{1:t}) p(\map_{i} | \observation_{1:t-1}, \alert{\state_{1:t}})}{p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}
 		\\
-		\only<2->{
 			\overset{\text{Markov}}{=}& \dfrac{p(\observation_{t} | \map_{i}, \state_{1:t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}}
 		\\
-		\only<3->{
-		\overset{\text{Regla de Bayes}}{=}& \dfrac{p(\map_{i} | \observation_{t}, \state_{t}) p(\observation_{t} | \state_{t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\map_{i} | \state_{t})p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}}
+		\only<3>{
+            p(\map_{i}| \observation_{1:t}, \state_{1:t}) \overset{\text{Regla de Bayes}}{=}& \dfrac{p(\observation_{t} | \map_{i}, \observation_{1:t-1}, \state_{1:t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t})}{p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}
 		\\
-		\only<4->{
+			\overset{\text{Markov}}{=}& \dfrac{\alert{p(\observation_{t} | \map_{i}, \state_{1:t})} p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}
+		\\
+		    \overset{\text{Regla de Bayes}}{=}& \dfrac{p(\map_{i} | \observation_{t}, \state_{t}) p(\observation_{t} | \state_{t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\map_{i} | \state_{t})p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}}
+		\\
+		\only<4>{
+            p(\map_{i}| \observation_{1:t}, \state_{1:t}) \overset{\text{Regla de Bayes}}{=}& \dfrac{p(\observation_{t} | \map_{i}, \observation_{1:t-1}, \state_{1:t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t})}{p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}
+            \\
+                \overset{\text{Markov}}{=}& \dfrac{p(\observation_{t} | \map_{i}, \state_{1:t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}
+            \\
+                \overset{\text{Regla de Bayes}}{=}& \dfrac{p(\map_{i} | \observation_{t}, \state_{t}) p(\observation_{t} | \state_{t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\map_{i} | \alert{\state_{t}})p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}
+            \\
 		\overset{\text{independencia}}{=}& \dfrac{p(\map_{i} | \observation_{t}, \state_{t}) p(\observation_{t} | \state_{t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\map_{i})p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}}
 	\end{align*}
 
@@ -398,7 +407,8 @@
 	\frametitle{Filtro de Bayes Binario para Estado Estático}
 	\note{información extraída de https://youtu.be/v-Rm9TUG9LA}
 	
-	Hagamos un truco matemático...\\
+	Hagamos un truco matemático...
+
     Podemos computar el ratio de ambas probabilidades obteniendo:
 	
     \only<1>{
@@ -441,9 +451,12 @@
     }
 
     \only<5>{Reescribimos y Reagrupamos términos}
-    \only<6>{El primer término utiliza información actual.\\
-             El segundo término utiliza información del pasado.\\
-             El tercer término es un prior (información que asumimos del mapa)
+    \only<6>{
+            \begin{itemize}
+            \item El primer término utiliza información actual.
+            \item El segundo término utiliza información del pasado.
+            \item El tercer término es un prior (información que asumimos del mapa)
+            \end{itemize}
     }
 \end{frame}
 
@@ -513,7 +526,7 @@ tenemos entonces:
    l(\map_{i}| \observation_{1:t}, \state_{1:t}) =  \log \left( \dfrac{p(\map_{i} | \observation_{1:t}, \state_{1:t})}{1 - p(\map_{i} | \observation_{1:t}, \state_{1:t})} \right)
     \end{equation*}
 
-    Aplicando un logaritmo a ambos lados entonces, en el lado derecho de la igualdad se convierten las multiplicaciones en sumas. haciendo que el algoritmo sea rápido ya que solo tenemos que aplicar tres sumas.
+    Aplicando un logaritmo a ambos lados entonces, en el lado derecho de la igualdad se convierten las multiplicaciones en sumas, haciendo que el algoritmo sea rápido ya que solo tenemos que aplicar tres sumas.
 
 \end{frame}
 
