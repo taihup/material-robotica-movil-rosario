@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created by _Crotalus horridus_ in December 2007 -->
+<!-- This work is released into the public domain    -->
+<!-- Markup constructed by hand using Notepad        -->
+<svg
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.0"
+   width="832px"
+   height="448px"
+   viewBox="0 0 832 448"
+   id="Illustration of Bresenham's line algorithm">
+  <path fill="#999999" stroke="none" d="M 64,64   h +64 v +64 h -64 Z" />
+  <path fill="#999999" stroke="none" d="M 128,64  h +64 v +64 h -64 Z" />
+  <path fill="#999999" stroke="none" d="M 192,128 h +64 v +64 h -64 Z" />
+  <path fill="#999999" stroke="none" d="M 256,128 h +64 v +64 h -64 Z" />
+  <path fill="#999999" stroke="none" d="M 320,192 h +64 v +64 h -64 Z" />
+  <path fill="#999999" stroke="none" d="M 384,192 h +64 v +64 h -64 Z" />
+  <path fill="#999999" stroke="none" d="M 448,192 h +64 v +64 h -64 Z" />
+  <path fill="#999999" stroke="none" d="M 512,256 h +64 v +64 h -64 Z" />
+  <path fill="#999999" stroke="none" d="M 576,256 h +64 v +64 h -64 Z" />
+  <path fill="#999999" stroke="none" d="M 640,320 h +64 v +64 h -64 Z" />
+  <path fill="#999999" stroke="none" d="M 704,320 h +64 v +64 h -64 Z" />
+  <path fill="none" stroke="#CCCCCC" stroke-width="4" d="M 0,0   h +832" />
+  <path fill="none" stroke="#CCCCCC" stroke-width="4" d="M 0,64  h +832" />
+  <path fill="none" stroke="#CCCCCC" stroke-width="4" d="M 0,128 h +832" />
+  <path fill="none" stroke="#CCCCCC" stroke-width="4" d="M 0,192 h +832" />
+  <path fill="none" stroke="#CCCCCC" stroke-width="4" d="M 0,256 h +832" />
+  <path fill="none" stroke="#CCCCCC" stroke-width="4" d="M 0,320 h +832" />
+  <path fill="none" stroke="#CCCCCC" stroke-width="4" d="M 0,384 h +832" />
+  <path fill="none" stroke="#CCCCCC" stroke-width="4" d="M 0,448 h +832" />
+  <path fill="none" stroke="#CCCCCC" stroke-width="4" d="M 0,0   v +448" />
+  <path fill="none" stroke="#CCCCCC" stroke-width="4" d="M 64,0  v +448" />
+  <path fill="none" stroke="#CCCCCC" stroke-width="4" d="M 128,0 v +448" />
+  <path fill="none" stroke="#CCCCCC" stroke-width="4" d="M 192,0 v +448" />
+  <path fill="none" stroke="#CCCCCC" stroke-width="4" d="M 256,0 v +448" />
+  <path fill="none" stroke="#CCCCCC" stroke-width="4" d="M 320,0 v +448" />
+  <path fill="none" stroke="#CCCCCC" stroke-width="4" d="M 384,0 v +448" />
+  <path fill="none" stroke="#CCCCCC" stroke-width="4" d="M 448,0 v +448" />
+  <path fill="none" stroke="#CCCCCC" stroke-width="4" d="M 512,0 v +448" />
+  <path fill="none" stroke="#CCCCCC" stroke-width="4" d="M 576,0 v +448" />
+  <path fill="none" stroke="#CCCCCC" stroke-width="4" d="M 640,0 v +448" />
+  <path fill="none" stroke="#CCCCCC" stroke-width="4" d="M 704,0 v +448" />
+  <path fill="none" stroke="#CCCCCC" stroke-width="4" d="M 768,0 v +448" />
+  <path fill="none" stroke="#CCCCCC" stroke-width="4" d="M 832,0 v +448" />
+  <path fill="none" stroke="#000000" stroke-width="4" d="M 96,96 L 736,352" />
+</svg>
