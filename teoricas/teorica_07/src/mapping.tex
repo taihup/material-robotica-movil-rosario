@@ -353,28 +353,32 @@
 		\only<1>{
 			p(\map_{i}| \observation_{1:t}, \state_{1:t}) \overset{\text{Regla de Bayes}}{=}& \dfrac{p(\observation_{t} | \map_{i}, \observation_{1:t-1}, \state_{1:t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t})}{p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}}
 		\only<2>{
-            p(\map_{i}| \observation_{1:t}, \state_{1:t}) \overset{\text{Regla de Bayes}}{=}& \dfrac{p(\observation_{t} | \map_{i}, \alert{\observation_{1:t-1}}, \state_{1:t}) p(\map_{i} | \observation_{1:t-1}, \alert{\state_{1:t}})}{p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}
+            p(\map_{i}| \observation_{1:t}, \state_{1:t}) \overset{\text{Regla de Bayes}}{=}& \dfrac{p(\observation_{t} | \map_{i}, \alert{\observation_{1:t-1}}, \alert{\state_{1:t}}) p(\map_{i} | \observation_{1:t-1}, \alert{\state_{1:t}})}{p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}
 		\\
-			\overset{\text{Markov}}{=}& \dfrac{p(\observation_{t} | \map_{i}, \state_{1:t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}}
+			\overset{\text{Markov}}{=}& \dfrac{p(\observation_{t} | \map_{i}, \state_{t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}}
 		\\
 		\only<3>{
             p(\map_{i}| \observation_{1:t}, \state_{1:t}) \overset{\text{Regla de Bayes}}{=}& \dfrac{p(\observation_{t} | \map_{i}, \observation_{1:t-1}, \state_{1:t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t})}{p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}
 		\\
-			\overset{\text{Markov}}{=}& \dfrac{\alert{p(\observation_{t} | \map_{i}, \state_{1:t})} p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}
+			\overset{\text{Markov}}{=}& \dfrac{\alert{p(\observation_{t} | \map_{i}, \state_{t})} p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}
 		\\
 		    \overset{\text{Regla de Bayes}}{=}& \dfrac{p(\map_{i} | \observation_{t}, \state_{t}) p(\observation_{t} | \state_{t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\map_{i} | \state_{t})p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}}
 		\\
 		\only<4>{
             p(\map_{i}| \observation_{1:t}, \state_{1:t}) \overset{\text{Regla de Bayes}}{=}& \dfrac{p(\observation_{t} | \map_{i}, \observation_{1:t-1}, \state_{1:t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t})}{p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}
             \\
-                \overset{\text{Markov}}{=}& \dfrac{p(\observation_{t} | \map_{i}, \state_{1:t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}
+                \overset{\text{Markov}}{=}& \dfrac{p(\observation_{t} | \map_{i}, \state_{t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}
             \\
                 \overset{\text{Regla de Bayes}}{=}& \dfrac{p(\map_{i} | \observation_{t}, \state_{t}) p(\observation_{t} | \state_{t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\map_{i} | \alert{\state_{t}})p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}
             \\
 		\overset{\text{independencia}}{=}& \dfrac{p(\map_{i} | \observation_{t}, \state_{t}) p(\observation_{t} | \state_{t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1})}{p(\map_{i})p(\observation_{t} | \observation_{1:t-1}, \state_{1:t})}}
 	\end{align*}
 
-	\only<2>{Aplicamos Markov: La observación de ahora es independiente de las mediciones y poses anteriores. También, en el segundo término podemos ignorar $x_{t}$. Esto es, saber mi posición en el instante $t$ sin tener mediciones en dicho instante, no me va a servir para determinar si una celda esta libre u ocupada. El único caso dónde esto puede servir en la práctica es si el robot se encuentra encima de esa celda, y por tanto la celda esta libre de obstáculos ya que está parado sobre ella.}
+	\only<2>{Aplicamos Markov: 
+            
+            La observación de ahora es independiente de las mediciones y poses anteriores.
+    
+            También, en el segundo término podemos ignorar $x_{t}$. Esto es, saber mi posición en el instante $t$ sin tener mediciones en dicho instante, no me va a servir para determinar si una celda esta libre u ocupada. El único caso dónde esto puede servir en la práctica es si el robot se encuentra encima de esa celda, y por tanto la celda esta libre de obstáculos ya que está parado sobre ella.}
 	
 	\only<3>{Aplicamos Regla de Bayes en el primer término de la multiplicación}
 	
@@ -418,7 +422,7 @@
     \only<4->{
     \begin{align*}
         \dfrac{p(\map_{i}| \observation_{1:t}, \state_{1:t})}{p(\neg \map_{i}| \observation_{1:t}, \state_{1:t})} 
-        =& \dfrac{p(\map_{i} | \observation_{t}, \state_{t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1} p(\neg \map_{i})} {p(\neg \map_{i} | \observation_{t}, \state_{t}) p(\neg \map_{i} | \observation_{1:t-1}, \state_{1:t-1})p(\map_{i})}\\
+        =& \dfrac{p(\map_{i} | \observation_{t}, \state_{t}) p(\map_{i} | \observation_{1:t-1}, \state_{1:t-1}) p(\neg \map_{i})} {p(\neg \map_{i} | \observation_{t}, \state_{t}) p(\neg \map_{i} | \observation_{1:t-1}, \state_{1:t-1})p(\map_{i})}\\
     \only<5>{
         =& \dfrac{p(\map_{i} | \observation_{t}, \state_{t})}{1 - p(\map_{i} | \observation_{t}, \state_{t})}
         %
@@ -577,7 +581,7 @@ tenemos entonces:
     
    \begin{algorithmic}[1]
        \State occupancy\_grid\_mapping($\left\lbrace l_{t-1,i} \right\rbrace, \state_{t}, \observation_{t}$)
-       \For todas las celdas $\map_{i}$
+       \For {todas las celdas $\map_{i}$}
        \If{$\map_{i}$ está siendo observada por $\observation_{t}$}
             \State $l_{t,i} = inv\_sensor\_model(\map_{i}, \state_{t}, \observation_{t}) + l_{t-1,i} - l_{0}$
        \Else
@@ -607,8 +611,10 @@ tenemos entonces:
     \note{información extraída de https://youtu.be/v-Rm9TUG9LA}
     Bresenham's line algorithm
     \begin{figure}[!h]
-        \includegraphics[width=0.8\columnwidth]{./images/bresenham.pdf}
+        \includegraphics[width=0.6\columnwidth]{./images/bresenham.pdf}
     \end{figure}
+
+    El algoritmo de línea de Bresenham permite dibujar una línea que determina las celdas de una grilla que deben seleccionarse para aproximar una línea recta entre dos puntos.
 
 \end{frame}
 
