@@ -618,10 +618,24 @@ tenemos entonces:
 
 \end{frame}
 
+
+\begin{frame}
+    \frametitle{De Laser scans a Occupancy Grid Maps}
+    \note{información extraída de https://youtu.be/v-Rm9TUG9LA}
+   
+    
+    \begin{figure}[!h]
+        \includegraphics[width=0.6\columnwidth]{./images/laser_scans_to_maps.pdf}
+    \end{figure}
+
+\end{frame}
+
 \begin{frame}
     \frametitle{Agregar vídeo de ejemplo}
     \note{información extraída de https://youtu.be/v-Rm9TUG9LA}
    
+
+    \url{https://www.youtube.com/watch?v=ykOTfrS5pO4}
     
     \TODO{agregar vídeo de ejemplo de grid mapping como hace cyrill stachniss}
 \end{frame}
@@ -629,8 +643,15 @@ tenemos entonces:
 \begin{frame}
     \frametitle{Resumen: Occupancy Grid Map}
     \note{información extraída de https://youtu.be/v-Rm9TUG9LA}
-    
-    \TODO{agregar resumen de Occupancy Grid Map como hace cyrill stachniss}
+    \begin{itemize}
+        \item Los occupancy grid maps discretizan el espacio en celdas independientes
+        \item Cada celda es una variable aleatoria binaria que estima si la celda está ocupada
+        \item Filtro de Bayes binario de estado estático por celda
+        \item El mapeo con poses conocidas es fácil
+        \item El modelo log odds es rápido de computar
+        \item No se necesitan features predefinidos
+    \end{itemize}
+
 \end{frame}
 
 
