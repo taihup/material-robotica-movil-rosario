@@ -443,10 +443,22 @@
     \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
     
     \begin{itemize}
-        \item ¿Cómo lucen los parámetros si la odometría es perfecta? \note{la matriz debería ser la identidad. Entonces el error es 0 y por lo tanto ya encontré el mínimo.}
-        \item ¿Cuantas mediciones son necesarias para encontrar la solución al problema de calibración? \note{Tenemos que ver cuantas variables desconocidas tenemos y cuanta información nos provee cada observación. Tenemos 9 variables desconocidas. Cada observación nos da información de 3 variables (nos da 3 ecuaciones). Por lo tanto, vamos a necesitar al menos 3 observaciones.}
-        \item $\linearSystemH$ es simétrica. ¿Por qué? \note{La forma en que H es simétrica porque  H = J Omega J. Omega es simétrica definida postiva y J tambien, y por lo tanto el producto también.}
-        \item ¿Cómo afecta la estructura de la función de medición a la estructura de $\linearSystemH$? \note{H es esparsa porque los jacobianos son esparsos. Los jacobianos son esparsos porque codifican cuanta información nos da una medición sobre todas las variables de estado. Por lo tanto, si nuestras mediciones solo relacionan algunas variables (como es el caso de SLAM), entonces la H será esparsa.}
+        \item<1-> ¿Cómo lucen los parámetros si la odometría es perfecta?
+        \begin{itemize}
+            \item<2-> La matriz debería ser la identidad. Entonces el error es 0, y por lo tanto, encontramos el mínimo.
+        \end{itemize}
+        \item<3-> ¿Cuantas mediciones son necesarias para encontrar la solución al problema de calibración?
+        \begin{itemize}
+            \item<4-> Tenemos que ver cuantas variables desconocidas tenemos y cuanta información nos provee cada observación. Tenemos 9 variables desconocidas. Cada observación nos da información de 3 variables (nos da 3 ecuaciones). Por lo tanto, vamos a necesitar al menos 3 observaciones.
+        \end{itemize}
+        \item<5-> $\linearSystemH$ es simétrica. ¿Por qué?
+        \begin{itemize}
+            \item<6-> La forma en que $\linearSystemH$ es simétrica porque  $\linearSystemH = \jacobian^{\top}\Omega\jacobian$. $\Omega$ es simétrica definida postiva y $\jacobian$ tambien, y por lo tanto el producto también.
+        \end{itemize}
+        \item<7-> ¿Cómo afecta la estructura de la función de medición a la estructura de $\linearSystemH$?
+        \begin{itemize}
+            \item<8-> $\linearSystemH$ es esparsa porque los jacobianos son esparsos. Los jacobianos son esparsos porque codifican cuanta información nos da una medición sobre todas las variables de estado. Por lo tanto, si nuestras mediciones solo relacionan algunas variables (como es el caso de SLAM), entonces la $\linearSystemH$ será esparsa.
+        \end{itemize}
     \end{itemize}
 
 \end{frame}
