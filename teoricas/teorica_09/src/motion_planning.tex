@@ -235,7 +235,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Depth-first Search: Grilla de expansión}
+    \frametitle{Breadth-First Search: Grilla de expansión}
     \begin{footnotesize}
         \begin{block}{Grilla de expansión}
             La grilla de expansión contiene información sobre en que paso cada nodo fue expandido.
@@ -263,7 +263,7 @@
         \begin{columns}[t]
             \begin{column}{6cm}
                 \centering
-                Grilla de expansión\\
+                Grilla de expansión Breadth-First Search\\
                 \begin{tabularx}{6cm}{|X|X|X|X|X|X|}
                     \hline
                     $0$ & $1$ & $-1$ & $11$ & $15$ & $18$ \\
@@ -508,7 +508,7 @@
         \begin{columns}[t]
             \begin{column}{5cm}
                 \begin{center}
-                    Grilla de expansión de First Search
+                    Grilla de expansión de Breadth-First Search
                 \end{center}
                 \begin{tabularx}{\columnwidth}{|X|X|X|X|X|X|}	
                     \hline
@@ -1028,7 +1028,7 @@ En este ejemplo, $\configurationSpace$-space es obtenido por medio de agrandar l
 	\note{Información extraída de slides Martin Saska}
 	
 	\begin{itemize}
-		\item E.g. para robot car-like
+		\item Ejemplo para robot car-like
 		\item Considera las restricciones de movimiento cinemático de los robots
 		\item Es necesaria la construcción de un mapa local
 	\end{itemize}
@@ -1060,8 +1060,7 @@ En este ejemplo, $\configurationSpace$-space es obtenido por medio de agrandar l
 	\frametitle{Probabilistic Roadmap}
 	\note{Información extraída de slides Martin Saska}
 	
-	Una representación discreta del espacio C continuo generado
-	por configuraciones muestreadas aleatoriamente en Cfree que están conectadas
+	Una representación discreta del espacio $\configurationSpace$ continuo generado por configuraciones muestreadas aleatoriamente en $\configurationSpace_{free}$ que están conectadas
 	en un gráfico.
 	\begin{itemize}
 		\item Los {\bf nodos} del grafo representan la configuración admisible de
@@ -1102,7 +1101,7 @@ En este ejemplo, $\configurationSpace$-space es obtenido por medio de agrandar l
 	\frametitle{Probabilistic RoadMap (PRM) Planner}
 	\note{Información extraída de slides Martin Saska}
 	
-	Construir una roadman (grafo) que represente el entorno
+	Construir una roadmap (grafo) que represente el entorno
 	\begin{itemize}
 		\item Etapa de aprendizaje
 		\begin{enumerate}
@@ -1228,10 +1227,10 @@ En este ejemplo, $\configurationSpace$-space es obtenido por medio de agrandar l
 	\note{Información extraída de slides Martin Saska}
 
 	\begin{itemize}
-		\item Explora rápidamente el espacio qnew probablemente se generará en zonas grandes todavía no cubiertas de $\freeConfigurationSpace$.
+		\item Explora rápidamente el espacio $\robotConfiguration_{new}$ probablemente se generará en zonas grandes todavía no cubiertas de $\freeConfigurationSpace$.
 		\item Permite considerar restricciones cinemáticas/dinámicas durante la expansión
 		\item Puede proporcionar una trayectoria o una secuencia de comandos de control directo.
-		\item Una prueba de detección de colisiones generalmente se usa como una ``caja negra''. Por ejemplo, las librerías RAPID, Bullet.
+		\item Una prueba de detección de colisiones generalmente se usa como una ``caja negra''. Por ejemplo, las librerías RAPID\footnote{\url{https://github.com/nlbucki/RapidQuadcopterCollisionDetection}}, Bullet\footnote{\url{https://pybullet.org}}.
 		\item Rendimiento deficiente en problemas de paso angosto similar a PRM
 		\item Proporciona caminos factibles (más expansiones pueden mejorar los caminos)
 		\item Se han propuesto muchas variantes de RRT
