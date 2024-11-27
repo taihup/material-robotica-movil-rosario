@@ -41,7 +41,7 @@
 	\section{Entrega}
 	\begin{itemize}
 		
-		\item En el caso de desarrollar código, este debe en los lenguajes de programación Python o C++. El código debe ser legible y estar comentado adecuadamente. Se recomienda utilizar Doxygen\footnote{\url{https://doxygen.nl/}} para la documentación del código.
+		\item En el caso de desarrollar código, este debe ser en Python o C++. El código debe ser legible y estar comentado adecuadamente. Se recomienda utilizar Doxygen\footnote{\url{https://doxygen.nl/}} para la documentación del código.
 		
 		\item En el caso de desarrollar código, se debe proveer un repositorio Git que contenga el código desarrollado, una imagen Docker y un archivo \lstinline{README.md} con las instrucciones de compilación y ejecución.
 		
@@ -56,9 +56,9 @@
 	\section{(Opcional) Experimentación con dataset y robot}
 	\begin{itemize}
         
-        \item Primero, realizar experimentos en simulación o sobre algún dataset del estado del arte.
+        \item Realizar experimentos en simulación o sobre algún dataset del estado del arte.
         
-		\item Luego, utilizar un dataset del robot Create 3 o grabar un dataset propio con los sensores necesarios utilizando el robot Create 3 provisto por la cátedra. Estos datos serán los utilizados para el desarrollo del sistema. El dataset debera contar con ground-truth de localización, es decir, contar con la localización real del robot. El ground-truth será utilizado para comparar la localización estimada por el sistema de localización desarrollado. Para el ground-truth se puede utilizar el paquete \lstinline{ros2_aruco}\footnote{\url{https://github.com/JMU-ROBOTICS-VIVA/ros2_aruco}}. 
+		\item Utilizar un dataset del robot Create 3 o grabar un dataset propio con los sensores necesarios utilizando el robot Create 3 provisto por la cátedra. Estos datos serán los utilizados para el desarrollo del sistema. El dataset debera contar con ground-truth de localización, es decir, contar con la localización real del robot. El ground-truth será utilizado para comparar la localización estimada por el sistema de localización desarrollado. Para el ground-truth se puede utilizar el paquete \lstinline{ros2_aruco}\footnote{\url{https://github.com/JMU-ROBOTICS-VIVA/ros2_aruco}}. 
 		
 		\item Realizar experimentos con el robot Create 3 provisto por la cátedra.
 	\end{itemize}
@@ -66,7 +66,7 @@
 	
 	\section{Análisis de Resultados}
 		\begin{itemize}
-			\item Calcular el error obtenido con las métricas estándares utilizadas en robótica. Para evaluar un sistema de localización se recomienda utilizar la herramienta \lstinline{evo}\footnote{\url{https://github.com/MichaelGrupp/evo}} o \lstinline{rpg_trajectory_evaluation}\footnote{\url{https://github.com/uzh-rpg/rpg_trajectory_evaluation}}. La misma permite calcular los errores \emph{Absolute Trajectory Error} (ATE) y \emph{Relative Pose Error} (RPE).
+			\item Calcular el error obtenido con las métricas estándares utilizadas en robótica. Para evaluar un sistema de localización se recomienda utilizar la herramienta \lstinline{evo}\footnote{\url{https://github.com/MichaelGrupp/evo}} o \lstinline{rpg_trajectory_evaluation}\footnote{\url{https://github.com/uzh-rpg/rpg_trajectory_evaluation}}. Estas permiten calcular los errores \emph{Absolute Trajectory Error} (ATE) y \emph{Relative Pose Error} (RPE).
 		
 			\item Comentar los casos donde el sistema no funciona adecuadamente o las limitaciones, y las posibles mejoras que se podrían realizar.
 		\end{itemize}
