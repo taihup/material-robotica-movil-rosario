@@ -673,7 +673,7 @@
 \begin{frame}
     \frametitle{Pin-hole camera model}
     
-    El modelo de cámara Pin-Hole no modela la distorción causada por los lentes.
+    El modelo de cámara Pin-Hole no modela la distorsión causada por los lentes.
 
     Las cámaras \emph{narrow} (FOV < 180 grados) utilizan coordenadas de píxeles $(x, y)$ o coordenadas de imagen normalizadas $(x_{n}, y_{n})$. 
     Las coordenadas de imagen normalizadas representan un vector 3D con la suposición implícita de que $z = 1$, lo que limita el FOV.
@@ -702,7 +702,7 @@
 
 
 \begin{frame}
-    \frametitle{Distorción Radial}
+    \frametitle{Distorsión Radial}
     
     \footnotesize
     
@@ -712,7 +712,7 @@
     
     \begin{figure}[!h]
         \centering
-        \subfloat[Sin distorción]
+        \subfloat[Sin distorsión]
         {
             \includegraphics[width=0.2\columnwidth]{images/camera/no_distortion.pdf}
         }
@@ -733,17 +733,17 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Distorción Radial}
+    \frametitle{Distorsión Radial}
     
     Para corregir esta distorsión se calcula un modelo de distorsión radial que relaciona los puntos de la imagen de la imagen real con los puntos ideales, los que se habrían obtenido bajo una cámara lineal perfecta. De esta forma, la cámara se puede representar con un modelo pin-hole lineal. En la figura es posible observar la imagen cruda (distorsionada) tomada por la cámara y la imagen después de la desdistorsión.
     
     \begin{figure}[!h]
         \centering
-        \subfloat[Imagen distorcionada]
+        \subfloat[Imagen distorsionada]
         {
             \includegraphics[width=0.45\columnwidth]{images/camera/distorted_image.png}
         }
-        \subfloat[Imagen desdistorcionada]
+        \subfloat[Imagen desdistorsionada]
         {
             \includegraphics[width=0.45\columnwidth]{images/camera/undistorted_image.png}
         }
@@ -753,7 +753,7 @@
 
 
 % \begin{frame}
-%     \frametitle{Distorción Radial}
+%     \frametitle{Distorsión Radial}
     
 %     \footnotesize
     
@@ -778,10 +778,10 @@
 % \end{frame}
 
 % \begin{frame}
-%     \frametitle{Distorción Radial}
+%     \frametitle{Distorsión Radial}
 %     \footnotesize
     
-%     \TODO{Agregar modelo de distorción aplicado en: https://boofcv.org/index.php?title=Tutorial\_Camera\_Calibration}
+%     \TODO{Agregar modelo de distorsión aplicado en: https://boofcv.org/index.php?title=Tutorial\_Camera\_Calibration}
     
 %     Finalmente, la corrección se puede representar en coordenadas de píxeles como
 %     \begin{equation*}
@@ -814,7 +814,7 @@
 % \end{frame}
 
 \begin{frame}
-    \frametitle{Distorción Tangencial}
+    \frametitle{Distorsión Tangencial}
     \footnotesize
     \begin{figure}
         \includegraphics[width=0.4\columnwidth]{images/camera/tangential_distortion2.pdf}\\
