@@ -26,5 +26,6 @@ Utilizar el comando `ffmpeg -i inputfile.gif -movflags faststart -pix_fmt yuv420
 
 Utilizar el comando `ffmpeg -i inputfile.mp4 -vf "select=eq(n\,0)" -q:v 3 output_image.jpg` para extraer el primer frame del vídeo y utilizarlo en las slides.
 
-
+# Trabajos Prácticos Finales
+`https://github.com/taihup/material-robotica-movil-rosario-proyectos`
 
