@@ -133,7 +133,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Forma Cerrada de Sampleo es Solo Posible para Pocas Distribuciones }
+    \frametitle{Una Forma Cerrada de Muestreo es solo posible para Pocas Distribuciones }
     \begin{itemize}
         \item Ejemplo: Distribución Gaussiana
         
@@ -166,89 +166,167 @@
         \item Precondición:
         $f(x) > 0 \implies \pi(x) > 0$
         \begin{center}
-        %\includegraphics[width=0.5\textwidth]{importance_sampling.png}
+        \includegraphics[width=0.5\textwidth]{./images/particle_filter/importance_sampling_principle.pdf}
         \end{center}
     \end{itemize}
 \end{frame}
     
 \begin{frame}
-    \frametitle{Particle Filter}
+    \frametitle{Filtro de Partículas}
     \begin{itemize}
-        \item Recursive Bayes filter
-        \item Non-parametric approach
-        \item Models the distribution by samples
-        \item Prediction: draw from the proposal
-        \item Correction: weighting by the ratio of target and proposal
-        \item \textbf{The more samples we use, the better is the estimate!}
+        \item Filtro Bayesiano recursivo
+        \item Enfoque no paramétrico
+        \item Modela la distribución mediante muestras
+        \item \textbf{Predicción}: extraer de la distribución propuesta
+        \item \textbf{Corrección}: ponderación por la relación entre la distribución objetivo y la propuesta
+        \item \alert{¡Cuantas más muestras usemos, mejor será la estimación!}
     \end{itemize}
-    \end{frame}
+\end{frame}
     
-    \begin{frame}
-    \frametitle{Particle Filter Algorithm}
+\begin{frame}
+    \frametitle{Algoritmo de Filtro de Partículas}
     \begin{enumerate}
-        \item Sample the particles using the proposal distribution
-        \[
-        x_t^{[i]} \sim \pi(x_t | \ldots)
-        \]
-        \item Compute the importance weights
-        \[
-        w_t^{[i]} = \frac{\text{target}(x_t^{[i]})}{\text{proposal}(x_t^{[i]})}
-        \]
-        \item Resampling: “Replace unlikely samples by more likely ones”
+        \item Muestrear las partículas utilizando la distribución propuesta.
+        \begin{equation*}
+            x_t^{[j]} \sim proposal(x_t | \ldots)
+        \end{equation*}
+        \item Calcular los pesos de importancia
+        \begin{equation*}
+            w_t^{[j]} = \frac{target(x_t^{[j]})}{proposal(x_t^{[j]})}
+        \end{equation*}
+        \item Resampling: Tomar la partícula $i$ con probabilidad $w_t^{[j]}$ y repetir $J$ veces 
     \end{enumerate}
-    \end{frame}
-    
-    \begin{frame}
-    \frametitle{Monte Carlo Localization}
-    \begin{itemize}
-        \item Each particle is a pose hypothesis
-        \item Proposal is the motion model
-        \[
-        x_t^{[i]} \sim p(x_t \, | \, x_{t-1}, u_t)
-        \]
-        \item Correction via the observation model
-        \[
-        w_t^{[i]} = \frac{\text{target}}{\text{proposal}} \propto p(z_t \, | \, x_t, m)
-        \]
-    \end{itemize}
-    \end{frame}
-    
-    \begin{frame}
-    \frametitle{Particle Filter for Localization}
+    \note{Reemplazar muestras improbables por otras más probables}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Algoritmo de Filtro de Partículas}
     \begin{algorithmic}[1]
+    \Procedure{ParticleFilter}{$\mathcal{X}_{t-1}, u_{t}, z_{t}$}:
     \State $\bar{\mathcal{X}}_t = \mathcal{X}_t = \emptyset$
-    \For{$m = 1$ to $M$}
-        \State Sample $x_t^{[m]} \sim p(x_t \, | \, u_t, x_{t-1}^{[m]})$
-        \State $w_t^{[m]} = p(z_t \, | \, x_t^{[m]})$
-        \State $\bar{\mathcal{X}}_t = \bar{\mathcal{X}}_t + \langle x_t^{[m]}, w_t^{[m]}\rangle$
+    \For{$j = 1$ to $J$}
+        \State sample $x_t^{[j]} \sim \pi(x_t)$
+        \State $w_t^{[j]} = \dfrac{p(x_t^{[j]})}{\pi(x_{t}^{[j]})}$
+        \State $\bar{\mathcal{X}}_t = \bar{\mathcal{X}}_t + \langle x_t^{[j]}, w_t^{[j]}\rangle$
     \EndFor
-    \For{$m = 1$ to $M$}
+    \For{$j = 1$ to $M$}
         \State Draw $i$ with probability $\propto w_t^{[i]}$
         \State Add $x_t^{[i]}$ to $\mathcal{X}_t$
     \EndFor
-    \State Return $\mathcal{X}_t$
+    \State return $\mathcal{X}_t$
+    \EndProcedure
     \end{algorithmic}
-    \end{frame}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Monte Carlo Localization}
+
+    Monte Carlo Localization: Filtro de Partículas para la localización de un robot
+
+\end{frame}
+
+
+% \begin{frame}
+%     \frametitle{Monte Carlo Localization}
+
+%     \begin{center}
+%         \includegraphics[width=0.37\textwidth]{./images/particle_filter/monte_carlo_localization_example.pdf}
+%     \end{center}
+
+% \end{frame}
+
+\begin{frame}
+    \frametitle{Monte Carlo Localization}
+    \begin{itemize}
+        \item Cada partícula es una hipótesis de la pose
+        \item Proposal es el motion model
+        \begin{equation*}
+            x_t^{[j]} \sim p(x_t \, | \, x_{t-1}, u_t)
+        \end{equation*}
+        \item Corrección vía el observation model
+        \begin{equation*}
+            w_t^{[j]} = \frac{target}{proposal} \propto p(z_t \, | \, x_t, m)
+        \end{equation*}
+    \end{itemize}
+\end{frame}
+
     
-    \begin{frame}
+\begin{frame}
+    \frametitle{Filtro de Partículas para Localización}
+    \begin{algorithmic}[1]
+        \Procedure{ParticleFilter}{$\mathcal{X}_{t-1}, u_{t}, z_{t}$}
+        \State $\bar{\mathcal{X}}_t = \mathcal{X}_t = \emptyset$
+        \For{$j = 1$ to $J$}
+            \State Sample $x_t^{[j]} \sim p(x_t \, | \, u_t, x_{t-1}^{[j]})$
+            \State $w_t^{[j]} = p(z_t \, | \, x_t^{[j]})$
+            \State $\bar{\mathcal{X}}_t = \bar{\mathcal{X}}_t + \langle x_t^{[j]}, w_t^{[j]}\rangle$
+        \EndFor
+        \For{$i = 1$ to $J$}
+            \State Draw $i \in 1,\ldots,J$ with probability $\propto w_t^{[i]}$
+            \State Add $x_t^{[i]}$ to $\mathcal{X}_t$
+        \EndFor
+        \State return $\mathcal{X}_t$
+    \EndProcedure
+    \end{algorithmic}
+\end{frame}
+    
+\begin{frame}
+    \frametitle{Monte Carlo Localization - Paso de Corrección}
+
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{./images/particle_filter/monte_carlo_correction.pdf}
+    \end{center}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Monte Carlo Localization - Remuestreo y Predicción}
+
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{./images/particle_filter/monte_carlo_resample_and_predict.pdf}
+    \end{center}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Monte Carlo Localization - Paso de Corrección 2}
+
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{./images/particle_filter/monte_carlo_correction2.pdf}
+    \end{center}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Monte Carlo Localization - Remuestreo y Predicción 2}
+
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{./images/particle_filter/monte_carlo_resample_and_predict2.pdf}
+    \end{center}
+
+\end{frame}
+
+
+\begin{frame}
     \frametitle{Resampling}
     \begin{itemize}
         \item Survival of the fittest: “Replace unlikely samples by more likely ones”
         \item “Trick” to avoid that many samples cover unlikely states
         \item Needed as we have a limited number of samples
     \end{itemize}
-    \end{frame}
+\end{frame}
     
-    \begin{frame}
+\begin{frame}
     \frametitle{Resampling Methods}
     \begin{itemize}
         \item Roulette wheel
         \item Binary search (O(n log n))
         \item Stochastic universal sampling (Low variance, O(n))
     \end{itemize}
-    \end{frame}
+\end{frame}
     
-    \begin{frame}
+\begin{frame}
     \frametitle{Low Variance Resampling}
     \begin{algorithmic}[1]
     \State $\bar{\mathcal{X}}_t = \emptyset$
@@ -265,9 +343,9 @@
     \EndFor
     \State Return $\bar{\mathcal{X}}_t$
     \end{algorithmic}
-    \end{frame}
+\end{frame}
     
-    \begin{frame}
+\begin{frame}
     \frametitle{Summary – Particle Filters}
     \begin{itemize}
         \item Particle filters are non-parametric, recursive Bayes filters
@@ -277,9 +355,9 @@
         \item Weight to account for the differences between the proposal and the target
         \item Work well in low-dimensional spaces
     \end{itemize}
-    \end{frame}
+\end{frame}
     
-    \begin{frame}
+\begin{frame}
     \frametitle{Summary – PF Localization}
     \begin{itemize}
         \item Particles are propagated according to the motion model
@@ -287,7 +365,9 @@
         \item Called: Monte-Carlo localization (MCL)
         \item MCL is the gold standard for mobile robot localization today
     \end{itemize}
-    \end{frame}
+\end{frame}
+
+
 
 \begin{frame}
     \frametitle{Material para Particle Filter}
