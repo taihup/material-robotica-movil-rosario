@@ -82,6 +82,25 @@
     
 \end{frame}
 
+\begin{frame}
+    \frametitle{Material para Particle Filter}
+    
+    \begin{itemize}
+        \item Conjunto de partículas con peso
+            
+        \begin{center}
+            \includegraphics[width=0.5\columnwidth]{./images/particle_filter/weighted_samples.pdf}
+        \end{center}
+
+        \item Las partículas representan la posterior belief dada por
+        \begin{equation*}
+            p(x) = \sum_{j=1}^{J} w^{[j]} \delta_{x^{[j]}}(x)    
+        \end{equation*}
+        donde $\delta_{x^{[j]}}$ es la función de Dirac centrada en la ubicación de la partícula $x^{[j]}$
+    \end{itemize}
+   
+\end{frame}
+
 
 \begin{frame}
     \frametitle{Material para Particle Filter}
