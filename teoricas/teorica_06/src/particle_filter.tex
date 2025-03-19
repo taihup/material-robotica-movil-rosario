@@ -120,7 +120,8 @@
         \item Partículas para aproximar una función
         
         \begin{center}
-            \includegraphics[width=0.8\columnwidth]{./images/particle_filter/particles_for_approximation.pdf}
+            \includegraphics[width=0.45\columnwidth]{./images/particle_filter/gaussian_approximation_by_sampling.pdf}
+            \includegraphics[width=0.45\columnwidth]{./images/particle_filter/particles_for_approximation.pdf}
         \end{center}
 
         \item Más partículas caen en una región, más alta es la probabilidad de la región
@@ -166,7 +167,7 @@
         \item Precondición:
         $f(x) > 0 \implies \pi(x) > 0$
         \begin{center}
-        \includegraphics[width=0.5\textwidth]{./images/particle_filter/importance_sampling_principle.pdf}
+        \includegraphics[width=0.45\textwidth]{./images/particle_filter/importance_sampling_principle.pdf}
         \end{center}
     \end{itemize}
 \end{frame}
@@ -311,18 +312,18 @@
 \begin{frame}
     \frametitle{Resampling}
     \begin{itemize}
-        \item Survival of the fittest: “Replace unlikely samples by more likely ones”
-        \item “Trick” to avoid that many samples cover unlikely states
-        \item Needed as we have a limited number of samples
+        \item La supervivencia del más apto: “Reemplazar muestras improbables por otras más probables”
+        \item “Truco” para evitar que muchas muestras cubran estados improbables
+        \item Necesario, ya que tenemos un número limitado de muestras
     \end{itemize}
 \end{frame}
     
 \begin{frame}
     \frametitle{Resampling Methods}
     \begin{itemize}
-        \item Roulette wheel
-        \item Binary search (O(n log n))
-        \item Stochastic universal sampling (Low variance, O(n))
+        \item Ruleta
+        \item Búsqueda binaria (O(n log n))
+        \item Muestreo universal estocástico (baja varianza, O(n))
     \end{itemize}
 \end{frame}
     

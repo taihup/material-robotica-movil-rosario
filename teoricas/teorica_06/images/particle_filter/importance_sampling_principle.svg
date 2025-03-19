@@ -3,8 +3,8 @@
 
 <svg
    width="60.958061mm"
-   height="42.810707mm"
-   viewBox="0 0 60.958062 42.810708"
+   height="43.850372mm"
+   viewBox="0 0 60.958062 43.850373"
    version="1.1"
    id="svg1"
    inkscape:version="1.4 (1:1.4+202410161351+e7c3feb100)"
@@ -24,9 +24,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="2.1593938"
-     inkscape:cx="113.45777"
-     inkscape:cy="82.662088"
+     inkscape:zoom="3.053844"
+     inkscape:cx="113.79101"
+     inkscape:cy="68.274607"
      inkscape:window-width="1854"
      inkscape:window-height="1011"
      inkscape:window-x="1432"
@@ -188,7 +188,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-62.972216,-85.724994)">
+     transform="translate(-62.972216,-84.685321)">
     <path
        style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1"
        d="m 66.876316,120.04609 c 8.462762,0.25227 14.734587,-2.92096 17.110977,-4.16871 10.8117,-5.67679 13.78414,-4.71002 24.537797,1.01462 3.82796,2.03779 8.60308,2.96561 15.08107,3.15409"
@@ -196,7 +196,7 @@
        sodipodi:nodetypes="cssc" />
     <path
        style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1"
-       d="m 110.26822,87.47727 h 9.70362"
+       d="m 111.58081,87.47727 h 9.70362"
        id="path2" />
     <g
        inkscape:label="Layer 1"
@@ -204,19 +204,19 @@
        transform="translate(-23.023,-0.677641)">
       <path
          style="fill:#0000ff;fill-opacity:1;stroke:#0000ff;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1"
-         d="m 133.45884,92.279881 h 9.70362"
+         d="m 134.60381,92.279881 h 9.70362"
          id="path2-0-6" />
       <path
          style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1"
-         d="m 133.23539,95.996111 h 9.70362"
+         d="m 134.60381,95.996111 h 9.70362"
          id="path2-5-2" />
       <rect
          style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.132292;stroke-dasharray:none;stroke-opacity:1"
          id="rect2-9"
          width="57.008751"
-         height="42.678413"
+         height="43.718079"
          x="89.87838"
-         y="86.468781" />
+         y="85.429108" />
       <path
          style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.132292;stroke-dasharray:none;stroke-opacity:1"
          d="M 89.882893,121.03677 H 146.75717"
