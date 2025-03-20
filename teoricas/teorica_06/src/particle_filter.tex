@@ -312,19 +312,46 @@
 \begin{frame}
     \frametitle{Resampling}
     \begin{itemize}
-        \item La supervivencia del más apto: “Reemplazar muestras improbables por otras más probables”
-        \item “Truco” para evitar que muchas muestras cubran estados improbables
+        \item Tomar la partícula $i$ con probabilidad $w_t^{[i]}$. Repetir $J$ veces.
+        \item Informalmente: ``Reemplazar muestras improbables por otras más probables''
+        \item Supervivencia del más apto
+        \item ``Truco'' para evitar que muchas muestras cubran estados improbables
         \item Necesario, ya que tenemos un número limitado de muestras
     \end{itemize}
 \end{frame}
     
 \begin{frame}
-    \frametitle{Resampling Methods}
+    \frametitle{Métodos de Resampling}
+    \centering
+    \only<1>{\includegraphics[width=0.4\textwidth]{./images/particle_filter/resampling_rulette_wheel1.pdf}}
+    \only<2>{\includegraphics[width=0.4\textwidth]{./images/particle_filter/resampling_rulette_wheel2.pdf}}
+    \only<3>{\includegraphics[width=0.4\textwidth]{./images/particle_filter/resampling_rulette_wheel3.pdf}}
+
+    \only<3>{
+        \begin{itemize}
+            \item Ruleta
+            \item Búsqueda binaria para saber en qué bucket cae la bola ($O(J \log(J))$)
+        \end{itemize}
+        \note{Los buckets de la ruleta representan los pesos de las partículas. Mientras más grande el bucket, más probable es que esta partícula sea seleccionada.}
+        \note{Tenemos que hacerlo J veces. Tenemos que encontrar dónde cae la bola. Esto lo podemos hacer con binary-search. La suma de todos los pesos de la ruleta es 1. Si tiramos un número random entre 0 y 1 entonces con búsqueda binaria podemos saber en qué bucket cae.}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{Métodos de Resampling}
+    \centering
+    \only<1>{\includegraphics[width=0.4\textwidth]{./images/particle_filter/resampling_stochastic_universal_sampling1.pdf}}
+    \only<2>{\includegraphics[width=0.4\textwidth]{./images/particle_filter/resampling_stochastic_universal_sampling2.pdf}}
+    
+    \only<2>{
     \begin{itemize}
-        \item Ruleta
-        \item Búsqueda binaria (O(n log n))
-        \item Muestreo universal estocástico (baja varianza, O(n))
+        \item Stochastic universal sampling (utilizando $n$ flechas)
+        \item Baja varianza
+        \item $O(J)$
     \end{itemize}
+    \note{Utilizando on flechas y poniendolas equidistantes. Rotamos todas juntas y elejimos de a n partículas. Por tanto cuando, tiro un número random ahora se seleccionan n partículas.}
+    \note{Ejemplo 8 flechas distante 45 grados una de otra.}
+    }
 \end{frame}
     
 \begin{frame}
@@ -345,26 +372,46 @@
     \State Return $\bar{\mathcal{X}}_t$
     \end{algorithmic}
 \end{frame}
-    
+
 \begin{frame}
-    \frametitle{Summary – Particle Filters}
+    \frametitle{Desventajas}
     \begin{itemize}
-        \item Particle filters are non-parametric, recursive Bayes filters
-        \item Posterior is represented by a set of weighted samples
-        \item Not limited to Gaussians
-        \item Proposal to draw new samples
-        \item Weight to account for the differences between the proposal and the target
-        \item Work well in low-dimensional spaces
+        \item No escala bien para espacios de alta dimensionalidad
+        \item Problemático en situaciones con mucha incertidumbre
+        \item Problema agotamiento de partículas
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ventajas}
+    \begin{itemize}
+        \item Puede trabajar con distribuciones no Gaussianas
+        \item Funciona bien en espacios de baja dimensionalidad
+        \item Puede manejar ambiguedades en la asociación de los datos
+        \item Puede incorporar fácilmente diferentes modalidades de sensado
+        \item Robusto
+        \item Fácil de implementar
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Resumen – Particle Filter}
+    \begin{itemize}
+        \item Los filtros de partículas son filtros bayesianos recursivos y no paramétricos
+        \item El Posterior Belief se representa mediante un conjunto de muestras ponderadas
+        \item No se limita a Gaussianas
+        \item Proposal para extraer muestras en $t+1$
+        \item Peso para tener en cuenta las diferencias entre la proposal y el target
     \end{itemize}
 \end{frame}
     
 \begin{frame}
-    \frametitle{Summary – PF Localization}
+    \frametitle{Resumen – Localización con PF}
     \begin{itemize}
-        \item Particles are propagated according to the motion model
-        \item They are weighted according to the likelihood of the observation
-        \item Called: Monte-Carlo localization (MCL)
-        \item MCL is the gold standard for mobile robot localization today
+        \item Las partículas se propagan según el modelo de movimiento
+        \item Se ponderan según la probabilidad de la observación
+        \item Se denomina Localización de Monte Carlo (MCL)
+        \item La MCL es un gold standard para la localización de robots móviles en entornos \emph{indoor}
     \end{itemize}
 \end{frame}
 
