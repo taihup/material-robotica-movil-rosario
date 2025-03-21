@@ -322,36 +322,61 @@
     
 \begin{frame}
     \frametitle{Métodos de Resampling}
-    \centering
-    \only<1>{\includegraphics[width=0.4\textwidth]{./images/particle_filter/resampling_rulette_wheel1.pdf}}
-    \only<2>{\includegraphics[width=0.4\textwidth]{./images/particle_filter/resampling_rulette_wheel2.pdf}}
-    \only<3>{\includegraphics[width=0.4\textwidth]{./images/particle_filter/resampling_rulette_wheel3.pdf}}
-
-    \only<3>{
-        \begin{itemize}
-            \item Ruleta
-            \item Búsqueda binaria para saber en qué bucket cae la bola ($O(J \log(J))$)
-        \end{itemize}
-        \note{Los buckets de la ruleta representan los pesos de las partículas. Mientras más grande el bucket, más probable es que esta partícula sea seleccionada.}
-        \note{Tenemos que hacerlo J veces. Tenemos que encontrar dónde cae la bola. Esto lo podemos hacer con binary-search. La suma de todos los pesos de la ruleta es 1. Si tiramos un número random entre 0 y 1 entonces con búsqueda binaria podemos saber en qué bucket cae.}
-    }
+    \begin{overlayarea}{\textwidth}{\textheight}
+        
+        \only<1>{
+            \begin{center}
+                \includegraphics[width=0.35\textwidth]{./images/particle_filter/resampling_rulette_wheel1.pdf}
+            \end{center}
+        }
+        \only<2>{
+            \begin{center}
+                \includegraphics[width=0.35\textwidth]{./images/particle_filter/resampling_rulette_wheel2.pdf}
+            \end{center}
+        }
+        \only<3>{
+            \begin{center}
+                \includegraphics[width=0.35\textwidth]{./images/particle_filter/resampling_rulette_wheel3.pdf}
+            \end{center}
+        }
+        \only<3>{
+            \begin{itemize}
+                \item Ruleta
+                \item Búsqueda binaria para saber en qué bucket cae la bola ($O(J \log(J))$)
+            \end{itemize}
+            \note{Los buckets de la ruleta representan los pesos de las partículas. Mientras más grande el bucket, más probable es que esta partícula sea seleccionada.}
+            \note{Tenemos que hacerlo J veces. Tenemos que encontrar dónde cae la bola. Esto lo podemos hacer con binary-search. La suma de todos los pesos de la ruleta es 1. Si tiramos un número random entre 0 y 1 entonces con búsqueda binaria podemos saber en qué bucket cae.}
+        }
+    \end{overlayarea}
 \end{frame}
 
 \begin{frame}
     \frametitle{Métodos de Resampling}
-    \centering
-    \only<1>{\includegraphics[width=0.4\textwidth]{./images/particle_filter/resampling_stochastic_universal_sampling1.pdf}}
-    \only<2>{\includegraphics[width=0.4\textwidth]{./images/particle_filter/resampling_stochastic_universal_sampling2.pdf}}
-    
-    \only<2>{
-    \begin{itemize}
-        \item Stochastic universal sampling (utilizando $n$ flechas)
-        \item Baja varianza
-        \item $O(J)$
-    \end{itemize}
-    \note{Utilizando on flechas y poniendolas equidistantes. Rotamos todas juntas y elejimos de a n partículas. Por tanto cuando, tiro un número random ahora se seleccionan n partículas.}
-    \note{Ejemplo 8 flechas distante 45 grados una de otra.}
-    }
+    \begin{overlayarea}{\textwidth}{\textheight}
+        \only<1>{
+            \begin{center}
+                \includegraphics[width=0.35\textwidth]{./images/particle_filter/resampling_stochastic_universal_sampling1.pdf}
+            \end{center}
+        }
+        \only<2>{
+            \begin{center}
+                \includegraphics[width=0.35\textwidth]{./images/particle_filter/resampling_stochastic_universal_sampling2.pdf}
+            \end{center}
+        }
+
+        \only<2>{
+
+        \begin{itemize}
+            \item Stochastic universal sampling (utilizando $J$ flechas equidistantes)
+            \item Baja varianza
+            \item $O(J)$
+        \end{itemize}
+        \note{Utilizando on flechas y poniendolas equidistantes. Rotamos todas juntas y elejimos de a n partículas. Por tanto cuando, tiro un número random ahora se seleccionan las J partículas de una.}
+        \note{Tiene costo computacional lineal porque solo tengo que recorrer los pesos una vez para ver dónde caen todas las flechas.}
+        \note{Ejemplo 8 flechas distante 45 grados una de otra.}
+        
+        }
+    \end{overlayarea}
 \end{frame}
     
 \begin{frame}
