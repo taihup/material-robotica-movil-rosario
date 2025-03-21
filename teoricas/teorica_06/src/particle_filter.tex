@@ -368,7 +368,7 @@
 
         \begin{itemize}
             \item Stochastic universal sampling (utilizando $J$ flechas equidistantes)
-            \item Baja varianza
+            \item También llamado \emph{Low-Variance Resampling} (evita que las partículas se concentren rápidamente)
             \item $O(J)$
         \end{itemize}
         \note{Utilizando on flechas y poniendolas equidistantes. Rotamos todas juntas y elejimos de a n partículas. Por tanto cuando, tiro un número random ahora se seleccionan las J partículas de una.}
@@ -378,6 +378,34 @@
         }
     \end{overlayarea}
 \end{frame}
+
+\begin{frame}
+    \frametitle{Resampling}
+    \begin{itemize}
+        \item Muestreo con remplazo (muestreamos tomando una partícula y luego la volvemos a colocar en la bolsa)
+        \item Roulette Wheel resampling es fácil de entender pero es suboptimo en la práctica
+        \item ¿Qué pasa si todas las partículas tienen el mismo peso?
+        \note{Si todas las partículas tienen el mismo peso, sería como tener un sensor que no me da información.}
+        \note{Si todas las partículas tienen el mismo peso, el resampling seleccionará partículas de manera aleatoria y las duplicará, y otras partículas no serán seleccionadas y moriran. Y esto pasa sin que una partícula sea mejor que otra. Esto lleva a que el sistema converja en una localización cualquiera.}
+        \note{Por tanto, si todas las partículas tienen el mismo peso entonces no tiene sentido escoger una por encima de otra.}
+
+        \note{
+            https://robotics.stackexchange.com/questions/16093/why-does-the-low-variance-resampling-algorithm-for-particle-filters-work
+
+            TLDR; A particle filter’s convergence rate is inversely proportional to the variance in the parents’ offspring counts. Low variance means fast convergence.
+
+            NOTE: Below, I discuss (but never explicitly mention) the concept of variance effective population size.
+
+            The effectiveness of this resampling strategy makes a lot of sense when you consider that the particle filter is, at its core, an evolutionary algorithm (EA). All EAs tend to lose diversity because of the random sampling step, at a rate proportional to the variance in how many offspring the parents produce. This effect is known as genetic drift, and it adversely affects biological populations as well. As a result of this diversity loss, the EA prematurely converges to suboptimal solutions. This is bad news.
+
+            Intuitively, genetic drift makes sense. When parents are chosen at random (the most common setup), those with low fitness/quality are likely to get skipped and produce zero offspring and be eliminated from the gene pool, thus reducing the population’s diversity. Now, the rate at which natural selection improves a population’s fitness is directly proportional to the population’s diversity—diversity is literally the fuel that drives natural selection. Genetic drift reduces the the diversity, thus decreasing the rate at which the population’s fitness can improve and causing the aforementioned bad news.
+
+            Let’s now look at the low-variance resampling method. This method gives almost every parent exactly the number of offspring that they would be expected to get with the random sampling, without the extra uncertainty (variance). This reduces genetic drift and greatly increases the efficiency with which the particle filter can improve its solution and/or adapt to changing condition
+        }
+
+    \end{itemize}
+\end{frame}
+
     
 \begin{frame}
     \frametitle{Low Variance Resampling}
