@@ -341,7 +341,7 @@
         }
         \only<3>{
             \begin{itemize}
-                \item Ruleta
+                \item Roulette Wheel
                 \item Búsqueda binaria para saber en qué bucket cae la bola ($O(J \log(J))$)
             \end{itemize}
             \note{Los buckets de la ruleta representan los pesos de las partículas. Mientras más grande el bucket, más probable es que esta partícula sea seleccionada.}
@@ -384,7 +384,7 @@
     \begin{itemize}
         \item Muestreo con remplazo (muestreamos tomando una partícula y luego la volvemos a colocar en la bolsa)
         \item Roulette Wheel resampling es fácil de entender pero es suboptimo en la práctica
-        \item ¿Qué pasa si todas las partículas tienen el mismo peso?
+        \item \alert{¿Qué pasa si todas las partículas tienen el mismo peso?}
         \note{Si todas las partículas tienen el mismo peso, sería como tener un sensor que no me da información.}
         \note{Si todas las partículas tienen el mismo peso, el resampling seleccionará partículas de manera aleatoria y las duplicará, y otras partículas no serán seleccionadas y moriran. Y esto pasa sin que una partícula sea mejor que otra. Esto lleva a que el sistema converja en una localización cualquiera.}
         \note{Por tanto, si todas las partículas tienen el mismo peso entonces no tiene sentido escoger una por encima de otra.}
@@ -410,12 +410,13 @@
 \begin{frame}
     \frametitle{Low Variance Resampling}
     \begin{algorithmic}[1]
+    \Procedure{Low Variance Resampling}{$\mathcal{X}_{t}$,$\mathcal{W}_{t}$}
     \State $\bar{\mathcal{X}}_t = \emptyset$
-    \State $r = \text{rand}(0; M^{-1})$
+    \State $r = \text{rand}(0; J^{-1})$
     \State $c = w_t^{[1]}$
     \State $i = 1$
-    \For{$m = 1$ to $M$}
-        \State $U = r + (m - 1) \cdot M^{-1}$
+    \For{$j = 1$ to $J$}
+        \State $U = r + (j - 1)  J^{-1}$
         \While{$U > c$}
             \State $i = i + 1$
             \State $c = c + w_t^{[i]}$
@@ -423,8 +424,19 @@
         \State Add $x_t^{[i]}$ to $\bar{\mathcal{X}}_t$
     \EndFor
     \State Return $\bar{\mathcal{X}}_t$
+    \EndProcedure
     \end{algorithmic}
 \end{frame}
+
+\begin{frame}
+    \frametitle{Low Variance Resampling}
+    \begin{itemize}
+        \item Realiza un remuestreo que mantiene las muestras en el caso que tengan pesos iguales
+        \item Es más rápido que el remuestreo con roulette wheel: $\mathcal{O}(J)$ vs. $\mathcal{O}(J \log J)$
+        \item \alert{Utilizaremos siempre Low Variance Resampling!}
+    \end{itemize}
+\end{frame}
+
 
 \begin{frame}
     \frametitle{Desventajas}
@@ -452,7 +464,7 @@
     \begin{itemize}
         \item Los filtros de partículas son filtros bayesianos recursivos y no paramétricos
         \item El Posterior Belief se representa mediante un conjunto de muestras ponderadas
-        \item No se limita a Gaussianas
+        \item No se limita a Distribuciones Gaussianas
         \item Proposal para extraer muestras en $t+1$
         \item Peso para tener en cuenta las diferencias entre la proposal y el target
     \end{itemize}
