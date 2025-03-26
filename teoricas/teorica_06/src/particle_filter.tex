@@ -409,23 +409,29 @@
     
 \begin{frame}
     \frametitle{Low Variance Resampling}
+
     \begin{algorithmic}[1]
-    \Procedure{Low Variance Resampling}{$\mathcal{X}_{t}$,$\mathcal{W}_{t}$}
-    \State $\bar{\mathcal{X}}_t = \emptyset$
-    \State $r = \text{rand}(0; J^{-1})$
-    \State $c = w_t^{[1]}$
-    \State $i = 1$
-    \For{$j = 1$ to $J$}
-        \State $U = r + (j - 1)  J^{-1}$
-        \While{$U > c$}
-            \State $i = i + 1$
-            \State $c = c + w_t^{[i]}$
-        \EndWhile
-        \State Add $x_t^{[i]}$ to $\bar{\mathcal{X}}_t$
-    \EndFor
-    \State Return $\bar{\mathcal{X}}_t$
-    \EndProcedure
+        \Procedure{Low Variance Resampling}{$\mathcal{X}_{t}$,$\mathcal{W}_{t}$}
+        \State $\bar{\mathcal{X}}_t = \emptyset$
+        \State $r = \text{rand}(0; J^{-1})$
+        \State $c = w_t^{[1]}$
+        \State $i = 1$
+        \For{$j = 1$ to $J$}
+            \State $U = r + (j - 1)  J^{-1}$
+            \While{$U > c$}
+                \State $i = i + 1$
+                \State $c = c + w_t^{[i]}$
+            \EndWhile
+            \State Add $x_t^{[i]}$ to $\bar{\mathcal{X}}_t$
+        \EndFor
+        \State Return $\bar{\mathcal{X}}_t$
+        \EndProcedure
     \end{algorithmic}
+
+    \begin{tikzpicture}[remember picture,overlay]
+        \node[xshift=-5.5cm,yshift=0.5cm] at (current page.east) { \includegraphics[width=0.6\textwidth]{./images/particle_filter/low_variance_resampling.pdf}};
+    \end{tikzpicture}
+
 \end{frame}
 
 \begin{frame}
