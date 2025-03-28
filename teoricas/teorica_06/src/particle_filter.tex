@@ -406,7 +406,55 @@
     \end{itemize}
 \end{frame}
 
+
+\begin{frame}
+    \frametitle{Idea de Low Variance Resampling}
+
+    \begin{center}
+        \only<1>{\includegraphics[width=0.7\textwidth]{./images/particle_filter/low_variance_resampling.pdf}}
+        \only<2>{\includegraphics[width=0.7\textwidth]{./images/particle_filter/low_variance_resampling2.pdf}}
+    \end{center}
+
+    \begin{enumerate}
+        \item<1-> Tomamos un valor random $r$ entre 0 y $\dfrac{1}{j}$
+        \item<2> Tomamos $J-1$  partículas en $\dfrac{1}{J}$ pasos (basado en el peso acumulado)
+    \end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Low Variance Resampling}
+
+    \begin{center}
+        \only<1>{\includegraphics[width=0.7\textwidth]{./images/particle_filter/low_variance_resampling3.pdf}}
+        \only<2>{\includegraphics[width=0.7\textwidth]{./images/particle_filter/low_variance_resampling4.pdf}}
+    \end{center}
+
+    \begin{enumerate}
+        \item<1-> Tomamos un valor random $r$ entre 0 y $\dfrac{1}{j}$
+        \item<2>
+        \begin{algorithmic}[1]
+            \For{$j = 1$ to $J$}
+                \State $U = r + (j - 1)  \dfrac{1}{J}$
+                \While{$U > c$}
+                    \State $i = i + 1$
+                    \State $c = c + w_t^{[i]}$
+                \EndWhile
+                \State Add $x_t^{[i]}$ to $\bar{\mathcal{X}}_t$
+            \EndFor
+        \end{algorithmic}
+        % \begin{fleqn}[\parindent]
+        %     \begin{align*}
+        %         for &(j=1 \dots J)\\
+        %             &U = r + j \dfrac{1}{J}\\
+        %             &while (U > cum[i]) \quad i++;\\
+        %             &pick\_particle(i)
+        %     \end{align*}
+        % \end{fleqn}
+    \end{enumerate}
     
+\end{frame}
+
 \begin{frame}
     \frametitle{Low Variance Resampling}
 
@@ -428,11 +476,9 @@
         \EndProcedure
     \end{algorithmic}
 
-    \begin{tikzpicture}[remember picture,overlay]
-        \node[xshift=-5.5cm,yshift=0.5cm] at (current page.east) { \includegraphics[width=0.6\textwidth]{./images/particle_filter/low_variance_resampling.pdf}};
-    \end{tikzpicture}
-
-
+    % \begin{tikzpicture}[remember picture,overlay]
+    %     \node[xshift=-5.5cm,yshift=0.5cm] at (current page.east) { \includegraphics[width=0.6\textwidth]{./images/particle_filter/low_variance_resampling.pdf}};
+    % \end{tikzpicture}
 
 \end{frame}
 
