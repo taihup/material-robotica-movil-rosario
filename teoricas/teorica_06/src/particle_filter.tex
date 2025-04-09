@@ -436,9 +436,8 @@
         \begin{algorithmic}[1]
             \For{$j = 1$ to $J$}
                 \State $U = r + (j - 1)  \dfrac{1}{J}$
-                \While{$U > c$}
-                    \State $i = i + 1$
-                    \State $c = c + w_t^{[i]}$
+                \While{$\left(U > cum[i]\right)$}
+                    \State $i++$
                 \EndWhile
                 \State Add $x_t^{[i]}$ to $\bar{\mathcal{X}}_t$
             \EndFor
@@ -493,11 +492,15 @@
 
 
 \begin{frame}
-    \frametitle{Desventajas}
+    \frametitle{Desventajas de Particle Filter}
     \begin{itemize}
         \item No escala bien para espacios de alta dimensionalidad
+        \note{PF se hace muy caro computacionalmente ya que necesitaremos muchas partículas para cubrir la distribución de probabilidad. PF funciona bien para bajas dimensiones, hasta 4 se puede pero más ya requiere tomar ciertas heurísticas para reducir el número de partículas y que estas sean representativas.}
+        \note{El número de partículas crece exponencialmente con las dimenciones del estado}
         \item Problemático en situaciones con mucha incertidumbre
-        \item Problema agotamiento de partículas
+        \item \emph{Depletion Problem} (la mayoría de las partículas tienen poco peso)
+        \item \note{El Depletion Problem: sucede cuando tenemos muy pocas partículas en comparación a la dimensionalidad del estado, las partículas no cubren las áreas de mayor probabilidad y por tanto mueren, haciendo que el filtro diverja eventualmente.
+        Ejemplo: Imagina que tienes 100 partículas rastreando la posición de un robot. Si el robot da un giro brusco, muchas partículas tendrán pesos bajos porque no predicen bien el movimiento. Tras el resampling, solo unas pocas partículas "sobrevivirán", y el filtro perderá diversidad, afectando la estimación futura.}
     \end{itemize}
 \end{frame}
 
