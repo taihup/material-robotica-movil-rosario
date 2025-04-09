@@ -509,9 +509,9 @@
     \begin{itemize}
         \item Puede trabajar con distribuciones no Gaussianas
         \item Funciona bien en espacios de baja dimensionalidad
-        \item Puede manejar ambiguedades en la asociación de los datos
-        \item Puede incorporar fácilmente diferentes modalidades de sensado
-        \item Robusto
+        \item Puede manejar ambiguedades en la asociación de los datos \note{Podemos hacer que cada partícula tenga su propia forma de asociar datos. Como no hay incertidumbre asociada a esto, podemos hacer decisiones dependientes a cada partícula y ver qué partícula sobrevive.}
+        \item Puede incorporar fácilmente diferentes modalidades de sensado \note{Podemos incorporar diferentes modalidades de sensado tan solo multiplicando el peso con el peso computado de otro sensor}
+        \item Robusto \note{Robusto porque incluso cuando los modelos no sean perfectos será capaz de computar buenas belief}
         \item Fácil de implementar
     \end{itemize}
 \end{frame}
@@ -524,6 +524,7 @@
         \item No se limita a Distribuciones Gaussianas
         \item Proposal para extraer muestras en $t+1$
         \item Peso para tener en cuenta las diferencias entre la proposal y el target
+        \item El arte está en diseñar modelos de movimiento y sensado adecuados
     \end{itemize}
 \end{frame}
     
