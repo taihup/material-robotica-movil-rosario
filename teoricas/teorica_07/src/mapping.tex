@@ -557,22 +557,32 @@ tenemos entonces:
 \end{frame}
 
 \begin{frame}
-	\frametitle{Forward measurement model vs inverse measurement model}
+	\frametitle{Forward/Inverse measurement model}
 	\note{información extraída de https://youtu.be/v-Rm9TUG9LA}
     
-    \TODO{explicar mejor invese sensor model y forward sensor model}
-   
-	El algoritmo \emph{occupancy grid mapping} requiere un modelo marginalized inverse measurement model, $p(\map_{i}|\state, \observation )$. Esta probabilidad se llama inversa ya que razona de efectos a causas: proporciona información sobre el mundo condicionada a una medida provocada por este mundo.
 
-	Los \emph{inverse models} se utilizan a menudo en situaciones en las que las medidas son más complejas que el estado binario. Un ejemplo de tal situación es el problema de estimar si una puerta está cerrada o no a partir de imágenes de una cámara. Aquí el estado es extremadamente simple, pero el espacio de todas las mediciones es enorme. Es más fácil entonces idear una función que calcule la probabilidad de que una puerta este cerrada a partir de una imagen, que describir la distribución de probabilidad sobre todas las imágenes que muestran una puerta cerrada. En otras palabras, es más fácil implementar un modelo de sensor inverso que uno directo.
+    El algoritmo \emph{occupancy grid mapping} requiere un modelo \emph{marginalized inverse measurement model}, $p(\map_{i}|\state, \observation )$. Decimos \emph{marginalized} porque solo predecimos el estado de una sola celda y no todo el mapa.
+
+    \begin{itemize}
+        \item \textbf{Forward measurement Model}: $p(\observation | \map)$. Predice la medición que deberíamos tener, dado el estado del mapa.
+        \item  \textbf{Inverse measurement Model}: $p(\map|\state, \observation)$. Predice el mapa que deberíamos tener, dado la pose y la medición actual.
+    \end{itemize}
+
+    Los \emph{Inverse measurement Model} se utilizan en situaciones en las que las mediciones son más complejas que el estado. 
+        
+    Un ejemplo de tal situación es el problema de estimar si una puerta está cerrada o no a partir de imágenes de una cámara. Aquí el estado es extremadamente simple (puerta cerrada o abierta), pero el espacio de todas las mediciones es enorme (imágenes de una cámara).
+    
+    Es más fácil entonces idear una función que calcule la probabilidad de que una puerta este cerrada a partir de una imagen, que describir la distribución de probabilidad sobre todas las imágenes que muestran una puerta cerrada. En otras palabras, es más fácil implementar un modelo de sensor inverso que uno directo.
+    
+    \note{Un \emph{forward model} predice las lecturas del sensor basándose en parámetros conocidos del sistema, mientras que un \emph{inverse model} estima los parámetros del sistema a partir de las lecturas observadas del sensor.}
+
+    \note{Un modelo de sensor frontal, dado un mapa hipotético de cuadrícula de ocupación, predeciría las lecturas del sonar que el robot debería observar. Consideraría todas las celdas ocupadas dentro del cono del sonar. Por ejemplo, podría calcular la probabilidad de detectar el obstáculo más cercano, el segundo más cercano (si no se detecta el primero) o incluso una lectura aleatoria debido a un fallo del sensor o a una reflexión especular.}
+
 	
-	
-	forward measurement model vs inverse measurement model
-	\url{https://www.cs.cmu.edu/~thrun/papers/thrun.occ-journal.pdf}
-	\url{http://robots.stanford.edu/papers/thrun.iros01-occmap.pdf}
-	
-	Los forward models describen la física del entorno, desde las causas (ocupación) hasta los efectos (medidas). Son denotados $p(\observation | \map)$.
-	
+    \note{Más info: forward measurement model vs inverse measurement model https://www.cs.cmu.edu/~thrun/papers/thrun.occ-journal.pdf} 
+
+	\note{Más info: http://robots.stanford.edu/papers/thrun.iros01-occmap.pdf}
+
 \end{frame}
 
 \begin{frame}
