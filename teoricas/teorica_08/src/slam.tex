@@ -805,7 +805,6 @@
         \item Podemos hacer como hicimos con el prior anterior, pero el problema es que es solo una {\bf soft constraint} y no es realmente un fix. Ya que puede suceder que otra constraint mueva a este nodo, y por tanto no podemos asegurar que tenga un valor fijo.
         \item \textbf{Para efectivamente hacer que una variable quede fija, tenemos que hacer que no sea optimizada y por tanto debemos removerla del sistema lineal}. Removerla del sistema lineal hace que no sea actualizada y que todas las demás variables esten restringidas por esta. Esto se hace construyendo todo el sistema lineal y luego sencillamente suprimiendo la fila y columna correspondiente a la variable. Finalmente se resuelve el sistema lineal.
         \item La supresión de la columna y fila funciona como una {\bf condicionamiento}, es decir, es una condición que dice ``Dado que un nodo toma un valor, las demás se ven afectadas de esta manera''
-        
     \end{itemize}
     
 \end{frame}
@@ -823,6 +822,78 @@
     \footnotetext{Mas info en paper: Exactly sparse delayed-state filters for view-based SLAM. Eustice, Ryan M., Singh, Hanumant, Leonard, John J.}
     
 \end{frame}
+
+
+\begin{frame}
+    \frametitle{Podemos suprimir las columnas y las filas de las variables correspondientes}
+    \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
+    
+    \scriptsize
+
+    \begin{equation*}
+        p(\vec{\alpha}, \vec{\beta}) = \mathcal{N} \left(
+        \begin{bmatrix}
+            \vec{\mu}_{\alpha} \\
+            \vec{\mu}_{\beta}
+            \end{bmatrix},
+            \begin{bmatrix}
+            \Sigma_{\alpha\alpha} & \Sigma_{\alpha\beta} \\
+            \Sigma_{\beta\alpha} & \Sigma_{\beta\beta}
+        \end{bmatrix}
+        \right)
+        = \mathcal{N}^{-1} \left(
+        \begin{bmatrix}
+            \vec{\eta}_{\alpha} \\
+            \vec{\eta}_{\beta}
+            \end{bmatrix},
+            \begin{bmatrix}
+            \Lambda_{\alpha\alpha} & \Lambda_{\alpha\beta} \\
+            \Lambda_{\beta\alpha} & \Lambda_{\beta\beta}
+        \end{bmatrix}
+        \right)
+    \end{equation*}
+    
+    \vspace{0.5em}
+    \begin{center}
+        \begin{tabular}{c|c|c|}
+            & Marginalization & Conditioning\\
+            & &\\
+            & $p(\vec{\alpha}) = \int p(\vec{\alpha}, \vec{\beta}) d\vec{\beta}$ & $p(\vec{\alpha} \mid \vec{\beta}) = \frac{p(\vec{\alpha}, \vec{\beta})}{p(\vec{\beta})}$ \\
+            \hline
+            Cov. Form &
+            \begin{tabular}{l}
+            $\vec{\mu} = \vec{\mu}_{\alpha}$ \\
+            $\Sigma = \Sigma_{\alpha\alpha}$
+            \end{tabular} &
+            \begin{tabular}{l}
+            $\vec{\mu}' = \vec{\mu}_{\alpha} + \Sigma_{\alpha\beta} \Sigma_{\beta\beta}^{-1}(\vec{\beta} - \vec{\mu}_{\beta})$ \\
+            $\Sigma' = \Sigma_{\alpha\alpha} - \Sigma_{\alpha\beta} \Sigma_{\beta\beta}^{-1} \Sigma_{\beta\alpha}$
+            \end{tabular} \\
+            \hline
+            Info. Form &
+            \begin{tabular}{l}
+            $\vec{\eta} = \vec{\eta}_{\alpha} - \Lambda_{\alpha\beta} \Lambda_{\beta\beta}^{-1} \vec{\eta}_{\beta}$ \\
+            $\Lambda = \Lambda_{\alpha\alpha} - \Lambda_{\alpha\beta} \Lambda_{\beta\beta}^{-1} \Lambda_{\beta\alpha}$
+            \end{tabular} &
+            \begin{tabular}{l}
+            $\vec{\eta}' = \vec{\eta}_{\alpha} - \Lambda_{\alpha\beta} \vec{\beta}$ \\
+            $\Lambda' = \Lambda_{\alpha\alpha}$
+            \end{tabular} \\
+            \hline
+        \end{tabular}
+    \end{center}
+
+    \begin{itemize}
+        \item El porqué podemos hacer esto, resulta del {\bf condicionamiento de distribuciones Gaussianas}.
+        \item {\bf Condicionamiento en el espacio de información}, significa que podemos remover una parte de la matriz de información y esto corresponde una operación de condicionamiento de la distribución Gaussiana.
+        \item La $\linearSystemH$ es una matriz de información de todo nuestro problema con todas las restricciones juntas. Por tanto, removiendo una fila y una columna estamos condicionando al sistema haciendo que estas esten fijas y no se puedan actualizar y todas las demás variables queden restringidas por estas.
+    \end{itemize}
+   
+    \footnotetext{Mas info en paper: Exactly sparse delayed-state filters for view-based SLAM. Eustice, Ryan M., Singh, Hanumant, Leonard, John J.}
+    
+
+\end{frame}
+
 
 \begin{frame}
     \frametitle{Incertidumbre}
