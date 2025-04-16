@@ -23,7 +23,7 @@
 
     \begin{itemize}
         \item Recursive filter with \textbf{prediction} and \textbf{correction} steps
-        \item Estimates: $p(x_t, m | z_{1:t}, u_{1:t})$
+        \item Estimates: $p(x_t, \map | z_{1:t}, u_{1:t})$
         \item Kalman Filter is a recursive Bayes Filter for the \textbf{linear Gaussian case}
         \item \textbf{EKF} for dealing with \textbf{non-linearities}
     \end{itemize}
@@ -35,7 +35,7 @@
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
     We consider the Kalman filter as a solution to the online SLAM problem:
-    \[ p(x_t, m | z_{1:t}, u_{1:t}) \]
+    \[ p(x_t, \map | z_{1:t}, u_{1:t}) \]
 
     \begin{center}
         \includegraphics[width=0.6\textwidth]{../images/ekf_slam/graphical_model_online_slam.pdf}
@@ -71,7 +71,7 @@
         \item Assumption: known correspondences
         \item State space (2D plane):
     \end{itemize}
-    \[ x_t = (x, y, \theta, \underbrace{m_{1,x}, m_{1,y}}_{\text{landmark 1}}, \ldots, \underbrace{m_{n,x}, m_{n,y}}_{\text{landmark n}} )^{\top} \]
+    \[ x_t = (x, y, \theta, \underbrace{\map_{1,x}, \map_{1,y}}_{\text{landmark 1}}, \ldots, \underbrace{\map_{n,x}, \map_{n,y}}_{\text{landmark n}} )^{\top} \]
 \end{frame}
 
 \begin{frame}
@@ -82,20 +82,60 @@
     \begin{itemize}
         \item Map with $n$ landmarks: $(3+2n)$-dimensional Gaussian
         \item Belief represented by:
-        \[
-        \begin{pmatrix}
-        x_t \\
-        m_1 \\
-        \vdots \\
-        m_n
-        \end{pmatrix},
-        \begin{pmatrix}
-        \Sigma_{x_t x_t} & \Sigma_{x_t m_1} & \cdots & \Sigma_{x_t m_n} \\
-        \Sigma_{m_1 x_t} & \Sigma_{m_1 m_1} & \cdots & \Sigma_{m_1 m_n} \\
-        \vdots & \vdots & \ddots & \vdots \\
-        \Sigma_{m_n x_t} & \Sigma_{m_n m_1} & \cdots & \Sigma_{m_n m_n}
-        \end{pmatrix}
-        \]
+        \begin{equation*}
+            \underbrace{\begin{pNiceMatrix}[margin = 4pt]
+                \CodeBefore
+                \rectanglecolor{yellow!40}{1-1}{1-1}
+                \rectanglecolor{green!40}{2-1}{4-1}
+                \Body
+                \state_t \\
+                \map_1 \\
+                \vdots \\
+                \map_n
+            \end{pNiceMatrix}}_{\mu}
+            \underbrace{\begin{pNiceMatrix}[margin = 4pt]
+                \CodeBefore
+                \rectanglecolor{yellow!40}{1-1}{1-1}
+                \rectanglecolor{green!40}{2-1}{4-1}
+                \rectanglecolor{green!40}{1-2}{1-4}
+                \rectanglecolor{blue!40}{2-2}{4-4}
+                \Body
+                \Sigma_{\state_t \state_t} & \Sigma_{\state_t \map_1} & \cdots & \Sigma_{\state_t \map_n} \\
+                \Sigma_{\map_1 \state_t} & \Sigma_{\map_1 \map_1} & \cdots & \Sigma_{\map_1 \map_n} \\
+                \vdots & \vdots & \ddots & \vdots \\
+                \Sigma_{\map_n \state_t} & \Sigma_{\map_n \map_1} & \cdots & \Sigma_{\map_n \map_n}
+            \end{pNiceMatrix}}_{\Sigma}
+        \end{equation*}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{EKF SLAM: State Representation}
+    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
+    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
+
+    \begin{itemize}
+        \item More Compactly
+        \begin{equation*}
+            \underbrace{\begin{pNiceMatrix}[margin = 4pt]
+                \CodeBefore
+                \rectanglecolor{yellow!40}{1-1}{1-1}
+                \rectanglecolor{green!40}{2-1}{2-1}
+                \Body
+                \state\\
+                \map
+            \end{pNiceMatrix}}_{\mu}
+            \underbrace{\begin{pNiceMatrix}[margin = 4pt]
+                \CodeBefore
+                \rectanglecolor{yellow!40}{1-1}{1-1}
+                \rectanglecolor{green!40}{2-1}{2-1}
+                \rectanglecolor{green!40}{1-2}{1-2}
+                \rectanglecolor{blue!40}{2-2}{2-2}
+                \Body
+                \Sigma_{\state \state} & \Sigma_{\state \map} \\
+                \Sigma_{\map \state} & \Sigma_{\map \map}
+            \end{pNiceMatrix}}_{\Sigma}
+        \end{equation*}
     \end{itemize}
 \end{frame}
 
@@ -114,21 +154,203 @@
 
 \begin{frame}
     \frametitle{EKF SLAM: Initial State}
-    \[
-    \begin{pmatrix}
-    x_t \\
-    m_1 \\
-    \vdots \\
-    m_n
-    \end{pmatrix},
-    \begin{pmatrix}
-    \Sigma_{x_t x_t} & \Sigma_{x_t m_1} & \cdots & \Sigma_{x_t m_n} \\
-    \Sigma_{m_1 x_t} & \Sigma_{m_1 m_1} & \cdots & \Sigma_{m_1 m_n} \\
-    \vdots & \vdots & \ddots & \vdots \\
-    \Sigma_{m_n x_t} & \Sigma_{m_n m_1} & \cdots & \Sigma_{m_n m_n}
-    \end{pmatrix}
-    \]
+
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{../images/ekf_slam/ekf_slam_initial_state.pdf}
+    \end{center}
+
+    \begin{equation*}
+        \underbrace{\begin{pNiceMatrix}
+            \state_t \\
+            \map_1 \\
+            \vdots \\
+            \map_n
+        \end{pNiceMatrix}}_{\mu}
+        \underbrace{\begin{pNiceMatrix}
+            \Sigma_{\state_t \state_t} & \Sigma_{\state_t \map_1} & \cdots & \Sigma_{\state_t \map_n} \\
+            \Sigma_{\map_1 \state_t} & \Sigma_{\map_1 \map_1} & \cdots & \Sigma_{\map_1 \map_n} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            \Sigma_{\map_n \state_t} & \Sigma_{\map_n \map_1} & \cdots & \Sigma_{\map_n \map_n}
+        \end{pNiceMatrix}}_{\Sigma}
+    \end{equation*}
 \end{frame}
+
+\begin{frame}
+    \frametitle{EKF SLAM: Predicted Motion}
+
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{../images/ekf_slam/ekf_slam_predicted_motion.pdf}
+    \end{center}
+
+    \begin{equation*}
+        \underbrace{\begin{pNiceMatrix}[margin = 4pt]
+            \CodeBefore
+            \rectanglecolor{green!40}{1-1}{1-1}
+            \Body
+            \state_t \\
+            \map_1 \\
+            \vdots \\
+            \map_n
+        \end{pNiceMatrix}}_{\mu}
+        \underbrace{\begin{pNiceMatrix}[margin = 4pt]
+            \CodeBefore
+            \rectanglecolor{green!40}{1-1}{1-4}
+            \rectanglecolor{green!40}{1-1}{4-1}
+            \Body
+            \Sigma_{\state_t \state_t} & \Sigma_{\state_t \map_1} & \cdots & \Sigma_{\state_t \map_n} \\
+            \Sigma_{\map_1 \state_t} & \Sigma_{\map_1 \map_1} & \cdots & \Sigma_{\map_1 \map_n} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            \Sigma_{\map_n \state_t} & \Sigma_{\map_n \map_1} & \cdots & \Sigma_{\map_n \map_n}
+        \end{pNiceMatrix}}_{\Sigma}
+    \end{equation*}
+\end{frame}
+
+\begin{frame}
+    \frametitle{EKF SLAM: Predicted Measurement}
+
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{../images/ekf_slam/ekf_slam_predicted_measurement.pdf}
+    \end{center}
+
+    \begin{equation*}
+        \underbrace{\begin{pNiceMatrix}
+            \state_t \\
+            \map_1 \\
+            \vdots \\
+            \map_n
+        \end{pNiceMatrix}}_{\mu}
+        \underbrace{\begin{pNiceMatrix}
+            \Sigma_{\state_t \state_t} & \Sigma_{\state_t \map_1} & \cdots & \Sigma_{\state_t \map_n} \\
+            \Sigma_{\map_1 \state_t} & \Sigma_{\map_1 \map_1} & \cdots & \Sigma_{\map_1 \map_n} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            \Sigma_{\map_n \state_t} & \Sigma_{\map_n \map_1} & \cdots & \Sigma_{\map_n \map_n}
+        \end{pNiceMatrix}}_{\Sigma}
+    \end{equation*}
+\end{frame}
+
+\begin{frame}
+    \frametitle{EKF SLAM: Obtained Measurement}
+
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{../images/ekf_slam/ekf_slam_obtained_measurement.pdf}
+    \end{center}
+
+    \begin{equation*}
+        \underbrace{\begin{pNiceMatrix}
+            \state_t \\
+            \map_1 \\
+            \vdots \\
+            \map_n
+        \end{pNiceMatrix}}_{\mu}
+        \underbrace{\begin{pNiceMatrix}
+            \Sigma_{\state_t \state_t} & \Sigma_{\state_t \map_1} & \cdots & \Sigma_{\state_t \map_n} \\
+            \Sigma_{\map_1 \state_t} & \Sigma_{\map_1 \map_1} & \cdots & \Sigma_{\map_1 \map_n} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            \Sigma_{\map_n \state_t} & \Sigma_{\map_n \map_1} & \cdots & \Sigma_{\map_n \map_n}
+        \end{pNiceMatrix}}_{\Sigma}
+    \end{equation*}
+\end{frame}
+
+\begin{frame}
+    \frametitle{EKF SLAM: Data Association and Difference Between $h(x)$ and $\observation$}
+
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{../images/ekf_slam/ekf_slam_difference_between_prediction_observation.pdf}
+    \end{center}
+
+    \begin{equation*}
+        \underbrace{\begin{pNiceMatrix}
+            \state_t \\
+            \map_1 \\
+            \vdots \\
+            \map_n
+        \end{pNiceMatrix}}_{\mu}
+        \underbrace{\begin{pNiceMatrix}
+            \Sigma_{\state_t \state_t} & \Sigma_{\state_t \map_1} & \cdots & \Sigma_{\state_t \map_n} \\
+            \Sigma_{\map_1 \state_t} & \Sigma_{\map_1 \map_1} & \cdots & \Sigma_{\map_1 \map_n} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            \Sigma_{\map_n \state_t} & \Sigma_{\map_n \map_1} & \cdots & \Sigma_{\map_n \map_n}
+        \end{pNiceMatrix}}_{\Sigma}
+    \end{equation*}
+\end{frame}
+
+\begin{frame}
+    \frametitle{EKF SLAM: Update Step}
+
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{../images/ekf_slam/ekf_slam_update.pdf}
+    \end{center}
+
+    \begin{equation*}
+        \underbrace{\begin{pNiceMatrix}[margin = 4pt]
+            \CodeBefore
+            \rectanglecolor{green!40}{1-1}{4-1}
+            \Body
+            \state_t \\
+            \map_1 \\
+            \vdots \\
+            \map_n
+        \end{pNiceMatrix}}_{\mu}
+        \underbrace{\begin{pNiceMatrix}[margin = 4pt]
+            \CodeBefore
+            \rectanglecolor{green!40}{1-1}{4-4}
+            \Body
+            \Sigma_{\state_t \state_t} & \Sigma_{\state_t \map_1} & \cdots & \Sigma_{\state_t \map_n} \\
+            \Sigma_{\map_1 \state_t} & \Sigma_{\map_1 \map_1} & \cdots & \Sigma_{\map_1 \map_n} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            \Sigma_{\map_n \state_t} & \Sigma_{\map_n \map_1} & \cdots & \Sigma_{\map_n \map_n}
+        \end{pNiceMatrix}}_{\Sigma}
+    \end{equation*}
+\end{frame}
+
+\begin{frame}
+    \frametitle{EKF SLAM: Concrete Example}
+    Setup:
+    \begin{itemize}
+        \item Platform moves in the 2D plane
+        \item Velocity-based motion model
+        \item Observation of point landmarks
+        \item Range-bearing sensor (measures distance and angle to landmarks)
+        \item Known data association (which measurement comes from which landmark)
+        \item Known number of landmarks
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Initialization}
+    Setup:
+    \begin{itemize}
+        \item Platform moves in the 2D plane
+        \item Velocity-based motion model
+        \item Observation of point landmarks
+        \item Range-bearing sensor (measures distance and angle to landmarks)
+        \item Known data association (which measurement comes from which landmark)
+        \item Known number of landmarks
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Initialization}
+    \begin{itemize}
+        \item Platform starts at the origin of its own reference frame:
+        \[ \mu_0 = (0, 0, 0)^{\top} \]
+        \item All landmarks are initially unknown (not yet observed)
+        \item State vector dimension: $2N + 3$ \\
+        (3 for robot pose + $2N$ for $N$ landmarks in 2D space)
+    \end{itemize}
+    
+    \[ \Sigma_0 = \begin{pmatrix}
+        \Sigma_{x_0} & 0 & \cdots & 0 \\
+        0 & \infty I_{2N} & \cdots & 0 \\
+        \vdots & \vdots & \ddots & \vdots \\
+        0 & 0 & \cdots & \infty I_{2N}
+    \end{pmatrix} \]
+    \begin{itemize}
+        \item $\Sigma_{x_0}$: Initial uncertainty in robot pose (typically small)
+        \item $\infty I_{2N}$: Infinite uncertainty for unobserved landmarks
+    \end{itemize}
+\end{frame}
+
 
 \begin{frame}
     \frametitle{Prediction Step (Motion)}
