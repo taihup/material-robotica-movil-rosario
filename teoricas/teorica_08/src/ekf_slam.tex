@@ -466,6 +466,110 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{Jacobian of the Motion}
+    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
+    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
+    
+    The Jacobian matrix \( G_t^x \) for the motion model is computed as:
+    
+    \begin{align*}
+        G_t^x &= \frac{\partial}{\partial(x, y, \theta)^T} \left[
+        \begin{pmatrix}
+        x \\
+        y \\
+        \theta
+        \end{pmatrix}
+        +
+        \begin{pmatrix}
+        -\frac{v_t}{\omega_t} \sin \theta + \frac{v_t}{\omega_t} \sin(\theta + \omega_t \Delta t) \\
+        \frac{v_t}{\omega_t} \cos \theta - \frac{v_t}{\omega_t} \cos(\theta + \omega_t \Delta t) \\
+        \omega_t \Delta t
+        \end{pmatrix}
+        \right] \\
+        &= I + \frac{\partial}{\partial(x, y, \theta)^T} 
+        \begin{pmatrix}
+        -\frac{v_t}{\omega_t} \sin \theta + \frac{v_t}{\omega_t} \sin(\theta + \omega_t \Delta t) \\
+        \frac{v_t}{\omega_t} \cos \theta - \frac{v_t}{\omega_t} \cos(\theta + \omega_t \Delta t) \\
+        \omega_t \Delta t
+        \end{pmatrix} \\
+        &= I + 
+        \begin{pmatrix}
+        0 & 0 & -\frac{v_t}{\omega_t} \cos \theta + \frac{v_t}{\omega_t} \cos(\theta + \omega_t \Delta t) \\
+        0 & 0 & -\frac{v_t}{\omega_t} \sin \theta + \frac{v_t}{\omega_t} \sin(\theta + \omega_t \Delta t) \\
+        0 & 0 & 0
+        \end{pmatrix} \\
+        &= 
+        \begin{pmatrix}
+        1 & 0 & -\frac{v_t}{\omega_t} \cos \theta + \frac{v_t}{\omega_t} \cos(\theta + \omega_t \Delta t) \\
+        0 & 1 & -\frac{v_t}{\omega_t} \sin \theta + \frac{v_t}{\omega_t} \sin(\theta + \omega_t \Delta t) \\
+        0 & 0 & 1
+        \end{pmatrix}
+    \end{align*}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{This leads to the update}
+
+    \begin{align*}
+        \bar{\Sigma}_t &= G_t \Sigma_{t-1} G_t^T + R_t \\
+        &= 
+        \begin{pmatrix}
+        G_t^x & 0 \\
+        0 & I
+        \end{pmatrix}
+        \begin{pmatrix}
+        \Sigma_{xx} & \Sigma_{xm} \\
+        \Sigma_{mx} & \Sigma_{mm}
+        \end{pmatrix}
+        \begin{pmatrix}
+        (G_t^x)^T & 0 \\
+        0 & I
+        \end{pmatrix}
+        + R_t \\
+        &=
+        \begin{pmatrix}
+        G_t^x \Sigma_{xx} (G_t^x)^T & G_t^x \Sigma_{xm} \\
+        (G_t^x \Sigma_{xm})^T & \Sigma_{mm}
+        \end{pmatrix}
+        + R_t
+    \end{align*}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{EKF SLAM: Prediction Step}
+
+    \begin{algorithmic}[1]
+        \Procedure{EKFSLAMPrediction}{$\mu_{t-1}, \Sigma_{t-1}, u_t, z_t, c_t, R_t$}
+        \State $F_x = \begin{pmatrix}
+        1 & 0 & 0 & 0 & 0 & \cdots & 0 \\
+        0 & 1 & 0 & 0 & 0 & \cdots & 0 \\
+        0 & 0 & 1 & 0 & 0 & \cdots & 0 \\
+        \end{pmatrix}$
+        \vspace{1em}
+        \State $\bar{\mu}_t = \mu_{t-1} + F_x^T
+        \begin{pmatrix}
+        \frac{-v_t}{\omega_t} \sin(\mu_{t-1,\theta}) + \frac{v_t}{\omega_t} \sin(\mu_{t-1,\theta} + \omega_t \Delta t) \\
+        \frac{v_t}{\omega_t} \cos(\mu_{t-1,\theta}) - \frac{v_t}{\omega_t} \cos(\mu_{t-1,\theta} + \omega_t \Delta t) \\
+        \omega_t \Delta t
+        \end{pmatrix}$
+        \vspace{1em}
+        \State $G_t = I + F_x^T
+        \begin{pmatrix}
+        0 & 0 & \frac{-v_t}{\omega_t} \cos(\mu_{t-1,\theta}) + \frac{v_t}{\omega_t} \cos(\mu_{t-1,\theta} + \omega_t \Delta t) \\
+        0 & 0 & \frac{-v_t}{\omega_t} \sin(\mu_{t-1,\theta}) + \frac{v_t}{\omega_t} \sin(\mu_{t-1,\theta} + \omega_t \Delta t) \\
+        0 & 0 & 0
+        \end{pmatrix} F_x$
+        \vspace{1em}
+        \State $\bar{\Sigma}_t = G_t \Sigma_{t-1} G_t^T + \underbrace{F_x^T R_t F_x}_{R_t}$
+        \EndProcedure
+    \end{algorithmic}
+    
+\end{frame}
+
+
+\begin{frame}
     \frametitle{Range-Bearing Observation}
     \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
