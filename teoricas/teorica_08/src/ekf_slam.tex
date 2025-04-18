@@ -834,21 +834,22 @@
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
     \begin{algorithmic}[1]
-        \State $Q_t \gets \begin{pmatrix} \sigma_r^2 & 0 \\ 0 & \sigma_\theta^2 \end{pmatrix}$ \Comment{Measurement noise covariance}
-        \For{all observed features $z_i^t = (r_i^t, \phi_i^t)^T$}
-            \State $j \gets c_i^t$ \Comment{Landmark identifier}
+        \Procedure{EKF\_SLAM\_Correction}{}
+        \State $Q_t = \begin{pmatrix} \sigma_r^2 & 0 \\ 0 & \sigma_\theta^2 \end{pmatrix}$ \Comment{Measurement noise covariance}
+        \For {all observed features $z_i^t = (r_i^t, \phi_i^t)^{\top}$}
+            \State $j = c_i^t$ \Comment{Landmark identifier}
             \If{landmark $j$ never seen before}
-                \State $\begin{pmatrix} \bar{\mu}_{j,x} \\ \bar{\mu}_{j,y} \end{pmatrix} \gets 
+                \State $\begin{pmatrix} \bar{\mu}_{j,x} \\ \bar{\mu}_{j,y} \end{pmatrix} = 
                        \begin{pmatrix} \bar{\mu}_{t,x} \\ \bar{\mu}_{t,y} \end{pmatrix} + 
                        \begin{pmatrix} r_i^t \cos(\phi_i^t + \bar{\mu}_{t,\theta}) \\ r_i^t \sin(\phi_i^t + \bar{\mu}_{t,\theta}) \end{pmatrix}$
                 \Comment{Initialize new landmark position}
             \EndIf
-            \State $\delta \gets \begin{pmatrix} \delta_x \\ \delta_y \end{pmatrix} = 
+            \State $\delta = \begin{pmatrix} \delta_x \\ \delta_y \end{pmatrix} = 
                    \begin{pmatrix} \bar{\mu}_{j,x} - \bar{\mu}_{t,x} \\ \bar{\mu}_{j,y} - \bar{\mu}_{t,y} \end{pmatrix}$
-            \State $q \gets \delta^T \delta$
-            \State $\hat{z}_i^t \gets \begin{pmatrix} \sqrt{q} \\ \operatorname{atan2}(\delta_y, \delta_x) - \bar{\mu}_{t,\theta} \end{pmatrix}$
+            \State $q = \delta^T \delta$
+            \State $\hat{z}_i^t = \begin{pmatrix} \sqrt{q} \\ \operatorname{atan2}(\delta_y, \delta_x) - \bar{\mu}_{t,\theta} \end{pmatrix}$
                    \Comment{Predicted measurement}
-        \EndFor
+        \algstore{ekf_slam_algorithm_break} % guarda el estado del argoritmo para que este pueda continuar en otro lugar
     \end{algorithmic}
 \end{frame}
 
@@ -858,42 +859,33 @@
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
     \begin{algorithmic}[1]
-        \State $Q_t \gets \begin{pmatrix} \sigma_r^2 & 0 \\ 0 & \sigma_\theta^2 \end{pmatrix}$ \Comment{Measurement noise covariance}
-        \For{all observed features $z_i^t = (r_i^t, \phi_i^t)^T$}
-            \State $j \gets c_i^t$ \Comment{Landmark identifier}
-            \If{landmark $j$ never seen before}
-                \State $\begin{pmatrix} \bar{\mu}_{j,x} \\ \bar{\mu}_{j,y} \end{pmatrix} \gets 
-                       \begin{pmatrix} \bar{\mu}_{t,x} \\ \bar{\mu}_{t,y} \end{pmatrix} + 
-                       \begin{pmatrix} r_i^t \cos(\phi_i^t + \bar{\mu}_{t,\theta}) \\ r_i^t \sin(\phi_i^t + \bar{\mu}_{t,\theta}) \end{pmatrix}$
-                \Comment{Initialize new landmark position}
-            \EndIf
-            \State $\delta \gets \begin{pmatrix} \delta_x \\ \delta_y \end{pmatrix} = 
-                   \begin{pmatrix} \bar{\mu}_{j,x} - \bar{\mu}_{t,x} \\ \bar{\mu}_{j,y} - \bar{\mu}_{t,y} \end{pmatrix}$
-            \State $q \gets \delta^T \delta$
-            \State $\hat{z}_i^t \gets \begin{pmatrix} \sqrt{q} \\ \operatorname{atan2}(\delta_y, \delta_x) - \bar{\mu}_{t,\theta} \end{pmatrix}$
-                   \Comment{Predicted measurement}
-            
-            \State $F_{x,j} \gets 
-            \begin{pmatrix}
-            1 & 0 & 0 & 0 & \cdots & 0 & 0 & 0 & \cdots & 0 \\
-            0 & 1 & 0 & 0 & \cdots & 0 & 0 & 0 & \cdots & 0 \\
-            0 & 0 & 1 & 0 & \cdots & 0 & 0 & 0 & \cdots & 0 \\
-            0 & 0 & 0 & 0 & \cdots & 0 & 1 & 0 & \cdots & 0 \\
-            0 & 0 & 0 & 0 & \cdots & 0 & 0 & 1 & \cdots & 0
-            \end{pmatrix}$ \Comment{Jacobian of state mapping}
-            
-            \State $H_t^i \gets \frac{1}{q} \begin{pmatrix}
-            -\sqrt{q}\delta_x & -\sqrt{q}\delta_y & 0 & \sqrt{q}\delta_x & \sqrt{q}\delta_y \\
+        \algrestore{ekf_slam_algorithm_break} % continua el algoritmo de antes
+        \State $F_{x,j} =
+        \begin{bNiceMatrix}[margin = 3 pt]
+            1 & 0 & 0 & 0 \cdots 0 & 0 & 0 & 0 \cdots 0 \\
+            0 & 1 & 0 & 0 \cdots 0 & 0 & 0 & 0 \cdots 0 \\
+            0 & 0 & 1 & 0 \cdots 0 & 0 & 0 & 0 \cdots 0 \\
+            0 & 0 & 0 & 0 \cdots 0 & 1 & 0 & 0 \cdots 0 \\
+            0 & 0 & 0 & 0 \cdots 0 & 0 & 1 & 0 \cdots 0
+            \CodeAfter
+            \UnderBrace{5-4}{5-4}{2j-2}
+            \UnderBrace{5-7}{5-7}{2N-2j}
+        \end{bNiceMatrix}$ \Comment{Jacobian of state mapping}
+        \Statex
+        \Statex
+        \State $H_t^i = \frac{1}{q} \begin{pmatrix}
+            -\sqrt{q} \delta_x & -\sqrt{q} \delta_y & 0 & \sqrt{q} \delta_x & \sqrt{q} \delta_y\\
             \delta_y & -\delta_x & -q & -\delta_y & \delta_x
-            \end{pmatrix} F_{x,j}$ \Comment{Measurement Jacobian}
+        \end{pmatrix} F_{x,j}$ \Comment{Measurement Jacobian}
             
-            \State $K_t^i \gets \Sigma_t H_t^{iT}(H_t^i \Sigma_t H_t^{iT} + Q_t)^{-1}$ \Comment{Kalman gain}
-            \State $\bar{\mu}_t \gets \bar{\mu}_t + K_t^i(z_t^i - \hat{z}_t^i)$ \Comment{State update}
-            \State $\Sigma_t \gets (I - K_t^i H_t^i) \Sigma_t$ \Comment{Covariance update}
+        \State $K_t^i = \bar{\Sigma}_t H_t^{i\top}(H_t^i \bar{\Sigma}_t H_t^{i\top} + Q_t)^{-1}$ \Comment{Kalman gain}
+        \State $\bar{\mu}_t = \bar{\mu}_t + K_t^i(z_t^i - \hat{z}_t^i)$ \Comment{State update}
+        \State $\bar{\Sigma}_t = (I - K_t^i H_t^i) \bar{\Sigma}_t$ \Comment{Covariance update}
         \EndFor
-        \State $\mu_t \gets \bar{\mu}_t$ \Comment{Final state estimate}
-        \State $\Sigma_t \gets \bar{\Sigma}_t$ \Comment{Final covariance estimate}
+        \State $\mu_t = \bar{\mu}_t$ \Comment{Final state estimate}
+        \State $\Sigma_t = \bar{\Sigma}_t$ \Comment{Final covariance estimate}
         \State \Return $\mu_t, \Sigma_t$ \Comment{Return updated state and covariance}
+        \EndProcedure
     \end{algorithmic}
 \end{frame}
 
@@ -903,7 +895,7 @@
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
     \begin{itemize}
-    \item Measurement update requires only one full belief update
+    \item Measurement update in a single step requires only one full belief update
     \item Always normalize angular components
     \item May not need to create $F$ matrices explicitly
     \end{itemize}
@@ -965,10 +957,10 @@
     \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
-    % \begin{itemize}
-    % \item Determinant of any sub-matrix decreases monotonically
-    % \item New landmarks initialized with maximum uncertainty
-    % \end{itemize}
+    \begin{itemize}
+    \item Determinant of any sub-matrix decreases monotonically
+    \item New landmarks initialized with maximum uncertainty
+    \end{itemize}
     % \begin{center}
     % \includegraphics[width=0.6\textwidth]{uncertainties_plot.pdf} % Replace with actual vectorized image
     % \textit{Courtesy: Dissanayake}
@@ -979,11 +971,13 @@
     \frametitle{EKF SLAM in the Limit}
     \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
-
-    \begin{quote}
+    
     In the limit, the covariance associated with any single landmark location estimate is determined only by the initial covariance in the vehicle location estimate.
-    \end{quote}
-    \textit{Courtesy: Dissanayake}
+
+    \begin{center}
+        \includegraphics[width=0.6\textwidth]{../images/ekf_slam/ekf_slam_limit.pdf}
+    \end{center}
+
 \end{frame}
 
 \begin{frame}
