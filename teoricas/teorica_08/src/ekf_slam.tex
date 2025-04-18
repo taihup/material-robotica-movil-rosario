@@ -154,6 +154,9 @@
 
 \begin{frame}
     \frametitle{EKF SLAM: Initial State}
+    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
+    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
+
 
     \begin{center}
         \includegraphics[width=0.5\textwidth]{../images/ekf_slam/ekf_slam_initial_state.pdf}
@@ -177,6 +180,9 @@
 
 \begin{frame}
     \frametitle{EKF SLAM: Predicted Motion}
+    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
+    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
+
 
     \begin{center}
         \includegraphics[width=0.5\textwidth]{../images/ekf_slam/ekf_slam_predicted_motion.pdf}
@@ -207,6 +213,9 @@
 
 \begin{frame}
     \frametitle{EKF SLAM: Predicted Measurement}
+    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
+    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
+
 
     \begin{center}
         \includegraphics[width=0.5\textwidth]{../images/ekf_slam/ekf_slam_predicted_measurement.pdf}
@@ -230,6 +239,9 @@
 
 \begin{frame}
     \frametitle{EKF SLAM: Obtained Measurement}
+    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
+    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
+
 
     \begin{center}
         \includegraphics[width=0.5\textwidth]{../images/ekf_slam/ekf_slam_obtained_measurement.pdf}
@@ -253,6 +265,8 @@
 
 \begin{frame}
     \frametitle{EKF SLAM: Data Association and Difference Between $h(x)$ and $\observation$}
+    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
+    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
     \begin{center}
         \includegraphics[width=0.5\textwidth]{../images/ekf_slam/ekf_slam_difference_between_prediction_observation.pdf}
@@ -276,6 +290,9 @@
 
 \begin{frame}
     \frametitle{EKF SLAM: Update Step}
+    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
+    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
+
 
     \begin{center}
         \includegraphics[width=0.5\textwidth]{../images/ekf_slam/ekf_slam_update.pdf}
@@ -305,6 +322,9 @@
 
 \begin{frame}
     \frametitle{EKF SLAM: Concrete Example}
+    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
+    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
+
     Setup:
     \begin{itemize}
         \item Platform moves in the 2D plane
@@ -318,36 +338,35 @@
 
 \begin{frame}
     \frametitle{Initialization}
-    Setup:
-    \begin{itemize}
-        \item Platform moves in the 2D plane
-        \item Velocity-based motion model
-        \item Observation of point landmarks
-        \item Range-bearing sensor (measures distance and angle to landmarks)
-        \item Known data association (which measurement comes from which landmark)
-        \item Known number of landmarks
-    \end{itemize}
-\end{frame}
+    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
+    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
-\begin{frame}
-    \frametitle{Initialization}
     \begin{itemize}
-        \item Platform starts at the origin of its own reference frame:
-        \[ \mu_0 = (0, 0, 0)^{\top} \]
+        \item Platform starts at the origin of its own reference frame
         \item All landmarks are initially unknown (not yet observed)
         \item State vector dimension: $2N + 3$ \\
         (3 for robot pose + $2N$ for $N$ landmarks in 2D space)
+        \begin{equation*}
+            \mu_0 =
+            \begin{pmatrix}
+                0 & 0 & 0 & \dots & 0    
+            \end{pmatrix}^{\top}
+        \end{equation*}
     \end{itemize}
     
-    \[ \Sigma_0 = \begin{pmatrix}
-        \Sigma_{x_0} & 0 & \cdots & 0 \\
-        0 & \infty I_{2N} & \cdots & 0 \\
-        \vdots & \vdots & \ddots & \vdots \\
-        0 & 0 & \cdots & \infty I_{2N}
-    \end{pmatrix} \]
+    \begin{equation*}
+        \Sigma_0 =
+        \begin{pmatrix}
+            \Sigma_{x_0} & 0 & \cdots & 0 \\
+            0 & \infty I_{2} & \cdots & 0 \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0 & 0 & \cdots & \infty I_{2}
+        \end{pmatrix}
+    \end{equation*}
+    
     \begin{itemize}
         \item $\Sigma_{x_0}$: Initial uncertainty in robot pose (typically small)
-        \item $\infty$: Infinite uncertainty for unobserved landmarks
+        \item $\infty I_{2}$: Infinite uncertainty for unobserved landmarks
     \end{itemize}
 \end{frame}
 
