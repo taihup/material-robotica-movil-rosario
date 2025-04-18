@@ -474,64 +474,66 @@
     
     \begin{align*}
         G_t^x &= \frac{\partial}{\partial(x, y, \theta)^T} \left[
-        \begin{pmatrix}
+        \begin{bmatrix}
         x \\
         y \\
         \theta
-        \end{pmatrix}
+        \end{bmatrix}
         +
-        \begin{pmatrix}
+        \begin{bmatrix}
         -\frac{v_t}{\omega_t} \sin \theta + \frac{v_t}{\omega_t} \sin(\theta + \omega_t \Delta t) \\
         \frac{v_t}{\omega_t} \cos \theta - \frac{v_t}{\omega_t} \cos(\theta + \omega_t \Delta t) \\
         \omega_t \Delta t
-        \end{pmatrix}
+        \end{bmatrix}
         \right] \\
         &= I + \frac{\partial}{\partial(x, y, \theta)^T} 
-        \begin{pmatrix}
+        \begin{bmatrix}
         -\frac{v_t}{\omega_t} \sin \theta + \frac{v_t}{\omega_t} \sin(\theta + \omega_t \Delta t) \\
         \frac{v_t}{\omega_t} \cos \theta - \frac{v_t}{\omega_t} \cos(\theta + \omega_t \Delta t) \\
         \omega_t \Delta t
-        \end{pmatrix} \\
+        \end{bmatrix} \\
         &= I + 
-        \begin{pmatrix}
+        \begin{bmatrix}
         0 & 0 & -\frac{v_t}{\omega_t} \cos \theta + \frac{v_t}{\omega_t} \cos(\theta + \omega_t \Delta t) \\
         0 & 0 & -\frac{v_t}{\omega_t} \sin \theta + \frac{v_t}{\omega_t} \sin(\theta + \omega_t \Delta t) \\
         0 & 0 & 0
-        \end{pmatrix} \\
+        \end{bmatrix} \\
         &= 
-        \begin{pmatrix}
+        \begin{bmatrix}
         1 & 0 & -\frac{v_t}{\omega_t} \cos \theta + \frac{v_t}{\omega_t} \cos(\theta + \omega_t \Delta t) \\
         0 & 1 & -\frac{v_t}{\omega_t} \sin \theta + \frac{v_t}{\omega_t} \sin(\theta + \omega_t \Delta t) \\
         0 & 0 & 1
-        \end{pmatrix}
+        \end{bmatrix}
     \end{align*}
     
 \end{frame}
 
 \begin{frame}
     \frametitle{This leads to the update}
+    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
+    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
     \begin{align*}
         \bar{\Sigma}_t &= G_t \Sigma_{t-1} G_t^T + R_t \\
         &= 
-        \begin{pmatrix}
+        \begin{bmatrix}
         G_t^x & 0 \\
         0 & I
-        \end{pmatrix}
-        \begin{pmatrix}
+        \end{bmatrix}
+        \begin{bmatrix}
         \Sigma_{xx} & \Sigma_{xm} \\
         \Sigma_{mx} & \Sigma_{mm}
-        \end{pmatrix}
-        \begin{pmatrix}
+        \end{bmatrix}
+        \begin{bmatrix}
         (G_t^x)^T & 0 \\
         0 & I
-        \end{pmatrix}
+        \end{bmatrix}
         + R_t \\
         &=
-        \begin{pmatrix}
+        \begin{bmatrix}
         G_t^x \Sigma_{xx} (G_t^x)^T & G_t^x \Sigma_{xm} \\
         (G_t^x \Sigma_{xm})^T & \Sigma_{mm}
-        \end{pmatrix}
+        \end{bmatrix}
         + R_t
     \end{align*}
 
@@ -539,28 +541,30 @@
 
 \begin{frame}
     \frametitle{EKF SLAM: Prediction Step}
+    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
+    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
     \begin{algorithmic}[1]
         \Procedure{EKFSLAMPrediction}{$\mu_{t-1}, \Sigma_{t-1}, u_t, z_t, c_t, R_t$}
-        \State $F_x = \begin{pmatrix}
+        \State $F_x = \begin{bmatrix}
         1 & 0 & 0 & 0 & 0 & \cdots & 0 \\
         0 & 1 & 0 & 0 & 0 & \cdots & 0 \\
         0 & 0 & 1 & 0 & 0 & \cdots & 0 \\
-        \end{pmatrix}$
+        \end{bmatrix}$
         \vspace{1em}
         \State $\bar{\mu}_t = \mu_{t-1} + F_x^T
-        \begin{pmatrix}
+        \begin{bmatrix}
         \frac{-v_t}{\omega_t} \sin(\mu_{t-1,\theta}) + \frac{v_t}{\omega_t} \sin(\mu_{t-1,\theta} + \omega_t \Delta t) \\
         \frac{v_t}{\omega_t} \cos(\mu_{t-1,\theta}) - \frac{v_t}{\omega_t} \cos(\mu_{t-1,\theta} + \omega_t \Delta t) \\
         \omega_t \Delta t
-        \end{pmatrix}$
+        \end{bmatrix}$
         \vspace{1em}
         \State $G_t = I + F_x^T
-        \begin{pmatrix}
+        \begin{bmatrix}
         0 & 0 & \frac{-v_t}{\omega_t} \cos(\mu_{t-1,\theta}) + \frac{v_t}{\omega_t} \cos(\mu_{t-1,\theta} + \omega_t \Delta t) \\
         0 & 0 & \frac{-v_t}{\omega_t} \sin(\mu_{t-1,\theta}) + \frac{v_t}{\omega_t} \sin(\mu_{t-1,\theta} + \omega_t \Delta t) \\
         0 & 0 & 0
-        \end{pmatrix} F_x$
+        \end{bmatrix} F_x$
         \vspace{1em}
         \State $\bar{\Sigma}_t = G_t \Sigma_{t-1} G_t^T + \underbrace{F_x^T R_t F_x}_{R_t}$
         \EndProcedure
@@ -571,6 +575,8 @@
 
 \begin{frame}
     \frametitle{EKF SLAM: Correction Step}
+    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
+    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
     \begin{itemize}
         \item EKF SLAM: Correction Step
@@ -589,21 +595,31 @@
     \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
-    For unobserved landmarks:
-    \[
-    \begin{bmatrix} 
-    \mu_{j,x} \\ 
-    \mu_{j,y} 
-    \end{bmatrix} = 
-    \begin{bmatrix} 
-    \mu_{t,x} \\ 
-    \mu_{t,y} 
-    \end{bmatrix} + 
-    \begin{bmatrix} 
-    r_t^i \cos(\phi_t^i + \mu_{t,\theta}) \\ 
-    r_t^i \sin(\phi_t^i + \mu_{t,\theta}) 
-    \end{bmatrix}
-    \]
+    \begin{itemize}
+        \item Range-Bearing observation $z_t^i = \begin{bmatrix} r_t^i \\ \phi_t^i \end{bmatrix}^{\top}$
+        
+        \item If landmark has not been observed, we can initialize it with:
+    \end{itemize}
+    
+    \begin{equation*}
+        \underbrace{
+        \begin{bmatrix}
+        \bar{\mu}_{j,x} \\
+        \bar{\mu}_{j,y}
+        \end{bmatrix}}_{\text{location of landmark } j}
+        =
+        \underbrace{
+        \begin{bmatrix}
+        \bar{\mu}_{t,x} \\
+        \bar{\mu}_{t,y}
+        \end{bmatrix}}_{\text{estimated location of the platform}}
+        +
+        \underbrace{
+        \begin{bmatrix}
+        r_t^i \cos(\phi_t^i + \bar{\mu}_{t,\theta}) \\
+        r_t^i \sin(\phi_t^i + \bar{\mu}_{t,\theta})
+        \end{bmatrix}}_{\text{relative measurement}}
+    \end{equation*}
 \end{frame}
 
 \begin{frame}
@@ -611,22 +627,25 @@
     \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
-    \[
-    \delta = \begin{bmatrix}
+    \begin{itemize}
+        \item Compute expected observation according to the current estimate 
+    \end{itemize}
+
+    \begin{align*}
+    \delta &= \begin{bmatrix}
     \delta_x \\
     \delta_y
     \end{bmatrix} = \begin{bmatrix}
     \bar{\mu}_{j,x} - \bar{\mu}_{t,x} \\
     \bar{\mu}_{j,y} - \bar{\mu}_{t,y}
-    \end{bmatrix}, \quad
-    q = \delta^T \delta
-    \]
-    \[
-    \hat{z}_t^i = \begin{bmatrix}
+    \end{bmatrix}\\
+    q &= \delta^{\top} \delta\\
+    \hat{z}_t^i &= \begin{bmatrix}
     \sqrt{q} \\
-    \text{atan2}(\delta_y, \delta_x) - \bar{\mu}_{t,\theta}
-    \end{bmatrix} = h(\bar{\mu}_t)
-    \]
+    \text{atan2}(\delta_y, \delta_x) - \bar{\mu}_{t,\theta}\\
+    \end{bmatrix}
+    &= h(\bar{\mu}_t)
+    \end{align*}
 \end{frame}
 
 \begin{frame}
