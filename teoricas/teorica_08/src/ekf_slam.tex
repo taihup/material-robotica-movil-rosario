@@ -570,6 +570,21 @@
 
 
 \begin{frame}
+    \frametitle{EKF SLAM: Correction Step}
+
+    \begin{itemize}
+        \item EKF SLAM: Correction Step
+        \item Known data association
+        \item $c_{t}^{i} = j$ : $i$-th measurement at time $t$ observes the landmark with index $j$
+        \item Initialize landmark if unobserved
+        \item Compute the expected observation
+        \item Compute the Jacobian of $h$
+        \item Proceed with computing the Kalman gain
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
     \frametitle{Range-Bearing Observation}
     \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
