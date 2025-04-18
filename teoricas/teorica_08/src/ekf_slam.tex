@@ -632,19 +632,19 @@
     \end{itemize}
 
     \begin{align*}
-    \delta &= \begin{bmatrix}
-    \delta_x \\
-    \delta_y
-    \end{bmatrix} = \begin{bmatrix}
-    \bar{\mu}_{j,x} - \bar{\mu}_{t,x} \\
-    \bar{\mu}_{j,y} - \bar{\mu}_{t,y}
-    \end{bmatrix}\\
-    q &= \delta^{\top} \delta\\
-    \hat{z}_t^i &= \begin{bmatrix}
-    \sqrt{q} \\
-    \text{atan2}(\delta_y, \delta_x) - \bar{\mu}_{t,\theta}\\
-    \end{bmatrix}
-    &= h(\bar{\mu}_t)
+        \delta &= \begin{bmatrix}
+        \delta_x \\
+        \delta_y
+        \end{bmatrix} = \begin{bmatrix}
+        \bar{\mu}_{j,x} - \bar{\mu}_{t,x} \\
+        \bar{\mu}_{j,y} - \bar{\mu}_{t,y}
+        \end{bmatrix}\\
+        q &= \delta^{\top} \delta\\
+        \hat{z}_t^i &= \begin{bmatrix}
+        \sqrt{q} \\
+        \text{atan2}(\delta_y, \delta_x) - \bar{\mu}_{t,\theta}
+        \end{bmatrix}\\
+        &= h(\bar{\mu}_t)
     \end{align*}
 \end{frame}
 
@@ -653,16 +653,216 @@
     \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
-    \[
-    \text{low } H_t^i = \frac{1}{q} \begin{bmatrix}
-    -\sqrt{q}\delta_x & -\sqrt{q}\delta_y & 0 & +\sqrt{q}\delta_x & \sqrt{q}\delta_y \\
-    \delta_y & -\delta_x & -q & -\delta_y & \delta_x
-    \end{bmatrix}
-    \]
-    Mapped to high-dimensional space:
-    \[
-    H_t^i = \text{low } H_t^i F_{x,j}
-    \]
+    \begin{itemize}
+        \item Based on
+        \begin{align*}
+            \delta &= 
+            \begin{pmatrix}
+                \delta_x \\
+                \delta_y
+            \end{pmatrix}
+            = \begin{pmatrix}
+                \bar{\mu}_{j,x} - \bar{\mu}_{t,x} \\
+                \bar{\mu}_{j,y} - \bar{\mu}_{t,y}
+            \end{pmatrix}\\
+            q &= \delta^T \delta\\
+            \hat{z}^i_t &= 
+            \begin{pmatrix}
+                \sqrt{q} \\
+                \text{atan2}(\delta_y, \delta_x) - \bar{\mu}_{t,\theta}
+            \end{pmatrix}
+        \end{align*}    
+        \item Compute the Jacobian
+        \begin{equation*}
+            {}^{\text{low}}H^i_t = \frac{\partial h(\bar{\mu}_t)}{\partial \bar{\mu}_t}
+        \end{equation*}
+        \begin{equation*}
+            \text{low-dim space} \quad (x, y, \theta, m_{j,x}, m_{j,y})
+        \end{equation*}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Jacobian for the Observation}
+    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
+    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
+
+    \begin{itemize}
+        \item Based on
+        \begin{align*}
+            \delta &= 
+            \begin{pmatrix}
+                \delta_x \\
+                \delta_y
+            \end{pmatrix}
+            = \begin{pmatrix}
+                \bar{\mu}_{j,x} - \bar{\mu}_{t,x} \\
+                \bar{\mu}_{j,y} - \bar{\mu}_{t,y}
+            \end{pmatrix}\\
+            q &= \delta^T \delta\\
+            \hat{z}^i_t &= 
+            \begin{pmatrix}
+                \sqrt{q} \\
+                \text{atan2}(\delta_y, \delta_x) - \bar{\mu}_{t,\theta}
+            \end{pmatrix}
+        \end{align*}    
+        \item Compute the Jacobian
+        \begin{align*}
+            {}^{\text{low}}H^i_t &= \frac{\partial h(\bar{\mu}_t)}{\partial \bar{\mu}_t}
+            &= \begin{pmatrix}
+                \frac{\partial \sqrt{q}}{\partial x} & \frac{\partial \sqrt{q}}{\partial y} & \cdots \\
+                \frac{\partial \text{atan2}(\ldots)}{\partial x} & \frac{\partial \text{atan2}(\ldots)}{\partial y} & \cdots
+            \end{pmatrix}
+    \end{align*} 
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{The first component}
+    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
+    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
+
+    \begin{itemize}
+        \item Based on
+        \begin{align*}
+            \delta &= 
+            \begin{pmatrix}
+                \delta_x \\
+                \delta_y
+            \end{pmatrix}
+            = \begin{pmatrix}
+                \bar{\mu}_{j,x} - \bar{\mu}_{t,x} \\
+                \bar{\mu}_{j,y} - \bar{\mu}_{t,y}
+            \end{pmatrix}\\
+            q &= \delta^T \delta\\
+            \hat{z}^i_t &= 
+            \begin{pmatrix}
+                \sqrt{q} \\
+                \text{atan2}(\delta_y, \delta_x) - \bar{\mu}_{t,\theta}
+            \end{pmatrix}
+        \end{align*}    
+    
+        \item We obtain (by applying the chain rule)
+        \begin{align*}
+            \frac{\partial \sqrt{q}}{\partial x}
+            &= \frac{1}{2} \cdot \frac{1}{\sqrt{q}} \cdot 2 \delta_x \cdot (-1)\\
+            &= \frac{1}{q} \left(-\sqrt{q} \delta_x \right)
+        \end{align*} 
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Jacobian for the Observation}
+    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
+    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
+
+    \begin{itemize}
+        \item \textbf{Based on}
+        \[
+        \delta = \begin{pmatrix} \delta_x \\ \delta_y \end{pmatrix}
+               = \begin{pmatrix} \bar{\mu}_{j,x} - \bar{\mu}_{t,x} \\ \bar{\mu}_{j,y} - \bar{\mu}_{t,y} \end{pmatrix}
+        \]
+        \[
+        q = \delta^T \delta
+        \]
+        \[
+        \hat{z}^i_t = \begin{pmatrix}
+            \sqrt{q} \\
+            \text{atan2}(\delta_y, \delta_x) - \bar{\mu}_{t,\theta}
+        \end{pmatrix}
+        \]
+    
+        \item \textbf{Compute the Jacobian}
+        \[
+        {}^{\text{low}}H^i_t = \frac{\partial h(\bar{\mu}_t)}{\partial \bar{\mu}_t}
+        \]
+        \[
+        = \frac{1}{q}
+        \begin{pmatrix}
+            -\sqrt{q} \delta_x / \delta_y & -\sqrt{q} \delta_y / \delta_x & 0 \\
+            +\sqrt{q} \delta_x / -\delta_y & \sqrt{q} \delta_y / \delta_x & -q
+        \end{pmatrix}
+        \]
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Jacobian for the Observation}
+    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
+    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
+
+    \begin{itemize}
+        \item \textbf{Use the computed Jacobian}
+        \[
+        {}^{\text{low}}H^i_t = \frac{1}{q}
+        \begin{pmatrix}
+            -\sqrt{q} \delta_x / \delta_y & -\sqrt{q} \delta_y / \delta_x & 0 \\
+            +\sqrt{q} \delta_x / -\delta_y & \sqrt{q} \delta_y / \delta_x & -q
+        \end{pmatrix}
+        \]
+    
+        \item \textbf{Map it to the high dimensional space}
+        \[
+        H^i_t = {}^{\text{low}}H^i_t F_{x,j}
+        \]
+    
+        \[
+        F_{x,j} =
+        \begin{pmatrix}
+            1 & 0 & 0 & \cdots & 0 & 0 & \cdots & 0 \\
+            0 & 1 & 0 & \cdots & 0 & 0 & \cdots & 0 \\
+            0 & 0 & 0 & \cdots & 1 & 0 & \cdots & 0 \\
+            0 & 0 & 0 & \cdots & 0 & 1 & \cdots & 0 \\
+            0 & 0 & 0 & \cdots & \cdots & \cdots & \cdots & 0 \\
+        \end{pmatrix}
+        \quad
+        \text{columns } 2j{-}2 \text{ to } 2N{-}2j
+        \]
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Jacobian for the Observation}
+    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
+    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Jacobian for the Observation}
+    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
+    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
+
+    \begin{itemize}
+        \item Based on 
+        \begin{align*}
+            \delta &= \begin{bmatrix}
+            \delta_x \\
+            \delta_y
+            \end{bmatrix} = \begin{bmatrix}
+            \bar{\mu}_{j,x} - \bar{\mu}_{t,x} \\
+            \bar{\mu}_{j,y} - \bar{\mu}_{t,y}
+            \end{bmatrix}\\
+            q &= \delta^{\top} \delta\\
+            \hat{z}_t^i &= \begin{bmatrix}
+            \sqrt{q} \\
+            \text{atan2}(\delta_y, \delta_x) - \bar{\mu}_{t,\theta}\\
+            \end{bmatrix}
+            &= h(\bar{\mu}_t)
+        \end{align*}
+
+        \item Compute the Jacobian
+        \begin{equation*}
+            \text{low } H_t^i = \frac{1}{q} \begin{bmatrix}
+            -\sqrt{q}\delta_x & -\sqrt{q}\delta_y & 0 & +\sqrt{q}\delta_x & \sqrt{q}\delta_y \\
+            \delta_y & -\delta_x & -q & -\delta_y & \delta_x
+            \end{bmatrix}
+        \end{equation*}
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
