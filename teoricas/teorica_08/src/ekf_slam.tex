@@ -759,109 +759,72 @@
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
     \begin{itemize}
-        \item \textbf{Based on}
-        \[
-        \delta = \begin{pmatrix} \delta_x \\ \delta_y \end{pmatrix}
-               = \begin{pmatrix} \bar{\mu}_{j,x} - \bar{\mu}_{t,x} \\ \bar{\mu}_{j,y} - \bar{\mu}_{t,y} \end{pmatrix}
-        \]
-        \[
-        q = \delta^T \delta
-        \]
-        \[
-        \hat{z}^i_t = \begin{pmatrix}
-            \sqrt{q} \\
-            \text{atan2}(\delta_y, \delta_x) - \bar{\mu}_{t,\theta}
-        \end{pmatrix}
-        \]
-    
-        \item \textbf{Compute the Jacobian}
-        \[
-        {}^{\text{low}}H^i_t = \frac{\partial h(\bar{\mu}_t)}{\partial \bar{\mu}_t}
-        \]
-        \[
-        = \frac{1}{q}
-        \begin{pmatrix}
-            -\sqrt{q} \delta_x / \delta_y & -\sqrt{q} \delta_y / \delta_x & 0 \\
-            +\sqrt{q} \delta_x / -\delta_y & \sqrt{q} \delta_y / \delta_x & -q
-        \end{pmatrix}
-        \]
-    \end{itemize}
-
-\end{frame}
-
-\begin{frame}
-    \frametitle{Jacobian for the Observation}
-    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
-    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
-
-    \begin{itemize}
-        \item \textbf{Use the computed Jacobian}
-        \[
-        {}^{\text{low}}H^i_t = \frac{1}{q}
-        \begin{pmatrix}
-            -\sqrt{q} \delta_x / \delta_y & -\sqrt{q} \delta_y / \delta_x & 0 \\
-            +\sqrt{q} \delta_x / -\delta_y & \sqrt{q} \delta_y / \delta_x & -q
-        \end{pmatrix}
-        \]
-    
-        \item \textbf{Map it to the high dimensional space}
-        \[
-        H^i_t = {}^{\text{low}}H^i_t F_{x,j}
-        \]
-    
-        \[
-        F_{x,j} =
-        \begin{pmatrix}
-            1 & 0 & 0 & \cdots & 0 & 0 & \cdots & 0 \\
-            0 & 1 & 0 & \cdots & 0 & 0 & \cdots & 0 \\
-            0 & 0 & 0 & \cdots & 1 & 0 & \cdots & 0 \\
-            0 & 0 & 0 & \cdots & 0 & 1 & \cdots & 0 \\
-            0 & 0 & 0 & \cdots & \cdots & \cdots & \cdots & 0 \\
-        \end{pmatrix}
-        \quad
-        \text{columns } 2j{-}2 \text{ to } 2N{-}2j
-        \]
-    \end{itemize}
-
-\end{frame}
-
-\begin{frame}
-    \frametitle{Jacobian for the Observation}
-    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
-    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
-
-\end{frame}
-
-\begin{frame}
-    \frametitle{Jacobian for the Observation}
-    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
-    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
-
-    \begin{itemize}
-        \item Based on 
+        \item Based on
         \begin{align*}
-            \delta &= \begin{bmatrix}
-            \delta_x \\
-            \delta_y
-            \end{bmatrix} = \begin{bmatrix}
-            \bar{\mu}_{j,x} - \bar{\mu}_{t,x} \\
-            \bar{\mu}_{j,y} - \bar{\mu}_{t,y}
-            \end{bmatrix}\\
-            q &= \delta^{\top} \delta\\
-            \hat{z}_t^i &= \begin{bmatrix}
-            \sqrt{q} \\
-            \text{atan2}(\delta_y, \delta_x) - \bar{\mu}_{t,\theta}\\
-            \end{bmatrix}
-            &= h(\bar{\mu}_t)
+            \delta &= 
+            \begin{pmatrix}
+                \delta_x \\
+                \delta_y
+            \end{pmatrix}
+            = \begin{pmatrix}
+                \bar{\mu}_{j,x} - \bar{\mu}_{t,x} \\
+                \bar{\mu}_{j,y} - \bar{\mu}_{t,y}
+            \end{pmatrix}\\
+            q &= \delta^T \delta\\
+            \hat{z}^i_t &= 
+            \begin{pmatrix}
+                \sqrt{q} \\
+                \text{atan2}(\delta_y, \delta_x) - \bar{\mu}_{t,\theta}
+            \end{pmatrix}
         \end{align*}
 
         \item Compute the Jacobian
+        
+        \begin{align*}
+            {}^{\text{low}}H^i_t &= \frac{\partial h(\bar{\mu}_t)}{\partial \bar{\mu}_t}\\
+            &= \frac{1}{q}
+            \begin{pmatrix}
+                -\sqrt{q} \delta_x & -\sqrt{q} \delta_y & 0 & \sqrt{q} \delta_x & \sqrt{q} \delta_y\\
+                \delta_y & -\delta_x & -q & -\delta_y & \delta_x
+            \end{pmatrix}
+        \end{align*}
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Jacobian for the Observation}
+    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
+    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
+
+    \begin{itemize}
+        \item Use the computed Jacobian
+        \begin{align*}
+            {}^{\text{low}}H^i_t &= \frac{\partial h(\bar{\mu}_t)}{\partial \bar{\mu}_t}\\
+            &= \frac{1}{q}
+            \begin{pmatrix}
+                -\sqrt{q} \delta_x & -\sqrt{q} \delta_y & 0 & \sqrt{q} \delta_x & \sqrt{q} \delta_y\\
+                \delta_y & -\delta_x & -q & -\delta_y & \delta_x
+            \end{pmatrix}
+        \end{align*}
+    
+        \item Map it to the high dimensional space
         \begin{equation*}
-            \text{low } H_t^i = \frac{1}{q} \begin{bmatrix}
-            -\sqrt{q}\delta_x & -\sqrt{q}\delta_y & 0 & +\sqrt{q}\delta_x & \sqrt{q}\delta_y \\
-            \delta_y & -\delta_x & -q & -\delta_y & \delta_x
-            \end{bmatrix}
+            H^i_t = {}^{\text{low}}H^i_t F_{x,j}
         \end{equation*}
+        \begin{equation*}
+            F_{x,j} =
+            \begin{bNiceMatrix}[margin = 3 pt]
+                1 & 0 & 0 & 0 \cdots 0 & 0 & 0 & 0 \cdots 0 \\
+                0 & 1 & 0 & 0 \cdots 0 & 0 & 0 & 0 \cdots 0 \\
+                0 & 0 & 1 & 0 \cdots 0 & 0 & 0 & 0 \cdots 0 \\
+                0 & 0 & 0 & 0 \cdots 0 & 1 & 0 & 0 \cdots 0 \\
+                0 & 0 & 0 & 0 \cdots 0 & 0 & 1 & 0 \cdots 0
+                \CodeAfter
+                \UnderBrace{5-4}{5-4}{2j-2}
+                \UnderBrace{5-7}{5-7}{2N-2j}
+            \end{bNiceMatrix}
+        \end{equation*} 
     \end{itemize}
 \end{frame}
 
@@ -870,16 +833,23 @@
     \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
-    % \begin{algorithmic}[1]
-    % \State $Q_t = \begin{bmatrix} \sigma_r^2 & 0 \\ 0 & \sigma_\phi^2 \end{bmatrix}$
-    % \For{all observed features $z_t^i = (r_t^i, \phi_t^i)^T$}
-    % \State $j = c_t^i$
-    % \If{landmark $j$ never seen before}
-    % \State Initialize $\begin{bmatrix} \mu_{j,x} \\ \mu_{j,y} \end{bmatrix}$
-    % \EndIf
-    % \State Compute $\delta$ and $q = \delta^T \delta$
-    % \State $\hat{z}_t^i = \begin{bmatrix} \sqrt{q} \\ \text{atan2}(\delta_y, \delta_x) - \mu_{t,\theta} \end{bmatrix}$
-    % \end{algorithmic}
+    \begin{algorithmic}[1]
+        \State $Q_t \gets \begin{pmatrix} \sigma_r^2 & 0 \\ 0 & \sigma_\theta^2 \end{pmatrix}$ \Comment{Measurement noise covariance}
+        \For{all observed features $z_i^t = (r_i^t, \phi_i^t)^T$}
+            \State $j \gets c_i^t$ \Comment{Landmark identifier}
+            \If{landmark $j$ never seen before}
+                \State $\begin{pmatrix} \bar{\mu}_{j,x} \\ \bar{\mu}_{j,y} \end{pmatrix} \gets 
+                       \begin{pmatrix} \bar{\mu}_{t,x} \\ \bar{\mu}_{t,y} \end{pmatrix} + 
+                       \begin{pmatrix} r_i^t \cos(\phi_i^t + \bar{\mu}_{t,\theta}) \\ r_i^t \sin(\phi_i^t + \bar{\mu}_{t,\theta}) \end{pmatrix}$
+                \Comment{Initialize new landmark position}
+            \EndIf
+            \State $\delta \gets \begin{pmatrix} \delta_x \\ \delta_y \end{pmatrix} = 
+                   \begin{pmatrix} \bar{\mu}_{j,x} - \bar{\mu}_{t,x} \\ \bar{\mu}_{j,y} - \bar{\mu}_{t,y} \end{pmatrix}$
+            \State $q \gets \delta^T \delta$
+            \State $\hat{z}_i^t \gets \begin{pmatrix} \sqrt{q} \\ \operatorname{atan2}(\delta_y, \delta_x) - \bar{\mu}_{t,\theta} \end{pmatrix}$
+                   \Comment{Predicted measurement}
+        \EndFor
+    \end{algorithmic}
 \end{frame}
 
 \begin{frame}
@@ -887,15 +857,44 @@
     \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
-    % \begin{algorithmic}[1]
-    % \State Compute $F_{x,j}$ (projection matrix)
-    % \State Compute $H_t^i$ (Jacobian)
-    % \State $K_t^i = \Sigma_t H_t^{iT}(H_t^i \Sigma_t H_t^{iT} + Q_t)^{-1}$
-    % \State $\bar{\mu}_t = \bar{\mu}_t + K_t^i(z_t^i - \hat{z}_t^i)$
-    % \State $\Sigma_t = (I - K_t^i H_t^i) \Sigma_t$
-    % \EndFor
-    % \State \textbf{return} $\mu_t, \Sigma_t$
-    % \end{algorithmic}
+    \begin{algorithmic}[1]
+        \State $Q_t \gets \begin{pmatrix} \sigma_r^2 & 0 \\ 0 & \sigma_\theta^2 \end{pmatrix}$ \Comment{Measurement noise covariance}
+        \For{all observed features $z_i^t = (r_i^t, \phi_i^t)^T$}
+            \State $j \gets c_i^t$ \Comment{Landmark identifier}
+            \If{landmark $j$ never seen before}
+                \State $\begin{pmatrix} \bar{\mu}_{j,x} \\ \bar{\mu}_{j,y} \end{pmatrix} \gets 
+                       \begin{pmatrix} \bar{\mu}_{t,x} \\ \bar{\mu}_{t,y} \end{pmatrix} + 
+                       \begin{pmatrix} r_i^t \cos(\phi_i^t + \bar{\mu}_{t,\theta}) \\ r_i^t \sin(\phi_i^t + \bar{\mu}_{t,\theta}) \end{pmatrix}$
+                \Comment{Initialize new landmark position}
+            \EndIf
+            \State $\delta \gets \begin{pmatrix} \delta_x \\ \delta_y \end{pmatrix} = 
+                   \begin{pmatrix} \bar{\mu}_{j,x} - \bar{\mu}_{t,x} \\ \bar{\mu}_{j,y} - \bar{\mu}_{t,y} \end{pmatrix}$
+            \State $q \gets \delta^T \delta$
+            \State $\hat{z}_i^t \gets \begin{pmatrix} \sqrt{q} \\ \operatorname{atan2}(\delta_y, \delta_x) - \bar{\mu}_{t,\theta} \end{pmatrix}$
+                   \Comment{Predicted measurement}
+            
+            \State $F_{x,j} \gets 
+            \begin{pmatrix}
+            1 & 0 & 0 & 0 & \cdots & 0 & 0 & 0 & \cdots & 0 \\
+            0 & 1 & 0 & 0 & \cdots & 0 & 0 & 0 & \cdots & 0 \\
+            0 & 0 & 1 & 0 & \cdots & 0 & 0 & 0 & \cdots & 0 \\
+            0 & 0 & 0 & 0 & \cdots & 0 & 1 & 0 & \cdots & 0 \\
+            0 & 0 & 0 & 0 & \cdots & 0 & 0 & 1 & \cdots & 0
+            \end{pmatrix}$ \Comment{Jacobian of state mapping}
+            
+            \State $H_t^i \gets \frac{1}{q} \begin{pmatrix}
+            -\sqrt{q}\delta_x & -\sqrt{q}\delta_y & 0 & \sqrt{q}\delta_x & \sqrt{q}\delta_y \\
+            \delta_y & -\delta_x & -q & -\delta_y & \delta_x
+            \end{pmatrix} F_{x,j}$ \Comment{Measurement Jacobian}
+            
+            \State $K_t^i \gets \Sigma_t H_t^{iT}(H_t^i \Sigma_t H_t^{iT} + Q_t)^{-1}$ \Comment{Kalman gain}
+            \State $\bar{\mu}_t \gets \bar{\mu}_t + K_t^i(z_t^i - \hat{z}_t^i)$ \Comment{State update}
+            \State $\Sigma_t \gets (I - K_t^i H_t^i) \Sigma_t$ \Comment{Covariance update}
+        \EndFor
+        \State $\mu_t \gets \bar{\mu}_t$ \Comment{Final state estimate}
+        \State $\Sigma_t \gets \bar{\Sigma}_t$ \Comment{Final covariance estimate}
+        \State \Return $\mu_t, \Sigma_t$ \Comment{Return updated state and covariance}
+    \end{algorithmic}
 \end{frame}
 
 \begin{frame}
