@@ -83,7 +83,7 @@
         \item Map with $n$ landmarks: $(3+2n)$-dimensional Gaussian
         \item Belief represented by:
         \begin{equation*}
-            \underbrace{\begin{pNiceMatrix}[margin = 4pt]
+            \underbrace{\begin{bNiceMatrix}[margin = 4pt]
                 \CodeBefore
                 \rectanglecolor{yellow!40}{1-1}{1-1}
                 \rectanglecolor{green!40}{2-1}{4-1}
@@ -92,8 +92,8 @@
                 \map_1 \\
                 \vdots \\
                 \map_n
-            \end{pNiceMatrix}}_{\mu}
-            \underbrace{\begin{pNiceMatrix}[margin = 4pt]
+            \end{bNiceMatrix}}_{\mu}
+            \underbrace{\begin{bNiceMatrix}[margin = 4pt]
                 \CodeBefore
                 \rectanglecolor{yellow!40}{1-1}{1-1}
                 \rectanglecolor{green!40}{2-1}{4-1}
@@ -104,7 +104,7 @@
                 \Sigma_{\map_1 \state_t} & \Sigma_{\map_1 \map_1} & \cdots & \Sigma_{\map_1 \map_n} \\
                 \vdots & \vdots & \ddots & \vdots \\
                 \Sigma_{\map_n \state_t} & \Sigma_{\map_n \map_1} & \cdots & \Sigma_{\map_n \map_n}
-            \end{pNiceMatrix}}_{\Sigma}
+            \end{bNiceMatrix}}_{\Sigma}
         \end{equation*}
     \end{itemize}
 \end{frame}
@@ -117,15 +117,15 @@
     \begin{itemize}
         \item More Compactly
         \begin{equation*}
-            \underbrace{\begin{pNiceMatrix}[margin = 4pt]
+            \underbrace{\begin{bNiceMatrix}[margin = 4pt]
                 \CodeBefore
                 \rectanglecolor{yellow!40}{1-1}{1-1}
                 \rectanglecolor{green!40}{2-1}{2-1}
                 \Body
                 \state\\
                 \map
-            \end{pNiceMatrix}}_{\mu}
-            \underbrace{\begin{pNiceMatrix}[margin = 4pt]
+            \end{bNiceMatrix}}_{\mu}
+            \underbrace{\begin{bNiceMatrix}[margin = 4pt]
                 \CodeBefore
                 \rectanglecolor{yellow!40}{1-1}{1-1}
                 \rectanglecolor{green!40}{2-1}{2-1}
@@ -134,7 +134,7 @@
                 \Body
                 \Sigma_{\state \state} & \Sigma_{\state \map} \\
                 \Sigma_{\map \state} & \Sigma_{\map \map}
-            \end{pNiceMatrix}}_{\Sigma}
+            \end{bNiceMatrix}}_{\Sigma}
         \end{equation*}
     \end{itemize}
 \end{frame}
@@ -163,18 +163,18 @@
     \end{center}
 
     \begin{equation*}
-        \underbrace{\begin{pNiceMatrix}
+        \underbrace{\begin{bNiceMatrix}
             \state_t \\
             \map_1 \\
             \vdots \\
             \map_n
-        \end{pNiceMatrix}}_{\mu}
-        \underbrace{\begin{pNiceMatrix}
+        \end{bNiceMatrix}}_{\mu}
+        \underbrace{\begin{bNiceMatrix}
             \Sigma_{\state_t \state_t} & \Sigma_{\state_t \map_1} & \cdots & \Sigma_{\state_t \map_n} \\
             \Sigma_{\map_1 \state_t} & \Sigma_{\map_1 \map_1} & \cdots & \Sigma_{\map_1 \map_n} \\
             \vdots & \vdots & \ddots & \vdots \\
             \Sigma_{\map_n \state_t} & \Sigma_{\map_n \map_1} & \cdots & \Sigma_{\map_n \map_n}
-        \end{pNiceMatrix}}_{\Sigma}
+        \end{bNiceMatrix}}_{\Sigma}
     \end{equation*}
 \end{frame}
 
@@ -189,7 +189,7 @@
     \end{center}
 
     \begin{equation*}
-        \underbrace{\begin{pNiceMatrix}[margin = 4pt]
+        \underbrace{\begin{bNiceMatrix}[margin = 4pt]
             \CodeBefore
             \rectanglecolor{green!40}{1-1}{1-1}
             \Body
@@ -197,8 +197,8 @@
             \map_1 \\
             \vdots \\
             \map_n
-        \end{pNiceMatrix}}_{\mu}
-        \underbrace{\begin{pNiceMatrix}[margin = 4pt]
+        \end{bNiceMatrix}}_{\mu}
+        \underbrace{\begin{bNiceMatrix}[margin = 4pt]
             \CodeBefore
             \rectanglecolor{green!40}{1-1}{1-4}
             \rectanglecolor{green!40}{1-1}{4-1}
@@ -207,7 +207,7 @@
             \Sigma_{\map_1 \state_t} & \Sigma_{\map_1 \map_1} & \cdots & \Sigma_{\map_1 \map_n} \\
             \vdots & \vdots & \ddots & \vdots \\
             \Sigma_{\map_n \state_t} & \Sigma_{\map_n \map_1} & \cdots & \Sigma_{\map_n \map_n}
-        \end{pNiceMatrix}}_{\Sigma}
+        \end{bNiceMatrix}}_{\Sigma}
     \end{equation*}
 \end{frame}
 
@@ -222,18 +222,18 @@
     \end{center}
 
     \begin{equation*}
-        \underbrace{\begin{pNiceMatrix}
+        \underbrace{\begin{bNiceMatrix}
             \state_t \\
             \map_1 \\
             \vdots \\
             \map_n
-        \end{pNiceMatrix}}_{\mu}
-        \underbrace{\begin{pNiceMatrix}
+        \end{bNiceMatrix}}_{\mu}
+        \underbrace{\begin{bNiceMatrix}
             \Sigma_{\state_t \state_t} & \Sigma_{\state_t \map_1} & \cdots & \Sigma_{\state_t \map_n} \\
             \Sigma_{\map_1 \state_t} & \Sigma_{\map_1 \map_1} & \cdots & \Sigma_{\map_1 \map_n} \\
             \vdots & \vdots & \ddots & \vdots \\
             \Sigma_{\map_n \state_t} & \Sigma_{\map_n \map_1} & \cdots & \Sigma_{\map_n \map_n}
-        \end{pNiceMatrix}}_{\Sigma}
+        \end{bNiceMatrix}}_{\Sigma}
     \end{equation*}
 \end{frame}
 
@@ -248,18 +248,18 @@
     \end{center}
 
     \begin{equation*}
-        \underbrace{\begin{pNiceMatrix}
+        \underbrace{\begin{bNiceMatrix}
             \state_t \\
             \map_1 \\
             \vdots \\
             \map_n
-        \end{pNiceMatrix}}_{\mu}
-        \underbrace{\begin{pNiceMatrix}
+        \end{bNiceMatrix}}_{\mu}
+        \underbrace{\begin{bNiceMatrix}
             \Sigma_{\state_t \state_t} & \Sigma_{\state_t \map_1} & \cdots & \Sigma_{\state_t \map_n} \\
             \Sigma_{\map_1 \state_t} & \Sigma_{\map_1 \map_1} & \cdots & \Sigma_{\map_1 \map_n} \\
             \vdots & \vdots & \ddots & \vdots \\
             \Sigma_{\map_n \state_t} & \Sigma_{\map_n \map_1} & \cdots & \Sigma_{\map_n \map_n}
-        \end{pNiceMatrix}}_{\Sigma}
+        \end{bNiceMatrix}}_{\Sigma}
     \end{equation*}
 \end{frame}
 
@@ -273,18 +273,18 @@
     \end{center}
 
     \begin{equation*}
-        \underbrace{\begin{pNiceMatrix}
+        \underbrace{\begin{bNiceMatrix}
             \state_t \\
             \map_1 \\
             \vdots \\
             \map_n
-        \end{pNiceMatrix}}_{\mu}
-        \underbrace{\begin{pNiceMatrix}
+        \end{bNiceMatrix}}_{\mu}
+        \underbrace{\begin{bNiceMatrix}
             \Sigma_{\state_t \state_t} & \Sigma_{\state_t \map_1} & \cdots & \Sigma_{\state_t \map_n} \\
             \Sigma_{\map_1 \state_t} & \Sigma_{\map_1 \map_1} & \cdots & \Sigma_{\map_1 \map_n} \\
             \vdots & \vdots & \ddots & \vdots \\
             \Sigma_{\map_n \state_t} & \Sigma_{\map_n \map_1} & \cdots & \Sigma_{\map_n \map_n}
-        \end{pNiceMatrix}}_{\Sigma}
+        \end{bNiceMatrix}}_{\Sigma}
     \end{equation*}
 \end{frame}
 
@@ -299,7 +299,7 @@
     \end{center}
 
     \begin{equation*}
-        \underbrace{\begin{pNiceMatrix}[margin = 4pt]
+        \underbrace{\begin{bNiceMatrix}[margin = 4pt]
             \CodeBefore
             \rectanglecolor{green!40}{1-1}{4-1}
             \Body
@@ -307,8 +307,8 @@
             \map_1 \\
             \vdots \\
             \map_n
-        \end{pNiceMatrix}}_{\mu}
-        \underbrace{\begin{pNiceMatrix}[margin = 4pt]
+        \end{bNiceMatrix}}_{\mu}
+        \underbrace{\begin{bNiceMatrix}[margin = 4pt]
             \CodeBefore
             \rectanglecolor{green!40}{1-1}{4-4}
             \Body
@@ -316,7 +316,7 @@
             \Sigma_{\map_1 \state_t} & \Sigma_{\map_1 \map_1} & \cdots & \Sigma_{\map_1 \map_n} \\
             \vdots & \vdots & \ddots & \vdots \\
             \Sigma_{\map_n \state_t} & \Sigma_{\map_n \map_1} & \cdots & \Sigma_{\map_n \map_n}
-        \end{pNiceMatrix}}_{\Sigma}
+        \end{bNiceMatrix}}_{\Sigma}
     \end{equation*}
 \end{frame}
 
@@ -348,20 +348,20 @@
         (3 for robot pose + $2N$ for $N$ landmarks in 2D space)
         \begin{equation*}
             \mu_0 =
-            \begin{pmatrix}
+            \begin{bmatrix}
                 0 & 0 & 0 & \dots & 0    
-            \end{pmatrix}^{\top}
+            \end{bmatrix}^{\top}
         \end{equation*}
     \end{itemize}
     
     \begin{equation*}
         \Sigma_0 =
-        \begin{pmatrix}
+        \begin{bmatrix}
             \Sigma_{x_0} & 0 & \cdots & 0 \\
             0 & \infty I_{2} & \cdots & 0 \\
             \vdots & \vdots & \ddots & \vdots \\
             0 & 0 & \cdots & \infty I_{2}
-        \end{pmatrix}
+        \end{bmatrix}
     \end{equation*}
     
     \begin{itemize}
@@ -376,16 +376,21 @@
     \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
-    Motion in the plane:
-    \[
-    \begin{pmatrix} x' \\ y' \\ \theta' \end{pmatrix} = 
-    \begin{pmatrix} x \\ y \\ \theta \end{pmatrix} + 
-    \begin{pmatrix} 
-    -\frac{v_t}{\omega_t} \sin \theta + \frac{v_t}{\omega_t} \sin (\theta + \omega_t \Delta t) \\ 
-    \frac{v_t}{\omega_t} \cos \theta - \frac{v_t}{\omega_t} \cos (\theta + \omega_t \Delta t) \\ 
-    \omega_t \Delta t 
-    \end{pmatrix}
-    \]
+    \begin{itemize}
+        \item Goa: Update the state space based on the motion
+        \item Motion in the plane (with a differential drive robot):
+        \begin{equation*}
+            \begin{bmatrix} x' \\ y' \\ \theta' \end{bmatrix} = 
+            \underbrace{\begin{bmatrix} x \\ y \\ \theta \end{bmatrix} + 
+            \begin{bmatrix} 
+            -\frac{v_t}{\omega_t} \sin \theta + \frac{v_t}{\omega_t} \sin (\theta + \omega_t \Delta t) \\ 
+            \frac{v_t}{\omega_t} \cos \theta - \frac{v_t}{\omega_t} \cos (\theta + \omega_t \Delta t) \\ 
+            \omega_t \Delta t 
+            \end{bmatrix}}_{g_{x,y,\theta}\left(\controlCommand_{t}, \begin{bmatrix} x, y, \theta \end{bmatrix}^{\top}\right)}
+        \end{equation*}
+        \item How to map that to the $2N+3$ dimmension state space used in EKF?
+    \end{itemize}
+
 \end{frame}
 
 \begin{frame}
@@ -393,28 +398,51 @@
     \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
-    Mapping to $2N+3$ dimensional space:
-    \[
-    \begin{pmatrix}
-    x' \\
-    y' \\
-    \theta'
-    \end{pmatrix}
-    =
-    \begin{pmatrix}
-    x \\
-    y \\
-    \theta
-    \end{pmatrix}
-    +
-    F_x^T
-    \begin{pmatrix}
-    -\frac{v_t}{\omega_t} \sin \theta + \frac{v_t}{\omega_t} \sin (\theta + \omega_t \Delta t) \\
-    \frac{v_t}{\omega_t} \cos \theta - \frac{v_t}{\omega_t} \cos (\theta + \omega_t \Delta t) \\
-    \omega_t \Delta t
-    \end{pmatrix}
-    \]
-    where $F_x$ is the projection matrix.
+    \begin{itemize}
+        \item From the motion in the plane
+        
+        \begin{equation*}
+            \begin{bmatrix} x' \\ y' \\ \theta' \end{bmatrix} = 
+            \underbrace{\begin{bmatrix} x \\ y \\ \theta \end{bmatrix} + 
+            \begin{bmatrix} 
+            -\frac{v_t}{\omega_t} \sin \theta + \frac{v_t}{\omega_t} \sin (\theta + \omega_t \Delta t) \\ 
+            \frac{v_t}{\omega_t} \cos \theta - \frac{v_t}{\omega_t} \cos (\theta + \omega_t \Delta t) \\ 
+            \omega_t \Delta t 
+            \end{bmatrix}}_{g_{x,y,\theta}\left(\controlCommand_{t}, \begin{bmatrix} x, y, \theta \end{bmatrix}^{\top}\right)}
+        \end{equation*}
+    
+
+        \item To the \(2N+3\) dimensional space:
+        \begin{equation*}
+            \begin{bmatrix}
+            x' \\
+            y' \\
+            \theta'\\
+            \vdots
+            \end{bmatrix}
+            =
+            \underbrace{\begin{bmatrix}
+            x \\
+            y \\
+            \theta\\
+            \vdots
+            \end{bmatrix}
+            +
+            \underbrace{\begin{bNiceMatrix}[margin = 3 pt]
+            1 & 0 & 0 & 0 & \ldots & 0 \\
+            0 & 1 & 0 & 0 & \ldots & 0 \\
+            0 & 0 & 1 & 0 & \ldots & 0 \\
+            & & & & &
+            \CodeAfter
+            \UnderBrace{3-4}{3-6}{2N cols}
+            \end{bNiceMatrix}^{\top}}_{F_{x}^{\top}}
+            \begin{bmatrix}
+            -\frac{v_t}{\omega_t} \sin \theta + \frac{v_t}{\omega_t} \sin (\theta + \omega_t \Delta t) \\
+            \frac{v_t}{\omega_t} \cos \theta - \frac{v_t}{\omega_t} \cos (\theta + \omega_t \Delta t) \\
+            \omega_t \Delta t
+            \end{bmatrix}}_{g(\controlCommand_{t}, \state_t)}
+        \end{equation*}
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -425,10 +453,10 @@
     Jacobian of the motion:
     \[
     G_t = 
-    \begin{pmatrix}
+    \begin{bmatrix}
     G_t^x & 0 \\
     0 & I
-    \end{pmatrix}
+    \end{bmatrix}
     \]
     where $G_t^x$ is the 3×3 Jacobian of the motion and $I$ is the $2N \times 2N$ identity matrix.
 \end{frame}
@@ -440,18 +468,18 @@
 
     For unobserved landmarks:
     \[
-    \begin{pmatrix} 
+    \begin{bmatrix} 
     \mu_{j,x} \\ 
     \mu_{j,y} 
-    \end{pmatrix} = 
-    \begin{pmatrix} 
+    \end{bmatrix} = 
+    \begin{bmatrix} 
     \mu_{t,x} \\ 
     \mu_{t,y} 
-    \end{pmatrix} + 
-    \begin{pmatrix} 
+    \end{bmatrix} + 
+    \begin{bmatrix} 
     r_t^i \cos(\phi_t^i + \mu_{t,\theta}) \\ 
     r_t^i \sin(\phi_t^i + \mu_{t,\theta}) 
-    \end{pmatrix}
+    \end{bmatrix}
     \]
 \end{frame}
 
@@ -461,20 +489,20 @@
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
     \[
-    \delta = \begin{pmatrix}
+    \delta = \begin{bmatrix}
     \delta_x \\
     \delta_y
-    \end{pmatrix} = \begin{pmatrix}
+    \end{bmatrix} = \begin{bmatrix}
     \bar{\mu}_{j,x} - \bar{\mu}_{t,x} \\
     \bar{\mu}_{j,y} - \bar{\mu}_{t,y}
-    \end{pmatrix}, \quad
+    \end{bmatrix}, \quad
     q = \delta^T \delta
     \]
     \[
-    \hat{z}_t^i = \begin{pmatrix}
+    \hat{z}_t^i = \begin{bmatrix}
     \sqrt{q} \\
     \text{atan2}(\delta_y, \delta_x) - \bar{\mu}_{t,\theta}
-    \end{pmatrix} = h(\bar{\mu}_t)
+    \end{bmatrix} = h(\bar{\mu}_t)
     \]
 \end{frame}
 
@@ -484,10 +512,10 @@
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
     \[
-    \text{low } H_t^i = \frac{1}{q} \begin{pmatrix}
+    \text{low } H_t^i = \frac{1}{q} \begin{bmatrix}
     -\sqrt{q}\delta_x & -\sqrt{q}\delta_y & 0 & +\sqrt{q}\delta_x & \sqrt{q}\delta_y \\
     \delta_y & -\delta_x & -q & -\delta_y & \delta_x
-    \end{pmatrix}
+    \end{bmatrix}
     \]
     Mapped to high-dimensional space:
     \[
@@ -501,14 +529,14 @@
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
     % \begin{algorithmic}[1]
-    % \State $Q_t = \begin{pmatrix} \sigma_r^2 & 0 \\ 0 & \sigma_\phi^2 \end{pmatrix}$
+    % \State $Q_t = \begin{bmatrix} \sigma_r^2 & 0 \\ 0 & \sigma_\phi^2 \end{bmatrix}$
     % \For{all observed features $z_t^i = (r_t^i, \phi_t^i)^T$}
     % \State $j = c_t^i$
     % \If{landmark $j$ never seen before}
-    % \State Initialize $\begin{pmatrix} \mu_{j,x} \\ \mu_{j,y} \end{pmatrix}$
+    % \State Initialize $\begin{bmatrix} \mu_{j,x} \\ \mu_{j,y} \end{bmatrix}$
     % \EndIf
     % \State Compute $\delta$ and $q = \delta^T \delta$
-    % \State $\hat{z}_t^i = \begin{pmatrix} \sqrt{q} \\ \text{atan2}(\delta_y, \delta_x) - \mu_{t,\theta} \end{pmatrix}$
+    % \State $\hat{z}_t^i = \begin{bmatrix} \sqrt{q} \\ \text{atan2}(\delta_y, \delta_x) - \mu_{t,\theta} \end{bmatrix}$
     % \end{algorithmic}
 \end{frame}
 
