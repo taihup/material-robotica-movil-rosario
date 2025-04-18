@@ -450,15 +450,19 @@
     \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
-    Jacobian of the motion:
-    \[
-    G_t = 
-    \begin{bmatrix}
-    G_t^x & 0 \\
-    0 & I
-    \end{bmatrix}
-    \]
-    where $G_t^x$ is the 3×3 Jacobian of the motion and $I$ is the $2N \times 2N$ identity matrix.
+    \begin{itemize}
+        \item The function $g$ only affects de motion and not the landmarks
+    \end{itemize}
+
+    Jacobian:
+    \begin{equation*}
+        G_t = 
+        \begin{bmatrix}
+            G_{t}^{\state} & 0 \\
+            0 & I
+        \end{bmatrix}
+    \end{equation*}
+    where $G_t^x$ is the $3 \times 3$ Jacobian of the motion and $I$ is the $2N \times 2N$ identity matrix.
 \end{frame}
 
 \begin{frame}
