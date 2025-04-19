@@ -514,7 +514,7 @@
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
     \begin{align*}
-        \bar{\Sigma}_t &= G_t \Sigma_{t-1} G_t^T + R_t \\
+        \bar{\Sigma}_t &= G_t \Sigma_{t-1} G_t^{\top} + R_t \\
         &= 
         \begin{bmatrix}
         G_t^x & 0 \\
@@ -525,14 +525,14 @@
         \Sigma_{mx} & \Sigma_{mm}
         \end{bmatrix}
         \begin{bmatrix}
-        (G_t^x)^T & 0 \\
+        (G_t^x)^{\top} & 0 \\
         0 & I
         \end{bmatrix}
         + R_t \\
         &=
         \begin{bmatrix}
-        G_t^x \Sigma_{xx} (G_t^x)^T & G_t^x \Sigma_{xm} \\
-        (G_t^x \Sigma_{xm})^T & \Sigma_{mm}
+        G_t^x \Sigma_{xx} (G_t^x)^{\top} & G_t^x \Sigma_{xm} \\
+        (G_t^x \Sigma_{xm})^{\top} & \Sigma_{mm}
         \end{bmatrix}
         + R_t
     \end{align*}
@@ -545,28 +545,28 @@
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
     \begin{algorithmic}[1]
-        \Procedure{EKFSLAMPrediction}{$\mu_{t-1}, \Sigma_{t-1}, u_t, z_t, c_t, R_t$}
+        \Procedure{EKF\_SLAM\_Prediction}{$\mu_{t-1}, \Sigma_{t-1}, u_t, z_t, c_t, R_t$}
         \State $F_x = \begin{bmatrix}
         1 & 0 & 0 & 0 & 0 & \cdots & 0 \\
         0 & 1 & 0 & 0 & 0 & \cdots & 0 \\
         0 & 0 & 1 & 0 & 0 & \cdots & 0 \\
         \end{bmatrix}$
         \vspace{1em}
-        \State $\bar{\mu}_t = \mu_{t-1} + F_x^T
+        \State $\bar{\mu}_t = \mu_{t-1} + F_x^{\top}
         \begin{bmatrix}
         \frac{-v_t}{\omega_t} \sin(\mu_{t-1,\theta}) + \frac{v_t}{\omega_t} \sin(\mu_{t-1,\theta} + \omega_t \Delta t) \\
         \frac{v_t}{\omega_t} \cos(\mu_{t-1,\theta}) - \frac{v_t}{\omega_t} \cos(\mu_{t-1,\theta} + \omega_t \Delta t) \\
         \omega_t \Delta t
         \end{bmatrix}$
         \vspace{1em}
-        \State $G_t = I + F_x^T
+        \State $G_t = I + F_x^{\top}
         \begin{bmatrix}
         0 & 0 & \frac{-v_t}{\omega_t} \cos(\mu_{t-1,\theta}) + \frac{v_t}{\omega_t} \cos(\mu_{t-1,\theta} + \omega_t \Delta t) \\
         0 & 0 & \frac{-v_t}{\omega_t} \sin(\mu_{t-1,\theta}) + \frac{v_t}{\omega_t} \sin(\mu_{t-1,\theta} + \omega_t \Delta t) \\
         0 & 0 & 0
         \end{bmatrix} F_x$
         \vspace{1em}
-        \State $\bar{\Sigma}_t = G_t \Sigma_{t-1} G_t^T + \underbrace{F_x^T R_t F_x}_{R_t}$
+        \State $\bar{\Sigma}_t = G_t \Sigma_{t-1} G_t^{\top} + \underbrace{F_x^{\top} R_t F_x}_{R_t}$
         \EndProcedure
     \end{algorithmic}
     
@@ -606,13 +606,13 @@
         \begin{bmatrix}
         \bar{\mu}_{j,x} \\
         \bar{\mu}_{j,y}
-        \end{bmatrix}}_{\text{location of landmark } j}
+        \end{bmatrix}}_{\parbox{2cm}{\centering \scriptsize \text{location of} \\ \text{landmark} j}}
         =
         \underbrace{
         \begin{bmatrix}
         \bar{\mu}_{t,x} \\
         \bar{\mu}_{t,y}
-        \end{bmatrix}}_{\text{estimated location of the platform}}
+        \end{bmatrix}}_{\parbox{2cm}{\centering \scriptsize \text{estimated location} \\ \text{of the platform}}}
         +
         \underbrace{
         \begin{bmatrix}
@@ -657,20 +657,20 @@
         \item Based on
         \begin{align*}
             \delta &= 
-            \begin{pmatrix}
+            \begin{bmatrix}
                 \delta_x \\
                 \delta_y
-            \end{pmatrix}
-            = \begin{pmatrix}
+            \end{bmatrix}
+            = \begin{bmatrix}
                 \bar{\mu}_{j,x} - \bar{\mu}_{t,x} \\
                 \bar{\mu}_{j,y} - \bar{\mu}_{t,y}
-            \end{pmatrix}\\
+            \end{bmatrix}\\
             q &= \delta^T \delta\\
             \hat{z}^i_t &= 
-            \begin{pmatrix}
+            \begin{bmatrix}
                 \sqrt{q} \\
                 \text{atan2}(\delta_y, \delta_x) - \bar{\mu}_{t,\theta}
-            \end{pmatrix}
+            \end{bmatrix}
         \end{align*}    
         \item Compute the Jacobian
         \begin{equation*}
@@ -691,28 +691,28 @@
         \item Based on
         \begin{align*}
             \delta &= 
-            \begin{pmatrix}
+            \begin{bmatrix}
                 \delta_x \\
                 \delta_y
-            \end{pmatrix}
-            = \begin{pmatrix}
+            \end{bmatrix}
+            = \begin{bmatrix}
                 \bar{\mu}_{j,x} - \bar{\mu}_{t,x} \\
                 \bar{\mu}_{j,y} - \bar{\mu}_{t,y}
-            \end{pmatrix}\\
+            \end{bmatrix}\\
             q &= \delta^T \delta\\
             \hat{z}^i_t &= 
-            \begin{pmatrix}
+            \begin{bmatrix}
                 \sqrt{q} \\
                 \text{atan2}(\delta_y, \delta_x) - \bar{\mu}_{t,\theta}
-            \end{pmatrix}
+            \end{bmatrix}
         \end{align*}    
         \item Compute the Jacobian
         \begin{align*}
-            {}^{\text{low}}H^i_t &= \frac{\partial h(\bar{\mu}_t)}{\partial \bar{\mu}_t}
-            &= \begin{pmatrix}
+            {}^{\text{low}}H^i_t &= \frac{\partial h(\bar{\mu}_t)}{\partial \bar{\mu}_t}\\
+            &= \begin{bmatrix}
                 \frac{\partial \sqrt{q}}{\partial x} & \frac{\partial \sqrt{q}}{\partial y} & \cdots \\
                 \frac{\partial \text{atan2}(\ldots)}{\partial x} & \frac{\partial \text{atan2}(\ldots)}{\partial y} & \cdots
-            \end{pmatrix}
+            \end{bmatrix}
     \end{align*} 
     \end{itemize}
 
@@ -727,20 +727,20 @@
         \item Based on
         \begin{align*}
             \delta &= 
-            \begin{pmatrix}
+            \begin{bmatrix}
                 \delta_x \\
                 \delta_y
-            \end{pmatrix}
-            = \begin{pmatrix}
+            \end{bmatrix}
+            = \begin{bmatrix}
                 \bar{\mu}_{j,x} - \bar{\mu}_{t,x} \\
                 \bar{\mu}_{j,y} - \bar{\mu}_{t,y}
-            \end{pmatrix}\\
+            \end{bmatrix}\\
             q &= \delta^T \delta\\
             \hat{z}^i_t &= 
-            \begin{pmatrix}
+            \begin{bmatrix}
                 \sqrt{q} \\
                 \text{atan2}(\delta_y, \delta_x) - \bar{\mu}_{t,\theta}
-            \end{pmatrix}
+            \end{bmatrix}
         \end{align*}    
     
         \item We obtain (by applying the chain rule)
@@ -762,20 +762,20 @@
         \item Based on
         \begin{align*}
             \delta &= 
-            \begin{pmatrix}
+            \begin{bmatrix}
                 \delta_x \\
                 \delta_y
-            \end{pmatrix}
-            = \begin{pmatrix}
+            \end{bmatrix}
+            = \begin{bmatrix}
                 \bar{\mu}_{j,x} - \bar{\mu}_{t,x} \\
                 \bar{\mu}_{j,y} - \bar{\mu}_{t,y}
-            \end{pmatrix}\\
+            \end{bmatrix}\\
             q &= \delta^T \delta\\
             \hat{z}^i_t &= 
-            \begin{pmatrix}
+            \begin{bmatrix}
                 \sqrt{q} \\
                 \text{atan2}(\delta_y, \delta_x) - \bar{\mu}_{t,\theta}
-            \end{pmatrix}
+            \end{bmatrix}
         \end{align*}
 
         \item Compute the Jacobian
@@ -783,10 +783,10 @@
         \begin{align*}
             {}^{\text{low}}H^i_t &= \frac{\partial h(\bar{\mu}_t)}{\partial \bar{\mu}_t}\\
             &= \frac{1}{q}
-            \begin{pmatrix}
+            \begin{bmatrix}
                 -\sqrt{q} \delta_x & -\sqrt{q} \delta_y & 0 & \sqrt{q} \delta_x & \sqrt{q} \delta_y\\
                 \delta_y & -\delta_x & -q & -\delta_y & \delta_x
-            \end{pmatrix}
+            \end{bmatrix}
         \end{align*}
     \end{itemize}
 
@@ -802,10 +802,10 @@
         \begin{align*}
             {}^{\text{low}}H^i_t &= \frac{\partial h(\bar{\mu}_t)}{\partial \bar{\mu}_t}\\
             &= \frac{1}{q}
-            \begin{pmatrix}
+            \begin{bmatrix}
                 -\sqrt{q} \delta_x & -\sqrt{q} \delta_y & 0 & \sqrt{q} \delta_x & \sqrt{q} \delta_y\\
                 \delta_y & -\delta_x & -q & -\delta_y & \delta_x
-            \end{pmatrix}
+            \end{bmatrix}
         \end{align*}
     
         \item Map it to the high dimensional space
@@ -835,19 +835,19 @@
 
     \begin{algorithmic}[1]
         \Procedure{EKF\_SLAM\_Correction}{}
-        \State $Q_t = \begin{pmatrix} \sigma_r^2 & 0 \\ 0 & \sigma_\theta^2 \end{pmatrix}$ \Comment{Measurement noise covariance}
+        \State $Q_t = \begin{bmatrix} \sigma_r^2 & 0 \\ 0 & \sigma_\theta^2 \end{bmatrix}$ \Comment{Measurement noise covariance}
         \For {all observed features $z_i^t = (r_i^t, \phi_i^t)^{\top}$}
             \State $j = c_i^t$ \Comment{Landmark identifier}
             \If{landmark $j$ never seen before}
-                \State $\begin{pmatrix} \bar{\mu}_{j,x} \\ \bar{\mu}_{j,y} \end{pmatrix} = 
-                       \begin{pmatrix} \bar{\mu}_{t,x} \\ \bar{\mu}_{t,y} \end{pmatrix} + 
-                       \begin{pmatrix} r_i^t \cos(\phi_i^t + \bar{\mu}_{t,\theta}) \\ r_i^t \sin(\phi_i^t + \bar{\mu}_{t,\theta}) \end{pmatrix}$
+                \State $\begin{bmatrix} \bar{\mu}_{j,x} \\ \bar{\mu}_{j,y} \end{bmatrix} = 
+                       \begin{bmatrix} \bar{\mu}_{t,x} \\ \bar{\mu}_{t,y} \end{bmatrix} + 
+                       \begin{bmatrix} r_i^t \cos(\phi_i^t + \bar{\mu}_{t,\theta}) \\ r_i^t \sin(\phi_i^t + \bar{\mu}_{t,\theta}) \end{bmatrix}$
                 \Comment{Initialize new landmark position}
             \EndIf
-            \State $\delta = \begin{pmatrix} \delta_x \\ \delta_y \end{pmatrix} = 
-                   \begin{pmatrix} \bar{\mu}_{j,x} - \bar{\mu}_{t,x} \\ \bar{\mu}_{j,y} - \bar{\mu}_{t,y} \end{pmatrix}$
+            \State $\delta = \begin{bmatrix} \delta_x \\ \delta_y \end{bmatrix} = 
+                   \begin{bmatrix} \bar{\mu}_{j,x} - \bar{\mu}_{t,x} \\ \bar{\mu}_{j,y} - \bar{\mu}_{t,y} \end{bmatrix}$
             \State $q = \delta^T \delta$
-            \State $\hat{z}_i^t = \begin{pmatrix} \sqrt{q} \\ \operatorname{atan2}(\delta_y, \delta_x) - \bar{\mu}_{t,\theta} \end{pmatrix}$
+            \State $\hat{z}_i^t = \begin{bmatrix} \sqrt{q} \\ \operatorname{atan2}(\delta_y, \delta_x) - \bar{\mu}_{t,\theta} \end{bmatrix}$
                    \Comment{Predicted measurement}
         \algstore{ekf_slam_algorithm_break} % guarda el estado del argoritmo para que este pueda continuar en otro lugar
     \end{algorithmic}
@@ -873,10 +873,10 @@
         \end{bNiceMatrix}$ \Comment{Jacobian of state mapping}
         \Statex
         \Statex
-        \State $H_t^i = \frac{1}{q} \begin{pmatrix}
+        \State $H_t^i = \frac{1}{q} \begin{bmatrix}
             -\sqrt{q} \delta_x & -\sqrt{q} \delta_y & 0 & \sqrt{q} \delta_x & \sqrt{q} \delta_y\\
             \delta_y & -\delta_x & -q & -\delta_y & \delta_x
-        \end{pmatrix} F_{x,j}$ \Comment{Measurement Jacobian}
+        \end{bmatrix} F_{x,j}$ \Comment{Measurement Jacobian}
             
         \State $K_t^i = \bar{\Sigma}_t H_t^{i\top}(H_t^i \bar{\Sigma}_t H_t^{i\top} + Q_t)^{-1}$ \Comment{Kalman gain}
         \State $\bar{\mu}_t = \bar{\mu}_t + K_t^i(z_t^i - \hat{z}_t^i)$ \Comment{State update}
