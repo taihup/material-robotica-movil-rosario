@@ -370,6 +370,23 @@
     \end{itemize}
 \end{frame}
 
+\begin{frame}
+    \frametitle{Algoritmo de Filtro de Kalman Extendido}
+    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
+    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
+    
+    \begin{algorithmic}[1]
+    \Procedure{ExtendedKalmanFilter}{$\mu_{t-1}, \covariance_{t-1}, \controlCommand_{t}, \observation_{t}$}
+        \State $\overline{\mu}_{t} = \alert{\motionModelFunction{\controlCommand_{t}, \mu_{t-1}}}$
+        \State $\overline{\covariance}_{t} = \motionModelJacobian_{t} \covariance_{t-1} \motionModelJacobian_{t}^{\top}+\motionParametersCovariance_{t}$
+        \Statex
+        \State $\kalmanGain_{t} = \overline{\covariance}_{t} \observationModelJacobian_{t}^{\top} (\observationModelJacobian_{t} \overline{\covariance}_{t}  \observationModelJacobian_{t} + \observationModelCovariance_{t})^{-1} $
+        \State $\mu_{t} = \overline{\mu}_{t} + \kalmanGain_{t} (\observation_{t} - \observationModelFunction{\overline{\mu}_{t}})$
+        \State $\covariance_{t} =  (I - \kalmanGain_{t} \observationModelJacobian_{t}) \overline{\covariance}_{t}$
+        \State \Return $\mu_{t}, \covariance_{t}$
+    \EndProcedure
+    \end{algorithmic}
+\end{frame}
 
 \begin{frame}
     \frametitle{Prediction Step (Motion)}
@@ -446,6 +463,24 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{Algoritmo de Filtro de Kalman Extendido}
+    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
+    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
+    
+    \begin{algorithmic}[1]
+    \Procedure{ExtendedKalmanFilter}{$\mu_{t-1}, \covariance_{t-1}, \controlCommand_{t}, \observation_{t}$}
+        \State $\overline{\mu}_{t} = \motionModelFunction{\controlCommand_{t}, \mu_{t-1}}$
+        \State $\alert{\overline{\covariance}_{t} = \motionModelJacobian_{t} \covariance_{t-1} \motionModelJacobian_{t}^{\top}+\motionParametersCovariance_{t}}$
+        \Statex
+        \State $\kalmanGain_{t} = \overline{\covariance}_{t} \observationModelJacobian_{t}^{\top} (\observationModelJacobian_{t} \overline{\covariance}_{t}  \observationModelJacobian_{t} + \observationModelCovariance_{t})^{-1} $
+        \State $\mu_{t} = \overline{\mu}_{t} + \kalmanGain_{t} (\observation_{t} - \observationModelFunction{\overline{\mu}_{t}})$
+        \State $\covariance_{t} =  (I - \kalmanGain_{t} \observationModelJacobian_{t}) \overline{\covariance}_{t}$
+        \State \Return $\mu_{t}, \covariance_{t}$
+    \EndProcedure
+    \end{algorithmic}
+\end{frame}
+
+\begin{frame}
     \frametitle{Update Covariance}
     \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
@@ -473,7 +508,7 @@
     The Jacobian matrix \( G_t^x \) for the motion model is computed as:
     
     \begin{align*}
-        G_t^x &= \frac{\partial}{\partial(x, y, \theta)^T} \left[
+        G_t^x &= \frac{\partial}{\partial(x, y, \theta)^T} \left(
         \begin{bmatrix}
         x \\
         y \\
@@ -485,7 +520,7 @@
         \frac{v_t}{\omega_t} \cos \theta - \frac{v_t}{\omega_t} \cos(\theta + \omega_t \Delta t) \\
         \omega_t \Delta t
         \end{bmatrix}
-        \right] \\
+        \right) \\
         &= I + \frac{\partial}{\partial(x, y, \theta)^T} 
         \begin{bmatrix}
         -\frac{v_t}{\omega_t} \sin \theta + \frac{v_t}{\omega_t} \sin(\theta + \omega_t \Delta t) \\
@@ -509,7 +544,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{This leads to the update}
+    \frametitle{This leads to the Covariance update}
     \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
@@ -572,6 +607,23 @@
     
 \end{frame}
 
+\begin{frame}
+    \frametitle{Algoritmo de Filtro de Kalman Extendido}
+    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
+    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
+    
+    \begin{algorithmic}[1]
+    \Procedure{ExtendedKalmanFilter}{$\mu_{t-1}, \covariance_{t-1}, \controlCommand_{t}, \observation_{t}$}
+        \State $\overline{\mu}_{t} = \motionModelFunction{\controlCommand_{t}, \mu_{t-1}}$
+        \State $\overline{\covariance}_{t} = \motionModelJacobian_{t} \covariance_{t-1} \motionModelJacobian_{t}^{\top}+\motionParametersCovariance_{t}$
+        \Statex
+        \State $\alert{\kalmanGain_{t} = \overline{\covariance}_{t} \observationModelJacobian_{t}^{\top} (\observationModelJacobian_{t} \overline{\covariance}_{t}  \observationModelJacobian_{t} + \observationModelCovariance_{t})^{-1}}$
+        \State $\alert{\mu_{t} = \overline{\mu}_{t} + \kalmanGain_{t} (\observation_{t} - \observationModelFunction{\overline{\mu}_{t}})}$
+        \State $\alert{\covariance_{t} =  (I - \kalmanGain_{t} \observationModelJacobian_{t}) \overline{\covariance}_{t}}$
+        \State \Return $\mu_{t}, \covariance_{t}$
+    \EndProcedure
+    \end{algorithmic}
+\end{frame}
 
 \begin{frame}
     \frametitle{EKF SLAM: Correction Step}
@@ -579,7 +631,6 @@
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
     \begin{itemize}
-        \item EKF SLAM: Correction Step
         \item Known data association
         \item $c_{t}^{i} = j$ : $i$-th measurement at time $t$ observes the landmark with index $j$
         \item Initialize landmark if unobserved
@@ -588,6 +639,24 @@
         \item Proceed with computing the Kalman gain
     \end{itemize}
 
+\end{frame}
+
+\begin{frame}
+    \frametitle{Algoritmo de Filtro de Kalman Extendido}
+    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
+    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
+    
+    \begin{algorithmic}[1]
+    \Procedure{ExtendedKalmanFilter}{$\mu_{t-1}, \covariance_{t-1}, \controlCommand_{t}, \observation_{t}$}
+        \State $\overline{\mu}_{t} = \motionModelFunction{\controlCommand_{t}, \mu_{t-1}}$
+        \State $\overline{\covariance}_{t} = \motionModelJacobian_{t} \covariance_{t-1} \motionModelJacobian_{t}^{\top}+\motionParametersCovariance_{t}$
+        \Statex
+        \State $\kalmanGain_{t} = \overline{\covariance}_{t} \alert{\observationModelJacobian_{t}^{\top}} (\observationModelJacobian_{t} \overline{\covariance}_{t}  \observationModelJacobian_{t} + \observationModelCovariance_{t})^{-1} $
+        \State $\mu_{t} = \overline{\mu}_{t} + \kalmanGain_{t} (\observation_{t} - \observationModelFunction{\overline{\mu}_{t}})$
+        \State $\covariance_{t} =  (I - \kalmanGain_{t} \observationModelJacobian_{t}) \overline{\covariance}_{t}$
+        \State \Return $\mu_{t}, \covariance_{t}$
+    \EndProcedure
+    \end{algorithmic}
 \end{frame}
 
 \begin{frame}
@@ -674,7 +743,7 @@
         \end{align*}    
         \item Compute the Jacobian
         \begin{equation*}
-            {}^{\text{low}}H^i_t = \frac{\partial h(\bar{\mu}_t)}{\partial \bar{\mu}_t}
+            \prescript{\text{low}}{}{H^{i}_{t}} = \frac{\partial h(\bar{\mu}_t)}{\partial \bar{\mu}_t}
         \end{equation*}
         \begin{equation*}
             \text{low-dim space} \quad (x, y, \theta, m_{j,x}, m_{j,y})
@@ -708,7 +777,7 @@
         \end{align*}    
         \item Compute the Jacobian
         \begin{align*}
-            {}^{\text{low}}H^i_t &= \frac{\partial h(\bar{\mu}_t)}{\partial \bar{\mu}_t}\\
+            \prescript{\text{low}}{}{H^{i}_{t}} &= \frac{\partial h(\bar{\mu}_t)}{\partial \bar{\mu}_t}\\
             &= \begin{bmatrix}
                 \frac{\partial \sqrt{q}}{\partial x} & \frac{\partial \sqrt{q}}{\partial y} & \cdots \\
                 \frac{\partial \text{atan2}(\ldots)}{\partial x} & \frac{\partial \text{atan2}(\ldots)}{\partial y} & \cdots
@@ -781,7 +850,7 @@
         \item Compute the Jacobian
         
         \begin{align*}
-            {}^{\text{low}}H^i_t &= \frac{\partial h(\bar{\mu}_t)}{\partial \bar{\mu}_t}\\
+            \prescript{\text{low}}{}{H^{i}_{t}} &= \frac{\partial h(\bar{\mu}_t)}{\partial \bar{\mu}_t}\\
             &= \frac{1}{q}
             \begin{bmatrix}
                 -\sqrt{q} \delta_x & -\sqrt{q} \delta_y & 0 & \sqrt{q} \delta_x & \sqrt{q} \delta_y\\
@@ -802,7 +871,7 @@
     \begin{itemize}
         \item Use the computed Jacobian
         \begin{align*}
-            {}^{\text{low}}H^i_t &= \frac{\partial h(\bar{\mu}_t)}{\partial \bar{\mu}_t}\\
+            \prescript{\text{low}}{}{H^{i}_{t}} &= \frac{\partial h(\bar{\mu}_t)}{\partial \bar{\mu}_t}\\
             &= \frac{1}{q}
             \begin{bmatrix}
                 -\sqrt{q} \delta_x & -\sqrt{q} \delta_y & 0 & \sqrt{q} \delta_x & \sqrt{q} \delta_y\\
@@ -812,7 +881,7 @@
     
         \item Map it to the high dimensional space
         \begin{equation*}
-            H^i_t = {}^{\text{low}}H^i_t F_{x,j}
+            H^{i}_{t} = \prescript{\text{low}}{}{H^{i}_{t}} F_{x,j}
         \end{equation*}
         \begin{equation*}
             F_{x,j} =
@@ -828,6 +897,24 @@
             \end{bNiceMatrix}
         \end{equation*} 
     \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Algoritmo de Filtro de Kalman Extendido}
+    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
+    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
+    
+    \begin{algorithmic}[1]
+    \Procedure{ExtendedKalmanFilter}{$\mu_{t-1}, \covariance_{t-1}, \controlCommand_{t}, \observation_{t}$}
+        \State $\overline{\mu}_{t} = \motionModelFunction{\controlCommand_{t}, \mu_{t-1}}$
+        \State $\overline{\covariance}_{t} = \motionModelJacobian_{t} \covariance_{t-1} \motionModelJacobian_{t}^{\top}+\motionParametersCovariance_{t}$
+        \Statex
+        \State $\alert{\kalmanGain_{t} = \overline{\covariance}_{t} \observationModelJacobian_{t}^{\top} (\observationModelJacobian_{t} \overline{\covariance}_{t}  \observationModelJacobian_{t} + \observationModelCovariance_{t})^{-1}}$
+        \State $\alert{\mu_{t} = \overline{\mu}_{t} + \kalmanGain_{t} (\observation_{t} - \observationModelFunction{\overline{\mu}_{t}})}$
+        \State $\alert{\covariance_{t} =  (I - \kalmanGain_{t} \observationModelJacobian_{t}) \overline{\covariance}_{t}}$
+        \State \Return $\mu_{t}, \covariance_{t}$
+    \EndProcedure
+    \end{algorithmic}
 \end{frame}
 
 \begin{frame}
@@ -909,10 +996,13 @@
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
     \begin{itemize}
-    \item Revisiting and recognizing an already mapped area
-    \item Data association under high ambiguity
-    \item Uncertainties collapse after loop closure
-    \item \textbf{Wrong loop closures lead to filter divergence}
+    \item Loop closing means revisiting (and recognizing) an already mapped area
+    \item Data association under
+    \begin{itemize}
+        \item high ambiguity
+        \item possible environment symmetries
+    \end{itemize}
+    \item Uncertainties collapse after a loop closure (whether the closure was correct or not) 
     \end{itemize}
 \end{frame}
 
@@ -939,14 +1029,24 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{Loop Closing}
+    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
+    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
+
+    \begin{itemize}
+    \item Loop closing reduces the uncertainty in robot and landmark estimates
+    \item This can be exploited when exploring an environment for the sake of better (e.g. more accurate) maps
+    \item Wrong loop closures lead to filter divergence
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
     \frametitle{EKF SLAM Correlations}
     \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
     \begin{itemize}
-        \item In the limit, landmark estimates become fully correlated
-        \item Correlation between robot's pose and landmarks cannot be ignored
-        \item Assuming independence generates too optimistic uncertainty estimates
+        \item In the limit, the landmark estimates become fully correlated
     \end{itemize}
 
     \begin{center}
@@ -955,18 +1055,42 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{EKF SLAM Correlations}
+    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
+    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
+
+    \begin{center}
+        \only<1>{\includegraphics[width=0.8\textwidth]{../images/ekf_slam/ekf_slam_correlation_matrix1.pdf}}
+        \only<2>{\includegraphics[width=0.8\textwidth]{../images/ekf_slam/ekf_slam_correlation_matrix2.pdf}}
+        \only<3>{\includegraphics[width=0.8\textwidth]{../images/ekf_slam/ekf_slam_correlation_matrix3.pdf}}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{EKF SLAM Correlations}
+    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
+    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
+
+    \begin{itemize}
+        \item The correlation between the robot's pose and the landmarks cannot be ignored 
+        \item Assuming independence generates too optimistic estimates of the uncertainty
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
     \frametitle{EKF SLAM Uncertainties}
     \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
     \begin{itemize}
-    \item Determinant of any sub-matrix decreases monotonically
-    \item New landmarks initialized with maximum uncertainty
+    \item The determinant of any sub-matrix of the map covariance matrix decreases monotonically
+    \item New landmarks are initialized with maximum uncertainty
     \end{itemize}
-    % \begin{center}
-    % \includegraphics[width=0.6\textwidth]{uncertainties_plot.pdf} % Replace with actual vectorized image
-    % \textit{Courtesy: Dissanayake}
-    % \end{center}
+
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{../images/ekf_slam/landmarks_uncertainty_decrease.pdf} % Replace with actual vectorized image
+    \end{center}
 \end{frame}
 
 \begin{frame}
