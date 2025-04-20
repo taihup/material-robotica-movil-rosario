@@ -79,6 +79,44 @@
     \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
+    \TODO{Agregar matriz mas detallada}
+    \TODO{\url{http://ais.informatik.uni-freiburg.de/teaching/ws15/mapping/pdf/slam05-ekf-slam.pdf}}
+
+    \begin{itemize}
+        \item Map with $n$ landmarks: $(3+2n)$-dimensional Gaussian
+        \item Belief represented by:
+        \begin{equation*}
+            \underbrace{\begin{bNiceMatrix}[margin = 4pt]
+                \CodeBefore
+                \rectanglecolor{yellow!40}{1-1}{1-1}
+                \rectanglecolor{green!40}{2-1}{4-1}
+                \Body
+                \state_t \\
+                \map_1 \\
+                \vdots \\
+                \map_n
+            \end{bNiceMatrix}}_{\mu}
+            \underbrace{\begin{bNiceMatrix}[margin = 4pt]
+                \CodeBefore
+                \rectanglecolor{yellow!40}{1-1}{1-1}
+                \rectanglecolor{green!40}{2-1}{4-1}
+                \rectanglecolor{green!40}{1-2}{1-4}
+                \rectanglecolor{blue!40}{2-2}{4-4}
+                \Body
+                \Sigma_{\state_t \state_t} & \Sigma_{\state_t \map_1} & \cdots & \Sigma_{\state_t \map_n} \\
+                \Sigma_{\map_1 \state_t} & \Sigma_{\map_1 \map_1} & \cdots & \Sigma_{\map_1 \map_n} \\
+                \vdots & \vdots & \ddots & \vdots \\
+                \Sigma_{\map_n \state_t} & \Sigma_{\map_n \map_1} & \cdots & \Sigma_{\map_n \map_n}
+            \end{bNiceMatrix}}_{\Sigma}
+        \end{equation*}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{EKF SLAM: State Representation}
+    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
+    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
+
     \begin{itemize}
         \item Map with $n$ landmarks: $(3+2n)$-dimensional Gaussian
         \item Belief represented by:
