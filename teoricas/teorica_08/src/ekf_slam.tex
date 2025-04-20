@@ -30,12 +30,25 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{EKF for Online SLAM}
+    \frametitle{Grafical Model of Full SLAM}
     \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
     We consider the Kalman filter as a solution to the online SLAM problem:
-    \[ p(x_t, \map | z_{1:t}, u_{1:t}) \]
+    \[ p(\state_{1:t}, \map | z_{1:t}, u_{1:t}) \]
+
+    \begin{center}
+        \includegraphics[width=0.6\textwidth]{../images/ekf_slam/graphical_model_online_slam.pdf}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Grafical Model of Online SLAM}
+    \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
+    \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
+
+    We consider the Kalman filter as a solution to the online SLAM problem:
+    \[ p(\state_{t}, \map | z_{1:t}, u_{1:t}) \]
 
     \begin{center}
         \includegraphics[width=0.6\textwidth]{../images/ekf_slam/graphical_model_online_slam.pdf}
@@ -202,7 +215,7 @@
 
 
     \begin{center}
-        \includegraphics[width=0.5\textwidth]{../images/ekf_slam/ekf_slam_initial_state.pdf}
+        \includegraphics[width=0.5\textwidth]{./ekf_slam/ekf_slam_initial_state.pdf}
     \end{center}
 
     \begin{equation*}
@@ -1054,10 +1067,9 @@
     \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
-    % \begin{center}
-    % \includegraphics[width=0.8\textwidth]{before_loop_closure.pdf} % Replace with actual vectorized image
-    % \textit{Courtesy: K. Arras}
-    % \end{center}
+    \begin{center}
+        \includegraphics[width=0.6\textwidth]{ekf_slam/ekf_slam_loop_closure_before.pdf}
+    \end{center}
 \end{frame}
 
 \begin{frame}
@@ -1065,10 +1077,9 @@
     \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
-    % \begin{center}
-    % \includegraphics[width=0.8\textwidth]{after_loop_closure.pdf} % Replace with actual vectorized image
-    % \textit{Courtesy: K. Arras}
-    % \end{center}
+    \begin{center}
+        \includegraphics[width=0.6\textwidth]{ekf_slam/ekf_slam_loop_closure_after.pdf}
+    \end{center}
 \end{frame}
 
 \begin{frame}
