@@ -91,22 +91,26 @@
                 \rectanglecolor{yellow!40}{1-1}{1-1}
                 \rectanglecolor{green!40}{2-1}{4-1}
                 \Body
-                \state_t \\
-                \map_1 \\
+                x \\
+                y \\
+                \theta \\
+                \map{1,x} \\
+                \map{1,y} \\
                 \vdots \\
-                \map_n
+                \map{n,x} \\
+                \map{n,y}
             \end{bNiceMatrix}}_{\mu}
             \underbrace{\begin{bNiceMatrix}[margin = 4pt]
-                \CodeBefore
-                \rectanglecolor{yellow!40}{1-1}{1-1}
-                \rectanglecolor{green!40}{2-1}{4-1}
-                \rectanglecolor{green!40}{1-2}{1-4}
-                \rectanglecolor{blue!40}{2-2}{4-4}
-                \Body
-                \Sigma_{\state_t \state_t} & \Sigma_{\state_t \map_1} & \cdots & \Sigma_{\state_t \map_n} \\
-                \Sigma_{\map_1 \state_t} & \Sigma_{\map_1 \map_1} & \cdots & \Sigma_{\map_1 \map_n} \\
-                \vdots & \vdots & \ddots & \vdots \\
-                \Sigma_{\map_n \state_t} & \Sigma_{\map_n \map_1} & \cdots & \Sigma_{\map_n \map_n}
+                \sigma_{xx} & \sigma_{xy} & \sigma_{x\theta} \\
+                \sigma_{yx} & \sigma_{yy} & \sigma_{y\theta} \\
+                \sigma_{\theta x} & \sigma_{\theta y} & \sigma_{\theta\theta} \\
+                \sigma_{\map{1,x}x} & \sigma_{\map{1,x}y} & \sigma_{\map{1,x}\theta} & \Cdots & \sigma_{\map{n,x}x} & \sigma_{\map{n,x}y} \\
+                \sigma_{\map{1,y}x} & \sigma_{\map{1,y}y} & \sigma_{\map{1,y}\theta} & \Cdots & \sigma_{\map{n,y}x} & \sigma_{\map{n,y}y} \\
+                \sigma_{\map{1,x}\map{1,x}} & \sigma_{\map{1,x}\map{1,y}} & \Cdots & \sigma_{\map{1,x}\map{n,x}} & \sigma_{\map{1,x}\map{n,y}} \\
+                \sigma_{\map{1,y}\map{1,x}} & \sigma_{\map{1,y}\map{1,y}} & \Cdots & \sigma_{\map{1,y}\map{n,x}} & \sigma_{\map{1,y}\map{n,y}} \\
+                \vdots & \vdots & \ddots & \vdots & \vdots \\
+                \sigma_{\map{n,x}\map{1,x}} & \sigma_{\map{n,x}\map{1,y}} & \Cdots & \sigma_{\map{n,x}\map{n,x}} & \sigma_{\map{n,x}\map{n,y}} \\
+                \sigma_{\map{n,y}\map{1,x}} & \sigma_{\map{n,y}\map{1,y}} & \Cdots & \sigma_{\map{n,y}\map{n,x}} & \sigma_{\map{n,y}\map{n,y}}
             \end{bNiceMatrix}}_{\Sigma}
         \end{equation*}
     \end{itemize}
@@ -784,7 +788,7 @@
             \prescript{\text{low}}{}{H^{i}_{t}} = \frac{\partial h(\bar{\mu}_t)}{\partial \bar{\mu}_t}
         \end{equation*}
         \begin{equation*}
-            \text{low-dim space} \quad (x, y, \theta, m_{j,x}, m_{j,y})
+            \text{low-dim space} \quad (x, y, \theta, \map{j,x}, \map{j,y})
         \end{equation*}
     \end{itemize}
 \end{frame}
