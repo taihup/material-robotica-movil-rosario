@@ -1105,6 +1105,15 @@
     \begin{center}
         \includegraphics[width=0.5\textwidth]{../images/ekf_slam/ekf_slam_correlations.pdf}
     \end{center}
+
+    \begin{itemize}
+        \item The Covariance Matrix represents the uncertainty and correlation between different state variables (e.g., robot pose at different time steps and positions of landmarks).
+        \begin{itemize}
+            \item Diagonal: Variance (uncertainty) of each variable.
+            \item Off-diagonal: Correlation between variables (how errors in one affect another).
+        \end{itemize}
+    \end{itemize}
+    
 \end{frame}
 
 \begin{frame}
@@ -1151,7 +1160,9 @@
     \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
     
-    In the limit, the covariance associated with any single landmark location estimate is determined only by the initial covariance in the vehicle location estimate.
+    \begin{itemize}
+        \item In the limit, the covariance associated with any single landmark location estimate is determined only by the initial covariance in the vehicle location estimate.
+    \end{itemize}
 
     \begin{center}
         \includegraphics[width=0.6\textwidth]{../images/ekf_slam/ekf_slam_limit.pdf}

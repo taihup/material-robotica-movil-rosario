@@ -714,6 +714,8 @@
     \frametitle{Incertidumbre}
     \note{Información extraída de https://youtu.be/uHbRKvD8TWg}
     
+    In graph SLAM, you estimate the information matrix $\linearSystemH$ instead of the covariance directly as we do in EKF. The covariance matrix is the inverse of the Information Matrix.
+    
     \begin{itemize}
         \item $\linearSystemH$ representa la matriz de información dado el punto de linearización
         \item La inversa de $\linearSystemH$ es la matriz de covarianza (densa). Calcular la inversa es muy costoso computacionalmente. Sin embargo, podemos computar partes de la matriz de covarianza.
