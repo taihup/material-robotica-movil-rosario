@@ -1,17 +1,32 @@
-\documentclass{article}
-\usepackage{graphicx}
-\usepackage{amsmath}
-\usepackage{algorithm}
-\usepackage{algpseudocode}
-\usepackage{hyperref}
+\documentclass[tp]{lcc}
 
-\title{NA 568 Mobile Robotics: Methods \& Algorithms \\ Winter 2022 -- Homework 7 -- SLAM}
-\author{Maani Ghaffari \\ University of Michigan}
-\date{March 19, 2022}
+% add latex preamble
+\input{../../common/latex_preamble}
+
+% add math preamble
+\input{../../common/math_preamble}
+
+\codigo{R-521}
+\materia{Robótica Móvil}
+\titulo{Transformaciones}
+
+% Mostrar soluciones
+%\soluciones
+%\commentstrue
+
+
+\usepackage{biblatex}
+%\addbibresource{refs.bib}
 
 \begin{document}
-
 \maketitle
+
+
+
+
+%\title{NA 568 Mobile Robotics: Methods \& Algorithms \\ Winter 2022 -- Homework 7 -- SLAM}
+%\author{Maani Ghaffari \\ University of Michigan}
+%\date{March 19, 2022}
 
 \section*{Submission Instructions}
 Your assignment must be received by 11:55 pm on Friday, April 1st (Anywhere on Earth Time). This corresponds to 7:55 AM on April 2nd in Eastern Time. This is selected out of fairness to all our students, including those who take the course remotely. You are to upload your assignment directly to the Gradescope website as two attachments:
@@ -152,8 +167,6 @@ A batch solution means when we construct the entire graph and solve it at the en
 \subsection{C. (20 pts) Incremental Solution}
 Use ISAM2 solver to optimize the trajectory incrementally (as you build the graph gradually). A detailed algorithms is described in Algorithm 1. Visualize and compare the optimized trajectory against the initial trajectory. Include the plot in your pdf. Describe the graph construction process and its parameters.
 
-\begin{algorithm}
-\caption{incremental\_solution\_2d(poses, edges)}
 \begin{algorithmic}[1]
 \Require poses: a N x 4 array that each row is $pose=(id_{p},x,y,\theta)$; edges: a M x 11 array that each row is $edge=(id_{e1},id_{e2},dx,dy,d\theta,info)$
 \State $isam \leftarrow$ gtsam.ISAM2() \Comment{Initialize isam solver}
@@ -181,7 +194,6 @@ Use ISAM2 solver to optimize the trajectory incrementally (as you build the grap
     \State $result=isam.calculateEstimate$
 \EndFor
 \end{algorithmic}
-\end{algorithm}
 
 You may use \texttt{NonLinearFactorGraph} as your graph, use \texttt{gtsam.ISAM2()} as your update algorithm, use \texttt{Values} for your initial estimation, and use \texttt{graph.add()}, \texttt{initial.insert()}, \texttt{isam.update()}, and \texttt{isam.calculateEstimate()} functions as you see fit. However, function names might be different for different versions of gtsam.
 
@@ -199,32 +211,32 @@ Load \texttt{data/parking-garage.g2o} and construct a 3D nonlinear factor graph 
 \subsection{C. (20 pts) Incremental Solution}
 Use ISAM2 solver to optimize the trajectory incrementally. Visualize and compare the optimized trajectory against the initial trajectory. Include a 3D plot or two 2D plots in your pdf. Describe the graph construction process and its parameters.
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figure1.png}
-    \caption{Expected result for task 1 B.}
-    \label{fig:task1b}
-\end{figure}
+% \begin{figure}[h]
+%     \centering
+%     \includegraphics[width=0.8\textwidth]{figure1.png}
+%     \caption{Expected result for task 1 B.}
+%     \label{fig:task1b}
+% \end{figure}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figure2.png}
-    \caption{Expected result for task 1 C.}
-    \label{fig:task1c}
-\end{figure}
+% \begin{figure}[h]
+%     \centering
+%     \includegraphics[width=0.8\textwidth]{figure2.png}
+%     \caption{Expected result for task 1 C.}
+%     \label{fig:task1c}
+% \end{figure}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figure3.png}
-    \caption{Expected result for task 2 B.}
-    \label{fig:task2b}
-\end{figure}
+% \begin{figure}[h]
+%     \centering
+%     \includegraphics[width=0.8\textwidth]{figure3.png}
+%     \caption{Expected result for task 2 B.}
+%     \label{fig:task2b}
+% \end{figure}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figure4.png}
-    \caption{Expected result for task 2 C.}
-    \label{fig:task2c}
-\end{figure}
+% \begin{figure}[h]
+%     \centering
+%     \includegraphics[width=0.8\textwidth]{figure4.png}
+%     \caption{Expected result for task 2 C.}
+%     \label{fig:task2c}
+% \end{figure}
 
 \end{document}
