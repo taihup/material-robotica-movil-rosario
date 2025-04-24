@@ -1,0 +1,214 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,graphicx,hyperref}
+\usepackage[margin=1in]{geometry}
+
+\title{CSE 571 - Robotics \\ Homework 2 - EKF and RRT}
+\author{Due Thursday May 16th @ 11:59pm}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Collaboration Policy}
+Students can discuss questions, but each student MUST write up their own solution, and code their own solution. We will be checking code/PDFs for plagiarism.
+
+\section*{Late Policy}
+This assignment may be handed in up to 5 days late (Tuesday May 19th @ 11:59pm), at a penalty of 10\% of the maximum grade per day.
+
+\section{Extended Kalman Filter}
+
+\subsection{Jacobian Derivation}
+
+\textbf{Hint:}
+\begin{enumerate}
+    \item Take a look at the relevant sections (7.4, 10.2) in the book \cite{thrun2005probabilistic}.
+    \item Make sure you get the derivations correct before proceeding to implementation.
+\end{enumerate}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{odometry_model.png}
+    \caption{Odometry-based motion model}
+    \label{fig:odometry}
+\end{figure}
+
+\subsubsection{Motion Model Jacobian [5 points]}
+We will reuse the odometry motion model from HW1 (see Figure \ref{fig:odometry} and Sec. 5.4 in the book \cite{thrun2005probabilistic}). The state of the robot is its 2D position and orientation: $s_{t}=[x_{t},y_{t},\theta_{t}]$. The control to the robot is $u_{t}=[\delta_{rot1},\delta_{trans},\delta_{rot2}]$, i.e. the robot rotates by $\delta_{rot1}$, drives straight forward $\delta_{trans}$, then rotates again by $\delta_{rot2}$.
+
+The equations for the motion model $s_{t}=g(u_{t},s_{t-1})$ are as follows:
+
+\begin{align*}
+    x_{t} &= x_{t-1}+\delta_{trans}*\cos(\theta_{t-1}+\delta_{rot1}) \\
+    y_{t} &= y_{t-1}+\delta_{trans}*\sin(\theta_{t-1}+\delta_{rot1}) \\
+    \theta_{t} &= \theta_{t-1}+\delta_{rot1}+\delta_{rot2}
+\end{align*}
+
+Your task is to derive the Jacobian matrix $G$, a matrix consisting of the first-order derivative of $s_{t}$ with respect to the previous state $s_{t-1}$, as well as $V$, a matrix consisting of the first-order derivative of $s_{t}$ with respect to the control input $u_{t}$. Since $s_{t},s_{t-1}$ and $u_{t}$ are all 3-dimensional, $G$ and $V$ are both $3\times 3$ matrices.
+
+In short, $s_{t+1}=[x_{t+1},y_{t+1},\theta_{t+1}]$ is the prediction of the motion model. Derive the Jacobians of $g$ with respect to the state $G=\dfrac{\partial g}{\partial s}$ and control $V=\dfrac{\partial g}{\partial u}$:
+
+\[
+G=\begin{pmatrix}
+\dfrac{\partial x^{\prime}}{\partial x} & \dfrac{\partial x^{\prime}}{\partial y} & \dfrac{\partial x^{\prime}}{\partial \theta} \\
+\dfrac{\partial y^{\prime}}{\partial x} & \dfrac{\partial y^{\prime}}{\partial y} & \dfrac{\partial y^{\prime}}{\partial \theta} \\
+\dfrac{\partial \theta^{\prime}}{\partial x} & \dfrac{\partial \theta^{\prime}}{\partial y} & \dfrac{\partial \theta^{\prime}}{\partial \theta} \\
+\end{pmatrix}
+\quad
+V=\begin{pmatrix}
+\dfrac{\partial x^{\prime}}{\partial \delta_{rot1}} & \dfrac{\partial x^{\prime}}{\partial \delta_{trans}} & \dfrac{\partial x^{\prime}}{\partial \delta_{rot2}} \\
+\dfrac{\partial y^{\prime}}{\partial \delta_{rot1}} & \dfrac{\partial y^{\prime}}{\partial \delta_{trans}} & \dfrac{\partial y^{\prime}}{\partial \delta_{rot2}} \\
+\dfrac{\partial \theta^{\prime}}{\partial \delta_{rot1}} & \dfrac{\partial \theta^{\prime}}{\partial \delta_{trans}} & \dfrac{\partial \theta^{\prime}}{\partial \delta_{rot2}} \\
+\end{pmatrix}
+\]
+
+\subsubsection{Observation Model Jacobian [5 points]}
+Assume there is a landmark $m$ at location $(x_{m},y_{m})$. The robot receives two measurements of the bearing angle $\phi$ and the landmark, the range $r$, where
+
+\begin{align*}
+    \phi &= \texttt{atan2}(y_{m}-y_{t},x_{m}-x_{t})-\theta_{t} \\
+    r &= \sqrt{(x_{m}-x_{t})^{2}+(y_{m}-y_{t})^{2}}
+\end{align*}
+
+Derive Jacobian matrix $H_{s}$, derivative of the measurements with respect to the robot state $s_{t}=[x_{t},y_{t},\theta_{t}]$ and the Jacobian matrix $H_{m}$, derivative of the measurements with respect to the landmark position $(x_{m},y_{m})$.
+
+\subsection{EKF Localization and Mapping [40 points]}
+In the programming component of this assignment, you will first implement an Extended Kalman Filter (EKF) (Fig. \ref{fig:ekf}) to localize a robot based on landmarks. Then, you will add landmarks to the state and build a map while localizing the robot, thus performing simultaneous localization and mapping (SLAM).
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{ekf.png}
+    \caption{Extended Kalman Filter}
+    \label{fig:ekf}
+\end{figure}
+
+\subsection*{Code Overview}
+The starter code for EKF is under the \texttt{ekf\_slam} folder. The conda environment you installed for HW1 should suffice for this homework.
+
+\subsection*{Command-Line Interface}
+First, run \texttt{cd ekf\_slam} to enter the sub-folder. To visualize the robot in the soccer field environment, run:
+
+\begin{verbatim}
+$ python localization.py --plot none
+\end{verbatim}
+
+The blue line traces out the robot's position, which is a result of noisy actions. The green line traces the robot's position assuming that actions weren't noisy. After you implement a filter, the filter's estimate of the robot's position will be drawn in red.
+
+\begin{verbatim}
+$ python localization.py --plot ekf_slam
+\end{verbatim}
+
+Typical commands would be like:
+
+\begin{verbatim}
+# problem a
+$ python localization.py ekf_slam --plot
+# problem b
+$ python localization.py ekf_slam --multi_run 10 --data-factor 0.1 --filter-factor 0.1
+# problem c
+$ python localization.py ekf_slam --multi_run 10 --motion-factor 0.1 --observation-factor 1.0
+\end{verbatim}
+
+To see other command-line flags available to you, run:
+
+\begin{verbatim}
+$ python localization.py -h
+\end{verbatim}
+
+\textbf{Hints:}
+\begin{itemize}
+    \item Make sure to call \texttt{utils.minimized\_angle} any time an angle or angle difference could exceed $[-\pi,\pi]$.
+    \item Turn off plotting for a significant speedup.
+\end{itemize}
+
+\subsection*{Task}
+\begin{enumerate}
+    \item Fill in the Jacobian matrices G, V, R and H in \texttt{ekf\_slam.py} using your derivation in 1.1.
+    \item Implement the EKF update (Fig. \ref{fig:ekf}) in \texttt{ExtendedKalmanFilterSLAM.update} in \texttt{ekf\_slam.py}. Make sure to keep track of the set of landmark IDs that the robot has observed.
+\end{enumerate}
+
+Answer the following questions in your writeup:
+\begin{enumerate}[label=(\alph*)]
+    \item Under the default noise parameters, $\alpha=\beta=1$, plot the robot's path and the landmark locations estimated by EKF and compare it with the ground truth path and landmarks.
+    \item Plot the position error of the robot state and the landmark positions as the data factor (\texttt{--data-factor}) and the filter noise factor (\texttt{--filter-factor}) vary \textbf{simultaneously} over $[0.01,0.03,0.1,0.3,1.0]$. Keep \texttt{data-factor == filter-factor}, so there are 5 data points. For each data point, run 10 trials with different random seeds (\texttt{--multi\_run 10}) and plot the mean and standard deviation. Does EKF estimate the map accurately? Discuss anything interesting you observe.
+    \item Plot the position error of robot state and the landmark positions as the motion factor (\texttt{--motion-factor}) and observation factor (\texttt{--observation-factor}) vary \textbf{independently} over $[0.1,0.3,1.0]$. There are 9 data points in total. Run 10 trials per value with different random seeds (\texttt{--multi\_run 10}) and plot the mean and standard deviation. Discuss anything interesting you observe.
+\end{enumerate}
+
+\section{Rapidly-exploring Random Tree}
+In this part, you are provided with a robot arm that has 2 links is able to move in a 2D plane only. Your task is to implement Rapidly-exploring Random Tree (RRT), a classical sampling-based motion planning algorithms named after its data structure, and study the parameters that govern its behaviors.
+
+\subsection{Code Overview}
+The starter code for RRT is under the \texttt{rrt} folder. Here is a brief overview.
+
+\subsection{RRT Implementation [50 points]}
+Implement a RRT planner for the 2D robot in \texttt{RRTPlanner.py} by filling in \texttt{Plan} and \texttt{extend} functions. Your results from a successful RRT implementation should be comparable to the following results:
+
+\begin{verbatim}
+$ python plan.py -o 0 --seed 0
+...
+cost: 198.84383834015168
+
+$ python plan.py -o 2 --seed 0
+...
+cost: 170.48992200228264
+\end{verbatim}
+
+If you turn on the \texttt{-v} flag, i.e. \texttt{python plan.py --seed 0 -v}, you should see a plot similar to Fig. \ref{fig:rrt}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{rrt_example.png}
+    \caption{Example RRT path in configuration space.}
+    \label{fig:rrt}
+\end{figure}
+
+\textbf{Answer the following questions.}
+
+Note that since RRT is non-deterministic, you will need to provide statistical results, i.e. mean and standard deviation over \textbf{at least 5 runs} with different random seeds specified by \texttt{--seed}.
+
+The \texttt{-o} flag specifies the number of obstacles in the environment. Please report your results with \texttt{-o 2}. You can use other values for debugging.
+
+\begin{enumerate}
+    \item Bias the sampling to pick the goal with $5\%$, $20\%$ probability. Report the performance (cost and time). For each setting, include at least one figure like Fig. \ref{fig:rrt} showing the RRT tree in configuration space. Which value would you pick in practice?
+    \item You can view the robot as a point that can move in arbitrarily directions in the configuration space. In other words, the states can be interpolated via a straight line (see Fig. \ref{fig:extend} for an illustration). Compare two strategies for the \texttt{extend()} function:
+    \begin{itemize}
+        \item the nearest neighbor extends only half way to the sampled point (i.e. step size $\eta=0.5$)
+        \item the nearest neighbor extends all the way till the sampled point (i.e. step size $\eta=1$)
+    \end{itemize}
+    Report the performance (cost, time) for each setting. Include at least one figure showing the final state of the RRT tree. Which strategy would you employ in practice?
+    \item Discuss any challenges you faced and describe your debugging process.
+\end{enumerate}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{extend.png}
+    \caption{Visualization of \texttt{extend()} with step size $\eta$, which controls the ratio of the distance from $x_{\text{new}}$ (the state to be added) to $x_{\text{near}}$ and the distance from $x_{\text{rand}}$ (the sampled state) to $x_{\text{near}}$. If $\eta=1$, $x_{\text{new}}=x_{\text{rand}}$.}
+    \label{fig:extend}
+\end{figure}
+
+\textbf{Hint:}
+Check out these useful functions that you should use to simplify your implementation:
+\begin{itemize}
+    \item In \texttt{RRTTree.py}:
+    \begin{itemize}
+        \item \texttt{AddVertex}
+        \item \texttt{AddEdge}
+        \item \texttt{GetNearestVertex}
+    \end{itemize}
+    \item In \texttt{ArmEnvironment.py}:
+    \begin{itemize}
+        \item \texttt{compute\_distance}
+        \item \texttt{goal\_criterion}
+        \item \texttt{edge\_validity\_checker}
+    \end{itemize}
+\end{itemize}
+
+\section{Submission}
+We will be using the Canvas for submission of the assignments. Please submit the written assignment answers as a PDF. For the code, submit a zip file of the entire working directory.
+
+\begin{thebibliography}{9}
+\bibitem{thrun2005probabilistic}
+Thrun, Burgard and Fox (2005), \textit{Probabilistic Robotics}.
+\end{thebibliography}
+
+\end{document}
