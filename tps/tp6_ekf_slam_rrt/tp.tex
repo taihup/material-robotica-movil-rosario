@@ -151,7 +151,7 @@ $ python localization.py -h
 \end{enumerate}
 
 Answer the following questions in your writeup:
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}
     \item Under the default noise parameters, $\alpha=\beta=1$, plot the robot's path and the landmark locations estimated by EKF and compare it with the ground truth path and landmarks.
     \item Plot the position error of the robot state and the landmark positions as the data factor (\texttt{--data-factor}) and the filter noise factor (\texttt{--filter-factor}) vary \textbf{simultaneously} over $[0.01,0.03,0.1,0.3,1.0]$. Keep \texttt{data-factor == filter-factor}, so there are 5 data points. For each data point, run 10 trials with different random seeds (\texttt{--multi\_run 10}) and plot the mean and standard deviation. Does EKF estimate the map accurately? Discuss anything interesting you observe.
     \item Plot the position error of robot state and the landmark positions as the motion factor (\texttt{--motion-factor}) and observation factor (\texttt{--observation-factor}) vary \textbf{independently} over $[0.1,0.3,1.0]$. There are 9 data points in total. Run 10 trials per value with different random seeds (\texttt{--multi\_run 10}) and plot the mean and standard deviation. Discuss anything interesting you observe.
@@ -178,12 +178,12 @@ cost: 170.48992200228264
 
 If you turn on the \texttt{-v} flag, i.e. \texttt{python plan.py --seed 0 -v}, you should see a plot similar to Fig. \ref{fig:rrt}.
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.6\textwidth]{rrt_example.png}
-    \caption{Example RRT path in configuration space.}
-    \label{fig:rrt}
-\end{figure}
+ \begin{figure}[h]
+     \centering
+     \includegraphics[width=0.6\textwidth]{example-image-a}
+     \caption{Example RRT path in configuration space.}
+     \label{fig:rrt}
+ \end{figure}
 
 \textbf{Answer the following questions.}
 
@@ -204,7 +204,7 @@ The \texttt{-o} flag specifies the number of obstacles in the environment. Pleas
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.5\textwidth]{extend.png}
+    \includegraphics[width=0.5\textwidth]{example-image-a}
     \caption{Visualization of \texttt{extend()} with step size $\eta$, which controls the ratio of the distance from $x_{\text{new}}$ (the state to be added) to $x_{\text{near}}$ and the distance from $x_{\text{rand}}$ (the sampled state) to $x_{\text{near}}$. If $\eta=1$, $x_{\text{new}}=x_{\text{rand}}$.}
     \label{fig:extend}
 \end{figure}
