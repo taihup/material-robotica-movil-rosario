@@ -1,9 +1,15 @@
-\documentclass{article}
-\usepackage{amsmath,amssymb,graphicx,hyperref}
-\usepackage[margin=1in]{geometry}
+\documentclass[tp]{lcc}
 
+% add latex preamble
+\input{../../common/latex_preamble}
+
+% add math preamble
+\input{../../common/math_preamble}
+
+\codigo{R-521}
+\materia{Robótica Móvil}
 \title{CSE 571 - Robotics \\ Homework 2 - EKF and RRT}
-\author{Due Thursday May 16th @ 11:59pm}
+\author{}
 \date{}
 
 \begin{document}
@@ -26,15 +32,15 @@ This assignment may be handed in up to 5 days late (Tuesday May 19th @ 11:59pm),
     \item Make sure you get the derivations correct before proceeding to implementation.
 \end{enumerate}
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.5\textwidth]{odometry_model.png}
-    \caption{Odometry-based motion model}
-    \label{fig:odometry}
+    \includegraphics[width=0.5\textwidth]{./images/odometry_as_controls.pdf}
+    \caption{Modelo de movimiento.}
+    \label{fig:odometry-base-motion-model}
 \end{figure}
 
 \subsubsection{Motion Model Jacobian [5 points]}
-We will reuse the odometry motion model from HW1 (see Figure \ref{fig:odometry} and Sec. 5.4 in the book \cite{thrun2005probabilistic}). The state of the robot is its 2D position and orientation: $s_{t}=[x_{t},y_{t},\theta_{t}]$. The control to the robot is $u_{t}=[\delta_{rot1},\delta_{trans},\delta_{rot2}]$, i.e. the robot rotates by $\delta_{rot1}$, drives straight forward $\delta_{trans}$, then rotates again by $\delta_{rot2}$.
+We will reuse the odometry motion model from HW1 (see Figure \ref{fig:odometry-base-motion-model} and Sec. 5.4 in the book \cite{thrun2005probabilistic}). The state of the robot is its 2D position and orientation: $s_{t}=[x_{t},y_{t},\theta_{t}]$. The control to the robot is $u_{t}=[\delta_{rot1},\delta_{trans},\delta_{rot2}]$, i.e. the robot rotates by $\delta_{rot1}$, drives straight forward $\delta_{trans}$, then rotates again by $\delta_{rot2}$.
 
 The equations for the motion model $s_{t}=g(u_{t},s_{t-1})$ are as follows:
 
@@ -75,12 +81,29 @@ Derive Jacobian matrix $H_{s}$, derivative of the measurements with respect to t
 \subsection{EKF Localization and Mapping [40 points]}
 In the programming component of this assignment, you will first implement an Extended Kalman Filter (EKF) (Fig. \ref{fig:ekf}) to localize a robot based on landmarks. Then, you will add landmarks to the state and build a map while localizing the robot, thus performing simultaneous localization and mapping (SLAM).
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.6\textwidth]{ekf.png}
+% \begin{figure}[h]
+%     \centering
+%     \includegraphics[width=0.6\textwidth]{ekf.png}
+%     \caption{Extended Kalman Filter}
+%     \label{fig:ekf}
+% \end{figure}
+
+\begin{algorithm}\captionsetup{labelfont={sc,bf}, labelsep=newline}
     \caption{Extended Kalman Filter}
-    \label{fig:ekf}
-\end{figure}
+    \begin{algorithmic}[1]
+        \Procedure{ExtendedKalmanFilter}{$\mu_{t-1}, \covariance_{t-1}, \controlCommand_{t}, \observation_{t}$}
+            \State $\overline{\mu}_{t} = \motionModelFunction{\controlCommand_{t}, \mu_{t-1}}$
+            \State $\overline{\covariance}_{t} = \motionModelJacobian_{t} \covariance_{t-1} \motionModelJacobian_{t}^{\top}+\motionParametersCovariance_{t}$
+            \Statex
+            \State $\kalmanGain_{t} = \overline{\covariance}_{t} \observationModelJacobian_{t}^{\top} (\observationModelJacobian_{t} \overline{\covariance}_{t}  \observationModelJacobian_{t} + \observationModelCovariance_{t})^{-1} $
+            \State $\mu_{t} = \overline{\mu}_{t} + \kalmanGain_{t} (\observation_{t} - \observationModelFunction{\overline{\mu}_{t}})$
+            \State $\covariance_{t} =  (I - \kalmanGain_{t} \observationModelJacobian_{t}) \overline{\covariance}_{t}$
+            \State \Return $\mu_{t}, \covariance_{t}$
+        \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+
+
 
 \subsection*{Code Overview}
 The starter code for EKF is under the \texttt{ekf\_slam} folder. The conda environment you installed for HW1 should suffice for this homework.
