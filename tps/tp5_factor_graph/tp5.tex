@@ -8,7 +8,7 @@
 
 \codigo{R-521}
 \materia{Robótica Móvil}
-\titulo{Transformaciones}
+\titulo{Graph SLAM}
 
 % Mostrar soluciones
 %\soluciones
@@ -22,14 +22,13 @@
 \maketitle
 
 
-
-
+\section{Disclaimer}
+this homework is based on the Homework 7 -- SLAM of the NA 568 Mobile Robotics: Methods \& Algorithms \\ Winter 2022 created by Maani Ghaffari \\ University of Michigan
 %\title{NA 568 Mobile Robotics: Methods \& Algorithms \\ Winter 2022 -- Homework 7 -- SLAM}
 %\author{Maani Ghaffari \\ University of Michigan}
 %\date{March 19, 2022}
 
 \section*{Submission Instructions}
-Your assignment must be received by 11:55 pm on Friday, April 1st (Anywhere on Earth Time). This corresponds to 7:55 AM on April 2nd in Eastern Time. This is selected out of fairness to all our students, including those who take the course remotely. You are to upload your assignment directly to the Gradescope website as two attachments:
 
 \begin{enumerate}
     \item A .tar.gz or .zip file containing a directory named after your uniqname with the structure shown below. \\
@@ -128,6 +127,28 @@ We recommend using the pre-compiled wrapper if you are not familiar with linux s
 You may refer to some matlab gtsam examples in \texttt{gtsam\_toolbox/gtsam\_examples} folder.
 
 \subsubsection{Python Wrapper}
+
+Install Anaconda 
+conda create -n gtsam_env python=<your\_python\_version>
+conda activate gtsam_env
+
+conda install -c conda-forge cmake eigen pybind11 boost numpy
+
+git clone https://github.com/borglab/gtsam.git
+cd gtsam
+
+conda install -r <gtsam\_folder>/python/requirements.txt
+
+mkdir build && cd build
+
+cmake .. \
+  -DGTSAM_BUILD_PYTHON=1 \
+  -DGTSAM_PYTHON_VERSION=<your\_python\_version> \
+  -DCMAKE_INSTALL_PREFIX=./install
+
+make python-install
+
+
 For Python wrapper, you can do it in two ways:
 
 \begin{enumerate}
@@ -211,32 +232,32 @@ Load \texttt{data/parking-garage.g2o} and construct a 3D nonlinear factor graph 
 \subsection{C. (20 pts) Incremental Solution}
 Use ISAM2 solver to optimize the trajectory incrementally. Visualize and compare the optimized trajectory against the initial trajectory. Include a 3D plot or two 2D plots in your pdf. Describe the graph construction process and its parameters.
 
-% \begin{figure}[h]
-%     \centering
-%     \includegraphics[width=0.8\textwidth]{figure1.png}
-%     \caption{Expected result for task 1 B.}
-%     \label{fig:task1b}
-% \end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{example-image-a}
+    \caption{Expected result for task 1 B.}
+    \label{fig:task1b}
+\end{figure}
 
-% \begin{figure}[h]
-%     \centering
-%     \includegraphics[width=0.8\textwidth]{figure2.png}
-%     \caption{Expected result for task 1 C.}
-%     \label{fig:task1c}
-% \end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{example-image-a}
+    \caption{Expected result for task 1 C.}
+    \label{fig:task1c}
+\end{figure}
 
-% \begin{figure}[h]
-%     \centering
-%     \includegraphics[width=0.8\textwidth]{figure3.png}
-%     \caption{Expected result for task 2 B.}
-%     \label{fig:task2b}
-% \end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{example-image-a}
+    \caption{Expected result for task 2 B.}
+    \label{fig:task2b}
+\end{figure}
 
-% \begin{figure}[h]
-%     \centering
-%     \includegraphics[width=0.8\textwidth]{figure4.png}
-%     \caption{Expected result for task 2 C.}
-%     \label{fig:task2c}
-% \end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{example-image-a}
+    \caption{Expected result for task 2 C.}
+    \label{fig:task2c}
+\end{figure}
 
 \end{document}
