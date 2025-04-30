@@ -141,48 +141,39 @@ cd gtsam
 mkdir build && cd build
 conda install -r <gtsam\_folder>/python/requirements.txt
 cmake .. -DGTSAM_BUILD_PYTHON=1 -DGTSAM_PYTHON_VERSION=<your\_python\_version>
+make -j2 (2 is the number of threads you want to use)
 make python-install
 \end{lstlisting}
 
+You may refer to some python gtsam examples in \url{https://github.com/borglab/gtsam/tree/develop/python/gtsam/examples}.
 
+\section{2D Graph SLAM}
+\subsection{A.}
+Write a function to read 2D Intel dataset\footnote{\url{https://www.dropbox.com/s/vcz8cag7bo0zlaj/input_INTEL_g2o.g2o?dl=0}} from G2O format and output poses and edges. These poses and edges are used in later problems. It can be any form you like as long as you can use it to generate the correct result.
 
-For Python wrapper, you can do it in two ways:
+For 2D data, the pose in G2O format is \lstinline[style=bash]{[VERTEX\_SE2 i x y theta]} and the edge in G2O format is \lstinline[style=bash]{[EDGE\_SE2 i j x y theta info(x, y, theta)]}, where \lstinline[style=bash]{info(x, y, theta)} is a $1 \times 6$ vector \lstinline[style=bash]{[q11 q12 q13 q22 q23 q33]} where the elements are the upper-triangle matrix of the $3 \times 3$ information matrix:
 
-\begin{enumerate}
-    \item Using pip to install: \lstinline[style=bash]{pip install gtsam}
-    \item Build from source. Follow the instructions here to install. Below are some guides on how to install the Python wrapper.
-    \begin{itemize}
-        \item After you successfully clone the repository and create the build folder, you'll have to first go into the cython folder and install the required dependencies. \lstinline[style=bash]{pip install -r <gtsam\_folder>/python/requirements.txt}
-        \item Then you'll have to do cmake differently by specifying the the Python version you want to use and enable Python wrapper: \lstinline[style=bash]{cmake .. -DGTSAM\_BUILD\_PYTHON=1 -DGTSAM\_PYTHON\_VERSION=<your\_python\_version>}
-        \item Compile the files in build (-j means using multi-thread. 10 is the number of threads you want to use) \lstinline[style=bash]{make -j10}
-        \item Install it to your machine \lstinline[style=bash]{sudo make python-install}
-    \end{itemize}
-\end{enumerate}
-
-You may refer to some python gtsam examples here.
-
-\section{2D Graph SLAM (50 points)}
-\subsection{A. (10 pts)}
-Write a function to read 2D Intel dataset from G2O format and output poses and edges. These poses and edges are used in later problems. It can be any form you like as long as you can use it to generate the correct result.
-
-For 2D data, the pose in G2O format is \lstinline[style=bash]{[VERTEX\_SE2 i x y theta]} and the edge in G2O format is \lstinline[style=bash]{[EDGE\_SE2 i j x y theta info(x, y, theta)]}, where \lstinline[style=bash]{info(x, y, theta)} is a $1 \times 6$ vector \lstinline[style=bash]{[q11 q12 q13 q22 q23 q33]} where the elements are the upper-triangle matrix of the $3 \times 3$ information matrix $\Omega = \begin{bmatrix} q_{11} & q_{12} & q_{13} \\ q_{12} & q_{22} & q_{23} \\ q_{13} & q_{23} & q_{33} \end{bmatrix}$.
+\begin{equation*}
+    \Omega = \begin{bmatrix} q_{11} & q_{12} & q_{13} \\ q_{12} & q_{22} & q_{23} \\ q_{13} & q_{23} & q_{33} \end{bmatrix}.
+\end{equation*}
 
 By inverting this information matrix, you can obtain the covariance matrix for the noise model.
 
-You may look into detail in the g2o repository\footnote{\url{https://github.com/RainerKuenmerle/g2o/wiki/File-Format-SLAM-2D}}.
+You may look into detail in the g2o repository\footnote{\url{https://github.com/RainerKuemmerle/g2o/wiki/File-Format-SLAM-2D}}.
 
-\textbf{Remark 5.} \textit{If you use readG2o() and load2D() functions provided by GTSAM, then you will not be able to solve the graph incrementally (task C in this homework).}
+\textbf{Remark 5.} \textit{If you use \lstinline[style=bash]{readG2o()} and load2D() functions provided by GTSAM, then you will not be able to solve the graph incrementally (task~\ref{sec:incremental_solution} in this homework).}
 
 \textbf{Hint:} You may use \lstinline[style=bash]{fscanf()}, \lstinline[style=bash]{textscan()}, or \lstinline[style=bash]{readcell()} functions with proper formatSpec from MATLAB and check if the first element in the input is \lstinline[style=bash]{VERTEX\_SE2} or \lstinline[style=bash]{EDGE\_SE2}.
 
-\subsection{B. (20 pts) Batch Solution}
+\subsection{B. Batch Solution}
 A batch solution means when we construct the entire graph and solve it at the end altogether. Load \lstinline[style=bash]{data/input\_INTEL\_g2o.g2o} and construct a 2D nonlinear factor graph using GTSAM. Use the Gauss-Newton solver. Visualize and compare the optimized trajectory against the initial trajectory. Include the plot in your pdf. Describe the graph construction process and its parameters.
 
 \textbf{Remark 6.} \textit{For this problem, Gauss Newton solver will fall into a local minimum if we don't give any perturbation. It is okay to submit a plot that doesn't work as expected, but please include discussions about why is this happening.}
 
 \textbf{Hint:} You may use \lstinline[style=bash]{NonLinearFactorGraph} as your graph, use \lstinline[style=bash]{GaussNewtonOptimizer} as you optimizer, use \lstinline[style=bash]{Values} for your initial estimation, \lstinline[style=bash]{noiseModel.Gaussian.Covariance()} for your noise model, \lstinline[style=bash]{graph.add()} and \lstinline[style=bash]{initial.insert()} functions as you see fit. However, function names might be different for different versions of gtsam.
 
-\subsection{C. (20 pts) Incremental Solution}
+\subsection{C. Incremental Solution}
+\label{sec:incremental_solution}
 Use ISAM2 solver to optimize the trajectory incrementally (as you build the graph gradually). A detailed algorithms is described in Algorithm 1. Visualize and compare the optimized trajectory against the initial trajectory. Include the plot in your pdf. Describe the graph construction process and its parameters.
 
 \begin{algorithmic}[1]
@@ -216,17 +207,17 @@ Use ISAM2 solver to optimize the trajectory incrementally (as you build the grap
 You may use \lstinline[style=bash]{NonLinearFactorGraph} as your graph, use \lstinline[style=bash]{gtsam.ISAM2()} as your update algorithm, use \lstinline[style=bash]{Values} for your initial estimation, and use \lstinline[style=bash]{graph.add()}, \lstinline[style=bash]{initial.insert()}, \lstinline[style=bash]{isam.update()}, and \lstinline[style=bash]{isam.calculateEstimate()} functions as you see fit. However, function names might be different for different versions of gtsam.
 
 \section{3D Graph SLAM (50 points)}
-\subsection{A. (10 pts)}
+\subsection{A.}
 Write a function to read 3D Garage G2O file from G2O format and output poses and edges.
 
 For 3D data, the pose in G2O format is \lstinline[style=bash]{[VERTEX\_SE3:QUAT i x y z qx qy qz qw]} where $(x,y,z)$ represents the translation and $(qx,qy,qz,qw)$ the rotation as a quaternion. The edge in G2O format is \lstinline[style=bash]{[EDGE\_SE3:QUAT i j x y z qx qy qz qw info(x, y, z, qx, qy, qz)]}, where \lstinline[style=bash]{info(x, y, z, qx, qy, qz)} is a $1 \times 21$ vector of the $6 \times 6$ information matrix. After similar process in task 1 A, you can obtain the covariance matrix. You may look into detail in the g2o repository\footnote{\url{https://github.com/RainerKuenmerle/g2o/wiki/File-Format-SLAM-3D}}.
 
 \textbf{Remark 7.} \textit{Please notice that the quaternion in MATLAB is in the order of [qw qx qy qz] and is different from the order in g2o files which is [qx qy qz qw]. You may use \lstinline[style=bash]{quat2rotm()} function in matlab to construct a rotation matrix from quaternion or use \lstinline[style=bash]{quat2tform()} function in matlab to construct a transformation matrix.}
 
-\subsection{B. (20 pts) Batch Solution}
+\subsection{B. Batch Solution}
 Load \lstinline[style=bash]{data/parking-garage.g2o} and construct a 3D nonlinear factor graph using GTSAM. Use the Gauss-Newton solver. Visualize and compare the optimized trajectory against the initial trajectory. Include a 3D plot or two 2D plots in your pdf. Describe the graph construction process and its parameters.
 
-\subsection{C. (20 pts) Incremental Solution}
+\subsection{C. Incremental Solution}
 Use ISAM2 solver to optimize the trajectory incrementally. Visualize and compare the optimized trajectory against the initial trajectory. Include a 3D plot or two 2D plots in your pdf. Describe the graph construction process and its parameters.
 
 \begin{figure}[h]
