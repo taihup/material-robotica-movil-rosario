@@ -23,7 +23,7 @@
 
 
 \section{Disclaimer}
-this homework is based on the Homework 7 -- SLAM of the NA 568 Mobile Robotics: Methods \& Algorithms -- Winter 2022 created by Maani Ghaffari -- University of Michigan
+This homework is based on the Homework 7 -- SLAM of the NA 568 Mobile Robotics: Methods \& Algorithms -- Winter 2022 created by Maani Ghaffari -- University of Michigan
 %\title{NA 568 Mobile Robotics: Methods \& Algorithms \\ Winter 2022 -- Homework 7 -- SLAM}
 %\author{Maani Ghaffari \\ University of Michigan}
 %\date{March 19, 2022}
@@ -71,13 +71,13 @@ The first step is to clone and install GTSAM library. Detailed instruction can b
 
 \textbf{Remark 4.} \textit{If you have error saying could not find Boost, you may try manually install boost following this tutorial and make sure you are pointing to the correct directory by adding following commands in CMakeList.txt :}
 
-\begin{verbatim}
+\begin{lstlisting}[style=bash]
 SET (BOOST_ROOT "<your_boost_path>")
 SET (BOOST_INCLUDEDIR "<your_boost_path>/boost")
 SET (BOOST_LIBRARYDIR "<your_boost_path>/libs")
 SET (BOOST_MIN_VERSION "1.58.0")
 set (Boost_NO_BOOST_CHAKE ON)
-\end{verbatim}
+\end{lstlisting}
 
 \begin{itemize}
     \item make the file to the build folder (The command -j10 indicates the number of threads to be used during make. It'll make the compilation faster. I recommend using your max number of cores - 2, otherwise your machine may get stuck. I have 12 threads on my machine, so I use -j10.) \lstinline[style=bash]{make -j10}
@@ -88,12 +88,11 @@ set (Boost_NO_BOOST_CHAKE ON)
 \subsubsection{C++}
 If you want to use C++, you don't have to install anything else. All you need to do is to find and link GTSAM library by adding the below context to your CMakeList.txt file.
 
-\begin{verbatim}
+\begin{lstlisting}[style=cmake]
 find_package(GTSAM_REQUIRED)
 include_directories(${GTSAM_INCLUDE_DIR})
 target_link_libraries(<your_project> <your_project_lib> gtsam)
-\end{verbatim}
-
+\end{lstlisting}
 You may refer to some c++ gtsam examples here.
 
 \subsubsection{MATLAB Wrapper}
@@ -118,10 +117,10 @@ We recommend using the pre-compiled wrapper if you are not familiar with linux s
     \item Extract the folder. (Note: for linux system, after extracting, you'll have to right click on the extracted file → Open With → Archive Mounter. Your will then see a gtsam-toolbox-3.2.0-lin64 on your left side along with Computer, OS... The folder inside named gtsam\_toolbox is the folder we want to use.)
     \item Put the gtsam\_toolbox folder under \lstinline[style=bash]{<YOUR\_MATLAB\_INSTALL\_PATH>/toolbox/}
     \item Every time you open your MATLAB, at the left side of your GUI, navigate to your gtsam\_toolbox → right click → add to path → selected folder. Then you should be able to run the example codes under the example folder. Or you can add the following commends as your first part of code.
-    \begin{verbatim}
-    addpath('<your_gtsam_toolbox_path>')
-    import gtsam.*
-    \end{verbatim}
+    \begin{lstlisting}[style=bash]
+addpath('<your_gtsam_toolbox_path>')
+import gtsam.*
+    \end{lstlisting}
 \end{itemize}
 
 You may refer to some matlab gtsam examples in \lstinline[style=bash]{gtsam\_toolbox/gtsam\_examples} folder.
@@ -134,7 +133,6 @@ Install Anaconda
 conda create -n gtsam_env python=<your\_python\_version>
 conda activate gtsam_env
 conda install -c conda-forge cmake eigen pybind11 boost numpy matplotlib python-graphviz conda-forge::plotly conda-forge::pandas conda-forge::nbformat
-
 \end{lstlisting}
 
 \begin{lstlisting}[style=bash] 
