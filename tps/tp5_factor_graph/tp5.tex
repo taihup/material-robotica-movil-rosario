@@ -32,9 +32,9 @@ This homework is based on the Homework 7 -- SLAM of the NA 568 Mobile Robotics: 
 
 \begin{enumerate}
     \item A .tar.gz or .zip file containing a directory named after your uniqname with the structure shown below. \\
-    \lstinline[style=bash]{alincoln\_hw7.zip:} \\
-    \lstinline[style=bash]{alincoln\_hw7/} \\
-    \lstinline[style=bash]{alincoln\_hw7/YOUR\_WORKING\_CODE} \\
+    \lstinline[style=bash]{alincoln_hw7.zip:} \\
+    \lstinline[style=bash]{alincoln_hw7/} \\
+    \lstinline[style=bash]{alincoln_hw7/YOUR_WORKING_CODE} \\
     You may use C++, Python, or MATLAB for your programming.
 
     \item A PDF with the written portion of your write-up. Scanned versions of hand-written documents, converted to PDFs, are perfectly acceptable. No other formats (e.g., doc) are acceptable. Your PDF file should adhere to the following naming convention: \lstinline[style=bash]{alincoln\_hw7.pdf}.
@@ -151,7 +151,7 @@ You may refer to some python gtsam examples in \url{https://github.com/borglab/g
 \subsection{A.}
 Write a function to read 2D Intel dataset\footnote{\url{https://www.dropbox.com/s/vcz8cag7bo0zlaj/input_INTEL_g2o.g2o?dl=0}} from G2O format and output poses and edges. These poses and edges are used in later problems. It can be any form you like as long as you can use it to generate the correct result.
 
-For 2D data, the pose in G2O format is \lstinline[style=bash]{[VERTEX\_SE2 i x y theta]} and the edge in G2O format is \lstinline[style=bash]{[EDGE\_SE2 i j x y theta info(x, y, theta)]}, where \lstinline[style=bash]{info(x, y, theta)} is a $1 \times 6$ vector \lstinline[style=bash]{[q11 q12 q13 q22 q23 q33]} where the elements are the upper-triangle matrix of the $3 \times 3$ information matrix:
+For 2D data, the pose in G2O format is \lstinline[style=bash]{[VERTEX_SE2 i x y theta]} and the edge in G2O format is \lstinline[style=bash]{[EDGE_SE2 i j x y theta info(x, y, theta)]}, where \lstinline[style=bash]{info(x, y, theta)} is a $1 \times 6$ vector \lstinline[style=bash]{[q11 q12 q13 q22 q23 q33]} where the elements are the upper-triangle matrix of the $3 \times 3$ information matrix:
 
 \begin{equation*}
     \Omega = \begin{bmatrix} q_{11} & q_{12} & q_{13} \\ q_{12} & q_{22} & q_{23} \\ q_{13} & q_{23} & q_{33} \end{bmatrix}.
@@ -161,12 +161,12 @@ By inverting this information matrix, you can obtain the covariance matrix for t
 
 You may look into detail in the g2o repository\footnote{\url{https://github.com/RainerKuemmerle/g2o/wiki/File-Format-SLAM-2D}}.
 
-\textbf{Remark 5.} \textit{If you use \lstinline[style=bash]{readG2o()} and load2D() functions provided by GTSAM, then you will not be able to solve the graph incrementally (task~\ref{sec:incremental_solution} in this homework).}
+\textbf{Remark 5.} \textit{If you use \lstinline[style=bash]{readG2o()} and \lstinline[style=bash]{load2D()} functions provided by GTSAM, then you will not be able to solve the graph incrementally (task~\ref{sec:incremental_solution} in this homework).}
 
-\textbf{Hint:} You may use \lstinline[style=bash]{fscanf()}, \lstinline[style=bash]{textscan()}, or \lstinline[style=bash]{readcell()} functions with proper formatSpec from MATLAB and check if the first element in the input is \lstinline[style=bash]{VERTEX\_SE2} or \lstinline[style=bash]{EDGE\_SE2}.
+\textbf{Hint:} You may use \lstinline[style=bash]{fscanf()}, \lstinline[style=bash]{textscan()}, or \lstinline[style=bash]{readcell()} functions with proper formatSpec from MATLAB and check if the first element in the input is \lstinline[style=bash]{VERTEX_SE2} or \lstinline[style=bash]{EDGE_SE2}.
 
 \subsection{B. Batch Solution}
-A batch solution means when we construct the entire graph and solve it at the end altogether. Load \lstinline[style=bash]{data/input\_INTEL\_g2o.g2o} and construct a 2D nonlinear factor graph using GTSAM. Use the Gauss-Newton solver. Visualize and compare the optimized trajectory against the initial trajectory. Include the plot in your pdf. Describe the graph construction process and its parameters.
+A batch solution means when we construct the entire graph and solve it at the end altogether. Load \lstinline[style=bash]{data/input_INTEL_g2o.g2o} and construct a 2D nonlinear factor graph using GTSAM. Use the Gauss-Newton solver. Visualize and compare the optimized trajectory against the initial trajectory. Include the plot in your pdf. Describe the graph construction process and its parameters.
 
 \textbf{Remark 6.} \textit{For this problem, Gauss Newton solver will fall into a local minimum if we don't give any perturbation. It is okay to submit a plot that doesn't work as expected, but please include discussions about why is this happening.}
 
@@ -222,28 +222,28 @@ Use ISAM2 solver to optimize the trajectory incrementally. Visualize and compare
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\textwidth]{example-image-a}
+    \includegraphics[width=0.8\textwidth]{images/result_task_1b.png}
     \caption{Expected result for task 1 B.}
     \label{fig:task1b}
 \end{figure}
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\textwidth]{example-image-a}
+    \includegraphics[width=0.8\textwidth]{result_task_1c.png}
     \caption{Expected result for task 1 C.}
     \label{fig:task1c}
 \end{figure}
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\textwidth]{example-image-a}
+    \includegraphics[width=0.8\textwidth]{result_task_2b.png}
     \caption{Expected result for task 2 B.}
     \label{fig:task2b}
 \end{figure}
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\textwidth]{example-image-a}
+    \includegraphics[width=0.8\textwidth]{result_task_2c.png}
     \caption{Expected result for task 2 C.}
     \label{fig:task2c}
 \end{figure}
