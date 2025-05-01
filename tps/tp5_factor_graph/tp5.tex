@@ -45,7 +45,7 @@ This homework is based on the Homework 7 -- SLAM of the NA 568 Mobile Robotics: 
 \section*{Pose Graph SLAM using GTSAM Library}
 In this homework, you’re going to solve the pose graph SLAM problem using the GTSAM library. If you are not familiar with GTSAM, a detailed tutorial is on their website: \url{https://gtsam.org/tutorials/intro.html}. To install GTSAM in c++, you’ll have to clone the code from the repository: \url{https://github.com/borglab/gtsam}, checkout (using git) the latest version and build the library following the instruction.
 
-After you successfully install GTSAM, write a function to read G2O files and solve the graph optimization problem for both 2D and 3D cases using GTSAM. In this assignment, we use datasets provided at \url{https://lucacarlone.mit.edu/datasets/}.
+After you successfully install GTSAM, write a function to read G2O \footnote{\url{https://github.com/RainerKuemmerle/g2o/wiki/File-Format}} files and solve the graph optimization problem for both 2D and 3D cases using GTSAM. In this assignment, we use datasets provided at \url{https://lucacarlone.mit.edu/datasets/}.
 
 While GTSAM is developed using C++, it also provides both MATLAB and Python wrapper. In this assignment, you’re free to use any of those languages.
 
@@ -224,13 +224,13 @@ Use ISAM2 solver to optimize the trajectory incrementally (as you build the grap
 
 \textbf{Hint:} You may use \lstinline[style=bash]{NonLinearFactorGraph} as your graph, use \lstinline[style=bash]{gtsam.ISAM2()} as your update algorithm, use \lstinline[style=bash]{Values} for your initial estimation, and use \lstinline[style=bash]{graph.add()}, \lstinline[style=bash]{initial.insert()}, \lstinline[style=bash]{isam.update()}, and \lstinline[style=bash]{isam.calculateEstimate()} functions as you see fit. However, function names might be different for different versions of gtsam.
 
-\section{3D Graph SLAM (50 points)}
+\section{3D Graph SLAM}
 \subsection{A.}
 Write a function to read 3D Garage G2O file\footnote{\url{https://www.dropbox.com/s/zu23p8d522qccor/parking-garage.g2o?dl=0}} from G2O format and output poses and edges.
 
-For 3D data, the pose in G2O format is \lstinline[style=bash]{[VERTEX_SE3:QUAT i x y z qx qy qz qw]} where $(x,y,z)$ represents the translation and $(qx,qy,qz,qw)$ the rotation as a quaternion. The edge in G2O format is \lstinline[style=bash]{[EDGE_SE3:QUAT i j x y z qx qy qz qw info(x, y, z, qx, qy, qz)]}, where \lstinline[style=bash]{info(x, y, z, qx, qy, qz)} is a $1 \times 21$ vector of the $6 \times 6$ information matrix. After similar process in task 1 A, you can obtain the covariance matrix. You may look into detail in the g2o repository\footnote{\url{https://github.com/RainerKuenmerle/g2o/wiki/File-Format-SLAM-3D}}.
+For 3D data, the pose in G2O format is \lstinline[style=bash]{[VERTEX_SE3:QUAT i x y z qx qy qz qw]} where \lstinline[style=bash]{(x,y,z)} represents the translation and \lstinline[style=bash]{(qx,qy,qz,qw)} the rotation as a quaternion. The edge in G2O format is \lstinline[style=bash]{[EDGE_SE3:QUAT i j x y z qx qy qz qw info(x, y, z, qx, qy, qz)]}, where \lstinline[style=bash]{info(x, y, z, qx, qy, qz)} is a $1 \times 21$ vector of the $6 \times 6$ information matrix. After similar process in task 1 A, you can obtain the covariance matrix. You may look into detail in the g2o repository\footnote{\url{https://github.com/RainerKuenmerle/g2o/wiki/File-Format-SLAM-3D}}.
 
-\textbf{Remark 7.} \textit{Please notice that the quaternion in MATLAB is in the order of [qw qx qy qz] and is different from the order in g2o files which is [qx qy qz qw]. You may use \lstinline[style=bash]{quat2rotm()} function in matlab to construct a rotation matrix from quaternion or use \lstinline[style=bash]{quat2tform()} function in matlab to construct a transformation matrix.}
+\textbf{Remark 7.} \textit{Please notice that the quaternion in MATLAB is in the order of \lstinline[style=bash]{[qw qx qy qz]} and is different from the order in g2o files which is \lstinline[style=bash]{[qx qy qz qw]}. You may use \lstinline[style=bash]{quat2rotm()} function in matlab to construct a rotation matrix from quaternion or use \lstinline[style=bash]{quat2tform()} function in matlab to construct a transformation matrix.}
 
 \subsection{B. Batch Solution}
 Load \lstinline[style=bash]{data/parking-garage.g2o} and construct a 3D nonlinear factor graph using GTSAM. Use the Gauss-Newton solver. Visualize and compare the optimized trajectory against the initial trajectory. Include a 3D plot or two 2D plots in your pdf. Describe the graph construction process and its parameters.
