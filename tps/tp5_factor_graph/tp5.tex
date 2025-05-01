@@ -22,7 +22,7 @@
 \maketitle
 
 
-\section{Disclaimer}
+\section*{Disclaimer}
 This homework is based on the Homework 7 -- SLAM of the NA 568 Mobile Robotics: Methods \& Algorithms -- Winter 2022 created by Maani Ghaffari -- University of Michigan
 %\title{NA 568 Mobile Robotics: Methods \& Algorithms \\ Winter 2022 -- Homework 7 -- SLAM}
 %\author{Maani Ghaffari \\ University of Michigan}
@@ -37,22 +37,22 @@ This homework is based on the Homework 7 -- SLAM of the NA 568 Mobile Robotics: 
     \lstinline[style=bash]{alincoln_hw7/YOUR_WORKING_CODE} \\
     You may use C++, Python, or MATLAB for your programming.
 
-    \item A PDF with the written portion of your write-up. Scanned versions of hand-written documents, converted to PDFs, are perfectly acceptable. No other formats (e.g., doc) are acceptable. Your PDF file should adhere to the following naming convention: \lstinline[style=bash]{alincoln\_hw7.pdf}.
+    \item A PDF with the written portion of your write-up. Scanned versions of hand-written documents, converted to PDFs, are perfectly acceptable. No other formats (e.g., doc) are acceptable. Your PDF file should adhere to the following naming convention: \lstinline[style=bash]{alincoln_hw7.pdf}.
 
     \item Submit your complete source code. We will compile and run your code for evaluation.
 \end{enumerate}
 
-\section{Pose Graph SLAM using GTSAM Library}
+\section*{Pose Graph SLAM using GTSAM Library}
 In this homework, you’re going to solve the pose graph SLAM problem using the GTSAM library. If you are not familiar with GTSAM, a detailed tutorial is on their website: \url{https://gtsam.org/tutorials/intro.html}. To install GTSAM in c++, you’ll have to clone the code from the repository: \url{https://github.com/borglab/gtsam}, checkout (using git) the latest version and build the library following the instruction.
 
 After you successfully install GTSAM, write a function to read G2O files and solve the graph optimization problem for both 2D and 3D cases using GTSAM. In this assignment, we use datasets provided at \url{https://lucacarlone.mit.edu/datasets/}.
 
 While GTSAM is developed using C++, it also provides both MATLAB and Python wrapper. In this assignment, you’re free to use any of those languages.
 
-\subsection{GTSAM Installation Guide}
+\subsection*{GTSAM Installation Guide}
 Below we provide an installation guide for GTSAM libraries, then we introduce C++, MATLAB, and python versions of them respectively.
 
-\subsubsection{GTSAM library}
+\subsubsection*{GTSAM library}
 The first step is to clone and install GTSAM library. Detailed instruction can be found in the repository.
 
 \textbf{Remark 1.} \textit{If you are planning to use MATLAB or python wrapper, you may skip this part.}
@@ -62,14 +62,27 @@ The first step is to clone and install GTSAM library. Detailed instruction can b
 \textbf{Remark 3.} \textit{Please notice prerequisites: Boost >= 1.58 (Ubuntu: sudo apt-get install libboost-all-dev); CMake >= 3.0 (Ubuntu: sudo apt-get install cmake); A modern compiler, i.e., at least gcc 4.7.3 on Linux.}
 
 \begin{itemize}
-    \item Go to this repository and click the green clone or download button on the right hand side to clone the repository to your machine.
-    \item In the terminal, enter command (this will allow you to navigate to the repository) \lstinline[style=bash]{cd <path\_to\_your\_repository>}
-    \item Then create a new folder named build by \lstinline[style=bash]{mkdir build}
-    \item Navigate into the build folder \lstinline[style=bash]{cd build}
-    \item run cmake to create essential links for building files (\textbf{Note}: if you want to use the python wrapper, you will have to do something different here. Please jump to the python wrapper section) \lstinline[style=bash]{cmake ..}
+    \item Go to gtsam repository \url{https://github.com/borglab/gtsam} and click the green clone or download button on the right hand side to clone the repository to your machine.
+    \item In the terminal, enter command (this will allow you to navigate to the repository)
+    
+    \lstinline[style=bash]{cd <path_to_your_repository>}
+    
+    \item Then create a new folder named build by
+    
+    \lstinline[style=bash]{mkdir build}
+    
+    \item Navigate into the build folder
+    
+    \lstinline[style=bash]{cd build}
+    
+    \item run cmake to create essential links for building files (\textbf{Note}: if you want to use the python wrapper, you will have to do something different here. Please jump to the python wrapper section)
+    
+    \lstinline[style=bash]{cmake ..}
 \end{itemize}
 
-\textbf{Remark 4.} \textit{If you have error saying could not find Boost, you may try manually install boost following this tutorial and make sure you are pointing to the correct directory by adding following commands in CMakeList.txt :}
+\textbf{Remark 4.} \textit{If you have error saying could not find Boost, you may try manually install boost following \href{https://www.boost.org/doc/libs/1_66_0/more/getting_started/unix-variants.html\#get-boost}{this tutorial} and make sure you are pointing to the correct directory by adding following commands in CMakeList.txt :}
+
+
 
 \begin{lstlisting}[style=bash]
 SET (BOOST_ROOT "<your_boost_path>")
@@ -85,7 +98,7 @@ set (Boost_NO_BOOST_CHAKE ON)
     \item At this step, you will be able to see the path where all the packages are installing to. If later you somehow cannot link the install path to your code, you can come back to this step and see where it is installed to.
 \end{itemize}
 
-\subsubsection{C++}
+\subsubsection*{C++}
 If you want to use C++, you don't have to install anything else. All you need to do is to find and link GTSAM library by adding the below context to your CMakeList.txt file.
 
 \begin{lstlisting}[style=cmake]
@@ -93,9 +106,10 @@ find_package(GTSAM_REQUIRED)
 include_directories(${GTSAM_INCLUDE_DIR})
 target_link_libraries(<your_project> <your_project_lib> gtsam)
 \end{lstlisting}
-You may refer to some c++ gtsam examples here.
 
-\subsubsection{MATLAB Wrapper}
+You may refer to some c++ gtsam examples \url{https://github.com/borglab/gtsam/tree/develop/examples}.
+
+\subsubsection*{MATLAB Wrapper}
 If you have a newer Ubuntu system (later than 10.04), you must make a small modification to your MATLAB installation, due to MATLAB being distributed with an old version of the C++ standard library. Delete or rename all files starting with libstdc++ in your MATLAB installation directory, in paths:
 
 \begin{itemize}
@@ -106,31 +120,31 @@ If you have a newer Ubuntu system (later than 10.04), you must make a small modi
 For MATLAB wrapper, you can do it in two ways:
 
 \begin{enumerate}
-    \item download the precompiled wrapper from here,
-    \item or install from sources following the instructions in here.
+    \item download the precompiled wrapper from \url{http://www.borg.cc.gatech.edu/download.html},
+    \item or install from sources following the instructions in \url{https://github.com/borglab/gtsam/tree/develop/matlab}.
 \end{enumerate}
 
 We recommend using the pre-compiled wrapper if you are not familiar with linux systems. Below are instructions on how to add the pre-compiled MATLAB wrapper to your toolbox.
 
 \begin{itemize}
     \item Download the pre-compiled wrapper here. Download precompiled MATLAB toolbox (Works with MATLAB R2011a and later) depends on your system OS (Mac OS 64-bit / Linux 64-bit / Windows 64-bit).
-    \item Extract the folder. (Note: for linux system, after extracting, you'll have to right click on the extracted file → Open With → Archive Mounter. Your will then see a gtsam-toolbox-3.2.0-lin64 on your left side along with Computer, OS... The folder inside named gtsam\_toolbox is the folder we want to use.)
-    \item Put the gtsam\_toolbox folder under \lstinline[style=bash]{<YOUR\_MATLAB\_INSTALL\_PATH>/toolbox/}
-    \item Every time you open your MATLAB, at the left side of your GUI, navigate to your gtsam\_toolbox → right click → add to path → selected folder. Then you should be able to run the example codes under the example folder. Or you can add the following commends as your first part of code.
+    \item Extract the folder. (\textbf{Note: for linux system}, after extracting, you'll have to right click on the extracted file $\rightarrow$ Open With $\rightarrow$ Archive Mounter. Your will then see a \lstinline[style=bash]{gtsam-toolbox-3.2.0-lin64} on your left side along with Computer, OS... The folder inside named \lstinline[style=bash]{gtsam_toolbox} is the folder we want to use.)
+    \item Put the \lstinline[style=bash]{gtsam_toolbox} folder under \lstinline[style=bash]{<YOUR_MATLAB_INSTALL_PATH>/toolbox/}
+    \item Every time you open your MATLAB, at the left side of your GUI, navigate to your \lstinline[style=bash]{gtsam_toolbox} $\rightarrow$ right click $\rightarrow$ add to path $\rightarrow$ selected folder. Then you should be able to run the example codes under the example folder. Or you can add the following commends as your first part of code.
     \begin{lstlisting}[style=bash]
 addpath('<your_gtsam_toolbox_path>')
 import gtsam.*
     \end{lstlisting}
 \end{itemize}
 
-You may refer to some matlab gtsam examples in \lstinline[style=bash]{gtsam\_toolbox/gtsam\_examples} folder.
+You may refer to some matlab gtsam examples in \lstinline[style=bash]{gtsam_toolbox/gtsam_examples} folder.
 
-\subsubsection{Python Wrapper}
+\subsubsection*{Python Wrapper}
 
-Install Anaconda
+Download and Install Anaconda from \url{https://www.anaconda.com/download}
 
 \begin{lstlisting}[style=bash] 
-conda create -n gtsam_env python=<your\_python\_version>
+conda create -n gtsam_env python=<your_python_version>
 conda activate gtsam_env
 conda install -c conda-forge cmake eigen pybind11 boost numpy matplotlib python-graphviz conda-forge::plotly conda-forge::pandas conda-forge::nbformat
 \end{lstlisting}
@@ -139,8 +153,8 @@ conda install -c conda-forge cmake eigen pybind11 boost numpy matplotlib python-
 git clone https://github.com/borglab/gtsam.git
 cd gtsam
 mkdir build && cd build
-conda install -r <gtsam\_folder>/python/requirements.txt
-cmake .. -DGTSAM_BUILD_PYTHON=1 -DGTSAM_PYTHON_VERSION=<your\_python\_version>
+conda install -r <gtsam_folder>/python/requirements.txt
+cmake .. -DGTSAM_BUILD_PYTHON=1 -DGTSAM_PYTHON_VERSION=<your_python_version>
 make -j2 (2 is the number of threads you want to use)
 make python-install
 \end{lstlisting}
@@ -174,43 +188,47 @@ A batch solution means when we construct the entire graph and solve it at the en
 
 \subsection{C. Incremental Solution}
 \label{sec:incremental_solution}
-Use ISAM2 solver to optimize the trajectory incrementally (as you build the graph gradually). A detailed algorithms is described in Algorithm 1. Visualize and compare the optimized trajectory against the initial trajectory. Include the plot in your pdf. Describe the graph construction process and its parameters.
+Use ISAM2 solver to optimize the trajectory incrementally (as you build the graph gradually). A detailed algorithms is described in Algorithm~\ref{alg:isam2}. Visualize and compare the optimized trajectory against the initial trajectory. Include the plot in your pdf. Describe the graph construction process and its parameters.
 
-\begin{algorithmic}[1]
-\Require poses: a N x 4 array that each row is $pose=(id_{p},x,y,\theta)$; edges: a M x 11 array that each row is $edge=(id_{e1},id_{e2},dx,dy,d\theta,info)$
-\State $isam \leftarrow$ gtsam.ISAM2() \Comment{Initialize isam solver}
-\For{every pose in poses}
-    \State $graph \leftarrow$ NonlinearFactorGraph \Comment{Initialize the factor graph}
-    \State $initialEstimate \leftarrow$ Values \Comment{Initialize the initial estimation}
-    \State $(id_{p},x,y,\theta) \gets pose$ \Comment{Extract information from the current pose}
-    \If{$id_{p} == 0$}
-        \State $priorNoise \leftarrow$ some noiseModel \Comment{Use a predefined noise model}
-        \State $graph.add(PriorFactorPose2(0,Pose2(x,y,\theta),priorNoise))$
-        \State $initialEstimate.insert(id_{p},\text{Pose2}(x,y,\theta))$
-    \Else \Comment{Not the first pose}
-        \State $prevPose \gets result.at(id_{p}-1)$ \Comment{Use last optimized pose}
-        \State $initialEstimate.insert(id_{p},prevPose)$
-    \EndIf
-    \For{every edge in edges}
-        \State $(id_{e1},id_{e2},dx,dy,d\theta,info) \gets edge$ \Comment{Extract information from the current edge}
-        \If{$id_{e2} == id_{p}$}
-            \State $cov=construct\_covariance(info)$ \Comment{Construct a covariance matrix from the information vector.}
-            \State $Model \leftarrow$ noiseModel.Gaussian.Covariance($cov$)
-            \State $graph.add(BetweenFactorPose2(id_{e1},id_{e2},\text{Pose2}(dx,dy,d\theta),Model)$
+\begin{algorithm}
+    \caption{\lstinline[style=bash]{incremental_solution_2d(poses, edges)}}
+    \label{alg:isam2}
+    \begin{algorithmic}[1]    
+    \Require poses: a N x 4 array that each row is $pose=(id_{p},x,y,\theta)$; edges: a M x 11 array that each row is $edge=(id_{e1},id_{e2},dx,dy,d\theta,info)$
+    \State $isam \leftarrow$ gtsam.ISAM2() \Comment{Initialize isam solver}
+    \For{every pose in poses}
+        \State $graph \leftarrow$ NonlinearFactorGraph \Comment{Initialize the factor graph}
+        \State $initialEstimate \leftarrow$ Values \Comment{Initialize the initial estimation}
+        \State $(id_{p},x,y,\theta) \gets pose$ \Comment{Extract information from the current pose}
+        \If{$id_{p} == 0$}
+            \State $priorNoise \leftarrow$ some noiseModel \Comment{Use a predefined noise model}
+            \State $graph.add(PriorFactorPose2(0,Pose2(x,y,\theta),priorNoise))$
+            \State $initialEstimate.insert(id_{p},\text{Pose2}(x,y,\theta))$
+        \Else \Comment{Not the first pose}
+            \State $prevPose \gets result.at(id_{p}-1)$ \Comment{Use last optimized pose}
+            \State $initialEstimate.insert(id_{p},prevPose)$
         \EndIf
+        \For{every edge in edges}
+            \State $(id_{e1},id_{e2},dx,dy,d\theta,info) \gets edge$ \Comment{Extract information from the current edge}
+            \If{$id_{e2} == id_{p}$}
+                \State $cov=construct\_covariance(info)$ \Comment{Construct a covariance matrix from the information vector.}
+                \State $Model \leftarrow$ noiseModel.Gaussian.Covariance($cov$)
+                \State $graph.add(BetweenFactorPose2(id_{e1},id_{e2},\text{Pose2}(dx,dy,d\theta),Model)$
+            \EndIf
+        \EndFor
+        \State $isam.update(graph,initialEstimate)$
+        \State $result=isam.calculateEstimate$
     \EndFor
-    \State $isam.update(graph,initialEstimate)$
-    \State $result=isam.calculateEstimate$
-\EndFor
-\end{algorithmic}
+    \end{algorithmic}
+\end{algorithm}
 
-You may use \lstinline[style=bash]{NonLinearFactorGraph} as your graph, use \lstinline[style=bash]{gtsam.ISAM2()} as your update algorithm, use \lstinline[style=bash]{Values} for your initial estimation, and use \lstinline[style=bash]{graph.add()}, \lstinline[style=bash]{initial.insert()}, \lstinline[style=bash]{isam.update()}, and \lstinline[style=bash]{isam.calculateEstimate()} functions as you see fit. However, function names might be different for different versions of gtsam.
+\textbf{Hint:} You may use \lstinline[style=bash]{NonLinearFactorGraph} as your graph, use \lstinline[style=bash]{gtsam.ISAM2()} as your update algorithm, use \lstinline[style=bash]{Values} for your initial estimation, and use \lstinline[style=bash]{graph.add()}, \lstinline[style=bash]{initial.insert()}, \lstinline[style=bash]{isam.update()}, and \lstinline[style=bash]{isam.calculateEstimate()} functions as you see fit. However, function names might be different for different versions of gtsam.
 
 \section{3D Graph SLAM (50 points)}
 \subsection{A.}
-Write a function to read 3D Garage G2O file from G2O format and output poses and edges.
+Write a function to read 3D Garage G2O file\footnote{\url{https://www.dropbox.com/s/zu23p8d522qccor/parking-garage.g2o?dl=0}} from G2O format and output poses and edges.
 
-For 3D data, the pose in G2O format is \lstinline[style=bash]{[VERTEX\_SE3:QUAT i x y z qx qy qz qw]} where $(x,y,z)$ represents the translation and $(qx,qy,qz,qw)$ the rotation as a quaternion. The edge in G2O format is \lstinline[style=bash]{[EDGE\_SE3:QUAT i j x y z qx qy qz qw info(x, y, z, qx, qy, qz)]}, where \lstinline[style=bash]{info(x, y, z, qx, qy, qz)} is a $1 \times 21$ vector of the $6 \times 6$ information matrix. After similar process in task 1 A, you can obtain the covariance matrix. You may look into detail in the g2o repository\footnote{\url{https://github.com/RainerKuenmerle/g2o/wiki/File-Format-SLAM-3D}}.
+For 3D data, the pose in G2O format is \lstinline[style=bash]{[VERTEX_SE3:QUAT i x y z qx qy qz qw]} where $(x,y,z)$ represents the translation and $(qx,qy,qz,qw)$ the rotation as a quaternion. The edge in G2O format is \lstinline[style=bash]{[EDGE_SE3:QUAT i j x y z qx qy qz qw info(x, y, z, qx, qy, qz)]}, where \lstinline[style=bash]{info(x, y, z, qx, qy, qz)} is a $1 \times 21$ vector of the $6 \times 6$ information matrix. After similar process in task 1 A, you can obtain the covariance matrix. You may look into detail in the g2o repository\footnote{\url{https://github.com/RainerKuenmerle/g2o/wiki/File-Format-SLAM-3D}}.
 
 \textbf{Remark 7.} \textit{Please notice that the quaternion in MATLAB is in the order of [qw qx qy qz] and is different from the order in g2o files which is [qx qy qz qw]. You may use \lstinline[style=bash]{quat2rotm()} function in matlab to construct a rotation matrix from quaternion or use \lstinline[style=bash]{quat2tform()} function in matlab to construct a transformation matrix.}
 
@@ -220,28 +238,28 @@ Load \lstinline[style=bash]{data/parking-garage.g2o} and construct a 3D nonlinea
 \subsection{C. Incremental Solution}
 Use ISAM2 solver to optimize the trajectory incrementally. Visualize and compare the optimized trajectory against the initial trajectory. Include a 3D plot or two 2D plots in your pdf. Describe the graph construction process and its parameters.
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/result_task_1b.png}
+    \includegraphics[width=0.6\textwidth]{images/result_task_1b.png}
     \caption{Expected result for task 1 B.}
     \label{fig:task1b}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.8\textwidth]{result_task_1c.png}
+    \includegraphics[width=0.7\textwidth]{result_task_1c.png}
     \caption{Expected result for task 1 C.}
     \label{fig:task1c}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{result_task_2b.png}
     \caption{Expected result for task 2 B.}
     \label{fig:task2b}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{result_task_2c.png}
     \caption{Expected result for task 2 C.}
