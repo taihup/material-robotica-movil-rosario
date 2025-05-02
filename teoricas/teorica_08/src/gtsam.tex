@@ -192,7 +192,7 @@ Value 3: (gtsam::Pose2)
 
 
 \begin{frame}[fragile]
-    \frametitle{Non Linear Optimization in GTSAM}
+    \frametitle{Full Posterior Inference}
     \note{Factor Graphs and GTSAM: A Hands-on Introduction http://hdl.handle.net/1853/45226}
     \note{José Luis Blanco Factor-Gprah Tutorial: https://www.youtube.com/playlist?list=PLOJ3GF0x2_eWtGXfZ5Ne1Jul5L-6Q76Sz}
     \note{GTSAM Tutorial: https://gtsam.org/notes/GTSAM-Concepts.html}
@@ -208,6 +208,7 @@ Value 3: (gtsam::Pose2)
         \item GTSAM can also be used to calculate the covariance matrix for each pose after incorporating the information from all measurements $Z$. Recognizing that the factor graph encodes the \textbf{posterior density} $P(X \mid Z)$, the mean $\mu$ together with the covariance $\Sigma$ for each pose $x$ approximate the \textbf{marginal posterior density} $P(x \mid Z)$. Note that this is just an approximation, as even in this simple case the odometry factors are actually non-linear in their arguments, and GTSAM only computes a Gaussian approximation to the true underlying posterior.
     \end{itemize}
 
+    \tiny
 
 \begin{lstlisting}[style=python] 
 # Calculate and print marginal covariances for all variables
@@ -216,8 +217,6 @@ for i in range(1, 4):
     print("X{} covariance:\n{}\n".format(i,
                                         marginals.marginalCovariance(i)))
 \end{lstlisting}
-
-\tiny
 
 \begin{lstlisting}[style=bash] 
 X1 covariance:
@@ -235,5 +234,8 @@ X3 covariance:
     [8.63317012e-18 3.70000000e-01 6.00000000e-02]
     [2.69082491e-18 6.00000000e-02 3.00000000e-02]]
 \end{lstlisting}
+
+\note{What we see is that the marginal covariance $P(x_1 \mid Z)$ on $x_1$ is simply the prior knowledge on $x_1$, but as the robot moves the uncertainty in all dimensions grows without bound, and the y and $\theta$ components of the pose become (positively) correlated.
+An important fact to note when interpreting these numbers is that covariance matrices are given in relative coordinates, not absolute coordinates. This is because internally GTSAM optimizes for a change with respect to a linearization point, as do all nonlinear optimization libraries.}
 
 \end{frame}
