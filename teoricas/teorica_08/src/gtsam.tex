@@ -12,8 +12,8 @@
 
 
 \begin{lstlisting}[style=bash] 
-gtsam/build/python/gtsam/examples/OdometryExamples.py
-gtsam/build/python/gtsam/examples/Pose2SLAMExample.ipynb
+    https://github.com/borglab/gtsam/blob/develop/python/gtsam/examples/OdometryExample.py
+    https://github.com/borglab/gtsam/blob/develop/python/gtsam/examples/Pose2SLAMExample.ipynb
 \end{lstlisting}
 
 \end{frame}
@@ -164,7 +164,7 @@ print("\nFinal Result:\n{}".format(result))
     \begin{figure}[!h]
         \includegraphics[width=0.5\textwidth]{./images/gtsam/factor_graph_odometry.pdf}
     \end{figure}
-\begin{lstlisting}[style=python] 
+\begin{lstlisting}[style=bash] 
 Initial Estimate:
 Values with 3 values:
 Value 1: (gtsam::Pose2)
@@ -237,5 +237,143 @@ X3 covariance:
 
 \note{What we see is that the marginal covariance $P(x_1 \mid Z)$ on $x_1$ is simply the prior knowledge on $x_1$, but as the robot moves the uncertainty in all dimensions grows without bound, and the y and $\theta$ components of the pose become (positively) correlated.
 An important fact to note when interpreting these numbers is that covariance matrices are given in relative coordinates, not absolute coordinates. This is because internally GTSAM optimizes for a change with respect to a linearization point, as do all nonlinear optimization libraries.}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Full Posterior Inference}
+    \note{Factor Graphs and GTSAM: A Hands-on Introduction http://hdl.handle.net/1853/45226}
+    \note{José Luis Blanco Factor-Gprah Tutorial: https://www.youtube.com/playlist?list=PLOJ3GF0x2_eWtGXfZ5Ne1Jul5L-6Q76Sz}
+    \note{GTSAM Tutorial: https://gtsam.org/notes/GTSAM-Concepts.html}
+    \note{https://github.com/borglab/gtsam/blob/develop/python/gtsam/examples/OdometryExample.py}
+
+    \begin{figure}[!h]
+        \includegraphics[width=0.6\textwidth]{./images/gtsam/gtsam_odometry.pdf}
+    \end{figure}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Loop Closure Constraints}
+    \note{Factor Graphs and GTSAM: A Hands-on Introduction http://hdl.handle.net/1853/45226}
+    \note{José Luis Blanco Factor-Gprah Tutorial: https://www.youtube.com/playlist?list=PLOJ3GF0x2_eWtGXfZ5Ne1Jul5L-6Q76Sz}
+    \note{GTSAM Tutorial: https://gtsam.org/notes/GTSAM-Concepts.html}
+    \note{https://github.com/borglab/gtsam/blob/develop/python/gtsam/examples/Pose2SLAMExample.ipynb}
+
+    \begin{figure}[!h]
+        \includegraphics[width=0.8\textwidth]{./images/gtsam/factor_graph_loop_closure.pdf}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Loop Closure Constraints}
+    \note{Factor Graphs and GTSAM: A Hands-on Introduction http://hdl.handle.net/1853/45226}
+    \note{José Luis Blanco Factor-Gprah Tutorial: https://www.youtube.com/playlist?list=PLOJ3GF0x2_eWtGXfZ5Ne1Jul5L-6Q76Sz}
+    \note{GTSAM Tutorial: https://gtsam.org/notes/GTSAM-Concepts.html}
+    \note{https://github.com/borglab/gtsam/blob/develop/python/gtsam/examples/Pose2SLAMExample.ipynb}
+
+
+    \scriptsize
+
+\begin{lstlisting}[style=python] 
+# Create a factor graph container
+graph = gtsam.NonlinearFactorGraph()
+
+# Add a prior on the first pose (key 1)
+graph.add(gtsam.PriorFactorPose2(1, gtsam.Pose2(0, 0, 0), PRIOR_NOISE))
+
+# Add odometry factors (Between Factors)
+# Between poses 1 and 2:
+graph.add(gtsam.BetweenFactorPose2(1, 2, gtsam.Pose2(2, 0, 0), ODOMETRY_NOISE))
+# Between poses 2 and 3:
+graph.add(gtsam.BetweenFactorPose2(2, 3, gtsam.Pose2(2, 0, math.pi / 2), ODOMETRY_NOISE))
+# Between poses 3 and 4:
+graph.add(gtsam.BetweenFactorPose2(3, 4, gtsam.Pose2(2, 0, math.pi / 2), ODOMETRY_NOISE))
+# Between poses 4 and 5:
+graph.add(gtsam.BetweenFactorPose2(4, 5, gtsam.Pose2(2, 0, math.pi / 2), ODOMETRY_NOISE))
+
+# Add the loop closure constraint
+# This factor connects pose 5 back to pose 2
+# The measurement is the expected relative pose from 5 to 2
+graph.add(gtsam.BetweenFactorPose2(5, 2, gtsam.Pose2(2, 0, math.pi / 2), ODOMETRY_NOISE))
+\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Loop Closure Constraints}
+    \note{Factor Graphs and GTSAM: A Hands-on Introduction http://hdl.handle.net/1853/45226}
+    \note{José Luis Blanco Factor-Gprah Tutorial: https://www.youtube.com/playlist?list=PLOJ3GF0x2_eWtGXfZ5Ne1Jul5L-6Q76Sz}
+    \note{GTSAM Tutorial: https://gtsam.org/notes/GTSAM-Concepts.html}
+    \note{https://github.com/borglab/gtsam/blob/develop/python/gtsam/examples/Pose2SLAMExample.ipynb}
+
+    \begin{figure}[!h]
+        \includegraphics[width=0.7\textwidth]{./images/gtsam/gtsam_loop_closure.pdf}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Landmark-based SLAM}
+    \note{Factor Graphs and GTSAM: A Hands-on Introduction http://hdl.handle.net/1853/45226}
+    \note{José Luis Blanco Factor-Gprah Tutorial: https://www.youtube.com/playlist?list=PLOJ3GF0x2_eWtGXfZ5Ne1Jul5L-6Q76Sz}
+    \note{GTSAM Tutorial: https://gtsam.org/notes/GTSAM-Concepts.html}
+    \note{https://github.com/borglab/gtsam/blob/develop/python/gtsam/examples/PlanarSLAMExample.ipynb}
+
+    \begin{figure}[!h]
+        \includegraphics[width=0.6\textwidth]{./images/gtsam/factor_graph_landmark_based_slam.pdf}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Loop Closure Constraints}
+    \note{Factor Graphs and GTSAM: A Hands-on Introduction http://hdl.handle.net/1853/45226}
+    \note{José Luis Blanco Factor-Gprah Tutorial: https://www.youtube.com/playlist?list=PLOJ3GF0x2_eWtGXfZ5Ne1Jul5L-6Q76Sz}
+    \note{GTSAM Tutorial: https://gtsam.org/notes/GTSAM-Concepts.html}
+    \note{https://github.com/borglab/gtsam/blob/develop/python/gtsam/examples/Pose2SLAMExample.ipynb}
+
+
+    \scriptsize
+
+\begin{lstlisting}[style=python]
+# Create noise models with specified standard deviations (sigmas).
+PRIOR_NOISE = gtsam.noiseModel.Diagonal.Sigmas(np.array([0.3, 0.3, 0.1]))
+ODOMETRY_NOISE = gtsam.noiseModel.Diagonal.Sigmas(np.array([0.2, 0.2, 0.1]))
+# Measurement noise (bearing, range) - sigmas = [0.1rad, 0.2m]
+MEASUREMENT_NOISE = gtsam.noiseModel.Diagonal.Sigmas(np.array([0.1, 0.2]))
+
+# Create an empty nonlinear factor graph
+graph = gtsam.NonlinearFactorGraph()
+
+# Add a prior on pose X(1) at the origin.
+graph.add(gtsam.PriorFactorPose2(X(1), gtsam.Pose2(0.0, 0.0, 0.0), PRIOR_NOISE))
+
+# Add odometry factors between X(1),X(2) and X(2),X(3), respectively.
+# The measurement is the relative motion: Pose2(dx, dy, dtheta).
+graph.add(gtsam.BetweenFactorPose2(X(1), X(2), gtsam.Pose2(2.0, 0.0, 0.0), ODOMETRY_NOISE))
+graph.add(gtsam.BetweenFactorPose2(X(2), X(3), gtsam.Pose2(2.0, 0.0, 0.0), ODOMETRY_NOISE))
+
+# Add Range-Bearing measurements to two different landmarks L(1) and L(2).
+# Measurements are Bearing (gtsam.Rot2) and Range (float).
+graph.add(gtsam.BearingRangeFactor2D(X(1), L(1), gtsam.Rot2.fromDegrees(45), np.sqrt(4.0+4.0), MEASUREMENT_NOISE))
+graph.add(gtsam.BearingRangeFactor2D(X(2), L(1), gtsam.Rot2.fromDegrees(90), 2.0, MEASUREMENT_NOISE))
+graph.add(gtsam.BearingRangeFactor2D(X(3), L(2), gtsam.Rot2.fromDegrees(90), 2.0, MEASUREMENT_NOISE))
+\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Landmark-based SLAM}
+    \note{Factor Graphs and GTSAM: A Hands-on Introduction http://hdl.handle.net/1853/45226}
+    \note{José Luis Blanco Factor-Gprah Tutorial: https://www.youtube.com/playlist?list=PLOJ3GF0x2_eWtGXfZ5Ne1Jul5L-6Q76Sz}
+    \note{GTSAM Tutorial: https://gtsam.org/notes/GTSAM-Concepts.html}
+    \note{https://github.com/borglab/gtsam/blob/develop/python/gtsam/examples/PlanarSLAMExample.ipynb}
+
+    \begin{figure}[!h]
+        \includegraphics[width=0.6\textwidth]{./images/gtsam/gtsam_landmark_based_slam.pdf}
+    \end{figure}
 
 \end{frame}
