@@ -1,4 +1,4 @@
-\begin{frame}[fragile]
+\begin{frame}
     \frametitle{GTSAM: Georgia Tech Smoothing and Mapping}
     \note{Factor Graphs and GTSAM: A Hands-on Introduction http://hdl.handle.net/1853/45226}
     \note{José Luis Blanco Factor-Gprah Tutorial: https://www.youtube.com/playlist?list=PLOJ3GF0x2_eWtGXfZ5Ne1Jul5L-6Q76Sz}
@@ -9,12 +9,6 @@
         \item It provides state of the art solutions to the SLAM and SFM problems, but can also be used to model and solve both simpler and more complex estimation problems.
         \item MATLAB and Python wrappers for rapid prototype development
     \end{itemize}
-
-
-\begin{lstlisting}[style=bash] 
-    https://github.com/borglab/gtsam/blob/develop/python/gtsam/examples/OdometryExample.py
-    https://github.com/borglab/gtsam/blob/develop/python/gtsam/examples/Pose2SLAMExample.ipynb
-\end{lstlisting}
 
 \end{frame}
 
@@ -375,5 +369,21 @@ graph.add(gtsam.BearingRangeFactor2D(X(3), L(2), gtsam.Rot2.fromDegrees(90), 2.0
     \begin{figure}[!h]
         \includegraphics[width=0.6\textwidth]{./images/gtsam/gtsam_landmark_based_slam.pdf}
     \end{figure}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{GTSAM: Georgia Tech Smoothing and Mapping}
+    \note{Factor Graphs and GTSAM: A Hands-on Introduction http://hdl.handle.net/1853/45226}
+    \note{José Luis Blanco Factor-Gprah Tutorial: https://www.youtube.com/playlist?list=PLOJ3GF0x2_eWtGXfZ5Ne1Jul5L-6Q76Sz}
+    \note{GTSAM Tutorial: https://gtsam.org/notes/GTSAM-Concepts.html}
+
+    Code related to the GTSAM examples used in this slides:
+    \begin{itemize}
+        \item \url{https://github.com/borglab/gtsam/blob/develop/python/gtsam/examples/OdometryExample.py}
+        \item \url{https://github.com/borglab/gtsam/blob/develop/python/gtsam/examples/Pose2SLAMExample.ipynb}
+        \item \url{https://github.com/borglab/gtsam/blob/develop/python/gtsam/examples/PlanarSLAMExample.ipynb}
+    \end{itemize}
 
 \end{frame}

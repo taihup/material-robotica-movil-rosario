@@ -61,8 +61,8 @@
             \begin{equation*}
                 \error_{i}\left( \stateBold \right) = \observationBold_{i} - f_{i}\left( \stateBold \right)
             \end{equation*}
-        \item Supongamos que el error tiene una distribución normal con media cero
-        \item Error Gaussiano con matriz de información $\informationMatrix_{i}$
+        \item Supongamos que el error tiene una distribución normal con media cero y matriz covarianza $\covariance$
+        \item La matriz de información del Error Gaussiano es $\informationMatrix_{i} = \inverse{\covariance}$
         \item El error al cuadrado de una medición depende sólo del estado y es un escalar:
             \begin{equation*}
                 \error_{i}\left( \stateBold \right) = \error_{i}\left( \stateBold \right)^{\top} \informationMatrix_{i} \error_{i}\left( \stateBold \right)
