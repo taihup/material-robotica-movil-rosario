@@ -29,6 +29,31 @@
     \end{figure}
 \end{frame}
 
+\begin{frame}
+    \frametitle{Multivariate Gaussians PDFs}
+    \note{información extraida de https://youtu.be/nLQ-YiPPMeU?si=oI3GINrPWORx_wQA}
+    
+    \begin{itemize}
+        \item Moment Form:        
+        
+        \begin{equation*}
+            x \sim \mathcal{N}\left(\mu, \covariance\right)  \qquad p(x)=\det(2\pi\covariance)^{\frac{1}{2}} \exp\left(-\dfrac{1}{2} (x - \mu )^{\top} \inverse{\covariance} (x - \mu )  \right)
+        \end{equation*}
+
+        \item Information (or precision) form:
+        \begin{equation*}
+            x \sim \inverse{\mathcal{N}}\left(\nu, \informationMatrix\right) \quad \text{or} \quad \inverse{\mathcal{N}}\left(x; \nu, \informationMatrix\right)  
+        \end{equation*}
+        with
+        $\nu = \inverse{\covariance} \mu$ y $\informationMatrix = \inverse{\covariance} \, \text{(Information Matrix)}$
+        
+    \end{itemize}
+
+    \begin{figure}[!h]
+        \includegraphics[width=0.35\columnwidth]{./images/joint_marginal_and_conditional_probability_density_functions.pdf}
+    \end{figure}
+\end{frame}
+
 
 \begin{frame}
     \frametitle{Suposiciones de Kalman Filter}
