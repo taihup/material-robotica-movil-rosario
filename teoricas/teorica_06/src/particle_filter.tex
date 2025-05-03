@@ -84,6 +84,7 @@
 
 \begin{frame}
     \frametitle{Conjunto de Partículas}
+    \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
     
     \begin{itemize}
         \item Conjunto de partículas con peso
@@ -115,6 +116,7 @@
 
 \begin{frame}
     \frametitle{Partículas para Aproximar}
+    \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
     
     \begin{itemize}
         \item Partículas para aproximar una función
@@ -134,7 +136,9 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Una Forma Cerrada de Muestreo es solo posible para Pocas Distribuciones }
+    \frametitle{Una Forma Cerrada de Muestreo es solo posible para Pocas Distribuciones}
+    \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
+
     \begin{itemize}
         \item Ejemplo: Distribución Gaussiana
         
@@ -159,6 +163,8 @@
 
 \begin{frame}
     \frametitle{Principio de muestreo de importancia}
+    \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
+
     \begin{itemize}
         \item Podemos usar una distribución diferente $\pi$ para generar muestras de $f$
         \item Considere las ``diferencias entre $\pi$ y $f$'' usando un peso $w = f(x) / \pi(x)$
@@ -174,6 +180,8 @@
     
 \begin{frame}
     \frametitle{Filtro de Partículas}
+    \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
+
     \begin{itemize}
         \item Filtro Bayesiano recursivo
         \item Enfoque no paramétrico
@@ -186,6 +194,8 @@
     
 \begin{frame}
     \frametitle{Algoritmo de Filtro de Partículas}
+    \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
+
     \begin{enumerate}
         \item Muestrear las partículas utilizando la distribución propuesta.
         \begin{equation*}
@@ -202,6 +212,8 @@
 
 \begin{frame}
     \frametitle{Algoritmo de Filtro de Partículas}
+    \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
+
     \begin{algorithmic}[1]
     \Procedure{ParticleFilter}{$\mathcal{X}_{t-1}, u_{t}, z_{t}$}:
     \State $\bar{\mathcal{X}}_t = \mathcal{X}_t = \emptyset$
@@ -222,6 +234,7 @@
 
 \begin{frame}
     \frametitle{Monte Carlo Localization}
+    \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
 
     Monte Carlo Localization: Filtro de Partículas para la localización de un robot
 
@@ -239,6 +252,8 @@
 
 \begin{frame}
     \frametitle{Monte Carlo Localization}
+    \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
+
     \begin{itemize}
         \item Cada partícula es una hipótesis de la pose
         \item Proposal es el motion model
@@ -255,6 +270,8 @@
     
 \begin{frame}
     \frametitle{Filtro de Partículas para Localización}
+    \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
+
     \begin{algorithmic}[1]
         \Procedure{ParticleFilter}{$\mathcal{X}_{t-1}, u_{t}, z_{t}$}
         \State $\bar{\mathcal{X}}_t = \mathcal{X}_t = \emptyset$
@@ -274,6 +291,7 @@
     
 \begin{frame}
     \frametitle{Monte Carlo Localization - Paso de Corrección}
+    \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
 
     \begin{center}
         \includegraphics[width=0.8\textwidth]{./images/particle_filter/monte_carlo_correction.pdf}
@@ -283,6 +301,7 @@
 
 \begin{frame}
     \frametitle{Monte Carlo Localization - Remuestreo y Predicción}
+    \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
 
     \begin{center}
         \includegraphics[width=0.8\textwidth]{./images/particle_filter/monte_carlo_resample_and_predict.pdf}
@@ -292,6 +311,7 @@
 
 \begin{frame}
     \frametitle{Monte Carlo Localization - Paso de Corrección 2}
+    \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
 
     \begin{center}
         \includegraphics[width=0.8\textwidth]{./images/particle_filter/monte_carlo_correction2.pdf}
@@ -301,6 +321,7 @@
 
 \begin{frame}
     \frametitle{Monte Carlo Localization - Remuestreo y Predicción 2}
+    \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
 
     \begin{center}
         \includegraphics[width=0.8\textwidth]{./images/particle_filter/monte_carlo_resample_and_predict2.pdf}
@@ -311,6 +332,8 @@
 
 \begin{frame}
     \frametitle{Resampling}
+    \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
+
     \begin{itemize}
         \item Tomar la partícula $i$ con probabilidad $w_t^{[i]}$. Repetir $J$ veces.
         \item Informalmente: ``Reemplazar muestras improbables por otras más probables''
@@ -322,6 +345,8 @@
     
 \begin{frame}
     \frametitle{Métodos de Resampling}
+    \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
+
     \begin{overlayarea}{\textwidth}{\textheight}
         
         \only<1>{
@@ -352,6 +377,8 @@
 
 \begin{frame}
     \frametitle{Métodos de Resampling}
+    \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
+
     \begin{overlayarea}{\textwidth}{\textheight}
         \only<1>{
             \begin{center}
@@ -381,6 +408,8 @@
 
 \begin{frame}
     \frametitle{Resampling}
+    \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
+
     \begin{itemize}
         \item Muestreo con remplazo (muestreamos tomando una partícula y luego la volvemos a colocar en la bolsa)
         \item Roulette Wheel resampling es fácil de entender pero es suboptimo en la práctica
@@ -409,6 +438,7 @@
 
 \begin{frame}
     \frametitle{Idea de Low Variance Resampling}
+    \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
 
     \begin{center}
         \only<1>{\includegraphics[width=0.7\textwidth]{./images/particle_filter/low_variance_resampling.pdf}}
@@ -424,6 +454,7 @@
 
 \begin{frame}
     \frametitle{Low Variance Resampling}
+    \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
 
     \begin{center}
         \only<1>{\includegraphics[width=0.7\textwidth]{./images/particle_filter/low_variance_resampling3.pdf}}
@@ -483,6 +514,8 @@
 
 \begin{frame}
     \frametitle{Low Variance Resampling}
+    \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
+
     \begin{itemize}
         \item Realiza un remuestreo que mantiene las muestras en el caso que tengan pesos iguales
         \item Es más rápido que el remuestreo con roulette wheel: $\mathcal{O}(J)$ vs. $\mathcal{O}(J \log J)$
@@ -493,6 +526,8 @@
 
 \begin{frame}
     \frametitle{Desventajas de Particle Filter}
+    \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
+
     \begin{itemize}
         \item No escala bien para espacios de alta dimensionalidad
         \note{PF se hace muy caro computacionalmente ya que necesitaremos muchas partículas para cubrir la distribución de probabilidad. PF funciona bien para bajas dimensiones, hasta 4 se puede pero más ya requiere tomar ciertas heurísticas para reducir el número de partículas y que estas sean representativas.}
@@ -506,6 +541,8 @@
 
 \begin{frame}
     \frametitle{Ventajas}
+    \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
+
     \begin{itemize}
         \item Puede trabajar con distribuciones no Gaussianas
         \item Funciona bien en espacios de baja dimensionalidad
@@ -518,6 +555,8 @@
 
 \begin{frame}
     \frametitle{Resumen – Particle Filter}
+    \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
+
     \begin{itemize}
         \item Los filtros de partículas son filtros bayesianos recursivos y no paramétricos
         \item El Posterior Belief se representa mediante un conjunto de muestras ponderadas
@@ -530,6 +569,8 @@
     
 \begin{frame}
     \frametitle{Resumen – Localización con PF}
+    \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
+
     \begin{itemize}
         \item Las partículas se propagan según el modelo de movimiento
         \item Se ponderan según la probabilidad de la observación
@@ -537,9 +578,3 @@
         \item La MCL es un gold standard para la localización de robots móviles en entornos \emph{indoor}
     \end{itemize}
 \end{frame}
-
-
-
-
-
-    
