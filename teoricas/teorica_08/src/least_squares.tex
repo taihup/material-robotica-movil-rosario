@@ -25,14 +25,9 @@
         \item Dadas $n$ mediciones ruidosas $\observationBold_{1:n}$ acerca del estado $\stateBold$
         \item Objetivo: Estimar el estado $\stateBold$ que mejor explica las mediciones $\observationBold_{1:n}$
     \end{itemize}
-\end{frame}
 
-\begin{frame}
-    \frametitle{Explicación Gráfica}
-    \note{Extraído de Curso de Cyrill Stachniss https://youtu.be/r2cyMQ5NB1o?si=WYODHSkWun3FL7jR}
-    
     \begin{center}
-        \includegraphics[width=0.7\textwidth]{images/least_squares.pdf}
+        \includegraphics[width=0.5\textwidth]{images/least_squares.pdf}
     \end{center}
 
 \end{frame}
@@ -61,8 +56,8 @@
             \begin{equation*}
                 \error_{i}\left( \stateBold \right) = \observationBold_{i} - f_{i}\left( \stateBold \right)
             \end{equation*}
-        \item Supongamos que el error tiene una distribución normal con media cero y matriz covarianza $\covariance$
-        \item La matriz de información del Error Gaussiano es $\informationMatrix_{i} = \inverse{\covariance}$
+        \item Supongamos que el error tiene una distribución normal con media cero y matriz de covarianza $\covarianceBold_{i}$
+        \item La matriz de información del Error Gaussiano es $\informationMatrix_{i} = \inverse{\covarianceBold_{i}}$
         \item El error al cuadrado de una medición depende sólo del estado y es un escalar:
             \begin{equation*}
                 \error_{i}\left( \stateBold \right) = \error_{i}\left( \stateBold \right)^{\top} \informationMatrix_{i} \error_{i}\left( \stateBold \right)
@@ -570,7 +565,7 @@
         
         \item Log likelihood de una Gaussiana
         \begin{equation*}
-            \log \mathcal{N}(x, \mu, \Sigma) =  \text{const.} - \dfrac{1}{2} (x - \mu)^{\top} \inverse{\Sigma} (x - \mu)
+            \log \mathcal{N}(x; \mu, \Sigma) =  \text{const.} - \dfrac{1}{2} (x - \mu)^{\top} \inverse{\Sigma} (x - \mu)
         \end{equation*}
     \end{itemize}
     
@@ -583,7 +578,7 @@
     \begin{itemize}
         \item Log likelihood de una Gaussiana
         \begin{equation*}
-            \log \mathcal{N}(x, \mu, \Sigma) =  \text{const.} - \dfrac{1}{2} \underbrace{\underbrace{(x - \mu)^{\top}}_{\error^{\top}(x)} \underbrace{\inverse{\Sigma}}_{\informationMatrix} \underbrace{(x - \mu)}_{\error(x)}}_{e(x)}
+            \log \mathcal{N}(x; \mu, \Sigma) =  \text{const.} - \dfrac{1}{2} \underbrace{\underbrace{(x - \mu)^{\top}}_{\error^{\top}(x)} \underbrace{\inverse{\Sigma}}_{\informationMatrix} \underbrace{(x - \mu)}_{\error(x)}}_{e(x)}
         \end{equation*}
         \item está a una constante de equivalencia de las funciones de error usadas antes
     \end{itemize}
