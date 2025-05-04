@@ -160,9 +160,11 @@
         \begin{minipage}[m]{.5\textwidth}
             \raggedleft
             \centering
-            $x \leftarrow \frac{1}{2} \sum_{i=1}^{12} \text{rand}(-\sigma, \sigma)$
+            \begin{equation*}
+                x \leftarrow \frac{1}{2} \sum_{i=1}^{12} \text{rand}(-\sigma, \sigma)    
+            \end{equation*}
 
-            \note{Al dividir por 2 estamos generando muestras desde $-6\simga$ a $6\sigma$ lo cúal aproxima bastante bien la distribución gaussiana pero no es exacta.}
+            \note{Al dividir por 2 estamos generando muestras desde -6 simga a 6 sigma lo cúal aproxima bastante bien la distribución gaussiana pero no es exacta.}
         \end{minipage}
     \end{figure}
 
