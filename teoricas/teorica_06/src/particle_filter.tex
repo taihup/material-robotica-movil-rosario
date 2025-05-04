@@ -233,7 +233,7 @@
         \item Resampling: Tomar la partícula $i$ con probabilidad $w_{t}^{[j]}$ y repetir $J$ veces.
         \note{observar que en el resampling estamos reemplazando el peso de una muestra por la frecuencia de esta muesta. Es decir, mientras mas peso tenga una muestra mas veces la elegiremos.}
 
-        \note{También, en el reesampling al elegir muestras con mayor peso y al no elegir muestras con poco peso estamos describiendo mejor la distribución ya que las partículas de poco peso no contribuyen mucho a la aproximación de la distribución de probabilidad, y permite hacer un uso mejor de la memoria de la computadora.}
+        \note{También, en el reesampling al elegir muestras con mayor peso y al no elegir muestras con poco peso estamos describiendo mejor la probability distribution mass ya que las partículas de poco peso no contribuyen mucho a la probability distribution mass, y permite hacer un uso mejor de la memoria de la computadora.}
         
         (es decir, generamos muestras compensando)
     \end{enumerate}
@@ -295,14 +295,18 @@
 
     \begin{itemize}
         \item Cada partícula es una hipótesis de la pose
-        \item Proposal es el motion model
+        \item \emph{Proposal} es el motion model
         \begin{equation*}
-            x_t^{[j]} \sim p(x_t \, | \, x_{t-1}, u_t)
+            \state_t^{[j]} \sim p(\state_{t} \, | \, \state_{t-1}, \controlCommand_{t})
         \end{equation*}
-        \item Corrección vía el observation model
+
+        Aquí, muestreamos desde la distribución \emph{proposal} $p(\state_{t} \, | \, \state_{t-1}, \controlCommand_{t})$. Notar que como $\controlCommand_{t}$ tiene ruido cada partícula se mueve con cierta diferencia. Por ejemplo, si $\controlCommand_{t}$ dice que el robot se movió \SI{1}{\meter} entonces habrá una partícula que se mueva \SI{0.97}{\meter}, otra \SI{1.2}{\meter}, etc.
+
+        \item Corrección vía el observation model 
         \begin{equation*}
             w_t^{[j]} = \frac{target}{proposal} \propto p(z_t \, | \, x_t, m)
         \end{equation*}
+        \note{es proporcional porque normalizamos los pesos a que sus suma sea 1.}
     \end{itemize}
 \end{frame}
 
@@ -315,8 +319,8 @@
         \Procedure{ParticleFilter}{$\mathcal{X}_{t-1}, u_{t}, z_{t}$}
         \State $\bar{\mathcal{X}}_t = \mathcal{X}_t = \emptyset$
         \For{$j = 1$ to $J$}
-            \State Sample $x_t^{[j]} \sim p(x_t \, | \, u_t, x_{t-1}^{[j]})$
-            \State $w_t^{[j]} = p(z_t \, | \, x_t^{[j]})$
+            \State Sample \alert{$x_t^{[j]} \sim p(x_t \, | \, u_t, x_{t-1}^{[j]})$}
+            \State $w_t^{[j]} = \alert{p(z_t \, | \, x_t^{[j]})}$
             \State $\bar{\mathcal{X}}_t = \bar{\mathcal{X}}_t + \langle x_t^{[j]}, w_t^{[j]}\rangle$
         \EndFor
         \For{$i = 1$ to $J$}
