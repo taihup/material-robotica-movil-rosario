@@ -179,20 +179,28 @@
 
 
 \begin{frame}
-    \frametitle{Principio de muestreo de importancia}
+    \frametitle{Importance Sampling Principle}
     \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
 
+    \scriptsize
+
     \begin{itemize}
-        \item Podemos usar una distribución diferente $\pi$ para generar muestras de $f$
+        \item Podemos usar una distribución diferente $\pi$ para generar muestras de una distribución $f$ (para la cuál queremos realmente hacer el muestreo)
         \item Considere las ``diferencias entre $\pi$ y $f$'' usando un peso $w = f(x) / \pi(x)$
-        \item Target $f$
-        \item Proposal $\pi$
+        \item Función de Distribución objetivo (\emph{target}) $f$
+        \item Función de Distribución propuesta (\emph{Proposal}) $\pi$
         \item Precondición:
         $f(x) > 0 \implies \pi(x) > 0$
+        \note{La precondición es requerida dado que si hay un caso donde f(x) > 0 y pi(x) < 0, significa que hay probabilidad cero de generar esa muestra con la función pi (proposal) y por tanto nunca podremos generar una muestra para f (target). No pudiendo aproximar adecuadamente f. Además, se puede ver que para el calculo de los pesos w, si pi(x) = 0 entonces tendríamos un peso indefinido (infinito), que no es algo que queremos.}
         \begin{center}
-        \includegraphics[width=0.45\textwidth]{./images/particle_filter/importance_sampling_principle.pdf}
+        \includegraphics[width=0.4\textwidth]{./images/particle_filter/importance_sampling_principle.pdf}
         \end{center}
+        Mientras más diferencia hay entre el valor de la función $target$ y la función $proposal$, más peso se le asigna a la muestra (rayas más altas). Observar que la función proposal determina la frecuencia de las muestras. En este caso, para la parte más alta de la función target, hay pocas muestras pero estas tienen un peso alto.
+
     \end{itemize}
+
+    \note{El Importance Sampling Principle nos dice que podemos usar una distribución proposal para generar muestras de una distribución target (para la cuál queremos realmente hacer el muestreo) compensando los errores que cometamos. Y los errores aquí significa la diferencia entre los valores de la curva roja y la curva azul. Para esto debemos poder evaluar la función proposal y la función target para la misma entrada, y calcular el peso w.}
+
 \end{frame}
     
 \begin{frame}
