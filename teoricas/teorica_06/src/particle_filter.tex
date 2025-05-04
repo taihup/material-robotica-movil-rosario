@@ -185,7 +185,7 @@
     \scriptsize
 
     \begin{itemize}
-        \item Podemos usar una distribución diferente $\pi$ para generar muestras de una distribución $f$ (para la cuál queremos realmente hacer el muestreo)
+        \item Podemos usar una distribución diferente $\pi$ para generar muestras de una distribución $f$ (la cuál queremos utilizar realmente para hacer el muestreo)
         \item Considere las ``diferencias entre $\pi$ y $f$'' usando un peso $w = f(x) / \pi(x)$
         \item Función de Distribución objetivo (\emph{target}) $f$
         \item Función de Distribución propuesta (\emph{Proposal}) $\pi$
@@ -199,20 +199,20 @@
 
     \end{itemize}
 
-    \note{El Importance Sampling Principle nos dice que podemos usar una distribución proposal para generar muestras de una distribución target (para la cuál queremos realmente hacer el muestreo) compensando los errores que cometamos. Y los errores aquí significa la diferencia entre los valores de la curva roja y la curva azul. Para esto debemos poder evaluar la función proposal y la función target para la misma entrada, y calcular el peso w.}
+    \note{El Importance Sampling Principle nos dice que podemos usar una distribución proposal para generar muestras de una distribución target (para la cuál queremos realmente hacer el muestreo) compensando las equivocaciones que cometamos. Y las equivocaciones aquí significa la diferencia entre los valores de la curva roja y la curva azul. Para esto debemos poder evaluar la función proposal y la función target para la misma entrada, y calcular el peso w. Los pesos sirven para compenzar.}
 
 \end{frame}
     
 \begin{frame}
-    \frametitle{Filtro de Partículas}
+    \frametitle{Filtro de Partículas para problemas de estimación de estado dinámico}
     \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
 
     \begin{itemize}
-        \item Filtro Bayesiano recursivo
-        \item Enfoque no paramétrico
+        \item PF implementa un Filtro Bayesiano Recursivo (realiza un Prediction step y un Correction step)
+        \item Enfoque no paramétrico (permite trabajar con distribuciones no gaussianas)
         \item Modela la distribución mediante muestras
-        \item \textbf{Predicción}: extraer de la distribución propuesta
-        \item \textbf{Corrección}: ponderación por la relación entre la distribución objetivo y la propuesta
+        \item \textbf{Predicción}: extraer de la distribución \emph{proposal}
+        \item \textbf{Corrección}: ponderación con el ratio entre la distribución \emph{target} y la \emph{proposal}
         \item \alert{¡Cuantas más muestras usemos, mejor será la estimación!}
     \end{itemize}
 \end{frame}
@@ -222,17 +222,31 @@
     \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
 
     \begin{enumerate}
-        \item Muestrear las partículas utilizando la distribución propuesta.
+        \item Muestrear las partículas utilizando la distribución \emph{proposal}.
         \begin{equation*}
-            x_t^{[j]} \sim proposal(x_t | \ldots)
+            x_{t}^{[j]} \sim proposal(x_{t} | \ldots) \qquad \text{(análogo a tomar muestras de la curva roja)}
         \end{equation*}
         \item Calcular los pesos de importancia
         \begin{equation*}
-            w_t^{[j]} = \frac{target(x_t^{[j]})}{proposal(x_t^{[j]})}
+            w_t^{[j]} = \frac{target(x_t^{[j]})}{proposal(x_t^{[j]})} \qquad \text{{(pesos para compesar las diferencias entre \emph{proposal} y \emph{target})}}
         \end{equation*}
-        \item Resampling: Tomar la partícula $i$ con probabilidad $w_t^{[j]}$ y repetir $J$ veces 
+        \item Resampling: Tomar la partícula $i$ con probabilidad $w_{t}^{[j]}$ y repetir $J$ veces.
+        \note{observar que en el resampling estamos reemplazando el peso de una muestra por la frecuencia de esta muesta. Es decir, mientras mas peso tenga una muestra mas veces la elegiremos.}
+
+        \note{También, en el reesampling al elegir muestras con mayor peso y al no elegir muestras con poco peso estamos describiendo mejor la distribución ya que las partículas de poco peso no contribuyen mucho a la aproximación de la distribución de probabilidad, y permite hacer un uso mejor de la memoria de la computadora.}
+        
+        (es decir, generamos muestras compensando)
     \end{enumerate}
     \note{Reemplazar muestras improbables por otras más probables}
+
+    \vspace{1cm}
+
+    Intepretando PF con el Filtro de Bayes Recursivo:
+    \begin{itemize}
+        \item Paso 1 se corresponde con el Paso de Predicción utilizando el modelo de movimiento y,
+        \item Pasos 2 y 3 se corresponden con el Paso de Corrección utilizando el modelo de observación para el cálculo de los pesos.
+    \end{itemize}
+
 \end{frame}
 
 \begin{frame}
