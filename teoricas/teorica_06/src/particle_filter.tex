@@ -486,7 +486,7 @@
     \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
 
     \begin{center}
-        \only<1>{\includegraphics[width=0.7\textwidth]{./images/particle_filter/low_variance_resampling.pdf}}
+        \only<1>{\includegraphics[width=0.7\textwidth]{./images/particle_filter/low_variance_resampling1.pdf}}
         \only<2>{\includegraphics[width=0.7\textwidth]{./images/particle_filter/low_variance_resampling2.pdf}}
     \end{center}
 
@@ -498,12 +498,12 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Low Variance Resampling}
+    \frametitle{Low Variance Resampling: Implementación eficiente}
     \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
 
     \begin{center}
-        \only<1>{\includegraphics[width=0.7\textwidth]{./images/particle_filter/low_variance_resampling3.pdf}}
-        \only<2>{\includegraphics[width=0.7\textwidth]{./images/particle_filter/low_variance_resampling4.pdf}}
+        \only<1>{\includegraphics[width=0.7\textwidth]{./images/particle_filter/low_variance_resampling_efficient_implementation1.pdf}}
+        \only<2>{\includegraphics[width=0.7\textwidth]{./images/particle_filter/low_variance_resampling_efficient_implementation2.pdf}}
     \end{center}
 
     \begin{enumerate}
@@ -563,7 +563,7 @@
 
     \begin{itemize}
         \item Realiza un remuestreo que mantiene las muestras en el caso que tengan pesos iguales
-        \item Es más rápido que el remuestreo con roulette wheel: $\mathcal{O}(J)$ vs. $\mathcal{O}(J \log J)$
+        \item Es más rápido que el remuestreo con roulette wheel: $O(J)$ vs. $O(J \log J)$
         \item \alert{Utilizaremos siempre Low Variance Resampling!}
     \end{itemize}
 \end{frame}
