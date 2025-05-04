@@ -19,12 +19,12 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Aproximación de una Función}
+    \frametitle{Aproximación flexible de una Función}
     \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
     \footnotesize
     
     \begin{itemize}
-        \item Objetivo: Poder estimar cualquier \textbf{distribución de probabilidad arbitraria}.
+        \item Objetivo: Enfoque que nos permita estimar cualquier \textbf{distribución de probabilidad arbitraria}.
     \end{itemize}
     
     \begin{center}
@@ -39,10 +39,11 @@
     \footnotesize
     \begin{itemize}
         \item \textbf{Múltiples muestras} para representar una distribución de probabilidad arbitraría
-        \item Las muestras son están más agrupadas en algunas áreas en otras menos. La cantidad de partículas por unidad de área describe que tan probable es que el robot se encuentre en esa área.
+        \item Las muestras están más agrupadas en algunas áreas y en otras menos. La cantidad de partículas por unidad de área describe que tan probable es que el robot se encuentre en esa área.
         \item Cada muestra está acumulando un poco de ``masa de probabilidad''.
         \item Las muestra puede ser vista como una aproximación a la función de densidad de probabilidad (pdf).
-        \item Para obtener la pdf, hay que integrar sobre una cierta área de manera de obtener la probabilidad matemática de que el robot se encuentre en dicha área.
+        \item Para obtener la pdf, hay que integrar sobre una cierta área de manera de obtener la masa de probabilidad de que el robot se encuentre en dicha área. 
+        \item Por tanto, en los lugares donde la pdf se alta tendremos más partículas, y en los lugares donde la pdf tenga valores bajos tendremos menos partículas.
     \end{itemize}
     
     \begin{center}
@@ -56,10 +57,10 @@
     \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
     \footnotesize
     \begin{itemize}
-        \item \textbf{Múltiples muestras con peso} para representar una distribución de probabilidad arbitraría
+        \item En vez de utlizar la acumulación de muestras para representar una distribución de probabilidad arbitraría, podemos utilizar \textbf{Múltiples muestras con peso} 
         \item Es posible reducir el número de muestras que necesitamos, si le agregamos pesos a cada muestra
         \item Mientras más peso tiene una muestra, más masa de probabilidad hay en esa región
-        \item Los pesos de todas las partículas juntas deben sumar 1
+        \item Los pesos de todas las muestras juntas deben sumar 1
         \item Al inicio, podríamos agregarle a cada muestra un peso uniforme. Por ejemplo, si tenemos $n$ muestras, entonces cada muestra tiene peso $\frac{1}{n}$
     \end{itemize}
     
@@ -107,7 +108,10 @@
             \end{cases};    
         \end{equation*}
 
-        \note{La función tiende a infinito cuando $x=j$ y, para cualquier otro valor de $x$, es igual a 0.}
+        \note{La función de Dirac simula impulsos o eventos}
+        \note{La función de Dirac tiende a infinito cuando $x=j$ y, para cualquier otro valor de $x$, es igual a 0.}
+
+        \note{Vamos a necesitar un mayor número de partículas mientras más compleja es la fdp}
 
     \end{itemize}
    
@@ -133,6 +137,9 @@
         \alert{¿Cómo obtener dichas muestras?}
     \end{center}
 
+    \note{Cómo obtener las muestras es un problema. En general no podemos obtener muestra de forma cerrada de una función arbitraria. Hay pocas funciones de las que podemos hacer sampleo de forma cerrada o mostrar de manera eficiente. Por ejemplo, si tenemos que aproximar una distribución uniforme donde todo los estados tienen la misma probabilidad entonces podemos utilizar una función de generación de números aleatorios como es el caso de la función rand() en C.}
+    \note{Para el caso de una distribución gaussiana, generar número de manera aleatoria no nos sirve. Tenemos que poder generar más números serca de la media.}
+
 \end{frame}
 
 \begin{frame}
@@ -140,16 +147,24 @@
     \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
 
     \begin{itemize}
-        \item Ejemplo: Distribución Gaussiana
-        
-        \begin{center}
-            \includegraphics[width=0.5\columnwidth]{./images/particle_filter/gaussian_approximation_by_sampling.pdf}
-        \end{center}
-        
-        \begin{equation*}
-            x \leftarrow \frac{1}{2} \sum_{i=1}^{12} \text{rand}(-\sigma, \sigma)
-        \end{equation*}
+        \item Ejemplo: Muestreo de una Distribución Gaussiana
     \end{itemize}
+
+    \begin{figure}
+        \begin{minipage}[m]{.5\textwidth}
+            \raggedright
+            \begin{center}
+                \includegraphics[width=\columnwidth]{./images/particle_filter/gaussian_approximation_by_sampling.pdf}
+            \end{center}
+        \end{minipage}% <---------------- Note the use of "%"
+        \begin{minipage}[m]{.5\textwidth}
+            \raggedleft
+            \centering
+            $x \leftarrow \frac{1}{2} \sum_{i=1}^{12} \text{rand}(-\sigma, \sigma)$
+
+            \note{Al dividir por 2 estamos generando muestras desde $-6\simga$ a $6\sigma$} lo cúal aproxima bastante bien la distribución gaussiana pero no es exacta.}
+        \end{minipage}
+    \end{figure}
 
     ¿Cómo samplear utilizando otra distribución?
 

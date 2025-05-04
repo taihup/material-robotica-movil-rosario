@@ -7,7 +7,7 @@
    viewBox="0 0 151.44271 92.342781"
    version="1.1"
    id="svg1"
-   inkscape:version="1.3 (1:1.3+202307231459+0e150ed6c4)"
+   inkscape:version="1.4.1 (1:1.4.1+202503302257+93de688d07)"
    sodipodi:docname="arbitrary_distribution.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -23,15 +23,15 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="1.4859428"
-     inkscape:cx="230.82989"
-     inkscape:cy="251.01909"
-     inkscape:window-width="1850"
-     inkscape:window-height="1016"
-     inkscape:window-x="1436"
-     inkscape:window-y="27"
+     inkscape:zoom="2.3939321"
+     inkscape:cx="165.20936"
+     inkscape:cy="235.80451"
+     inkscape:window-width="1920"
+     inkscape:window-height="986"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer7" />
+     inkscape:current-layer="layer4" />
   <defs
      id="defs1">
     <marker
@@ -561,8 +561,7 @@
      inkscape:groupmode="layer"
      id="layer4"
      inkscape:label="weighted_samples"
-     style="display:none"
-     sodipodi:insensitive="true">
+     style="display:inline">
     <circle
        style="display:inline;fill:#007dff;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1"
        id="circle8"
@@ -577,14 +576,8 @@
        r="0.90004057" />
     <circle
        style="display:inline;fill:#007dff;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1"
-       id="circle12-3"
-       cx="82.55687"
-       cy="78.499397"
-       r="0.90004057" />
-    <circle
-       style="display:inline;fill:#007dff;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1"
        id="circle12-3-2"
-       cx="77.827698"
+       cx="84.177704"
        cy="78.499397"
        r="0.90004057" />
     <circle
@@ -594,7 +587,7 @@
        cy="78.499397"
        r="0.90004057" />
     <circle
-       style="display:inline;fill:#007dff;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1"
+       style="display:inline;fill:#007dff;fill-opacity:1;stroke:#000000;stroke-width:0.26458299;stroke-dasharray:none;stroke-opacity:1"
        id="circle12-3-7"
        cx="36.992786"
        cy="78.499397"
@@ -602,43 +595,37 @@
     <circle
        style="display:inline;fill:#007dff;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1"
        id="circle61"
-       cx="46.945107"
+       cx="53.295113"
        cy="78.499397"
        r="1.3940095" />
     <circle
-       style="display:inline;fill:#007dff;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1"
+       style="display:inline;fill:#007dff;fill-opacity:1;stroke:#000000;stroke-width:0.26458333;stroke-dasharray:none;stroke-opacity:1"
        id="circle61-7"
-       cx="52.662216"
+       cx="59.012222"
        cy="78.499397"
-       r="1.3940095" />
+       r="2.0677307" />
     <circle
        style="display:inline;fill:#007dff;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1"
        id="circle61-7-5"
-       cx="72.604553"
+       cx="78.954559"
        cy="78.499397"
        r="1.3940095" />
     <circle
        style="display:inline;fill:#007dff;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1"
        id="circle61-2-4"
-       cx="59.77483"
+       cx="66.124832"
        cy="78.499397"
        r="2.7895079" />
     <circle
-       style="display:inline;fill:#007dff;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1"
+       style="display:inline;fill:#007dff;fill-opacity:1;stroke:#000000;stroke-width:0.26458333;stroke-dasharray:none;stroke-opacity:1"
        id="circle61-3"
-       cx="66.887444"
+       cx="73.23745"
        cy="78.499397"
-       r="1.3940095" />
-    <circle
-       style="display:inline;fill:#007dff;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1"
-       id="circle8-7"
-       cx="15.590244"
-       cy="78.499397"
-       r="0.46849039" />
+       r="2.0677307" />
     <circle
        style="display:inline;fill:#007dff;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1"
        id="circle8-6"
-       cx="19.456318"
+       cx="17.868816"
        cy="78.499397"
        r="0.46849039" />
     <circle
@@ -663,28 +650,27 @@
     <circle
        style="display:inline;fill:#007dff;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1"
        id="circle8-7-0"
-       cx="-99.23024"
+       cx="-98.701073"
        cy="-78.499397"
        r="0.46849039"
        transform="scale(-1)" />
     <circle
        style="display:inline;fill:#007dff;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1"
        id="circle8-6-6"
-       cx="-95.364166"
+       cx="-94.305832"
        cy="-78.499397"
        r="0.46849039"
        transform="scale(-1)" />
     <circle
        style="display:inline;fill:#007dff;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1"
-       id="circle8-61-3"
-       cx="-91.303711"
-       cy="-78.499397"
-       r="0.66287041"
-       transform="scale(-1)" />
+       id="circle1"
+       cx="47.542801"
+       cy="78.499397"
+       r="0.90004057" />
     <circle
        style="display:inline;fill:#007dff;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1"
-       id="circle8-61-2-2"
-       cx="-87.048874"
+       id="circle2"
+       cx="-89.165543"
        cy="-78.499397"
        r="0.66287041"
        transform="scale(-1)" />
@@ -693,7 +679,7 @@
      inkscape:groupmode="layer"
      id="layer6"
      inkscape:label="weighted_samples_text"
-     style="display:none"
+     style="display:inline"
      sodipodi:insensitive="true">
     <text
        xml:space="preserve"
