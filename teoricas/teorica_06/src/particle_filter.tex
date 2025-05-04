@@ -377,12 +377,14 @@
     \frametitle{Resampling}
     \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
 
+    \note{El Resampling se encarga de reemplazar partículas poco probables por partículas más probables porque no queremos gastar memoria en áreas que no importan. Para esto toma partículas proporcionalmente a su peso haciendo que las partículas con mucho peso sean elegidas muchas veces y las de poco peso no.}
+
     \begin{itemize}
         \item Tomar la partícula $i$ con probabilidad $w_t^{[i]}$. Repetir $J$ veces.
         \item Informalmente: ``Reemplazar muestras improbables por otras más probables''
         \item Supervivencia del más apto
         \item ``Truco'' para evitar que muchas muestras cubran estados improbables
-        \item Necesario, ya que tenemos un número limitado de muestras
+        \item Necesario, ya que tenemos un número limitado de muestras (memoria finita)
     \end{itemize}
 \end{frame}
     
@@ -390,62 +392,62 @@
     \frametitle{Métodos de Resampling}
     \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
 
+    \scriptsize
+
     \begin{overlayarea}{\textwidth}{\textheight}
         
         \only<1>{
             \begin{center}
-                \includegraphics[width=0.35\textwidth]{./images/particle_filter/resampling_rulette_wheel1.pdf}
+                \includegraphics[width=0.3\textwidth]{./images/particle_filter/resampling_rulette_wheel1.pdf}
             \end{center}
         }
         \only<2>{
             \begin{center}
-                \includegraphics[width=0.35\textwidth]{./images/particle_filter/resampling_rulette_wheel2.pdf}
+                \includegraphics[width=0.3\textwidth]{./images/particle_filter/resampling_rulette_wheel2.pdf}
             \end{center}
         }
         \only<3>{
             \begin{center}
-                \includegraphics[width=0.35\textwidth]{./images/particle_filter/resampling_rulette_wheel3.pdf}
+                \includegraphics[width=0.3\textwidth]{./images/particle_filter/resampling_rulette_wheel3.pdf}
             \end{center}
         }
-        \only<3>{
-            \begin{itemize}
-                \item Roulette Wheel
-                \item Búsqueda binaria para saber en qué bucket cae la bola ($O(J \log(J))$)
-            \end{itemize}
-            \note{Los buckets de la ruleta representan los pesos de las partículas. Mientras más grande el bucket, más probable es que esta partícula sea seleccionada.}
-            \note{Tenemos que hacerlo J veces. Tenemos que encontrar dónde cae la bola. Esto lo podemos hacer con binary-search. La suma de todos los pesos de la ruleta es 1. Si tiramos un número random entre 0 y 1 entonces con búsqueda binaria podemos saber en qué bucket cae.}
-        }
+        \begin{itemize}
+            \item Roulette Wheel
+            \item Los buckets de la ruleta representan los pesos de las partículas. Mientras más grande el bucket, más probable es que esta partícula sea seleccionada.
+            \item Tenemos que hacerlo $J$ veces. Tenemos que encontrar dónde cae la bola. Esto lo podemos hacer con Búsqueda binaria. La suma de todos los pesos de la ruleta es 1. Si tiramos un número random entre 0 y 1 entonces con búsqueda binaria podemos saber en qué bucket cae.
+            \item Búsqueda binaria para saber en qué bucket cae la bola ($O(J \log(J))$)
+        \end{itemize}
+
     \end{overlayarea}
+
 \end{frame}
 
 \begin{frame}
     \frametitle{Métodos de Resampling}
     \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
 
+    \footnotesize
+
     \begin{overlayarea}{\textwidth}{\textheight}
         \only<1>{
             \begin{center}
-                \includegraphics[width=0.35\textwidth]{./images/particle_filter/resampling_stochastic_universal_sampling1.pdf}
+                \includegraphics[width=0.3\textwidth]{./images/particle_filter/resampling_stochastic_universal_sampling1.pdf}
             \end{center}
         }
         \only<2>{
             \begin{center}
-                \includegraphics[width=0.35\textwidth]{./images/particle_filter/resampling_stochastic_universal_sampling2.pdf}
+                \includegraphics[width=0.3\textwidth]{./images/particle_filter/resampling_stochastic_universal_sampling2.pdf}
             \end{center}
         }
-
-        \only<2>{
 
         \begin{itemize}
             \item Stochastic universal sampling (utilizando $J$ flechas equidistantes)
             \item También llamado \emph{Low-Variance Resampling} (evita que las partículas se concentren rápidamente)
-            \item $O(J)$
+            \item Utilizando J flechas y poniendolas equidistantes. Rotamos todas juntas y elejimos de a J partículas. Por tanto cuando, tiro un número random ahora se seleccionan las J partículas de una.
+            \item Tiene costo computacional lineal $O(J)$ porque solo tengo que recorrer los pesos una vez para ver dónde caen todas las flechas.
         \end{itemize}
-        \note{Utilizando on flechas y poniendolas equidistantes. Rotamos todas juntas y elejimos de a n partículas. Por tanto cuando, tiro un número random ahora se seleccionan las J partículas de una.}
-        \note{Tiene costo computacional lineal porque solo tengo que recorrer los pesos una vez para ver dónde caen todas las flechas.}
+
         \note{Ejemplo 8 flechas distante 45 grados una de otra.}
-        
-        }
     \end{overlayarea}
 \end{frame}
 
@@ -455,7 +457,7 @@
 
     \begin{itemize}
         \item Muestreo con remplazo (muestreamos tomando una partícula y luego la volvemos a colocar en la bolsa)
-        \item Roulette Wheel resampling es fácil de entender pero es suboptimo en la práctica
+        \item Roulette Wheel resampling es fácil de entender pero es subóptimo en la práctica
         \item \alert{¿Qué pasa si todas las partículas tienen el mismo peso?}
         \note{Si todas las partículas tienen el mismo peso, sería como tener un sensor que no me da información.}
         \note{Si todas las partículas tienen el mismo peso, el resampling seleccionará partículas de manera aleatoria y las duplicará, y otras partículas no serán seleccionadas y moriran. Y esto pasa sin que una partícula sea mejor que otra. Esto lleva a que el sistema converja en una localización cualquiera.}
