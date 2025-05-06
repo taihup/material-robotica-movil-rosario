@@ -12,16 +12,16 @@
         \end{equation*}
         \item Observaciones
         \begin{equation*}
-            z_{1:T} = \{z_1, z_2, \ldots, z_T\}
+            z_{1:T} = \{\observation_1, \observation_2, \ldots, \observation_T\}
         \end{equation*}
     \end{itemize}
 
     Se busca:
     \begin{itemize}
-        \item Mapa del entorno: $m$
+        \item Mapa del entorno: $\map$
         \item Trayectoria (o pose actual) del vehículo:
         \begin{equation*}
-            x_{0:T} = \{x_0, x_1, \ldots, x_T\} \qquad \text{o} \qquad x_{t}
+            \state_{0:T} = \{\state_0, \state_1, \ldots, \state_T\} \qquad \text{or} \qquad \state_{t}
         \end{equation*}
     \end{itemize}
 \end{frame}
@@ -57,7 +57,9 @@
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
     We consider the Kalman filter as a solution to the online SLAM problem:
-    \[ p(\state_{t}, \map | z_{1:t}, \controlCommand_{1:t}) \]
+    \begin{equation*}
+        p(\state_{t}, \map | z_{1:t}, \controlCommand_{1:t}) = \int \int \cdots \int p(\state_{1:t}, \map | z_{1:t}, \controlCommand_{1:t}) d\state_{1} d\state_{2} \ldots d\state_{t-1}
+    \end{equation*}
 
     \begin{center}
         \includegraphics[width=0.6\textwidth]{../images/ekf_slam/graphical_model_online_slam.pdf}
