@@ -95,10 +95,10 @@
     \begin{itemize}
         \item Application of EKF to SLAM
         \item Estimate robot's pose and landmark locations
-        \item Assumption: known correspondences
-        \item State space (2D plane):
+        \item Assumption: known correspondences \note{data association}
+        \item State space (for the 2D plane) is:
     \end{itemize}
-    \[ x_t = (x, y, \theta, \underbrace{\map_{1,x}, \map_{1,y}}_{\text{landmark 1}}, \ldots, \underbrace{\map_{n,x}, \map_{n,y}}_{\text{landmark n}} )^{\top} \]
+    \[ x_t = (\underbrace{x, y, \theta}_{robot's pose}, \underbrace{\map_{1,x}, \map_{1,y}}_{\text{landmark 1}}, \ldots, \underbrace{\map_{n,x}, \map_{n,y}}_{\text{landmark n}} )^{\top} \]
 \end{frame}
 
 \begin{frame}
@@ -177,6 +177,9 @@
             \end{bNiceMatrix}}_{\Sigma}
         \end{equation*}
     \end{itemize}
+
+    The matrix diagonal blocks (yellow and blue) are the covariance of the pose and landmarks. The green blocks links the landmarks with the pose.
+
 \end{frame}
 
 \begin{frame}
@@ -314,7 +317,7 @@
 
 
     \begin{center}
-        \includegraphics[width=0.5\textwidth]{../images/ekf_slam/ekf_slam_obtained_measurement.pdf}
+        \includegraphics[width=0.4\textwidth]{../images/ekf_slam/ekf_slam_obtained_measurement.pdf}
     \end{center}
 
     \begin{equation*}
