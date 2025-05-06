@@ -12,7 +12,7 @@
         \end{equation*}
         \item Observaciones
         \begin{equation*}
-            z_{1:T} = \{\observation_1, \observation_2, \ldots, \observation_T\}
+            \observation_{1:T} = \{\observation_1, \observation_2, \ldots, \observation_T\}
         \end{equation*}
     \end{itemize}
 
@@ -33,7 +33,7 @@
 
     \begin{itemize}
         \item Recursive filter with \textbf{prediction} and \textbf{correction} steps
-        \item Estimates: $p(x_t, \map | z_{1:t}, \controlCommand_{1:t})$
+        \item Estimates: $p(x_t, \map | \observation_{1:t}, \controlCommand_{1:t})$
         \item Kalman Filter is a recursive Bayes Filter for the \textbf{linear Gaussian case}
         \item \textbf{EKF} for dealing with \textbf{non-linearities}
     \end{itemize}
@@ -44,7 +44,7 @@
     \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
-    \[ p(\state_{1:t}, \map | z_{1:t}, \controlCommand_{1:t}) \]
+    \[ p(\state_{1:t}, \map | \observation_{1:t}, \controlCommand_{1:t}) \]
 
     \begin{center}
         \includegraphics[width=0.6\textwidth]{../images/ekf_slam/graphical_model_full_slam.pdf}
@@ -58,12 +58,15 @@
 
     We consider the Kalman filter as a solution to the online SLAM problem:
     \begin{equation*}
-        p(\state_{t}, \map | z_{1:t}, \controlCommand_{1:t}) = \int \int \cdots \int p(\state_{1:t}, \map | z_{1:t}, \controlCommand_{1:t}) d\state_{1} d\state_{2} \ldots d\state_{t-1}
+        p(\state_{t}, \map | \observation_{1:t}, \controlCommand_{1:t}) = \int \int \cdots \int p(\state_{1:t}, \map | \observation_{1:t}, \controlCommand_{1:t}) d\state_{1} d\state_{2} \ldots d\state_{t-1}
     \end{equation*}
 
     \begin{center}
         \includegraphics[width=0.6\textwidth]{../images/ekf_slam/graphical_model_online_slam.pdf}
     \end{center}
+
+    \note{EKF can not adjust previous poses of the trajectory when a loop closure is done but can adjust the map and the current pose.}
+
 \end{frame}
 
 \begin{frame}
@@ -647,7 +650,7 @@
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
     \begin{algorithmic}[1]
-        \Procedure{EKF\_SLAM\_Prediction}{$\mu_{t-1}, \Sigma_{t-1}, \controlCommand_t, z_t, c_t, R_t$}
+        \Procedure{EKF\_SLAM\_Prediction}{$\mu_{t-1}, \Sigma_{t-1}, \controlCommand_t, \observation_t, c_t, R_t$}
         \State $F_x = \begin{bmatrix}
         1 & 0 & 0 & 0 & 0 & \cdots & 0 \\
         0 & 1 & 0 & 0 & 0 & \cdots & 0 \\
@@ -732,7 +735,7 @@
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
     \begin{itemize}
-        \item Range-Bearing observation $z_t^i = \begin{bmatrix} r_t^i \\ \phi_t^i \end{bmatrix}^{\top}$
+        \item Range-Bearing observation $\observation_t^i = \begin{bmatrix} r_t^i \\ \phi_t^i \end{bmatrix}^{\top}$
         
         \item If landmark has not been observed, we can initialize it with:
     \end{itemize}
@@ -992,7 +995,7 @@
     \begin{algorithmic}[1]
         \Procedure{EKF\_SLAM\_Correction}{}
         \State $Q_t = \begin{bmatrix} \sigma_r^2 & 0 \\ 0 & \sigma_\theta^2 \end{bmatrix}$ \Comment{Measurement noise covariance}
-        \For {all observed features $z_i^t = (r_i^t, \phi_i^t)^{\top}$}
+        \For {all observed features $\observation_i^t = (r_i^t, \phi_i^t)^{\top}$}
             \State $j = c_i^t$ \Comment{Landmark identifier}
             \If{landmark $j$ never seen before}
                 \State $\begin{bmatrix} \bar{\mu}_{j,x} \\ \bar{\mu}_{j,y} \end{bmatrix} = 
@@ -1035,7 +1038,7 @@
         \end{bmatrix} F_{x,j}$ \Comment{Measurement Jacobian}
             
         \State $K_t^i = \bar{\Sigma}_t H_t^{i\top}(H_t^i \bar{\Sigma}_t H_t^{i\top} + Q_t)^{-1}$ \Comment{Kalman gain}
-        \State $\bar{\mu}_t = \bar{\mu}_t + K_t^i(z_t^i - \hat{z}_t^i)$ \Comment{State update}
+        \State $\bar{\mu}_t = \bar{\mu}_t + K_t^i(\observation_t^i - \hat{z}_t^i)$ \Comment{State update}
         \State $\bar{\Sigma}_t = (I - K_t^i H_t^i) \bar{\Sigma}_t$ \Comment{Covariance update}
         \EndFor
         \State $\mu_t = \bar{\mu}_t$ \Comment{Final state estimate}
