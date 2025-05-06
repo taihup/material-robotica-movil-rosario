@@ -5,14 +5,24 @@
 
     Dado:
     \begin{itemize}
-        \item Comandos de control enviados $u_{1:T} = \{u_1, u_2, \ldots, u_T\}$
-        \item Observaciones $z_{1:T} = \{z_1, z_2, \ldots, z_T\}$
+        \item Comandos de control enviados
+        
+        \begin{equation*}
+            \controlCommand_{1:T} = \{\controlCommand_1, \controlCommand_2, \ldots, \controlCommand_T\}
+        \end{equation*}
+        \item Observaciones
+        \begin{equation*}
+            z_{1:T} = \{z_1, z_2, \ldots, z_T\}
+        \end{equation*}
     \end{itemize}
 
     Se busca:
     \begin{itemize}
-        \item Mapa del entorno $m$
-        \item Trayectoria (o pose actual) del vehículo $x_{0:T} = \{x_0, x_1, \ldots, x_T\}$ $x_{t}$
+        \item Mapa del entorno: $m$
+        \item Trayectoria (o pose actual) del vehículo:
+        \begin{equation*}
+            x_{0:T} = \{x_0, x_1, \ldots, x_T\} \qquad \text{o} \qquad x_{t}
+        \end{equation*}
     \end{itemize}
 \end{frame}
 
@@ -23,7 +33,7 @@
 
     \begin{itemize}
         \item Recursive filter with \textbf{prediction} and \textbf{correction} steps
-        \item Estimates: $p(x_t, \map | z_{1:t}, u_{1:t})$
+        \item Estimates: $p(x_t, \map | z_{1:t}, \controlCommand_{1:t})$
         \item Kalman Filter is a recursive Bayes Filter for the \textbf{linear Gaussian case}
         \item \textbf{EKF} for dealing with \textbf{non-linearities}
     \end{itemize}
@@ -34,7 +44,7 @@
     \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
-    \[ p(\state_{1:t}, \map | z_{1:t}, u_{1:t}) \]
+    \[ p(\state_{1:t}, \map | z_{1:t}, \controlCommand_{1:t}) \]
 
     \begin{center}
         \includegraphics[width=0.6\textwidth]{../images/ekf_slam/graphical_model_full_slam.pdf}
@@ -47,7 +57,7 @@
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
     We consider the Kalman filter as a solution to the online SLAM problem:
-    \[ p(\state_{t}, \map | z_{1:t}, u_{1:t}) \]
+    \[ p(\state_{t}, \map | z_{1:t}, \controlCommand_{1:t}) \]
 
     \begin{center}
         \includegraphics[width=0.6\textwidth]{../images/ekf_slam/graphical_model_online_slam.pdf}
@@ -635,7 +645,7 @@
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
     \begin{algorithmic}[1]
-        \Procedure{EKF\_SLAM\_Prediction}{$\mu_{t-1}, \Sigma_{t-1}, u_t, z_t, c_t, R_t$}
+        \Procedure{EKF\_SLAM\_Prediction}{$\mu_{t-1}, \Sigma_{t-1}, \controlCommand_t, z_t, c_t, R_t$}
         \State $F_x = \begin{bmatrix}
         1 & 0 & 0 & 0 & 0 & \cdots & 0 \\
         0 & 1 & 0 & 0 & 0 & \cdots & 0 \\
