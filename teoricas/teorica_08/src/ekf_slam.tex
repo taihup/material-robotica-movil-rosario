@@ -95,7 +95,7 @@
     \begin{itemize}
         \item Application of EKF to SLAM
         \item Estimate robot's pose and landmark locations
-        \item Assumption: known correspondences \note{data association}
+        \item Assumption: known data association
         \item State space (for the 2D plane) is:
     \end{itemize}
     \[ x_t = (\underbrace{x, y, \theta}_{robot's pose}, \underbrace{\map_{1,x}, \map_{1,y}}_{\text{landmark 1}}, \ldots, \underbrace{\map_{n,x}, \map_{n,y}}_{\text{landmark n}} )^{\top} \]
@@ -232,7 +232,7 @@
 
 
     \begin{center}
-        \includegraphics[width=0.5\textwidth]{./ekf_slam/ekf_slam_initial_state.pdf}
+        \includegraphics[width=0.4\textwidth]{./ekf_slam/ekf_slam_initial_state.pdf}
     \end{center}
 
     \begin{equation*}
@@ -258,7 +258,7 @@
 
 
     \begin{center}
-        \includegraphics[width=0.5\textwidth]{../images/ekf_slam/ekf_slam_predicted_motion.pdf}
+        \includegraphics[width=0.4\textwidth]{../images/ekf_slam/ekf_slam_predicted_motion.pdf}
     \end{center}
 
     \begin{equation*}
@@ -282,6 +282,11 @@
             \Sigma_{\map_n \state_t} & \Sigma_{\map_n \map_1} & \cdots & \Sigma_{\map_n \map_n}
         \end{bNiceMatrix}}_{\Sigma}
     \end{equation*}
+
+    \tiny
+
+    If the robot moves, the uncertainty increases and we must update the robot pose and the correlation between the robot and the landmarks. The latter happens because now the pose provides less information about the landmarks since the robot got more uncertainty about its pose. The landmarks are not updated since the robot motion does not affect the position of the landmarks.
+
 \end{frame}
 
 \begin{frame}
@@ -289,9 +294,10 @@
     \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
+    Given the predicted pose and the landmark location, we predict the measurement we should obtain.
 
     \begin{center}
-        \includegraphics[width=0.5\textwidth]{../images/ekf_slam/ekf_slam_predicted_measurement.pdf}
+        \includegraphics[width=0.4\textwidth]{../images/ekf_slam/ekf_slam_predicted_measurement.pdf}
     \end{center}
 
     \begin{equation*}
@@ -315,6 +321,7 @@
     \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
+    The sensor observes the landmark.
 
     \begin{center}
         \includegraphics[width=0.4\textwidth]{../images/ekf_slam/ekf_slam_obtained_measurement.pdf}
@@ -342,7 +349,7 @@
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
     \begin{center}
-        \includegraphics[width=0.5\textwidth]{../images/ekf_slam/ekf_slam_difference_between_prediction_observation.pdf}
+        \includegraphics[width=0.4\textwidth]{../images/ekf_slam/ekf_slam_difference_between_prediction_observation.pdf}
     \end{center}
 
     \begin{equation*}
@@ -368,7 +375,7 @@
 
 
     \begin{center}
-        \includegraphics[width=0.5\textwidth]{../images/ekf_slam/ekf_slam_update.pdf}
+        \includegraphics[width=0.4\textwidth]{../images/ekf_slam/ekf_slam_update.pdf}
     \end{center}
 
     \begin{equation*}
@@ -391,6 +398,8 @@
             \Sigma_{\map_n \state_t} & \Sigma_{\map_n \map_1} & \cdots & \Sigma_{\map_n \map_n}
         \end{bNiceMatrix}}_{\Sigma}
     \end{equation*}
+
+    The robot pose and the landmarks locations are corrected along the whole covariance matrix.
 \end{frame}
 
 \begin{frame}
@@ -402,10 +411,10 @@
     \begin{itemize}
         \item Platform moves in the 2D plane
         \item Velocity-based motion model
-        \item Observation of point landmarks
+        \item Observation of point landmarks (e.g. corners or columns)
         \item Range-bearing sensor (measures distance and angle to landmarks)
         \item Known data association (which measurement comes from which landmark)
-        \item Known number of landmarks
+        \item Known number of landmarks (This is not a constraint but its implementation need some checks in the algorithm: check if the state vector is full and so some bookkeeping). It will drag away the attention to the important concepts.
     \end{itemize}
 \end{frame}
 
@@ -415,7 +424,7 @@
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
     \begin{itemize}
-        \item Platform starts at the origin of its own reference frame
+        \item Platform starts in its own reference frame
         \item All landmarks are initially unknown (not yet observed)
         \item State vector dimension: $2N + 3$ \\
         (3 for robot pose + $2N$ for $N$ landmarks in 2D space)
@@ -438,9 +447,12 @@
     \end{equation*}
     
     \begin{itemize}
-        \item $\Sigma_{x_0}$: Initial uncertainty in robot pose (typically small)
-        \item $\infty I_{2}$: Infinite uncertainty for unobserved landmarks
+        \item $\Sigma_{x_0}$: Initial uncertainty in robot pose (typically  a zero matrix or small)
+        \item $\infty I_{2}$: Infinite uncertainty for unobserved landmarks (In practice we don't use infinite to avoid numerical issues)
     \end{itemize}
+
+    \note{We can limit the use of landmark by their index. Each time the landmark a new landmark is observed we increase the index so that landmark is incorporated. We do this until we reach the maximum of landmarks that we can work with.}
+
 \end{frame}
 
 \begin{frame}
