@@ -1258,10 +1258,14 @@
 
     \begin{itemize}
     \item First probabilistic SLAM approach using EKF
-    \item Successful in medium-scale scenes
-    \item Today mainly used for short-term estimates (VO)
-    \item Unimodal (Gaussian) estimates only
+    \item Convergence proof for the linear Gaussian case
     \item Can diverge if non-linearities are large
+    \item The smaller the noise the better
+    \item Unimodal (Gaussian) estimates only \note{EKF can not handle multimodal uncertainty. Eg: I cannot say either the landmark is here or there but I don't exatly know. Particle filter can!}
+    \item Successful in medium-scale scenes
+    \item Used for short-term estimates (VO)
+    \item Approximations exists to reduce the computational complexity
+    
     \end{itemize}
 \end{frame}
 
