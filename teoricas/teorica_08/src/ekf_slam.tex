@@ -1103,7 +1103,8 @@
         \item high ambiguity
         \item possible environment symmetries
     \end{itemize}
-    \item Uncertainties collapse after a loop closure (whether the closure was correct or not) 
+    \item Uncertainties collapse after a loop closure (whether the closure was correct or not)
+    \item \alert{Wrong loop closures lead to filter divergence!}
     \end{itemize}
 \end{frame}
 
@@ -1149,11 +1150,14 @@
     \end{itemize}
 
     \begin{center}
-        \includegraphics[width=0.5\textwidth]{../images/ekf_slam/ekf_slam_correlations.pdf}
+        \includegraphics[width=0.45\textwidth]{../images/ekf_slam/ekf_slam_correlations.pdf}
     \end{center}
 
+    \scriptsize
+
     \begin{itemize}
-        \item The Covariance Matrix represents the uncertainty and correlation between different state variables (e.g., robot pose at different time steps and positions of landmarks).
+        \item In the long run all the estimates are fully correlated. All the landmark locations are fully (and strongly) correlated with each other (thick lines) and the pose is correlated with the landmarks in a weaker manner (thin lines).
+        \item The Covariance Matrix represents the uncertainty and correlation between different state variables (e.g., robot pose and positions of landmarks).
         \begin{itemize}
             \item Diagonal: Variance (uncertainty) of each variable.
             \item Off-diagonal: Correlation between variables (how errors in one affect another).
@@ -1172,6 +1176,12 @@
         \only<2>{\includegraphics[width=0.8\textwidth]{../images/ekf_slam/ekf_slam_correlation_matrix2.pdf}}
         \only<3>{\includegraphics[width=0.8\textwidth]{../images/ekf_slam/ekf_slam_correlation_matrix3.pdf}}
     \end{center}
+
+    \note{The while line (zero values) in the third row and column of the correlation matrix comes from the orientation. This means the robot orientation is not correlated with the lanmarks positions.}
+
+    \note{Note that the correlation matrix looks like a checkboard. This is because, in the map, each landmark has a covariance that is mosly a circle, so the 2x2 landmarks covariance block of the main diagonal of the correlation matrix, off-diagonal elements of such 2x2 block are close to zero.
+    On the other hand, for the off-diagonal elements of the correlation matrix, if I would be able to fix the x component location of one landmark, so I could dramatically reduce the uncertainty about the x location of all the other landmarks as well, because through the estimate Iquite of rigitdly connected those landmarks so if I shift one landmark with high uncertainty with zero uncertainty then all the map will shift as well. Therefore, if know the precise x location of a landmark I will know all the x locations of all other landmarks as well but I not learn anything about y.}
+
 \end{frame}
 
 \begin{frame}
@@ -1180,9 +1190,11 @@
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
     \begin{itemize}
-        \item The correlation between the robot's pose and the landmarks cannot be ignored 
+        \item The correlation between the robot's pose and the landmarks \textbf{cannot} be ignored 
         \item Assuming independence generates too optimistic estimates of the uncertainty
     \end{itemize}
+
+    \note{So if you ignore the correlations you will be too optimistic since this means that you are setting all the other uncertainty values to zero.}
 
 \end{frame}
 
