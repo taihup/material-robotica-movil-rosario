@@ -414,7 +414,7 @@
         \item Observation of point landmarks (e.g. corners or columns)
         \item Range-bearing sensor (measures distance and angle to landmarks)
         \item Known data association (which measurement comes from which landmark)
-        \item Known number of landmarks (This is not a constraint but its implementation need some checks in the algorithm: check if the state vector is full and so some bookkeeping). It will drag away the attention to the important concepts.
+        \item Known number of landmarks (This is not a constraint but its implementation need some checks in the algorithm: check if the state vector is full requiring to do some bookkeeping). \note{We leave it out of this lecture because It will drag away the attention to the important concepts.}
     \end{itemize}
 \end{frame}
 
@@ -451,7 +451,7 @@
         \item $\infty I_{2}$: Infinite uncertainty for unobserved landmarks (In practice we don't use infinite to avoid numerical issues)
     \end{itemize}
 
-    \note{We can limit the use of landmark by their index. Each time the landmark a new landmark is observed we increase the index so that landmark is incorporated. We do this until we reach the maximum of landmarks that we can work with.}
+    \note{We can limit the use of landmark by their index. Each time the landmark a new landmark is observed we increase the index so that landmark is incorporated to the state and the covariance matrix. We do this until we reach the maximum of landmarks that we can work with.}
 
 \end{frame}
 
