@@ -1244,10 +1244,10 @@
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
     \begin{itemize}
-    \item Cubic complexity w.r.t. measurement dimensionality
+    \item Cubic complexity w.r.t. measurement dimensionality \note{and not w.r.t the whole state, this is because you are only observing small number of landmark and not the whole map.}
     \item Cost per step: $O(n^2)$ (dominated by number of landmarks)
     \item Memory consumption: $O(n^2)$
-    \item Computationally intractable for large maps
+    \item Computationally intractable for large maps!
     \end{itemize}
 \end{frame}
 
