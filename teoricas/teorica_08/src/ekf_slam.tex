@@ -488,7 +488,7 @@
             -\frac{v_t}{\omega_t} \sin \theta + \frac{v_t}{\omega_t} \sin (\theta + \omega_t \Delta t) \\ 
             \frac{v_t}{\omega_t} \cos \theta - \frac{v_t}{\omega_t} \cos (\theta + \omega_t \Delta t) \\ 
             \omega_t \Delta t 
-            \end{bmatrix}}_{g_{x,y,\theta}\left(\controlCommand_{t}, \begin{bmatrix} x, y, \theta \end{bmatrix}^{\top}\right)}
+            \end{bmatrix}}_{g_{x,y,\theta}\left(\controlCommand_{t}, \begin{bmatrix} x & y & \theta \end{bmatrix}^{\top}\right)}
         \end{equation*}
         \item How to map that to the $2N+3$ dimmension state space used in EKF?
     \end{itemize}
@@ -545,6 +545,8 @@
             \end{bmatrix}}_{g(\controlCommand_{t}, \state_t)}
         \end{equation*}
     \end{itemize}
+
+    \note{F is the mapping function that allows to update the state only in the pose components using the motion model.}
 \end{frame}
 
 \begin{frame}
@@ -583,6 +585,10 @@
         \end{bmatrix}
     \end{equation*}
     where $G_t^x$ is the $3 \times 3$ Jacobian of the motion and $I$ is the $2N \times 2N$ identity matrix.
+
+
+    Note that the Identity submatrix $I$ means that landmarks covariances would not change (it would remains the same as the previous covariance).
+
 \end{frame}
 
 \begin{frame}
@@ -590,7 +596,7 @@
     \note{Información extraída de https://www.youtube.com/watch?v=X30sEgIws0g}
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
     
-    The Jacobian matrix \( G_t^x \) for the motion model is computed as:
+    The Jacobian matrix $G_{t}^{\state}$ for the motion model is computed as:
     
     \begin{align*}
         G_t^x &= \frac{\partial}{\partial(x, y, \theta)^T} \left(
