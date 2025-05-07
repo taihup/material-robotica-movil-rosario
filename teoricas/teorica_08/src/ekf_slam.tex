@@ -833,12 +833,19 @@
             \end{bmatrix}
         \end{align*}    
         \item Compute the Jacobian
-        \begin{equation*}
-            \prescript{\text{low}}{}{H^{i}_{t}} = \frac{\partial h(\bar{\mu}_t)}{\partial \bar{\mu}_t}
-        \end{equation*}
-        \begin{equation*}
-            \text{low-dim space} \quad (x, y, \theta, \map{j,x}, \map{j,y})
-        \end{equation*}
+        \begin{center}
+            \includegraphics[width=0.4\textwidth]{ekf_slam/jacobian_observation.pdf}
+        \end{center}
+        %
+        % \begin{equation*}
+        %     \prescript{\text{low}}{}{H^{i}_{t}} = \frac{\partial h(\bar{\mu}_t)}{\partial \bar{\mu}_t}
+        % \end{equation*}
+        % \begin{equation*}
+        %     \text{low-dim space} \quad (x, y, \theta, \map_{j,x}, \map_{j,y})
+        % \end{equation*}
+
+        We are only interested in the 5-dimension related with the observation.
+
     \end{itemize}
 \end{frame}
 
@@ -906,7 +913,7 @@
         \item We obtain (by applying the chain rule)
         \begin{align*}
             \frac{\partial \sqrt{q}}{\partial x}
-            &= \frac{1}{2} \cdot \frac{1}{\sqrt{q}} \cdot 2 \delta_x \cdot (-1)\\
+            &= \frac{1}{2} \frac{1}{\sqrt{q}} 2 \delta_x (-1)\\
             &= \frac{1}{q} \left(-\sqrt{q} \delta_x \right)
         \end{align*} 
     \end{itemize}
@@ -983,8 +990,8 @@
                 0 & 0 & 0 & 0 \cdots 0 & 1 & 0 & 0 \cdots 0 \\
                 0 & 0 & 0 & 0 \cdots 0 & 0 & 1 & 0 \cdots 0
                 \CodeAfter
-                \UnderBrace{5-4}{5-4}{2j-2}
-                \UnderBrace{5-7}{5-7}{2N-2j}
+                \UnderBrace{5-4}{5-4}{2(j-1)}
+                \UnderBrace{5-7}{5-7}{2(N-j)}
             \end{bNiceMatrix}
         \end{equation*} 
     \end{itemize}
@@ -1017,7 +1024,7 @@
         \Procedure{EKF\_SLAM\_Correction}{}
         \State $Q_t = \begin{bmatrix} \sigma_r^2 & 0 \\ 0 & \sigma_\theta^2 \end{bmatrix}$ \Comment{Measurement noise covariance}
         \For {all observed features $\observation_i^t = (r_i^t, \phi_i^t)^{\top}$}
-            \State $j = c_i^t$ \Comment{Landmark identifier}
+            \State $j = c_i^t$ \Comment{data association somehow}
             \If{landmark $j$ never seen before}
                 \State $\begin{bmatrix} \bar{\mu}_{j,x} \\ \bar{\mu}_{j,y} \end{bmatrix} = 
                        \begin{bmatrix} \bar{\mu}_{t,x} \\ \bar{\mu}_{t,y} \end{bmatrix} + 
@@ -1075,10 +1082,13 @@
     \note{Información extraída de https://www.ipb.uni-bonn.de/html/teaching/photo12-2021/2021-pho2-16-ekf-slam.pptx.pdf}
 
     \begin{itemize}
-    \item Measurement update in a single step requires only one full belief update
-    \item Always normalize angular components
-    \item May not need to create $F$ matrices explicitly
+        \item Measurement update in a single step requires only one full belief update
+        \item Always normalize angular components to be in $[-\pi,\pi]$. Otherwise this can screw up the jacobians.
+        \item May not need to create $F$ matrices explicitly \note{you can manipulate the covarince matrix elements directly}
     \end{itemize}
+
+    \note{As we describe the pseudo-code we need one full belief update for each observed landmark indepently. In Practivce, we can do a full belief update using all the landmarks that currently observed to speed up computation.}
+
 \end{frame}
 
 \begin{frame}
