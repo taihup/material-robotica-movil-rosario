@@ -1157,12 +1157,14 @@
 
     \begin{itemize}
         \item In the long run all the estimates are fully correlated. All the landmark locations are fully (and strongly) correlated with each other (thick lines) and the pose is correlated with the landmarks in a weaker manner (thin lines).
-        \item The Covariance Matrix represents the uncertainty and correlation between different state variables (e.g., robot pose and positions of landmarks).
+        \item The Covariance Matrix represents the uncertainty and correlation between different state variables (e.g., robot pose and positions of landmarks). The \textbf{correlation matrix} is the normalized covariance matrix of the posterior estimate.
         \begin{itemize}
             \item Diagonal: Variance (uncertainty) of each variable.
             \item Off-diagonal: Correlation between variables (how errors in one affect another).
         \end{itemize}
     \end{itemize}
+
+    \note{The correlation matrix simply divides the covariance of the two variables by the product of their standard deviations.}
     
 \end{frame}
 
@@ -1236,6 +1238,9 @@
     \begin{center}
     \movie[poster,loop,showcontrols]{\includegraphics[width=0.9\columnwidth]{./images/ekf_slam/ekf_slam_2d_video.jpg}}{./videos/ekf_slam_2d.mp4}
     \end{center}
+
+    \note{The covariance matrix is shown in the upper-left corner.}
+
 \end{frame}
 
 \begin{frame}
