@@ -584,7 +584,7 @@
             0 & I
         \end{bmatrix}
     \end{equation*}
-    where $G_t^x$ is the $3 \times 3$ Jacobian of the motion and $I$ is the $2N \times 2N$ identity matrix.
+    where $G_{t}^{\state}$ is the $3 \times 3$ Jacobian of the motion and $I$ is the $2N \times 2N$ identity matrix.
 
 
     Note that the Identity submatrix $I$ means that landmarks covariances would not change (it would remains the same as the previous covariance).
@@ -599,7 +599,7 @@
     The Jacobian matrix $G_{t}^{\state}$ for the motion model is computed as:
     
     \begin{align*}
-        G_t^x &= \frac{\partial}{\partial(x, y, \theta)^T} \left(
+        G_{t}^{\state} &= \frac{\partial}{\partial(x, y, \theta)^{\top}} \left(
         \begin{bmatrix}
         x \\
         y \\
@@ -612,7 +612,7 @@
         \omega_t \Delta t
         \end{bmatrix}
         \right) \\
-        &= I + \frac{\partial}{\partial(x, y, \theta)^T} 
+        &= I + \frac{\partial}{\partial(x, y, \theta)^{\top}} 
         \begin{bmatrix}
         -\frac{v_t}{\omega_t} \sin \theta + \frac{v_t}{\omega_t} \sin(\theta + \omega_t \Delta t) \\
         \frac{v_t}{\omega_t} \cos \theta - \frac{v_t}{\omega_t} \cos(\theta + \omega_t \Delta t) \\
@@ -643,7 +643,7 @@
         \bar{\Sigma}_t &= G_t \Sigma_{t-1} G_t^{\top} + R_t \\
         &= 
         \begin{bmatrix}
-        G_t^x & 0 \\
+        G_{t}^{\state} & 0 \\
         0 & I
         \end{bmatrix}
         \begin{bmatrix}
@@ -651,14 +651,14 @@
         \Sigma_{mx} & \Sigma_{mm}
         \end{bmatrix}
         \begin{bmatrix}
-        (G_t^x)^{\top} & 0 \\
+        (G_{t}^{\state})^{\top} & 0 \\
         0 & I
         \end{bmatrix}
         + R_t \\
         &=
         \begin{bmatrix}
-        G_t^x \Sigma_{xx} (G_t^x)^{\top} & G_t^x \Sigma_{xm} \\
-        (G_t^x \Sigma_{xm})^{\top} & \Sigma_{mm}
+        G_{t}^{\state} \Sigma_{xx} (G_{t}^{\state})^{\top} & G_{t}^{\state} \Sigma_{xm} \\
+        (G_{t}^{\state} \Sigma_{xm})^{\top} & \Sigma_{mm}
         \end{bmatrix}
         + R_t
     \end{align*}
@@ -672,7 +672,7 @@
 
     \begin{algorithmic}[1]
         \Procedure{EKF\_SLAM\_Prediction}{$\mu_{t-1}, \Sigma_{t-1}, \controlCommand_t, \observation_t, c_t, R_t$}
-        \State $F_x = \begin{bmatrix}
+        \State $F_{\state} = \begin{bmatrix}
         1 & 0 & 0 & 0 & 0 & \cdots & 0 \\
         0 & 1 & 0 & 0 & 0 & \cdots & 0 \\
         0 & 0 & 1 & 0 & 0 & \cdots & 0 \\
@@ -685,14 +685,14 @@
         \omega_t \Delta t
         \end{bmatrix}$
         \vspace{1em}
-        \State $G_t = I + F_x^{\top}
+        \State $G_t = I + F_{\state}^{\top}
         \begin{bmatrix}
         0 & 0 & \frac{-v_t}{\omega_t} \cos(\mu_{t-1,\theta}) + \frac{v_t}{\omega_t} \cos(\mu_{t-1,\theta} + \omega_t \Delta t) \\
         0 & 0 & \frac{-v_t}{\omega_t} \sin(\mu_{t-1,\theta}) + \frac{v_t}{\omega_t} \sin(\mu_{t-1,\theta} + \omega_t \Delta t) \\
         0 & 0 & 0
-        \end{bmatrix} F_x$
+        \end{bmatrix} F_{\state}$
         \vspace{1em}
-        \State $\bar{\Sigma}_t = G_t \Sigma_{t-1} G_t^{\top} + \underbrace{F_x^{\top} R_t F_x}_{R_t}$
+        \State $\bar{\Sigma}_t = G_{t} \Sigma_{t-1} G_{t}^{\top} + \underbrace{F_{\state}^{\top} R_{t}^{\state} F_{\state}}_{R_t}$
         \EndProcedure
     \end{algorithmic}
     
