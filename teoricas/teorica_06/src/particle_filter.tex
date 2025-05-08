@@ -275,7 +275,7 @@
     \frametitle{Monte Carlo Localization}
     \note{Información extraída de Vídeo de Cyrill Stachniss https://youtu.be/MsYlueVDLI0}
 
-    Monte Carlo Localization: Filtro de Partículas para la localización de un robot
+    Monte Carlo Localization: Filtro de Partículas para la localización de un robot.
 
 \end{frame}
 
@@ -300,7 +300,7 @@
             \state_t^{[j]} \sim p(\state_{t} \, | \, \state_{t-1}, \controlCommand_{t})
         \end{equation*}
 
-        Aquí, muestreamos desde la distribución \emph{proposal} $p(\state_{t} \, | \, \state_{t-1}, \controlCommand_{t})$. Notar que como $\controlCommand_{t}$ tiene ruido cada partícula se mueve con cierta diferencia. Por ejemplo, si $\controlCommand_{t}$ dice que el robot se movió \SI{1}{\meter} entonces habrá una partícula que se mueva \SI{0.97}{\meter}, otra \SI{1.2}{\meter}, etc.
+        Aquí, muestreamos desde la distribución \emph{proposal} $p(\state_{t} \, | \, \state_{t-1}, \controlCommand_{t})$. Notar que como $\controlCommand_{t}$ tiene ruido cada partícula se mueve con cierta diferencia. Por ejemplo, si $\controlCommand_{t}$ dice que el robot se movió \SI{1}{\meter} entonces habrá una partícula que se mueva \SI{0.97}{\meter}, otra \SI{1.02}{\meter}, etc.
 
         \item Corrección vía el observation model 
         \begin{equation*}
@@ -574,7 +574,7 @@
         \note{El número de partículas crece exponencialmente con las dimenciones del estado}
         \item Problemático en situaciones con mucha incertidumbre
         \item \emph{Depletion Problem} (la mayoría de las partículas tienen poco peso)
-        \item \note{El Depletion Problem: sucede cuando tenemos muy pocas partículas en comparación a la dimensionalidad del estado, las partículas no cubren las áreas de mayor probabilidad y por tanto mueren, haciendo que el filtro diverja eventualmente.
+        \note{El Depletion Problem: sucede cuando tenemos muy pocas partículas en comparación a la dimensionalidad del estado, las partículas no cubren las áreas de mayor probabilidad y por tanto mueren, haciendo que el filtro diverja eventualmente.
         Ejemplo: Imagina que tienes 100 partículas rastreando la posición de un robot. Si el robot da un giro brusco, muchas partículas tendrán pesos bajos porque no predicen bien el movimiento. Tras el resampling, solo unas pocas partículas "sobrevivirán", y el filtro perderá diversidad, afectando la estimación futura.}
     \end{itemize}
 \end{frame}
