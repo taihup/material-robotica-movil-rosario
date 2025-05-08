@@ -43,7 +43,7 @@
         \item Cada muestra está acumulando un poco de ``masa de probabilidad''.
         \item Las muestra puede ser vista como una aproximación a la función de densidad de probabilidad (pdf).
         \item Para obtener la pdf, hay que integrar sobre una cierta área de manera de obtener la masa de probabilidad de que el robot se encuentre en dicha área. 
-        \item Por tanto, en los lugares donde la pdf se alta tendremos más partículas, y en los lugares donde la pdf tenga valores bajos tendremos menos partículas.
+        \item Por tanto, en los lugares donde la pdf sea alta tendremos más partículas, y en los lugares donde la pdf tenga valores bajos tendremos menos partículas.
     \end{itemize}
     
     \begin{center}
@@ -394,31 +394,28 @@
 
     \scriptsize
 
-    \begin{overlayarea}{\textwidth}{\textheight}
-        
-        \only<1>{
-            \begin{center}
-                \includegraphics[width=0.3\textwidth]{./images/particle_filter/resampling_rulette_wheel1.pdf}
-            \end{center}
-        }
-        \only<2>{
-            \begin{center}
-                \includegraphics[width=0.3\textwidth]{./images/particle_filter/resampling_rulette_wheel2.pdf}
-            \end{center}
-        }
-        \only<3>{
-            \begin{center}
-                \includegraphics[width=0.3\textwidth]{./images/particle_filter/resampling_rulette_wheel3.pdf}
-            \end{center}
-        }
-        \begin{itemize}
-            \item Roulette Wheel
-            \item Los buckets de la ruleta representan los pesos de las partículas. Mientras más grande el bucket, más probable es que esta partícula sea seleccionada.
-            \item Tenemos que hacerlo $J$ veces. Tenemos que encontrar dónde cae la bola. Esto lo podemos hacer con Búsqueda binaria. La suma de todos los pesos de la ruleta es 1. Si tiramos un número random entre 0 y 1 entonces con búsqueda binaria podemos saber en qué bucket cae.
-            \item Búsqueda binaria para saber en qué bucket cae la bola ($O(J \log(J))$)
-        \end{itemize}
-
-    \end{overlayarea}
+    
+    \only<1>{
+        \begin{center}
+            \includegraphics[width=0.3\textwidth]{./images/particle_filter/resampling_rulette_wheel1.pdf}
+        \end{center}
+    }
+    \only<2>{
+        \begin{center}
+            \includegraphics[width=0.3\textwidth]{./images/particle_filter/resampling_rulette_wheel2.pdf}
+        \end{center}
+    }
+    \only<3>{
+        \begin{center}
+            \includegraphics[width=0.3\textwidth]{./images/particle_filter/resampling_rulette_wheel3.pdf}
+        \end{center}
+    }
+    \begin{itemize}
+        \item Roulette Wheel
+        \item Los buckets de la ruleta representan los pesos de las partículas. Mientras más grande el bucket, más probable es que esta partícula sea seleccionada.
+        \item Tenemos que hacerlo $J$ veces. Tenemos que encontrar dónde cae la bola. Esto lo podemos hacer con Búsqueda binaria. La suma de todos los pesos de la ruleta es 1. Si tiramos un número random entre 0 y 1 entonces con búsqueda binaria podemos saber en qué bucket cae.
+        \item Búsqueda binaria para saber en qué bucket cae la bola ($O(J \log(J))$)
+    \end{itemize}
 
 \end{frame}
 
@@ -428,27 +425,25 @@
 
     \footnotesize
 
-    \begin{overlayarea}{\textwidth}{\textheight}
-        \only<1>{
-            \begin{center}
-                \includegraphics[width=0.3\textwidth]{./images/particle_filter/resampling_stochastic_universal_sampling1.pdf}
-            \end{center}
-        }
-        \only<2>{
-            \begin{center}
-                \includegraphics[width=0.3\textwidth]{./images/particle_filter/resampling_stochastic_universal_sampling2.pdf}
-            \end{center}
-        }
+    \only<1>{
+        \begin{center}
+            \includegraphics[width=0.3\textwidth]{./images/particle_filter/resampling_stochastic_universal_sampling1.pdf}
+        \end{center}
+    }
+    \only<2>{
+        \begin{center}
+            \includegraphics[width=0.3\textwidth]{./images/particle_filter/resampling_stochastic_universal_sampling2.pdf}
+        \end{center}
+    }
 
-        \begin{itemize}
-            \item Stochastic universal sampling (utilizando $J$ flechas equidistantes)
-            \item También llamado \emph{Low-Variance Resampling} (evita que las partículas se concentren rápidamente)
-            \item Utilizando J flechas y poniendolas equidistantes. Rotamos todas juntas y elejimos de a J partículas. Por tanto cuando, tiro un número random ahora se seleccionan las J partículas de una.
-            \item Tiene costo computacional lineal $O(J)$ porque solo tengo que recorrer los pesos una vez para ver dónde caen todas las flechas.
-        \end{itemize}
+    \begin{itemize}
+        \item Stochastic universal sampling (utilizando $J$ flechas equidistantes)
+        \item También llamado \emph{Low-Variance Resampling} (evita que las partículas se concentren rápidamente)
+        \item Utilizando J flechas y poniendolas equidistantes. Rotamos todas juntas y elejimos de a J partículas. Por tanto cuando, tiro un número random ahora se seleccionan las J partículas de una.
+        \item Tiene costo computacional lineal $O(J)$ porque solo tengo que recorrer los pesos una vez para ver dónde caen todas las flechas.
+    \end{itemize}
 
-        \note{Ejemplo 8 flechas distante 45 grados una de otra.}
-    \end{overlayarea}
+    \note{Ejemplo 8 flechas distante 45 grados una de otra.}
 \end{frame}
 
 \begin{frame}
