@@ -19,11 +19,10 @@ def plot_field(env, marker_id):
     """Plot the soccer field, highlighting the currently observed marker."""
     margin = 200
 
-    ax = env.get_figure().gca(
-        aspect='equal',
-        xlim=(-margin, env.COMPLETE_SIZE_X + margin),
-        ylim=(-margin, env.COMPLETE_SIZE_Y + margin)
-    )
+    ax = env.get_figure().gca()
+    ax.set_aspect('equal')
+    ax.set_xlim(-margin, env.COMPLETE_SIZE_X + margin)
+    ax.set_ylim(-margin, env.COMPLETE_SIZE_Y + margin)
 
     for m in env.MARKERS:
         x, y = env.MARKER_X_POS[m], env.MARKER_Y_POS[m]
