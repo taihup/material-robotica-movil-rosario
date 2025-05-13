@@ -26,11 +26,11 @@
 
 %\ejercicio Explique el comportamiento de la matriz de covarianza en las etapas de predicción y corrección de EKF?
 
+\ejercicio In the Practical Assignment, where and why did you apply the utils.minimized\_angle() function ?
+
 \ejercicio What is the meaning of the covariance matrix?
 
 \ejercicio Explain the behaviour of the covariance matrix in the prediction step and the correction step of the EKF?
-
-\ejercicio In the Practical Assignment, where and why did you apply the utils.minimized\_angle() function ?
 
 \ejercicio What are the main difference and similarities between PF and EKF?
 
@@ -40,9 +40,75 @@
 
 \ejercicio What happen if a loop closing is done in an EKF-SLAM?
 
-\ejercicio What are the two types of Graph-SLAM techniques that we have?
+%\ejercicio What are the two types of Graph-SLAM techniques that we have?
+
+\ejercicio Why are the main source errors for a SLAM system?
+
+\ejercicio What is the main difference between EKF-SLAM and Graph-SLAM?
 
 
+\section*{Question 5}
 
+\begin{enumerate}
+
+\item Considere el sistema dinámico, descripto por el siguiente modelo 
+\begin{equation*}
+    x_{k+1} = \frac{1}{2}x_{k} \qquad x \in \mathbb{R}^{1}
+\end{equation*}
+El modelo es considerado perfecto.
+
+El valor inicial de la variable $x_0$ no es conocido perfectamente, es decir solo se dispone de un ``belief'' acerca de  $x_0$. Este belief es Gaussiano con valor esperado 2 y varianza $\sigma^2_{0} = 128$.
+
+(nota: las unidades usadas en ambos parametros son consistentes)
+Usted es requerido que provea predicciones para $x_k$ para los tiempos discretos $k=[1,2,3,4]$.
+
+Cada valor predecido debera ser provisto como un valor esperado y varianza associada,
+$\left(\mu_{k}, \sigma_{k}^2\right)$.
+
+\item Considere el mismo sistema mencionado en el item (a), pero ahora se considera que el modelo no es perfecto. El nuevo modelo es expresado como sigue :
+\begin{equation*}
+    x_{k+1} = \frac{1}{2}x_k + \eta_k
+\end{equation*}
+donde la componente $\eta_k$ es ruido blanco Gaussiano cuyo valor esperado es 0 y varianza 1.
+
+Se requiere que provea predicciones para $x_{k}$, para el tiempo discreto $k=2$. Su belief acerca de $x_0$ es el mismo que considero en el caso (a).
+
+\end{enumerate}
+
+Nota: Usted puede expresar los resultados usando expresiones, incluyendo fracciones, multiplicaciones, etc. NO es estrictamente necesario evaluarlas, excepto si son sencillas. Por ejemplo, una expresion tal como $(1/3 +2^3)*5$, puede ser expresada asi, sin ser evaluada.
+
+\section*{Question 6}
+Considere un sistema cuyo estado es representado, en el tiempo discreto k, por el vector
+\begin{equation*}
+    X = \begin{bmatrix}
+            x_1(k)\\
+            x_2(k)
+        \end{bmatrix}
+\end{equation*}
+
+Suponga que un estimado del estado (en el tiempo k1) es dado por
+
+\[ \hat{X}(k_1) = \begin{bmatrix} 1 \\ 2 \end{bmatrix}, \quad P(k_1) = \begin{bmatrix} 1 & 1 \\ 1 & 2 \end{bmatrix} \]
+
+Suponga que en el mismo instante k 1 se mide cierta salida del sistema, cuya relacion functional con el estado es
+
+\begin{equation*}
+y(k) = x_1(k)^3 + x_2(k)
+\end{equation*}
+
+La medida es realizada a traves de un sensor; la lectura es y k1 = 3. Se sabe que la medida esta contaminada con ruido blanco Gaussiano, cuya desviacion estandar es 0.5 (asuma que las unidades son consistentes). Basado en esta medicion usted realiza un update de EKF (Extended Kalman Filter)  sobre los estimados actuales. Una manera de hacerlo es por medio de las siguientes operaciones:
+
+    \begin{algorithmic}[1]
+        \State $S_{t}^{i} = \observationModelJacobian_{t}^{i} \overline{\covariance}_{t} \observationModelJacobian_{t}^{i^{\top}} + \observationModelCovariance_{t} $
+
+        \State $\kalmanGain_{t}^{i} = \overline{\covariance}_{t} {\observationModelJacobian_{t}^{i}}^{\top} S_{t}^{i^{-1}} $
+        \State $\mu_{t} = \overline{\mu}_{t} + \kalmanGain_{t}^{i}(\observation_{t} - \hat{\observation}_{t}^{i})$
+        \State $\covariance_{t} = (I - \kalmanGain_{t}^{i}\observationModelJacobian_{t}^{i})\overline{\covariance}_{t}$
+    \end{algorithmic}
+
+    \begin{enumerate}
+        \item Use las expresiones provistas para implementar el EKF update. E.g. especifique los valores que tomarian los siquientes items: $y(k)$, $z$, $H$, $R(k)$, $\hat{X}(k|k-1)$, $P(k|k-1)$.
+        \item Mencione que significan (que representan) los siguientes items $\hat{X}(k|k-1)$, $P(k|k-1)$, $\hat{X}(k|k)$, $P(k|k)$.
+    \end{enumerate}
 
 \end{document}
