@@ -42,7 +42,7 @@
 
 %\ejercicio What are the two types of Graph-SLAM techniques that we have?
 
-\ejercicio Why are the main source errors for a SLAM system?
+\ejercicio What are the main error sources for a SLAM system?
 
 \ejercicio What is the main difference between EKF-SLAM and Graph-SLAM?
 
@@ -98,7 +98,7 @@ Suponga que en el mismo instante $k=1$ se mide cierta salida del sistema, cuya r
     h\left(X_{k}\right) = \left(x_{k}\right)^3 + y_{k}
 \end{equation*}
 
-La medida es realizada a traves de un sensor; la lectura es $y_{1} = 3$. Se sabe que la medida esta contaminada con ruido blanco Gaussiano, cuya desviacion estandar es $0.5$ (asuma que las unidades son consistentes). Basado en esta medicion usted realiza un update de EKF (Extended Kalman Filter) sobre los estimados actuales. Una manera de hacerlo es por medio de las siguientes operaciones:
+La medida es realizada a traves de un sensor; la lectura es $\observation_{1} = 3$. Se sabe que la medida esta contaminada con ruido blanco Gaussiano, cuya desviacion estandar es $0.5$ (asuma que las unidades son consistentes). Basado en esta medicion usted realiza un update de EKF (Extended Kalman Filter) sobre los estimados actuales. Una manera de hacerlo es por medio de las siguientes operaciones:
 
     \begin{algorithmic}[1]
         \State $S_{k} = \observationModelJacobian_{k} \overline{\covariance}_{k} \observationModelJacobian_{k}^{\top} + \observationModelCovariance_{k} $
