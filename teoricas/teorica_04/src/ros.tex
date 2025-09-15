@@ -543,12 +543,11 @@ sudo apt install ros-<ros2-distro>-navigation2 ros-<ros2-distro>-nav2-bringup
 sudo apt install ros-<ros2-distro>-turtlebot3*
         \end{lstlisting}
     
-        \item Setear las variables de entorno y sourcear Gazebo (recuerde agregar estas líneas a \lstinline[style=bash]{.bashrc}):
+        \item Setear las variables de entorno de Gazebo (recuerde agregar estas líneas a \lstinline[style=bash]{.bashrc}):
         
-        \begin{lstlisting}[style=bash] 
+        \begin{lstlisting}[style=bash,basicstyle=\tiny] 
 export TURTLEBOT3_MODEL=waffle
-export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/opt/ros/<ros2-distro>/share/turtlebot3_gazebo/models
-source /usr/share/gazebo/setup.bash
+export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/opt/ros/$ROS_DISTRO/share/turtlebot3_gazebo/models
         \end{lstlisting}
     
         \item Lanzar la simulación. El parámetro \lstinline[style=bash]{headless:=False} permite visualizar el simulador Gazebo.
