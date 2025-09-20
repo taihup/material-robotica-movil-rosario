@@ -31,10 +31,7 @@ Luego, instalar el calibrador:
 sudo apt install ros-jazzy-camera-calibration
 \end{lstlisting}
 
-y 
-
-seguir las instrucciones de \url{https://docs.nav2.org/tutorials/docs/camera_calibration.html}
-
+y seguir las instrucciones de \url{https://docs.nav2.org/tutorials/docs/camera_calibration.html}
 
 Ejecutar el calibrador:
 
@@ -52,17 +49,17 @@ sudo apt install ros-<ROS-DISTRO>-librealsense2*
 
 Clonar en el workspace:
 \begin{lstlisting}[style=bash]
+cd ~/ros_ws/src
 git clone https://github.com/IntelRealSense/realsense-ros
 \end{lstlisting}
 
-Luego ir al root del workspace y compilar con colcon:
+Ir al root del workspace y compilar con \lstinline{colcon}:
 \begin{lstlisting}[style=bash]
 cd ~/ros_ws
 colcon build --symlink-install
 \end{lstlisting}
 
 Sourcear:
-
 \begin{lstlisting}[style=bash]
 source install/setup.bash
 \end{lstlisting}
