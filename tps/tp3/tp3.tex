@@ -30,6 +30,8 @@ El objetivo del trabajo práctico es la realización de los pasos básicos para 
 	\item Se debe proveer un repositorio git que contenga el código desarrollado y un archivo \lstinline{README.md} con las instrucciones de compilación y ejecución. Se recomienda hacer una imagen Docker para facilitar la reproducción de los resuldatos.
     
 	\item Se debe entregar un informe en Lyx o \LaTeX\  explicando el trabajo realizado y analizando los resultados obtenidos.
+	
+    \item Haciendo los ejercicios obligarorios (no opcionales), el trabajo tiene una nota máxima de 8. Los ejercicios opcionales permiten llegar a la nota máxima de 10.
 \end{itemize}
 
 \section{Datos}
@@ -119,7 +121,7 @@ Dadas las correspondencias visuales (\emph{matches}) obtenidas en el paso anteri
 
 Aplicar RANSAC (\emph{Random sample consensus}) para filtrar los matches espúreos y computar la Matríz homográfica que relaciona los puntos. Para esto puede utilizar la función \lstinline{cv::findHomography()}. Para verificar el impacto del filtrado, visualizar los matches entre las imágenes nuevamente como en la nube de puntos 3D generada. También, visualizar en la imagen derecha los puntos de la imagen izquierda transformados por la matríz homográfica. Para esto último utilizar la función  \lstinline{cv::perspectiveTransform()}. Agregar capturas al informe.
 
-\item \textbf{Feature Mapping con Localización Ground-truth}
+\item (Opcional) \textbf{Feature Mapping con Localización \emph{ground-truth}}
 
 Mapear el entorno utilizando las poses dada por el \emph{ground-truth} del dataset. Visualizar el mapa reconstruido. Agregar captura al informe.
 
@@ -131,9 +133,9 @@ Computar el mapa de disparidad con las librerías utilizando la función \lstinl
 
 Utilizando el mapa de disparidad obtenido en el paso anterior realizar una reconstrucción densa de la escena observada utilizando la función \lstinline{cv::reprojectImageTo3D()}. Para esto debe utilizar la matríz de reproyección Q retornada por la función \lstinline{cv::stereoRectify()}. Visualizar la nube de puntos 3D. Agregar captura al informe.
 
-\item \textbf{Dense Mapping con Localización Ground-truth}
+\item (Opcional) \textbf{Dense Mapping con Localización Ground-truth}
 
-Mapear el entorno de manera densa utilizando las poses dada por el Ground-truth del dataset. Visualizar el mapa reconstruido. Agregar captura al informe.
+Mapear el entorno de manera densa utilizando las poses dada por el \emph{ground-truth} del dataset. Visualizar el mapa reconstruido. Agregar captura al informe.
 
 \item \textbf{Estimar la Pose utilizando Visión Monocular}
 
