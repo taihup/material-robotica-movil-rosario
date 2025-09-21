@@ -336,34 +336,34 @@ Solo traslación:
         \toCoord{\begin{bmatrix}
             x\\
             y
-        \end{bmatrix}}{B} =
+        \end{bmatrix}}{A} =
         \toCoord{\begin{bmatrix}
             x\\
             y
-        \end{bmatrix}}{A} +
+        \end{bmatrix}}{B} +
         \toCoord{\fromCoord{\begin{bmatrix}
             t_{x}\\
             t_{y}
-        \end{bmatrix}}{A}}{B}
+        \end{bmatrix}}{B}}{A}
     \end{equation*}
 Agregando Rotación:
     \begin{align*}
         \toCoord{\begin{bmatrix}
             x\\
             y
-        \end{bmatrix}}{B} &=
+        \end{bmatrix}}{A} &=
        \toCoord{\fromCoord{\begin{bmatrix}
                                 \cos \theta & -\sin \theta \\
                                 \sin \theta & \cos \theta
-                            \end{bmatrix}}{A}}{B}
+                            \end{bmatrix}}{B}}{A}
         \toCoord{\begin{bmatrix}
             x\\
             y
-        \end{bmatrix}}{A} +
+        \end{bmatrix}}{B} +
         \toCoord{\fromCoord{\begin{bmatrix}
             t_{x}\\
             t_{y}
-        \end{bmatrix}}{A}}{B}
+        \end{bmatrix}}{B}}{A}
     \end{align*}
 
 Representamos las matrices y vectores simbólicamente:
@@ -372,11 +372,11 @@ Representamos las matrices y vectores simbólicamente:
         \toCoord{\begin{bmatrix}
             x\\
             y
-        \end{bmatrix}}{B} = \rotationCoord{B}{A}
+        \end{bmatrix}}{A} = \rotationCoord{A}{B}
         \toCoord{\begin{bmatrix}
             x\\
             y
-        \end{bmatrix}}{A} + \translationCoord{B}{A}
+        \end{bmatrix}}{B} + \translationCoord{A}{B}
     \end{equation*}
 
 Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
@@ -386,27 +386,27 @@ Armamos la matriz de rototraslación, y utilizamos coordenadas homogéneas:
             x\\
             y\\
             1
-        \end{bmatrix}}{B} &=
+        \end{bmatrix}}{A} &=
         \begin{bmatrix}
-            \rotationCoord{B}{A} & \translationCoord{B}{A}\\
+            \rotationCoord{A}{B} & \translationCoord{A}{B}\\
             \vec{0} & 1
         \end{bmatrix}
         \toCoord{\begin{bmatrix}
             x\\
             y\\
             1
-        \end{bmatrix}}{A}\\
+        \end{bmatrix}}{B}\\
         \toCoord{\begin{bmatrix}
             x\\
             y\\
             1
-        \end{bmatrix}}{B} &=
-        \transform{B}{A}
+        \end{bmatrix}}{A} &=
+        \transform{A}{B}
         \toCoord{\begin{bmatrix}
             x\\
             y\\
             1
-        \end{bmatrix}}{A}
+        \end{bmatrix}}{B}
     \end{align*}
 
 
