@@ -28,7 +28,7 @@ Ir a \url{https://github.com/CIFASIS/tara-stereo-camera} y seguir el README.md
 Luego, instalar el calibrador:
 
 \begin{lstlisting}[style=bash]
-sudo apt install ros-jazzy-camera-calibration
+sudo apt install ros-$ROS_DISTRO-camera-calibration
 \end{lstlisting}
 
 y seguir las instrucciones de \url{https://docs.nav2.org/tutorials/docs/camera_calibration.html}
@@ -42,9 +42,14 @@ ros2 run camera_calibration cameracalibrator --approximate 0.1 --size 8x6 --squa
 
 \section{Intel D455}
 
+Dependendias
 \begin{lstlisting}[style=bash]
-sudo apt-get install ros-<ROS-DISTRO>-diagnostic-updater
-sudo apt install ros-<ROS-DISTRO>-librealsense2*
+sudo apt-get install ros-$ROS_DISTRO-diagnostic-updater
+sudo apt install ros-$ROS_DISTRO-librealsense2*
+\end{lstlisting}
+
+\begin{lstlisting}[style=bash]
+pip3 install empy lark
 \end{lstlisting}
 
 Clonar en el workspace:
