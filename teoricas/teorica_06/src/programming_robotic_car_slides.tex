@@ -1,6 +1,7 @@
 \section{Medición}
 
-\begin{frame}{Belief luego de sensar}
+\begin{frame}
+  \frametitle{Belief luego de sensar}
     \begin{block}{Ejemplo}
         \begin{itemize}
             \item Un mundo constituido por cinco celdas $x_{i}$ donde $i = 1, \dots ,5$
@@ -27,7 +28,8 @@
     
 \end{frame}
 
-\begin{frame}{Belief luego de sensar}
+\begin{frame}
+  \frametitle{Belief luego de sensar}
     
     Si el robot \alert{sensa rojo}, ?`Cuál es su Posterior belief?
     
@@ -36,7 +38,8 @@
     \end{center}
 \end{frame}
 
-\begin{frame}{Belief luego de sensar}
+\begin{frame}
+  \frametitle{Belief luego de sensar}
     
     Si el robot \alert{sensa rojo}, ?`Cuál es su Posterior belief?
     
@@ -54,7 +57,8 @@
     
 \end{frame}
 
-\begin{frame}{Belief luego de sensar}
+\begin{frame}
+  \frametitle{Belief luego de sensar}
     \begin{displaymath}
         P(x_{i} = rojo | sensa \ rojo) = 0.12
     \end{displaymath}
@@ -81,7 +85,8 @@
 \end{frame}
 
 
-\begin{frame}{Regla de Bayes}
+\begin{frame}
+  \frametitle{Regla de Bayes}
     
     Notar que cuando el robot sensa no hace otra cosa que aplicar la Regla Bayes:
     
@@ -98,7 +103,8 @@
 \end{frame}
 
 \section{Motricidad}
-\begin{frame}{Belief luego del movimiento}
+\begin{frame}
+  \frametitle{Belief luego del movimiento}
     \begin{block}{Ejemplo (continuación)}
         \begin{itemize}
             \item Un mundo \alert{cíclico} constituido por cinco celdas $x_{i}$ donde $i = 1, \dots ,5$
@@ -114,7 +120,8 @@
     
 \end{frame}
 
-\begin{frame}{Belief luego del movimiento}
+\begin{frame}
+  \frametitle{Belief luego del movimiento}
     Si el robot tiene una \alert{motricidad exacta} y desea moverse \alert{una} celda a la derecha, ?`Cuál es su Posterior belief?
     
     \begin{center}
@@ -123,7 +130,8 @@
     
 \end{frame}
 
-\begin{frame}{Belief luego del movimiento}
+\begin{frame}
+  \frametitle{Belief luego del movimiento}
     Si el robot tiene una \alert{motricidad exacta} y desea moverse \alert{una} celda a la derecha, ?`Cuál es su Posterior belief?
     
     \begin{center}
@@ -132,7 +140,8 @@
     
 \end{frame}
 
-\begin{frame}{Belief luego del movimiento}
+\begin{frame}
+  \frametitle{Belief luego del movimiento}
     Suponiendo ahora que el robot desea moverse \alert{dos} celdas a la derecha y tiene una \alert{motricidad inexacta} con la siguiente distribución de probabilidad:
     \begin{columns}[t]
         \begin{column}{5cm}
@@ -154,7 +163,8 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}{Belief luego del movimiento}
+\begin{frame}
+  \frametitle{Belief luego del movimiento}
     
     Si el robot conoce exactamente cuál es su posición inicial, ?`Cuál es su Posterior belief?
     
@@ -172,7 +182,8 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}{Belief luego del movimiento}
+\begin{frame}
+  \frametitle{Belief luego del movimiento}
     
     Si el robot conoce exactamente cuál es su posición inicial, ?`Cuál es su Posterior belief?
     
@@ -190,7 +201,8 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}{Belief luego del movimiento}
+\begin{frame}
+  \frametitle{Belief luego del movimiento}
     Si el robot tiene como distribución inicial que se encuentra en las celdas $x_{2}$ y $x_{4}$ con igual probabilidad, formalmente,
     \begin{displaymath}
         P(x_{2}) = P(x_{4}) = 0.5
@@ -211,7 +223,8 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}{Belief luego del movimiento}
+\begin{frame}
+  \frametitle{Belief luego del movimiento}
     
     Si el robot tiene como distribución inicial que se encuentra en las celdas $x_{2}$ y $x_{4}$ con igual probabilidad, formalmente,
     \begin{displaymath}
@@ -241,7 +254,8 @@
 \end{frame}
 
 \section{Sensar y Mover}
-\begin{frame}{Ciclo de sensar y mover}
+\begin{frame}
+  \frametitle{Ciclo de sensar y mover}
     Localización no es más que la iteración de sensar y mover.
     \begin{center}
         \includegraphics<1>[height=2.5cm]{./images/sens_and_move.pdf}
@@ -259,7 +273,8 @@
 \end{frame}
 
 
-\begin{frame}{Definición formal de localización}
+\begin{frame}
+  \frametitle{Definición formal de localización}
     
     \begin{block}{Medición}
         \begin{displaymath}
@@ -276,7 +291,8 @@
     
 \end{frame}
 
-\begin{frame}{Definición formal de localización}
+\begin{frame}
+  \frametitle{Definición formal de localización}
     
     Sea $P(x_{i}^{t})$ la probabilidad de estar en el punto $x_{i}$ luego del movimiento del robot
     

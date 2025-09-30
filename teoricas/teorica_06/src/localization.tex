@@ -10,7 +10,8 @@
     
 \end{frame}
 
-\begin{frame}{Localización}
+\begin{frame}
+  \frametitle{Localización}
     \begin{block}{Localización}
         Es la habilidad que posee una máquina (robot) para localizarse en el espacio.
     \end{block}
@@ -34,7 +35,8 @@
     Estimación de estado recursiva: Se trata de estimar $\state_{t}$ el estado actual utilizando también el estado inmediatamente anterior $\state_{t-1}$.
 \end{frame}
 
-\begin{frame}{Filtro de Bayes Recursivo}
+\begin{frame}
+  \frametitle{Filtro de Bayes Recursivo}
     \begin{block}{Ejemplo}
         \begin{itemize}
             
@@ -50,7 +52,8 @@
 
 \end{frame}
 
-\begin{frame}{Filtro de Bayes Recursivo: Posición inicial}
+\begin{frame}
+  \frametitle{Filtro de Bayes Recursivo: Posición inicial}
     Como en un principio el robot desconoce cual es su posición entonces es igualmente posible que se encuentre en cualquier punto del mundo (\alert{belief}). Esto lo podemos representar matemáticamente diciendo que la \alert{función de distribución de probabilidad} del robot es \alert{uniforme} sobre el mundo en que se encuentra.
     \begin{center}
         \includegraphics<1>[width=0.7\columnwidth]{./images/monte_carlo_uniform.pdf}
@@ -58,7 +61,8 @@
     
 \end{frame}
 
-\begin{frame}{Filtro de Bayes Recursivo: Medición}
+\begin{frame}
+  \frametitle{Filtro de Bayes Recursivo: Medición}
     
     Si el robot sensa que se encuentra al lado de una puerta entonces la creencia de su ubicación se se ve alterada de la siguiente manera:
     
@@ -75,7 +79,8 @@
     
 \end{frame}
 
-\begin{frame}{Filtro de Bayes Recursivo: Movimiento}
+\begin{frame}
+  \frametitle{Filtro de Bayes Recursivo: Movimiento}
     
     Si \textbf{el robot se mueve hacia la derecha} la creencia es cambiada de acuerdo al movimiento.
     Así mismo como el movimiento del robot es inexacto, al trasladarse su incertidumbre crece, dicho de otra manera, las lomas son aplanadas. Este aplanamiento matemáticamente se lleva a cabo por medio de la operación de \alert{convolución} entre la función Posterior belief y la función que describe la distancia recorrida.
@@ -88,7 +93,8 @@
     
 \end{frame}
 
-\begin{frame}{Filtro de Bayes Recursivo: Segunda medición}
+\begin{frame}
+  \frametitle{Filtro de Bayes Recursivo: Segunda medición}
     Supongamos que el robot luego de haberse movido sensa nuevamente que se encuentre al lado de una puerta entonces, como antes, la probabilidad se incrementara por un cierto factor la función de probabilidad donde haya una puerta.
     
     \begin{center}
@@ -96,7 +102,8 @@
     \end{center}
 \end{frame}
 
-\begin{frame}{Filtro de Bayes Recursivo: Segundo movimiento}
+\begin{frame}
+  \frametitle{Filtro de Bayes Recursivo: Segundo movimiento}
     Supongamos que el robot se mueve nuevamente...
     
     \begin{center}
@@ -200,7 +207,8 @@
     \note{Luego se pueden seguir haciendo asumciones, por ejemplo asumir que las probabilidades son gaussianas. Lo cual no es cierto en general.}
 \end{frame}
 
-\begin{frame}{Paso de Predicción y Paso de Corrección}
+\begin{frame}
+  \frametitle{Paso de Predicción y Paso de Corrección}
     \note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
     \begin{itemize}
         \item El Filtro de Bayes puede ser escrito como un proceso de dos pasos
@@ -222,7 +230,8 @@
     
 \end{frame}
 
-\begin{frame}{Motion model y observation model}
+\begin{frame}
+  \frametitle{Motion model y observation model}
     \note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
     \begin{itemize}
          \item Paso de Predicción
@@ -240,7 +249,8 @@
     
 \end{frame}
 
-\begin{frame}{Diferentes implementaciones}
+\begin{frame}
+  \frametitle{Diferentes implementaciones}
     \note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
     \begin{itemize}
         \item El Filtro de Bayes es un {\bf framework} estimación de estado recursiva
@@ -256,7 +266,8 @@
     
 \end{frame}
 
-\begin{frame}{Filtros populares}
+\begin{frame}
+  \frametitle{Filtros populares}
     \note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
     \begin{itemize}
         \item Kalman Filter
@@ -284,14 +295,16 @@
     \note{el precio a pagar es que tiene un costo computacional muy alto}
 \end{frame}
 
-\begin{frame}{Motion Model}
+\begin{frame}
+  \frametitle{Motion Model}
     \note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
     \begin{equation*}
         \overline{bel}(\state_{t}) = \int \underbrace{p\left(\state_{t} | \state_{t-1}, \controlCommand_{t} \right)}_{\text{Motion model}} bel(\state_{t-1}) d \state_{t-1}
     \end{equation*}
 \end{frame}
 
-\begin{frame}{Ejemplo: Movimiento basado en odometría}
+\begin{frame}
+  \frametitle{Ejemplo: Movimiento basado en odometría}
     \note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
     
     \begin{figure}[!h]
@@ -309,14 +322,16 @@
     
 \end{frame}
 
-\begin{frame}{Observation model}
+\begin{frame}
+  \frametitle{Observation model}
     \note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
     \begin{equation*}
         bel(\state_{t}) = \eta \underbrace{p\left(\observation_{t} |\state_{t} \right)}_{\text{\makebox[0pt]{Observation model (Measurement model o Sensor model)}}} \overline{bel}(\state_{t})
     \end{equation*}
 \end{frame}
 
-\begin{frame}{Ejemplo: Observation Model simple con Ruido Gaussiano}
+\begin{frame}
+  \frametitle{Ejemplo: Observation Model simple con Ruido Gaussiano}
     \note{Información obtenida de Cyrill Stachniss Bayes: https://youtu.be/0lKHFJpaZvE}
     
     \begin{itemize}
