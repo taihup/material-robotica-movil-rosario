@@ -4,9 +4,28 @@
   \note{https://docs.opencv.org/3.4/d4/dee/tutorial_optical_flow.html}
   \note{https://youtu.be/lnXFcmLB7sM}
   \note{https://www.baeldung.com/cs/motion-field-optical-flow}
+  \note{https://rpg.ifi.uzh.ch/docs/teaching/2020/11_tracking.pdf}
+  \note{https://rpg.ifi.uzh.ch/teaching.html\#VAMR}
+  \note{https://asl.ethz.ch/education/lectures/autonomous_mobile_robots/spring-2021.html}
+  \note{https://cs.brown.edu/courses/cs143/2011/results/proj5/gen/}
+  \note{https://rpg.ifi.uzh.ch/docs/teaching/2025/03_camera_calibration.pdf}
+
     Method to estimate apparent motion of scene points from a sequence of images.
 
     Optical flow is the pattern of apparent motion of image objects between two consecutive frames caused by the movement of object or camera. It is 2D vector field where each vector is a displacement vector showing the movement of points from first frame to second.
+
+    \begin{columns}
+      \begin{column}{0.5\textwidth}
+        \begin{center}
+          \movie[autostart,loop,poster]{\includegraphics[width=0.8\columnwidth]{images/optical_flow/klt_points_video.jpg}}{videos/klt_points.mp4}
+        \end{center}
+      \end{column}
+      \begin{column}{0.5\textwidth}  %%<--- here
+        \begin{center}
+          \movie[autostart,loop,poster]{\includegraphics[width=\columnwidth]{images/optical_flow/klt_tracking_video.jpg}}{videos/klt_tracking.mp4}
+        \end{center}
+      \end{column}
+    \end{columns}
 
     Topics:
     \begin{enumerate}
