@@ -14,6 +14,8 @@
 
     Optical flow is the pattern of apparent motion of image objects between two consecutive frames caused by the movement of object or camera. It is 2D vector field where each vector is a displacement vector showing the movement of points from first frame to second.
 
+    Method to estimate the apparent motion of scene points from a sequence of images i.e., the motion of brightness pattern in the image. Each pixel has a vector that tells the optical flow at that point. The motion of the brightness pattern is the optical flow, the length of the vector tells how fast it is moving, and the direction tells its direction on the image plane.
+
     \begin{columns}
       \begin{column}{0.5\textwidth}
         \begin{center}
@@ -39,12 +41,46 @@
 
 % Slide 2
 \begin{frame}
-  \frametitle{Motion Field and Optical Flow}
-    Consider a point in the 3D scene which is moving in some direction. The projection of that motion onto the 2D image plane is referred to as the motion field. Unfortunately, there is no guarantee that we can measure this motion field; all we can measure is the motion of brightness patterns, referred to as the optical flow.
+  \frametitle{Motion Field}
+  \begin{center}
+    \includegraphics[width=0.11\columnwidth]{./images/optical_flow/motion_field.pdf}
+  \end{center}
+\end{frame}
 
-    \vspace{0.5cm}
-    \centering
-    % \includegraphics[width=0.6\textwidth]{placeholder-slide3.png}
+
+\begin{frame}
+  \frametitle{Optical Flow}
+Motion of brightness patterns in the image.
+
+Ideally: Optical Flow = Motion Field.
+
+\vspace{0.5cm}
+\centering
+% \includegraphics[width=0.6\textwidth]{placeholder-slide6.png}
+\end{frame}
+
+% Slide 4
+\begin{frame}
+  \frametitle{When is Optical Flow $\neq$ Motion Field?}
+
+
+  \begin{figure}[!h]
+    \subfloat[Motion field]
+    {
+        \includegraphics[valign=b,width=0.3\columnwidth]{./images/optical_flow/spinning_sphere_stationary_light.pdf}
+    }
+    \hspace*{2em}
+    \subfloat[Optical Flow]
+    {
+        \includegraphics[valign=b,width=0.3\columnwidth]{./images/optical_flow/stationary_sphere_moving_light.pdf}
+    }
+  \end{figure}
+
+\begin{itemize}
+  \item Motion Field exists but no Optical Flow (e.g., spinning sphere, stationary light source)
+  \item No Motion Field exists but there is Optical Flow (e.g., stationary sphere, moving light source)
+\end{itemize}
+
 \end{frame}
 
 % Slide 3
@@ -62,21 +98,49 @@ Ideally: Optical Flow = Motion Field.
 % Slide 4
 \begin{frame}
   \frametitle{When is Optical Flow $\neq$ Motion Field?}
-\begin{itemize}
-  \item Motion Field exists but no Optical Flow (e.g., spinning sphere, stationary light source)
-  \item No Motion Field exists but there is Optical Flow (e.g., stationary sphere, moving light source)
-\end{itemize}
+  \begin{figure}[!h]
+    \subfloat[Barber Pole Illusion]
+    {
+      \movie[showcontrols,autostart,loop,poster]{\includegraphics[valign=b,width=0.2\columnwidth]{./images/optical_flow/barberpole_video.jpg}}{videos/barberpole.mp4}
+    }
+    \hspace*{2em}
+    \subfloat[Motion field]
+    {
+        \includegraphics[valign=b,width=0.11\columnwidth]{./images/optical_flow/barberpole_motion_field.pdf}
+    }
+    \hspace*{2em}
+    \subfloat[Optical Flow]
+    {
+        \includegraphics[valign=b,width=0.11\columnwidth]{./images/optical_flow/barberpole_optical_flow.pdf}
+    }
+  \end{figure}
+  \begin{itemize}
+    \item Barber Pole Illusion: Motion Field horizontal, Optical Flow appears vertical.
+  \end{itemize}
+\end{frame}
 
-\vspace{0.5cm}
-\centering
-% \includegraphics[width=0.6\textwidth]{placeholder-slide7.png}
+\begin{frame}
+  \frametitle{Aperture Problem}
+  \begin{figure}[!h]
+    \subfloat[Barber Pole Illusion]
+    {
+      \movie[showcontrols,autostart,loop,poster]{\includegraphics[valign=b,width=0.2\columnwidth]{./images/optical_flow/barberpole_illusion_video.jpg}}{videos/barberpole_illusion.mp4}
+    }
+    \hspace*{2em}
+    \subfloat[Motion field]
+    {
+      \movie[showcontrols,autostart,loop,poster]{\includegraphics[valign=b,width=0.2\columnwidth]{./images/optical_flow/barberpole_aperture_problem_video.jpg}}{videos/barberpole_aperture_problem.mp4}
+    }
+  \end{figure}
+  \begin{itemize}
+    \item asdf
+  \end{itemize}
 \end{frame}
 
 % Slide 5
 \begin{frame}
   \frametitle{Motion Illusions}
 \begin{itemize}
-  \item Barber Pole Illusion: Motion Field horizontal, Optical Flow appears vertical.
   \item Donguri Wave Illusion: Static image but perceived motion.
   \item Ouchi Pattern: Inner disc appears to move with respect to the ring.
 \end{itemize}
