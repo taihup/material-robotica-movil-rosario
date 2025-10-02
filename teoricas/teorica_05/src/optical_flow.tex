@@ -61,8 +61,6 @@ Topics:
     \includegraphics[width=\columnwidth]{./images/optical_flow/motion_field.pdf}
   \end{center}
 
-  
-
 \end{frame}
 
 
@@ -135,6 +133,189 @@ Ideally: Optical Flow = Motion Field.
   \begin{itemize}
     \item Barber Pole Illusion: Motion Field horizontal, Optical Flow appears vertical.
   \end{itemize}
+\end{frame}
+
+% Slide 4
+\begin{frame}{Point Tracking}
+  Problem: given two images, estimate the motion of a pixel point from image $I_0$ to image $I_1$
+  
+  \begin{center}
+    \includegraphics[width=0.3\columnwidth]{./images/optical_flow/point_tracking_1.pdf}
+  \end{center}
+
+\end{frame}
+
+% Slide 5
+\begin{frame}{Point Tracking}
+  Problem: given two images, estimate the motion of a pixel point from image $I_0$ to image $I_1$
+  
+  \begin{center}
+    \includegraphics[width=0.3\columnwidth]{./images/optical_flow/point_tracking_2.pdf}
+  \end{center}
+\end{frame}
+
+% Slide 6
+\begin{frame}{Point Tracking}
+  \begin{itemize}
+    \item Problem: given two images, estimate the motion of a pixel point from image $I_0$ to image $I_1$
+  \end{itemize}
+
+  \begin{center}
+    \includegraphics[width=0.3\columnwidth]{./images/optical_flow/point_tracking_3.pdf}
+  \end{center}
+  
+  \begin{itemize}
+    \item Two approaches exist, depending on the amount of motion between the frames:
+      \begin{itemize}
+        \item Block-based methods
+        \item Differential methods
+      \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+% Slide 7
+\begin{frame}{Point Tracking}
+  Consider the motion of the following corner
+  
+  % \begin{figure}
+  %   \centering
+  %   \fbox{\includegraphics[width=0.7\textwidth]{placeholder.png}}
+  % \end{figure}
+\end{frame}
+
+% Slide 8
+\begin{frame}{Point Tracking}
+  Consider the motion of the following corner
+  
+  % \begin{figure}
+  %   \centering
+  %   \fbox{\includegraphics[width=0.7\textwidth]{placeholder.png}}
+  % \end{figure}
+\end{frame}
+
+% Slide 9
+\begin{frame}{Point Tracking with Block Matching}
+  \begin{itemize}
+    \item Search for the corresponding patch in a $D \times D$ region around the point to track.
+    \item Use SSD, SAD, or NCC.
+  \end{itemize}
+  
+  % \begin{figure}
+  %   \centering
+  %   \fbox{\includegraphics[width=0.7\textwidth]{placeholder.png}}
+  % \end{figure}
+\end{frame}
+
+% Slide 10
+\begin{frame}{Pros and Cons of Block Matching}
+  \textbf{Pros:}
+  \begin{itemize}
+    \item Works well if the motion is large
+  \end{itemize}
+  
+  \textbf{Cons:}
+  \begin{itemize}
+    \item Can become computationally demanding if the motion is large
+    \item Can the “search” be implemented in a smart way if the motion is “small”?  
+      Yes, use Differential methods
+  \end{itemize}
+\end{frame}
+
+% Slide 11
+\begin{frame}{Point Tracking with Differential Methods}
+  Looks at the local brightness changes at the same location. No patch shift is performed!
+  
+  % \begin{figure}
+  %   \centering
+  %   \fbox{\includegraphics[width=0.7\textwidth]{placeholder.png}}
+  % \end{figure}
+\end{frame}
+
+% Slide 12
+\begin{frame}{Point Tracking with Differential Methods}
+  Looks at the local brightness changes at the same location. No patch shift is performed!
+  
+  % \begin{figure}
+  %   \centering
+  %   \fbox{\includegraphics[width=0.7\textwidth]{placeholder.png}}
+  % \end{figure}
+\end{frame}
+
+% Slide 13
+\begin{frame}{Point Tracking with Differential Methods}
+  Looks at the local brightness changes at the same location. No patch shift is performed!
+  
+  % \begin{figure}
+  %   \centering
+  %   \fbox{\includegraphics[width=0.7\textwidth]{placeholder.png}}
+  % \end{figure}
+\end{frame}
+
+% Slide 14
+\begin{frame}{Point Tracking with Differential Methods}
+  Assumptions:
+  \begin{itemize}
+    \item Brightness constancy: The intensity of the pixels around the point to track does not change much between the two frames
+    \item Temporal consistency: The motion displacement is small (1–2 pixels); can be addressed using multi-scale implementations
+    \item Spatial coherency: Neighboring pixels undergo similar motion (they all lay on the same 3D surface, i.e., no depth discontinuity)
+  \end{itemize}
+\end{frame}
+
+% Slide 15
+\begin{frame}{The Kanade-Lucas-Tomasi (KLT) tracker}
+  Consider the reference patch centered at $(x,y)$ in image $I_0$ and the shifted patch centered at $(x+u, y+v)$ in image $I_1$.  
+  The patch has size $\Omega$. We want to find the motion vector $(u,v)$ that minimizes the Sum of Squared Differences (SSD):
+  
+  \[
+  SSD(u,v) = \sum_{x,y \in \Omega} \big(I_0(x,y) - I_1(x+u, y+v)\big)^2
+  \]
+  
+  References:  
+  Lucas \& Kanade (1981), Tomasi \& Kanade (1991)
+\end{frame}
+
+% Slide 16
+\begin{frame}{The Kanade-Lucas-Tomasi (KLT) tracker}
+  To minimize it, we differentiate with respect to $(u,v)$ and equate to zero:
+  
+  \[
+  \frac{\partial SSD}{\partial u} = 0, \quad \frac{\partial SSD}{\partial v} = 0
+  \]
+  
+  This yields a system of linear equations.
+\end{frame}
+
+% Slide 17
+\begin{frame}{The Kanade-Lucas-Tomasi (KLT) tracker}
+  Linear system of two equations in two unknowns, written in matrix form:
+  
+  \[
+  \begin{bmatrix}
+    I_x^2 & I_x I_y \\
+    I_x I_y & I_y^2
+  \end{bmatrix}
+  \begin{bmatrix}
+    u \\ v
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    I_x \Delta I \\ I_y \Delta I
+  \end{bmatrix}
+  \]
+  
+  Haven’t we seen this matrix already? Recall Harris detector!
+\end{frame}
+
+% Slide 18
+\begin{frame}{The Kanade-Lucas-Tomasi (KLT) tracker}
+  In practice, $\det(M)$ should be non-zero, which means eigenvalues should be large.  
+  That is, the region should be a corner or textured region (not flat, not an edge).
+  
+  % \begin{figure}
+  %   \centering
+  %   \fbox{\includegraphics[width=0.7\textwidth]{placeholder.png}}
+  % \end{figure}
 \end{frame}
 
 \begin{frame}
