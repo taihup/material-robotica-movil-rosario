@@ -5,10 +5,11 @@
   \note{https://youtu.be/lnXFcmLB7sM}
   \note{https://www.baeldung.com/cs/motion-field-optical-flow}
   \note{https://rpg.ifi.uzh.ch/docs/teaching/2020/11_tracking.pdf}
-  \note{https://rpg.ifi.uzh.ch/teaching.html\#VAMR}
+  \note{https://rpg.ifi.uzh.ch/teaching.html}
   \note{https://asl.ethz.ch/education/lectures/autonomous_mobile_robots/spring-2021.html}
   \note{https://cs.brown.edu/courses/cs143/2011/results/proj5/gen/}
   \note{https://rpg.ifi.uzh.ch/docs/teaching/2025/03_camera_calibration.pdf}
+  \note{https://webdocs.cs.ualberta.ca/~vis/courses/CompVis/lectures13pdf/Lec04OptFlowMot.pdf}
 
     Method to estimate apparent motion of scene points from a sequence of images.
 
@@ -43,7 +44,7 @@
 \begin{frame}
   \frametitle{Motion Field}
   \begin{center}
-    \includegraphics[width=0.11\columnwidth]{./images/optical_flow/motion_field.pdf}
+    \includegraphics[width=\columnwidth]{./images/optical_flow/motion_field.pdf}
   \end{center}
 \end{frame}
 
@@ -101,17 +102,17 @@ Ideally: Optical Flow = Motion Field.
   \begin{figure}[!h]
     \subfloat[Barber Pole Illusion]
     {
-      \movie[showcontrols,autostart,loop,poster]{\includegraphics[valign=b,width=0.2\columnwidth]{./images/optical_flow/barberpole_video.jpg}}{videos/barberpole.mp4}
+      \movie[showcontrols,autostart,loop,poster]{\includegraphics[valign=m,width=0.2\columnwidth]{./images/optical_flow/barberpole_video.jpg}}{videos/barberpole.mp4}
     }
     \hspace*{2em}
     \subfloat[Motion field]
     {
-        \includegraphics[valign=b,width=0.11\columnwidth]{./images/optical_flow/barberpole_motion_field.pdf}
+        \includegraphics[valign=m,width=0.11\columnwidth]{./images/optical_flow/barberpole_motion_field.pdf}
     }
     \hspace*{2em}
     \subfloat[Optical Flow]
     {
-        \includegraphics[valign=b,width=0.11\columnwidth]{./images/optical_flow/barberpole_optical_flow.pdf}
+        \includegraphics[valign=m,width=0.11\columnwidth]{./images/optical_flow/barberpole_optical_flow.pdf}
     }
   \end{figure}
   \begin{itemize}
@@ -122,18 +123,18 @@ Ideally: Optical Flow = Motion Field.
 \begin{frame}
   \frametitle{Aperture Problem}
   \begin{figure}[!h]
-    \subfloat[Barber Pole Illusion]
+    \subfloat[]
     {
       \movie[showcontrols,autostart,loop,poster]{\includegraphics[valign=b,width=0.2\columnwidth]{./images/optical_flow/barberpole_illusion_video.jpg}}{videos/barberpole_illusion.mp4}
     }
     \hspace*{2em}
-    \subfloat[Motion field]
+    \subfloat[]
     {
       \movie[showcontrols,autostart,loop,poster]{\includegraphics[valign=b,width=0.2\columnwidth]{./images/optical_flow/barberpole_aperture_problem_video.jpg}}{videos/barberpole_aperture_problem.mp4}
     }
   \end{figure}
   \begin{itemize}
-    \item asdf
+    \item The aperture problem. The grating appears to be moving down and to the right, perpendicular to the orientation of the bars. But it could be moving in many other directions, such as only down, or only to the right. It is impossible to determine unless the ends of the bars become visible in the aperture.
   \end{itemize}
 \end{frame}
 
