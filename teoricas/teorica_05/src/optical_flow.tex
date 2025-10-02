@@ -1,44 +1,58 @@
+  \begin{frame}
+  \frametitle{Material para Optical Flow}
+  
+  \url{https://docs.opencv.org/3.4/d4/dee/tutorial_optical_flow.html}
+  \url{https://youtu.be/lnXFcmLB7sM}
+  \url{https://www.baeldung.com/cs/motion-field-optical-flow}
+  \url{https://rpg.ifi.uzh.ch/docs/teaching/2020/11_tracking.pdf}
+  \url{https://rpg.ifi.uzh.ch/teaching.html}
+  \url{https://asl.ethz.ch/education/lectures/autonomous_mobile_robots/spring-2021.html}
+  \url{https://cs.brown.edu/courses/cs143/2011/results/proj5/gen/}
+  \url{https://rpg.ifi.uzh.ch/docs/teaching/2025/03_camera_calibration.pdf}
+  \url{https://webdocs.cs.ualberta.ca/~vis/courses/CompVis/lectures13pdf/Lec04OptFlowMot.pdf}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Motion Field vs Optical Flow}
+  Cuando un objeto se mueve en la escena y es capturado por una cámara, este se proyecta sobre el plano del imagen creando un moviemiento en el plano de la imagen una imagen, al que llamaremos el Motion Field correspondiente a ese punto 3D en movimiento. Desafortunadamente, no es posible garantizar que podamos medir este motion field, todo lo que podemos medir es el movimiento del patrón de brillo en la image, y este se llama Optical Flow.
+
+\end{frame}
+
 % Slide 1
 \begin{frame}
   \frametitle{Optical Flow}
-  \note{https://docs.opencv.org/3.4/d4/dee/tutorial_optical_flow.html}
   \note{https://youtu.be/lnXFcmLB7sM}
-  \note{https://www.baeldung.com/cs/motion-field-optical-flow}
-  \note{https://rpg.ifi.uzh.ch/docs/teaching/2020/11_tracking.pdf}
-  \note{https://rpg.ifi.uzh.ch/teaching.html}
-  \note{https://asl.ethz.ch/education/lectures/autonomous_mobile_robots/spring-2021.html}
-  \note{https://cs.brown.edu/courses/cs143/2011/results/proj5/gen/}
-  \note{https://rpg.ifi.uzh.ch/docs/teaching/2025/03_camera_calibration.pdf}
-  \note{https://webdocs.cs.ualberta.ca/~vis/courses/CompVis/lectures13pdf/Lec04OptFlowMot.pdf}
 
-    Method to estimate apparent motion of scene points from a sequence of images.
+  Method to estimate apparent motion of scene points from a sequence of images.
 
-    Optical flow is the pattern of apparent motion of image objects between two consecutive frames caused by the movement of object or camera. It is 2D vector field where each vector is a displacement vector showing the movement of points from first frame to second.
+  Optical flow is the pattern of apparent motion of image objects between two consecutive frames caused by the movement of object or camera. It is 2D vector field where each vector is a displacement vector showing the movement of points from first frame to second.
 
-    Method to estimate the apparent motion of scene points from a sequence of images i.e., the motion of brightness pattern in the image. Each pixel has a vector that tells the optical flow at that point. The motion of the brightness pattern is the optical flow, the length of the vector tells how fast it is moving, and the direction tells its direction on the image plane.
+  Method to estimate the apparent motion of scene points from a sequence of images i.e., the motion of brightness pattern in the image. Each pixel has a vector that tells the optical flow at that point. The motion of the brightness pattern is the optical flow, the length of the vector tells how fast it is moving, and the direction tells its direction on the image plane.
 
-    \begin{columns}
-      \begin{column}{0.5\textwidth}
-        \begin{center}
-          \movie[showcontrols,autostart,loop,poster]{\includegraphics[width=0.8\columnwidth]{images/optical_flow/klt_points_video.jpg}}{videos/klt_points.mp4}
-        \end{center}
-      \end{column}
-      \begin{column}{0.5\textwidth}  %%<--- here
-        \begin{center}
-          \movie[showcontrols,autostart,loop,poster]{\includegraphics[width=\columnwidth]{images/optical_flow/klt_tracking_video.jpg}}{videos/klt_tracking.mp4}
-        \end{center}
-      \end{column}
-    \end{columns}
+\begin{columns}
+  \begin{column}{0.5\textwidth}
+    \begin{center}
+      \movie[showcontrols,autostart,loop,poster]{\includegraphics[width=0.8\columnwidth]{images/optical_flow/klt_points_video.jpg}}{videos/klt_points.mp4}
+      \end{center}
+  \end{column}
+  \begin{column}{0.5\textwidth}  %%<--- here
+    \begin{center}
+      \movie[showcontrols,autostart,loop,poster]{\includegraphics[width=\columnwidth]{images/optical_flow/klt_tracking_video.jpg}}{videos/klt_tracking.mp4}
+    \end{center}
+  \end{column}
+\end{columns}
 
-    Topics:
-    \begin{enumerate}
-    \item Motion Field and Optical Flow
-    \item Optical Flow Constraint Equation
-    \item Lucas-Kanade Method
-    \item Coarse-to-Fine Flow Estimation
-    \item Applications of Optical Flow
-    \end{enumerate}
+Topics:
+\begin{enumerate}
+\item Motion Field and Optical Flow
+\item Optical Flow Constraint Equation
+\item Lucas-Kanade Method
+\item Coarse-to-Fine Flow Estimation
+\item Applications of Optical Flow
+\end{enumerate}
 \end{frame}
+
 
 % Slide 2
 \begin{frame}
