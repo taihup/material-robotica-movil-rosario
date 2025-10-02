@@ -272,10 +272,26 @@ Ideally: Optical Flow = Motion Field.
   Consider the reference patch centered at $(x,y)$ in image $I_0$ and the shifted patch centered at $(x+u, y+v)$ in image $I_1$.  
   The patch has size $\Omega$. We want to find the motion vector $(u,v)$ that minimizes the Sum of Squared Differences (SSD):
   
-  \[
-  SSD(u,v) = \sum_{x,y \in \Omega} \big(I_0(x,y) - I_1(x+u, y+v)\big)^2
-  \]
-  
+  \begin{columns}
+    \begin{column}{0.2\textwidth}
+      \begin{center}
+        \includegraphics[width=\columnwidth]{./images/optical_flow/klt_tracking.pdf}
+      \end{center}
+    \end{column}
+    \begin{column}{0.7\textwidth}  %%<--- here
+      \[
+      SSD(u,v) = \sum_{x,y \in \Omega} \big(I_0(x,y) - I_1(x+u, y+v)\big)^2
+      \]
+
+      \[
+      \approx \sum ( I_0(x,y) - I_1(x,y) - I_x u - I_y v )^2
+      \]
+
+      \[
+      \Rightarrow SSD(u,v) = \sum ( \Delta I - I_x u - I_y v )^2
+      \]
+    \end{column}
+  \end{columns}
   References:  
   Lucas \& Kanade (1981), Tomasi \& Kanade (1991)
 \end{frame}
