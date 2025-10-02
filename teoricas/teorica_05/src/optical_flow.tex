@@ -223,40 +223,48 @@ Ideally: Optical Flow = Motion Field.
 \begin{frame}{Point Tracking with Differential Methods}
   Looks at the local brightness changes at the same location. No patch shift is performed!
   
-  % \begin{figure}
-  %   \centering
-  %   \fbox{\includegraphics[width=0.7\textwidth]{placeholder.png}}
-  % \end{figure}
+  \begin{center}
+    \includegraphics[width=0.3\columnwidth]{./images/optical_flow/point_tracking_block_matching_1.pdf}
+  \end{center}
 \end{frame}
 
 % Slide 12
 \begin{frame}{Point Tracking with Differential Methods}
   Looks at the local brightness changes at the same location. No patch shift is performed!
   
-  % \begin{figure}
-  %   \centering
-  %   \fbox{\includegraphics[width=0.7\textwidth]{placeholder.png}}
-  % \end{figure}
+  \begin{center}
+    \includegraphics[width=0.3\columnwidth]{./images/optical_flow/point_tracking_block_matching_2.pdf}
+  \end{center}
 \end{frame}
 
 % Slide 13
 \begin{frame}{Point Tracking with Differential Methods}
   Looks at the local brightness changes at the same location. No patch shift is performed!
   
-  % \begin{figure}
-  %   \centering
-  %   \fbox{\includegraphics[width=0.7\textwidth]{placeholder.png}}
-  % \end{figure}
+  \begin{center}
+    \includegraphics[width=0.3\columnwidth]{./images/optical_flow/point_tracking_block_matching_3.pdf}
+  \end{center}
 \end{frame}
 
 % Slide 14
 \begin{frame}{Point Tracking with Differential Methods}
   Assumptions:
-  \begin{itemize}
-    \item Brightness constancy: The intensity of the pixels around the point to track does not change much between the two frames
-    \item Temporal consistency: The motion displacement is small (1–2 pixels); can be addressed using multi-scale implementations
-    \item Spatial coherency: Neighboring pixels undergo similar motion (they all lay on the same 3D surface, i.e., no depth discontinuity)
-  \end{itemize}
+
+  \begin{columns}
+    \begin{column}{0.7\textwidth}
+      \begin{itemize}
+        \item Brightness constancy: The intensity of the pixels around the point to track does not change much between the two frames
+        \item Temporal consistency: The motion displacement is small (1–2 pixels); can be addressed using multi-scale implementations
+        \item Spatial coherency: Neighboring pixels undergo similar motion (they all lay on the same 3D surface, i.e., no depth discontinuity)
+    \end{itemize}
+    \end{column}
+    \begin{column}{0.3\textwidth}  %%<--- here
+      \begin{center}
+      \includegraphics[width=0.7\columnwidth]{./images/optical_flow/point_tracking_differential_methods_properties.pdf}
+      \end{center}
+    \end{column}
+  \end{columns}
+
 \end{frame}
 
 % Slide 15

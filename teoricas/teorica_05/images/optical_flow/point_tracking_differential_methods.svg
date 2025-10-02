@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="104.03416mm"
+   height="104.05533mm"
+   viewBox="0 0 104.03416 104.05533"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="point_tracking_differential_methods.svg"
+   inkscape:version="1.4.2 (1:1.4.2+202505120737+ebf0e940d0)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="2.1593938"
+     inkscape:cx="229.231"
+     inkscape:cy="254.93266"
+     inkscape:window-width="1854"
+     inkscape:window-height="1011"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer5"
+     inkscape:label="image_1"
+     transform="translate(-52.387419,-44.714582)"
+     sodipodi:insensitive="true"
+     style="display:none">
+    <g
+       id="g206"
+       transform="matrix(0.26458333,0,0,0.26458333,-4201.2567,-19.254497)">
+      <path
+         id="path206"
+         d="m 0,0 74.08,-1.075 94.323,-128.984"
+         style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         transform="matrix(1.3333333,0,0,-1.3333333,16182.419,421.85827)" />
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="image_0"
+     transform="translate(-52.387419,-44.714582)"
+     sodipodi:insensitive="true"
+     style="display:inline">
+    <g
+       id="g193"
+       transform="matrix(0.26458333,0,0,0.26458333,-3856.8494,-20.333636)">
+      <path
+         id="path193"
+         d="m 0,0 74.08,-1.075 94.323,-128.984"
+         style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         transform="matrix(1.3333333,0,0,-1.3333333,14874.859,445.546)" />
+    </g>
+  </g>
+  <g
+     inkscape:label="initial"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-52.387419,-44.714582)"
+     sodipodi:insensitive="true"
+     style="display:inline">
+    <g
+       id="g181"
+       transform="matrix(0.26458333,0,0,0.26458333,-3512.5237,-19.16642)">
+      <path
+         id="path181"
+         d="M 355.77,358.41 H 649.65 V 64.47 H 355.77 Z M 448.204,156.904 H 557.216 V 265.976 H 448.204 Z"
+         style="fill:#5b9bd5;fill-opacity:1;fill-rule:evenodd;stroke:#41719c;stroke-width:1.02;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:8;stroke-dasharray:none;stroke-opacity:1"
+         transform="matrix(1.3333333,0,0,-1.3333333,13000,720)" />
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer6"
+     inkscape:label="text_image_0"
+     sodipodi:insensitive="true"
+     style="display:inline">
+    <text
+       id="text184"
+       xml:space="preserve"
+       x="100.9001"
+       y="128.30048"
+       style="font-size:4.23333px;stroke-width:0.352778"
+       transform="translate(-52.387418,-44.714581)"><tspan
+         id="tspan184"
+         style="font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Cabin;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.352778"
+         x="100.9001"
+         dx="0 0 0.19685 1.0921999 0.10794999"
+         y="128.30048">(𝑥,𝑦)</tspan></text>
+    <g
+       id="g182"
+       transform="matrix(0.26458333,0,0,0.26458333,-3564.9112,-63.881003)">
+      <text
+         id="text182"
+         xml:space="preserve"
+         transform="matrix(1.3333333,0,0,1.3333333,13638.075,557.3552)"><tspan
+           id="tspan182"
+           style="font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18px;font-family:Cabin;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+           x="0"
+           y="0">𝐼</tspan></text>
+    </g>
+    <g
+       id="g183"
+       transform="matrix(0.26458333,0,0,0.26458333,-3564.9112,-63.881003)">
+      <text
+         id="text183"
+         xml:space="preserve"
+         transform="matrix(1.3333333,0,0,1.3333333,13645.755,562.23533)"><tspan
+           id="tspan183"
+           style="font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.14px;font-family:Cabin;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+           x="0"
+           y="0">0</tspan></text>
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer7"
+     inkscape:label="text_image_1"
+     sodipodi:insensitive="true"
+     style="display:none">
+    <text
+       id="text211"
+       xml:space="preserve"
+       x="100.76107"
+       y="128.2124"
+       style="font-size:4.23333px;stroke-width:0.352778"
+       transform="translate(-52.387418,-44.714581)"><tspan
+         id="tspan211"
+         style="font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Cabin;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.352778"
+         x="100.76107"
+         dx="0 0 0.22224998 1.0667999 0.127"
+         y="128.2124">(𝑥,𝑦)</tspan></text>
+    <g
+       id="g209"
+       transform="matrix(0.26458333,0,0,0.26458333,-4253.6441,-63.96908)">
+      <text
+         id="text209"
+         xml:space="preserve"
+         transform="matrix(1.3333333,0,0,1.3333333,16241.275,557.3552)"><tspan
+           id="tspan209"
+           style="font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18px;font-family:Cabin;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+           x="0"
+           y="0">𝐼</tspan></text>
+      <text
+         id="text210"
+         xml:space="preserve"
+         transform="matrix(1.3333333,0,0,1.3333333,16248.395,562.23533)"><tspan
+           id="tspan210"
+           style="font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.14px;font-family:Cabin;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+           x="0"
+           y="0">1</tspan></text>
+    </g>
+  </g>
+</svg>
