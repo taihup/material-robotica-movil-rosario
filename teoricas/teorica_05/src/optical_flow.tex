@@ -229,7 +229,7 @@ Ideally: Optical Flow = Motion Field.
   Looks at the local brightness changes at the same location. No patch shift is performed!
   
   \begin{center}
-    \includegraphics[width=0.3\columnwidth]{./images/optical_flow/point_tracking_block_matching_1.pdf}
+    \includegraphics[width=0.3\columnwidth]{./images/optical_flow/point_tracking_differential_methods_1.pdf}
   \end{center}
 \end{frame}
 
@@ -238,7 +238,7 @@ Ideally: Optical Flow = Motion Field.
   Looks at the local brightness changes at the same location. No patch shift is performed!
   
   \begin{center}
-    \includegraphics[width=0.3\columnwidth]{./images/optical_flow/point_tracking_block_matching_2.pdf}
+    \includegraphics[width=0.3\columnwidth]{./images/optical_flow/point_tracking_differential_methods_2.pdf}
   \end{center}
 \end{frame}
 
@@ -247,7 +247,7 @@ Ideally: Optical Flow = Motion Field.
   Looks at the local brightness changes at the same location. No patch shift is performed!
   
   \begin{center}
-    \includegraphics[width=0.3\columnwidth]{./images/optical_flow/point_tracking_block_matching_3.pdf}
+    \includegraphics[width=0.3\columnwidth]{./images/optical_flow/point_tracking_differential_methods_3.pdf}
   \end{center}
 \end{frame}
 
@@ -408,7 +408,7 @@ Ideally: Optical Flow = Motion Field.
   \begin{center}
     \includegraphics[width=0.35\columnwidth]{./images/optical_flow/computing_partial_derivatives.pdf}
   \end{center}
-
+  %
   \[
   I_x(k, l, t) = \frac{1}{4} [I(k+1,l,t) + I(k+1,l,t+1) + I(k+1,l+1,t) + I(k+1,l+1,t+1)]
   \]
@@ -447,6 +447,97 @@ Ideally: Optical Flow = Motion Field.
   \end{columns}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Normal Flow}
+
+  \begin{columns}
+    \begin{column}{0.6\textwidth}  %%<--- here
+      Direction of Normal Flow:
+
+      Unit vector perpendicular to the constraint line:
+      \[
+      \hat{\mathbf{u}}_n = \frac{(I_x, I_y)}{\sqrt{I_x^2 + I_y^2}}
+      \]
+
+      Magnitude of Normal Flow:
+
+      Distance of origin from the constraint line:
+      \[
+      |\mathbf{u}_n| = \frac{|I_t|}{\sqrt{I_x^2 + I_y^2}}
+      \]
+
+      \[
+      \boxed{\mathbf{u}_n = \frac{|I_t|}{(I_x^2 + I_y^2)} (I_x, I_y)}
+      \]
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \begin{center}
+        \includegraphics[width=\columnwidth]{./images/optical_flow/optical_flow_geometric_interpretation.pdf}
+      \end{center}
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Aperture Problem}
+  \begin{center}
+    \only<1>{\includegraphics[width=0.35\columnwidth]{./images/optical_flow/aperture_problem_frame_1.pdf}}
+
+    \only<2>{\includegraphics[width=0.35\columnwidth]{./images/optical_flow/aperture_problem_frame_2.pdf}}
+
+    \only<3>{\includegraphics[width=0.35\columnwidth]{./images/optical_flow/aperture_problem_normal_flow.pdf}}
+
+    \only<4>{\includegraphics[width=0.35\columnwidth]{./images/optical_flow/aperture_problem_actual_motion.pdf}}
+
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Aperture Problem}
+  \begin{figure}[!h]
+    \subfloat[]
+    {
+      \movie[showcontrols,autostart,loop,poster]{\includegraphics[valign=b,width=0.2\columnwidth]{./images/optical_flow/barberpole_illusion_video.jpg}}{videos/barberpole_illusion.mp4}
+    }
+    \hspace*{2em}
+    \subfloat[]
+    {
+      \movie[showcontrols,autostart,loop,poster]{\includegraphics[valign=b,width=0.2\columnwidth]{./images/optical_flow/barberpole_aperture_problem_video.jpg}}{videos/barberpole_aperture_problem.mp4}
+    }
+  \end{figure}
+  \begin{itemize}
+    \item The aperture problem. The grating appears to be moving down and to the right, perpendicular to the orientation of the bars. But it could be moving in many other directions, such as only down, or only to the right. It is impossible to determine unless the ends of the bars become visible in the aperture.
+  \end{itemize}
+\end{frame}
+
+% Slide 5
+\begin{frame}
+  \frametitle{Motion Illusions}
+  \begin{itemize}
+    \item Donguri Wave Illusion: Static image but perceived motion.
+    \item Ouchi Pattern: Inner disc appears to move with respect to the ring.
+  \end{itemize}
+
+  \vspace{0.5cm}
+  \centering
+  % \includegraphics[width=0.6\textwidth]{placeholder-slide9.png}
+\end{frame}
+
+% Slide 9
+\begin{frame}
+  \frametitle{Normal Flow and Aperture Problem}
+  \begin{itemize}
+    \item Constraint equation gives only a line in $(u,v)$ space.
+    \item Can compute normal flow but not full optical flow.
+    \item Locally, humans also perceive only normal flow (aperture problem).
+  \end{itemize}
+
+  \vspace{0.5cm}
+  \centering
+  % \includegraphics[width=0.6\textwidth]{placeholder-slide22.png}
+\end{frame}
+
 %------------------------------------------------
 \begin{frame}
   \frametitle{Optical Flow is Under Constrained}
@@ -460,38 +551,6 @@ Ideally: Optical Flow = Motion Field.
   We need additional constraints.
 
 \end{frame}
-
-%------------------------------------------------
-
-\begin{frame}
-  \frametitle{Normal Flow}
-
-  Direction of Normal Flow:
-
-  Unit vector perpendicular to the constraint line:
-  \[
-  \hat{\mathbf{u}}_n = \frac{(I_x, I_y)}{\sqrt{I_x^2 + I_y^2}}
-  \]
-
-  Magnitude of Normal Flow:
-
-  Distance of origin from the constraint line:
-  \[
-  |\mathbf{u}_n| = \frac{|I_t|}{\sqrt{I_x^2 + I_y^2}}
-  \]
-
-  \[
-  \boxed{\mathbf{u}_n = \frac{|I_t|}{(I_x^2 + I_y^2)} (I_x, I_y)}
-  \]
-
-  % \begin{center}
-  % \includegraphics[width=0.55\textwidth]{placeholder}
-  % \end{center}
-
-\end{frame}
-
-%------------------------------------------------
-
 
 %------------------------------------------------
 \begin{frame}
@@ -675,75 +734,16 @@ Ideally: Optical Flow = Motion Field.
   % \end{figure}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Aperture Problem}
-  \begin{figure}[!h]
-    \subfloat[]
-    {
-      \movie[showcontrols,autostart,loop,poster]{\includegraphics[valign=b,width=0.2\columnwidth]{./images/optical_flow/barberpole_illusion_video.jpg}}{videos/barberpole_illusion.mp4}
-    }
-    \hspace*{2em}
-    \subfloat[]
-    {
-      \movie[showcontrols,autostart,loop,poster]{\includegraphics[valign=b,width=0.2\columnwidth]{./images/optical_flow/barberpole_aperture_problem_video.jpg}}{videos/barberpole_aperture_problem.mp4}
-    }
-  \end{figure}
-  \begin{itemize}
-    \item The aperture problem. The grating appears to be moving down and to the right, perpendicular to the orientation of the bars. But it could be moving in many other directions, such as only down, or only to the right. It is impossible to determine unless the ends of the bars become visible in the aperture.
-  \end{itemize}
-\end{frame}
-
-% Slide 5
-\begin{frame}
-  \frametitle{Motion Illusions}
-\begin{itemize}
-  \item Donguri Wave Illusion: Static image but perceived motion.
-  \item Ouchi Pattern: Inner disc appears to move with respect to the ring.
-\end{itemize}
-
-\vspace{0.5cm}
-\centering
-% \includegraphics[width=0.6\textwidth]{placeholder-slide9.png}
-\end{frame}
-
-% Slide 8
-\begin{frame}
-  \frametitle{Constraint Equation}
-After simplification:
-
-$ I_x u + I_y v + I_t = 0 $
-
-This is the \textbf{Optical Flow Constraint Equation}.
-
-\vspace{0.5cm}
-\centering
-% \includegraphics[width=0.6\textwidth]{placeholder-slide17.png}
-\end{frame}
-
-% Slide 9
-\begin{frame}
-  \frametitle{Normal Flow and Aperture Problem}
-\begin{itemize}
-  \item Constraint equation gives only a line in $(u,v)$ space.
-  \item Can compute normal flow but not full optical flow.
-  \item Locally, humans also perceive only normal flow (aperture problem).
-\end{itemize}
-
-\vspace{0.5cm}
-\centering
-% \includegraphics[width=0.6\textwidth]{placeholder-slide22.png}
-\end{frame}
-
 % Slide 10
 \begin{frame}
   \frametitle{Lucas-Kanade Method}
-\textbf{Assumption:} Optical flow is constant in a small neighborhood.
+  \textbf{Assumption:} Optical flow is constant in a small neighborhood.
 
-Formulate system of equations and solve using least squares.
+  Formulate system of equations and solve using least squares.
 
-\vspace{0.5cm}
-\centering
-% \includegraphics[width=0.6\textwidth]{placeholder-slide25.png}
+  \vspace{0.5cm}
+  \centering
+  % \includegraphics[width=0.6\textwidth]{placeholder-slide25.png}
 \end{frame}
 
 % Slide 11
