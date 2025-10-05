@@ -702,6 +702,32 @@ Ideally: Optical Flow = Motion Field.
 
 \end{frame}
 
+\begin{frame}
+    \frametitle{When Does Optical Flow Estimation Work?}
+    
+    % Mathematical boxes
+    \begin{center}
+        $\boxed{A\mathbf{u} = B} \quad \text{and} \quad \boxed{A^T A\mathbf{u} = A^T B}$
+    \end{center}
+    
+    \vspace{0.5em}
+    
+    \begin{itemize}
+        \item $A^T A$ must be \textbf{invertible}. That is $\det(A^T A) \neq 0$
+        \item $A^T A$ must be \textbf{well-conditioned}.
+        
+        \vspace{0.2em}
+        If $\lambda_1$ and $\lambda_2$ are eigen values of $A^T A$, then
+        \begin{itemize}
+            \item $\lambda_1 > \epsilon$ and $\lambda_2 > \epsilon$
+            \item $\lambda_1 \approx \lambda_2$ but not $\lambda_1 \ggg \lambda_2$
+        \end{itemize}
+    \end{itemize}
+    
+    \vspace{1em}
+    \small{\textit{*Note: $\mathbf{u}$ represents the flow vector $(u, v)^T$, $A$ is the gradient matrix, and $B$ is related to the temporal change.}}
+\end{frame}
+
 % Slide 12
 \begin{frame}
   \frametitle{Large Motion: Problem}
