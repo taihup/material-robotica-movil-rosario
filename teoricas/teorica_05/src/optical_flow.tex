@@ -405,7 +405,6 @@ Ideally: Optical Flow = Motion Field.
 \begin{frame}
   \frametitle{Computing Partial Derivatives $I_x, I_y, I_t$}
 
-
   \begin{center}
     \includegraphics[width=0.35\columnwidth]{./images/optical_flow/computing_partial_derivatives.pdf}
   \end{center}
@@ -424,24 +423,28 @@ Ideally: Optical Flow = Motion Field.
 \begin{frame}
   \frametitle{Geometric Interpretation}
 
-  For any point $(x,y)$ in the image, its optical flow $(u,v)$ lies on the line:
-  \[
-  I_x u + I_y v + I_t = 0
-  \]
+  \begin{columns}
+    \begin{column}{0.6\textwidth}  %%<--- here
+      For any point $(x,y)$ in the image, its optical flow $(u,v)$ lies on the line:
+      \[
+      I_x u + I_y v + I_t = 0
+      \]
 
-  Optical Flow can be split into two components.
+      Optical Flow can be split into two components.
 
-  \[
-  \mathbf{u} = \mathbf{u}_n + \mathbf{u}_p
-  \]
+      \[
+      \mathbf{u} = \mathbf{u}_n + \mathbf{u}_p
+      \]
 
-  $\mathbf{u}_n$: Normal Flow \\
-  $\mathbf{u}_p$: Parallel Flow
-
-  % \begin{center}
-  % \includegraphics[width=0.55\textwidth]{placeholder}
-  % \end{center}
-
+      $\mathbf{u}_n$: Normal Flow \\
+      $\mathbf{u}_p$: Parallel Flow
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \begin{center}
+        \includegraphics[width=\columnwidth]{./images/optical_flow/optical_flow_geometric_interpretation.pdf}
+      \end{center}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 %------------------------------------------------
