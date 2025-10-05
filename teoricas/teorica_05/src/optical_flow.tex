@@ -529,6 +529,9 @@ Ideally: Optical Flow = Motion Field.
 % Slide 5
 \begin{frame}
   \frametitle{Motion Illusions}
+
+  \TODO{agregar imágenes}
+
   \begin{itemize}
     \item Donguri Wave Illusion: Static image but perceived motion.
     \item Ouchi Pattern: Inner disc appears to move with respect to the ring.
@@ -553,6 +556,29 @@ Ideally: Optical Flow = Motion Field.
   % \includegraphics[width=0.6\textwidth]{placeholder-slide22.png}
 \end{frame}
 
+\begin{frame}
+    \frametitle{Block-based vs Differential methods}
+    
+    \begin{itemize}
+        \item \textbf{Block-based methods:}
+        \begin{itemize}
+            \item \textbf{Robust to large motions}
+            \item Can be computationally \textbf{expensive} ($D \times D$ validations need to be made for a single point to track)
+        \end{itemize}
+    \end{itemize}
+
+    \vspace{0.5em} % Adds some vertical space
+
+    \begin{itemize}
+        \item \textbf{Differential methods:}
+        \begin{itemize}
+            \item Works only for \textbf{small motions} (e.g., high frame rate). For larger motion, multi-scale implementations are used but are more expensive (see later)
+            \item \textbf{Much more efficient than block-based methods.} Thus, can be used to track the motion of every pixel in the image (i.e., optical flow). It avoids searching in the neighborhood of the point by analyzing the local intensity changes (i.e., differences) of an image patch at a specific location (i.e., no search is performed)
+        \end{itemize}
+    \end{itemize}
+
+\end{frame}
+
 %------------------------------------------------
 \begin{frame}
   \frametitle{Optical Flow is Under Constrained}
@@ -571,7 +597,7 @@ Ideally: Optical Flow = Motion Field.
 \begin{frame}
   \frametitle{Lucas-Kanade Solution}
 
-  Assumption: For each pixel, assume Motion Field, and hence Optical Flow $(u,v)$, is constant within a small neighborhood $W$.
+  \textbf{Assumption}: For each pixel, assume Motion Field, and hence Optical Flow $(u,v)$, is constant within a small neighborhood $W$.
 
   % \begin{center}
   % \includegraphics[width=0.55\textwidth]{placeholder}
@@ -595,39 +621,36 @@ Ideally: Optical Flow = Motion Field.
 
   In matrix form:
 
-  \[
-  \left[
-  \begin{array}{cc}
-  I_x(1,1) & I_y(1,1) \\
-  I_x(k,l) & I_y(k,l) \\
-  \vdots & \vdots \\
-  I_x(n,n) & I_y(n,n)
-  \end{array}
-  \right]
-  \left[
-  \begin{array}{c}
-  u \\
-  v
-  \end{array}
-  \right]
-  =
-  \left[
-  \begin{array}{c}
-  -I_t(1,1) \\
-  -I_t(k,l) \\
-  \vdots \\
-  -I_t(n,n)
-  \end{array}
-  \right]
-  \]
+  \begin{equation*}
+    \underset{\substack{\mathbf{A^T A} \\ \text{(Known)} \\2\times2}}{
+    \boxed{
+    \begin{bmatrix}
+      I_x(1,1) & I_y(1,1) \\
+      I_x(k,l) & I_y(k,l) \\
+      \vdots & \vdots \\
+      I_x(n,n) & I_y(n,n)
+    \end{bmatrix}
+    }}
+    \underset{\substack{\mathbf{u} \\ \text{(Unknown)}\\ 2\times1}}{
+    \boxed{
+    \begin{bmatrix}
+      u \\
+      v
+    \end{bmatrix}
+    }}
+    =
+    \underset{\substack{\mathbf{B} \\ \text{(Unknown)}\\ n^{2}\times1}}{
+    \boxed{
+      \begin{bmatrix}
+      -I_t(1,1) \\
+      -I_t(k,l) \\
+      \vdots \\
+      -I_t(n,n)
+      \end{bmatrix}
+    }}
+  \end{equation*}
 
-  $A$ (Known) $n^2\times2$
-  \hspace{0.5cm}
-  $\mathbf{u}$ (Unknown) $2\times1$
-  \hspace{0.5cm}
-  $B$ (Known) $n^2\times1$
 
-  \vspace{0.2cm}
   $n^2$ Equations, 2 Unknowns: Find Least Squares Solution
 
 \end{frame}
@@ -638,141 +661,45 @@ Ideally: Optical Flow = Motion Field.
 
   Solve linear system: \quad $\mathbf{A u = B}$
 
-  \[
+  \begin{equation*}
   \mathbf{A^T A u = A^T B} \hspace{1cm} \text{(Least-Squares using Pseudo-Inverse)}
-  \]
+  \end{equation*}
 
   In matrix form:
 
-  \[
-  \boxed{
-  \begin{bmatrix}
-  \sum_W I_x I_x & \sum_W I_x I_y \\
-  \sum_W I_x I_y & \sum_W I_y I_y
-  \end{bmatrix}
+  \begin{equation*}
+  \underset{\substack{\mathbf{A^T A} \\ \text{(Known)} \\2\times2}}{
+    \boxed{
+    \begin{bmatrix}
+    \sum_W I_x I_x & \sum_W I_x I_y \\
+    \sum_W I_x I_y & \sum_W I_y I_y
+    \end{bmatrix}
+    }
   }
-  \begin{bmatrix}
-  u \\ v
-  \end{bmatrix}
+  \underset{\substack{\mathbf{u} \\ \text{(Unknown)}\\ 2\times1}}{
+    \boxed{
+      \begin{bmatrix}
+      u \\ v
+      \end{bmatrix}
+    }
+  }
   =
-  \boxed{
-  \begin{bmatrix}
-  -\sum_W I_x I_t \\ -\sum_W I_y I_t
-  \end{bmatrix}
+  \underset{\substack{\mathbf{A^T B} \\\text{(Known)} \\ 2\times1}}{
+    \boxed{
+      \begin{bmatrix}
+      -\sum_W I_x I_t \\ -\sum_W I_y I_t
+      \end{bmatrix}
+    }
   }
-  \]
+  \qquad \substack{\text{Indices} (k,l)\\ \text{not written}\\ \text{for simplicity}}
+  \end{equation*}
 
-  \[
-  \mathbf{A^T A} \text{ (Known) } 2\times2 \quad 
-  \mathbf{u} \text{ (Unknown) } 2\times1 \quad 
-  \mathbf{A^T B} \text{ (Known) } 2\times1
-  \]
-
-  \[
+  \begin{equation*}
   \boxed{\mathbf{u} = (\mathbf{A^T A})^{-1}\mathbf{A^T B}}
-  \]
+  \end{equation*}
 
   Fast and Easy to Solve
 
-\end{frame}
-
-% Slide 15
-\begin{frame}
-  \frametitle{The Kanade-Lucas-Tomasi (KLT) tracker}
-  Consider the reference patch centered at $(x,y)$ in image $I_0$ and the shifted patch centered at $(x+u, y+v)$ in image $I_1$.  
-  The patch has size $\Omega$. We want to find the motion vector $(u,v)$ that minimizes the Sum of Squared Differences (SSD):
-  
-  \begin{columns}
-    \begin{column}{0.2\textwidth}
-      \begin{center}
-        \includegraphics[width=\columnwidth]{./images/optical_flow/klt_tracking.pdf}
-      \end{center}
-    \end{column}
-    \begin{column}{0.7\textwidth}  %%<--- here
-      \[
-      SSD(u,v) = \sum_{x,y \in \Omega} \big(I_0(x,y) - I_1(x+u, y+v)\big)^2
-      \]
-
-      \[
-      \approx \sum ( I_0(x,y) - I_1(x,y) - I_x u - I_y v )^2
-      \]
-
-      \[
-      \Rightarrow SSD(u,v) = \sum ( \Delta I - I_x u - I_y v )^2
-      \]
-    \end{column}
-  \end{columns}
-  References:  
-  Lucas \& Kanade (1981), Tomasi \& Kanade (1991)
-\end{frame}
-
-% Slide 16
-\begin{frame}{The Kanade-Lucas-Tomasi (KLT) tracker}
-  To minimize it, we differentiate with respect to $(u,v)$ and equate to zero:
-  
-  \[
-  \frac{\partial SSD}{\partial u} = 0, \quad \frac{\partial SSD}{\partial v} = 0
-  \]
-  
-  This yields a system of linear equations.
-\end{frame}
-
-% Slide 17
-\begin{frame}{The Kanade-Lucas-Tomasi (KLT) tracker}
-  Linear system of two equations in two unknowns, written in matrix form:
-  
-  \[
-  \begin{bmatrix}
-    I_x^2 & I_x I_y \\
-    I_x I_y & I_y^2
-  \end{bmatrix}
-  \begin{bmatrix}
-    u \\ v
-  \end{bmatrix}
-  =
-  \begin{bmatrix}
-    I_x \Delta I \\ I_y \Delta I
-  \end{bmatrix}
-  \]
-  
-  Haven’t we seen this matrix already? Recall Harris detector!
-\end{frame}
-
-% Slide 18
-\begin{frame}{The Kanade-Lucas-Tomasi (KLT) tracker}
-  In practice, $\det(M)$ should be non-zero, which means eigenvalues should be large.  
-  That is, the region should be a corner or textured region (not flat, not an edge).
-  
-  % \begin{figure}
-  %   \centering
-  %   \fbox{\includegraphics[width=0.7\textwidth]{placeholder.png}}
-  % \end{figure}
-\end{frame}
-
-% Slide 10
-\begin{frame}
-  \frametitle{Lucas-Kanade Method}
-  \textbf{Assumption:} Optical flow is constant in a small neighborhood.
-
-  Formulate system of equations and solve using least squares.
-
-  \vspace{0.5cm}
-  \centering
-  % \includegraphics[width=0.6\textwidth]{placeholder-slide25.png}
-\end{frame}
-
-% Slide 11
-\begin{frame}
-  \frametitle{When Does Optical Flow Estimation Work?}
-\begin{itemize}
-  \item Smooth regions: Bad (small eigenvalues).
-  \item Edges: Bad (aperture problem).
-  \item Textured regions: Good (large, diverse gradients).
-\end{itemize}
-
-\vspace{0.5cm}
-\centering
-% \includegraphics[width=0.6\textwidth]{placeholder-slide32.png}
 \end{frame}
 
 % Slide 12
