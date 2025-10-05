@@ -481,14 +481,29 @@ Ideally: Optical Flow = Motion Field.
 
 \begin{frame}
   \frametitle{Aperture Problem}
+
+  \begin{itemize}
+    \item<1-2> Consider the motion of the following corner
+    \item<3-> Now, look at the local brightness changes through a small aperture
+    \item<5-> We cannot always determine the motion direction. Infinite motion solutions may exist!
+    \item<6-> We can only detect the normal flow.
+  \end{itemize}
+
   \begin{center}
+
     \only<1>{\includegraphics[width=0.35\columnwidth]{./images/optical_flow/aperture_problem_frame_1.pdf}}
 
     \only<2>{\includegraphics[width=0.35\columnwidth]{./images/optical_flow/aperture_problem_frame_2.pdf}}
 
-    \only<3>{\includegraphics[width=0.35\columnwidth]{./images/optical_flow/aperture_problem_normal_flow.pdf}}
+    \only<3>{\includegraphics[width=0.35\columnwidth]{./images/optical_flow/aperture_problem_frame_1_covered.pdf}}
 
-    \only<4>{\includegraphics[width=0.35\columnwidth]{./images/optical_flow/aperture_problem_actual_motion.pdf}}
+    \only<4>{\includegraphics[width=0.35\columnwidth]{./images/optical_flow/aperture_problem_frame_2_covered.pdf}}
+
+    \only<5>{\includegraphics[width=0.35\columnwidth]{./images/optical_flow/aperture_problem_infinite_motion.pdf}}
+
+    \only<6>{\includegraphics[width=0.35\columnwidth]{./images/optical_flow/aperture_problem_normal_flow.pdf}}
+
+    \only<7>{\includegraphics[width=0.35\columnwidth]{./images/optical_flow/aperture_problem_actual_motion.pdf}}
 
   \end{center}
 \end{frame}
