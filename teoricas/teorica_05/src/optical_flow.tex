@@ -740,21 +740,39 @@ Ideally: Optical Flow = Motion Field.
 
 
 \begin{frame}
-    \frametitle{Edges (Bad)}
+    \frametitle{Smooth Regions (Bad)}
+    \begin{center}
+      \includegraphics[width=0.7\textwidth]{optical_flow/optical_flow_smooth_regions.pdf}
+    \end{center}
+  
+    Equations for all pixels in window are more or less the same.
 
-  \begin{center}
-    \includegraphics[width=0.55\textwidth]{optical_flow/optical_flow_edges.pdf}
-  \end{center}
-    
+    Cannot reliably compute flow!
+
 \end{frame}
 
 \begin{frame}
-    \frametitle{Textured Regions (Good)}
+    \frametitle{Edges (Bad)}
+    \begin{center}
+      \includegraphics[width=0.7\textwidth]{optical_flow/optical_flow_edges.pdf}
+    \end{center}
 
-  \begin{center}
-    \includegraphics[width=0.55\textwidth]{optical_flow/optical_flow_textured_regions.pdf}
-  \end{center}
+    Badly conditioned. Prominent gradient in one direction.
     
+    Cannot reliably compute flow!
+    
+    Same as Aperture Problem.
+ \end{frame}
+
+\begin{frame}
+    \frametitle{Textured Regions (Good)}
+    \begin{center}
+      \includegraphics[width=0.7\textwidth]{optical_flow/optical_flow_textured_regions.pdf}
+    \end{center}
+
+    Well conditioned. Large and diverse gradient magnitudes.
+    
+    Can reliably compute optical flow.
 \end{frame}
 
 % Slide 12
