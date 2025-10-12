@@ -12,7 +12,7 @@
     \item known control points
   \end{itemize}
   \begin{center}
-    \includegraphics[width=0.5\columnwidth]{./images/localization_3d_2d.pdf}
+    \includegraphics[width=0.5\columnwidth]{./images/dlt_3d_2d.pdf}
   \end{center}
 \end{frame}
 
@@ -71,40 +71,185 @@
 
 \begin{frame}
   \frametitle{How Many Points Are Needed?}
-  Each point gives two observation equations, one for each image coordinate.
-  % \includegraphics[width=0.6\textwidth]{placeholder-image.jpg}
+
+  \only<1-3>{
+    
+    Each point gives \alert{???} observation equations.
+
+    \begin{equation*}
+      \vec{x} = \projectionMatrix \vec{X}
+    \end{equation*}
+  }
+  \only<2>{
+    \begin{equation*}
+      \begin{bmatrix} u\\ v\\ w\end{bmatrix} = \projectionMatrix \begin{bmatrix} U\\ V\\ W \\ T\end{bmatrix}
+    \end{equation*}
+  }
+
+  \only<3>{
+    \begin{equation*}
+      \begin{bmatrix} \frac{u}{w}\\ \frac{v}{w}\\ 1\end{bmatrix} = \projectionMatrix \begin{bmatrix} \frac{U}{T}\\ \frac{V}{T}\\ \frac{W}{T} \\ T\end{bmatrix}
+    \end{equation*}
+  }
+
+  \only<4>{
+    \begin{equation*}
+      \begin{bmatrix} x\\ y\\ 1\end{bmatrix} = \projectionMatrix \begin{bmatrix} X\\ Y\\ Z \\ 1\end{bmatrix}
+    \end{equation*}
+
+
+    \begin{align*}
+      x &= \frac{p_{11}X + p_{12}Y + p_{13}Z + p_{14}}{p_{31}X + p_{32}Y + p_{33}Z + p_{34}}\\
+      y &= \frac{p_{21}X + p_{22}Y + p_{23}Z + p_{24}}{p_{31}X + p_{32}Y + p_{33}Z + p_{34}}
+    \end{align*}
+
+    Each point gives \alert{two} observation equations, one for each image coordinate.
+  }
 \end{frame}
 
 \begin{frame}
-  \frametitle{Spatial Resection vs. DLT}
+  \frametitle{Spatial Resection (P3P) vs. DLT}
   \begin{itemize}
-    \item Calibrated camera: 6 unknowns. Need at least 3 points. Problem solved by spatial resection.
-    \item Uncalibrated camera: 11 unknowns. Need at least 6 points (assuming affine camera). Problem solved by DLT.
+    \item Calibrated camera: 
+    \begin{itemize}
+      \item 6 unknowns.
+      \item Need at least 3 points.
+      \item Problem solved by spatial resection
+    \end{itemize}
+    \item Uncalibrated camera: 
+    \begin{itemize}
+      \item 11 unknowns.
+      \item Need at least 6 points 
+      \item Assuming the model of an affine camera
+      \item Problem solved by DLT
+    \end{itemize}.
   \end{itemize}
-  % \includegraphics[width=0.6\textwidth]{placeholder-image.jpg}
 \end{frame}
 
 \begin{frame}
   \frametitle{DLT: Direct Linear Transform}
   Computing the Orientation of an Uncalibrated Camera using $\ge 6$ known points.
-  % \includegraphics[width=0.7\textwidth]{placeholder-image.jpg}
 \end{frame}
 
 \begin{frame}
   \frametitle{DLT: Problem Specification}
   \begin{itemize}
-    \item Task: Estimate the 11 elements of $P$.
-    \item Given: 3D coordinates $\mathbf{X}_i$ of object points.
-    \item Observed image coordinates $\mathbf{x}_i$ of an uncalibrated camera.
+    \item Task: Estimate the 11 elements of $\projectionMatrix$.
+    \item Given: 
+    \begin{itemize}
+      \item 3D coordinates $\mathbf{X}_{i}$ of object points.
+      \item Observed image coordinates $\mathbf{x}_{i}$ of an uncalibrated camera with the mapping.
+      \begin{equation*}
+        \vec{x}_{i} = \projectionMatrix \vec{X}_{i} \quad i=1,\ldots,n \quad n \ge 6
+      \end{equation*}
+    \end{itemize}
+    \item Data association
   \end{itemize}
-  % \includegraphics[width=0.7\textwidth]{placeholder-image.jpg}
+
 \end{frame}
 
 \begin{frame}
   \frametitle{Rearrange the DLT Equation}
-  Leads to a system of equations, linear in the parameters A, B, C.
-  % \includegraphics[width=0.65\textwidth]{placeholder-image.jpg}
+  
+  \only<1>{
+    \begin{equation*}
+      \vec{x}_{i} = \underset{3\times4}{\projectionMatrix} \vec{X}_{i} =
+      \begin{bmatrix}
+        p_{11} & p_{12} & p_{13} & p_{14} \\
+        p_{21} & p_{22} & p_{23} & p_{24} \\
+        p_{31} & p_{32} & p_{33} & p_{34}
+      \end{bmatrix} \vec{X}_{i}
+    \end{equation*}
+  }
+
+  \only<2->{
+    \begin{equation*}
+      \vec{x}_{i} = \underset{3\times4}{\projectionMatrix} \vec{X}_{i} =
+      \begin{bNiceMatrix}[margin] 
+        p_{11} & p_{12} & p_{13} & p_{14} \\
+        p_{21} & p_{22} & p_{23} & p_{24} \\
+        p_{31} & p_{32} & p_{33} & p_{34}
+      \CodeAfter
+        \tikz \node [draw=red, rounded corners, fit = (1-1) (1-last)] { } ;
+        \tikz \node [draw=blue, rounded corners, fit = (2-1) (2-last)] { } ;
+        \tikz \node [draw, rounded corners, fit = (3-1) (3-last)] { } ; 
+      \end{bNiceMatrix} \vec{X}_{i}
+    \end{equation*} 
+  }
+  \only<3>{
+    Define the three vectors A, B and C as follows
+
+    \begin{equation*}
+      {\color{red} \boxed{\color{black}{\vec{A}}}} = \begin{bmatrix} p_{11}\\ p_{12}\\ p_{13}\\ p_{14} \end{bmatrix}, \quad
+      {\color{blue} \boxed{\color{black}{\vec{B}}}} = \begin{bmatrix} p_{21}\\ p_{22}\\ p_{23}\\ p_{24} \end{bmatrix}, \quad
+      \boxed{\vec{C}} = \begin{bmatrix} p_{31}\\ p_{32}\\ p_{33}\\ p_{34} \end{bmatrix}
+    \end{equation*}
+  }
+
+  \only<4>{
+    So what we can rewrite the equation as
+
+    \begin{equation*}
+      \vec{x}_{i} = \projectionMatrix \vec{X}_{i} =
+      \begin{bNiceMatrix}[margin] 
+        \vec{A}^{\top} \\
+        \vec{B}^{\top} \\
+        \vec{C}^{\top}
+      \CodeAfter
+        \tikz \node [draw=red, rounded corners, fit = (1-1) (1-last)] { } ;
+        \tikz \node [draw=blue, rounded corners, fit = (2-1) (2-last)] { } ;
+        \tikz \node [draw, rounded corners, fit = (3-1) (3-last)] { } ; 
+      \end{bNiceMatrix} \vec{X}_{i}
+    \end{equation*}
+  }
+
+  \only<5>{
+    So what we can rewrite the equation as
+
+    \begin{equation*}
+      \begin{bmatrix}
+        u_{i} \\
+        v_{i} \\
+        w_{i}
+      \end{bmatrix} = 
+      \vec{x}_{i} = \projectionMatrix \vec{X}_{i} =
+      \begin{bNiceMatrix}[margin] 
+        \vec{A}^{\top} \\
+        \vec{B}^{\top} \\
+        \vec{C}^{\top}
+      \CodeAfter
+        \tikz \node [draw=red, rounded corners, fit = (1-1) (1-last)] { } ;
+        \tikz \node [draw=blue, rounded corners, fit = (2-1) (2-last)] { } ;
+        \tikz \node [draw, rounded corners, fit = (3-1) (3-last)] { } ; 
+      \end{bNiceMatrix} \vec{X}_{i} = 
+      \begin{bmatrix}
+        \vec{A}^{\top}\vec{X}_{i} \\
+        \vec{B}^{\top}\vec{X}_{i} \\
+        \vec{C}^{\top}\vec{X}_{i}
+      \end{bmatrix}
+    \end{equation*}
+  }
+
 \end{frame}
+
+\begin{frame}
+  \frametitle{Rearrange the DLT Equation}
+
+      \begin{equation*}
+      \vec{x}_{i} =
+      \begin{bmatrix}
+        x_{i} \\
+        y_{i} \\
+        1
+      \end{bmatrix} = 
+      \begin{bmatrix}
+        \vec{A}^{\top}\vec{X}_{i} \\
+        \vec{B}^{\top}\vec{X}_{i} \\
+        \vec{C}^{\top}\vec{X}_{i}
+      \end{bmatrix}
+    \end{equation*}
+\end{frame}
+
 
 \begin{frame}
   \frametitle{Estimating the Elements of P}
