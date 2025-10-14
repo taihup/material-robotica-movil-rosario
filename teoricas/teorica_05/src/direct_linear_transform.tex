@@ -1,8 +1,8 @@
 \begin{frame}
   \frametitle{3D Point to Pixel: Estimating the Parameters of P}
   \begin{equation*}
-    \underset{\substack{\text{pixel}\\ \text{coordinate}}}{\mathbf{x}} \sim \underset{\substack{\text{trans-}\\ \text{formation}}}{\mathbf{P}}
-    \underset{\substack{\text{world}\\ \text{coordinate}}}{\mathbf{X}}
+    \underset{\substack{\text{pixel}\\ \text{coordinate}}}{\vec{x}} \sim \underset{\substack{\text{trans-}\\ \text{formation}}}{\vec{P}}
+    \underset{\substack{\text{world}\\ \text{coordinate}}}{\vec{X}}
   \end{equation*}  
 \end{frame}
 
@@ -27,7 +27,7 @@
 
 \begin{frame}
   \frametitle{Mapping}
-  Direct linear transform (DLT) maps any object point $\mathbf{X}$ to the image point $\mathbf{x}$.
+  Direct linear transform (DLT) maps any object point $\vec{X}$ to the image point $\vec{x}$.
   \begin{center}
     \includegraphics[width=0.5\columnwidth]{./images/dlt_3d_2d.pdf}
   \end{center}
@@ -137,8 +137,8 @@
     \item Task: Estimate the 11 elements of $\projectionMatrix$.
     \item Given: 
     \begin{itemize}
-      \item 3D coordinates $\mathbf{X}_{i}$ of object points.
-      \item Observed image coordinates $\mathbf{x}_{i}$ of an uncalibrated camera with the mapping.
+      \item 3D coordinates $\vec{X}_{i}$ of object points.
+      \item Observed image coordinates $\vec{x}_{i}$ of an uncalibrated camera with the mapping.
       \begin{equation*}
         \vec{x}_{i} = \projectionMatrix \vec{X}_{i} \quad i=1,\ldots,n \quad n \ge 6
       \end{equation*}
@@ -274,10 +274,12 @@ Implica
 
   Leads to a system of equation, which is linear in the parameters A, B and C
 
-  \begin{align*}
-    -\vec{X}_{i}^{\top}\vec{A}& &+x_{i}\vec{X}_{i}^{\top}\vec{C} &= 0 \\
-    &-\vec{X}_{i}^{\top}\vec{B} &+y_{i}\vec{X}_{i}^{\top}\vec{C} &= 0
-  \end{align*}
+  \begin{equation*}
+    \begin{matrix}
+      -\vec{X}_{i}^{\top}\vec{A}& &+x_{i}\vec{X}_{i}^{\top}\vec{C} = 0 \\
+      &-\vec{X}_{i}^{\top}\vec{B} &+y_{i}\vec{X}_{i}^{\top}\vec{C} = 0
+    \end{matrix}  
+  \end{equation*}
 
 \end{frame}
 
@@ -294,10 +296,138 @@ Implica
 \end{frame}
 
 \begin{frame}
+  \frametitle{Estimating the Elements of $\projectionMatrix$}
+  \begin{itemize}
+    \item Rewrite
+    \begin{equation*}
+      \begin{matrix}
+        -\vec{X}_{i}^{\top}\vec{A}& &+x_{i}\vec{X}_{i}^{\top}\vec{C} = 0 \\
+        &-\vec{X}_{i}^{\top}\vec{B} &+y_{i}\vec{X}_{i}^{\top}\vec{C} = 0
+      \end{matrix}  
+    \end{equation*}
+      
+    \item as
+    \begin{align*}
+        \vec{a}_{x_i}^{\top} \vec{p} &= 0 \\
+        \vec{a}_{y_i}^{\top} \vec{p} &= 0
+    \end{align*}
+
+     \item with
+    \begin{align*}
+        \vec{p} &= (p_k) = \text{vec}(\vec{P}^{\top}) \\
+        \vec{a}_{x_i}^{\top} &= (-\vec{X}_i^{\top}, \vec{0}^{\top}, x_i \vec{X}_i^{\top}) \\
+        &= (-X_i, -Y_i, -Z_i, -1, 0, 0, 0, x_i X_i, x_i Y_i, x_i Z_i, x_i) \\
+        \vec{a}_{y_i}^{\top} &= (\vec{0}^{\top}, -\vec{X}_i^{\top}, y_i \vec{X}_i^{\top}) \\
+        &= (0, 0, 0, 0, -X_i, -Y_i, -Z_i, -1, y_i X_i, y_i Y_i, y_i Z_i, y_i)
+    \end{align*}
+  \end{itemize}
+\end{frame}
+
+% \begin{frame}
+%   \frametitle{Verifying Correctness}
+%   \begin{equation*}
+%     \vec{a}_{x_i}^{\top} \vec{p} =
+%     \begin{bmatrix}
+%     -X_i, -Y_i, -Z_i, -1, 0, 0, 0, x_i X_i, x_i Y_i, x_i Z_i, x_i
+%     \end{bmatrix}
+%     \begin{bmatrix}
+%     p_{11} \\
+%     p_{12} \\
+%     p_{13} \\
+%     p_{14} \\
+%     p_{21} \\
+%     p_{22} \\
+%     p_{23} \\
+%     p_{24} \\
+%     p_{31} \\
+%     p_{32} \\
+%     p_{33} \\
+%     p_{34}
+%     \end{bmatrix}  
+%   \end{equation*}
+  
+% \end{frame}
+
+% \begin{frame}
+%   \frametitle{Verifying Correctness}
+%   \begin{align*}
+%     \vec{a}_{x_i}^{\top} \vec{p} &=
+%     \begin{bmatrix}
+%       -X_i, -Y_i, -Z_i, -1, 0, 0, 0, x_i X_i, x_i Y_i, x_i Z_i, x_i
+%     \end{bmatrix}
+%     \begin{bmatrix}
+%       p_{11} \\
+%       p_{12} \\
+%       p_{13} \\
+%       p_{14} \\
+%       p_{21} \\
+%       p_{22} \\
+%       p_{23} \\
+%       p_{24} \\
+%       p_{31} \\
+%       p_{32} \\
+%       p_{33} \\
+%       p_{34}
+%     \end{bmatrix}\\
+%     &= 
+%     \begin{bmatrix}
+%       \quad \quad \quad -\mathbf{X}_i^{\top},& \quad \quad \quad \mathbf{0},& \quad \quad \quad \quad x_i \mathbf{X}_i^{\top} \quad \quad \quad
+%     \end{bmatrix}
+%     \begin{bmatrix}
+%     \mathbf{A} \\
+%     \mathbf{B} \\
+%     \mathbf{C}
+%     \end{bmatrix} \\
+%     &= \quad \quad \quad \quad -\mathbf{X}_i^{\top} \mathbf{A} \quad \quad \quad \quad \quad \quad \quad \quad+ x_i \mathbf{X}_i^{\top} \mathbf{C}
+%   \end{align*}
+% \end{frame}
+
+
+\begin{frame}
+  \frametitle{Verifying Correctness}
+
+  \begin{center}
+    \only<1>{\includegraphics[width=0.7\columnwidth]{./images/verifying_correctness_1.pdf}}
+    \only<2>{\includegraphics[width=0.7\columnwidth]{./images/verifying_correctness_2.pdf}}
+    \only<3>{\includegraphics[width=0.7\columnwidth]{./images/verifying_correctness_3.pdf}}
+    \only<4>{\includegraphics[width=0.7\columnwidth]{./images/verifying_correctness_4.pdf}}
+    \only<5>{\includegraphics[width=0.7\columnwidth]{./images/verifying_correctness_5.pdf}}
+  \end{center}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Estimating the Elements of P}
+
+  \begin{itemize}
+    \item For each point, we have
+    \begin{align*}
+        \vec{a}_{x_i}^{\top} \vec{p} &= 0 \\
+        \vec{a}_{y_i}^{\top} \vec{p} &= 0
+    \end{align*}
+    \item Stacking everything together
+    \begin{equation*}
+      \begin{bmatrix}
+        \vec{a}_{x_1}^{\top} \\
+        \vec{a}_{y_1}^{\top} \\
+        \vec{a}_{x_2}^{\top} \\
+        \vec{a}_{y_2}^{\top} \\
+        \vdots \\
+        \vec{a}_{x_n}^{\top} \\
+        \vec{a}_{y_n}^{\top}
+      \end{bmatrix} \vec{p} = \underset{2I\times 12}{\vec{M}} \underset{12\times1}{\vec{p}} = 0
+    \end{equation*}
+  \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
   \frametitle{Solving the Linear System (Homogeneous System => SVD)}
   \begin{itemize}
-    \item Solve $A\mathbf{p}=0$ via SVD.
-    \item Choose $\mathbf{p}$ as singular vector of smallest singular value.
+    \item Solve $A\vec{p}=0$ via SVD.
+    \item Choose $\vec{p}$ as singular vector of smallest singular value.
   \end{itemize}
   % \includegraphics[width=0.6\textwidth]{placeholder-image.jpg}
 \end{frame}
@@ -305,10 +435,10 @@ Implica
 \begin{frame}
   \frametitle{Redundant Observations}
   \begin{itemize}
-    \item Minimize $\|A\mathbf{p}\|$ with $\|\mathbf{p}\|=1$.
-    \item Use SVD to find best solution.
+    \item Solving a system of linear equations of the form $\vec{A}\vec{x} = \vec{0}$ is equivalent to finding the null space of $\vec{A}$
+    \item Thus, we can apply the SVD to solve $\vec{M}\vec{p} = \vec{0}$
+    \item Choose $\vec{p}$ as the singular vector belonging to the singular value of 0
   \end{itemize}
-  % \includegraphics[width=0.7\textwidth]{placeholder-image.jpg}
 \end{frame}
 
 \begin{frame}
