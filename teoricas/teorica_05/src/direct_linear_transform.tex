@@ -315,10 +315,10 @@ Implica
      \item with
     \begin{align*}
         \vec{p} &= (p_k) = \text{vec}(\vec{P}^{\top}) \\
-        \vec{a}_{x_i}^{\top} &= (-\vec{X}_i^{\top}, \vec{0}^{\top}, x_i \vec{X}_i^{\top}) \\
-        &= (-X_i, -Y_i, -Z_i, -1, 0, 0, 0, x_i X_i, x_i Y_i, x_i Z_i, x_i) \\
-        \vec{a}_{y_i}^{\top} &= (\vec{0}^{\top}, -\vec{X}_i^{\top}, y_i \vec{X}_i^{\top}) \\
-        &= (0, 0, 0, 0, -X_i, -Y_i, -Z_i, -1, y_i X_i, y_i Y_i, y_i Z_i, y_i)
+        \vec{a}_{x_i}^{\top} &= \begin{bmatrix}-\vec{X}_i^{\top}, \vec{0}^{\top}, x_i \vec{X}_i^{\top}\end{bmatrix} \\
+        &= \begin{bmatrix}-X_i, -Y_i, -Z_i, -1, 0, 0, 0, x_i X_i, x_i Y_i, x_i Z_i, x_i\end{bmatrix} \\
+        \vec{a}_{y_i}^{\top} &= \begin{bmatrix}\vec{0}^{\top}, -\vec{X}_i^{\top}, y_i \vec{X}_i^{\top}\end{bmatrix} \\
+        &= \begin{bmatrix}0, 0, 0, 0, -X_i, -Y_i, -Z_i, -1, y_i X_i, y_i Y_i, y_i Z_i, y_i\end{bmatrix}
     \end{align*}
   \end{itemize}
 \end{frame}
