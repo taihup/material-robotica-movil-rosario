@@ -235,29 +235,62 @@
 \begin{frame}
   \frametitle{Rearrange the DLT Equation}
 
-      \begin{equation*}
-      \vec{x}_{i} =
-      \begin{bmatrix}
-        x_{i} \\
-        y_{i} \\
-        1
-      \end{bmatrix} = 
-      \begin{bmatrix}
-        \vec{A}^{\top}\vec{X}_{i} \\
-        \vec{B}^{\top}\vec{X}_{i} \\
-        \vec{C}^{\top}\vec{X}_{i}
-      \end{bmatrix}
-    \end{equation*}
+  \begin{equation*}
+    \vec{x}_{i} =
+    \begin{bmatrix}
+      x_{i} \\
+      y_{i} \\
+      1
+    \end{bmatrix} =
+    \begin{bmatrix}
+      u_{i} \\
+      v_{i} \\
+      w_{i}
+    \end{bmatrix} = 
+    \begin{bmatrix}
+      \vec{A}^{\top}\vec{X}_{i} \\
+      \vec{B}^{\top}\vec{X}_{i} \\
+      \vec{C}^{\top}\vec{X}_{i}
+    \end{bmatrix}
+  \end{equation*}
+
+Implica
+
+  \begin{equation*}
+    x_{i} = \dfrac{u_{i}}{w_{i}} = \dfrac{\vec{A}^{\top}\vec{X}_{i}}{\vec{C}^{\top}\vec{X}_{i}}
+    \quad \quad
+    y_{i} = \dfrac{v_{i}}{w_{i}} = \dfrac{\vec{B}^{\top}\vec{X}_{i}}{\vec{C}^{\top}\vec{X}_{i}}
+  \end{equation*}
+
 \end{frame}
 
+\begin{frame}
+  \frametitle{Rearrange the DLT Equation}
+
+  \begin{align*}
+    x_{i} &= \dfrac{\vec{A}^{\top}\vec{X}_{i}}{\vec{C}^{\top}\vec{X}_{i}} \implies x_{i} \vec{C}^{\top}\vec{X}_{i} - \vec{A}^{\top}\vec{X}_{i} = 0\\
+    y_{i} &= \dfrac{\vec{B}^{\top}\vec{X}_{i}}{\vec{C}^{\top}\vec{X}_{i}} \implies y_{i} \vec{C}^{\top}\vec{X}_{i} - \vec{B}^{\top}\vec{X}_{i} = 0
+  \end{align*}
+
+  Leads to a system of equation, which is linear in the parameters A, B and C
+
+  \begin{align*}
+    -\vec{X}_{i}^{\top}\vec{A}& &+x_{i}\vec{X}_{i}^{\top}\vec{C} &= 0 \\
+    &-\vec{X}_{i}^{\top}\vec{B} &+y_{i}\vec{X}_{i}^{\top}\vec{C} &= 0
+  \end{align*}
+
+\end{frame}
 
 \begin{frame}
-  \frametitle{Estimating the Elements of P}
+  \frametitle{Estimating the Elements of $\projectionMatrix$}
   \begin{itemize}
-    \item Collect elements of $P$ into a parameter vector.
-    \item Stacking of rows of $P$.
+    \item Collect elements of $\projectionMatrix$ into a parameter vector $\vec{p}$.
   \end{itemize}
-  % \includegraphics[width=0.7\textwidth]{placeholder-image.jpg}
+
+  \begin{center}
+    \includegraphics[width=0.5\columnwidth]{./images/projection_matrix_column_vector.pdf}
+  \end{center}
+  
 \end{frame}
 
 \begin{frame}
