@@ -622,34 +622,132 @@ Implica
   \end{itemize}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Decomposition of P}
+
+\end{frame}
 
 \begin{frame}
-  \frametitle{DLT in a Nutshell}
-  \begin{enumerate}
-    \item Build matrix $M$ for linear system $M p = 0$.
-    \item Solve by SVD.
-    \item Decompose $P$ to obtain $K,R,t$.
-  \end{enumerate}
-  % \includegraphics[width=0.6\textwidth]{placeholder-image.jpg}
+  \frametitle{Decomposition of P}
+  
+\end{frame}
+
+\begin{frame}
+  \frametitle{Decomposition of P}
+  
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{DLT in a Nutshell: Step 1}
+    \begin{enumerate}
+        \item \textbf{Build the matrix $M$ for the linear system} $\mathbf{M p} \stackrel{!}{=} \mathbf{0}$.
+    \end{enumerate}
+    \vspace{0.5cm}
+    \begin{center}
+        $M = \begin{bmatrix}
+            \mathbf{a}_{x_1}^T \\
+            \mathbf{a}_{y_1}^T \\
+            \vdots \\
+            \mathbf{a}_{x_l}^T \\
+            \mathbf{a}_{y_l}^T
+        \end{bmatrix}$
+        \qquad
+        $\underset{2l \times 12}{\mathbf{M}} \underset{12 \times 1}{\mathbf{p}} \stackrel{!}{=} \mathbf{0}$
+        
+        \vspace{0.5cm}
+        with
+        \begin{align*}
+            \mathbf{a}_{x_i}^T &= (-X_i, -Y_i, -Z_i, -1, 0, 0, 0, 0, x_iX_i, x_iY_i, x_iZ_i, x_i) \\
+            \mathbf{a}_{y_i}^T &= (0, 0, 0, 0, -X_i, -Y_i, -Z_i, -1, y_iX_i, y_iY_i, y_iZ_i, y_i)
+        \end{align*}
+    \end{center}
+    \footnotesize{(Where $(X_i, Y_i, Z_i)$ are 3D world coordinates and $(x_i, y_i)$ are 2D image coordinates for control point $i$. $l$ is the number of control points.)}
+\end{frame}
+
+\begin{frame}
+  \frametitle{DLT in a Nutshell: Step 2}
+    \begin{enumerate}
+        \setcounter{enumi}{1}
+        \item \textbf{Solve by SVD} $\mathbf{M} = \mathbf{U} \mathbf{S} \mathbf{V}^T$.
+    \end{enumerate}
+    \vspace{0.5cm}
+    \begin{center}
+        The solution $\mathbf{p}$ is the \textbf{last column of $\mathbf{V}$}.
+        \vspace{0.5cm}
+        $$
+        \mathbf{p} = \mathbf{v}_{12} \implies \mathbf{P} = \begin{bmatrix}
+            p_1 & p_2 & p_3 & p_4 \\
+            p_5 & p_6 & p_7 & p_8 \\
+            p_9 & p_{10} & p_{11} & p_{12}
+        \end{bmatrix}
+        $$
+        \footnotesize{($\mathbf{P}$ is the $3 \times 4$ projection matrix.)}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{DLT in a Nutshell: Step 3 (Decomposition)}
+    \begin{enumerate}
+        \setcounter{enumi}{2}
+        \item \textbf{If individual parameters are needed}, decompose the projection matrix $\mathbf{P}$.
+    \end{enumerate}
+    \vspace{0.5cm}
+    The projection matrix $\mathbf{P}$ can be written as:
+    $$
+    \mathbf{P} = \mathbf{K} \mathbf{R} [\mathbf{I}_3 | - \mathbf{X}_O] = [\mathbf{H} | \mathbf{h}]
+    $$
+    \begin{itemize}
+        \item Camera center (Extrinsic translation): $\mathbf{X}_O = -\mathbf{H}^{-1} \mathbf{h}$
+        \item The $3 \times 3$ matrix $\mathbf{H} = \mathbf{K} \mathbf{R}$ is the \textbf{calibration matrix} (Homography).
+    \end{itemize}
+    \vspace{0.5cm}
+    Use $\mathbf{Q R}$ decomposition of $\mathbf{H}^{-1}$:
+    $$
+    \mathbf{Q R}(\mathbf{H}^{-1}) = \mathbf{R}^T \mathbf{K}^{-1}
+    $$
+    \vspace{0.5cm}
+    \textbf{Normalization and Sign Ambiguity:}
+    \begin{itemize}
+        \item Due to homogeneity, \textbf{normalize} $\mathbf{K}$:
+        $$
+        \mathbf{K} \leftarrow \frac{1}{K_{33}} \mathbf{K}
+        $$
+        \item Decomposition $\mathbf{H}^{-1} = \mathbf{R}^T \mathbf{K}^{-1}$ results in $\mathbf{K}$ with \textbf{positive diagonal elements}.
+        \item To get a \textbf{negative camera constant} (if desired, related to the sign of $c$ or $P$), apply:
+        \begin{align*}
+            \mathbf{K} &\leftarrow \mathbf{K} \mathbf{R}(z, \pi) \\
+            \mathbf{R} &\leftarrow \mathbf{R}(z, \pi) \mathbf{R}
+        \end{align*}
+        using the rotation matrix:
+        $$
+        \mathbf{R}(z, \pi) = \begin{bmatrix}
+            -1 & 0 & 0 \\
+            0 & -1 & 0 \\
+            0 & 0 & 1
+        \end{bmatrix}
+        $$
+        \footnotesize{($\mathbf{P}$ is invariant under this transformation: $\mathbf{H} = \mathbf{K} \mathbf{R}(z, \pi) \mathbf{R}(z, \pi) \mathbf{R} = \mathbf{K} \mathbf{R}$.)}
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{Discussion DLT}
-  \begin{itemize}
-    \item Solution unstable if control points nearly planar.
-    \item Not statistically optimal.
-  \end{itemize}
-  % \includegraphics[width=0.7\textwidth]{placeholder-image.jpg}
+    \begin{itemize}
+        \item We realize $\mathbf{P} \rightleftharpoons (\mathbf{K}, \mathbf{R}, \mathbf{X}_O)$ \textbf{both ways} (Projection and Decomposition).
+        \item We are \textbf{free to choose the sign} of the camera constant ($c$).
+        \item Solution is \textbf{unstable} if the control points lie \textbf{approximately on a plane}.
+        \item Solution is \textbf{statistically not optimal} (no uncertainties of point coordinates are considered).
+    \end{itemize}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Summary}
-  \begin{itemize}
-    \item Direct linear transform estimates intrinsic and extrinsic camera parameters.
-    \item Needs at least 6 control points.
-    \item Provides direct solution.
-  \end{itemize}
-  % \includegraphics[width=0.7\textwidth]{placeholder-image.jpg}
+\begin{frame}{Summary}
+    \begin{itemize}
+        \item Direct Linear Transforms estimates the \textbf{intrinsic} ($K$) and \textbf{extrinsic} ($R, X_O$) parameters of a camera.
+        \item Computes the parameters for the \textbf{mapping of the uncalibrated camera}.
+        \item Requires at least \textbf{6 known control points in 3D}.
+        \item \textbf{Direct solution} (no initial guess needed).
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
