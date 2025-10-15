@@ -2,12 +2,12 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="259.12228mm"
-   height="131.04396mm"
-   viewBox="0 0 259.12228 131.04396"
+   width="106.2445mm"
+   height="129.35648mm"
+   viewBox="0 0 106.2445 129.35648"
    version="1.1"
    id="svg1"
-   inkscape:version="1.3 (1:1.3+202307231459+0e150ed6c4)"
+   inkscape:version="1.4.2 (1:1.4.2+202505120737+ebf0e940d0)"
    sodipodi:docname="trajectory_example.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -25,10 +25,10 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="0.43521862"
-     inkscape:cx="528.47004"
-     inkscape:cy="337.76128"
+     inkscape:cx="-49.40046"
+     inkscape:cy="329.71935"
      inkscape:window-width="1920"
-     inkscape:window-height="988"
+     inkscape:window-height="986"
      inkscape:window-x="0"
      inkscape:window-y="32"
      inkscape:window-maximized="1"
@@ -249,7 +249,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(142.13234,-27.76507)">
+     transform="translate(-10.74544,-29.452544)">
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#ConcaveTriangle);marker-end:url(#marker2)"
        d="M 16.314744,32.901204 V 68.287176 H 113.76545"
@@ -566,36 +566,6 @@
                id="id-db8642cf-33ea-4993-9928-aeaeba66587e-7" />
           </g>
         </g>
-      </g>
-    </g>
-    <g
-       id="g15">
-      <g
-         id="g14">
-        <circle
-           style="fill:none;stroke:#000000;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1"
-           id="path11"
-           cx="-76.563408"
-           cy="89.684547"
-           r="61.787186" />
-        <circle
-           style="fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1"
-           id="path12"
-           cx="-48.943611"
-           cy="34.666615"
-           r="3.7616613" />
-        <circle
-           style="fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1"
-           id="path12-3"
-           cx="-138.37068"
-           cy="91.89521"
-           r="3.7616613" />
-        <circle
-           style="fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1"
-           id="path12-7"
-           cx="-39.879692"
-           cy="139.64349"
-           r="3.7616613" />
       </g>
     </g>
     <g
