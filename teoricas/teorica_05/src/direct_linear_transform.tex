@@ -583,10 +583,17 @@ Implica
 \begin{frame}
   \frametitle{Critical Surfaces}
   \begin{itemize}
-    \item $M$ is of rank 11 if number of points $\ge 6$.
-    \item No solution if all points lie on a plane.
+      \item $M$ is of rank $11$, if
+      \begin{itemize}
+          \item Number of points $\geq 6$
+          \item Assumption: no gross errors
+      \end{itemize}
+      \item \textbf{No solution}, if
+      \begin{itemize}
+          \item All points $X_i$ are located on a \textbf{plane}
+          \item (All points $X_i$ and the projection center $X_O$ are located on a twisted cubic curve)
+      \end{itemize}
   \end{itemize}
-  % \includegraphics[width=0.65\textwidth]{placeholder-image.jpg}
 \end{frame}
 
 \begin{frame}
@@ -602,6 +609,19 @@ Implica
   \end{itemize}
   % \includegraphics[width=0.7\textwidth]{placeholder-image.jpg}
 \end{frame}
+
+
+\begin{frame}
+  \frametitle{Decomposition of P}
+  \begin{itemize}
+      \item We have $P$, how to obtain $K, R, X_O$?
+      \item Structure of the projection matrix
+      $$P = [KR \mid -KRX_O] = [H \mid \mathbf{h}]$$
+      \item with
+      $$H = KR \quad \mathbf{h} = -KRX_O$$
+  \end{itemize}
+\end{frame}
+
 
 \begin{frame}
   \frametitle{DLT in a Nutshell}
