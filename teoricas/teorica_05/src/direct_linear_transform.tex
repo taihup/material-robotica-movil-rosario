@@ -590,7 +590,7 @@ Implica
           p_{21} & p_{22} & p_{23} & p_{24} \\
           p_{31} & p_{32} & p_{33} & p_{34}
       \CodeAfter
-        \tikz \node [draw=red, rounded corners, fit = (1-1) (3-3)] { }; 
+        \tikz \node [draw=red, rounded corners, fit = (1-1) (3-3)] { };
       \end{bNiceMatrix} =
       \begin{bmatrix}
           f_x & s & c_x\\
@@ -610,16 +610,27 @@ Implica
           p_{11} & p_{12} & p_{13} \\
           p_{21} & p_{22} & p_{23} \\
           p_{31} & p_{32} & p_{33}
-      \end{bmatrix} = \begin{bmatrix}
-          f_x & s & c_x \\
-          0 & f_y & c_y \\
-          0 & 0 & 1
-      \end{bmatrix}
-      \begin{bmatrix}
+      \end{bmatrix} =
+      \begin{bNiceMatrix}[margin]
+        \CodeBefore
+        \rectanglecolor{green!40}{1-1}{1-3}
+        \rectanglecolor{green!40}{2-2}{2-3}
+        \rectanglecolor{green!40}{3-3}{3-3}
+        \Body
+        f_x & s & c_x \\
+        0 & f_y & c_y \\
+        0 & 0 & 1
+        % \CodeAfter
+        % \tikz \draw[draw=red, rounded corners] (1-|1) -- (1-|last) -- (last-|last) -- (1-|1);
+      \end{bNiceMatrix}
+      \begin{bNiceMatrix}[margin]
+        \CodeBefore
+        \rectanglecolor{green!40}{1-1}{3-3}
+        \Body
           r_{11} & r_{12} & r_{13} \\
           r_{21} & r_{22} & r_{23} \\
           r_{31} & r_{32} & r_{33}
-      \end{bmatrix} = \intrinsicMatrix \rotation
+      \end{bNiceMatrix} = \intrinsicMatrix \rotation
     \end{equation*}
 
     \item Given that $\intrinsicMatrix$ is an \textbf{Upper Right Triangular} matrix and $\rotation$ is an \textbf{Orthonormal} matrix, it is possible to uniquely ``decouple'' $\intrinsicMatrix$ and $\rotation$ from their product using \textbf{QR factorization}.
