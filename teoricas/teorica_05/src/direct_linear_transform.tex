@@ -416,7 +416,7 @@ Implica
         \vdots \\
         \vec{a}_{x_n}^{\top} \\
         \vec{a}_{y_n}^{\top}
-      \end{bmatrix} \vec{p} = \underset{2I\times 12}{\vec{M}} \underset{12\times1}{\vec{p}} \stackrel{!}{=} 0
+      \end{bmatrix} \vec{p} = \underset{2I\times 12}{\vec{M}} \underset{12\times1}{\vec{p}} \stackrel{!}{=} 0 \quad \text{(where $I$ is the number of control points)}
     \end{equation*}
   \end{itemize}
 
@@ -524,7 +524,7 @@ Implica
           & & & & & \cdots & & & & & &
       \end{bmatrix}
     \end{align*}
-    {\color{red} assume all $Z_{i} = 0$}
+    \color{red}{assume all $Z_{i} = 0$}
 \end{frame}
 
 % --- Slide: Critical Surfaces (2 - The one with the boxes/rank deficiency) ---
@@ -562,165 +562,107 @@ Implica
         \tikz \node [draw=red, rounded corners, fit = (1-11) (4-11)] { } ; 
       \end{bNiceMatrix}
     \end{align*}
-    {\color{red} assume all $Z_{i} = 0$}
+    \color{red}{rank deficiency}
 \end{frame}
 
 \begin{frame}
   \frametitle{Critical Surfaces}
-  \begin{itemize}
-      \item $M$ is of rank $11$, if
-      \begin{itemize}
-          \item Number of points $\geq 6$
-          \item Assumption: no gross errors
-      \end{itemize}
-      \item \textbf{No solution}, if
-      \begin{itemize}
-          \item All points $X_i$ are located on a \textbf{plane}
-          \item (All points $X_i$ and the projection center $X_O$ are located on a twisted cubic curve)
-      \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{From $P$ to $K,R,t$}
-  % \includegraphics[width=0.6\textwidth]{placeholder-image.jpg}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Decomposition of P}
-  \begin{itemize}
-    \item Compute $K, R, t$ from $P$.
-    \item Use QR decomposition for rotation and calibration matrices.
-  \end{itemize}
-  % \includegraphics[width=0.7\textwidth]{placeholder-image.jpg}
-\end{frame}
-
-
-\begin{frame}
-  \frametitle{Decomposition of P}
-  \begin{itemize}
-      \item We have $P$, how to obtain $K, R, X_O$?
-      \item Structure of the projection matrix
-      $$P = [KR \mid -KRX_O] = [H \mid \mathbf{h}]$$
-      \item with
-      $$H = KR \quad \mathbf{h} = -KRX_O$$
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Decomposition of P}
-
-\end{frame}
-
-\begin{frame}
-  \frametitle{Decomposition of P}
-  
-\end{frame}
-
-\begin{frame}
-  \frametitle{Decomposition of P}
-  
-\end{frame}
-
-
-\begin{frame}
-  \frametitle{DLT in a Nutshell: Step 1}
-    \begin{enumerate}
-        \item \textbf{Build the matrix $M$ for the linear system} $\mathbf{M p} \stackrel{!}{=} \mathbf{0}$.
-    \end{enumerate}
-    \vspace{0.5cm}
-    \begin{center}
-        $M = \begin{bmatrix}
-            \mathbf{a}_{x_1}^T \\
-            \mathbf{a}_{y_1}^T \\
-            \vdots \\
-            \mathbf{a}_{x_l}^T \\
-            \mathbf{a}_{y_l}^T
-        \end{bmatrix}$
-        \qquad
-        $\underset{2l \times 12}{\mathbf{M}} \underset{12 \times 1}{\mathbf{p}} \stackrel{!}{=} \mathbf{0}$
-        
-        \vspace{0.5cm}
-        with
-        \begin{align*}
-            \mathbf{a}_{x_i}^T &= (-X_i, -Y_i, -Z_i, -1, 0, 0, 0, 0, x_iX_i, x_iY_i, x_iZ_i, x_i) \\
-            \mathbf{a}_{y_i}^T &= (0, 0, 0, 0, -X_i, -Y_i, -Z_i, -1, y_iX_i, y_iY_i, y_iZ_i, y_i)
-        \end{align*}
-    \end{center}
-    \footnotesize{(Where $(X_i, Y_i, Z_i)$ are 3D world coordinates and $(x_i, y_i)$ are 2D image coordinates for control point $i$. $l$ is the number of control points.)}
-\end{frame}
-
-\begin{frame}
-  \frametitle{DLT in a Nutshell: Step 2}
-    \begin{enumerate}
-        \setcounter{enumi}{1}
-        \item \textbf{Solve by SVD} $\mathbf{M} = \mathbf{U} \mathbf{S} \mathbf{V}^T$.
-    \end{enumerate}
-    \vspace{0.5cm}
-    \begin{center}
-        The solution $\mathbf{p}$ is the \textbf{last column of $\mathbf{V}$}.
-        \vspace{0.5cm}
-        $$
-        \mathbf{p} = \mathbf{v}_{12} \implies \mathbf{P} = \begin{bmatrix}
-            p_1 & p_2 & p_3 & p_4 \\
-            p_5 & p_6 & p_7 & p_8 \\
-            p_9 & p_{10} & p_{11} & p_{12}
-        \end{bmatrix}
-        $$
-        \footnotesize{($\mathbf{P}$ is the $3 \times 4$ projection matrix.)}
-    \end{center}
-\end{frame}
-
-\begin{frame}
-  \frametitle{DLT in a Nutshell: Step 3 (Decomposition)}
-    \begin{enumerate}
-        \setcounter{enumi}{2}
-        \item \textbf{If individual parameters are needed}, decompose the projection matrix $\mathbf{P}$.
-    \end{enumerate}
-    \vspace{0.5cm}
-    The projection matrix $\mathbf{P}$ can be written as:
-    $$
-    \mathbf{P} = \mathbf{K} \mathbf{R} [\mathbf{I}_3 | - \mathbf{X}_O] = [\mathbf{H} | \mathbf{h}]
-    $$
     \begin{itemize}
-        \item Camera center (Extrinsic translation): $\mathbf{X}_O = -\mathbf{H}^{-1} \mathbf{h}$
-        \item The $3 \times 3$ matrix $\mathbf{H} = \mathbf{K} \mathbf{R}$ is the \textbf{calibration matrix} (Homography).
+        \item $\mathbf{M}$ is of rank 11, if
+        \begin{itemize}
+            \item Number of points $\geq 6$
+            \item Assumption: no gross errors
+        \end{itemize}
+        \item \textcolor{red}{\bfseries No solution}, if all points $\mathbf{X}_i$ are located on a \textcolor{red}{\bfseries plane}
+        \item (All points $X_i$ and the projection center $\cameraCenter$ are located on a twisted cubic curve)
     \end{itemize}
-    \vspace{0.5cm}
-    Use $\mathbf{Q R}$ decomposition of $\mathbf{H}^{-1}$:
-    $$
-    \mathbf{Q R}(\mathbf{H}^{-1}) = \mathbf{R}^T \mathbf{K}^{-1}
-    $$
-    \vspace{0.5cm}
-    \textbf{Normalization and Sign Ambiguity:}
-    \begin{itemize}
-        \item Due to homogeneity, \textbf{normalize} $\mathbf{K}$:
-        $$
-        \mathbf{K} \leftarrow \frac{1}{K_{33}} \mathbf{K}
-        $$
-        \item Decomposition $\mathbf{H}^{-1} = \mathbf{R}^T \mathbf{K}^{-1}$ results in $\mathbf{K}$ with \textbf{positive diagonal elements}.
-        \item To get a \textbf{negative camera constant} (if desired, related to the sign of $c$ or $P$), apply:
-        \begin{align*}
-            \mathbf{K} &\leftarrow \mathbf{K} \mathbf{R}(z, \pi) \\
-            \mathbf{R} &\leftarrow \mathbf{R}(z, \pi) \mathbf{R}
-        \end{align*}
-        using the rotation matrix:
-        $$
-        \mathbf{R}(z, \pi) = \begin{bmatrix}
-            -1 & 0 & 0 \\
-            0 & -1 & 0 \\
-            0 & 0 & 1
-        \end{bmatrix}
-        $$
-        \footnotesize{($\mathbf{P}$ is invariant under this transformation: $\mathbf{H} = \mathbf{K} \mathbf{R}(z, \pi) \mathbf{R}(z, \pi) \mathbf{R} = \mathbf{K} \mathbf{R}$.)}
-    \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Decomposition of $\projectionMatrix$}
+  \begin{itemize}
+    \item We know that:
+    $\projectionMatrix = \intrinsicMatrix \begin{bmatrix} \rotation & \translation \end{bmatrix} = \begin{bmatrix} \intrinsicMatrix \rotation & \intrinsicMatrix \translation \end{bmatrix} $
+    \begin{equation*}
+      \projectionMatrix =
+        \begin{bNiceMatrix}[margin] 
+          p_{11} & p_{12} & p_{13} & p_{14} \\
+          p_{21} & p_{22} & p_{23} & p_{24} \\
+          p_{31} & p_{32} & p_{33} & p_{34}
+      \CodeAfter
+        \tikz \node [draw=red, rounded corners, fit = (1-1) (3-3)] { }; 
+      \end{bNiceMatrix} =
+      \begin{bmatrix}
+          f_x & s & c_x\\
+          0 & f_y & c_y \\
+          0 & 0 & 1
+      \end{bmatrix}
+      \begin{bmatrix}
+          r_{11} & r_{12} & r_{13} & t_x \\
+          r_{21} & r_{22} & r_{23} & t_y \\
+          r_{31} & r_{32} & r_{33} & t_z
+      \end{bmatrix}
+    \end{equation*}
+
+    \item That is:
+    \begin{equation*}
+      \begin{bmatrix}
+          p_{11} & p_{12} & p_{13} \\
+          p_{21} & p_{22} & p_{23} \\
+          p_{31} & p_{32} & p_{33}
+      \end{bmatrix} = \begin{bmatrix}
+          f_x & s & c_x \\
+          0 & f_y & c_y \\
+          0 & 0 & 1
+      \end{bmatrix}
+      \begin{bmatrix}
+          r_{11} & r_{12} & r_{13} \\
+          r_{21} & r_{22} & r_{23} \\
+          r_{31} & r_{32} & r_{33}
+      \end{bmatrix} = \intrinsicMatrix \rotation
+    \end{equation*}
+
+    \item Given that $\intrinsicMatrix$ is an \textbf{Upper Right Triangular} matrix and $\rotation$ is an \textbf{Orthonormal} matrix, it is possible to uniquely ``decouple'' $\intrinsicMatrix$ and $\rotation$ from their product using \textbf{QR factorization}.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Decomposition of $\projectionMatrix$}
+  \begin{itemize}
+    \item That is,  (from the last column of $\projectionMatrix$):
+    \begin{equation*}
+      \begin{bmatrix}
+          p_{14} \\
+          p_{24} \\
+          p_{34}
+      \end{bmatrix} = \begin{bmatrix}
+          f_x & s & c_x \\
+          0 & f_y & c_y \\
+          0 & 0 & 1
+      \end{bmatrix}
+      \begin{bmatrix}
+          t_x \\
+          t_y \\
+          t_z
+      \end{bmatrix} = \intrinsicMatrix \translation
+    \end{equation*}
+    \item Therefore:
+    \begin{equation*}
+      \translation = \intrinsicMatrix^{-1}
+      \begin{bmatrix}
+          p_{14} \\
+          p_{24} \\
+          p_{34}
+      \end{bmatrix}
+    \end{equation*}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{Discussion DLT}
     \begin{itemize}
-        \item We realize $\mathbf{P} \rightleftharpoons (\mathbf{K}, \mathbf{R}, \mathbf{X}_O)$ \textbf{both ways} (Projection and Decomposition).
-        \item We are \textbf{free to choose the sign} of the camera constant ($c$).
+        \item We realize $\projectionMatrix \rightleftharpoons (\intrinsicMatrix, \rotation, \translation)$ \textbf{both ways} (Projection and Decomposition).
+        %\item We are \textbf{free to choose the sign} of the camera constant ($c$).
         \item Solution is \textbf{unstable} if the control points lie \textbf{approximately on a plane}.
         \item Solution is \textbf{statistically not optimal} (no uncertainties of point coordinates are considered).
     \end{itemize}
@@ -728,7 +670,7 @@ Implica
 
 \begin{frame}{Summary}
     \begin{itemize}
-        \item Direct Linear Transforms estimates the \textbf{intrinsic} ($K$) and \textbf{extrinsic} ($R, X_O$) parameters of a camera.
+        \item Direct Linear Transforms estimates the \textbf{intrinsic} ($\intrinsicMatrix$) and \textbf{extrinsic} ($R, \translation$) parameters of a camera.
         \item Computes the parameters for the \textbf{mapping of the uncalibrated camera}.
         \item Requires at least \textbf{6 known control points in 3D}.
         \item \textbf{Direct solution} (no initial guess needed).
@@ -740,15 +682,6 @@ Implica
   \begin{itemize}
     \item Förstner \& Wrobel, Photogrammetric Computer Vision, Chapter 11.2
     \item Förstner, Scriptum Photogrammetrie I, Chapter 13.3
-  \end{itemize}
-  % \includegraphics[width=0.5\textwidth]{placeholder-image.jpg}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Slide Information}
-  \begin{itemize}
-    \item Slides created by Cyrill Stachniss for Photogrammetry and Robotics courses.
-    \item Acknowledgements and notes in original slides.
   \end{itemize}
   % \includegraphics[width=0.5\textwidth]{placeholder-image.jpg}
 \end{frame}
