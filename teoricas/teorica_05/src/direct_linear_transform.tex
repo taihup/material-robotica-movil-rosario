@@ -578,14 +578,41 @@ Implica
     \end{itemize}
 \end{frame}
 
+
 \begin{frame}
   \frametitle{Decomposition of $\projectionMatrix$}
   \begin{itemize}
     \item We know that:
-    $\projectionMatrix = \intrinsicMatrix \begin{bmatrix} \rotation & \translation \end{bmatrix} = \begin{bmatrix} \intrinsicMatrix \rotation & \intrinsicMatrix \translation \end{bmatrix} $
-    \begin{equation*}
-      \projectionMatrix =
-        \begin{bNiceMatrix}[margin] 
+    \begin{align*}
+      \projectionMatrix &= \intrinsicMatrix \begin{bmatrix} \rotation & \translation \end{bmatrix} = \begin{bmatrix} \intrinsicMatrix \rotation & \intrinsicMatrix \translation \end{bmatrix}\\
+      \projectionMatrix &=
+      \begin{bNiceMatrix}[margin] 
+          p_{11} & p_{12} & p_{13} & p_{14} \\
+          p_{21} & p_{22} & p_{23} & p_{24} \\
+          p_{31} & p_{32} & p_{33} & p_{34}
+      \end{bNiceMatrix} =
+      \begin{bmatrix}
+          f_x & s & c_x\\
+          0 & f_y & c_y \\
+          0 & 0 & 1
+      \end{bmatrix}
+      \begin{bmatrix}
+          r_{11} & r_{12} & r_{13} & t_x \\
+          r_{21} & r_{22} & r_{23} & t_y \\
+          r_{31} & r_{32} & r_{33} & t_z
+      \end{bmatrix}
+    \end{align*}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Decomposition of $\projectionMatrix$}
+  \begin{itemize}
+    \item We know that:
+    \begin{align*}
+      \projectionMatrix &= \intrinsicMatrix \begin{bmatrix} \rotation & \translation \end{bmatrix} = \begin{bmatrix} \intrinsicMatrix \rotation & \intrinsicMatrix \translation \end{bmatrix}\\
+      \projectionMatrix &=
+      \begin{bNiceMatrix}[margin] 
           p_{11} & p_{12} & p_{13} & p_{14} \\
           p_{21} & p_{22} & p_{23} & p_{24} \\
           p_{31} & p_{32} & p_{33} & p_{34}
@@ -602,8 +629,10 @@ Implica
           r_{21} & r_{22} & r_{23} & t_y \\
           r_{31} & r_{32} & r_{33} & t_z
       \end{bmatrix}
-    \end{equation*}
-
+    \end{align*}
+  \end{itemize}
+  %
+  \begin{itemize}
     \item That is:
     \begin{equation*}
       \begin{bmatrix}
@@ -640,7 +669,32 @@ Implica
 \begin{frame}
   \frametitle{Decomposition of $\projectionMatrix$}
   \begin{itemize}
-    \item That is,  (from the last column of $\projectionMatrix$):
+    \item We know that:
+    \begin{align*}
+      \projectionMatrix &= \intrinsicMatrix \begin{bmatrix} \rotation & \translation \end{bmatrix} = \begin{bmatrix} \intrinsicMatrix \rotation & \intrinsicMatrix \translation \end{bmatrix}\\
+      \projectionMatrix &=
+      \begin{bNiceMatrix}[margin] 
+          p_{11} & p_{12} & p_{13} & p_{14} \\
+          p_{21} & p_{22} & p_{23} & p_{24} \\
+          p_{31} & p_{32} & p_{33} & p_{34}
+      \CodeAfter
+        \tikz \node [draw=red, rounded corners, fit = (1-4) (3-4)] { };
+      \end{bNiceMatrix} =
+      \begin{bmatrix}
+          f_x & s & c_x\\
+          0 & f_y & c_y \\
+          0 & 0 & 1
+      \end{bmatrix}
+      \begin{bmatrix}
+          r_{11} & r_{12} & r_{13} & t_x \\
+          r_{21} & r_{22} & r_{23} & t_y \\
+          r_{31} & r_{32} & r_{33} & t_z
+      \end{bmatrix}
+    \end{align*}
+  \end{itemize}
+  %
+  \begin{itemize}
+    \item That is:
     \begin{equation*}
       \begin{bmatrix}
           p_{14} \\
