@@ -3,8 +3,8 @@
 
 <svg
    width="80.947639mm"
-   height="11.943312mm"
-   viewBox="0 0 80.947639 11.943312"
+   height="13.24642mm"
+   viewBox="0 0 80.947639 13.24642"
    version="1.1"
    id="svg1"
    inkscape:version="1.4.2 (1:1.4.2+202505120737+ebf0e940d0)"
@@ -24,9 +24,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="2.078763"
-     inkscape:cx="108.47798"
-     inkscape:cy="95.970537"
+     inkscape:zoom="2.9398148"
+     inkscape:cx="108.34016"
+     inkscape:cy="78.066141"
      inkscape:window-width="1854"
      inkscape:window-height="1011"
      inkscape:window-x="0"
@@ -53,6 +53,25 @@
          d="M -2,-4 9,0 -2,4 c 2,-2.33 2,-5.66 0,-8 z"
          style="fill:context-stroke;fill-rule:evenodd;stroke:none"
          id="path7" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="ConcaveTriangle-7"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Concave triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="M -2,-4 9,0 -2,4 c 2,-2.33 2,-5.66 0,-8 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="path7-5" />
     </marker>
   </defs>
   <g
@@ -610,5 +629,21 @@
          style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          x="147.50999"
          y="155.56499">disparity</tspan></text>
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:0.264583;stroke-dasharray:none;marker-start:url(#ConcaveTriangle-7)"
+       d="m 106.26458,151.44437 -1.46237,2.80385"
+       id="path32-6"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-size:3.52777px;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-dasharray:none"
+       x="102.65073"
+       y="156.90691"
+       id="text32-2"><tspan
+         sodipodi:role="line"
+         id="tspan32-9"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="102.65073"
+         y="156.90691">depth</tspan></text>
   </g>
 </svg>
