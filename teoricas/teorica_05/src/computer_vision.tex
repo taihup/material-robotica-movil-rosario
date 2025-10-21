@@ -1021,7 +1021,7 @@
 \begin{frame}
     \frametitle{Triangulación estéreo (con cámara rectificada)}
     
-       \begin{figure}[!htb]
+    \begin{figure}[!htb]
         \centering
         \subfloat[]
         {
@@ -1031,12 +1031,16 @@
         \subfloat[]
         {
             \includegraphics[width=0.45\columnwidth]{./images/stereo_triangulation3.pdf}
+        }\\
+        \subfloat[]
+        {
+            \includegraphics[width=0.7\columnwidth]{./images/camera/depth_disparity_equation.pdf}
         }
     \end{figure}
     
-    \begin{equation*}
-        \frac{b}{z} = \frac{b - (\imagePoint_{l} - \imagePoint_{r})}{z-f} \Rightarrow z = \frac{fb}{(\imagePoint_{l} - \imagePoint_{r})}  = \frac{fb}{d}
-    \end{equation*}
+    % \begin{equation*}
+    %     \frac{b}{z} = \frac{b - (\imagePoint_{l} - \imagePoint_{r})}{z-f} \Rightarrow z = \frac{fb}{(\imagePoint_{l} - \imagePoint_{r})}  = \frac{fb}{d}
+    % \end{equation*}
     
 \end{frame}
 
