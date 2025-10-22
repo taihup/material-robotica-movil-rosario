@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="394.05646mm"
+   width="371.57422mm"
    height="157.16606mm"
-   viewBox="0 0 394.05645 157.16607"
+   viewBox="0 0 371.57421 157.16607"
    version="1.1"
    id="svg1"
    xml:space="preserve"
@@ -20,20 +20,20 @@
      pagecolor="#ffffff"
      bordercolor="#000000"
      borderopacity="0.25"
-     inkscape:showpageshadow="2"
+     inkscape:showpageshadow="true"
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="0.5"
-     inkscape:cx="585"
-     inkscape:cy="627"
+     inkscape:zoom="0.5042768"
+     inkscape:cx="1049.027"
+     inkscape:cy="490.80188"
      inkscape:window-width="1920"
-     inkscape:window-height="1043"
+     inkscape:window-height="986"
      inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-y="32"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg1" /><defs
+     inkscape:current-layer="layer3" /><defs
      id="defs1"><marker
        style="overflow:visible"
        id="ConcaveTriangle"
@@ -156,7 +156,7 @@
      inkscape:label="left_image"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(35.080045,-153.65067)"
+     transform="translate(25.152266,-153.65067)"
      sodipodi:insensitive="true"
      style="display:inline"><g
        id="g1"><image
@@ -172,7 +172,8 @@
      id="layer8"
      inkscape:label="right_image"
      sodipodi:insensitive="true"
-     style="display:inline"><image
+     style="display:none"
+     transform="translate(-9.92778)"><image
        width="169.33333"
        height="127"
        preserveAspectRatio="none"
@@ -185,7 +186,8 @@
      id="layer6"
      inkscape:label="disparity_image"
      sodipodi:insensitive="true"
-     style="display:none"><image
+     style="display:inline"
+     transform="translate(-9.92778)"><image
        width="169.33333"
        height="127"
        preserveAspectRatio="none"
@@ -200,7 +202,8 @@
      id="layer10"
      inkscape:label="disparity_text"
      sodipodi:insensitive="true"
-     style="display:none"><text
+     style="display:inline"
+     transform="translate(-9.92778)"><text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.2889px;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;display:inline;fill:#000000;stroke-width:0.264583"
        x="299.4841"
@@ -225,7 +228,8 @@
      id="layer5"
      inkscape:label="right_overlap"
      style="display:none"
-     sodipodi:insensitive="true"><image
+     sodipodi:insensitive="true"
+     transform="translate(-9.92778)"><image
        width="169.33333"
        height="127"
        preserveAspectRatio="none"
@@ -238,9 +242,9 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="template_window"
-     transform="translate(9.9277791,16.349332)"
-     sodipodi:insensitive="true"
-     style="display:inline"><rect
+     transform="translate(-8.0258789e-7,16.349332)"
+     style="display:none"
+     sodipodi:insensitive="true"><rect
        style="fill:none;stroke:#ff0000;stroke-width:1.5875;stroke-dasharray:none;stroke-opacity:1"
        id="rect1"
        width="6.4083009"
@@ -497,12 +501,13 @@
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="scan_line"
-     transform="translate(9.9277791,16.349332)"
+     transform="translate(-8.0258789e-7,16.349332)"
      style="display:none"
      sodipodi:insensitive="true"><path
        style="fill:none;stroke:#ffffff;stroke-width:0.529167;stroke-dasharray:1.05833, 1.05833;stroke-dashoffset:0;stroke-opacity:1"
-       d="M -9.9277791,36.876967 H 384.12869"
-       id="path48" /><rect
+       d="M 0.0140419,36.876967 H 371.53016"
+       id="path48"
+       sodipodi:nodetypes="cc" /><rect
        style="fill:none;stroke:#ffffff;stroke-width:1.5875;stroke-dasharray:none;stroke-opacity:1"
        id="rect48"
        width="167.80281"
@@ -513,7 +518,7 @@
        d="m 220.08023,-1.7690918 2.16375,22.6557008"
        id="path47-7"
        sodipodi:nodetypes="cc" /><g
-       transform="matrix(1.05833,0,0,1.05833,159.797,-14.645817)"
+       transform="matrix(1.05833,0,0,1.05833,159.797,-16.349067)"
        ns15:version="1.10.2"
        ns15:texconverter="pdflatex"
        ns15:pdfconverter="inkscape"
@@ -735,7 +740,7 @@
      inkscape:groupmode="layer"
      id="layer4"
      inkscape:label="feature_matching"
-     transform="translate(9.9277791,16.349332)"
+     transform="translate(-8.0258789e-7,16.349332)"
      sodipodi:insensitive="true"
      style="display:none"><rect
        style="fill:none;stroke:#ff0000;stroke-width:1.5875;stroke-dasharray:none;stroke-opacity:1"
@@ -747,8 +752,9 @@
      inkscape:groupmode="layer"
      id="layer7"
      inkscape:label="right_image_text"
-     style="display:inline"
-     sodipodi:insensitive="true"><text
+     style="display:none"
+     sodipodi:insensitive="true"
+     transform="translate(-9.92778)"><text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.2889px;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;stroke-width:0.264583"
        x="267.04993"
@@ -764,7 +770,8 @@
      id="layer9"
      inkscape:label="left_image_text"
      sodipodi:insensitive="true"
-     style="display:inline"><text
+     style="display:none"
+     transform="translate(-9.92778)"><text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.2889px;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;display:inline;fill:#000000;stroke-width:0.264583"
        x="61.221306"
