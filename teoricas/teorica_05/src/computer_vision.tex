@@ -1055,7 +1055,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Cámara estéreo}
+    \frametitle{Stereo Matching: Finding Disparities}
     \note{https://youtu.be/hUVyDabn1Mg}
     \begin{center}
         \only<1>{\includegraphics[width=\textwidth]{images/block_matching_disparity_1.pdf}}
@@ -1071,37 +1071,45 @@
 
 \end{frame}
 
-\begin{frame}
-    \frametitle{Cámara estéreo}
-    \note{https://youtu.be/hUVyDabn1Mg}
-    \TODO{continuar con  el resto de las slides de block matching}
 
+\begin{frame}
+    \frametitle{Similarity Metrics for Template Matching}
+    \note{https://youtu.be/hUVyDabn1Mg}
+    \begin{itemize}
+        \item Find pixel $(k, l) \in L$ with Minimum Sum of Absolute Differences (SAD):
+        \begin{equation*}
+            \text{SAD}(k, l) = \sum_{(i, j) \in T} |E_t(i, j) - E_r(i + k, j + l)|
+        \end{equation*}
+
+        \item Find pixel $(k, l) \in L$ with Minimum Sum of Squared Differences (SSD):
+        \begin{equation*}
+            \text{SSD}(k, l) = \sum_{(i, j) \in T} |E_t(i, j) - E_r(i + k, j + l)|^2
+        \end{equation*}
+
+        \item Find pixel $(k, l) \in L$ with Maximum Normalized Cross-Correlation (NCC):
+        \begin{equation*}
+            \text{NCC}(k, l) = \frac{\sum_{(i, j) \in T} E_t(i, j) E_r(i + k, j + l)}{\sqrt{\sum_{(i, j) \in T} E_t(i, j)^2 \sum_{(i, j) \in T} E_r(i + k, j + l)^2}}
+        \end{equation*}
+    \end{itemize}
 \end{frame}
 
+
 \begin{frame}
-    \frametitle{KITTI: error de reconstrucción}
+    \frametitle{Examples of disparity maps}
+    \note{https://youtu.be/hUVyDabn1Mg}
     \begin{figure}[!htb]
         \centering
-        \subfloat[Left image]{\includegraphics[width=0.35\columnwidth]{./images/kitti06_frame612_rgb.png}%
-            \label{kitti06_frame612_rgb}}
-        \hfil
-        \subfloat[Ground-truth depth]{\includegraphics[width=0.35\columnwidth]{./images/kitti06_frame612_gt_low-10_high50.png}%
-            \label{kitti06_frame612_gt}}
-        \\
-        \subfloat[LIBELAS depth]{\includegraphics[width=0.35\columnwidth]{./images/kitti06_frame612_libelas_depth_high50.png}%
-            \label{kitti06_frame612_libelas_depth}}
-        \hfil
-        \subfloat[LIBELAS depth errors]{\includegraphics[width=0.35\columnwidth]{./images/kitti06_frame612_libelas_error_low-1_high5.png}%
-            \label{kitti06_frame612_libelas_error}}
-        \\
-        \subfloat[Color metric for depth maps. Gray stands for the largest values.]{\includegraphics[width=0.4\columnwidth]{./images/high50_bar.png}%
-            \label{kitti06_bar}}
-        \hfil
-        \subfloat[Color metric for depth errors. Gray stands for the largest values.]{\includegraphics[width=0.4\columnwidth]{./images/kitti06_bar_low-1_high5.png}%
-            \label{kitti06_bar_low-1_high5}}
-        \caption{Comparison of LIBELAS depth maps against the ground truth, for a single frame (KITTI dataset).}
-        \label{fig:kitti06_frame612}
+        \subfloat[Window size = 5 pixels (Sensitive to noise)]
+        {
+            \includegraphics[width=0.45\columnwidth]{./images/tsukuba_disparity_map_5x5_window.png}
+        }
+        \hspace{1em}
+        \subfloat[Window size = 30 pixels (Poor localization)]
+        {
+            \includegraphics[width=0.45\columnwidth]{./images/tsukuba_disparity_map_30x30_window.png}
+        }
     \end{figure}
+
 \end{frame}
 
 \begin{frame}
