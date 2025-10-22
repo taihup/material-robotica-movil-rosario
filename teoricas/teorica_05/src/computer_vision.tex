@@ -884,9 +884,18 @@
     \footnotesize
 
     \begin{itemize}
-        \item La restricción epipolar puede ser computada por medio de puntos 2D en la imagen cuando la pose relative de la cámara es conocida ($\begin{bmatrix}
+        \item La restricción epipolar puede ser computada por medio de puntos 2D en la imagen cuando la pose relative de la cámara es conocida 
+        ($\begin{bmatrix}
             \translation 
-        \end{bmatrix}_{\times} \rotation$, por ejemplo una cámara estéreo)
+        \end{bmatrix}_{\times} \rotation$, donde 
+        $\begin{bmatrix}
+            \translation 
+        \end{bmatrix}_{\times} =
+        \begin{bmatrix}
+            0 & -t_{z} & t_{y}\\
+            t_{z} & 0 & -t_{x}\\
+            -t_{y} & t_{x} & 0
+        \end{bmatrix}$, por ejemplo una cámara estéreo).
         \item El \textbf{plano epipolar} es definido por $\imagePoint_{l}$ y los dos centros óptico de las cámaras $\cameraCenter_{l}$ y $\cameraCenter_{r}$
         \item La \textbf{línea epipolar} es la intersección del plano epipolar y el plano de la imagen derecha.
         \item La restricción epipolar codifica que $\imagePoint_{r}$ debe estar ubicado sobre la linea epipolar en la imagen derecha.
@@ -897,6 +906,7 @@
     \end{figure}
 
     La línea epipolar permite que restrinjamos la búsqueda de correspondencias visuales entre dos cámaras.
+
 \end{frame}
 
 \begin{frame}
