@@ -35,27 +35,27 @@
 
   Method to estimate the apparent motion of scene points from a sequence of images i.e., the motion of brightness pattern in the image. Each pixel has a vector that tells the optical flow at that point. The motion of the brightness pattern is the optical flow, the length of the vector tells how fast it is moving, and the direction tells its direction on the image plane.
 
-\begin{columns}
-  \begin{column}{0.5\textwidth}
-    \begin{center}
-      \movie[showcontrols,autostart,loop,poster]{\includegraphics[width=0.8\columnwidth]{images/optical_flow/klt_points_video.jpg}}{videos/klt_points.mp4}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{center}
+        \movie[showcontrols,autostart,loop,poster]{\includegraphics[width=0.8\columnwidth]{images/optical_flow/klt_points_video.jpg}}{videos/klt_points.mp4}
+        \end{center}
+    \end{column}
+    \begin{column}{0.5\textwidth}  %%<--- here
+      \begin{center}
+        \movie[showcontrols,autostart,loop,poster]{\includegraphics[width=\columnwidth]{images/optical_flow/klt_tracking_video.jpg}}{videos/klt_tracking.mp4}
       \end{center}
-  \end{column}
-  \begin{column}{0.5\textwidth}  %%<--- here
-    \begin{center}
-      \movie[showcontrols,autostart,loop,poster]{\includegraphics[width=\columnwidth]{images/optical_flow/klt_tracking_video.jpg}}{videos/klt_tracking.mp4}
-    \end{center}
-  \end{column}
-\end{columns}
+    \end{column}
+  \end{columns}
 
-Topics:
-\begin{enumerate}
-\item Motion Field and Optical Flow
-\item Optical Flow Constraint Equation
-\item Lucas-Kanade Method
-\item Coarse-to-Fine Flow Estimation
-\item Applications of Optical Flow
-\end{enumerate}
+  Topics:
+  \begin{enumerate}
+  \item Motion Field and Optical Flow
+  \item Optical Flow Constraint Equation
+  \item Lucas-Kanade Method
+  \item Coarse-to-Fine Flow Estimation
+  \item Applications of Optical Flow
+  \end{enumerate}
 \end{frame}
 
 
