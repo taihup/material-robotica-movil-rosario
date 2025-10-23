@@ -906,17 +906,17 @@
         \includegraphics[width=0.6\textwidth]{./images/epipolar_geometry_normal_vector.pdf}
     \end{center}
 
-    Vector normal to the epipolar plane: $\mathbf{n} = \mathbf{t} \times \mathbf{x}_l$
+    Vector normal to the epipolar plane: $\mathbf{n} = \translation \times \mathbf{x}_l$
 
     Dot product of $\mathbf{n}$ and $\mathbf{x}_l$ (perpendicular vectors) is zero:
-    $$\boxed{\mathbf{x}_l \cdot (\mathbf{t} \times \mathbf{x}_l) = 0}$$
+    $$\boxed{\mathbf{x}_l \cdot (\translation \times \mathbf{x}_l) = 0}$$
 \end{frame}
 
 % --- Slide 2: Epipolar Constraint (Matrix Form) ---
 \begin{frame}
     \frametitle{Epipolar Constraint}
     Writing the epipolar constraint in matrix form:
-    $$\mathbf{x}_l \cdot (\mathbf{t} \times \mathbf{x}_l) = 0$$
+    $$\mathbf{x}_l \cdot (\translation \times \mathbf{x}_l) = 0$$
     $$
     \begin{bmatrix} x_l & y_l & z_l \end{bmatrix}
     \begin{bmatrix}
@@ -926,23 +926,22 @@
     \end{bmatrix} = 0 \quad \text{Cross-product definition}
     $$
     $$
-    \boxed{
     \begin{bmatrix} x_l & y_l & z_l \end{bmatrix}
     \underbrace{\begin{bmatrix}
         0 & -t_z & t_y \\
         t_z & 0 & -t_x \\
         -t_y & t_x & 0
-    \end{bmatrix}}_{\left[\translation\right]_{\times}}
+    \end{bmatrix}}_{\begin{bmatrix}\translation\end{bmatrix}_{\times}}
     \begin{bmatrix} x_l \\ y_l \\ z_l \end{bmatrix} = 0
-    } \quad \text{Matrix-vector form}
+    \quad \text{Matrix-vector form}
     $$
-    $\mathbf{t}_{3\times1}$: Position of Right Camera in Left Camera's Frame
+    $\translation_{3\times1}$: Position of Right Camera in Left Camera's Frame
     \\
-    $\mathbf{R}_{3\times3}$: Orientation of Left Camera in Right Camera's Frame
+    $\rotation_{3\times3}$: Orientation of Left Camera in Right Camera's Frame
     \vspace{0.2cm}
     $$
     \boxed{
-    \mathbf{x}_l = \mathbf{R} \mathbf{x}_r + \mathbf{t}
+    \mathbf{x}_l = \rotation \mathbf{x}_r + \translation
     }
     \quad
     \begin{bmatrix} x_l \\ y_l \\ z_l \end{bmatrix} =
@@ -973,6 +972,14 @@
         r_{21} & r_{22} & r_{23} \\
         r_{31} & r_{32} & r_{33}
     \end{bmatrix}
+    +
+    \underbrace{
+    \begin{bmatrix}
+        0 & -t_z & t_y \\
+        t_z & 0 & -t_x \\
+        -t_y & t_x & 0
+    \end{bmatrix}
+    \begin{bmatrix} t_x \\ t_y \\ t_z \end{bmatrix}}_{\translation \times \translation = 0}
     \right)
     \begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix} = 0
     $$
@@ -986,7 +993,7 @@
     \begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix} = 0
     $$
     $$
-    \boxed{\mathbf{E} = \mathbf{T}_{\times} \mathbf{R}}
+    \boxed{\mathbf{E} = \begin{bmatrix}\translation\end{bmatrix}_{\times} \rotation}
     $$
     \footnotesize{[Longuet-Higgins 1981]}
 \end{frame}
@@ -995,7 +1002,7 @@
 \begin{frame}
     \frametitle{Essential Matrix $\mathbf{E}$: Decomposition}
     $$
-    \boxed{\mathbf{E} = \mathbf{T}_{\times} \mathbf{R}}
+    \boxed{\mathbf{E} = \begin{bmatrix}\translation\end{bmatrix}_{\times} \rotation}
     $$
     $$
     \begin{bmatrix}
@@ -1014,10 +1021,10 @@
         r_{31} & r_{32} & r_{33}
     \end{bmatrix}
     $$
-    Given that $\mathbf{T}_{\times}$ is a Skew-Symmetric matrix ($a_{ij} = -a_{ji}$) and $\mathbf{R}$ is an Orthonormal matrix, it is possible to ``decouple'' $\mathbf{T}_{\times}$ and $\mathbf{R}$ from their product using ``Singular Value Decomposition''.
+    Given that $\begin{bmatrix}\translation\end{bmatrix}_{\times}$ is a Skew-Symmetric matrix ($a_{ij} = -a_{ji}$) and $\rotation$ is an Orthonormal matrix, it is possible to ``decouple'' $\translation_{\times}$ and $\rotation$ from their product using ``Singular Value Decomposition''.
 
     \vspace{0.5cm}
-    Take Away: If $\mathbf{E}$ is known, we can calculate $\mathbf{t}$ and $\mathbf{R}$.
+    Take Away: If $\mathbf{E}$ is known, we can calculate $\translation$ and $\rotation$.
 \end{frame}
 
 
@@ -1028,20 +1035,13 @@
     \frametitle{How do we find $\mathbf{E}$?}
     Relates 3D position $(x_l, y_l, z_l)$ of scene point w.r.t left camera to its 3D position $(x_r, y_r, z_r)$ w.r.t. right camera
     $$\boxed{\mathbf{x}_l^T \mathbf{E} \mathbf{x}_r = 0}$$
-    $$
-    \begin{bmatrix} x_l & y_l & z_l \end{bmatrix}
-    \underbrace{\begin{bmatrix}
-        e_{11} & e_{12} & e_{13} \\
-        e_{21} & e_{22} & e_{23} \\
-        e_{31} & e_{32} & e_{33}
-    \end{bmatrix}}_{\text{3x3 Essential Matrix}}
-    \begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix} = 0
-    $$
-    3D position in left camera coordinates $\quad \uparrow \quad$ 3D position in right camera coordinates
 
-    \vspace{0.2cm}
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{./images/essential_matrix_coplanary_constraint.pdf}
+    \end{center}
+
     Unfortunately, we don't have $\mathbf{x}_l$ and $\mathbf{x}_r$.
-    \vspace{0.2cm}
+
     But we do know corresponding points in image coordinates.
 \end{frame}
 
@@ -1175,7 +1175,7 @@
     $$
     \boxed{\mathbf{E} = \mathbf{K}_l^T \mathbf{F} \mathbf{K}_r}
     \quad
-    \boxed{\mathbf{E} = \mathbf{T}_{\times} \mathbf{R}}
+    \boxed{\mathbf{E} = \translation_{\times} \rotation}
     $$
     \footnotesize{[Fagueras 1992, Luong 1992]}
 \end{frame}
