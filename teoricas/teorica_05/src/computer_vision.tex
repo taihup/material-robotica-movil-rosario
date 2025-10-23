@@ -1237,6 +1237,442 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{Stereo Calibration Procedure}
+    
+    \textbf{Step A: For each correspondence $i$, write out epipolar constraint.}
+
+    \begin{equation*}
+    \underbrace{\begin{bmatrix} u_l^{(i)} & v_l^{(i)} & 1 \end{bmatrix}}_{\text{Known}}
+    \underbrace{\begin{bmatrix} f_{11} & f_{12} & f_{13} \\ f_{21} & f_{22} & f_{23} \\ f_{31} & f_{32} & 1 \end{bmatrix}}_{\text{Unknown}}
+    \underbrace{\begin{bmatrix} u_r^{(i)} \\ v_r^{(i)} \\ 1 \end{bmatrix}}_{\text{Known}}
+    = 0
+    \end{equation*}
+
+    \textbf{Expand the matrix to get linear equation:}
+
+    \begin{equation*}
+    (f_{11}u_r^{(i)} + f_{12}v_r^{(i)} + f_{13})u_l^{(i)} + (f_{21}u_r^{(i)} + f_{22}v_r^{(i)} + f_{23})v_l^{(i)} + f_{31}u_r^{(i)} + f_{32}v_r^{(i)} + f_{33} = 0
+    \end{equation*}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Stereo Calibration Procedure}
+    
+    \textbf{Step B: Rearrange terms to form a linear system.}
+
+    \begin{equation*}
+    \left[
+    \begin{array}{ccccccccc|c}
+        u_l^{(1)}u_r^{(1)} & u_l^{(1)}v_r^{(1)} & u_l^{(1)} & v_l^{(1)}u_r^{(1)} & v_l^{(1)}v_r^{(1)} & v_l^{(1)} & u_r^{(1)} & v_r^{(1)} & 1 & 1 \\
+        \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
+        u_l^{(i)}u_r^{(i)} & u_l^{(i)}v_r^{(i)} & u_l^{(i)} & v_l^{(i)}u_r^{(i)} & v_l^{(i)}v_r^{(i)} & v_l^{(i)} & u_r^{(i)} & v_r^{(i)} & 1 & 1 \\
+        \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
+        u_l^{(m)}u_r^{(m)} & u_l^{(m)}v_r^{(m)} & u_l^{(m)} & v_l^{(m)}u_r^{(m)} & v_l^{(m)}v_r^{(m)} & v_l^{(m)} & u_r^{(m)} & v_r^{(m)} & 1 & 1
+    \end{array}
+    \right]
+    \left[
+    \begin{array}{c}
+        f_{11} \\ f_{12} \\ f_{13} \\ f_{21} \\ f_{22} \\ f_{23} \\ f_{31} \\ f_{32} \\ f_{33} \\ -1
+    \end{array}
+    \right]
+    =
+    \left[
+    \begin{array}{c}
+        0 \\ \vdots \\ 0 \\ \vdots \\ 0
+    \end{array}
+    \right]
+    \end{equation*}
+
+    \vspace{-1.5em} % Adjust vertical spacing to match image
+
+    \begin{center}
+    \hspace{-6em} % Shift A to the left
+    \raisebox{-0.5em}[0pt][0pt]{\textbf{A}}
+    \hspace{12em} % Adjust horizontal space
+    \raisebox{-0.5em}[0pt][0pt]{\textbf{f}}
+    \end{center}
+
+    \begin{center}
+    \hspace{-6em} % Shift "Known" to the left
+    \raisebox{-1.5em}[0pt][0pt]{(Known)}
+    \hspace{12em} % Adjust horizontal space
+    \raisebox{-1.5em}[0pt][0pt]{(Unknown)}
+    \end{center}
+
+    \vspace{1em} % Add space before the boxed equation
+
+    \begin{center}
+    \fbox{$\mathbf{A f = 0}$}
+    \end{center}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{The Tale of Missing Scale}
+    
+    \textbf{Fundamental matrix acts on homogenous coordinates.}
+
+    \begin{equation*}
+    \begin{bmatrix} u_l & v_l & 1 \end{bmatrix}
+    \begin{bmatrix} f_{11} & f_{12} & f_{13} \\ f_{21} & f_{22} & f_{23} \\ f_{31} & f_{32} & f_{33} \end{bmatrix}
+    \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix}
+    = 0
+    =
+    \begin{bmatrix} u_l & v_l & 1 \end{bmatrix}
+    \begin{bmatrix} kf_{11} & kf_{12} & kf_{13} \\ kf_{21} & kf_{22} & kf_{23} \\ kf_{31} & kf_{32} & kf_{33} \end{bmatrix}
+    \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix}
+    \end{equation*}
+
+    \vspace{1em} % Add some vertical space
+
+    Fundamental Matrix $F$ and $kF$ describe the same epipolar \\
+    geometry. That is, $F$ is defined only up to a scale.
+
+    \vspace{2em} % Add more vertical space
+
+    Set Fundamental Matrix to some arbitrary scale.
+
+    \vspace{0.5em} % Add a little space before the boxed equation
+
+    \begin{center}
+    \fbox{$||\mathbf{F}||^2 = 1$}
+    \end{center}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Solving for $F$}
+    
+    \textbf{Step C: Find least squares solution for fundamental matrix $F$.}
+
+    \vspace{0.5em} % Add some vertical space
+
+    We want $A\mathbf{f}$ as close to 0 as possible and $||\mathbf{f}||^2 = 1$:
+
+    \begin{center}
+    \fbox{
+        $\min_{\mathbf{f}} ||A\mathbf{f}||^2 \quad \text{such that} \quad ||\mathbf{f}||^2 = 1$
+    }
+    \end{center}
+
+    \begin{center}
+    Constrained linear least squares problem
+    \end{center}
+
+    \vspace{1em} % Add vertical space
+
+    Like solving Projection Matrix during Camera Calibration. \\
+    Or, Homography Matrix for Image Stitching.
+
+    \vspace{1em} % Add vertical space
+
+    Rearrange solution $\mathbf{f}$ to form the fundamental matrix $F$.
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Extracting Rotation and Translation}
+    
+    \textbf{Step D: Compute essential matrix $E$ from known left and \\ right intrinsic camera matrices and fundamental matrix $F$.}
+
+    \begin{center}
+    \fbox{$E = K_l^T F K_r$}
+    \end{center}
+
+    \vspace{2em} % Add vertical space
+
+    \textbf{Step E: Extract $R$ and $\mathbf{t}$ from $E$.}
+
+    \begin{center}
+    \fbox{$E = T_\times R$}
+    \end{center}
+    
+    \begin{center}
+    (Using Singular Value Decomposition)
+    \end{center}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Finding Epipolar Lines: Example}
+    
+    \begin{columns}
+        \begin{column}{0.45\textwidth} % Text column
+            Given the Fundamental matrix,
+            \begin{equation*}
+            F = \begin{bmatrix}
+            -.003 & -.028 & 13.19 \\
+            -.003 & -.008 & -29.2 \\
+            2.97 & 56.38 & -9999
+            \end{bmatrix}
+            \end{equation*}
+            and the left image point
+            \begin{equation*}
+            \tilde{u}_l = \begin{bmatrix}
+            343 \\ 221 \\ 1
+            \end{bmatrix}
+            \end{equation*}
+        \end{column}
+        \begin{column}{0.55\textwidth} % Image column
+            \begin{figure}
+                \centering
+                % Left Image
+                \begin{minipage}{0.48\textwidth}
+                    \centering
+                    \textbf{Left Image} \\
+                    % Placeholder for the left image (Arc de Triomphe with arrow)
+                    % Replace 'left_image.jpg' with your actual image file
+                    \includegraphics[width=0.9\linewidth]{example-image-a} % Use example-image-a as placeholder
+                    \caption*{$\tilde{u}_l$} % Caption for the point (placed below to match example)
+                    \label{fig:left_image}
+                \end{minipage}
+                \hfill
+                % Right Image
+                \begin{minipage}{0.48\textwidth}
+                    \centering
+                    \textbf{Right Image} \\
+                    % Placeholder for the right image (Arc de Triomphe with question mark)
+                    % Replace 'right_image.jpg' with your actual image file
+                    \includegraphics[width=0.9\linewidth]{example-image-b} % Use example-image-b as placeholder
+                    \label{fig:right_image}
+                \end{minipage}
+            \end{figure}
+        \end{column}
+    \end{columns}
+
+    \vspace{0.5em} % Add some vertical space
+
+    The equation for the epipolar line in the right image is
+
+    \begin{equation*}
+    \begin{bmatrix} u_r & v_r & 1 \end{bmatrix}
+    \begin{bmatrix}
+    -.003 & -.028 & 13.19 \\
+    -.003 & -.008 & -29.2 \\
+    2.97 & 56.38 & -9999
+    \end{bmatrix}
+    \begin{bmatrix}
+    343 \\ 221 \\ 1
+    \end{bmatrix} = 0
+    \end{equation*}
+    
+\end{frame}
+
+% --- Slide 11: Finding Epipolar Lines (Theory) ---
+\begin{frame}
+    \frametitle{Finding Epipolar Lines}
+    Given: Fundamental matrix $\mathbf{F}$ and point on left image $(u_l, v_l)$
+    \vspace{0.2cm}
+    Find: Equation of Epipolar line in the right image
+    \vspace{0.2cm}
+    Epipolar Constraint Equation:
+    $$
+    \begin{bmatrix} u_l & v_l & 1 \end{bmatrix}
+    \begin{bmatrix}
+        f_{11} & f_{12} & f_{13} \\
+        f_{21} & f_{22} & f_{23} \\
+        f_{31} & f_{32} & f_{33}
+    \end{bmatrix}
+    \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix} = 0
+    $$
+
+    Expanding the matrix equation gives:
+    $$
+    (f_{11} u_l + f_{21} v_l + f_{31}) u_r + (f_{12} u_l + f_{22} v_l + f_{32}) v_r + (f_{13} u_l + f_{23} v_l + f_{33}) = 0
+    $$
+
+    Equation for right epipolar line:
+    $$\boxed{a_l u_r + b_l v_r + c_l = 0}$$
+
+    Similarly we can calculate epipolar line in left image for a point in right image.
+    \hfill 35
+\end{frame}
+
+% --- Slide 13: Finding Correspondence (Search) ---
+\begin{frame}
+    \frametitle{Finding Correspondence}
+    \centering
+    % 
+
+    \vspace{1cm}
+    Corresponding scene points lie on the epipolar lines.
+    \\
+    Finding correspondence is a 1D search.
+\end{frame}
+
+% --- Slide 14: Computing Depth (Geometric Setup) ---
+\begin{frame}
+    \frametitle{Computing Depth}
+    Given the intrinsic parameters, the projections of scene point $\mathbf{P}$ on the two image sensors are:
+    $$
+    \begin{bmatrix} u_l \\ v_l \\ 1 \end{bmatrix} \propto
+    \underbrace{\begin{bmatrix}
+        f_x^{(l)} & 0 & o_x^{(l)} & 0 \\
+        0 & f_y^{(l)} & o_y^{(l)} & 0 \\
+        0 & 0 & 1 & 0
+    \end{bmatrix}}_{\mathbf{P}}
+    \begin{bmatrix} x_l \\ y_l \\ z_l \\ 1 \end{bmatrix}
+    $$
+    $$
+    \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix} \propto
+    \underbrace{\begin{bmatrix}
+        f_x^{(r)} & 0 & o_x^{(r)} & 0 \\
+        0 & f_y^{(r)} & o_y^{(r)} & 0 \\
+        0 & 0 & 1 & 0
+    \end{bmatrix}}_{\mathbf{M}}
+    \begin{bmatrix} x_r \\ y_r \\ z_r \\ 1 \end{bmatrix}
+    $$
+    \hfill 41
+\end{frame}
+
+% --- Slide 15: Computing Depth (Transformation) ---
+\begin{frame}
+    \frametitle{Computing Depth}
+    Left Camera Imaging Equation
+    $$
+    \begin{bmatrix} u_l \\ v_l \\ 1 \end{bmatrix} \propto
+    \begin{bmatrix}
+        f_x^{(l)} & 0 & o_x^{(l)} \\
+        0 & f_y^{(l)} & o_y^{(l)} \\
+        0 & 0 & 1
+    \end{bmatrix}
+    \begin{bmatrix} x_l \\ y_l \\ z_l \end{bmatrix}
+    $$
+    Right Camera Imaging Equation
+    $$
+    \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix} \propto
+    \begin{bmatrix}
+        f_x^{(r)} & 0 & o_x^{(r)} \\
+        0 & f_y^{(r)} & o_y^{(r)} \\
+        0 & 0 & 1
+    \end{bmatrix}
+    \begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix}
+    $$
+
+    We also know the relative position and orientation between the two cameras.
+    $$
+    \begin{bmatrix} x_l \\ y_l \\ z_l \\ 1 \end{bmatrix} =
+    \begin{bmatrix}
+        r_{11} & r_{12} & r_{13} & t_x \\
+        r_{21} & r_{22} & r_{23} & t_y \\
+        r_{31} & r_{32} & r_{33} & t_z \\
+        0 & 0 & 0 & 1
+    \end{bmatrix}
+    \begin{bmatrix} x_r \\ y_r \\ z_r \\ 1 \end{bmatrix}
+    $$
+\end{frame}
+
+% --- Slide 16: Computing Depth (Combined Equations) ---
+\begin{frame}
+    \frametitle{Computing Depth}
+    Left Camera Imaging Equation:
+    $$
+    \begin{bmatrix} u_l \\ v_l \\ 1 \end{bmatrix} \propto
+    \begin{bmatrix}
+        f_x^{(l)} & 0 & o_x^{(l)} & 0 \\
+        0 & f_y^{(l)} & o_y^{(l)} & 0 \\
+        0 & 0 & 1 & 0
+    \end{bmatrix}
+    \begin{bmatrix}
+        r_{11} & r_{12} & r_{13} & t_x \\
+        r_{21} & r_{22} & r_{23} & t_y \\
+        r_{31} & r_{32} & r_{33} & t_z \\
+        0 & 0 & 0 & 1
+    \end{bmatrix}
+    \begin{bmatrix} x_r \\ y_r \\ z_r \\ 1 \end{bmatrix}
+    $$
+    $$\boxed{\vec{u}_l \propto \mathbf{P}_l \tilde{\mathbf{x}}_r}$$
+
+    Right Camera Imaging Equation:
+    $$
+    \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix} \propto
+    \begin{bmatrix}
+        f_x^{(r)} & 0 & o_x^{(r)} & 0 \\
+        0 & f_y^{(r)} & o_y^{(r)} & 0 \\
+        0 & 0 & 1 & 0
+    \end{bmatrix}
+    \begin{bmatrix} x_r \\ y_r \\ z_r \\ 1 \end{bmatrix}
+    $$
+    $$\boxed{\vec{u}_r \propto \mathbf{M}_{\text{int}} \tilde{\mathbf{x}}_r}$$
+\end{frame}
+
+% --- Slide 17: Computing Depth (Matrix Equations) ---
+\begin{frame}
+    \frametitle{Computing Depth}
+    The imaging equations:
+    $$
+    \vec{u}_r \propto
+    \underbrace{\begin{bmatrix}
+        m_{11} & m_{12} & m_{13} & m_{14} \\
+        m_{21} & m_{22} & m_{23} & m_{24} \\
+        m_{31} & m_{32} & m_{33} & m_{34}
+    \end{bmatrix}}_{\text{Known}}
+    \underbrace{\begin{bmatrix} x_r \\ y_r \\ z_r \\ 1 \end{bmatrix}}_{\text{Unknown}}
+    \quad \vec{u}_r = \mathbf{M}_r \tilde{\mathbf{x}}_r
+    $$
+    $$
+    \vec{u}_l \propto
+    \underbrace{\begin{bmatrix}
+        p_{11} & p_{12} & p_{13} & p_{14} \\
+        p_{21} & p_{22} & p_{23} & p_{24} \\
+        p_{31} & p_{32} & p_{33} & p_{34}
+    \end{bmatrix}}_{\text{Known}}
+    \underbrace{\begin{bmatrix} x_r \\ y_r \\ z_r \\ 1 \end{bmatrix}}_{\text{Unknown}}
+    \quad \vec{u}_l = \mathbf{P}_l \tilde{\mathbf{x}}_r
+    $$
+
+    Rearranging the terms:
+    $$
+    \begin{bmatrix}
+        u_r m_{31} - m_{11} & u_r m_{32} - m_{12} & u_r m_{33} - m_{13} \\
+        v_r m_{31} - m_{21} & v_r m_{32} - m_{22} & v_r m_{33} - m_{23} \\
+        u_l p_{31} - p_{11} & u_l p_{32} - p_{12} & u_l p_{33} - p_{13} \\
+        v_l p_{31} - p_{21} & v_l p_{32} - p_{22} & v_l p_{33} - p_{23}
+    \end{bmatrix}
+    \begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix} =
+    \begin{bmatrix}
+        m_{14} - u_r m_{34} \\
+        m_{24} - v_r m_{34} \\
+        p_{14} - u_l p_{34} \\
+        p_{24} - v_l p_{34}
+    \end{bmatrix}
+    $$
+\end{frame}
+
+% --- Slide 18: Computing Depth (Least Squares) ---
+\begin{frame}
+    \frametitle{Computing Depth: Least Squares Solution}
+    $$
+    \underbrace{\begin{bmatrix}
+        u_r m_{31} - m_{11} & u_r m_{32} - m_{12} & u_r m_{33} - m_{13} \\
+        v_r m_{31} - m_{21} & v_r m_{32} - m_{22} & v_r m_{33} - m_{23} \\
+        u_l p_{31} - p_{11} & u_l p_{32} - p_{12} & u_l p_{33} - p_{13} \\
+        v_l p_{31} - p_{21} & v_l p_{32} - p_{22} & v_l p_{33} - p_{23}
+    \end{bmatrix}}_{\mathbf{A}_{4\times3} \text{(Known)}}
+    \underbrace{\begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix}}_{\mathbf{x}_r \text{(Unknown)}} =
+    \underbrace{\begin{bmatrix}
+        m_{14} - u_r m_{34} \\
+        m_{24} - v_r m_{34} \\
+        p_{14} - u_l p_{34} \\
+        p_{24} - v_l p_{34}
+    \end{bmatrix}}_{\mathbf{b}_{4\times1} \text{(Known)}}
+    $$
+
+    Find least squares solution using pseudo-inverse:
+    $$
+    \mathbf{A} \mathbf{x}_r = \mathbf{b}
+    $$
+    $$
+    \mathbf{A}^T \mathbf{A} \mathbf{x}_r = \mathbf{A}^T \mathbf{b}
+    $$
+    $$
+    \boxed{\mathbf{x}_r = (\mathbf{A}^T \mathbf{A})^{-1} \mathbf{A}^T \mathbf{b}}
+    $$
+\end{frame}
+
+
+\begin{frame}
     \frametitle{Matríz Esencial}
     \footnotesize
 
