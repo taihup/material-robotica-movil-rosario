@@ -916,85 +916,94 @@
 \begin{frame}
     \frametitle{Epipolar Constraint}
     Writing the epipolar constraint in matrix form:
-    $$\mathbf{x}_l \cdot (\translation \times \mathbf{x}_l) = 0$$
-    $$
-    \begin{bmatrix} x_l & y_l & z_l \end{bmatrix}
-    \begin{bmatrix}
-        t_y z_l - t_z y_l \\
-        t_z x_l - t_x z_l \\
-        t_x y_l - t_y x_l
-    \end{bmatrix} = 0 \quad \text{Cross-product definition}
-    $$
-    $$
-    \begin{bmatrix} x_l & y_l & z_l \end{bmatrix}
-    \underbrace{\begin{bmatrix}
-        0 & -t_z & t_y \\
-        t_z & 0 & -t_x \\
-        -t_y & t_x & 0
-    \end{bmatrix}}_{\begin{bmatrix}\translation\end{bmatrix}_{\times}}
-    \begin{bmatrix} x_l \\ y_l \\ z_l \end{bmatrix} = 0
-    \quad \text{Matrix-vector form}
-    $$
+
+    \begin{equation*}
+        \mathbf{x}_l \cdot (\translation \times \mathbf{x}_l) = 0
+    \end{equation*}
+
+    \begin{equation*}
+        \begin{bmatrix} x_l & y_l & z_l \end{bmatrix}
+        \begin{bmatrix}
+            t_y z_l - t_z y_l \\
+            t_z x_l - t_x z_l \\
+            t_x y_l - t_y x_l
+        \end{bmatrix} = 0 \quad \text{Cross-product definition}
+    \end{equation*}
+
+    \begin{equation*}
+        \begin{bmatrix} x_l & y_l & z_l \end{bmatrix}
+        \underbrace{\begin{bmatrix}
+            0 & -t_z & t_y \\
+            t_z & 0 & -t_x \\
+            -t_y & t_x & 0
+        \end{bmatrix}}_{\begin{bmatrix}\translation\end{bmatrix}_{\times}}
+        \begin{bmatrix} x_l \\ y_l \\ z_l \end{bmatrix} = 0
+        \quad \text{Matrix-vector form}
+    \end{equation*}
+    
     $\translation_{3\times1}$: Position of Right Camera in Left Camera's Frame
     \\
     $\rotation_{3\times3}$: Orientation of Left Camera in Right Camera's Frame
-    \vspace{0.2cm}
-    $$
-    \boxed{
-    \mathbf{x}_l = \rotation \mathbf{x}_r + \translation
-    }
-    \quad
-    \begin{bmatrix} x_l \\ y_l \\ z_l \end{bmatrix} =
-    \begin{bmatrix}
-        r_{11} & r_{12} & r_{13} \\
-        r_{21} & r_{22} & r_{23} \\
-        r_{31} & r_{32} & r_{33}
-    \end{bmatrix}
-    \begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix} +
-    \begin{bmatrix} t_x \\ t_y \\ t_z \end{bmatrix}
-    $$
+
+    \begin{equation*}
+        \boxed{
+        \mathbf{x}_l = \rotation \mathbf{x}_r + \translation
+        }
+        \quad
+        \begin{bmatrix} x_l \\ y_l \\ z_l \end{bmatrix} =
+        \begin{bmatrix}
+            r_{11} & r_{12} & r_{13} \\
+            r_{21} & r_{22} & r_{23} \\
+            r_{31} & r_{32} & r_{33}
+        \end{bmatrix}
+        \begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix} +
+        \begin{bmatrix} t_x \\ t_y \\ t_z \end{bmatrix}
+    \end{equation*}
 \end{frame}
 
 % --- Slide 3: Epipolar Constraint (Essential Matrix E) ---
 \begin{frame}
     \frametitle{Epipolar Constraint}
     Substituting into the epipolar constraint gives:
-    $$
-    \begin{bmatrix} x_l & y_l & z_l \end{bmatrix}
-    \left(
-    \begin{bmatrix}
-        0 & -t_z & t_y \\
-        t_z & 0 & -t_x \\
-        -t_y & t_x & 0
-    \end{bmatrix}
-    \begin{bmatrix}
-        r_{11} & r_{12} & r_{13} \\
-        r_{21} & r_{22} & r_{23} \\
-        r_{31} & r_{32} & r_{33}
-    \end{bmatrix}
-    +
-    \underbrace{
-    \begin{bmatrix}
-        0 & -t_z & t_y \\
-        t_z & 0 & -t_x \\
-        -t_y & t_x & 0
-    \end{bmatrix}
-    \begin{bmatrix} t_x \\ t_y \\ t_z \end{bmatrix}}_{\translation \times \translation = 0}
-    \right)
-    \begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix} = 0
-    $$
-    $$
-    \begin{bmatrix} x_l & y_l & z_l \end{bmatrix}
-    \underbrace{\begin{bmatrix}
-        e_{11} & e_{12} & e_{13} \\
-        e_{21} & e_{22} & e_{23} \\
-        e_{31} & e_{32} & e_{33}
-    \end{bmatrix}}_{\text{Essential Matrix } \mathbf{E}}
-    \begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix} = 0
-    $$
-    $$
-    \boxed{\mathbf{E} = \begin{bmatrix}\translation\end{bmatrix}_{\times} \rotation}
-    $$
+    
+    \begin{equation*}
+        \begin{bmatrix} x_l & y_l & z_l \end{bmatrix}
+        \left(
+        \begin{bmatrix}
+            0 & -t_z & t_y \\
+            t_z & 0 & -t_x \\
+            -t_y & t_x & 0
+        \end{bmatrix}
+        \begin{bmatrix}
+            r_{11} & r_{12} & r_{13} \\
+            r_{21} & r_{22} & r_{23} \\
+            r_{31} & r_{32} & r_{33}
+        \end{bmatrix}
+        +
+        \underbrace{
+        \begin{bmatrix}
+            0 & -t_z & t_y \\
+            t_z & 0 & -t_x \\
+            -t_y & t_x & 0
+        \end{bmatrix}
+        \begin{bmatrix} t_x \\ t_y \\ t_z \end{bmatrix}}_{\translation \times \translation = 0}
+        \right)
+        \begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix} = 0
+    \end{equation*}
+
+    \begin{equation*}
+        \begin{bmatrix} x_l & y_l & z_l \end{bmatrix}
+        \underbrace{\begin{bmatrix}
+            e_{11} & e_{12} & e_{13} \\
+            e_{21} & e_{22} & e_{23} \\
+            e_{31} & e_{32} & e_{33}
+        \end{bmatrix}}_{\text{Essential Matrix } \mathbf{E}}
+        \begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix} = 0
+    \end{equation*}
+
+    \begin{equation*}
+        \boxed{\mathbf{E} = \begin{bmatrix}\translation\end{bmatrix}_{\times} \rotation}
+    \end{equation*}
     \footnotesize{[Longuet-Higgins 1981]}
 \end{frame}
 
@@ -1034,7 +1043,9 @@
 \begin{frame}
     \frametitle{How do we find $\mathbf{E}$?}
     Relates 3D position $(x_l, y_l, z_l)$ of scene point w.r.t left camera to its 3D position $(x_r, y_r, z_r)$ w.r.t. right camera
-    $$\boxed{\mathbf{x}_l^T \mathbf{E} \mathbf{x}_r = 0}$$
+    \begin{equation*}
+        \boxed{\mathbf{x}_l^{\top} \mathbf{E} \mathbf{x}_r = 0}
+    \end{equation*}
 
     \begin{center}
         \includegraphics[width=0.8\textwidth]{./images/essential_matrix_coplanary_constraint.pdf}
@@ -1049,70 +1060,75 @@
     \frametitle{Incorporating the Image Coordinates}
     Perspective projection equations for left camera:
     \begin{align*}
-        u_l &= f_x^{(l)} \frac{x_l}{z_l} + o_x^{(l)} \quad & v_l &= f_y^{(l)} \frac{y_l}{z_l} + o_y^{(l)} \\
-        z_l u_l &= f_x^{(l)} x_l + z_l o_x^{(l)} \quad & z_l v_l &= f_y^{(l)} y_l + z_l o_y^{(l)}
+        u_l &= f_u^{(l)} \frac{x_l}{z_l} + \principalPoint_{u}^{(l)} \quad & v_l &= f_v^{(l)} \frac{y_l}{z_l} + \principalPoint_{v}^{(l)} \\
+        z_l u_l &= f_u^{(l)} x_l + z_l \principalPoint_{u}^{(l)} \quad & z_l v_l &= f_v^{(l)} y_l + z_l \principalPoint_{v}^{(l)}
     \end{align*}
 
     Representing in matrix form:
-    $$
-    z_l \begin{bmatrix} u_l \\ v_l \\ 1 \end{bmatrix} =
-    \begin{bmatrix}
-        z_l u_l \\
-        z_l v_l \\
-        z_l
-    \end{bmatrix} =
-    \begin{bmatrix}
-        f_x^{(l)} x_l + z_l o_x^{(l)} \\
-        f_y^{(l)} y_l + z_l o_y^{(l)} \\
-        z_l
-    \end{bmatrix} =
-    \underbrace{\begin{bmatrix}
-        f_x^{(l)} & 0 & o_x^{(l)} \\
-        0 & f_y^{(l)} & o_y^{(l)} \\
-        0 & 0 & 1
-    \end{bmatrix}}_{\text{Known Camera Matrix } \mathbf{K}_l}
-    \begin{bmatrix} x_l \\ y_l \\ z_l \end{bmatrix}
-    $$
+    \begin{equation*}
+        z_l \begin{bmatrix} u_l \\ v_l \\ 1 \end{bmatrix} =
+        \begin{bmatrix}
+            z_l u_l \\
+            z_l v_l \\
+            z_l
+        \end{bmatrix} =
+        \begin{bmatrix}
+            f_u^{(l)} x_l + z_l \principalPoint_{u}^{(l)} \\
+            f_v^{(l)} y_l + z_l \principalPoint_{v}^{(l)} \\
+            z_l
+        \end{bmatrix} =
+        \underbrace{\begin{bmatrix}
+            f_u^{(l)} & 0 & \principalPoint_{u}^{(l)} \\
+            0 & f_v^{(l)} & \principalPoint_{v}^{(l)} \\
+            0 & 0 & 1
+        \end{bmatrix}}_{\text{Known Camera Matrix } \intrinsicMatrix_l}
+        \begin{bmatrix} x_l \\ y_l \\ z_l \end{bmatrix}
+    \end{equation*}
 \end{frame}
 
 % --- Slide 6: Incorporating Image Coordinates (K) ---
 \begin{frame}
     \frametitle{Incorporating the Image Coordinates}
-    \textbf{Left camera}
-    \vspace{0.2cm}
-    $$
-    z_l \begin{bmatrix} u_l \\ v_l \\ 1 \end{bmatrix} =
-    \underbrace{\begin{bmatrix}
-        f_x^{(l)} & 0 & o_x^{(l)} \\
-        0 & f_y^{(l)} & o_y^{(l)} \\
-        0 & 0 & 1
-    \end{bmatrix}}_{\mathbf{K}_l}
-    \begin{bmatrix} x_l \\ y_l \\ z_l \end{bmatrix}
-    \quad \mathbf{K}_l
-    $$
-    \vspace{0.2cm}
-    \textbf{Right camera}
-    \vspace{0.2cm}
-    $$
-    z_r \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix} =
-    \underbrace{\begin{bmatrix}
-        f_x^{(r)} & 0 & o_x^{(r)} \\
-        0 & f_y^{(r)} & o_y^{(r)} \\
-        0 & 0 & 1
-    \end{bmatrix}}_{\mathbf{K}_r}
-    \begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix}
-    \quad \mathbf{K}_r
-    $$
-    \vspace{0.2cm}
-    $$
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \centering
+            \textbf{Left camera}
+            \begin{equation*}
+                z_l \begin{bmatrix} u_l \\ v_l \\ 1 \end{bmatrix} =
+                \underbrace{\begin{bmatrix}
+                    f_u^{(l)} & 0 & c_u^{(l)} \\
+                    0 & f_v^{(l)} & c_v^{(l)} \\
+                    0 & 0 & 1
+                \end{bmatrix}}_{\intrinsicMatrix_l}
+                \begin{bmatrix} x_l \\ y_l \\ z_l \end{bmatrix}
+            \end{equation*}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \centering
+            \textbf{Right camera}
+            \begin{equation*}
+                z_r \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix} =
+                \underbrace{\begin{bmatrix}
+                    f_u^{(r)} & 0 & c_u^{(r)} \\
+                    0 & f_v^{(r)} & c_v^{(r)} \\
+                    0 & 0 & 1
+                \end{bmatrix}}_{\intrinsicMatrix_r}
+                \begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix}
+            \end{equation*}
+        \end{column}
+    \end{columns}
+
+    \begin{equation*}
     \boxed{
-    \mathbf{x}_l^T = \begin{bmatrix} u_l & v_l & 1 \end{bmatrix} z_l \mathbf{K}_l^{-T}
+    \mathbf{x}_l^{\top} = \begin{bmatrix} u_l & v_l & 1 \end{bmatrix} z_l \intrinsicMatrix_l^{-\top}
     }
     \quad
     \boxed{
-    \mathbf{x}_r = \mathbf{K}_r^{-1} z_r \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix}
+    \mathbf{x}_r = \intrinsicMatrix_r^{-1} z_r \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix}
     }
-    $$
+    \end{equation*}
+
 \end{frame}
 
 % --- Slide 7: Incorporating Image Coordinates (Substitution) ---
@@ -1131,13 +1147,13 @@
 
     Rewriting in terms of image coordinates:
     $$
-    \begin{bmatrix} u_l & v_l & 1 \end{bmatrix} \underbrace{z_l}_{\text{crossed out}} \mathbf{K}_l^{-T}
+    \begin{bmatrix} u_l & v_l & 1 \end{bmatrix} \underbrace{z_l}_{\text{crossed out}} \intrinsicMatrix_l^{-T}
     \begin{bmatrix}
         e_{11} & e_{12} & e_{13} \\
         e_{21} & e_{22} & e_{23} \\
         e_{31} & e_{32} & e_{33}
     \end{bmatrix}
-    \mathbf{K}_r^{-1} \underbrace{z_r}_{\text{crossed out}}
+    \intrinsicMatrix_r^{-1} \underbrace{z_r}_{\text{crossed out}}
     \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix} = 0
     $$
     $$
@@ -1146,7 +1162,7 @@
     \boxed{z_r \neq 0}
     $$
 
-    (Final simplified form on a separate slide: $\mathbf{u}_l^T \mathbf{K}_l^{-T} \mathbf{E} \mathbf{K}_r^{-1} \mathbf{u}_r = 0$)
+    (Final simplified form on a separate slide: $\mathbf{u}_l^T \intrinsicMatrix_l^{-T} \mathbf{E} \intrinsicMatrix_r^{-1} \mathbf{u}_r = 0$)
 \end{frame}
 
 % --- Slide 8: Fundamental Matrix F ---
@@ -1173,7 +1189,7 @@
     \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix} = 0
     $$
     $$
-    \boxed{\mathbf{E} = \mathbf{K}_l^T \mathbf{F} \mathbf{K}_r}
+    \boxed{\mathbf{E} = \intrinsicMatrix_l^{\top} \mathbf{F} \intrinsicMatrix_r}
     \quad
     \boxed{\mathbf{E} = \translation_{\times} \rotation}
     $$
@@ -1394,20 +1410,20 @@
     \underline{\textbf{2D-2D}}
     
     \begin{columns}
-    \begin{column}{0.7\textwidth}
-        \begin{itemize}
-        \item Error de reproyección:
-        \begin{center}
-            $f(\transform{a}{b}, \mapPointsSet)= \sum_{i=1}^{N} \Vert \measurement_{a,i} - \prediction^{\mathrm{s}}(\transform{a}{\worldCoordSystem},\worldPoint_{i}) \Vert^{2} + \Vert \measurement_{b,i} - \prediction^{\mathrm{s}}(\inverse{\transform{a}{b}}\transform{a}{\worldCoordSystem},\worldPoint_{i}) \Vert^{2}$
-        \end{center}
-        \item Algoritmos lineales: 8-point, 5-point
-        \end{itemize}
-    \end{column}
-    \begin{column}{0.3\textwidth}
-        \begin{figure}
-            \includegraphics[width=0.5\columnwidth]{./images/localization_2d_2d.pdf}
-        \end{figure}
-    \end{column}
+        \begin{column}{0.7\textwidth}
+            \begin{itemize}
+            \item Error de reproyección:
+            \begin{center}
+                $f(\transform{a}{b}, \mapPointsSet)= \sum_{i=1}^{N} \Vert \measurement_{a,i} - \prediction^{\mathrm{s}}(\transform{a}{\worldCoordSystem},\worldPoint_{i}) \Vert^{2} + \Vert \measurement_{b,i} - \prediction^{\mathrm{s}}(\inverse{\transform{a}{b}}\transform{a}{\worldCoordSystem},\worldPoint_{i}) \Vert^{2}$
+            \end{center}
+            \item Algoritmos lineales: 8-point, 5-point
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.3\textwidth}
+            \begin{figure}
+                \includegraphics[width=0.5\columnwidth]{./images/localization_2d_2d.pdf}
+            \end{figure}
+        \end{column}
     \end{columns}
 
     \underline{\textbf{3D-2D}}
