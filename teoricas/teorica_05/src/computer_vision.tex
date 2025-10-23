@@ -881,56 +881,33 @@
 \begin{frame}
     \frametitle{Geometría Epipolar}
     \footnotesize
-
     \begin{itemize}
         \item La restricción epipolar puede ser computada por medio de puntos 2D en la imagen cuando la pose relative de la cámara es conocida 
         ($\begin{bmatrix}
-            \translation 
-        \end{bmatrix}_{\times} \rotation$, donde 
-        $\begin{bmatrix}
-            \translation 
-        \end{bmatrix}_{\times} =
-        \begin{bmatrix}
-            0 & -t_{z} & t_{y}\\
-            t_{z} & 0 & -t_{x}\\
-            -t_{y} & t_{x} & 0
-        \end{bmatrix}$, por ejemplo una cámara estéreo).
+        \rotation & \translation
+        \end{bmatrix}$), por ejemplo una cámara estéreo.
         \item El \textbf{plano epipolar} es definido por $\imagePoint_{l}$ y los dos centros óptico de las cámaras $\cameraCenter_{l}$ y $\cameraCenter_{r}$
         \item La \textbf{línea epipolar} es la intersección del plano epipolar y el plano de la imagen derecha.
         \item La restricción epipolar codifica que $\imagePoint_{r}$ debe estar ubicado sobre la linea epipolar en la imagen derecha.
     \end{itemize}
 
     \begin{center}
-        \includegraphics[width=0.4\textwidth]{./images/epipolar_geometry.pdf}
+        \includegraphics[width=0.6\textwidth]{./images/epipolar_geometry_epipolar_line.pdf}
     \end{center}
 
     La línea epipolar permite que restrinjamos la búsqueda de correspondencias visuales entre dos cámaras.
 
 \end{frame}
 
-\begin{frame}
-    \frametitle{Matríz Esencial}
-
-    \TODO{Adaptar la imagen de arriba y hacer layouts para las slides.}
-
-    %\TODO{Derivación de matriz esencial: \url{https://cave.cs.columbia.edu/Statics/monographs/Uncalibrated%20Stereo\%20FPCV-4-2.pdf}}
-
-    \begin{center}
-        \includegraphics[width=0.4\textwidth]{./images/epipolar_geometry.pdf}
-    \end{center}
-
-\end{frame}
-
 % --- Slide 1: Epipolar Constraint (Geometric Basis) ---
 \begin{frame}
     \frametitle{Epipolar Constraint}
-
     \begin{center}
-        \includegraphics[width=0.4\textwidth]{./images/epipolar_geometry.pdf}
+        \includegraphics[width=0.6\textwidth]{./images/epipolar_geometry_normal_vector.pdf}
     \end{center}
 
     Vector normal to the epipolar plane: $\mathbf{n} = \mathbf{t} \times \mathbf{x}_l$
-    \vspace{0.5cm}
+
     Dot product of $\mathbf{n}$ and $\mathbf{x}_l$ (perpendicular vectors) is zero:
     $$\boxed{\mathbf{x}_l \cdot (\mathbf{t} \times \mathbf{x}_l) = 0}$$
 \end{frame}
@@ -955,7 +932,7 @@
         0 & -t_z & t_y \\
         t_z & 0 & -t_x \\
         -t_y & t_x & 0
-    \end{bmatrix}}_{\mathbf{T}_{\times}}
+    \end{bmatrix}}_{\left[\translation\right]_{\times}}
     \begin{bmatrix} x_l \\ y_l \\ z_l \end{bmatrix} = 0
     } \quad \text{Matrix-vector form}
     $$
