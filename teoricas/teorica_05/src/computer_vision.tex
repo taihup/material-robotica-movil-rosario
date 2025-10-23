@@ -916,35 +916,28 @@
 \begin{frame}
     \frametitle{Epipolar Constraint}
     Writing the epipolar constraint in matrix form:
-
+%
     \begin{equation*}
         \mathbf{x}_l \cdot (\translation \times \mathbf{x}_l) = 0
     \end{equation*}
-
-    \begin{equation*}
+%
+    \begin{align*}
         \begin{bmatrix} x_l & y_l & z_l \end{bmatrix}
         \begin{bmatrix}
             t_y z_l - t_z y_l \\
             t_z x_l - t_x z_l \\
             t_x y_l - t_y x_l
-        \end{bmatrix} = 0 \quad \text{Cross-product definition}
-    \end{equation*}
-
-    \begin{equation*}
+        \end{bmatrix} &= 0 \quad \text{Cross-product definition}\\
         \begin{bmatrix} x_l & y_l & z_l \end{bmatrix}
         \underbrace{\begin{bmatrix}
             0 & -t_z & t_y \\
             t_z & 0 & -t_x \\
             -t_y & t_x & 0
         \end{bmatrix}}_{\begin{bmatrix}\translation\end{bmatrix}_{\times}}
-        \begin{bmatrix} x_l \\ y_l \\ z_l \end{bmatrix} = 0
+        \begin{bmatrix} x_l \\ y_l \\ z_l \end{bmatrix} &= 0
         \quad \text{Matrix-vector form}
-    \end{equation*}
-    
-    $\translation_{3\times1}$: Position of Right Camera in Left Camera's Frame
-    \\
-    $\rotation_{3\times3}$: Orientation of Left Camera in Right Camera's Frame
-
+    \end{align*}
+%
     \begin{equation*}
         \boxed{
         \mathbf{x}_l = \rotation \mathbf{x}_r + \translation
@@ -997,21 +990,21 @@
             e_{11} & e_{12} & e_{13} \\
             e_{21} & e_{22} & e_{23} \\
             e_{31} & e_{32} & e_{33}
-        \end{bmatrix}}_{\text{Essential Matrix } \mathbf{E}}
+        \end{bmatrix}}_{\text{Essential Matrix } \essentialMatrix}
         \begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix} = 0
     \end{equation*}
 
     \begin{equation*}
-        \boxed{\mathbf{E} = \begin{bmatrix}\translation\end{bmatrix}_{\times} \rotation}
+        \boxed{\essentialMatrix = \begin{bmatrix}\translation\end{bmatrix}_{\times} \rotation}
     \end{equation*}
     \footnotesize{[Longuet-Higgins 1981]}
 \end{frame}
 
 % --- Slide 4: Essential Matrix E Decomposition ---
 \begin{frame}
-    \frametitle{Essential Matrix $\mathbf{E}$: Decomposition}
+    \frametitle{Essential Matrix $\essentialMatrix$: Decomposition}
     $$
-    \boxed{\mathbf{E} = \begin{bmatrix}\translation\end{bmatrix}_{\times} \rotation}
+    \boxed{\essentialMatrix = \begin{bmatrix}\translation\end{bmatrix}_{\times} \rotation}
     $$
     $$
     \begin{bmatrix}
@@ -1033,7 +1026,7 @@
     Given that $\begin{bmatrix}\translation\end{bmatrix}_{\times}$ is a Skew-Symmetric matrix ($a_{ij} = -a_{ji}$) and $\rotation$ is an Orthonormal matrix, it is possible to ``decouple'' $\translation_{\times}$ and $\rotation$ from their product using ``Singular Value Decomposition''.
 
     \vspace{0.5cm}
-    Take Away: If $\mathbf{E}$ is known, we can calculate $\translation$ and $\rotation$.
+    Take Away: If $\essentialMatrix$ is known, we can calculate $\translation$ and $\rotation$.
 \end{frame}
 
 
@@ -1041,10 +1034,10 @@
 
 % --- Slide 5: How do we find E? ---
 \begin{frame}
-    \frametitle{How do we find $\mathbf{E}$?}
+    \frametitle{How do we find $\essentialMatrix$?}
     Relates 3D position $(x_l, y_l, z_l)$ of scene point w.r.t left camera to its 3D position $(x_r, y_r, z_r)$ w.r.t. right camera
     \begin{equation*}
-        \boxed{\mathbf{x}_l^{\top} \mathbf{E} \mathbf{x}_r = 0}
+        \boxed{\mathbf{x}_l^{\top} \essentialMatrix \mathbf{x}_r = 0}
     \end{equation*}
 
     \begin{center}
@@ -1089,80 +1082,105 @@
 % --- Slide 6: Incorporating Image Coordinates (K) ---
 \begin{frame}
     \frametitle{Incorporating the Image Coordinates}
-
-    \begin{columns}
+    \begin{columns}[T]
         \begin{column}{0.5\textwidth}
             \centering
             \textbf{Left camera}
-            \begin{equation*}
-                z_l \begin{bmatrix} u_l \\ v_l \\ 1 \end{bmatrix} =
+            \begin{align*}
+                z_l \begin{bmatrix} u_l \\ v_l \\ 1 \end{bmatrix} &=
                 \underbrace{\begin{bmatrix}
                     f_u^{(l)} & 0 & c_u^{(l)} \\
                     0 & f_v^{(l)} & c_v^{(l)} \\
                     0 & 0 & 1
-                \end{bmatrix}}_{\intrinsicMatrix_l}
-                \begin{bmatrix} x_l \\ y_l \\ z_l \end{bmatrix}
-            \end{equation*}
+                \end{bmatrix}}_{\intrinsicMatrix_{l}}\begin{bmatrix} x_l \\ y_l \\ z_l \end{bmatrix}\\
+                z_{l} \begin{bmatrix} u_l \\ v_l \\ 1 \end{bmatrix} &= \intrinsicMatrix_{l} \vec{x}_{l}\\
+                z_{l} \begin{bmatrix} u_l \\ v_l \\ 1 \end{bmatrix}^{\top} &= \vec{x}_{l}^{\top} \intrinsicMatrix_{l}^{\top}
+            \end{align*}
         \end{column}
         \begin{column}{0.5\textwidth}
             \centering
             \textbf{Right camera}
-            \begin{equation*}
-                z_r \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix} =
+            \begin{align*}
+                z_r \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix} &=
                 \underbrace{\begin{bmatrix}
                     f_u^{(r)} & 0 & c_u^{(r)} \\
                     0 & f_v^{(r)} & c_v^{(r)} \\
                     0 & 0 & 1
                 \end{bmatrix}}_{\intrinsicMatrix_r}
                 \begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix}
-            \end{equation*}
+            \end{align*}
         \end{column}
     \end{columns}
-
+    \vspace*{-0.5em}
     \begin{equation*}
-    \boxed{
-    \mathbf{x}_l^{\top} = \begin{bmatrix} u_l & v_l & 1 \end{bmatrix} z_l \intrinsicMatrix_l^{-\top}
-    }
-    \quad
-    \boxed{
-    \mathbf{x}_r = \intrinsicMatrix_r^{-1} z_r \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix}
-    }
+        \boxed{
+            \mathbf{x}_l^{\top} = \begin{bmatrix} u_l & v_l & 1 \end{bmatrix} z_l \intrinsicMatrix_l^{-\top}
+        }
+        \quad
+        \boxed{
+        \mathbf{x}_r = \intrinsicMatrix_r^{-1} z_r \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix}
+        }
     \end{equation*}
-
 \end{frame}
 
 % --- Slide 7: Incorporating Image Coordinates (Substitution) ---
 \begin{frame}
     \frametitle{Incorporating the Image Coordinates}
+    %
     Epipolar constraint:
-    $$
-    \begin{bmatrix} x_l & y_l & z_l \end{bmatrix}
-    \begin{bmatrix}
-        e_{11} & e_{12} & e_{13} \\
-        e_{21} & e_{22} & e_{23} \\
-        e_{31} & e_{32} & e_{33}
-    \end{bmatrix}
-    \begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix} = 0
-    $$
-
+    %
+    \begin{equation*}
+        \begin{bmatrix} x_l & y_l & z_l \end{bmatrix}
+        \begin{bmatrix}
+            e_{11} & e_{12} & e_{13} \\
+            e_{21} & e_{22} & e_{23} \\
+            e_{31} & e_{32} & e_{33}
+        \end{bmatrix}
+        \begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix} = 0
+    \end{equation*}
+    %
     Rewriting in terms of image coordinates:
-    $$
-    \begin{bmatrix} u_l & v_l & 1 \end{bmatrix} \underbrace{z_l}_{\text{crossed out}} \intrinsicMatrix_l^{-T}
-    \begin{bmatrix}
-        e_{11} & e_{12} & e_{13} \\
-        e_{21} & e_{22} & e_{23} \\
-        e_{31} & e_{32} & e_{33}
-    \end{bmatrix}
-    \intrinsicMatrix_r^{-1} \underbrace{z_r}_{\text{crossed out}}
-    \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix} = 0
-    $$
-    $$
-    \boxed{z_l \neq 0}
-    \quad
-    \boxed{z_r \neq 0}
-    $$
+    \only<1>{
+    \begin{equation*}
+        \begin{bmatrix} u_l & v_l & 1 \end{bmatrix} \cancel{z_l} \intrinsicMatrix_l^{-\top}
+        \begin{bmatrix}
+            e_{11} & e_{12} & e_{13} \\
+            e_{21} & e_{22} & e_{23} \\
+            e_{31} & e_{32} & e_{33}
+        \end{bmatrix}
+        \intrinsicMatrix_r^{-1} \cancel{z_r}
+        \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix} = 0
+    \end{equation*}
+    %
+    \begin{equation*}
+        \boxed{z_l \neq 0}
+        \quad
+        \boxed{z_r \neq 0}
+    \end{equation*}
+    }
+    \only<2->{
+    \begin{equation*}
+        \begin{bmatrix} u_l & v_l & 1 \end{bmatrix} \intrinsicMatrix_l^{-\top}
+        \begin{bmatrix}
+            e_{11} & e_{12} & e_{13} \\
+            e_{21} & e_{22} & e_{23} \\
+            e_{31} & e_{32} & e_{33}
+        \end{bmatrix}
+        \intrinsicMatrix_r^{-1}
+        \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix} = 0
+    \end{equation*}
+    }
+    \only<2>{
+    \begin{equation*}
+        \mathbf{u}_l^{\top} \intrinsicMatrix_l^{-\top} \essentialMatrix \intrinsicMatrix_r^{-1} \mathbf{u}_r = 0
+    \end{equation*}
+    }
+    \only<3>{
+    \begin{equation*}
+        \mathbf{u}_l^{\top} \underbrace{\intrinsicMatrix_l^{-\top} \essentialMatrix \intrinsicMatrix_r^{-1}}_{\fundamentalMatrix} \mathbf{u}_r = 0
+    \end{equation*}
+    }
 
-    (Final simplified form on a separate slide: $\mathbf{u}_l^T \intrinsicMatrix_l^{-T} \mathbf{E} \intrinsicMatrix_r^{-1} \mathbf{u}_r = 0$)
 \end{frame}
 
 % --- Slide 8: Fundamental Matrix F ---
@@ -1185,13 +1203,13 @@
         f_{11} & f_{12} & f_{13} \\
         f_{21} & f_{22} & f_{23} \\
         f_{31} & f_{32} & f_{33}
-    \end{bmatrix}}_{\text{Fundamental Matrix } \mathbf{F}}
+    \end{bmatrix}}_{\text{Fundamental Matrix } \fundamentalMatrix}
     \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix} = 0
     $$
     $$
-    \boxed{\mathbf{E} = \intrinsicMatrix_l^{\top} \mathbf{F} \intrinsicMatrix_r}
+    \boxed{\essentialMatrix = \intrinsicMatrix_l^{\top} \fundamentalMatrix \intrinsicMatrix_r}
     \quad
-    \boxed{\mathbf{E} = \translation_{\times} \rotation}
+    \boxed{\essentialMatrix = \begin{bmatrix}\translation\end{bmatrix}_{\times} \rotation}
     $$
     \footnotesize{[Fagueras 1992, Luong 1992]}
 \end{frame}
@@ -1213,6 +1231,12 @@
 
 
 \begin{frame}
+    \frametitle{Estimando la Matríx Fundamental}
+    \footnotesize
+
+\end{frame}
+
+\begin{frame}
     \frametitle{Matríz Esencial}
     \footnotesize
 
@@ -1221,7 +1245,7 @@
     \begin{block}{Coordenadas Normalizadas:}
         Dado $\homoImagePoint = \projectionMatrix \homoWorldPoint$, con $\projectionMatrix = \intrinsicMatrix [\rotation|\translation]$, si conocemos la matríz de calibración $\intrinsicMatrix$ entonces $\hat{\imagePoint} = \inverse{\intrinsicMatrix} \homoImagePoint$ decimos que $\hat{\imagePoint}$ está en {\bf coordenadas normalizadas}. Se lo puede pensar como una imagen del punto $\homoWorldPoint$ con respecto a una cámara $[\rotation|\translation]$ teniendo la matriz de calibración como la identidad. $ \inverse{\intrinsicMatrix} \projectionMatrix = [\rotation| \translation]$ se denomina {\bf cámara normalizada} donde los parámetros de calibración han sido removidos.
     \end{block}
-
+%
     \begin{equation*}
         \hat{\imagePoint}^{\prime\top} \essentialMatrix \hat{\imagePoint}  = 0 \quad \text{(restricción de coplanaridad)}
     \end{equation*}
