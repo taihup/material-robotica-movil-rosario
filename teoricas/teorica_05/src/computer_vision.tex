@@ -1234,21 +1234,25 @@
     \frametitle{Estimando la Matríx Fundamental}
     \footnotesize
 
+    \begin{center}
+        \includegraphics[width=0.5\columnwidth]{./images/features_matching.pdf}
+    \end{center}
+
 \end{frame}
 
 \begin{frame}
     \frametitle{Stereo Calibration Procedure}
     
-    \textbf{Step A: For each correspondence $i$, write out epipolar constraint.}
+    Step A: For each correspondence $i$, write out epipolar constraint.
 
     \begin{equation*}
     \underbrace{\begin{bmatrix} u_l^{(i)} & v_l^{(i)} & 1 \end{bmatrix}}_{\text{Known}}
-    \underbrace{\begin{bmatrix} f_{11} & f_{12} & f_{13} \\ f_{21} & f_{22} & f_{23} \\ f_{31} & f_{32} & 1 \end{bmatrix}}_{\text{Unknown}}
+    \underbrace{\begin{bmatrix} f_{11} & f_{12} & f_{13} \\ f_{21} & f_{22} & f_{23} \\ f_{31} & f_{32} & f_{33} \end{bmatrix}}_{\text{Unknown}}
     \underbrace{\begin{bmatrix} u_r^{(i)} \\ v_r^{(i)} \\ 1 \end{bmatrix}}_{\text{Known}}
     = 0
     \end{equation*}
 
-    \textbf{Expand the matrix to get linear equation:}
+    Expand the matrix to get linear equation:
 
     \begin{equation*}
     (f_{11}u_r^{(i)} + f_{12}v_r^{(i)} + f_{13})u_l^{(i)} + (f_{21}u_r^{(i)} + f_{22}v_r^{(i)} + f_{23})v_l^{(i)} + f_{31}u_r^{(i)} + f_{32}v_r^{(i)} + f_{33} = 0
@@ -1259,51 +1263,28 @@
 \begin{frame}
     \frametitle{Stereo Calibration Procedure}
     
-    \textbf{Step B: Rearrange terms to form a linear system.}
+    Step B: Rearrange terms to form a linear system.
 
     \begin{equation*}
-    \left[
-    \begin{array}{ccccccccc|c}
-        u_l^{(1)}u_r^{(1)} & u_l^{(1)}v_r^{(1)} & u_l^{(1)} & v_l^{(1)}u_r^{(1)} & v_l^{(1)}v_r^{(1)} & v_l^{(1)} & u_r^{(1)} & v_r^{(1)} & 1 & 1 \\
-        \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
-        u_l^{(i)}u_r^{(i)} & u_l^{(i)}v_r^{(i)} & u_l^{(i)} & v_l^{(i)}u_r^{(i)} & v_l^{(i)}v_r^{(i)} & v_l^{(i)} & u_r^{(i)} & v_r^{(i)} & 1 & 1 \\
-        \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
-        u_l^{(m)}u_r^{(m)} & u_l^{(m)}v_r^{(m)} & u_l^{(m)} & v_l^{(m)}u_r^{(m)} & v_l^{(m)}v_r^{(m)} & v_l^{(m)} & u_r^{(m)} & v_r^{(m)} & 1 & 1
-    \end{array}
-    \right]
-    \left[
-    \begin{array}{c}
-        f_{11} \\ f_{12} \\ f_{13} \\ f_{21} \\ f_{22} \\ f_{23} \\ f_{31} \\ f_{32} \\ f_{33} \\ -1
-    \end{array}
-    \right]
-    =
-    \left[
-    \begin{array}{c}
-        0 \\ \vdots \\ 0 \\ \vdots \\ 0
-    \end{array}
-    \right]
+        \underbrace{
+        \begin{bmatrix}
+            u_l^{(1)}u_r^{(1)} & u_l^{(1)}v_r^{(1)} & u_l^{(1)} & v_l^{(1)}u_r^{(1)} & v_l^{(1)}v_r^{(1)} & v_l^{(1)} & u_r^{(1)} & v_r^{(1)} & 1\\
+            \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots\\
+            u_l^{(i)}u_r^{(i)} & u_l^{(i)}v_r^{(i)} & u_l^{(i)} & v_l^{(i)}u_r^{(i)} & v_l^{(i)}v_r^{(i)} & v_l^{(i)} & u_r^{(i)} & v_r^{(i)} & 1\\
+            \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots\\
+            u_l^{(m)}u_r^{(m)} & u_l^{(m)}v_r^{(m)} & u_l^{(m)} & v_l^{(m)}u_r^{(m)} & v_l^{(m)}v_r^{(m)} & v_l^{(m)} & u_r^{(m)} & v_r^{(m)} & 1
+        \end{bmatrix}}_{\substack{\vec{A}\\ \text{(Known)}}}
+        \underbrace{\begin{bmatrix}
+            f_{11} \\ f_{12} \\ f_{13} \\ f_{21} \\ f_{22} \\ f_{23} \\ f_{31} \\ f_{32} \\ f_{33}
+        \end{bmatrix}}_{\substack{\vec{f}\\ \text{(Unknown)}}}
+        =
+        \begin{bmatrix}
+            0 \\ \vdots \\ 0 \\ \vdots \\ 0
+        \end{bmatrix}
     \end{equation*}
 
-    \vspace{-1.5em} % Adjust vertical spacing to match image
-
     \begin{center}
-    \hspace{-6em} % Shift A to the left
-    \raisebox{-0.5em}[0pt][0pt]{\textbf{A}}
-    \hspace{12em} % Adjust horizontal space
-    \raisebox{-0.5em}[0pt][0pt]{\textbf{f}}
-    \end{center}
-
-    \begin{center}
-    \hspace{-6em} % Shift "Known" to the left
-    \raisebox{-1.5em}[0pt][0pt]{(Known)}
-    \hspace{12em} % Adjust horizontal space
-    \raisebox{-1.5em}[0pt][0pt]{(Unknown)}
-    \end{center}
-
-    \vspace{1em} % Add space before the boxed equation
-
-    \begin{center}
-    \fbox{$\mathbf{A f = 0}$}
+        \fbox{$\mathbf{A f = 0}$}
     \end{center}
     
 \end{frame}
@@ -1311,7 +1292,7 @@
 \begin{frame}
     \frametitle{The Tale of Missing Scale}
     
-    \textbf{Fundamental matrix acts on homogenous coordinates.}
+    Fundamental matrix acts on homogenous coordinates.
 
     \begin{equation*}
     \begin{bmatrix} u_l & v_l & 1 \end{bmatrix}
@@ -1326,8 +1307,7 @@
 
     \vspace{1em} % Add some vertical space
 
-    Fundamental Matrix $F$ and $kF$ describe the same epipolar \\
-    geometry. That is, $F$ is defined only up to a scale.
+    Fundamental Matrix $F$ and $kF$ describe the same epipolar geometry. That is, $F$ is defined only up to a scale.
 
     \vspace{2em} % Add more vertical space
 
@@ -1344,28 +1324,21 @@
 \begin{frame}
     \frametitle{Solving for $F$}
     
-    \textbf{Step C: Find least squares solution for fundamental matrix $F$.}
+    Step C: Find least squares solution for fundamental matrix $F$.
 
     \vspace{0.5em} % Add some vertical space
 
-    We want $A\mathbf{f}$ as close to 0 as possible and $||\mathbf{f}||^2 = 1$:
+    We want $\mathbf{A f}$ as close to 0 as possible and $||\mathbf{f}||^2 = 1$:
+
+    \begin{equation*}
+        \min_{\mathbf{f}} ||\mathbf{A f}||^2 \quad \text{such that} \quad ||\mathbf{f}||^2 = 1
+    \end{equation*}
 
     \begin{center}
-    \fbox{
-        $\min_{\mathbf{f}} ||A\mathbf{f}||^2 \quad \text{such that} \quad ||\mathbf{f}||^2 = 1$
-    }
+        Constrained linear least squares problem
     \end{center}
 
-    \begin{center}
-    Constrained linear least squares problem
-    \end{center}
-
-    \vspace{1em} % Add vertical space
-
-    Like solving Projection Matrix during Camera Calibration. \\
-    Or, Homography Matrix for Image Stitching.
-
-    \vspace{1em} % Add vertical space
+    Like solving Projection Matrix during Camera Calibration. Or, Homography Matrix for Image Stitching.
 
     Rearrange solution $\mathbf{f}$ to form the fundamental matrix $F$.
     
