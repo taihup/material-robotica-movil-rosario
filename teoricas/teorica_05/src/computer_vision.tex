@@ -1398,73 +1398,56 @@
         \begin{column}{0.45\textwidth} % Text column
             Given the Fundamental matrix,
             \begin{equation*}
-            F = \begin{bmatrix}
-            -.003 & -.028 & 13.19 \\
-            -.003 & -.008 & -29.2 \\
-            2.97 & 56.38 & -9999
-            \end{bmatrix}
+                F = \begin{bmatrix}
+                    -.003 & -.028 & 13.19 \\
+                    -.003 & -.008 & -29.2 \\
+                    2.97 & 56.38 & -9999
+                \end{bmatrix}
             \end{equation*}
             and the left image point
             \begin{equation*}
-            \tilde{u}_l = \begin{bmatrix}
-            343 \\ 221 \\ 1
-            \end{bmatrix}
+                \vec{u}_l =
+                \begin{bmatrix}
+                    343 \\ 221 \\ 1
+                \end{bmatrix}
             \end{equation*}
         \end{column}
         \begin{column}{0.55\textwidth} % Image column
-            \begin{figure}
-                \centering
-                % Left Image
-                \begin{minipage}{0.48\textwidth}
-                    \centering
-                    \textbf{Left Image} \\
-                    % Placeholder for the left image (Arc de Triomphe with arrow)
-                    % Replace 'left_image.jpg' with your actual image file
-                    \includegraphics[width=0.9\linewidth]{example-image-a} % Use example-image-a as placeholder
-                    \caption*{$\tilde{u}_l$} % Caption for the point (placed below to match example)
-                    \label{fig:left_image}
-                \end{minipage}
-                \hfill
-                % Right Image
-                \begin{minipage}{0.48\textwidth}
-                    \centering
-                    \textbf{Right Image} \\
-                    % Placeholder for the right image (Arc de Triomphe with question mark)
-                    % Replace 'right_image.jpg' with your actual image file
-                    \includegraphics[width=0.9\linewidth]{example-image-b} % Use example-image-b as placeholder
-                    \label{fig:right_image}
-                \end{minipage}
-            \end{figure}
+            \centering
+            \includegraphics[width=0.8\textwidth]{./images/epipolar_line_example_1.pdf}
         \end{column}
     \end{columns}
 
-    \vspace{0.5em} % Add some vertical space
-
     The equation for the epipolar line in the right image is
-
-    \begin{equation*}
-    \begin{bmatrix} u_r & v_r & 1 \end{bmatrix}
-    \begin{bmatrix}
-    -.003 & -.028 & 13.19 \\
-    -.003 & -.008 & -29.2 \\
-    2.97 & 56.38 & -9999
-    \end{bmatrix}
-    \begin{bmatrix}
-    343 \\ 221 \\ 1
-    \end{bmatrix} = 0
-    \end{equation*}
-    
+    \only<1>{
+        \begin{equation*}
+            \begin{bmatrix} u_r & v_r & 1 \end{bmatrix}
+            \begin{bmatrix}
+                -.003 & -.028 & 13.19 \\
+                -.003 & -.008 & -29.2 \\
+                2.97 & 56.38 & -9999
+            \end{bmatrix}
+            \begin{bmatrix}
+                343 \\ 221 \\ 1
+            \end{bmatrix} = 0
+        \end{equation*}
+    }
+    \only<2>{
+        \begin{equation*}
+            0.03 u_r + 0.99 v_r - 265 = 0
+        \end{equation*}
+    }
 \end{frame}
 
 % --- Slide 13: Finding Correspondence (Search) ---
 \begin{frame}
     \frametitle{Finding Correspondence}
     \centering
-    % 
 
-    \vspace{1cm}
+    \includegraphics[width=0.5\textwidth]{./images/epipolar_line_example_2.pdf}
+    
     Corresponding scene points lie on the epipolar lines.
-    \\
+
     Finding correspondence is a 1D search.
 \end{frame}
 
