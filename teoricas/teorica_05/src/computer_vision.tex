@@ -1330,41 +1330,65 @@
 
     We want $\mathbf{A f}$ as close to 0 as possible and $||\mathbf{f}||^2 = 1$:
 
-    \begin{equation*}
-        \min_{\mathbf{f}} ||\mathbf{A f}||^2 \quad \text{such that} \quad ||\mathbf{f}||^2 = 1
-    \end{equation*}
-
     \begin{center}
+        \fbox{$\min_{\mathbf{f}} ||\mathbf{A f}||^2 \quad \text{such that} \quad ||\mathbf{f}||^2 = 1$}
+
         Constrained linear least squares problem
     \end{center}
 
     Like solving Projection Matrix during Camera Calibration. Or, Homography Matrix for Image Stitching.
 
-    Rearrange solution $\mathbf{f}$ to form the fundamental matrix $F$.
+    Rearrange solution $\mathbf{f}$ to form the fundamental matrix $\fundamentalMatrix$.
     
 \end{frame}
 
 \begin{frame}
     \frametitle{Extracting Rotation and Translation}
     
-    \textbf{Step D: Compute essential matrix $E$ from known left and \\ right intrinsic camera matrices and fundamental matrix $F$.}
+    Step D: Compute essential matrix $\essentialMatrix$ from known left and right intrinsic camera matrices and fundamental matrix $\fundamentalMatrix$.
 
     \begin{center}
-    \fbox{$E = K_l^T F K_r$}
+        \fbox{$\essentialMatrix = \intrinsicMatrix_{l}^{\top} \fundamentalMatrix \intrinsicMatrix_{r}$}
     \end{center}
 
-    \vspace{2em} % Add vertical space
-
-    \textbf{Step E: Extract $R$ and $\mathbf{t}$ from $E$.}
+    Step E: Extract $\rotation$ and $\translation$ from $\essentialMatrix$.
 
     \begin{center}
-    \fbox{$E = T_\times R$}
-    \end{center}
-    
-    \begin{center}
-    (Using Singular Value Decomposition)
+        \fbox{$\essentialMatrix = \begin{bmatrix} \translation \end{bmatrix}_{\times} \rotation$}
+
+        (Using Singular Value Decomposition)
     \end{center}
 
+\end{frame}
+
+
+% --- Slide 11: Finding Epipolar Lines (Theory) ---
+\begin{frame}
+    \frametitle{Finding Epipolar Lines}
+    Given: Fundamental matrix $\mathbf{F}$ and point on left image $(u_l, v_l)$
+    \vspace{0.2cm}
+    Find: Equation of Epipolar line in the right image
+    \vspace{0.2cm}
+    Epipolar Constraint Equation:
+    $$
+    \begin{bmatrix} u_l & v_l & 1 \end{bmatrix}
+    \begin{bmatrix}
+        f_{11} & f_{12} & f_{13} \\
+        f_{21} & f_{22} & f_{23} \\
+        f_{31} & f_{32} & f_{33}
+    \end{bmatrix}
+    \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix} = 0
+    $$
+
+    Expanding the matrix equation gives:
+    $$
+    (f_{11} u_l + f_{21} v_l + f_{31}) u_r + (f_{12} u_l + f_{22} v_l + f_{32}) v_r + (f_{13} u_l + f_{23} v_l + f_{33}) = 0
+    $$
+
+    Equation for right epipolar line:
+    $$\boxed{a_l u_r + b_l v_r + c_l = 0}$$
+
+    Similarly we can calculate epipolar line in left image for a point in right image.
 \end{frame}
 
 \begin{frame}
@@ -1430,36 +1454,6 @@
     \end{bmatrix} = 0
     \end{equation*}
     
-\end{frame}
-
-% --- Slide 11: Finding Epipolar Lines (Theory) ---
-\begin{frame}
-    \frametitle{Finding Epipolar Lines}
-    Given: Fundamental matrix $\mathbf{F}$ and point on left image $(u_l, v_l)$
-    \vspace{0.2cm}
-    Find: Equation of Epipolar line in the right image
-    \vspace{0.2cm}
-    Epipolar Constraint Equation:
-    $$
-    \begin{bmatrix} u_l & v_l & 1 \end{bmatrix}
-    \begin{bmatrix}
-        f_{11} & f_{12} & f_{13} \\
-        f_{21} & f_{22} & f_{23} \\
-        f_{31} & f_{32} & f_{33}
-    \end{bmatrix}
-    \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix} = 0
-    $$
-
-    Expanding the matrix equation gives:
-    $$
-    (f_{11} u_l + f_{21} v_l + f_{31}) u_r + (f_{12} u_l + f_{22} v_l + f_{32}) v_r + (f_{13} u_l + f_{23} v_l + f_{33}) = 0
-    $$
-
-    Equation for right epipolar line:
-    $$\boxed{a_l u_r + b_l v_r + c_l = 0}$$
-
-    Similarly we can calculate epipolar line in left image for a point in right image.
-    \hfill 35
 \end{frame}
 
 % --- Slide 13: Finding Correspondence (Search) ---
