@@ -1455,25 +1455,26 @@
 \begin{frame}
     \frametitle{Computing Depth}
     Given the intrinsic parameters, the projections of scene point $\mathbf{P}$ on the two image sensors are:
-    $$
-    \begin{bmatrix} u_l \\ v_l \\ 1 \end{bmatrix} \propto
-    \underbrace{\begin{bmatrix}
-        f_x^{(l)} & 0 & o_x^{(l)} & 0 \\
-        0 & f_y^{(l)} & o_y^{(l)} & 0 \\
-        0 & 0 & 1 & 0
-    \end{bmatrix}}_{\mathbf{P}}
-    \begin{bmatrix} x_l \\ y_l \\ z_l \\ 1 \end{bmatrix}
-    $$
-    $$
-    \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix} \propto
-    \underbrace{\begin{bmatrix}
-        f_x^{(r)} & 0 & o_x^{(r)} & 0 \\
-        0 & f_y^{(r)} & o_y^{(r)} & 0 \\
-        0 & 0 & 1 & 0
-    \end{bmatrix}}_{\mathbf{M}}
-    \begin{bmatrix} x_r \\ y_r \\ z_r \\ 1 \end{bmatrix}
-    $$
-    \hfill 41
+    \begin{equation*}
+        \begin{bmatrix} u_l \\ v_l \\ 1 \end{bmatrix}
+        \equiv
+        \underbrace{\begin{bmatrix}
+            f_x^{(l)} & 0 & o_x^{(l)} & 0 \\
+            0 & f_y^{(l)} & o_y^{(l)} & 0 \\
+            0 & 0 & 1 & 0
+        \end{bmatrix}}_{\mathbf{P}}
+        \begin{bmatrix} x_l \\ y_l \\ z_l \\ 1 \end{bmatrix}
+    \end{equation*}
+    \begin{equation*}
+        \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix}
+        \equiv
+        \underbrace{\begin{bmatrix}
+            f_x^{(r)} & 0 & o_x^{(r)} & 0 \\
+            0 & f_y^{(r)} & o_y^{(r)} & 0 \\
+            0 & 0 & 1 & 0
+        \end{bmatrix}}_{\mathbf{M}}
+        \begin{bmatrix} x_r \\ y_r \\ z_r \\ 1 \end{bmatrix}
+    \end{equation*}
 \end{frame}
 
 % --- Slide 15: Computing Depth (Transformation) ---
@@ -1481,7 +1482,7 @@
     \frametitle{Computing Depth}
     Left Camera Imaging Equation
     $$
-    \begin{bmatrix} u_l \\ v_l \\ 1 \end{bmatrix} \propto
+    \begin{bmatrix} u_l \\ v_l \\ 1 \end{bmatrix} \equiv
     \begin{bmatrix}
         f_x^{(l)} & 0 & o_x^{(l)} \\
         0 & f_y^{(l)} & o_y^{(l)} \\
@@ -1491,7 +1492,7 @@
     $$
     Right Camera Imaging Equation
     $$
-    \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix} \propto
+    \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix} \equiv
     \begin{bmatrix}
         f_x^{(r)} & 0 & o_x^{(r)} \\
         0 & f_y^{(r)} & o_y^{(r)} \\
@@ -1518,7 +1519,7 @@
     \frametitle{Computing Depth}
     Left Camera Imaging Equation:
     $$
-    \begin{bmatrix} u_l \\ v_l \\ 1 \end{bmatrix} \propto
+    \begin{bmatrix} u_l \\ v_l \\ 1 \end{bmatrix} \equiv
     \begin{bmatrix}
         f_x^{(l)} & 0 & o_x^{(l)} & 0 \\
         0 & f_y^{(l)} & o_y^{(l)} & 0 \\
@@ -1532,11 +1533,11 @@
     \end{bmatrix}
     \begin{bmatrix} x_r \\ y_r \\ z_r \\ 1 \end{bmatrix}
     $$
-    $$\boxed{\vec{u}_l \propto \mathbf{P}_l \tilde{\mathbf{x}}_r}$$
+    $$\boxed{\vec{u}_l \equiv \mathbf{P}_l \tilde{\mathbf{x}}_r}$$
 
     Right Camera Imaging Equation:
     $$
-    \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix} \propto
+    \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix} \equiv
     \begin{bmatrix}
         f_x^{(r)} & 0 & o_x^{(r)} & 0 \\
         0 & f_y^{(r)} & o_y^{(r)} & 0 \\
@@ -1544,7 +1545,7 @@
     \end{bmatrix}
     \begin{bmatrix} x_r \\ y_r \\ z_r \\ 1 \end{bmatrix}
     $$
-    $$\boxed{\vec{u}_r \propto \mathbf{M}_{\text{int}} \tilde{\mathbf{x}}_r}$$
+    $$\boxed{\vec{u}_r \equiv \mathbf{M}_{\text{int}} \tilde{\mathbf{x}}_r}$$
 \end{frame}
 
 % --- Slide 17: Computing Depth (Matrix Equations) ---
