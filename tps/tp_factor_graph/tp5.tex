@@ -23,7 +23,7 @@
 
 
 \section*{Disclaimer}
-This homework is based on the Homework 7 -- SLAM of the NA 568 Mobile Robotics: Methods \& Algorithms -- Winter 2022 created by Maani Ghaffari -- University of Michigan
+Esta tarea se basa en Homework 7 -- SLAM of the NA 568 Mobile Robotics: Methods \& Algorithms -- Winter 2022 created by Maani Ghaffari -- University of Michigan
 %\title{NA 568 Mobile Robotics: Methods \& Algorithms \\ Winter 2022 -- Homework 7 -- SLAM}
 %\author{Maani Ghaffari \\ University of Michigan}
 %\date{March 19, 2022}
@@ -43,21 +43,21 @@ This homework is based on the Homework 7 -- SLAM of the NA 568 Mobile Robotics: 
 \end{enumerate}
 
 \section*{Pose Graph SLAM using GTSAM Library}
-In this homework, you’re going to solve the pose graph SLAM problem using the GTSAM library. If you are not familiar with GTSAM, a detailed tutorial is on their website: \url{https://gtsam.org/tutorials/intro.html}. To install GTSAM in c++, you’ll have to clone the code from the repository: \url{https://github.com/borglab/gtsam}, checkout (using git) the latest version and build the library following the instruction.
+En esta tarea, resolverás el problema SLAM con Pose-Graph utilizando la biblioteca GTSAM. Si no está familiarizado con GTSAM, encontrará un tutorial detallado en su sitio web: \url{https://gtsam.org/tutorials/intro.html}. Para instalar GTSAM en c++, deberá clonar el código del repositorio: \url{https://github.com/borglab/gtsam}, descargar (usando git) la última versión y compilar la biblioteca siguiendo las instrucciones.
 
-After you successfully install GTSAM, write a function to read G2O \footnote{\url{https://github.com/RainerKuemmerle/g2o/wiki/File-Format}} files and solve the graph optimization problem for both 2D and 3D cases using GTSAM. In this assignment, we use datasets provided at \url{https://lucacarlone.mit.edu/datasets/}.
+Después de instalar GTSAM con éxito, escriba una función para leer archivos G2O \footnote{\url{https://github.com/RainerKuemmerle/g2o/wiki/File-Format}} y resuelva el problema de optimización de grafos para casos 2D y 3D usando GTSAM. En esta tarea, utilizamos los datos proporcionados en \url{https://lucacarlone.mit.edu/datasets/}.
 
-While GTSAM is developed using C++, it also provides both MATLAB and Python wrapper. In this assignment, you’re free to use any of those languages.
+Si bien GTSAM está desarrollado en C++, también proporciona un wrapper tanto para MATLAB como para Python. En esta tarea, eres libre de utilizar cualquiera de esos lenguajes.
 
-\subsection*{GTSAM Installation Guide}
-Below we provide an installation guide for GTSAM libraries, then we introduce C++, MATLAB, and python versions of them respectively.
+\subsection*{Guía de instalación de GTSAM}
+A continuación proporcionamos una guía de instalación para las bibliotecas GTSAM, luego presentamos sus versiones C++, MATLAB y Python respectivamente.
 
-\subsubsection*{GTSAM library}
-The first step is to clone and install GTSAM library. Detailed instruction can be found in the repository.
+\subsubsection*{Librería GTSAM}
+El primer paso es clonar e instalar la librería GTSAM. Las instrucciones detalladas se pueden encontrar en el repositorio.
 
-\textbf{Remark 1.} \textit{If you are planning to use MATLAB or python wrapper, you may skip this part.}
+\textbf{Remark 1.} \textit{Si planea utilizar MATLAB o de Python, puede omitir esta parte.}
 
-\textbf{Remark 2.} \textit{GTSAM requires the Eigen library. It can be downloaded and installed from here: \url{http://eigen.tuxfamily.org/index.php?title=Main_Page}}
+\textbf{Remark 2.} \textit{GTSAM requiere la librería Eigen. Se puede descargar e instalar desde aquí: \url{http://eigen.tuxfamily.org/index.php?title=Main_Page}}
 
 \textbf{Remark 3.} \textit{Please notice prerequisites: Boost >= 1.58 (Ubuntu: sudo apt-get install libboost-all-dev); CMake >= 3.0 (Ubuntu: sudo apt-get install cmake); A modern compiler, i.e., at least gcc 4.7.3 on Linux.}
 
@@ -188,7 +188,7 @@ A batch solution means when we construct the entire graph and solve it at the en
 
 \subsection{C. Incremental Solution}
 \label{sec:incremental_solution}
-Use ISAM2 solver to optimize the trajectory incrementally (as you build the graph gradually). A detailed algorithms is described in Algorithm~\ref{alg:isam2}. Visualize and compare the optimized trajectory against the initial trajectory. Include the plot in your pdf. Describe the graph construction process and its parameters.
+Utilizar el solver ISAM2 para optimizar la trayectoria de forma incremental (a medida que construye el grafo gradualmente). Un algoritmo detallado se describe en Algoritmo~\ref{alg:isam2}. Visualice y compare la trayectoria optimizada con la trayectoria inicial. Incluir el gráfico en el pdf. Describir el proceso de construcción del grafo y sus parámetros.
 
 \begin{algorithm}
     \caption{\lstinline[style=bash]{incremental_solution_2d(poses, edges)}}
@@ -222,21 +222,21 @@ Use ISAM2 solver to optimize the trajectory incrementally (as you build the grap
     \end{algorithmic}
 \end{algorithm}
 
-\textbf{Hint:} You may use \lstinline[style=bash]{NonLinearFactorGraph} as your graph, use \lstinline[style=bash]{gtsam.ISAM2()} as your update algorithm, use \lstinline[style=bash]{Values} for your initial estimation, and use \lstinline[style=bash]{graph.add()}, \lstinline[style=bash]{initial.insert()}, \lstinline[style=bash]{isam.update()}, and \lstinline[style=bash]{isam.calculateEstimate()} functions as you see fit. However, function names might be different for different versions of gtsam.
+\textbf{Sugerencia:} Puede usar \lstinline[style=bash]{NonLinearFactorGraph} como grafo, usar \lstinline[style=bash]{gtsam.ISAM2()} como algoritmo de actualización, usar \lstinline[style=bash]{Values} para su estimación inicial y usar las funciones \lstinline[style=bash]{graph.add()}, \lstinline[style=bash]{initial.insert()}, \lstinline[style=bash]{isam.update()} y \lstinline[style=bash]{isam.calculateEstimate()} como vea conveniente. Sin embargo, los nombres de las funciones pueden ser diferentes para las diferentes versiones de GTSAM.
 
 \section{3D Graph SLAM}
 \subsection{A.}
-Write a function to read 3D Garage G2O file\footnote{\url{https://www.dropbox.com/s/zu23p8d522qccor/parking-garage.g2o?dl=0}} from G2O format and output poses and edges.
+Escriba una función para leer el archivo 3D Garage G2O\footnote{\url{https://www.dropbox.com/s/zu23p8d522qccor/parking-garage.g2o?dl=0}} desde el formato G2O y genere poses y aristas.
 
-For 3D data, the pose in G2O format is \lstinline[style=bash]{[VERTEX_SE3:QUAT i x y z qx qy qz qw]} where \lstinline[style=bash]{(x,y,z)} represents the translation and \lstinline[style=bash]{(qx,qy,qz,qw)} the rotation as a quaternion. The edge in G2O format is \lstinline[style=bash]{[EDGE_SE3:QUAT i j x y z qx qy qz qw info(x, y, z, qx, qy, qz)]}, where \lstinline[style=bash]{info(x, y, z, qx, qy, qz)} is a $1 \times 21$ vector of the $6 \times 6$ information matrix. After similar process in task 1 A, you can obtain the covariance matrix. You may look into detail in the g2o repository\footnote{\url{https://github.com/RainerKuenmerle/g2o/wiki/File-Format-SLAM-3D}}.
+Para datos 3D, la pose en formato G2O es \lstinline[style=bash]{[VERTEX_SE3:QUAT i x y z qx qy qz qw]} donde \lstinline[style=bash]{(x,y,z)} representa la traslación y \lstinline[style=bash]{(qx,qy,qz,qw)} la rotación como un cuaternión. La ventaja en formato G2O es \lstinline[style=bash]{[EDGE_SE3:QUAT i j x y z qx qy qz qw info(x, y, z, qx, qy, qz)]}, donde \lstinline[style=bash]{info(x, y, z, qx, qy, qz)} es un vector $1 \times 21$ de la matriz de información $6 \times 6$. Después de un proceso similar en la tarea 1 A, puede obtener la matriz de covarianza. Puede consultar los detalles en el repositorio de g2o\footnote{\url{https://github.com/RainerKuenmerle/g2o/wiki/File-Format-SLAM-3D}}.
 
-\textbf{Remark 7.} \textit{Please notice that the quaternion in MATLAB is in the order of \lstinline[style=bash]{[qw qx qy qz]} and is different from the order in g2o files which is \lstinline[style=bash]{[qx qy qz qw]}. You may use \lstinline[style=bash]{quat2rotm()} function in matlab to construct a rotation matrix from quaternion or use \lstinline[style=bash]{quat2tform()} function in matlab to construct a transformation matrix.}
+\textbf{Remark 7.} \textit{Tenga en cuenta que el cuaternión en MATLAB está en el orden de \lstinline[style=bash]{[qw qx qy qz]} y es diferente del orden en los archivos g2o que es \lstinline[style=bash]{[qx qy qz qw]}. Puede usar la función \lstinline[style=bash]{quat2rotm()} en matlab para construir una matriz de rotación a partir de cuaternión o usar la función \lstinline[style=bash]{quat2tform()} en matlab para construir una matriz de transformación.}
 
 \subsection{B. Batch Solution}
-Load \lstinline[style=bash]{data/parking-garage.g2o} and construct a 3D nonlinear factor graph using GTSAM. Use the Gauss-Newton solver. Visualize and compare the optimized trajectory against the initial trajectory. Include a 3D plot or two 2D plots in your pdf. Describe the graph construction process and its parameters.
+Cargue \lstinline[style=bash]{data/parking-garage.g2o} y construya un factor-graph 3D no lineal usando GTSAM. Utilice el solver de Gauss-Newton. Visualice y compare la trayectoria optimizada con la trayectoria inicial. Incluya un gráfico 3D o dos gráficos 2D en su pdf. Describir el proceso de construcción del grafo y sus parámetros.
 
 \subsection{C. Incremental Solution}
-Use ISAM2 solver to optimize the trajectory incrementally. Visualize and compare the optimized trajectory against the initial trajectory. Include a 3D plot or two 2D plots in your pdf. Describe the graph construction process and its parameters.
+Utilice el solver ISAM2 para optimizar la trayectoria de forma incremental. Visualice y compare la trayectoria optimizada con la trayectoria inicial. Incluya un gráfico 3D o dos gráficos 2D en su pdf. Describir el proceso de construcción del grafo y sus parámetros.
 
 \begin{figure}[!htbp]
     \centering
