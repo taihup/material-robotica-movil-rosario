@@ -119,7 +119,7 @@ Realizar la búsqueda de correspondencias entre los feature de ambas imágenes (
 
 \item \textbf{Triangular Puntos 3D}
 
-Dadas las correspondencias visuales (\emph{matches}) obtenidas en el paso anterior, realizar la triangulación de los features extraídos utilizando la función \lstinline{cv::sfm::triangulatePoints()}. Para la visualización de la nube de puntos 3D se puede publicar un mensaje de tipo \lstinline{sensor_msgs/PointCloud2}\footnote{\url{http://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/PointCloud2.html}} y hacer uso de RViz. Agregar capturas al informe.
+Dadas las correspondencias visuales (\emph{matches}) obtenidas en el paso anterior, realizar la triangulación de los features extraídos utilizando la función \lstinline{cv::sfm::triangulatePoints()}. Para la visualización de la nube de puntos 3D se puede publicar un mensaje de tipo \lstinline{sensor_msgs/PointCloud2}\footnote{\url{http://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/PointCloud2.html}} y hacer uso de RViz. Agregar a cada punto 3D el color del pixel de la imagen izquierda. Agregar capturas al informe.
 
 \item \textbf{Filtrar de Correspondencias Espúreas}
 
@@ -127,7 +127,7 @@ Aplicar RANSAC (\emph{Random sample consensus}) para filtrar los matches espúre
 
 \item (Opcional) \textbf{Feature Mapping con Localización \emph{ground-truth}}
 
-Mapear el entorno utilizando las poses dada por el \emph{ground-truth} del dataset. Visualizar el mapa reconstruido. Agregar captura al informe.
+Mapear el entorno utilizando las poses dada por el \emph{ground-truth} del dataset. Agregar a cada punto 3D el color del pixel de la imagen izquierda. Visualizar el mapa reconstruido. Agregar captura al informe.
 
 \item \textbf{Computar el Mapa de Disparidad}
 
@@ -139,7 +139,7 @@ Utilizando el mapa de disparidad obtenido en el paso anterior realizar una recon
 
 \item (Opcional) \textbf{Dense Mapping con Localización Ground-truth}
 
-Mapear el entorno de manera densa utilizando las poses dada por el \emph{ground-truth} del dataset. Visualizar el mapa reconstruido. Agregar captura al informe.
+Mapear el entorno de manera densa utilizando las poses dada por el \emph{ground-truth} del dataset. Agregar a cada punto 3D el color del pixel de la imagen izquierda. Visualizar el mapa reconstruido. Agregar captura al informe.
 
 \item \textbf{Estimar la Pose utilizando Visión Monocular}
 
