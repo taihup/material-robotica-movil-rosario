@@ -43,7 +43,7 @@ Esta tarea se basa en Homework 7 -- SLAM of the NA 568 Mobile Robotics: Methods 
 \end{enumerate}
 
 \section*{Pose Graph SLAM using GTSAM Library}
-En esta tarea, resolverás el problema SLAM con Pose-Graph utilizando la biblioteca GTSAM. Si no está familiarizado con GTSAM, encontrará un tutorial detallado en su sitio web: \url{https://gtsam.org/tutorials/intro.html}. Para instalar GTSAM en c++, deberá clonar el código del repositorio: \url{https://github.com/borglab/gtsam}, descargar (usando git) la última versión y compilar la biblioteca siguiendo las instrucciones.
+En este trabajo práctico, resolverá el problema SLAM con Pose-Graph utilizando la librería GTSAM. Si no está familiarizado con GTSAM, encontrará un tutorial detallado en su sitio web: \url{https://gtsam.org/tutorials/intro.html}. Para instalar GTSAM en c++, deberá clonar el código del repositorio: \url{https://github.com/borglab/gtsam}, descargar (usando git) la última versión y compilar la librería siguiendo las instrucciones.
 
 Después de instalar GTSAM con éxito, escriba una función para leer archivos G2O \footnote{\url{https://github.com/RainerKuemmerle/g2o/wiki/File-Format}} y resuelva el problema de optimización de grafos para casos 2D y 3D usando GTSAM. En esta tarea, utilizamos los datos proporcionados en \url{https://lucacarlone.mit.edu/datasets/}.
 
@@ -82,8 +82,6 @@ El primer paso es clonar e instalar la librería GTSAM. Las instrucciones detall
 
 \textbf{Remark 4.} \textit{If you have error saying could not find Boost, you may try manually install boost following \href{https://www.boost.org/doc/libs/1_66_0/more/getting_started/unix-variants.html\#get-boost}{this tutorial} and make sure you are pointing to the correct directory by adding following commands in CMakeList.txt :}
 
-
-
 \begin{lstlisting}[style=bash]
 SET (BOOST_ROOT "<your_boost_path>")
 SET (BOOST_INCLUDEDIR "<your_boost_path>/boost")
@@ -99,7 +97,7 @@ set (Boost_NO_BOOST_CHAKE ON)
 \end{itemize}
 
 \subsubsection*{C++}
-If you want to use C++, you don't have to install anything else. All you need to do is to find and link GTSAM library by adding the below context to your CMakeList.txt file.
+Si desea utilizar C++, no necesita instalar nada más. Todo lo que necesita hacer es buscar y vincular la librería GTSAM agregando el siguiente contexto a su archivo CMakeList.txt.
 
 \begin{lstlisting}[style=cmake]
 find_package(GTSAM_REQUIRED)
@@ -107,7 +105,7 @@ include_directories(${GTSAM_INCLUDE_DIR})
 target_link_libraries(<your_project> <your_project_lib> gtsam)
 \end{lstlisting}
 
-You may refer to some c++ gtsam examples \url{https://github.com/borglab/gtsam/tree/develop/examples}.
+Puede consultar algunos ejemplos de gtsam de C++ \url{https://github.com/borglab/gtsam/tree/develop/examples}.
 
 \subsubsection*{MATLAB Wrapper}
 If you have a newer Ubuntu system (later than 10.04), you must make a small modification to your MATLAB installation, due to MATLAB being distributed with an old version of the C++ standard library. Delete or rename all files starting with libstdc++ in your MATLAB installation directory, in paths:
@@ -137,11 +135,11 @@ import gtsam.*
     \end{lstlisting}
 \end{itemize}
 
-You may refer to some matlab gtsam examples in \lstinline[style=bash]{gtsam_toolbox/gtsam_examples} folder.
+Puede consultar algunos ejemplos de GTSAM en MATLAB en el directorio \lstinline[style=bash]{gtsam_toolbox/gtsam_examples}.
 
 \subsubsection*{Python Wrapper}
 
-Download and Install Anaconda from \url{https://www.anaconda.com/download}
+Descargar e instalar Anaconda desde \url{https://www.anaconda.com/download}
 
 \begin{lstlisting}[style=bash] 
 conda create -n gtsam_env python=<your_python_version>
@@ -159,32 +157,32 @@ make -j2 (2 is the number of threads you want to use)
 make python-install
 \end{lstlisting}
 
-You may refer to some python gtsam examples in \url{https://github.com/borglab/gtsam/tree/develop/python/gtsam/examples}.
+Puede consultar algunos ejemplos de GTSAM en PYTHON en el directorio \url{https://github.com/borglab/gtsam/tree/develop/python/gtsam/examples}.
 
 \section{2D Graph SLAM}
 \subsection{A.}
-Write a function to read 2D Intel dataset\footnote{\url{https://www.dropbox.com/s/vcz8cag7bo0zlaj/input_INTEL_g2o.g2o?dl=0}} from G2O format and output poses and edges. These poses and edges are used in later problems. It can be any form you like as long as you can use it to generate the correct result.
+Escriba una función para leer el conjunto de datos Intel 2D\footnote{\url{https://www.dropbox.com/s/vcz8cag7bo0zlaj/input_INTEL_g2o.g2o?dl=0}} desde el formato G2O y generar poses y aristas. Estas poses y aristas se utilizan en problemas posteriores. Puede ser cualquier forma que desee siempre que pueda usarla para generar el resultado correcto.
 
-For 2D data, the pose in G2O format is \lstinline[style=bash]{[VERTEX_SE2 i x y theta]} and the edge in G2O format is \lstinline[style=bash]{[EDGE_SE2 i j x y theta info(x, y, theta)]}, where \lstinline[style=bash]{info(x, y, theta)} is a $1 \times 6$ vector \lstinline[style=bash]{[q11 q12 q13 q22 q23 q33]} where the elements are the upper-triangle matrix of the $3 \times 3$ information matrix:
+Para datos 2D, la pose en formato G2O es \lstinline[style=bash]{[VERTEX_SE2 i x y theta]} y el borde en formato G2O es \lstinline[style=bash]{[EDGE_SE2 i j x y theta info(x, y, theta)]}, donde \lstinline[style=bash]{info(x, y, theta)} es un vector $1 \times 6$ \lstinline[style=bash]{[q11 q12 q13 q22 q23 q33]} donde los elementos son la matriz del triángulo superior de la matriz de información $3 \times 3$:
 
 \begin{equation*}
     \Omega = \begin{bmatrix} q_{11} & q_{12} & q_{13} \\ q_{12} & q_{22} & q_{23} \\ q_{13} & q_{23} & q_{33} \end{bmatrix}.
 \end{equation*}
 
-By inverting this information matrix, you can obtain the covariance matrix for the noise model.
+Al invertir esta matriz de información, se puede obtener la matriz de covarianza para el modelo de ruido.
 
-You may look into detail in the g2o repository\footnote{\url{https://github.com/RainerKuemmerle/g2o/wiki/File-Format-SLAM-2D}}.
+Puede verlo en detalle en el repositorio de g2o\footnote{\url{https://github.com/RainerKuemmerle/g2o/wiki/File-Format-SLAM-2D}}.
 
-\textbf{Remark 5.} \textit{If you use \lstinline[style=bash]{readG2o()} and \lstinline[style=bash]{load2D()} functions provided by GTSAM, then you will not be able to solve the graph incrementally (task~\ref{sec:incremental_solution} in this homework).}
+\textbf{Observación 5.} \textit{Si usas las funciones \lstinline[style=bash]{readG2o()} y \lstinline[style=bash]{load2D()} proporcionadas por GTSAM, entonces no podrás resolver el grafo incrementalmente (tarea~\ref{sec:incremental_solution} en este trabajo práctico).}
 
-\textbf{Hint:} You may use \lstinline[style=bash]{fscanf()}, \lstinline[style=bash]{textscan()}, or \lstinline[style=bash]{readcell()} functions with proper formatSpec from MATLAB and check if the first element in the input is \lstinline[style=bash]{VERTEX_SE2} or \lstinline[style=bash]{EDGE_SE2}.
+\textbf{Sugerencia:} Puede usar funciones \lstinline[style=bash]{fscanf()}, \lstinline[style=bash]{textscan()} o \lstinline[style=bash]{readcell()} con formatSpec adecuado de MATLAB y verificar si el primer elemento en la entrada es \lstinline[style=bash]{VERTEX_SE2} o \lstinline[style=bash]{EDGE_SE2}.
 
 \subsection{B. Batch Solution}
-A batch solution means when we construct the entire graph and solve it at the end altogether. Load \lstinline[style=bash]{data/input_INTEL_g2o.g2o} and construct a 2D nonlinear factor graph using GTSAM. Use the Gauss-Newton solver. Visualize and compare the optimized trajectory against the initial trajectory. Include the plot in your pdf. Describe the graph construction process and its parameters.
+Una solución por lotes significa que primero construimos el grafo completo y luego lo resolvemos por completo. Cargar \lstinline[style=bash]{data/input_INTEL_g2o.g2o} y construir un grafo de factores no lineales 2D usando GTSAM. Utilice el solver de Gauss-Newton. Visualice y compare la trayectoria optimizada con la trayectoria inicial. Incluye la gráfico en el informe. Describir el proceso de construcción del grafo y sus parámetros.
 
-\textbf{Remark 6.} \textit{For this problem, Gauss Newton solver will fall into a local minimum if we don't give any perturbation. It is okay to submit a plot that doesn't work as expected, but please include discussions about why is this happening.}
+\textbf{Remark 6.} \textit{Para este problema, el solver de Gauss Newton caerá en un mínimo local si no le agregamos una perturbación. Está bien enviar un grafico que muestre que no funciona como se espera, pero incluya una discusión sobre por qué sucede esto.}
 
-\textbf{Hint:} You may use \lstinline[style=bash]{NonLinearFactorGraph} as your graph, use \lstinline[style=bash]{GaussNewtonOptimizer} as you optimizer, use \lstinline[style=bash]{Values} for your initial estimation, \lstinline[style=bash]{noiseModel.Gaussian.Covariance()} for your noise model, \lstinline[style=bash]{graph.add()} and \lstinline[style=bash]{initial.insert()} functions as you see fit. However, function names might be different for different versions of gtsam.
+\textbf{Hint:} Puede usar \lstinline[style=bash]{NonLinearFactorGraph} como grafo, usar \lstinline[style=bash]{GaussNewtonOptimizer} como optimizador, usar \lstinline[style=bash]{Values} para su estimación inicial, \lstinline[style=bash]{noiseModel.Gaussian.Covariance()} para su modelo de ruido, \lstinline[style=bash]{graph.add()} y \lstinline[style=bash]{initial.insert()} funcionan como lo vea conveniente. Sin embargo, los nombres de las funciones pueden ser diferentes para las diferentes versiones de GTSAM.
 
 \subsection{C. Incremental Solution}
 \label{sec:incremental_solution}
