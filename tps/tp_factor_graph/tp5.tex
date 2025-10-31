@@ -22,24 +22,21 @@
 \maketitle
 
 
-\section*{Disclaimer}
-Esta tarea se basa en Homework 7 -- SLAM of the NA 568 Mobile Robotics: Methods \& Algorithms -- Winter 2022 created by Maani Ghaffari -- University of Michigan
-%\title{NA 568 Mobile Robotics: Methods \& Algorithms \\ Winter 2022 -- Homework 7 -- SLAM}
-%\author{Maani Ghaffari \\ University of Michigan}
-%\date{March 19, 2022}
+\section{Introducción}
+El objetivo de este trabajo práctico es implementar un solucionador de Pose Graph SLAM utilizando la librería GTSAM. En particular, se le pedirá que implemente tanto una solución batch como una solución incremental para los problemas SLAM 2D y 3D utilizando conjuntos de datos estándar.\footnote{Esta tarea se basa en Homework 7 -- SLAM of the NA 568 Mobile Robotics: Methods \& Algorithms -- Winter 2022 created by Maani Ghaffari -- University of Michigan}
 
 \section*{Entrega}
 	\begin{itemize}
-		\item Se debe proveer un repositorio git que contenga el código desarrollado, una imagen docker y un archivo \lstinline{README.md} con las instrucciones de compilación y ejecución.
-		
-		\item Se debe entregar un informe en Lyx o \LaTeX\  explicando el trabajo realizado y analizando los resultados obtenidos.
+        \item Se debe proveer un repositorio git que contenga el código desarrollado y un archivo \lstinline{README.md} con las instrucciones de compilación y ejecución. Se recomienda hacer una imagen Docker para facilitar la reproducción de los resultados.
+
+        \item Se debe entregar un informe en Lyx o \LaTeX\  explicando el trabajo realizado y analizando los resultados obtenidos.
 	\end{itemize}
 
 \section*{Evaluación}
 	\begin{itemize}
-		\item Haciendo únicamente los ejercicios obligarorios (no opcionales), el trabajo tiene una nota máxima de 8. Los ejercicios opcionales permiten llegar a la nota máxima de 10.
-		
-		\item Entregas Fuera de Término: Si la entrega se realiza durante la primer semana luego del plazo, se decuentan 2 puntos. Si la entrega es más tarde que esto último la nota máxima es de 6.
+        \item Haciendo únicamente los ejercicios obligarorios (no opcionales), el trabajo tiene una nota máxima de 8. Los ejercicios opcionales permiten llegar a la nota máxima de 10.
+
+        \item Entregas Fuera de Término: Si la entrega se realiza durante la primer semana luego del plazo, se decuentan 2 puntos. Si la entrega es más tarde que esto último la nota máxima es de 6.
 	\end{itemize}
 
 \section*{Pose Graph SLAM usando la librería GTSAM}
@@ -56,7 +53,7 @@ A continuación proporcionamos una guía de instalación para las bibliotecas GT
 \subsubsection*{Librería GTSAM}
 El primer paso es clonar e instalar la librería GTSAM. Las instrucciones detalladas se pueden encontrar en el repositorio.
 
-\textbf{Remark 1.} \textit{Si planea utilizar MATLAB o de Python, puede omitir esta parte.}
+\textbf{Remark 1.} \textit{Si planea utilizar el wrapper de MATLAB o de Python, puede omitir esta parte.}
 
 \textbf{Remark 2.} \textit{GTSAM requiere la librería Eigen. Se puede descargar e instalar desde aquí: \url{http://eigen.tuxfamily.org/index.php?title=Main_Page}}
 
@@ -107,7 +104,7 @@ target_link_libraries(<your_project> <your_project_lib> gtsam)
 
 Puede consultar algunos ejemplos de GTSAM en C++ \url{https://github.com/borglab/gtsam/tree/develop/examples}.
 
-\subsubsection*{MATLAB Wrapper}
+\subsubsection*{Wrapper de MATLAB}
 Si tiene un sistema Ubuntu más reciente (posterior a la versión 10.04), deberá realizar una pequeña modificación en su instalación de MATLAB, ya que MATLAB se distribuye con una versión antigua de la biblioteca estándar de C++. Elimine o cambie el nombre de todos los archivos que comiencen con libstdc++ en el directorio de instalación de MATLAB, en las siguientes rutas:
 
 \begin{itemize}
@@ -137,7 +134,7 @@ import gtsam.*
 
 Puede consultar algunos ejemplos de GTSAM en MATLAB en el directorio \lstinline[style=bash]{gtsam_toolbox/gtsam_examples}.
 
-\subsubsection*{Python Wrapper}
+\subsubsection*{Wrapper de Python}
 
 Descargar e instalar Anaconda desde \url{https://www.anaconda.com/download}
 
@@ -159,7 +156,7 @@ make python-install
 
 Puede consultar algunos ejemplos de GTSAM en PYTHON en el directorio \url{https://github.com/borglab/gtsam/tree/develop/python/gtsam/examples}.
 
-\section{2D Graph SLAM}
+\section{Graph-SLAM 2D}
 \subsection{A.}
 Escriba una función para leer el conjunto de datos Intel 2D\footnote{\url{https://www.dropbox.com/s/vcz8cag7bo0zlaj/input_INTEL_g2o.g2o?dl=0}} desde el formato G2O y generar poses y aristas. Estas poses y aristas se utilizan en problemas posteriores. Puede ser cualquier forma que desee siempre que pueda usarla para generar el resultado correcto.
 
