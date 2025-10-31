@@ -1300,27 +1300,28 @@
 
     \begin{equation*}
     \begin{bmatrix} u_l & v_l & 1 \end{bmatrix}
-    \begin{bmatrix} f_{11} & f_{12} & f_{13} \\ f_{21} & f_{22} & f_{23} \\ f_{31} & f_{32} & f_{33} \end{bmatrix}
+    \begin{bmatrix}
+        f_{11} & f_{12} & f_{13} \\
+        f_{21} & f_{22} & f_{23} \\
+        f_{31} & f_{32} & f_{33}
+    \end{bmatrix}
     \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix}
     = 0
     =
     \begin{bmatrix} u_l & v_l & 1 \end{bmatrix}
-    \begin{bmatrix} kf_{11} & kf_{12} & kf_{13} \\ kf_{21} & kf_{22} & kf_{23} \\ kf_{31} & kf_{32} & kf_{33} \end{bmatrix}
+    \begin{bmatrix}
+        kf_{11} & kf_{12} & kf_{13} \\
+        kf_{21} & kf_{22} & kf_{23} \\
+        kf_{31} & kf_{32} & kf_{33} \end{bmatrix}
     \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix}
     \end{equation*}
 
-    \vspace{1em} % Add some vertical space
-
-    Fundamental Matrix $F$ and $kF$ describe the same epipolar geometry. That is, $F$ is defined only up to a scale.
-
-    \vspace{2em} % Add more vertical space
+    Fundamental Matrix $\fundamentalMatrix$ and $k\fundamentalMatrix$ describe the same epipolar geometry. That is, $\fundamentalMatrix$ is defined only up to a scale.
 
     Set Fundamental Matrix to some arbitrary scale.
 
-    \vspace{0.5em} % Add a little space before the boxed equation
-
     \begin{center}
-    \fbox{$||\mathbf{F}||^2 = 1$}
+    \fbox{$||\fundamentalMatrix||^2 = 1$}
     \end{center}
     
 \end{frame}
