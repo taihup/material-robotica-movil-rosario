@@ -24,15 +24,15 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
-     inkscape:zoom="1.9539346"
-     inkscape:cx="284.80994"
-     inkscape:cy="64.741164"
+     inkscape:zoom="1.5762639"
+     inkscape:cx="167.80185"
+     inkscape:cy="113.24246"
      inkscape:window-width="1920"
-     inkscape:window-height="1043"
+     inkscape:window-height="986"
      inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-y="32"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer3" />
+     inkscape:current-layer="layer5" />
   <defs
      id="defs4">
     <marker
@@ -720,13 +720,15 @@
      d="M 226.82905,34.919637 350.57129,143.34725"
      style="display:inline;fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:#000000;stroke-width:1.22517;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.22517, 2.45034;stroke-dashoffset:0;stroke-opacity:1"
      id="path1-3"
-     sodipodi:insensitive="true" />
+     sodipodi:insensitive="true"
+     inkscape:label="right_projection_ray" />
   <path
      d="M 103.62571,142.93095 226.75538,34.80963"
      style="display:inline;fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:#000000;stroke-width:1.22517;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.22517, 2.45034;stroke-dashoffset:0;stroke-opacity:1"
      id="path14585"
      sodipodi:nodetypes="cc"
-     sodipodi:insensitive="true" />
+     sodipodi:insensitive="true"
+     inkscape:label="left_projection_ray" />
   <g
      inkscape:groupmode="layer"
      id="layer17"
@@ -781,14 +783,15 @@
      id="layer3"
      inkscape:label="epipolar_plane"
      style="display:inline"
-     transform="translate(35.534306,-106.49092)">
+     transform="translate(35.534306,-106.49092)"
+     sodipodi:insensitive="true">
     <path
        d="M 33.174038,280.66372 190.60848,141.60684 349.88068,280.66372 Z"
-       style="display:inline;opacity:0.5;fill:url(#linearGradient2468);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.632971px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="display:none;opacity:0.5;fill:url(#linearGradient2468);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.632971px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        id="path17309" />
     <path
        d="M 33.402652,280.97002 352.57528,280.45823"
-       style="display:inline;fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:#000000;stroke-width:1.22517;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.22517, 1.22517;stroke-dashoffset:0;stroke-opacity:1"
+       style="display:none;fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:#000000;stroke-width:1.22517;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.22517, 1.22517;stroke-dashoffset:0;stroke-opacity:1"
        id="path5"
        sodipodi:nodetypes="cc" />
     <path
@@ -799,25 +802,25 @@
        sodipodi:insensitive="true" />
     <text
        xml:space="preserve"
-       style="font-size:13.3333px;line-height:1.25;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle"
+       style="font-size:13.3333px;line-height:1.25;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif, Normal';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:none"
        x="269.18851"
        y="167.98709"
        id="text66"><tspan
          sodipodi:role="line"
          id="tspan66"
-         x="269.18851"
-         y="167.98709">Epipolar</tspan><tspan
+         x="0"
+         y="0">Epipolar</tspan><tspan
          sodipodi:role="line"
-         x="269.18851"
-         y="184.65372"
+         x="0"
+         y="0"
          id="tspan67">Plane</tspan></text>
     <path
        d="m 314.50252,249.77434 -26.20894,30.89688 h 61.59595 z"
-       style="display:inline;opacity:0.332248;fill:url(#linearGradient2263);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.632971px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="display:none;opacity:0.332248;fill:url(#linearGradient2263);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.632971px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        id="path2254" />
     <path
        d="M 68.07914,249.83368 33.166853,280.67122 H 94.663904 Z"
-       style="display:inline;opacity:0.332248;fill:url(#linearGradient2251);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.632971px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="display:none;opacity:0.332248;fill:url(#linearGradient2251);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.632971px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        id="path2249" />
   </g>
   <g
@@ -887,7 +890,8 @@
        ns2:inkscapeversion="1.4.2"
        ns2:jacobian_sqrt="1.33333"
        id="g9815-2-3-1-6-5-5"
-       style="display:inline">
+       style="display:none"
+       inkscape:label="right_projection_text">
       <defs
          id="id-946799f7-c210-4e8e-8a41-ac5cf6da26d8">
         <g
@@ -946,7 +950,8 @@
        ns2:inkscapeversion="1.4.2"
        ns2:jacobian_sqrt="1.33333"
        id="g9815-2-3-1-6-4-3"
-       style="display:none">
+       style="display:none"
+       inkscape:label="right_epipole_text">
       <defs
          id="id-4de8f548-b6a8-4b24-80af-d5ee946b54b3">
         <g
@@ -1012,15 +1017,15 @@
     <path
        d="m 335.66695,173.98107 -62.24348,0.1356"
        style="display:none;fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:#000000;stroke-width:1.08485;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.08485, 1.08485;stroke-dashoffset:0;stroke-opacity:1"
-       id="path1-5" />
+       id="path1-5"
+       inkscape:label="right_epipole_line" />
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer14"
      inkscape:label="left_image"
      style="display:inline"
-     transform="translate(49.639589)"
-     sodipodi:insensitive="true">
+     transform="translate(49.639589)">
     <rect
        width="114.50981"
        height="73.342293"
@@ -1046,17 +1051,19 @@
     <path
        d="m 18.261928,174.55547 62.2435,0.1356"
        style="display:none;fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:#000000;stroke-width:1.08485;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.08485, 1.08485;stroke-dashoffset:0;stroke-opacity:1"
-       id="path1-6" />
+       id="path1-6"
+       inkscape:label="left_epiole_line" />
     <path
        d="m 70.901635,249.67065 c 0,1.51292 -1.226469,2.73939 -2.739386,2.73939 -1.51292,0 -2.739389,-1.22647 -2.739389,-2.73939 0,-1.51292 1.226469,-2.73939 2.739389,-2.73939 1.512917,0 2.739386,1.22647 2.739386,2.73939 z"
        style="display:none;fill:#cc0000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.26594;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="path7375"
-       transform="translate(-14.105283,-106.49092)" />
+       transform="translate(-14.105283,-106.49092)"
+       inkscape:label="left_image_point" />
     <path
        d="m 83.75761,174.64495 c 0,1.51292 -1.226469,2.73939 -2.739389,2.73939 -1.51292,0 -2.739389,-1.22647 -2.739389,-2.73939 0,-1.51292 1.226469,-2.73939 2.739389,-2.73939 1.51292,0 2.739389,1.22647 2.739389,2.73939 z"
        style="display:none;fill:#fce94f;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.26594;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="path7377"
-       inkscape:label="path7377" />
+       inkscape:label="left_epipole_point" />
     <g
        transform="matrix(1.33333,0,0,1.33333,38.287236,129.96646)"
        ns2:version="1.9.0"
@@ -1070,7 +1077,8 @@
        ns2:inkscapeversion="1.4.2"
        ns2:jacobian_sqrt="1.33333"
        id="g9815-2-3-1-6-5-5-6"
-       style="display:inline">
+       style="display:inline"
+       inkscape:label="left_image_point_text">
       <defs
          id="id-f14ed6a5-17ab-406d-9db9-292c367837f4">
         <g
@@ -1129,7 +1137,8 @@
        ns2:inkscapeversion="1.4.2"
        ns2:jacobian_sqrt="1.33333"
        id="g9815-2-3-1-6-4"
-       style="display:none">
+       style="display:none"
+       inkscape:label="left_epipole_text">
       <defs
          id="id-c0c37436-8a69-48d6-8377-9c0f28361fa4">
         <g
@@ -1177,15 +1186,16 @@
     </g>
     <path
        d="m 51.587027,142.7429 c 0,1.51292 1.22647,2.73939 2.73939,2.73939 1.51292,0 2.73939,-1.22647 2.73939,-2.73939 0,-1.51292 -1.22647,-2.73939 -2.73939,-2.73939 -1.51292,0 -2.73939,1.22647 -2.73939,2.73939 z"
-       style="display:inline;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.26594;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="path4" />
+       style="display:inline;fill:#ff0000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.26594;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4"
+       inkscape:label="left_feature" />
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer6"
      inkscape:label="projections"
      transform="translate(35.534306,-106.49092)"
-     style="display:none"
+     style="display:inline"
      sodipodi:insensitive="true">
     <path
        d="M 165.78912,163.47717 350.48548,280.91259"
@@ -1233,7 +1243,7 @@
      id="layer12"
      inkscape:label="scene"
      transform="translate(49.639589,15.780209)"
-     style="display:inline"
+     style="display:none"
      sodipodi:insensitive="true">
     <path
        id="path151"
@@ -1314,7 +1324,7 @@
      inkscape:groupmode="layer"
      id="layer4"
      inkscape:label="scale_points"
-     style="display:none"
+     style="display:inline"
      transform="translate(35.534306,-106.49092)"
      sodipodi:insensitive="true">
     <path
@@ -1508,7 +1518,8 @@
      id="g61"
      transform="rotate(90,39.416157,341.2409)"
      style="display:inline;fill:none;stroke:#969696;stroke-opacity:1"
-     inkscape:label="left_coordinate_system">
+     inkscape:label="left_coordinate_system"
+     sodipodi:insensitive="true">
     <g
        id="g62-9-3"
        transform="translate(-38.405729,-89.808305)"
@@ -1562,7 +1573,8 @@
      id="layer2"
      inkscape:label="left_camera"
      style="display:inline"
-     transform="translate(35.534306,-106.49092)">
+     transform="translate(35.534306,-106.49092)"
+     sodipodi:insensitive="true">
     <g
        transform="matrix(1.33333,0,0,1.33333,17.1934,274.017)"
        ns2:version="1.9.0"

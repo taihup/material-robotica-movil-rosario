@@ -1367,6 +1367,36 @@
 
 \begin{frame}
     \frametitle{Geometría Epipolar}
+
+    \only<1>{
+        \begin{center}
+            \includegraphics[width=0.6\textwidth]{./images/epipolar_geometry_monocular_left_ray_scale.pdf}
+        \end{center}
+    }
+    \only<2>{
+        \begin{center}
+            \includegraphics[width=0.6\textwidth]{./images/epipolar_geometry_stereo_projections.pdf}
+        \end{center}
+    }
+    \only<3>{
+        \begin{center}
+            \includegraphics[width=0.6\textwidth]{./images/epipolar_geometry_stereo_epipolar_line.pdf}
+        \end{center}
+    }
+    \only<4>{
+        \begin{center}
+            \includegraphics[width=0.6\textwidth]{./images/epipolar_geometry_stereo_epipoles.pdf}
+        \end{center}
+    }
+    \only<5>{
+        \begin{center}
+            \includegraphics[width=0.6\textwidth]{./images/epipolar_geometry.pdf}
+        \end{center}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{Geometría Epipolar}
     \footnotesize
     \begin{itemize}
         \item La restricción epipolar puede ser computada por medio de puntos 2D en la imagen cuando la pose relative de la cámara es conocida 
@@ -1379,7 +1409,7 @@
     \end{itemize}
 
     \begin{center}
-        \includegraphics[width=0.6\textwidth]{./images/epipolar_geometry_epipolar_line.pdf}
+        \includegraphics[width=0.6\textwidth]{./images/epipolar_geometry.pdf}
     \end{center}
 
     La línea epipolar permite que restrinjamos la búsqueda de correspondencias visuales entre dos cámaras.
