@@ -1585,7 +1585,7 @@
     \end{bmatrix}
     \begin{bmatrix} x_r \\ y_r \\ z_r \\ 1 \end{bmatrix}
     $$
-    $$\boxed{\vec{u}_l \equiv \mathbf{P}_l \tilde{\mathbf{x}}_r}$$
+    $$\boxed{\tilde{\vec{u}}_l = \mathbf{P}_l \tilde{\mathbf{x}}_r}$$
 
     Right Camera Imaging Equation:
     $$
@@ -1597,7 +1597,7 @@
     \end{bmatrix}
     \begin{bmatrix} x_r \\ y_r \\ z_r \\ 1 \end{bmatrix}
     $$
-    $$\boxed{\vec{u}_r \equiv \mathbf{M}_{\text{int}} \tilde{\mathbf{x}}_r}$$
+    $$\boxed{\tilde{\vec{u}}_r \equiv \mathbf{M}_{\text{int}} \tilde{\mathbf{x}}_r}$$
 \end{frame}
 
 % --- Slide 17: Computing Depth (Matrix Equations) ---
@@ -1608,26 +1608,30 @@
     \begin{columns}
         \begin{column}{0.5\textwidth}
             \begin{equation*}
-                \vec{u}_r \equiv
+                \tilde{\vec{u}}_r = \mathbf{M}_r \tilde{\mathbf{x}}_r
+            \end{equation*}
+            \begin{equation*}
+                \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix} \equiv
                 \underbrace{\begin{bmatrix}
                     m_{11} & m_{12} & m_{13} & m_{14} \\
                     m_{21} & m_{22} & m_{23} & m_{24} \\
                     m_{31} & m_{32} & m_{33} & m_{34}
                 \end{bmatrix}}_{\text{Known}}
                 \underbrace{\begin{bmatrix} x_r \\ y_r \\ z_r \\ 1 \end{bmatrix}}_{\text{Unknown}}
-                \quad \vec{u}_r = \mathbf{M}_r \tilde{\mathbf{x}}_r
             \end{equation*}
         \end{column}
         \begin{column}{0.5\textwidth}
             \begin{equation*}
-                \vec{u}_l \equiv
+                \tilde{\vec{u}}_l = \mathbf{P}_l \tilde{\mathbf{x}}_r
+            \end{equation*}
+            \begin{equation*}
+                \begin{bmatrix} u_l \\ v_l \\ 1 \end{bmatrix} \equiv
                 \underbrace{\begin{bmatrix}
                     p_{11} & p_{12} & p_{13} & p_{14} \\
                     p_{21} & p_{22} & p_{23} & p_{24} \\
                     p_{31} & p_{32} & p_{33} & p_{34}
                 \end{bmatrix}}_{\text{Known}}
                 \underbrace{\begin{bmatrix} x_r \\ y_r \\ z_r \\ 1 \end{bmatrix}}_{\text{Unknown}}
-                \quad \vec{u}_l = \mathbf{P}_l \tilde{\mathbf{x}}_r
             \end{equation*}
         \end{column}
     \end{columns}
@@ -1653,32 +1657,30 @@
 % --- Slide 18: Computing Depth (Least Squares) ---
 \begin{frame}
     \frametitle{Computing Depth: Least Squares Solution}
-    $$
-    \underbrace{\begin{bmatrix}
-        u_r m_{31} - m_{11} & u_r m_{32} - m_{12} & u_r m_{33} - m_{13} \\
-        v_r m_{31} - m_{21} & v_r m_{32} - m_{22} & v_r m_{33} - m_{23} \\
-        u_l p_{31} - p_{11} & u_l p_{32} - p_{12} & u_l p_{33} - p_{13} \\
-        v_l p_{31} - p_{21} & v_l p_{32} - p_{22} & v_l p_{33} - p_{23}
-    \end{bmatrix}}_{\mathbf{A}_{4\times3} \text{(Known)}}
-    \underbrace{\begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix}}_{\mathbf{x}_r \text{(Unknown)}} =
-    \underbrace{\begin{bmatrix}
-        m_{14} - u_r m_{34} \\
-        m_{24} - v_r m_{34} \\
-        p_{14} - u_l p_{34} \\
-        p_{24} - v_l p_{34}
-    \end{bmatrix}}_{\mathbf{b}_{4\times1} \text{(Known)}}
-    $$
+    \begin{equation*}
+        \underbrace{\begin{bmatrix}
+            u_r m_{31} - m_{11} & u_r m_{32} - m_{12} & u_r m_{33} - m_{13} \\
+            v_r m_{31} - m_{21} & v_r m_{32} - m_{22} & v_r m_{33} - m_{23} \\
+            u_l p_{31} - p_{11} & u_l p_{32} - p_{12} & u_l p_{33} - p_{13} \\
+            v_l p_{31} - p_{21} & v_l p_{32} - p_{22} & v_l p_{33} - p_{23}
+        \end{bmatrix}}_{\substack{\mathbf{A}_{4\times3}\\ \text{(Known)}}}
+        \underbrace{\begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix}}_{\substack{\mathbf{x}_r\\ \text{(Unknown)}}} =
+        \underbrace{\begin{bmatrix}
+            m_{14} - u_r m_{34} \\
+            m_{24} - v_r m_{34} \\
+            p_{14} - u_l p_{34} \\
+            p_{24} - v_l p_{34}
+        \end{bmatrix}}_{\substack{\mathbf{b}_{4\times1}\\ \text{(Known)}}}
+    \end{equation*}
 
     Find least squares solution using pseudo-inverse:
-    $$
-    \mathbf{A} \mathbf{x}_r = \mathbf{b}
-    $$
-    $$
-    \mathbf{A}^T \mathbf{A} \mathbf{x}_r = \mathbf{A}^T \mathbf{b}
-    $$
-    $$
-    \boxed{\mathbf{x}_r = (\mathbf{A}^T \mathbf{A})^{-1} \mathbf{A}^T \mathbf{b}}
-    $$
+    \begin{align*}
+        \mathbf{A} \mathbf{x}_r &= \mathbf{b}\\
+        \mathbf{A}^{\top} \mathbf{A} \mathbf{x}_r &= \mathbf{A}^{\top} \mathbf{b}
+    \end{align*}
+    \begin{equation*}
+        \boxed{\mathbf{x}_r = (\mathbf{A}^{\top} \mathbf{A})^{-1} \mathbf{A}^{\top} \mathbf{b}}
+    \end{equation*}
 \end{frame}
 
 
