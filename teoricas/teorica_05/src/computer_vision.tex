@@ -1506,27 +1506,39 @@
 
 \begin{frame}
     \frametitle{Computing Depth}
-    Given the intrinsic parameters, the projections of scene point $\mathbf{P}$ on the two image sensors are:
-    \begin{equation*}
-        \begin{bmatrix} u_l \\ v_l \\ 1 \end{bmatrix}
-        \equiv
-        \underbrace{\begin{bmatrix}
-            f_x^{(l)} & 0 & o_x^{(l)} & 0 \\
-            0 & f_y^{(l)} & o_y^{(l)} & 0 \\
-            0 & 0 & 1 & 0
-        \end{bmatrix}}_{\mathbf{P}}
-        \begin{bmatrix} x_l \\ y_l \\ z_l \\ 1 \end{bmatrix}
-    \end{equation*}
-    \begin{equation*}
-        \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix}
-        \equiv
-        \underbrace{\begin{bmatrix}
-            f_x^{(r)} & 0 & o_x^{(r)} & 0 \\
-            0 & f_y^{(r)} & o_y^{(r)} & 0 \\
-            0 & 0 & 1 & 0
-        \end{bmatrix}}_{\mathbf{M}}
-        \begin{bmatrix} x_r \\ y_r \\ z_r \\ 1 \end{bmatrix}
-    \end{equation*}
+
+    \begin{center}
+        \includegraphics[width=0.6\textwidth]{./images/epipolar_geometry_triangulation.pdf}
+    \end{center}
+
+    Given the intrinsic parameters, the projections of scene point $\vec{x}$ on the two image sensors are:
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+        \begin{equation*}
+            \begin{bmatrix} u_l \\ v_l \\ 1 \end{bmatrix}
+            \equiv
+            \underbrace{\begin{bmatrix}
+                f_x^{(l)} & 0 & o_x^{(l)} & 0 \\
+                0 & f_y^{(l)} & o_y^{(l)} & 0 \\
+                0 & 0 & 1 & 0
+            \end{bmatrix}}_{\mathbf{P}}
+            \begin{bmatrix} x_l \\ y_l \\ z_l \\ 1 \end{bmatrix}
+        \end{equation*}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+        \begin{equation*}
+            \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix}
+            \equiv
+            \underbrace{\begin{bmatrix}
+                f_x^{(r)} & 0 & o_x^{(r)} & 0 \\
+                0 & f_y^{(r)} & o_y^{(r)} & 0 \\
+                0 & 0 & 1 & 0
+            \end{bmatrix}}_{\mathbf{M}}
+            \begin{bmatrix} x_r \\ y_r \\ z_r \\ 1 \end{bmatrix}
+        \end{equation*}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 % --- Slide 15: Computing Depth (Transformation) ---
