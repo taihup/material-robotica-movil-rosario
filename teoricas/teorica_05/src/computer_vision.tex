@@ -942,20 +942,24 @@
         \quad \text{Matrix-vector form}
     \end{align*}
 %
-    \begin{equation*}
-        \boxed{
-        \mathbf{x}_l = \rotation \mathbf{x}_r + \translation
-        }
-        \quad
-        \begin{bmatrix} x_l \\ y_l \\ z_l \end{bmatrix} =
-        \begin{bmatrix}
-            r_{11} & r_{12} & r_{13} \\
-            r_{21} & r_{22} & r_{23} \\
-            r_{31} & r_{32} & r_{33}
-        \end{bmatrix}
-        \begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix} +
-        \begin{bmatrix} t_x \\ t_y \\ t_z \end{bmatrix}
-    \end{equation*}
+    \only<2>{
+        \begin{equation*}
+            \boxed{
+            \mathbf{x}_l = \rotation \mathbf{x}_r + \translation
+            }
+            \quad
+            \implies
+            \quad
+            \begin{bmatrix} x_l \\ y_l \\ z_l \end{bmatrix} =
+            \begin{bmatrix}
+                r_{11} & r_{12} & r_{13} \\
+                r_{21} & r_{22} & r_{23} \\
+                r_{31} & r_{32} & r_{33}
+            \end{bmatrix}
+            \begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix} +
+            \begin{bmatrix} t_x \\ t_y \\ t_z \end{bmatrix}
+        \end{equation*}
+    }
 \end{frame}
 
 % --- Slide 3: Epipolar Constraint (Essential Matrix E) ---
