@@ -943,6 +943,7 @@
     \end{align*}
 %
     \only<2>{
+        Dado,
         \begin{equation*}
             \boxed{
             \mathbf{x}_l = \rotation \mathbf{x}_r + \translation
@@ -965,47 +966,67 @@
 % --- Slide 3: Epipolar Constraint (Essential Matrix E) ---
 \begin{frame}
     \frametitle{Epipolar Constraint}
-    Substituting into the epipolar constraint gives:
-    
-    \begin{equation*}
-        \begin{bmatrix} x_l & y_l & z_l \end{bmatrix}
-        \left(
-        \begin{bmatrix}
-            0 & -t_z & t_y \\
-            t_z & 0 & -t_x \\
-            -t_y & t_x & 0
-        \end{bmatrix}
-        \begin{bmatrix}
-            r_{11} & r_{12} & r_{13} \\
-            r_{21} & r_{22} & r_{23} \\
-            r_{31} & r_{32} & r_{33}
-        \end{bmatrix}
-        +
-        \underbrace{
-        \begin{bmatrix}
-            0 & -t_z & t_y \\
-            t_z & 0 & -t_x \\
-            -t_y & t_x & 0
-        \end{bmatrix}
-        \begin{bmatrix} t_x \\ t_y \\ t_z \end{bmatrix}}_{\translation \times \translation = 0}
-        \right)
-        \begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix} = 0
-    \end{equation*}
+    \only<1>{
+        Substituting into the epipolar constraint gives:
+        \begin{equation*}
+            \begin{bmatrix} x_l & y_l & z_l \end{bmatrix}
+            \left(
+            \begin{bmatrix}
+                0 & -t_z & t_y \\
+                t_z & 0 & -t_x \\
+                -t_y & t_x & 0
+            \end{bmatrix}
+            \begin{bmatrix}
+                r_{11} & r_{12} & r_{13} \\
+                r_{21} & r_{22} & r_{23} \\
+                r_{31} & r_{32} & r_{33}
+            \end{bmatrix}
+            \begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix}
+            +
+            \underbrace{
+            \begin{bmatrix}
+                0 & -t_z & t_y \\
+                t_z & 0 & -t_x \\
+                -t_y & t_x & 0
+            \end{bmatrix}
+            \begin{bmatrix} t_x \\ t_y \\ t_z \end{bmatrix}}_{\translation \times \translation = 0}
+            \right)
+            = 0
+        \end{equation*}
+    }
+    \only<2->{
+        \begin{equation*}
+            \begin{bmatrix} x_l & y_l & z_l \end{bmatrix}
+            \begin{bmatrix}
+                0 & -t_z & t_y \\
+                t_z & 0 & -t_x \\
+                -t_y & t_x & 0
+            \end{bmatrix}
+            \begin{bmatrix}
+                r_{11} & r_{12} & r_{13} \\
+                r_{21} & r_{22} & r_{23} \\
+                r_{31} & r_{32} & r_{33}
+            \end{bmatrix}
+            \begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix}
+            = 0
+        \end{equation*}
+    }
+    \only<3>{
+        \begin{equation*}
+            \begin{bmatrix} x_l & y_l & z_l \end{bmatrix}
+            \underbrace{\begin{bmatrix}
+                e_{11} & e_{12} & e_{13} \\
+                e_{21} & e_{22} & e_{23} \\
+                e_{31} & e_{32} & e_{33}
+            \end{bmatrix}}_{\text{Essential Matrix } \essentialMatrix}
+            \begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix} = 0
+        \end{equation*}
 
-    \begin{equation*}
-        \begin{bmatrix} x_l & y_l & z_l \end{bmatrix}
-        \underbrace{\begin{bmatrix}
-            e_{11} & e_{12} & e_{13} \\
-            e_{21} & e_{22} & e_{23} \\
-            e_{31} & e_{32} & e_{33}
-        \end{bmatrix}}_{\text{Essential Matrix } \essentialMatrix}
-        \begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix} = 0
-    \end{equation*}
-
-    \begin{equation*}
-        \boxed{\essentialMatrix = \begin{bmatrix}\translation\end{bmatrix}_{\times} \rotation}
-    \end{equation*}
-    \footnotesize{[Longuet-Higgins 1981]}
+        \begin{equation*}
+            \boxed{\essentialMatrix = \begin{bmatrix}\translation\end{bmatrix}_{\times} \rotation}
+        \end{equation*}
+        \footnotesize{[Longuet-Higgins 1981]}
+    }
 \end{frame}
 
 % --- Slide 4: Essential Matrix E Decomposition ---
@@ -1031,7 +1052,7 @@
         r_{31} & r_{32} & r_{33}
     \end{bmatrix}
     $$
-    Given that $\begin{bmatrix}\translation\end{bmatrix}_{\times}$ is a Skew-Symmetric matrix ($a_{ij} = -a_{ji}$) and $\rotation$ is an Orthonormal matrix, it is possible to ``decouple'' $\translation_{\times}$ and $\rotation$ from their product using ``Singular Value Decomposition''.
+    Given that $\begin{bmatrix}\translation\end{bmatrix}_{\times}$ is a Skew-Symmetric matrix ($a_{ij} = -a_{ji}$) and $\rotation$ is an Orthonormal matrix, it is possible to ``decouple'' $\begin{bmatrix}\translation\end{bmatrix}_{\times}$ and $\rotation$ from their product using ``Singular Value Decomposition''.
 
     \vspace{0.5cm}
     Take Away: If $\essentialMatrix$ is known, we can calculate $\translation$ and $\rotation$.
@@ -1043,7 +1064,7 @@
 % --- Slide 5: How do we find E? ---
 \begin{frame}
     \frametitle{How do we find $\essentialMatrix$?}
-    Relates 3D position $(x_l, y_l, z_l)$ of scene point w.r.t left camera to its 3D position $(x_r, y_r, z_r)$ w.r.t. right camera
+    Relates 3D position $\begin{bmatrix} x_l \\ y_l \\ z_l \end{bmatrix}$ of scene point w.r.t left camera to its 3D position $\begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix}$ w.r.t. right camera
     \begin{equation*}
         \boxed{\mathbf{x}_l^{\top} \essentialMatrix \mathbf{x}_r = 0}
     \end{equation*}
@@ -1052,7 +1073,9 @@
         \includegraphics[width=0.8\textwidth]{./images/essential_matrix_coplanary_constraint.pdf}
     \end{center}
 
-    Unfortunately, we don't have $\mathbf{x}_l$ and $\mathbf{x}_r$.
+    \vfill
+
+    \alert{Unfortunately, we don't have $\mathbf{x}_l$ and $\mathbf{x}_r$.}
 
     But we do know corresponding points in image coordinates.
 \end{frame}
@@ -1736,6 +1759,8 @@
 
     \note{Info: https://3d.bk.tudelft.nl/courses/geo1016/slides/Lecture_05_Reconstruct3DGeometry.pdf}
 
+    \note{https://rpg.ifi.uzh.ch/docs/teaching/2017/08_multiple_view_geometry_2.pdf}
+
     El plan es que podamos computar la Matríz Fundamental, y luego utilizando la calibración de la cámara calcular la Matríz Esencial. La Matríz Esencial está compuesta por rotación entre las cámaras y el vector dirección de traslación (a un factor de escala).
     
     \begin{figure}
@@ -1743,6 +1768,7 @@
     \end{figure}
 
     En total tenemos 4 configuraciones posibles para las 2 cámaras. Nos quedamos con la configuración que haga que los puntos triangulados esten delante de ambas cámaras.
+
 \end{frame}
 
 
