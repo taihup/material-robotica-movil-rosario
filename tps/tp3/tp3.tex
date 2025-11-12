@@ -39,7 +39,7 @@ El objetivo del trabajo práctico es la realización de los pasos básicos para 
 \end{itemize}
 
 \section{Datos}
-En este trabajo práctico se utilizará el dataset EuRoC\footnote{\url{https://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets}}. Rosbags ya convertidos a formato ros2 pueden ser descargados de \url{http://fs01.cifasis-conicet.gov.ar:90/~pire/datasets/euroc_rosbag2/}.
+En este trabajo práctico se utilizará el dataset EuRoC\footnote{\url{https://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets}}. Rosbags ya convertidos a formato ros2 pueden ser descargados de \url{http://fs01.cifasis-conicet.gov.ar:90/~pire/datasets/euroc_rosbag2/}. Observar que el dataset cuenta con \emph{ground-truth} de la trayectoria del robot en el sistema de coordenadas de la IMU.
 
 
 %Para el ejercicio de calibración, debe convertir la secuencia de calibración a formato ROS2. Para esto puede utilizar el software \lstinline{rosbags}\footnote{https://pypi.org/project/rosbags/}.
@@ -49,7 +49,7 @@ En este trabajo práctico se utilizará el dataset EuRoC\footnote{\url{https://p
 
 \section{Ejercicios}
 
-\ejercicio Realizar una calibración de la cámara estéreo del robot. Se debe proveer los parámetros intrínsecos y extrínsecos.
+\ejercicio Realizar una calibración de la cámara estéreo del robot. Se debe proveer los parámetros intrínsecos y extrínsecos. Analizar la calibración obtenida.
 
 \begin{nota}
     Para la calibración se puede utilizar cualquiera de las aplicaciones que se detallan a continuación:
@@ -114,45 +114,47 @@ ros2 bag play CARPETA_ROSBAG --remap /stereo/left/image_raw:=/left/image_raw \
         
     \end{itemize}
 
+    Analizar los resultados obtenidos. Agregar capturas al informe.
+
 \item \textbf{Extraer Feaures Visuales: Keypoints y descriptores}
 
-Selecionar un detector de keypoints (FAST, ORB, SIFT, SURF, GFTT, BRISK, etc.) y un descriptor (BRIEF, ORB, BRISK, etc.), y extraer features en ambas imágenes. Capturar una imagen izquierda y derecha con los features extraídos. Agregar captura al informe.
+Selecionar un detector de keypoints (FAST, ORB, SIFT, SURF, GFTT, BRISK, etc.) y un descriptor (BRIEF, ORB, BRISK, etc.), y extraer features en ambas imágenes. Capturar una imagen izquierda y derecha con los features extraídos. Analizar los resultados obtenidos y agregar capturas al informe.
 
 \item \textbf{Buscar correspondencias visuales}
 
-Realizar la búsqueda de correspondencias entre los feature de ambas imágenes (\emph{matching}). Para esto se debe utilizar la función \lstinline{cv::BFMatcher::BFMatcher()}. Visualizar todos los matches. Luego, visualizar todos los matches que tengan una distancia de matching menor a 30. Agregar capturas al informe.
+Realizar la búsqueda de correspondencias entre los feature de ambas imágenes (\emph{matching}). Para esto se debe utilizar la función \lstinline{cv::BFMatcher::BFMatcher()}. Visualizar todos los matches. Luego, visualizar todos los matches que tengan una distancia de matching menor a 30. Analizar los resultados obtenidos y agregar capturas al informe.
 
 \item \textbf{Triangular Puntos 3D}
 
-Dadas las correspondencias visuales (\emph{matches}) obtenidas en el paso anterior, realizar la triangulación de los features extraídos utilizando la función \lstinline{cv::sfm::triangulatePoints()}. Para la visualización de la nube de puntos 3D se puede publicar un mensaje de tipo \lstinline{sensor_msgs/PointCloud2}\footnote{\url{http://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/PointCloud2.html}} y hacer uso de RViz. Agregar a cada punto 3D el color del pixel de la imagen izquierda. Agregar capturas al informe.
+Dadas las correspondencias visuales (\emph{matches}) obtenidas en el paso anterior, realizar la triangulación de los features extraídos utilizando la función \lstinline{cv::sfm::triangulatePoints()}. Para la visualización de la nube de puntos 3D se puede publicar un mensaje de tipo \lstinline{sensor_msgs/PointCloud2}\footnote{\url{http://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/PointCloud2.html}} y hacer uso de RViz. Agregar a cada punto 3D el color del pixel de la imagen izquierda.  Analizar los resultados obtenidos y agregar capturas al informe.
 
 \item \textbf{Filtrar de Correspondencias Espúreas}
 
-Aplicar RANSAC (\emph{Random sample consensus}) para filtrar los matches espúreos y computar la Matríz homográfica que relaciona los puntos. Para esto puede utilizar la función \lstinline{cv::findHomography()}. Para verificar el impacto del filtrado, visualizar los matches entre las imágenes nuevamente como en la nube de puntos 3D generada. También, visualizar en la imagen derecha los puntos de la imagen izquierda transformados por la matríz homográfica. Para esto último utilizar la función  \lstinline{cv::perspectiveTransform()}. Agregar capturas al informe.
+Aplicar RANSAC (\emph{Random sample consensus}) para filtrar los matches espúreos y computar la Matríz homográfica que relaciona los puntos. Para esto puede utilizar la función \lstinline{cv::findHomography()}. Para verificar el impacto del filtrado, visualizar los matches entre las imágenes nuevamente como en la nube de puntos 3D generada. También, visualizar en la imagen derecha los puntos de la imagen izquierda transformados por la matríz homográfica. Para esto último utilizar la función  \lstinline{cv::perspectiveTransform()}. Analizar los resultados obtenidos y agregar capturas al informe.
 
 \item (Opcional) \textbf{Feature Mapping con Localización \emph{ground-truth}}
 
-Mapear el entorno utilizando las poses dada por el \emph{ground-truth} del dataset. Agregar a cada punto 3D el color del pixel de la imagen izquierda. Visualizar el mapa reconstruido. Agregar captura al informe.
+Mapear el entorno utilizando las poses dada por el \emph{ground-truth} del dataset. Agregar a cada punto 3D el color del pixel de la imagen izquierda. Visualizar el mapa reconstruido.  Analizar los resultados obtenidos y agregar capturas al informe.
 
 \item \textbf{Computar el Mapa de Disparidad}
 
-Computar el mapa de disparidad con las librerías utilizando la función \lstinline{cv::StereoMatcher::compute()}. Opcionalmente para tener mejores resultados puede utilizar la librería LIBELAS\footnote{\url{http://www.cvlibs.net/software/libelas/}}. Visualizar el mapa de disparidad. Agregar captura al informe.
+Computar el mapa de disparidad con las librerías utilizando la función \lstinline{cv::StereoMatcher::compute()}. Opcionalmente para tener mejores resultados puede utilizar la librería LIBELAS\footnote{\url{http://www.cvlibs.net/software/libelas/}}. Visualizar el mapa de disparidad. Analizar los resultados obtenidos y agregar capturas al informe.
 
 \item \textbf{Reconstruir la Escena 3D de manera Densa}
 
-Utilizando el mapa de disparidad obtenido en el paso anterior realizar una reconstrucción densa de la escena observada utilizando la función \lstinline{cv::reprojectImageTo3D()}. Para esto debe utilizar la matríz de reproyección Q retornada por la función \lstinline{cv::stereoRectify()}. Visualizar la nube de puntos 3D. Agregar captura al informe.
+Utilizando el mapa de disparidad obtenido en el paso anterior realizar una reconstrucción densa de la escena observada utilizando la función \lstinline{cv::reprojectImageTo3D()}. Para esto debe utilizar la matríz de reproyección Q retornada por la función \lstinline{cv::stereoRectify()}. Visualizar la nube de puntos 3D. Analizar los resultados obtenidos y agregar capturas al informe.
 
 \item (Opcional) \textbf{Dense Mapping con Localización Ground-truth}
 
-Mapear el entorno de manera densa utilizando las poses dada por el \emph{ground-truth} del dataset. Agregar a cada punto 3D el color del pixel de la imagen izquierda. Visualizar el mapa reconstruido. Agregar captura al informe.
+Mapear el entorno de manera densa utilizando las poses dada por el \emph{ground-truth} del dataset. Agregar a cada punto 3D el color del pixel de la imagen izquierda. Visualizar el mapa reconstruido.  Analizar los resultados obtenidos y agregar capturas al informe.
 
 \item \textbf{Estimar la Pose utilizando Visión Monocular}
 
 Utilizando \lstinline{cv::recoverPose()} estimar la transformación entre la cámara izquierda y la cámara derecha. Para esto deberá calcular la matríz esencial utilizando la función \lstinline{cv::findEssentialMat()}. Notar que \lstinline{cv::recoverPose()} retorna el vector unitario de traslación, por lo tanto deberá multiplicarlo por el factor de escala (en este caso el baseline entre las cámaras) para obtener la traslación estimada. Una vez hecho esto se pide:
 
 \begin{itemize}
-    \item Visualizar la pose estimada de ambas cámaras. Agregar captura al informe.
-    \item Estimar y visualizar la trayectoría realizada por la cámara izquierda utilizando como factor de escala la distancia entre cada par de frames dada por el \emph{ground-truth}. Agregar captura al informe.
+    \item Visualizar la pose estimada de ambas cámaras. Analizar los resultados obtenidos y agregar capturas al informe.
+    \item Estimar y visualizar la trayectoría realizada por la cámara izquierda utilizando como factor de escala la distancia entre cada par de frames dada por el \emph{ground-truth}. Analizar los resultados obtenidos y agregar capturas al informe.
 \end{itemize}
 
 
