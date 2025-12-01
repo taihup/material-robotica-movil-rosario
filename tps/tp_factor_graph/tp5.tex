@@ -55,7 +55,7 @@ El primer paso es clonar e instalar la librería GTSAM. Las instrucciones detall
 
 \textbf{Remark 1.} \textit{Si planea utilizar el wrapper de MATLAB o de Python, puede omitir esta parte.}
 
-\textbf{Remark 2.} \textit{GTSAM requiere la librería Eigen. Se puede descargar e instalar desde aquí: \url{http://eigen.tuxfamily.org/index.php?title=Main_Page}}
+\textbf{Remark 2.} \textit{GTSAM requiere la librería Eigen. Se puede descargar e instalar desde aquí: \url{https://libeigen.gitlab.io/}}
 
 \textbf{Remark 3.} \textit{Por favor, tenga en cuenta los requisitos previos: Boost >= 1.58 (Ubuntu: sudo apt-get install libboost-all-dev); CMake >= 3.0 (Ubuntu: sudo apt-get install cmake); Un compilador moderno, es decir, al menos gcc 4.7.3 en Linux.}
 
@@ -158,9 +158,9 @@ Puede consultar algunos ejemplos de GTSAM en PYTHON en el directorio \url{https:
 
 \section{Graph-SLAM 2D}
 \subsection{A.}
-Escriba una función para leer el conjunto de datos Intel 2D\footnote{\url{https://www.dropbox.com/s/vcz8cag7bo0zlaj/input_INTEL_g2o.g2o?dl=0}} desde el formato G2O y generar poses y aristas. Estas poses y aristas se utilizan en problemas posteriores. Puede ser cualquier forma que desee siempre que pueda usarla para generar el resultado correcto.
+Escriba una función para leer el conjunto de datos \lstinline[style=bash]{input_INTEL_g2o.g2o}\footnote{\url{https://www.dropbox.com/s/vcz8cag7bo0zlaj/input_INTEL_g2o.g2o?dl=0}} desde el formato G2O y generar poses y aristas. Estas poses y aristas se utilizan en problemas posteriores. Pueden estar en cualquier formato que desee siempre que pueda usarlos para generar el resultado correcto.
 
-Para datos 2D, la pose en formato G2O es \lstinline[style=bash]{[VERTEX_SE2 i x y theta]} y el borde en formato G2O es \lstinline[style=bash]{[EDGE_SE2 i j x y theta info(x, y, theta)]}, donde \lstinline[style=bash]{info(x, y, theta)} es un vector $1 \times 6$ \lstinline[style=bash]{[q11 q12 q13 q22 q23 q33]} donde los elementos son la matriz del triángulo superior de la matriz de información $3 \times 3$:
+Para datos 2D, la pose en formato G2O es \lstinline[style=bash]{[VERTEX_SE2 i x y theta]} y la arista en formato G2O es \lstinline[style=bash]{[EDGE_SE2 i j x y theta info(x, y, theta)]}, donde \lstinline[style=bash]{info(x, y, theta)} es un vector $1 \times 6$ \lstinline[style=bash]{[q11 q12 q13 q22 q23 q33]} donde los elementos pertenecen al triángulo superior de la matriz de información $3 \times 3$:
 
 \begin{equation*}
     \Omega = \begin{bmatrix} q_{11} & q_{12} & q_{13} \\ q_{12} & q_{22} & q_{23} \\ q_{13} & q_{23} & q_{33} \end{bmatrix}.
@@ -221,7 +221,7 @@ Utilizar el solver ISAM2 para optimizar la trayectoria de forma incremental (a m
 
 \section{Graph-SLAM 3D}
 \subsection{A.}
-Escriba una función para leer el archivo 3D Garage G2O\footnote{\url{https://www.dropbox.com/s/zu23p8d522qccor/parking-garage.g2o?dl=0}} desde el formato G2O y genere poses y aristas.
+Escriba una función para leer el archivo 3D \lstinline[style=bash]{parking-garage.g2o}\footnote{\url{https://www.dropbox.com/s/zu23p8d522qccor/parking-garage.g2o?dl=0}} desde el formato G2O y genere poses y aristas.
 
 Para datos 3D, la pose en formato G2O es \lstinline[style=bash]{[VERTEX_SE3:QUAT i x y z qx qy qz qw]} donde \lstinline[style=bash]{(x,y,z)} representa la traslación y \lstinline[style=bash]{(qx,qy,qz,qw)} la rotación como un cuaternión. La ventaja en formato G2O es \lstinline[style=bash]{[EDGE_SE3:QUAT i j x y z qx qy qz qw info(x, y, z, qx, qy, qz)]}, donde \lstinline[style=bash]{info(x, y, z, qx, qy, qz)} es un vector $1 \times 21$ de la matriz de información $6 \times 6$. Después de un proceso similar en la tarea 1 A, puede obtener la matriz de covarianza. Puede consultar los detalles en el repositorio de g2o\footnote{\url{https://github.com/RainerKuenmerle/g2o/wiki/File-Format-SLAM-3D}}.
 
