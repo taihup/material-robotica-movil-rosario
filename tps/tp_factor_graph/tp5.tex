@@ -157,7 +157,8 @@ make python-install
 Puede consultar algunos ejemplos de GTSAM en PYTHON en el directorio \url{https://github.com/borglab/gtsam/tree/develop/python/gtsam/examples}.
 
 \section{Graph-SLAM 2D}
-\subsection{A.}
+\subsection{Lectura de archivos 2D}
+\label{sec:read_g2o_2d}
 Escriba una función para leer el conjunto de datos \lstinline[style=bash]{input_INTEL_g2o.g2o}\footnote{\url{https://www.dropbox.com/s/vcz8cag7bo0zlaj/input_INTEL_g2o.g2o?dl=0}} desde el formato G2O y generar poses y aristas. Estas poses y aristas se utilizan en problemas posteriores. Pueden estar en cualquier formato que desee siempre que pueda usarlos para generar el resultado correcto.
 
 Para datos 2D, la pose en formato G2O es \lstinline[style=bash]{[VERTEX_SE2 i x y theta]} y la arista en formato G2O es \lstinline[style=bash]{[EDGE_SE2 i j x y theta info(x, y, theta)]}, donde \lstinline[style=bash]{info(x, y, theta)} es un vector $1 \times 6$ \lstinline[style=bash]{[q11 q12 q13 q22 q23 q33]} donde los elementos pertenecen al triángulo superior de la matriz de información $3 \times 3$:
@@ -170,20 +171,20 @@ Al invertir esta matriz de información, se puede obtener la matriz de covarianz
 
 Puede verlo en detalle en el repositorio de g2o\footnote{\url{https://github.com/RainerKuemmerle/g2o/wiki/File-Format-SLAM-2D}}.
 
-\textbf{Observación 5.} \textit{Si usas las funciones \lstinline[style=bash]{readG2o()} y \lstinline[style=bash]{load2D()} proporcionadas por GTSAM, entonces no podrás resolver el grafo incrementalmente (tarea~\ref{sec:incremental_solution} en este trabajo práctico).}
+\textbf{Observación 5.} \textit{Si usa las funciones \lstinline[style=bash]{readG2o()} y \lstinline[style=bash]{load2D()} proporcionadas por GTSAM, entonces no podrá resolver el grafo incrementalmente (tarea~\ref{sec:incremental_solution} en este trabajo práctico).}
 
 \textbf{Sugerencia:} Puede usar funciones \lstinline[style=bash]{fscanf()}, \lstinline[style=bash]{textscan()} o \lstinline[style=bash]{readcell()} con formatSpec adecuado de MATLAB y verificar si el primer elemento en la entrada es \lstinline[style=bash]{VERTEX_SE2} o \lstinline[style=bash]{EDGE_SE2}.
 
-\subsection{B. Batch Solution}
-Una solución por lotes significa que primero construimos el grafo completo y luego lo resolvemos por completo. Cargar \lstinline[style=bash]{data/input_INTEL_g2o.g2o} y construir un grafo de factores no lineales 2D usando GTSAM. Utilice el solver de Gauss-Newton. Visualice y compare la trayectoria optimizada con la trayectoria inicial. Incluye la gráfico en el informe. Describir el proceso de construcción del grafo y sus parámetros.
+\subsection{Solución por Lotes (Batch Solution)}
+Una solución por lotes significa que primero construimos el grafo completo y luego lo resolvemos por completo. Cargar \lstinline[style=bash]{data/input_INTEL_g2o.g2o} y construir un grafo de factores no lineales 2D usando GTSAM. Utilice el solver de Gauss-Newton. Visualizar y comparar la trayectoria optimizada con la trayectoria inicial. Incluir el plot en el informe. Describir el proceso de construcción del grafo y sus parámetros.
 
 \textbf{Remark 6.} \textit{Para este problema, el solver de Gauss Newton caerá en un mínimo local si no le agregamos una perturbación. Está bien enviar un grafico que muestre que no funciona como se espera, pero incluya una discusión sobre por qué sucede esto.}
 
-\textbf{Hint:} Puede usar \lstinline[style=bash]{NonLinearFactorGraph} como grafo, usar \lstinline[style=bash]{GaussNewtonOptimizer} como optimizador, usar \lstinline[style=bash]{Values} para su estimación inicial, \lstinline[style=bash]{noiseModel.Gaussian.Covariance()} para su modelo de ruido, \lstinline[style=bash]{graph.add()} y \lstinline[style=bash]{initial.insert()} funcionan como lo vea conveniente. Sin embargo, los nombres de las funciones pueden ser diferentes para las diferentes versiones de GTSAM.
+\textbf{Hint:} Puede usar \lstinline[style=bash]{NonLinearFactorGraph} como grafo, usar \lstinline[style=bash]{GaussNewtonOptimizer} como optimizador, usar \lstinline[style=bash]{Values} para su estimación inicial, \lstinline[style=bash]{noiseModel.Gaussian.Covariance()} para su modelo de ruido, usar las funciones \lstinline[style=bash]{graph.add()} y \lstinline[style=bash]{initial.insert()} cuando lo vea conveniente. Sin embargo, los nombres de las funciones pueden ser diferentes para las diferentes versiones de GTSAM.
 
-\subsection{C. Incremental Solution}
+\subsection{Solución Incremental}
 \label{sec:incremental_solution}
-Utilizar el solver ISAM2 para optimizar la trayectoria de forma incremental (a medida que construye el grafo gradualmente). Un algoritmo detallado se describe en Algoritmo~\ref{alg:isam2}. Visualice y compare la trayectoria optimizada con la trayectoria inicial. Incluir el gráfico en el pdf. Describir el proceso de construcción del grafo y sus parámetros.
+Utilizar el solver ISAM2 para optimizar la trayectoria de forma incremental (a medida que construye el grafo gradualmente). Un algoritmo detallado se describe en Algoritmo~\ref{alg:isam2}. Visualice y compare la trayectoria optimizada con la trayectoria inicial. Incluir el plot en el pdf. Describir el proceso de construcción del grafo y sus parámetros.
 
 \begin{algorithm}
     \caption{\lstinline[style=bash]{incremental_solution_2d(poses, edges)}}
@@ -220,17 +221,17 @@ Utilizar el solver ISAM2 para optimizar la trayectoria de forma incremental (a m
 \textbf{Sugerencia:} Puede usar \lstinline[style=bash]{NonLinearFactorGraph} como grafo, usar \lstinline[style=bash]{gtsam.ISAM2()} como algoritmo de actualización, usar \lstinline[style=bash]{Values} para su estimación inicial y usar las funciones \lstinline[style=bash]{graph.add()}, \lstinline[style=bash]{initial.insert()}, \lstinline[style=bash]{isam.update()} y \lstinline[style=bash]{isam.calculateEstimate()} como vea conveniente. Sin embargo, los nombres de las funciones pueden ser diferentes para las diferentes versiones de GTSAM.
 
 \section{Graph-SLAM 3D}
-\subsection{A.}
+\subsection{Lectura de archivos 3D}
 Escriba una función para leer el archivo 3D \lstinline[style=bash]{parking-garage.g2o}\footnote{\url{https://www.dropbox.com/s/zu23p8d522qccor/parking-garage.g2o?dl=0}} desde el formato G2O y genere poses y aristas.
 
-Para datos 3D, la pose en formato G2O es \lstinline[style=bash]{[VERTEX_SE3:QUAT i x y z qx qy qz qw]} donde \lstinline[style=bash]{(x,y,z)} representa la traslación y \lstinline[style=bash]{(qx,qy,qz,qw)} la rotación como un cuaternión. La ventaja en formato G2O es \lstinline[style=bash]{[EDGE_SE3:QUAT i j x y z qx qy qz qw info(x, y, z, qx, qy, qz)]}, donde \lstinline[style=bash]{info(x, y, z, qx, qy, qz)} es un vector $1 \times 21$ de la matriz de información $6 \times 6$. Después de un proceso similar en la tarea 1 A, puede obtener la matriz de covarianza. Puede consultar los detalles en el repositorio de g2o\footnote{\url{https://github.com/RainerKuenmerle/g2o/wiki/File-Format-SLAM-3D}}.
+Para datos 3D, la pose en formato G2O es \lstinline[style=bash]{[VERTEX_SE3:QUAT i x y z qx qy qz qw]} donde \lstinline[style=bash]{(x,y,z)} representa la traslación y \lstinline[style=bash]{(qx,qy,qz,qw)} la rotación como un cuaternión. La ventaja en formato G2O es \lstinline[style=bash]{[EDGE_SE3:QUAT i j x y z qx qy qz qw info(x, y, z, qx, qy, qz)]}, donde \lstinline[style=bash]{info(x, y, z, qx, qy, qz)} es un vector $1 \times 21$ de la matriz de información $6 \times 6$. Después de un proceso similar en la tarea~\ref{sec:read_g2o_2d}, puede obtener la matriz de covarianza. Puede consultar los detalles en el repositorio de g2o\footnote{\url{https://github.com/RainerKuenmerle/g2o/wiki/File-Format-SLAM-3D}}.
 
 \textbf{Remark 7.} \textit{Tenga en cuenta que el cuaternión en MATLAB está en el orden de \lstinline[style=bash]{[qw qx qy qz]} y es diferente del orden en los archivos g2o que es \lstinline[style=bash]{[qx qy qz qw]}. Puede usar la función \lstinline[style=bash]{quat2rotm()} en matlab para construir una matriz de rotación a partir de cuaternión o usar la función \lstinline[style=bash]{quat2tform()} en matlab para construir una matriz de transformación.}
 
-\subsection{B. Batch Solution}
+\subsection{Solución por Lotes (Batch Solution)}
 Cargue \lstinline[style=bash]{data/parking-garage.g2o} y construya un factor-graph 3D no lineal usando GTSAM. Utilice el solver de Gauss-Newton. Visualice y compare la trayectoria optimizada con la trayectoria inicial. Incluya un gráfico 3D o dos gráficos 2D en su pdf. Describir el proceso de construcción del grafo y sus parámetros.
 
-\subsection{C. Incremental Solution}
+\subsection{Solución Incremental}
 Utilice el solver ISAM2 para optimizar la trayectoria de forma incremental. Visualice y compare la trayectoria optimizada con la trayectoria inicial. Incluya un gráfico 3D o dos gráficos 2D en su pdf. Describir el proceso de construcción del grafo y sus parámetros.
 
 \begin{figure}[!htbp]
