@@ -176,15 +176,15 @@ Puede verlo en detalle en el repositorio de g2o\footnote{\url{https://github.com
 \textbf{Sugerencia:} Puede usar funciones \lstinline[style=bash]{fscanf()}, \lstinline[style=bash]{textscan()} o \lstinline[style=bash]{readcell()} con formatSpec adecuado de MATLAB y verificar si el primer elemento en la entrada es \lstinline[style=bash]{VERTEX_SE2} o \lstinline[style=bash]{EDGE_SE2}.
 
 \subsection{Solución por Lotes (Batch Solution)}
-Una solución por lotes significa que primero construimos el grafo completo y luego lo resolvemos por completo. Cargar \lstinline[style=bash]{data/input_INTEL_g2o.g2o} y construir un grafo de factores no lineales 2D usando GTSAM. Utilice el solver de Gauss-Newton. Visualizar y comparar la trayectoria optimizada con la trayectoria inicial. Incluir el plot en el informe. Describir el proceso de construcción del grafo y sus parámetros.
+Una solución por lotes significa que primero se contruye el grafo completo y luego se lo resuelve por completo. Cargar \lstinline[style=bash]{data/input_INTEL_g2o.g2o} y construir un grafo de factores no lineales 2D usando GTSAM. Utilice el solver de Gauss-Newton. Visualizar y comparar la trayectoria optimizada con la trayectoria inicial. Incluir el plot en el informe. Describir el proceso de construcción del grafo y sus parámetros.
 
-\textbf{Remark 6.} \textit{Para este problema, el solver de Gauss Newton caerá en un mínimo local si no le agregamos una perturbación. Está bien enviar un grafico que muestre que no funciona como se espera, pero incluya una discusión sobre por qué sucede esto.}
+\textbf{Remark 6.} \textit{Para este problema, el solver de Gauss Newton caerá en un mínimo local si no le agregamos una perturbación. Está bien enviar un plot que muestre que no funciona como se espera, pero incluya una discusión sobre por qué sucede esto.}
 
 \textbf{Hint:} Puede usar \lstinline[style=bash]{NonLinearFactorGraph} como grafo, usar \lstinline[style=bash]{GaussNewtonOptimizer} como optimizador, usar \lstinline[style=bash]{Values} para su estimación inicial, \lstinline[style=bash]{noiseModel.Gaussian.Covariance()} para su modelo de ruido, usar las funciones \lstinline[style=bash]{graph.add()} y \lstinline[style=bash]{initial.insert()} cuando lo vea conveniente. Sin embargo, los nombres de las funciones pueden ser diferentes para las diferentes versiones de GTSAM.
 
 \subsection{Solución Incremental}
 \label{sec:incremental_solution}
-Utilizar el solver ISAM2 para optimizar la trayectoria de forma incremental (a medida que construye el grafo gradualmente). Un algoritmo detallado se describe en Algoritmo~\ref{alg:isam2}. Visualice y compare la trayectoria optimizada con la trayectoria inicial. Incluir el plot en el pdf. Describir el proceso de construcción del grafo y sus parámetros.
+Utilizar el solver ISAM2 para optimizar la trayectoria de forma incremental (a medida que se construye el grafo gradualmente). Un algoritmo detallado se describe en Algoritmo~\ref{alg:isam2}. Visualizar y comparar la trayectoria optimizada con la trayectoria inicial. Incluir el plot en el informe. Describir el proceso de construcción del grafo y sus parámetros.
 
 \begin{algorithm}
     \caption{\lstinline[style=bash]{incremental_solution_2d(poses, edges)}}
