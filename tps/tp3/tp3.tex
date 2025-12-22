@@ -130,7 +130,7 @@ Dadas las correspondencias visuales (\emph{matches}) obtenidas en el paso anteri
 
 \item \textbf{Filtrar de Correspondencias Espúreas}
 
-Aplicar RANSAC (\emph{Random sample consensus}) para filtrar los matches espúreos y computar la Matríz homográfica que relaciona los puntos. Para esto puede utilizar la función \lstinline{cv::findHomography()}. Para verificar el impacto del filtrado, visualizar los matches entre las imágenes nuevamente como en la nube de puntos 3D generada. También, visualizar en la imagen derecha los puntos de la imagen izquierda transformados por la matríz homográfica. Para esto último utilizar la función  \lstinline{cv::perspectiveTransform()}. Analizar los resultados obtenidos y agregar capturas al informe.
+Aplicar RANSAC (\emph{Random sample consensus}) para filtrar los matches espúreos y computar la matríz fundamental que relaciona los puntos. Para esto puede utilizar la función \lstinline{cv::findFundamentalMat()}. Visualizar los matches entre las imágenes nuevamente como la nube de puntos 3D generada. También visualizar las líneas epipolares en la imagen izquiedan resultante de aplicar a cada pundo de la imagen derecha la matríz Fundamental. Para esto último utilizar la función  \lstinline{cv::computeCorrespondEpilines()}. Analizar los resultados obtenidos y agregar capturas al informe.
 
 \item (Opcional) \textbf{Feature Mapping con Localización \emph{ground-truth}}
 
