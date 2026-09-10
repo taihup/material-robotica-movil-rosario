@@ -529,7 +529,7 @@ ros2 bag decompress <bag_file_name>
     \begin{itemize}
 
 
-        \item Ver la Guía: \url{https://navigation.ros.org}
+        \item Ver la Guía: \url{https://docs.nav2.org/<distro>/getting_started/quickstart/quickstart/}
     
         \item Instalar los paquetes de Nav2 
         
@@ -538,10 +538,11 @@ sudo apt install ros-<ros2-distro>-navigation2 ros-<ros2-distro>-nav2-bringup
         \end{lstlisting}
     
         \item Instalar los paquetes de Turtlebot 3
-        
-        \begin{lstlisting}[style=bash] 
-sudo apt install ros-<ros2-distro>-turtlebot3*
+
+        \begin{lstlisting}[style=bash]
+sudo apt install ros-$ROS_DISTRO-nav2-minimal-tb\*
         \end{lstlisting}
+        % sudo apt install ros-<ros2-distro>-turtlebot3*
     
         \item Setear las variables de entorno de Gazebo (recuerde agregar estas líneas a \lstinline[style=bash]{.bashrc}):
         
