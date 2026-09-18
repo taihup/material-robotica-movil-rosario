@@ -29,11 +29,11 @@
   \frametitle{Optical Flow}
   \note{https://youtu.be/lnXFcmLB7sM}
 
-  Method to estimate apparent motion of scene points from a sequence of images.
+  Método para estimar el movimiento aparente de puntos de la escena a partir de una secuencia de imágenes.
 
-  Optical flow is the pattern of apparent motion of image objects between two consecutive frames caused by the movement of object or camera. It is 2D vector field where each vector is a displacement vector showing the movement of points from first frame to second.
+  El optical flow es el patrón de movimiento aparente de los objetos de la imagen entre dos fotogramas consecutivos, causado por el movimiento del objeto o la cámara. Es un campo vectorial 2D donde cada vector es un vector de desplazamiento que muestra el movimiento de los puntos del primer al segundo fotograma.
 
-  Method to estimate the apparent motion of scene points from a sequence of images i.e., the motion of brightness pattern in the image. Each pixel has a vector that tells the optical flow at that point. The motion of the brightness pattern is the optical flow, the length of the vector tells how fast it is moving, and the direction tells its direction on the image plane.
+  Método para estimar el movimiento aparente de puntos de la escena a partir de una secuencia de imágenes, es decir, el movimiento del patrón de brillo en la imagen. Cada píxel tiene un vector que indica el optical flow en ese punto. El movimiento del patrón de brillo es el optical flow, la longitud del vector indica qué tan rápido se mueve, y la dirección indica su dirección en el plano de la imagen.
 
   \begin{columns}
     \begin{column}{0.5\textwidth}
@@ -48,13 +48,13 @@
     \end{column}
   \end{columns}
 
-  Topics:
+  Temas:
   \begin{enumerate}
-  \item Motion Field and Optical Flow
-  \item Optical Flow Constraint Equation
-  \item Lucas-Kanade Method
-  \item Coarse-to-Fine Flow Estimation
-  \item Applications of Optical Flow
+  \item Campo de Movimiento y Optical Flow
+  \item Ecuación de Restricción del Optical Flow
+  \item Método de Lucas-Kanade
+  \item Estimación de Flujo de Grueso a Fino
+  \item Aplicaciones del Optical Flow
   \end{enumerate}
 \end{frame}
 
@@ -73,7 +73,7 @@
   \frametitle{Optical Flow}
 
   \begin{itemize}
-    \item Motion of brightness patterns in the image.
+    \item Movimiento de los patrones de brillo en la imagen.
   \end{itemize}
 
   \begin{center}
@@ -81,18 +81,18 @@
 
     \only<2>{\includegraphics[width=0.9\columnwidth]{./images/optical_flow/optical_flow_velocity_vectors_2.pdf}}
 
-    Ideally: Optical Flow = Motion Field.
+    Idealmente: Optical Flow = Campo de Movimiento.
   \end{center}
 
 \end{frame}
 
 % Slide 4
 \begin{frame}
-  \frametitle{When is Optical Flow $\neq$ Motion Field?}
+  \frametitle{¿Cuándo es el Optical Flow $\neq$ Campo de Movimiento?}
 
 
   \begin{figure}[!h]
-    \subfloat[Motion field]
+    \subfloat[Campo de movimiento]
     {
         \includegraphics[valign=b,width=0.3\columnwidth]{./images/optical_flow/spinning_sphere_stationary_light.pdf}
     }
@@ -104,8 +104,8 @@
   \end{figure}
 
 \begin{itemize}
-  \item Motion Field exists but no Optical Flow (e.g., spinning sphere, stationary light source)
-  \item No Motion Field exists but there is Optical Flow (e.g., stationary sphere, moving light source)
+  \item Existe Campo de Movimiento pero no Optical Flow (ej., esfera girando, fuente de luz estacionaria)
+  \item No existe Campo de Movimiento pero hay Optical Flow (ej., esfera estacionaria, fuente de luz en movimiento)
 \end{itemize}
 
 \end{frame}
@@ -113,14 +113,14 @@
 
 % Slide 4
 \begin{frame}
-  \frametitle{When is Optical Flow $\neq$ Motion Field?}
+  \frametitle{¿Cuándo es el Optical Flow $\neq$ Campo de Movimiento?}
   \begin{figure}[!h]
-    \subfloat[Barber Pole Illusion]
+    \subfloat[Ilusión del Poste de Barbero]
     {
       \movie[showcontrols,autostart,loop,poster]{\includegraphics[valign=m,width=0.2\columnwidth]{./images/optical_flow/barberpole_video.jpg}}{videos/barberpole.mp4}
     }
     \hspace*{2em}
-    \subfloat[Motion field]
+    \subfloat[Campo de movimiento]
     {
         \includegraphics[valign=m,width=0.11\columnwidth]{./images/optical_flow/barberpole_motion_field.pdf}
     }
@@ -131,13 +131,13 @@
     }
   \end{figure}
   \begin{itemize}
-    \item Barber Pole Illusion: Motion Field horizontal, Optical Flow appears vertical.
+    \item Ilusión del Poste de Barbero: Campo de Movimiento horizontal, el Optical Flow aparece vertical.
   \end{itemize}
 \end{frame}
 
 % Slide 4
-\begin{frame}{Point Tracking}
-  Problem: given two images, estimate the motion of a pixel point from image $I_0$ to image $I_1$
+\begin{frame}{Seguimiento de Puntos}
+  Problema: dadas dos imágenes, estimar el movimiento de un punto píxel desde la imagen $I_0$ hasta la imagen $I_1$
   
   \begin{center}
     \includegraphics[width=0.3\columnwidth]{./images/optical_flow/point_tracking_1.pdf}
@@ -146,8 +146,8 @@
 \end{frame}
 
 % Slide 5
-\begin{frame}{Point Tracking}
-  Problem: given two images, estimate the motion of a pixel point from image $I_0$ to image $I_1$
+\begin{frame}{Seguimiento de Puntos}
+  Problema: dadas dos imágenes, estimar el movimiento de un punto píxel desde la imagen $I_0$ hasta la imagen $I_1$
   
   \begin{center}
     \includegraphics[width=0.3\columnwidth]{./images/optical_flow/point_tracking_2.pdf}
@@ -155,9 +155,9 @@
 \end{frame}
 
 % Slide 6
-\begin{frame}{Point Tracking}
+\begin{frame}{Seguimiento de Puntos}
   \begin{itemize}
-    \item Problem: given two images, estimate the motion of a pixel point from image $I_0$ to image $I_1$
+    \item Problema: dadas dos imágenes, estimar el movimiento de un punto píxel desde la imagen $I_0$ hasta la imagen $I_1$
   \end{itemize}
 
   \begin{center}
@@ -165,18 +165,18 @@
   \end{center}
   
   \begin{itemize}
-    \item Two approaches exist, depending on the amount of motion between the frames:
+    \item Existen dos enfoques, dependiendo de la cantidad de movimiento entre los fotogramas:
       \begin{itemize}
-        \item Block-based methods
-        \item Differential methods
+        \item Métodos basados en bloques
+        \item Métodos diferenciales
       \end{itemize}
   \end{itemize}
 
 \end{frame}
 
 % Slide 7
-\begin{frame}{Point Tracking}
-  Consider the motion of the following corner
+\begin{frame}{Seguimiento de Puntos}
+  Considerar el movimiento de la siguiente esquina
   
   \begin{center}
     \includegraphics[width=0.3\columnwidth]{./images/optical_flow/point_tracking_block_matching_1.pdf}
@@ -184,8 +184,8 @@
 \end{frame}
 
 % Slide 8
-\begin{frame}{Point Tracking}
-  Consider the motion of the following corner
+\begin{frame}{Seguimiento de Puntos}
+  Considerar el movimiento de la siguiente esquina
   
   \begin{center}
     \includegraphics[width=0.3\columnwidth]{./images/optical_flow/point_tracking_block_matching_2.pdf}
@@ -193,10 +193,10 @@
 \end{frame}
 
 % Slide 9
-\begin{frame}{Point Tracking with Block Matching}
+\begin{frame}{Seguimiento de Puntos con Block Matching}
   \begin{itemize}
-    \item Search for the corresponding patch in a $D \times D$ region around the point to track.
-    \item Use SSD, SAD, or NCC.
+    \item Buscar el parche correspondiente en una región $D \times D$ alrededor del punto a seguir.
+    \item Utilizar SSD, SAD, o NCC.
   \end{itemize}
   
   \begin{center}
@@ -220,8 +220,8 @@
 \end{frame}
 
 % Slide 11
-\begin{frame}{Point Tracking with Differential Methods}
-  Looks at the local brightness changes at the same location. No patch shift is performed!
+\begin{frame}{Seguimiento de Puntos con Métodos Diferenciales}
+  Analiza los cambios locales de brillo en la misma ubicación. ¡No se desplaza el parche!
   
   \begin{center}
     \includegraphics[width=0.3\columnwidth]{./images/optical_flow/point_tracking_differential_methods_1.pdf}
@@ -229,8 +229,8 @@
 \end{frame}
 
 % Slide 12
-\begin{frame}{Point Tracking with Differential Methods}
-  Looks at the local brightness changes at the same location. No patch shift is performed!
+\begin{frame}{Seguimiento de Puntos con Métodos Diferenciales}
+  Analiza los cambios locales de brillo en la misma ubicación. ¡No se desplaza el parche!
   
   \begin{center}
     \includegraphics[width=0.3\columnwidth]{./images/optical_flow/point_tracking_differential_methods_2.pdf}
@@ -238,8 +238,8 @@
 \end{frame}
 
 % Slide 13
-\begin{frame}{Point Tracking with Differential Methods}
-  Looks at the local brightness changes at the same location. No patch shift is performed!
+\begin{frame}{Seguimiento de Puntos con Métodos Diferenciales}
+  Analiza los cambios locales de brillo en la misma ubicación. ¡No se desplaza el parche!
   
   \begin{center}
     \includegraphics[width=0.3\columnwidth]{./images/optical_flow/point_tracking_differential_methods_3.pdf}
@@ -247,15 +247,15 @@
 \end{frame}
 
 % Slide 14
-\begin{frame}{Point Tracking with Differential Methods}
-  Assumptions:
+\begin{frame}{Seguimiento de Puntos con Métodos Diferenciales}
+  Suposiciones:
 
   \begin{columns}
     \begin{column}{0.7\textwidth}
       \begin{itemize}
-        \item Brightness constancy: The intensity of the pixels around the point to track does not change much between the two frames
-        \item Temporal consistency: The motion displacement is small (1–2 pixels); can be addressed using multi-scale implementations
-        \item Spatial coherency: Neighboring pixels undergo similar motion (they all lay on the same 3D surface, i.e., no depth discontinuity)
+        \item Constancia de brillo: La intensidad de los píxeles alrededor del punto a seguir no cambia mucho entre los dos fotogramas
+        \item Consistencia temporal: El desplazamiento de movimiento es pequeño (1–2 píxeles); puede abordarse con implementaciones multi-escala
+        \item Coherencia espacial: Los píxeles vecinos sufren un movimiento similar (todos se encuentran en la misma superficie 3D, es decir, sin discontinuidad de profundidad)
     \end{itemize}
     \end{column}
     \begin{column}{0.3\textwidth}  %%<--- here
@@ -269,7 +269,7 @@
 
 
 \begin{frame}
-  \frametitle{Point Tracking with Differential Methods}
+  \frametitle{Seguimiento de Puntos con Métodos Diferenciales}
   \begin{figure}[!h]
     \subfloat[]
     {
@@ -283,14 +283,14 @@
   \end{figure}
 
   \begin{center}
-    Displacement: $(\delta x, \delta y)$ \hspace*{2em} Optical Flow: $(u,v) = \left(\dfrac{\delta x}{\delta t}, \dfrac{\delta y}{\delta t}\right)$
+    Desplazamiento: $(\delta x, \delta y)$ \hspace*{2em} Optical Flow: $(u,v) = \left(\dfrac{\delta x}{\delta t}, \dfrac{\delta y}{\delta t}\right)$
   \end{center}
 
 \end{frame}
 
 
 \begin{frame}
-  \frametitle{Point Tracking with Differential Methods}
+  \frametitle{Seguimiento de Puntos con Métodos Diferenciales}
 
   \begin{figure}[!h]
     \subfloat[]
@@ -304,8 +304,8 @@
     }
   \end{figure}
 
-  Assumpion \#1:
-  Brightness of image point remains constant over time
+  Suposición \#1:
+  El brillo del punto de la imagen permanece constante a lo largo del tiempo
 
   \begin{equation*}
     I(x + \delta x, y + \delta y, t + \delta t) = I(x, y, t)
@@ -314,9 +314,9 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Taylor Series Expansion}
+  \frametitle{Expansión en Series de Taylor}
 
-  Expand a function as an infinite sum of its derivatives
+  Expandir una función como una suma infinita de sus derivadas
 
   \[
   f(x + \delta x) = f(x) + \frac{\partial f}{\partial x}\delta x + 
@@ -324,14 +324,14 @@
   \frac{\partial^n f}{\partial x^n}\frac{\delta x^n}{n!}
   \]
 
-  If $\delta x$ is small:
+  Si $\delta x$ es pequeño:
 
   \[
   f(x + \delta x) = f(x) + \frac{\partial f}{\partial x}\delta x + 
   \boxed{O(\delta x^2)} \rightarrow \text{Almost Zero}
   \]
 
-  For a function of three variables with small $\delta x, \delta y, \delta t$:
+  Para una función de tres variables con $\delta x, \delta y, \delta t$ pequeños:
 
   \[
   f(x + \delta x, y + \delta y, t + \delta t) \approx f(x, y, t) + 
@@ -343,7 +343,7 @@
 
 
 \begin{frame}
-  \frametitle{Point Tracking with Differential Methods}
+  \frametitle{Seguimiento de Puntos con Métodos Diferenciales}
 
   \begin{figure}[!h]
     \subfloat[]
@@ -357,8 +357,8 @@
     }
   \end{figure}
 
-  Assumpion \#2:
-  Displacement $(\delta x, \delta y)$ and time step $\delta t$ are small
+  Suposición \#2:
+  El desplazamiento $(\delta x, \delta y)$ y el paso de tiempo $\delta t$ son pequeños
   (Aplicamos taylor)
   \begin{equation*}
     I(x + \delta x, y + \delta y, t + \delta t) = I(x, y, t) + \dfrac{\partial I}{\partial x} \delta x + \dfrac{\partial I}{\partial y} \delta y + \dfrac{\partial I}{\partial t} \delta t
@@ -371,7 +371,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Optical Flow Constraint Equation}
+  \frametitle{Ecuación de Restricción del Optical Flow}
 
   \begin{equation}\label{eq:uno}
     I(x + \delta x, y + \delta y, t + \delta t) = I(x, y, t)
@@ -379,26 +379,26 @@
   \begin{equation}\label{eq:dos}
     I(x + \delta x, y + \delta y, t + \delta t) = I(x, y, t) + I_x \delta x + I_y \delta y + I_t \delta t
   \end{equation}
-  Subtract \eqref{eq:uno} from \eqref{eq:dos}: \quad 
+  Restar \eqref{eq:uno} de \eqref{eq:dos}: \quad 
   \[
   I_x \delta x + I_y \delta y + I_t \delta t = 0
   \]
-  Divide by $\delta t$ and take limit as $\delta t \rightarrow 0$: \quad 
+  Dividir por $\delta t$ y tomar el límite cuando $\delta t \rightarrow 0$: \quad 
   \[
   I_x \frac{\partial x}{\partial t} + I_y \frac{\partial y}{\partial t} + I_t = 0
   \]
 
-  Constraint Equation: \quad \boxed{I_x u + I_y v + I_t = 0} \quad $(u,v)$: Optical Flow
+  Ecuación de Restricción: \quad \boxed{I_x u + I_y v + I_t = 0} \quad $(u,v)$: Optical Flow
 
   \[
-  (I_x, I_y, I_t) \text{ can be easily computed from two frames}
+  (I_x, I_y, I_t) \text{ pueden calcularse fácilmente a partir de dos fotogramas}
   \]
 
 \end{frame}
 
 %------------------------------------------------
 \begin{frame}
-  \frametitle{Computing Partial Derivatives $I_x, I_y, I_t$}
+  \frametitle{Calculando las Derivadas Parciales $I_x, I_y, I_t$}
 
   \begin{center}
     \includegraphics[width=0.35\columnwidth]{./images/optical_flow/computing_partial_derivatives.pdf}
@@ -411,29 +411,29 @@
   - \frac{1}{4}[I(k,l,t) + I(k,l,t+1) + I(k,l+1,t) + I(k,l+1,t+1)]
   \]
 
-  Similarly find $I_y(k,l,t)$ and $I_t(k,l,t)$
+  Similarmente se obtiene $I_y(k,l,t)$ e $I_t(k,l,t)$
 
 \end{frame}
 
 \begin{frame}
-  \frametitle{Geometric Interpretation}
+  \frametitle{Interpretación Geométrica}
 
   \begin{columns}
     \begin{column}{0.6\textwidth}  %%<--- here
       \only<2->{
-      For any point $(x,y)$ in the image, its optical flow $(u,v)$ lies on the line:
+      Para cualquier punto $(x,y)$ en la imagen, su optical flow $(u,v)$ se encuentra sobre la recta:
         \begin{equation*}
         I_x u + I_y v + I_t = 0
         \end{equation*}
       }
       \only<3->{
-        Optical Flow can be split into two components.
+        El Optical Flow puede descomponerse en dos componentes.
         \begin{equation*}
         \mathbf{u} = \mathbf{u}_n + \mathbf{u}_p
         \end{equation*}
 
-        $\mathbf{u}_n$: Normal Flow\\
-        $\mathbf{u}_p$: Parallel Flow
+        $\mathbf{u}_n$: Flujo Normal\\
+        $\mathbf{u}_p$: Flujo Paralelo
       }
     \end{column}
     \begin{column}{0.4\textwidth}
@@ -453,20 +453,20 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Normal Flow}
+  \frametitle{Flujo Normal}
 
   \begin{columns}
     \begin{column}{0.6\textwidth}  %%<--- here
-      Direction of Normal Flow:
+      Dirección del Flujo Normal:
 
-      Unit vector perpendicular to the constraint line:
+      Vector unitario perpendicular a la recta de restricción:
       \[
       \hat{\mathbf{u}}_n = \frac{(I_x, I_y)}{\sqrt{I_x^2 + I_y^2}}
       \]
 
-      Magnitude of Normal Flow:
+      Magnitud del Flujo Normal:
 
-      Distance of origin from the constraint line:
+      Distancia del origen a la recta de restricción:
       \[
       |\mathbf{u}_n| = \frac{|I_t|}{\sqrt{I_x^2 + I_y^2}}
       \]
@@ -485,13 +485,13 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Aperture Problem}
+  \frametitle{Problema de la Apertura}
 
   \begin{itemize}
-    \item<1-2> Consider the motion of the following corner
-    \item<3-> Now, look at the local brightness changes through a small aperture
-    \item<5-> We cannot always determine the motion direction. Infinite motion solutions may exist!
-    \item<6-> We can only detect the normal flow.
+    \item<1-2> Considerar el movimiento de la siguiente esquina
+    \item<3-> Ahora, observar los cambios locales de brillo a través de una pequeña apertura
+    \item<5-> No siempre podemos determinar la dirección del movimiento. ¡Pueden existir infinitas soluciones de movimiento!
+    \item<6-> Solo podemos detectar el flujo normal.
   \end{itemize}
 
   \begin{center}
@@ -514,7 +514,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Aperture Problem}
+  \frametitle{Problema de la Apertura}
   \begin{figure}[!h]
     \subfloat[]
     {
@@ -527,7 +527,7 @@
     }
   \end{figure}
   \begin{itemize}
-    \item The aperture problem. The grating appears to be moving down and to the right, perpendicular to the orientation of the bars. But it could be moving in many other directions, such as only down, or only to the right. It is impossible to determine unless the ends of the bars become visible in the aperture.
+    \item El problema de la apertura. La rejilla parece moverse hacia abajo y hacia la derecha, perpendicular a la orientación de las barras. Pero podría estar moviéndose en muchas otras direcciones, como solo hacia abajo, o solo hacia la derecha. Es imposible determinarlo a menos que los extremos de las barras se vuelvan visibles en la apertura.
   \end{itemize}
 \end{frame}
 
@@ -544,11 +544,11 @@
 % \end{frame}
 
 \begin{frame}
-  \frametitle{Normal Flow and Aperture Problem}
+  \frametitle{Flujo Normal y Problema de la Apertura}
   \begin{itemize}
-    \item Constraint equation gives only a line in $(u,v)$ space.
-    \item Can compute normal flow but not full optical flow.
-    \item Locally, humans also perceive only normal flow (aperture problem).
+    \item La ecuación de restricción da solo una recta en el espacio $(u,v)$.
+    \item Se puede calcular el flujo normal pero no el optical flow completo.
+    \item Localmente, los humanos también perciben solo el flujo normal (problema de la apertura).
   \end{itemize}
 
   \vspace{0.5cm}
@@ -560,20 +560,20 @@
     \frametitle{Block-based vs Differential methods}
     
     \begin{itemize}
-        \item \textbf{Block-based methods:}
+        \item \textbf{Métodos basados en bloques:}
         \begin{itemize}
-            \item \textbf{Robust to large motions}
-            \item Can be computationally \textbf{expensive} ($D \times D$ validations need to be made for a single point to track)
+            \item \textbf{Robustos ante movimientos grandes}
+            \item Pueden ser computacionalmente \textbf{costosos} (se necesitan $D \times D$ validaciones para un único punto a seguir)
         \end{itemize}
     \end{itemize}
 
     \vspace{0.5em} % Adds some vertical space
 
     \begin{itemize}
-        \item \textbf{Differential methods:}
+        \item \textbf{Métodos diferenciales:}
         \begin{itemize}
-            \item Works only for \textbf{small motions} (e.g., high frame rate). For larger motion, multi-scale implementations are used but are more expensive (see later)
-            \item \textbf{Much more efficient than block-based methods.} Thus, can be used to track the motion of every pixel in the image (i.e., optical flow). It avoids searching in the neighborhood of the point by analyzing the local intensity changes (i.e., differences) of an image patch at a specific location (i.e., no search is performed)
+            \item Funcionan solo para \textbf{movimientos pequeños} (ej., alta tasa de fotogramas). Para movimientos mayores, se usan implementaciones multi-escala pero son más costosas (ver más adelante)
+            \item \textbf{Mucho más eficientes que los métodos basados en bloques.} Por lo tanto, pueden usarse para rastrear el movimiento de cada píxel en la imagen (es decir, optical flow). Evita buscar en la vecindad del punto analizando los cambios locales de intensidad (es decir, diferencias) de un parche de imagen en una ubicación específica (es decir, no se realiza búsqueda)
         \end{itemize}
     \end{itemize}
 
@@ -581,29 +581,29 @@
 
 %------------------------------------------------
 \begin{frame}
-  \frametitle{Optical Flow is Under Constrained}
+  \frametitle{El Optical Flow está Sub-Restringido}
 
-  Constraint Equation: \quad \boxed{I_x u + I_y v + I_t = 0}
+  Ecuación de Restricción: \quad \boxed{I_x u + I_y v + I_t = 0}
 
   \vspace{0.5cm}
-  2 unknowns, 1 equation.
+  2 incógnitas, 1 ecuación.
 
   \vspace{1cm}
-  We need additional constraints.
+  Necesitamos restricciones adicionales.
 
 \end{frame}
 
 %------------------------------------------------
 \begin{frame}
-  \frametitle{Lucas-Kanade Solution}
+  \frametitle{Solución de Lucas-Kanade}
 
-  \textbf{Assumption}: For each pixel, assume Motion Field, and hence Optical Flow $(u,v)$, is constant within a small neighborhood $W$.
+  \textbf{Suposición}: Para cada píxel, asumir que el Campo de Movimiento, y por lo tanto el Optical Flow $(u,v)$, es constante dentro de una pequeña vecindad $W$.
 
   \begin{center}
     \includegraphics[width=0.55\textwidth]{optical_flow/klt_neighborhood.pdf}
   \end{center}
 
-  That is for all points $(k,l) \in W$:
+  Es decir, para todos los puntos $(k,l) \in W$:
   \[
   I_x(k,l)u + I_y(k,l)v + I_t(k,l) = 0
   \]
@@ -612,17 +612,17 @@
 
 %------------------------------------------------
 \begin{frame}
-  \frametitle{Lucas-Kanade Solution}
+  \frametitle{Solución de Lucas-Kanade}
 
-  For all points $(k,l) \in W$: \quad 
+  Para todos los puntos $(k,l) \in W$: \quad 
   $I_x(k,l)u + I_y(k,l)v + I_t(k,l) = 0$
 
-  Let the size of window $W$ be $n \times n$
+  Sea el tamaño de la ventana $W$ de $n \times n$
 
-  In matrix form:
+  En forma matricial:
 
   \begin{equation*}
-    \underset{\substack{\mathbf{A^T A} \\ \text{(Known)} \\2\times2}}{
+    \underset{\substack{\mathbf{A^T A} \\ \text{(Conocido)} \\2\times2}}{
     \boxed{
     \begin{bmatrix}
       I_x(1,1) & I_y(1,1) \\
@@ -631,7 +631,7 @@
       I_x(n,n) & I_y(n,n)
     \end{bmatrix}
     }}
-    \underset{\substack{\mathbf{u} \\ \text{(Unknown)}\\ 2\times1}}{
+    \underset{\substack{\mathbf{u} \\ \text{(Desconocido)}\\ 2\times1}}{
     \boxed{
     \begin{bmatrix}
       u \\
@@ -639,7 +639,7 @@
     \end{bmatrix}
     }}
     =
-    \underset{\substack{\mathbf{B} \\ \text{(Unknown)}\\ n^{2}\times1}}{
+    \underset{\substack{\mathbf{B} \\ \text{(Desconocido)}\\ n^{2}\times1}}{
     \boxed{
       \begin{bmatrix}
       -I_t(1,1) \\
@@ -651,24 +651,24 @@
   \end{equation*}
 
 
-  $n^2$ Equations, 2 Unknowns: Find Least Squares Solution
+  $n^2$ Ecuaciones, 2 Incógnitas: Encontrar la Solución de Mínimos Cuadrados
 
 \end{frame}
 
 %------------------------------------------------
 \begin{frame}
-  \frametitle{Least Squares Solution}
+  \frametitle{Solución de Mínimos Cuadrados}
 
-  Solve linear system: \quad $\mathbf{A u = B}$
+  Resolver el sistema lineal: \quad $\mathbf{A u = B}$
 
   \begin{equation*}
-  \mathbf{A^T A u = A^T B} \hspace{1cm} \text{(Least-Squares using Pseudo-Inverse)}
+  \mathbf{A^T A u = A^T B} \hspace{1cm} \text{(Mínimos Cuadrados con Pseudoinversa)}
   \end{equation*}
 
-  In matrix form:
+  En forma matricial:
 
   \begin{equation*}
-  \underset{\substack{\mathbf{A^T A} \\ \text{(Known)} \\2\times2}}{
+  \underset{\substack{\mathbf{A^T A} \\ \text{(Conocido)} \\2\times2}}{
     \boxed{
     \begin{bmatrix}
     \sum_W I_x I_x & \sum_W I_x I_y \\
@@ -676,7 +676,7 @@
     \end{bmatrix}
     }
   }
-  \underset{\substack{\mathbf{u} \\ \text{(Unknown)}\\ 2\times1}}{
+  \underset{\substack{\mathbf{u} \\ \text{(Desconocido)}\\ 2\times1}}{
     \boxed{
       \begin{bmatrix}
       u \\ v
@@ -684,26 +684,26 @@
     }
   }
   =
-  \underset{\substack{\mathbf{A^T B} \\\text{(Known)} \\ 2\times1}}{
+  \underset{\substack{\mathbf{A^T B} \\\text{(Conocido)} \\ 2\times1}}{
     \boxed{
       \begin{bmatrix}
       -\sum_W I_x I_t \\ -\sum_W I_y I_t
       \end{bmatrix}
     }
   }
-  \qquad \substack{\text{Indices} (k,l)\\ \text{not written}\\ \text{for simplicity}}
+  \qquad \substack{\text{Índices} (k,l)\\ \text{no escritos}\\ \text{por simplicidad}}
   \end{equation*}
 
   \begin{equation*}
   \boxed{\mathbf{u} = (\mathbf{A^T A})^{-1}\mathbf{A^T B}}
   \end{equation*}
 
-  Fast and Easy to Solve
+  Rápido y Fácil de Resolver
 
 \end{frame}
 
 \begin{frame}
-    \frametitle{When Does Optical Flow Estimation Work?}
+    \frametitle{¿Cuándo Funciona la Estimación del Optical Flow?}
     
     % Mathematical boxes
     \begin{center}
@@ -713,62 +713,62 @@
     \vspace{0.5em}
     
     \begin{itemize}
-        \item $A^T A$ must be \textbf{invertible}. That is $\det(A^T A) \neq 0$
-        \item $A^T A$ must be \textbf{well-conditioned}.
+        \item $A^T A$ debe ser \textbf{invertible}. Es decir, $\det(A^T A) \neq 0$
+        \item $A^T A$ debe estar \textbf{bien condicionada}.
         
         \vspace{0.2em}
-        If $\lambda_1$ and $\lambda_2$ are eigen values of $A^T A$, then
+        Si $\lambda_1$ y $\lambda_2$ son los autovalores de $A^T A$, entonces
         \begin{itemize}
-            \item $\lambda_1 > \epsilon$ and $\lambda_2 > \epsilon$
-            \item $\lambda_1 \approx \lambda_2$ but not $\lambda_1 \ggg \lambda_2$
+            \item $\lambda_1 > \epsilon$ y $\lambda_2 > \epsilon$
+            \item $\lambda_1 \approx \lambda_2$ pero no $\lambda_1 \ggg \lambda_2$
         \end{itemize}
     \end{itemize}
     
     \vspace{1em}
-    \small{\textit{*Note: $\mathbf{u}$ represents the flow vector $(u, v)^T$, $A$ is the gradient matrix, and $B$ is related to the temporal change.}}
+    \small{\textit{*Nota: $\mathbf{u}$ representa el vector de flujo $(u, v)^T$, $A$ es la matriz de gradiente, y $B$ está relacionada con el cambio temporal.}}
 \end{frame}
 
 
 \begin{frame}
-    \frametitle{Smooth Regions (Bad)}
+    \frametitle{Regiones Suaves (Malo)}
     \begin{center}
       \includegraphics[width=0.7\textwidth]{optical_flow/optical_flow_smooth_regions.pdf}
     \end{center}
   
-    Equations for all pixels in window are more or less the same.
+    Las ecuaciones para todos los píxeles en la ventana son más o menos las mismas.
 
-    Cannot reliably compute flow!
+    ¡No se puede calcular el flujo de manera confiable!
 
 \end{frame}
 
 \begin{frame}
-    \frametitle{Edges (Bad)}
+    \frametitle{Bordes (Malo)}
     \begin{center}
       \includegraphics[width=0.7\textwidth]{optical_flow/optical_flow_edges.pdf}
     \end{center}
 
-    Badly conditioned. Prominent gradient in one direction.
+    Mal condicionado. Gradiente prominente en una dirección.
     
-    Cannot reliably compute flow!
+    ¡No se puede calcular el flujo de manera confiable!
     
-    Same as Aperture Problem.
+    Igual que el Problema de la Apertura.
  \end{frame}
 
 \begin{frame}
-    \frametitle{Textured Regions (Good)}
+    \frametitle{Regiones con Textura (Bueno)}
     \begin{center}
       \includegraphics[width=0.7\textwidth]{optical_flow/optical_flow_textured_regions.pdf}
     \end{center}
 
-    Well conditioned. Large and diverse gradient magnitudes.
+    Bien condicionado. Magnitudes de gradiente grandes y diversas.
     
-    Can reliably compute optical flow.
+    Se puede calcular el optical flow de manera confiable.
 \end{frame}
 
 % Slide 12
 \begin{frame}
-  \frametitle{Large Motion: Problem}
-  Taylor approximation invalid when displacements are large.
+  \frametitle{Movimiento Grande: Problema}
+  La aproximación de Taylor no es válida cuando los desplazamientos son grandes.
 
   \TODO{Agregar slides de coarse to fine from Optical Flow FPCV-4-3}
 
@@ -776,37 +776,37 @@
 
 % Slide 13
 \begin{frame}
-  \frametitle{Coarse-to-Fine Estimation}
-  Use resolution pyramid:
+  \frametitle{Estimación de Grueso a Fino}
+  Usar pirámide de resolución:
   \begin{itemize}
-    \item Compute flow at low resolution.
-    \item Warp and refine at higher resolutions.
-    \item Repeat until full resolution.
+    \item Calcular el flujo a baja resolución.
+    \item Deformar y refinar a resoluciones mayores.
+    \item Repetir hasta la resolución completa.
   \end{itemize}
 
 \end{frame}
 
 % Slide 14
 \begin{frame}
-  \frametitle{Alternative Approach: Template Matching}
+  \frametitle{Enfoque Alternativo: Template Matching}
   \begin{itemize}
-    \item Use template window from one frame.
-    \item Search for best match in next frame.
-    \item Difference gives optical flow.
-    \item Slow and can produce mismatches.
+    \item Usar una ventana de plantilla de un fotograma.
+    \item Buscar la mejor coincidencia en el fotograma siguiente.
+    \item La diferencia da el optical flow.
+    \item Lento y puede producir errores de coincidencia.
   \end{itemize}
 
 \end{frame}
 
 % Slide 15
 \begin{frame}
-  \frametitle{Applications of Optical Flow}
+  \frametitle{Aplicaciones del Optical Flow}
   \begin{itemize}
-    \item Optical mouse: motion tracking.
-    \item Traffic monitoring: estimate vehicle speed.
-    \item Video retiming: slow motion.
-    \item Stabilization: remove camera shake.
-    \item Face tracking: expressions, blinking.
+    \item Ratón óptico: seguimiento de movimiento.
+    \item Monitoreo de tráfico: estimar la velocidad de los vehículos.
+    \item Retiming de video: cámara lenta.
+    \item Estabilización: eliminar el temblor de la cámara.
+    \item Seguimiento de rostros: expresiones, parpadeo.
   \end{itemize}
 \end{frame}
 

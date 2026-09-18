@@ -1,5 +1,5 @@
 \begin{frame}
-  \frametitle{3D Point to Pixel: Estimating the Parameters of P}
+  \frametitle{Punto 3D a Píxel: Estimando los Parámetros de P}
   \begin{equation*}
     \underset{\substack{\text{pixel}\\ \text{coordinate}}}{\vec{x}} \sim \underset{\substack{\text{trans-}\\ \text{formation}}}{\vec{P}}
     \underset{\substack{\text{world}\\ \text{coordinate}}}{\vec{X}}
@@ -7,9 +7,9 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Estimating Camera Parameters Given the Geometry}
+  \frametitle{Estimando los Parámetros de Cámara Dada la Geometría}
   \begin{itemize}
-    \item known control points
+    \item puntos de control conocidos
   \end{itemize}
   \begin{center}
     \includegraphics[width=0.5\columnwidth]{./images/dlt_3d_2d.pdf}
@@ -17,17 +17,17 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Estimate Ex- and Intrinsics}
+  \frametitle{Estimar Parámetros Extrínsecos e Intrínsecos}
   \begin{itemize}
-    \item \textbf{Wanted}: Extrinsic and intrinsic parameters of a camera
-    \item \textbf{Given}: Coordinates of object points (control points)
-    \item \textbf{Observed}: Coordinates of those known 3D object points in the image
+    \item \textbf{Buscado}: Parámetros extrínsecos e intrínsecos de una cámara
+    \item \textbf{Dado}: Coordenadas de los puntos del objeto (puntos de control)
+    \item \textbf{Observado}: Coordenadas de esos puntos 3D conocidos del objeto en la imagen
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Mapping}
-  Direct linear transform (DLT) maps any object point $\vec{X}$ to the image point $\vec{x}$.
+  \frametitle{Mapeo}
+  La transformación lineal directa (DLT) mapea cualquier punto del objeto $\vec{X}$ al punto de la imagen $\vec{x}$.
   \begin{center}
     \includegraphics[width=0.5\columnwidth]{./images/dlt_3d_2d.pdf}
   \end{center}
@@ -55,13 +55,13 @@
 % \end{frame}
 
 \begin{frame}
-  \frametitle{Compute the 11 intrinsic and extrinsic parameters}
-  Direct Linear Transform (DLT)
+  \frametitle{Calcular los 11 parámetros intrínsecos y extrínsecos}
+  Transformación Lineal Directa (DLT)
   \begin{itemize}
-    \item control point coordinates (given)
-    \item observed image point  (given)
-    \item 3 rotations, 3 translations
-    \item 5 intrinsic parameters $(f_{x}, f_{y}, \principalPoint_{x}, \principalPoint_{y}, s)$
+    \item coordenadas de los puntos de control (dado)
+    \item punto de imagen observado (dado)
+    \item 3 rotaciones, 3 traslaciones
+    \item 5 parámetros intrínsecos $(f_{x}, f_{y}, \principalPoint_{x}, \principalPoint_{y}, s)$
   \end{itemize}
 
   \begin{center}
@@ -70,11 +70,11 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{How Many Points Are Needed?}
+  \frametitle{¿Cuántos Puntos Se Necesitan?}
 
   \only<1-3>{
     
-    Each point gives \alert{???} observation equations.
+    Cada punto da \alert{???} ecuaciones de observación.
 
     \begin{equation*}
       \vec{x} = \projectionMatrix \vec{X}
@@ -103,53 +103,53 @@
       y &= \frac{p_{21}X + p_{22}Y + p_{23}Z + p_{24}}{p_{31}X + p_{32}Y + p_{33}Z + p_{34}}
     \end{align*}
 
-    Each point gives \alert{two} observation equations, one for each image coordinate.
+    Cada punto da \alert{dos} ecuaciones de observación, una para cada coordenada de imagen.
   }
 \end{frame}
 
 \begin{frame}
-  \frametitle{Spatial Resection (P3P) vs. DLT}
+  \frametitle{Resección Espacial (P3P) vs. DLT}
   \begin{itemize}
-    \item Calibrated camera: 
+    \item Cámara calibrada: 
     \begin{itemize}
-      \item 6 unknowns.
-      \item Need at least 3 points.
-      \item Problem solved by spatial resection
+      \item 6 incógnitas.
+      \item Se necesitan al menos 3 puntos.
+      \item Problema resuelto por resección espacial
     \end{itemize}
-    \item Uncalibrated camera: 
+    \item Cámara no calibrada: 
     \begin{itemize}
-      \item 11 unknowns.
-      \item Need at least 6 points 
-      \item Assuming the model of an affine camera
-      \item Problem solved by DLT
+      \item 11 incógnitas.
+      \item Se necesitan al menos 6 puntos 
+      \item Asumiendo el modelo de cámara afín
+      \item Problema resuelto por DLT
     \end{itemize}.
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{DLT: Direct Linear Transform}
-  Computing the Orientation of an Uncalibrated Camera using $\ge 6$ known points.
+  \frametitle{DLT: Transformación Lineal Directa}
+  Calculando la orientación de una cámara no calibrada usando $\ge 6$ puntos conocidos.
 \end{frame}
 
 \begin{frame}
-  \frametitle{DLT: Problem Specification}
+  \frametitle{DLT: Especificación del Problema}
   \begin{itemize}
-    \item Task: Estimate the 11 elements of $\projectionMatrix$.
-    \item Given: 
+    \item Tarea: Estimar los 11 elementos de $\projectionMatrix$.
+    \item Dado: 
     \begin{itemize}
-      \item 3D coordinates $\vec{X}_{i}$ of object points.
-      \item Observed image coordinates $\vec{x}_{i}$ of an uncalibrated camera with the mapping.
+      \item Coordenadas 3D $\vec{X}_{i}$ de los puntos del objeto.
+      \item Coordenadas de imagen observadas $\vec{x}_{i}$ de una cámara no calibrada con el mapeo.
       \begin{equation*}
         \vec{x}_{i} = \projectionMatrix \vec{X}_{i} \quad i=1,\ldots,n \quad n \ge 6
       \end{equation*}
     \end{itemize}
-    \item Data association
+    \item Asociación de datos
   \end{itemize}
 
 \end{frame}
 
 \begin{frame}
-  \frametitle{Rearrange the DLT Equation}
+  \frametitle{Reordenando la Ecuación DLT}
   
   \only<1>{
     \begin{equation*}
@@ -177,7 +177,7 @@
     \end{equation*} 
   }
   \only<3>{
-    Define the three vectors A, B and C as follows
+    Definir los tres vectores A, B y C de la siguiente manera
 
     \begin{equation*}
       {\color{red} \boxed{\color{black}{\vec{A}}}} = \begin{bmatrix} p_{11}\\ p_{12}\\ p_{13}\\ p_{14} \end{bmatrix}, \quad
@@ -187,7 +187,7 @@
   }
 
   \only<4>{
-    So what we can rewrite the equation as
+    Entonces podemos reescribir la ecuación como
 
     \begin{equation*}
       \vec{x}_{i} = \projectionMatrix \vec{X}_{i} =
@@ -233,7 +233,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Rearrange the DLT Equation}
+  \frametitle{Reordenando la Ecuación DLT}
 
   \begin{equation*}
     \vec{x}_{i} =
@@ -265,14 +265,14 @@ Implica
 \end{frame}
 
 \begin{frame}
-  \frametitle{Rearrange the DLT Equation}
+  \frametitle{Reordenando la Ecuación DLT}
 
   \begin{align*}
     x_{i} &= \dfrac{\vec{A}^{\top}\vec{X}_{i}}{\vec{C}^{\top}\vec{X}_{i}} \implies x_{i} \vec{C}^{\top}\vec{X}_{i} - \vec{A}^{\top}\vec{X}_{i} = 0\\
     y_{i} &= \dfrac{\vec{B}^{\top}\vec{X}_{i}}{\vec{C}^{\top}\vec{X}_{i}} \implies y_{i} \vec{C}^{\top}\vec{X}_{i} - \vec{B}^{\top}\vec{X}_{i} = 0
   \end{align*}
 
-  Leads to a system of equation, which is linear in the parameters A, B and C
+  Lleva a un sistema de ecuaciones, que es lineal en los parámetros A, B y C
 
   \begin{equation*}
     \begin{matrix}
@@ -284,9 +284,9 @@ Implica
 \end{frame}
 
 \begin{frame}
-  \frametitle{Estimating the Elements of $\projectionMatrix$}
+  \frametitle{Estimando los Elementos de $\projectionMatrix$}
   \begin{itemize}
-    \item Collect elements of $\projectionMatrix$ into a parameter vector $\vec{p}$.
+    \item Reunir los elementos de $\projectionMatrix$ en un vector de parámetros $\vec{p}$.
   \end{itemize}
 
   \begin{center}
@@ -296,9 +296,9 @@ Implica
 \end{frame}
 
 \begin{frame}
-  \frametitle{Estimating the Elements of $\projectionMatrix$}
+  \frametitle{Estimando los Elementos de $\projectionMatrix$}
   \begin{itemize}
-    \item Rewrite
+    \item Reescribir
     \begin{equation*}
       \begin{matrix}
         -\vec{X}_{i}^{\top}\vec{A}& &+x_{i}\vec{X}_{i}^{\top}\vec{C} = 0 \\
@@ -324,7 +324,7 @@ Implica
 \end{frame}
 
 % \begin{frame}
-%   \frametitle{Verifying Correctness}
+%   \frametitle{Verificando la Corrección}
 %   \begin{equation*}
 %     \vec{a}_{x_i}^{\top} \vec{p} =
 %     \begin{bmatrix}
@@ -349,7 +349,7 @@ Implica
 % \end{frame}
 
 % \begin{frame}
-%   \frametitle{Verifying Correctness}
+%   \frametitle{Verificando la Corrección}
 %   \begin{align*}
 %     \vec{a}_{x_i}^{\top} \vec{p} &=
 %     \begin{bmatrix}
@@ -384,7 +384,7 @@ Implica
 
 
 \begin{frame}
-  \frametitle{Verifying Correctness}
+  \frametitle{Verificando la Corrección}
 
   \begin{center}
     \only<1>{\includegraphics[width=0.7\columnwidth]{./images/verifying_correctness_1.pdf}}
@@ -398,15 +398,15 @@ Implica
 
 
 \begin{frame}
-  \frametitle{Estimating the Elements of P}
+  \frametitle{Estimando los Elementos de P}
 
   \begin{itemize}
-    \item For each point, we have
+    \item Para cada punto, tenemos
     \begin{align*}
         \vec{a}_{x_i}^{\top} \vec{p} &= 0 \\
         \vec{a}_{y_i}^{\top} \vec{p} &= 0
     \end{align*}
-    \item Stacking everything together
+    \item Apilando todo junto
     \begin{equation*}
       \begin{bmatrix}
         \vec{a}_{x_1}^{\top} \\
@@ -416,7 +416,7 @@ Implica
         \vdots \\
         \vec{a}_{x_n}^{\top} \\
         \vec{a}_{y_n}^{\top}
-      \end{bmatrix} \vec{p} = \underset{2I\times 12}{\vec{M}} \underset{12\times1}{\vec{p}} \stackrel{!}{=} 0 \quad \text{(where $I$ is the number of control points)}
+      \end{bmatrix} \vec{p} = \underset{2I\times 12}{\vec{M}} \underset{12\times1}{\vec{p}} \stackrel{!}{=} 0 \quad \text{(donde $I$ es el número de puntos de control)}
     \end{equation*}
   \end{itemize}
 
@@ -424,24 +424,24 @@ Implica
 
 
 \begin{frame}
-  \frametitle{Solving the Linear System (Homogeneous System => SVD)}
+  \frametitle{Resolviendo el Sistema Lineal (Sistema Homogéneo => SVD)}
   \begin{itemize}
-    \item Solving a system of linear equations of the form $\vec{A}\vec{x} = \vec{0}$ is equivalent to finding the null space of $\vec{A}$
-    \item Thus, we can apply the Singular value decomposition (SVD) to solve $\vec{M}\vec{p} = \vec{0}$
-    \item Choose $\vec{p}$ as the singular vector belonging to the singular value of 0
+    \item Resolver un sistema de ecuaciones lineales de la forma $\vec{A}\vec{x} = \vec{0}$ es equivalente a encontrar el espacio nulo de $\vec{A}$
+    \item Por lo tanto, podemos aplicar la Descomposición en Valores Singulares (SVD) para resolver $\vec{M}\vec{p} = \vec{0}$
+    \item Elegir $\vec{p}$ como el vector singular correspondiente al valor singular 0
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Redundant Observations}
+    \frametitle{Observaciones Redundantes}
     \begin{itemize}
-        \item In case of redundant observations, we will have contradictions ($\vec{M}\mathbf{p} \neq \mathbf{0}$):
+        \item En caso de observaciones redundantes, tendremos contradicciones ($\vec{M}\mathbf{p} \neq \mathbf{0}$):
         %
         \begin{equation*}
             \mathbf{M} \mathbf{p} = \mathbf{w}
         \end{equation*}
         %
-        \item Find $\mathbf{p}$ such that it minimizes
+        \item Encontrar $\mathbf{p}$ tal que minimice
         %
         \begin{equation*}
             \Omega = \mathbf{w}^{\top} \mathbf{w}
@@ -451,7 +451,7 @@ Implica
             &= \underset{\mathbf{p}}{\arg\min} \ \mathbf{p}^{\top} \mathbf{M}^{\top} \mathbf{M} \mathbf{p}
         \end{align*}
         \begin{equation*}
-          \text{with} \lVert\mathbf{P}\rVert_2 = \sum_{i,j} p_{ij}^2 = \lVert\mathbf{p}\rVert = 1
+          \text{con} \lVert\mathbf{P}\rVert_2 = \sum_{i,j} p_{ij}^2 = \lVert\mathbf{p}\rVert = 1
         \end{equation*}
     \end{itemize}
 \end{frame}
@@ -459,21 +459,21 @@ Implica
 
 % --- Slide: Redundant Observations (2) ---
 \begin{frame}
-    \frametitle{Redundant Observations}
+    \frametitle{Observaciones Redundantes}
     \begin{itemize}
-        \item Singular value decomposition (SVD)
+        \item Descomposición en Valores Singulares (SVD)
         \[
             \mathbf{M}_{2I \times 12} = \mathbf{U}_{2I \times 12} \mathbf{S}_{12 \times 12} \mathbf{V}_{12 \times 12}^{\top} = \sum_{i=1}^{12} s_i \mathbf{u}_i \mathbf{v}_i^{\top}
         \]
-        \item Choosing $\mathbf{p} = \mathbf{v}_{12}$ (the singular vector belonging to the smallest singular value $s_{12}$) minimizes $\Omega$
+        \item Elegir $\mathbf{p} = \mathbf{v}_{12}$ (el vector singular correspondiente al valor singular más pequeño $s_{12}$) minimiza $\Omega$
     \end{itemize}
 \end{frame}
 
 % --- Slide: Obtaining the Projection Matrix ---
 \begin{frame}
-    \frametitle{Obtaining the Projection Matrix}
+    \frametitle{Obteniendo la Matríz de Proyección}
     \begin{itemize}
-        \item Choosing $\mathbf{p} = \mathbf{v}_{12}$ minimizes $\Omega$ and thus is our estimate of $\mathbf{P}$:
+        \item Elegir $\mathbf{p} = \mathbf{v}_{12}$ minimiza $\Omega$ y por lo tanto es nuestra estimación de $\mathbf{P}$:
         \begin{equation*}
             \mathbf{p} = \begin{bmatrix}
             p_{11} \\
@@ -490,19 +490,19 @@ Implica
     \end{itemize}
     \vspace{1cm}
     \centering
-    \textcolor{red}{\bfseries Does this always work?}
+    \textcolor{red}{\bfseries ¿Esto siempre funciona?}
 \end{frame}
 
 % --- Slide: Critical Surfaces (1 - The one with the note e.g.) ---
 \begin{frame}
-    \frametitle{Critical Surfaces}
+    \frametitle{Superficies Críticas}
     \begin{itemize}
-        \item $\mathbf{M}$ is of rank 11, if
+        \item $\mathbf{M}$ tiene rango 11, si
         \begin{itemize}
-            \item Number of points $\geq 6$
-            \item Assumption: no gross errors
+            \item Número de puntos $\geq 6$
+            \item Suposición: sin errores graves
         \end{itemize}
-        \item \textcolor{red}{\bfseries No solution}, if all points $\mathbf{X}_i$ are located on a \textcolor{red}{\bfseries plane}
+        \item \textcolor{red}{\bfseries Sin solución}, si todos los puntos $\mathbf{X}_i$ se encuentran en un \textcolor{red}{\bfseries plano}
     \end{itemize}
 
     % The matrix part is complex due to the arrows, so we'll use a simplified aligned version
@@ -524,19 +524,19 @@ Implica
           & & & & & \cdots & & & & & &
       \end{bmatrix}
     \end{align*}
-    \color{red}{assume all $Z_{i} = 0$}
+    \color{red}{asumir todos $Z_{i} = 0$}
 \end{frame}
 
 % --- Slide: Critical Surfaces (2 - The one with the boxes/rank deficiency) ---
 \begin{frame}
-    \frametitle{Critical Surfaces}
+    \frametitle{Superficies Críticas}
     \begin{itemize}
-        \item $\mathbf{M}$ is of rank 11, if
+        \item $\mathbf{M}$ tiene rango 11, si
         \begin{itemize}
-            \item Number of points $\geq 6$
-            \item Assumption: no gross errors
+            \item Número de puntos $\geq 6$
+            \item Suposición: sin errores graves
         \end{itemize}
-        \item \textcolor{red}{\bfseries No solution}, if all points $\mathbf{X}_i$ are located on a \textcolor{red}{\bfseries plane}
+        \item \textcolor{red}{\bfseries Sin solución}, si todos los puntos $\mathbf{X}_i$ se encuentran en un \textcolor{red}{\bfseries plano}
     \end{itemize}
 
     % The matrix part is complex due to the arrows, so we'll use a simplified aligned version
@@ -562,27 +562,27 @@ Implica
         \tikz \node [draw=red, rounded corners, fit = (1-11) (4-11)] { } ; 
       \end{bNiceMatrix}
     \end{align*}
-    \color{red}{rank deficiency}
+    \color{red}{deficiencia de rango}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Critical Surfaces}
+  \frametitle{Superficies Críticas}
     \begin{itemize}
-        \item $\mathbf{M}$ is of rank 11, if
+        \item $\mathbf{M}$ tiene rango 11, si
         \begin{itemize}
-            \item Number of points $\geq 6$
-            \item Assumption: no gross errors
+            \item Número de puntos $\geq 6$
+            \item Suposición: sin errores graves
         \end{itemize}
-        \item \textcolor{red}{\bfseries No solution}, if all points $\mathbf{X}_i$ are located on a \textcolor{red}{\bfseries plane}
-        \item (All points $X_i$ and the projection center $\cameraCenter$ are located on a twisted cubic curve)
+        \item \textcolor{red}{\bfseries Sin solución}, si todos los puntos $\mathbf{X}_i$ se encuentran en un \textcolor{red}{\bfseries plano}
+        \item (Todos los puntos $X_i$ y el centro de proyección $\cameraCenter$ se encuentran en una curva cúbica retorcida)
     \end{itemize}
 \end{frame}
 
 
 \begin{frame}
-  \frametitle{Decomposition of $\projectionMatrix$}
+  \frametitle{Descomposición de $\projectionMatrix$}
   \begin{itemize}
-    \item We know that:
+    \item Sabemos que:
     \begin{align*}
       \projectionMatrix &= \intrinsicMatrix \begin{bmatrix} \rotation & \translation \end{bmatrix} = \begin{bmatrix} \intrinsicMatrix \rotation & \intrinsicMatrix \translation \end{bmatrix}\\
       \projectionMatrix &=
@@ -606,9 +606,9 @@ Implica
 \end{frame}
 
 \begin{frame}
-  \frametitle{Decomposition of $\projectionMatrix$}
+  \frametitle{Descomposición de $\projectionMatrix$}
   \begin{itemize}
-    \item We know that:
+    \item Sabemos que:
     \begin{align*}
       \projectionMatrix &= \intrinsicMatrix \begin{bmatrix} \rotation & \translation \end{bmatrix} = \begin{bmatrix} \intrinsicMatrix \rotation & \intrinsicMatrix \translation \end{bmatrix}\\
       \projectionMatrix &=
@@ -633,7 +633,7 @@ Implica
   \end{itemize}
   %
   \begin{itemize}
-    \item That is:
+    \item Es decir:
     \begin{equation*}
       \begin{bmatrix}
           p_{11} & p_{12} & p_{13} \\
@@ -662,14 +662,14 @@ Implica
       \end{bNiceMatrix} = \intrinsicMatrix \rotation
     \end{equation*}
 
-    \item Given that $\intrinsicMatrix$ is an \textbf{Upper Right Triangular} matrix and $\rotation$ is an \textbf{Orthonormal} matrix, it is possible to uniquely ``decouple'' $\intrinsicMatrix$ and $\rotation$ from their product using \textbf{QR factorization}.
+    \item Dado que $\intrinsicMatrix$ es una matriz \textbf{Triangular Superior Derecha} y $\rotation$ es una matriz \textbf{Ortonormal}, es posible ``desacoplar'' de manera única $\intrinsicMatrix$ y $\rotation$ de su producto usando \textbf{factorización QR}.
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Decomposition of $\projectionMatrix$}
+  \frametitle{Descomposición de $\projectionMatrix$}
   \begin{itemize}
-    \item We know that:
+    \item Sabemos que:
     \begin{align*}
       \projectionMatrix &= \intrinsicMatrix \begin{bmatrix} \rotation & \translation \end{bmatrix} = \begin{bmatrix} \intrinsicMatrix \rotation & \intrinsicMatrix \translation \end{bmatrix}\\
       \projectionMatrix &=
@@ -694,7 +694,7 @@ Implica
   \end{itemize}
   %
   \begin{itemize}
-    \item That is:
+    \item Es decir:
     \begin{equation*}
       \begin{bmatrix}
           p_{14} \\
@@ -711,7 +711,7 @@ Implica
           t_z
       \end{bmatrix} = \intrinsicMatrix \translation
     \end{equation*}
-    \item Therefore:
+    \item Por lo tanto:
     \begin{equation*}
       \translation = \intrinsicMatrix^{-1}
       \begin{bmatrix}
@@ -733,17 +733,17 @@ Implica
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Summary}
+\begin{frame}{Resumen}
     \begin{itemize}
-        \item Direct Linear Transforms estimates the \textbf{intrinsic} ($\intrinsicMatrix$) and \textbf{extrinsic} ($\rotation, \translation$) parameters of a camera.
-        \item Computes the parameters for the \textbf{mapping of the uncalibrated camera}.
-        \item Requires at least \textbf{6 known control points in 3D}.
-        \item \textbf{Direct solution} (no initial guess needed).
+        \item La Transformación Lineal Directa estima los parámetros \textbf{intrínsecos} ($\intrinsicMatrix$) y \textbf{extrínsecos} ($\rotation, \translation$) de una cámara.
+        \item Calcula los parámetros para el \textbf{mapeo de la cámara no calibrada}.
+        \item Requiere al menos \textbf{6 puntos de control conocidos en 3D}.
+        \item \textbf{Solución directa} (no se necesita estimación inicial).
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Literature}
+  \frametitle{Literatura}
   \begin{itemize}
     \item Förstner \& Wrobel, Photogrammetric Computer Vision, Chapter 11.2
     \item Förstner, Scriptum Photogrammetrie I, Chapter 13.3
@@ -752,7 +752,7 @@ Implica
 \end{frame}
 
 \begin{frame}
-  \frametitle{Material: Direct Linear Transform}
+  \frametitle{Material: Transformación Lineal Directa}
 
   Direct Linear Transform for Camera Calibration and Localization (Cyrill Stachniss)
   \url{https://youtu.be/3NcQbZu6xt8}

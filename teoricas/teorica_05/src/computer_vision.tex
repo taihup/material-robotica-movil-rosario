@@ -670,7 +670,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Pin-hole camera model}
+    \frametitle{Modelo de cámara Pin-hole}
     
     El modelo de cámara Pin-Hole no modela la distorsión causada por los lentes.
 
@@ -905,21 +905,21 @@
 
 % --- Slide 1: Epipolar Constraint (Geometric Basis) ---
 \begin{frame}
-    \frametitle{Epipolar Constraint}
+    \frametitle{Restricción Epipolar}
     \begin{center}
         \includegraphics[width=0.6\textwidth]{./images/epipolar_geometry_normal_vector.pdf}
     \end{center}
 
-    Vector normal to the epipolar plane: $\mathbf{n} = \translation \times \mathbf{x}_l$
+    Vector normal al plano epipolar: $\mathbf{n} = \translation \times \mathbf{x}_l$
 
-    Dot product of $\mathbf{n}$ and $\mathbf{x}_l$ (perpendicular vectors) is zero:
+    El producto punto de $\mathbf{n}$ y $\mathbf{x}_l$ (vectores perpendiculares) es cero:
     $$\boxed{\mathbf{x}_l \cdot (\translation \times \mathbf{x}_l) = 0}$$
 \end{frame}
 
 % --- Slide 2: Epipolar Constraint (Matrix Form) ---
 \begin{frame}
-    \frametitle{Epipolar Constraint}
-    Writing the epipolar constraint in matrix form:
+    \frametitle{Restricción Epipolar}
+    Escribiendo la restricción epipolar en forma matricial:
 %
     \begin{equation*}
         \mathbf{x}_l \cdot (\translation \times \mathbf{x}_l) = 0
@@ -939,7 +939,7 @@
             -t_y & t_x & 0
         \end{bmatrix}}_{\begin{bmatrix}\translation\end{bmatrix}_{\times}}
         \begin{bmatrix} x_l \\ y_l \\ z_l \end{bmatrix} &= 0
-        \quad \text{Matrix-vector form}
+        \quad \text{Forma matricial-vectorial}
     \end{align*}
 %
     \only<2>{
@@ -965,9 +965,9 @@
 
 % --- Slide 3: Epipolar Constraint (Essential Matrix E) ---
 \begin{frame}
-    \frametitle{Epipolar Constraint}
+    \frametitle{Restricción Epipolar}
     \only<1>{
-        Substituting into the epipolar constraint gives:
+        Sustituyendo en la restricción epipolar:
         \begin{equation*}
             \begin{bmatrix} x_l & y_l & z_l \end{bmatrix}
             \left(
@@ -1031,7 +1031,7 @@
 
 % --- Slide 4: Essential Matrix E Decomposition ---
 \begin{frame}
-    \frametitle{Essential Matrix $\essentialMatrix$: Decomposition}
+    \frametitle{Matríz Esencial $\essentialMatrix$: Descomposición}
     $$
     \boxed{\essentialMatrix = \begin{bmatrix}\translation\end{bmatrix}_{\times} \rotation}
     $$
@@ -1052,10 +1052,10 @@
         r_{31} & r_{32} & r_{33}
     \end{bmatrix}
     $$
-    Given that $\begin{bmatrix}\translation\end{bmatrix}_{\times}$ is a Skew-Symmetric matrix ($a_{ij} = -a_{ji}$) and $\rotation$ is an Orthonormal matrix, it is possible to ``decouple'' $\begin{bmatrix}\translation\end{bmatrix}_{\times}$ and $\rotation$ from their product using ``Singular Value Decomposition''.
+    Dado que $\begin{bmatrix}\translation\end{bmatrix}_{\times}$ es una matriz antisimétrica ($a_{ij} = -a_{ji}$) y $\rotation$ es una matriz ortonormal, es posible ``desacoplar'' $\begin{bmatrix}\translation\end{bmatrix}_{\times}$ y $\rotation$ de su producto usando ``Descomposición en Valores Singulares''.
 
     \vspace{0.5cm}
-    Take Away: If $\essentialMatrix$ is known, we can calculate $\translation$ and $\rotation$.
+    Conclusión: Si $\essentialMatrix$ es conocida, podemos calcular $\translation$ y $\rotation$.
 \end{frame}
 
 
@@ -1063,8 +1063,8 @@
 
 % --- Slide 5: How do we find E? ---
 \begin{frame}
-    \frametitle{How do we find $\essentialMatrix$?}
-    Relates 3D position $\begin{bmatrix} x_l \\ y_l \\ z_l \end{bmatrix}$ of scene point w.r.t left camera to its 3D position $\begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix}$ w.r.t. right camera
+    \frametitle{¿Cómo encontramos $\essentialMatrix$?}
+    Relaciona la posición 3D $\begin{bmatrix} x_l \\ y_l \\ z_l \end{bmatrix}$ del punto de la escena respecto a la cámara izquierda con su posición 3D $\begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix}$ respecto a la cámara derecha
     \begin{equation*}
         \boxed{\mathbf{x}_l^{\top} \essentialMatrix \mathbf{x}_r = 0}
     \end{equation*}
@@ -1075,20 +1075,20 @@
 
     \vfill
 
-    \alert{Unfortunately, we don't have $\mathbf{x}_l$ and $\mathbf{x}_r$.}
+    \alert{Desafortunadamente, no tenemos $\mathbf{x}_l$ y $\mathbf{x}_r$.}
 
-    But we do know corresponding points in image coordinates.
+    Pero sí conocemos puntos correspondientes en coordenadas de imagen.
 \end{frame}
 
 \begin{frame}
-    \frametitle{Incorporating the Image Coordinates}
-    Perspective projection equations for left camera:
+    \frametitle{Incorporando las Coordenadas de Imagen}
+    Ecuaciones de proyección perspectiva para la cámara izquierda:
     \begin{align*}
         u_l &= f_u^{(l)} \frac{x_l}{z_l} + \principalPoint_{u}^{(l)} \quad & v_l &= f_v^{(l)} \frac{y_l}{z_l} + \principalPoint_{v}^{(l)} \\
         z_l u_l &= f_u^{(l)} x_l + z_l \principalPoint_{u}^{(l)} \quad & z_l v_l &= f_v^{(l)} y_l + z_l \principalPoint_{v}^{(l)}
     \end{align*}
 
-    Representing in matrix form:
+    Representando en forma matricial:
     \begin{equation*}
         z_l \begin{bmatrix} u_l \\ v_l \\ 1 \end{bmatrix} =
         \begin{bmatrix}
@@ -1112,11 +1112,11 @@
 
 % --- Slide 6: Incorporating Image Coordinates (K) ---
 \begin{frame}
-    \frametitle{Incorporating the Image Coordinates}
+    \frametitle{Incorporando las Coordenadas de Imagen}
     \begin{columns}[T]
         \begin{column}{0.5\textwidth}
             \centering
-            \textbf{Left camera}
+            \textbf{Cámara izquierda}
             \begin{align*}
                 z_l \begin{bmatrix} u_l \\ v_l \\ 1 \end{bmatrix} &=
                 \underbrace{\begin{bmatrix}
@@ -1130,7 +1130,7 @@
         \end{column}
         \begin{column}{0.5\textwidth}
             \centering
-            \textbf{Right camera}
+            \textbf{Cámara derecha}
             \begin{align*}
                 z_r \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix} &=
                 \underbrace{\begin{bmatrix}
@@ -1156,9 +1156,9 @@
 
 % --- Slide 7: Incorporating Image Coordinates (Substitution) ---
 \begin{frame}
-    \frametitle{Incorporating the Image Coordinates}
+    \frametitle{Incorporando las Coordenadas de Imagen}
     %
-    Epipolar constraint:
+    Restricción epipolar:
     %
     \begin{equation*}
         \begin{bmatrix} x_l & y_l & z_l \end{bmatrix}
@@ -1170,7 +1170,7 @@
         \begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix} = 0
     \end{equation*}
     %
-    Rewriting in terms of image coordinates:
+    Reescribiendo en términos de coordenadas de imagen:
     \only<1>{
     \begin{equation*}
         \begin{bmatrix} u_l & v_l & 1 \end{bmatrix} \cancel{z_l} \intrinsicMatrix_l^{-\top}
@@ -1216,8 +1216,8 @@
 
 % --- Slide 8: Fundamental Matrix F ---
 \begin{frame}
-    \frametitle{Fundamental Matrix $\mathbf{F}$}
-    Epipolar constraint:
+    \frametitle{Matríz Fundamental $\mathbf{F}$}
+    Restricción epipolar:
     $$
     \begin{bmatrix} x_l & y_l & z_l \end{bmatrix}
     \begin{bmatrix}
@@ -1227,14 +1227,14 @@
     \end{bmatrix}
     \begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix} = 0
     $$
-    Rewriting in terms of image coordinates:
+    Reescribiendo en términos de coordenadas de imagen:
     $$
     \begin{bmatrix} u_l & v_l & 1 \end{bmatrix}
     \underbrace{\begin{bmatrix}
         f_{11} & f_{12} & f_{13} \\
         f_{21} & f_{22} & f_{23} \\
         f_{31} & f_{32} & f_{33}
-    \end{bmatrix}}_{\text{Fundamental Matrix } \fundamentalMatrix}
+    \end{bmatrix}}_{\text{Matríz Fundamental } \fundamentalMatrix}
     \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix} = 0
     $$
     $$
@@ -1272,18 +1272,18 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Stereo Calibration Procedure}
+    \frametitle{Procedimiento de Calibración Estéreo}
     
-    Step A: For each correspondence $i$, write out epipolar constraint.
+    Paso A: Para cada correspondencia $i$, escribir la restricción epipolar.
 
     \begin{equation*}
-    \underbrace{\begin{bmatrix} u_l^{(i)} & v_l^{(i)} & 1 \end{bmatrix}}_{\text{Known}}
-    \underbrace{\begin{bmatrix} f_{11} & f_{12} & f_{13} \\ f_{21} & f_{22} & f_{23} \\ f_{31} & f_{32} & f_{33} \end{bmatrix}}_{\text{Unknown}}
-    \underbrace{\begin{bmatrix} u_r^{(i)} \\ v_r^{(i)} \\ 1 \end{bmatrix}}_{\text{Known}}
+    \underbrace{\begin{bmatrix} u_l^{(i)} & v_l^{(i)} & 1 \end{bmatrix}}_{\text{Conocido}}
+    \underbrace{\begin{bmatrix} f_{11} & f_{12} & f_{13} \\ f_{21} & f_{22} & f_{23} \\ f_{31} & f_{32} & f_{33} \end{bmatrix}}_{\text{Desconocido}}
+    \underbrace{\begin{bmatrix} u_r^{(i)} \\ v_r^{(i)} \\ 1 \end{bmatrix}}_{\text{Conocido}}
     = 0
     \end{equation*}
 
-    Expand the matrix to get linear equation:
+    Expandir la matriz para obtener una ecuación lineal:
 
     \begin{equation*}
     (f_{11}u_r^{(i)} + f_{12}v_r^{(i)} + f_{13})u_l^{(i)} + (f_{21}u_r^{(i)} + f_{22}v_r^{(i)} + f_{23})v_l^{(i)} + f_{31}u_r^{(i)} + f_{32}v_r^{(i)} + f_{33} = 0
@@ -1292,9 +1292,9 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Stereo Calibration Procedure}
+    \frametitle{Procedimiento de Calibración Estéreo}
     
-    Step B: Rearrange terms to form a linear system.
+    Paso B: Reordenar los términos para formar un sistema lineal.
 
     \begin{equation*}
         \underbrace{
@@ -1307,7 +1307,7 @@
         \end{bmatrix}}_{\substack{\vec{A}\\ \text{(Known)}}}
         \underbrace{\begin{bmatrix}
             f_{11} \\ f_{12} \\ f_{13} \\ f_{21} \\ f_{22} \\ f_{23} \\ f_{31} \\ f_{32} \\ f_{33}
-        \end{bmatrix}}_{\substack{\vec{f}\\ \text{(Unknown)}}}
+        \end{bmatrix}}_{\substack{\vec{f}\\ \text{(Desconocido)}}}
         =
         \begin{bmatrix}
             0 \\ \vdots \\ 0 \\ \vdots \\ 0
@@ -1321,9 +1321,9 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{The Tale of Missing Scale}
+    \frametitle{La Cuestión de la Escala Faltante}
     
-    Fundamental matrix acts on homogenous coordinates.
+    La matríz fundamental actúa sobre coordenadas homogéneas.
 
     \begin{equation*}
     \begin{bmatrix} u_l & v_l & 1 \end{bmatrix}
@@ -1343,9 +1343,9 @@
     \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix}
     \end{equation*}
 
-    Fundamental Matrix $\fundamentalMatrix$ and $k\fundamentalMatrix$ describe the same epipolar geometry. That is, $\fundamentalMatrix$ is defined only up to a scale.
+    La Matríz Fundamental $\fundamentalMatrix$ y $k\fundamentalMatrix$ describen la misma geometría epipolar. Es decir, $\fundamentalMatrix$ está definida solo hasta un factor de escala.
 
-    Set Fundamental Matrix to some arbitrary scale.
+    Fijar la Matríz Fundamental a una escala arbitraria.
 
     \begin{center}
     \fbox{$||\fundamentalMatrix||^2 = 1$}
@@ -1354,39 +1354,39 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Solving for $\fundamentalMatrix$}
+    \frametitle{Resolviendo $\fundamentalMatrix$}
     
-    Step C: Find least squares solution for fundamental matrix $\fundamentalMatrix$.
+    Paso C: Encontrar la solución de mínimos cuadrados para la matríz fundamental $\fundamentalMatrix$.
     
-    We want $\mathbf{A f}$ as close to 0 as possible and $||\mathbf{f}||^2 = 1$:
+    Queremos que $\mathbf{A f}$ sea lo más cercano a 0 posible y que $||\mathbf{f}||^2 = 1$:
 
     \begin{center}
-        \fbox{$\min_{\mathbf{f}} ||\mathbf{A f}||^2 \quad \text{such that} \quad ||\mathbf{f}||^2 = 1$}
+        \fbox{$\min_{\mathbf{f}} ||\mathbf{A f}||^2 \quad \text{tal que} \quad ||\mathbf{f}||^2 = 1$}
 
-        Constrained linear least squares problem
+        Problema de mínimos cuadrados lineal con restricciones
     \end{center}
 
-    Like solving Projection Matrix during Camera Calibration. Or, Homography Matrix for Image Stitching.
+    Análogo a resolver la Matríz de Proyección en Calibración de Cámara, o la Matríz de Homografía para Image Stitching.
 
-    Rearrange solution $\mathbf{f}$ to form the fundamental matrix $\fundamentalMatrix$.
+    Reordenar la solución $\mathbf{f}$ para formar la matríz fundamental $\fundamentalMatrix$.
     
 \end{frame}
 
 \begin{frame}
-    \frametitle{Extracting Rotation and Translation}
+    \frametitle{Extrayendo Rotación y Traslación}
     
-    Step D: Compute essential matrix $\essentialMatrix$ from known left and right intrinsic camera matrices and fundamental matrix $\fundamentalMatrix$.
+    Paso D: Calcular la matríz esencial $\essentialMatrix$ a partir de las matrices intrínsecas conocidas de las cámaras izquierda y derecha y la matríz fundamental $\fundamentalMatrix$.
 
     \begin{center}
         \fbox{$\essentialMatrix = \intrinsicMatrix_{l}^{\top} \fundamentalMatrix \intrinsicMatrix_{r}$}
     \end{center}
 
-    Step E: Extract $\rotation$ and $\translation$ from $\essentialMatrix$.
+    Paso E: Extraer $\rotation$ y $\translation$ de $\essentialMatrix$.
 
     \begin{center}
         \fbox{$\essentialMatrix = \begin{bmatrix} \translation \end{bmatrix}_{\times} \rotation$}
 
-        (Using Singular Value Decomposition)
+        (Usando Descomposición en Valores Singulares)
     \end{center}
 
 \end{frame}
@@ -1444,12 +1444,12 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Finding Epipolar Lines}
-    Given: Fundamental matrix $\mathbf{F}$ and point on left image $(u_l, v_l)$
+    \frametitle{Encontrando las Líneas Epipolares}
+    Dado: Matríz fundamental $\mathbf{F}$ y punto en la imagen izquierda $(u_l, v_l)$
     \vspace{0.2cm}
-    Find: Equation of Epipolar line in the right image
+    Encontrar: Ecuación de la línea epipolar en la imagen derecha
     \vspace{0.2cm}
-    Epipolar Constraint Equation:
+    Ecuación de Restricción Epipolar:
     $$
     \begin{bmatrix} u_l & v_l & 1 \end{bmatrix}
     \begin{bmatrix}
@@ -1460,15 +1460,15 @@
     \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix} = 0
     $$
 
-    Expanding the matrix equation gives:
+    Expandiendo la ecuación matricial:
     $$
     (f_{11} u_l + f_{21} v_l + f_{31}) u_r + (f_{12} u_l + f_{22} v_l + f_{32}) v_r + (f_{13} u_l + f_{23} v_l + f_{33}) = 0
     $$
 
-    Equation for right epipolar line:
+    Ecuación de la línea epipolar derecha:
     $$\boxed{a_l u_r + b_l v_r + c_l = 0}$$
 
-    Similarly we can calculate epipolar line in left image for a point in right image.
+    Similarmente podemos calcular la línea epipolar en la imagen izquierda para un punto en la imagen derecha.
 \end{frame}
 
 \begin{frame}
@@ -1476,7 +1476,7 @@
     
     \begin{columns}
         \begin{column}{0.45\textwidth} % Text column
-            Given the Fundamental matrix,
+            Dada la Matríz Fundamental,
             \begin{equation*}
                 F = \begin{bmatrix}
                     -.003 & -.028 & 13.19 \\
@@ -1484,7 +1484,7 @@
                     2.97 & 56.38 & -9999
                 \end{bmatrix}
             \end{equation*}
-            and the left image point
+            y el punto en la imagen izquierda
             \begin{equation*}
                 \vec{u}_l =
                 \begin{bmatrix}
@@ -1498,7 +1498,7 @@
         \end{column}
     \end{columns}
 
-    The equation for the epipolar line in the right image is
+    La ecuación de la línea epipolar en la imagen derecha es
     \only<1>{
         \begin{equation*}
             \begin{bmatrix} u_r & v_r & 1 \end{bmatrix}
@@ -1521,24 +1521,24 @@
 
 % --- Slide 13: Finding Correspondence (Search) ---
 \begin{frame}
-    \frametitle{Finding Correspondence}
+    \frametitle{Encontrando Correspondencias}
     \centering
 
     \includegraphics[width=0.5\textwidth]{./images/epipolar_line_example_2.pdf}
     
-    Corresponding scene points lie on the epipolar lines.
+    Los puntos correspondientes de la escena se encuentran sobre las líneas epipolares.
 
-    Finding correspondence is a 1D search.
+    Encontrar correspondencias es una búsqueda 1D.
 \end{frame}
 
 \begin{frame}
-    \frametitle{Computing Depth}
+    \frametitle{Calculando la Profundidad}
 
-    \begin{center}
-        \includegraphics[width=0.6\textwidth]{./images/epipolar_geometry_triangulation.pdf}
-    \end{center}
+    % \begin{center}
+    %     \includegraphics[width=0.6\textwidth]{./images/epipolar_geometry_triangulation.pdf}
+    % \end{center}
 
-    Given the intrinsic parameters, the projections of scene point $\vec{x}$ on the two image sensors are:
+    Dados los parámetros intrínsecos, las proyecciones del punto de la escena $\vec{x}$ sobre los dos sensores de imagen son:
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
@@ -1570,8 +1570,8 @@
 
 % --- Slide 15: Computing Depth (Transformation) ---
 \begin{frame}
-    \frametitle{Computing Depth}
-    Left Camera Imaging Equation
+    \frametitle{Calculando la Profundidad}
+    Ecuación de Formación de Imagen de la Cámara Izquierda
     $$
     \begin{bmatrix} u_l \\ v_l \\ 1 \end{bmatrix} \equiv
     \begin{bmatrix}
@@ -1581,7 +1581,7 @@
     \end{bmatrix}
     \begin{bmatrix} x_l \\ y_l \\ z_l \end{bmatrix}
     $$
-    Right Camera Imaging Equation
+    Ecuación de Formación de Imagen de la Cámara Derecha
     $$
     \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix} \equiv
     \begin{bmatrix}
@@ -1592,7 +1592,7 @@
     \begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix}
     $$
 
-    We also know the relative position and orientation between the two cameras.
+    También conocemos la posición y orientación relativa entre las dos cámaras.
     $$
     \begin{bmatrix} x_l \\ y_l \\ z_l \\ 1 \end{bmatrix} =
     \begin{bmatrix}
@@ -1607,8 +1607,8 @@
 
 % --- Slide 16: Computing Depth (Combined Equations) ---
 \begin{frame}
-    \frametitle{Computing Depth}
-    Left Camera Imaging Equation:
+    \frametitle{Calculando la Profundidad}
+    Ecuación de Formación de Imagen de la Cámara Izquierda:
     $$
     \begin{bmatrix} u_l \\ v_l \\ 1 \end{bmatrix} \equiv
     \begin{bmatrix}
@@ -1626,7 +1626,7 @@
     $$
     $$\boxed{\tilde{\vec{u}}_l = \mathbf{P}_l \tilde{\mathbf{x}}_r}$$
 
-    Right Camera Imaging Equation:
+    Ecuación de Formación de Imagen de la Cámara Derecha:
     $$
     \begin{bmatrix} u_r \\ v_r \\ 1 \end{bmatrix} \equiv
     \begin{bmatrix}
@@ -1641,8 +1641,8 @@
 
 % --- Slide 17: Computing Depth (Matrix Equations) ---
 \begin{frame}
-    \frametitle{Computing Depth}
-    The imaging equations:
+    \frametitle{Calculando la Profundidad}
+    Las ecuaciones de formación de imagen:
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
@@ -1655,8 +1655,8 @@
                     m_{11} & m_{12} & m_{13} & m_{14} \\
                     m_{21} & m_{22} & m_{23} & m_{24} \\
                     m_{31} & m_{32} & m_{33} & m_{34}
-                \end{bmatrix}}_{\text{Known}}
-                \underbrace{\begin{bmatrix} x_r \\ y_r \\ z_r \\ 1 \end{bmatrix}}_{\text{Unknown}}
+                \end{bmatrix}}_{\text{Conocido}}
+                \underbrace{\begin{bmatrix} x_r \\ y_r \\ z_r \\ 1 \end{bmatrix}}_{\text{Desconocido}}
             \end{equation*}
         \end{column}
         \begin{column}{0.5\textwidth}
@@ -1669,13 +1669,13 @@
                     p_{11} & p_{12} & p_{13} & p_{14} \\
                     p_{21} & p_{22} & p_{23} & p_{24} \\
                     p_{31} & p_{32} & p_{33} & p_{34}
-                \end{bmatrix}}_{\text{Known}}
-                \underbrace{\begin{bmatrix} x_r \\ y_r \\ z_r \\ 1 \end{bmatrix}}_{\text{Unknown}}
+                \end{bmatrix}}_{\text{Conocido}}
+                \underbrace{\begin{bmatrix} x_r \\ y_r \\ z_r \\ 1 \end{bmatrix}}_{\text{Desconocido}}
             \end{equation*}
         \end{column}
     \end{columns}
 
-    Rearranging the terms:
+    Reordenando los términos:
     \begin{equation*}
         \begin{bmatrix}
             u_r m_{31} - m_{11} & u_r m_{32} - m_{12} & u_r m_{33} - m_{13} \\
@@ -1695,24 +1695,24 @@
 
 % --- Slide 18: Computing Depth (Least Squares) ---
 \begin{frame}
-    \frametitle{Computing Depth: Least Squares Solution}
+    \frametitle{Calculando la Profundidad: Solución de Mínimos Cuadrados}
     \begin{equation*}
         \underbrace{\begin{bmatrix}
             u_r m_{31} - m_{11} & u_r m_{32} - m_{12} & u_r m_{33} - m_{13} \\
             v_r m_{31} - m_{21} & v_r m_{32} - m_{22} & v_r m_{33} - m_{23} \\
             u_l p_{31} - p_{11} & u_l p_{32} - p_{12} & u_l p_{33} - p_{13} \\
             v_l p_{31} - p_{21} & v_l p_{32} - p_{22} & v_l p_{33} - p_{23}
-        \end{bmatrix}}_{\substack{\mathbf{A}_{4\times3}\\ \text{(Known)}}}
-        \underbrace{\begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix}}_{\substack{\mathbf{x}_r\\ \text{(Unknown)}}} =
+        \end{bmatrix}}_{\substack{\mathbf{A}_{4\times3}\\ \text{(Conocido)}}}
+        \underbrace{\begin{bmatrix} x_r \\ y_r \\ z_r \end{bmatrix}}_{\substack{\mathbf{x}_r\\ \text{(Desconocido)}}} =
         \underbrace{\begin{bmatrix}
             m_{14} - u_r m_{34} \\
             m_{24} - v_r m_{34} \\
             p_{14} - u_l p_{34} \\
             p_{24} - v_l p_{34}
-        \end{bmatrix}}_{\substack{\mathbf{b}_{4\times1}\\ \text{(Known)}}}
+        \end{bmatrix}}_{\substack{\mathbf{b}_{4\times1}\\ \text{(Conocido)}}}
     \end{equation*}
 
-    Find least squares solution using pseudo-inverse:
+    Encontrar la solución de mínimos cuadrados usando la pseudoinversa:
     \begin{align*}
         \mathbf{A} \mathbf{x}_r &= \mathbf{b}\\
         \mathbf{A}^{\top} \mathbf{A} \mathbf{x}_r &= \mathbf{A}^{\top} \mathbf{b}
@@ -1859,7 +1859,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Stereo Matching: Finding Disparities}
+    \frametitle{Matching Estéreo: Encontrando Disparidades}
     \note{https://youtu.be/hUVyDabn1Mg}
     \begin{center}
         \only<1>{\includegraphics[width=\textwidth]{images/block_matching_disparity_1.pdf}}
@@ -1877,20 +1877,20 @@
 
 
 \begin{frame}
-    \frametitle{Similarity Metrics for Template Matching}
+    \frametitle{Métricas de Similaridad para Template Matching}
     \note{https://youtu.be/hUVyDabn1Mg}
     \begin{itemize}
-        \item Find pixel $(k, l) \in L$ with Minimum Sum of Absolute Differences (SAD):
+        \item Encontrar el píxel $(k, l) \in L$ con Mínima Suma de Diferencias Absolutas (SAD):
         \begin{equation*}
             \text{SAD}(k, l) = \sum_{(i, j) \in T} |E_t(i, j) - E_r(i + k, j + l)|
         \end{equation*}
 
-        \item Find pixel $(k, l) \in L$ with Minimum Sum of Squared Differences (SSD):
+        \item Encontrar el píxel $(k, l) \in L$ con Mínima Suma de Diferencias al Cuadrado (SSD):
         \begin{equation*}
             \text{SSD}(k, l) = \sum_{(i, j) \in T} |E_t(i, j) - E_r(i + k, j + l)|^2
         \end{equation*}
 
-        \item Find pixel $(k, l) \in L$ with Maximum Normalized Cross-Correlation (NCC):
+        \item Encontrar el píxel $(k, l) \in L$ con Máxima Correlación Cruzada Normalizada (NCC):
         \begin{equation*}
             \text{NCC}(k, l) = \frac{\sum_{(i, j) \in T} E_t(i, j) E_r(i + k, j + l)}{\sqrt{\sum_{(i, j) \in T} E_t(i, j)^2 \sum_{(i, j) \in T} E_r(i + k, j + l)^2}}
         \end{equation*}
@@ -1899,16 +1899,16 @@
 
 
 \begin{frame}
-    \frametitle{Examples of disparity maps}
+    \frametitle{Ejemplos de mapas de disparidad}
     \note{https://youtu.be/hUVyDabn1Mg}
     \begin{figure}[!htb]
         \centering
-        \subfloat[Window size = 5 pixels (Sensitive to noise)]
+        \subfloat[Tamaño de ventana = 5 píxeles (Sensible al ruido)]
         {
             \includegraphics[width=0.45\columnwidth]{./images/tsukuba_disparity_map_5x5_window.png}
         }
         \hspace{1em}
-        \subfloat[Window size = 30 pixels (Poor localization)]
+        \subfloat[Tamaño de ventana = 30 píxeles (Pobre localización)]
         {
             \includegraphics[width=0.45\columnwidth]{./images/tsukuba_disparity_map_30x30_window.png}
         }
@@ -2143,7 +2143,7 @@
 
 
 \begin{frame}<presentation:0>[noframenumbering]
-    \frametitle{Direct Linear Transformation (DLT) algorithm}
+    \frametitle{Algoritmo de Transformación Lineal Directa (DLT)}
     \footnotesize
     \TODO{Book Multiview Geometry: 4.1 The Direct Linear Transformation (DLT) algorithm}
     
