@@ -36,7 +36,7 @@ y seguir las instrucciones de \url{https://docs.nav2.org/tutorials/docs/camera_c
 Ejecutar el calibrador:
 
 \begin{lstlisting}[style=bash]
-ros2 run camera_calibration cameracalibrator --approximate 0.1 --size 8x6 --square 0.108 right:=/stereo/right/image_raw left:=/stereo/left/image_raw right_camera:=/stereo/right left_camera:=/stereo/left --no-service-check
+ros2 run camera_calibration cameracalibrator --approximate 0.1 --size 8x6 --square 0.108 --no-service-check --ros-args -r /right:=/stereo/right/image_raw -r /left:=/stereo/left/image_raw -r right_camera:=/stereo/right -r left_camera:=/stereo/left
 \end{lstlisting}
 
 
