@@ -1392,6 +1392,23 @@
 
 \end{frame}
 
+\begin{frame}
+    \frametitle{Matríz Esencial}
+
+    \note{Info: https://3d.bk.tudelft.nl/courses/geo1016/slides/Lecture_05_Reconstruct3DGeometry.pdf}
+
+    \note{https://rpg.ifi.uzh.ch/docs/teaching/2017/08_multiple_view_geometry_2.pdf}
+
+    El plan es que podamos computar la Matríz Fundamental, y luego utilizando la calibración de la cámara calcular la Matríz Esencial. La Matríz Esencial está compuesta por rotación entre las cámaras y el vector dirección de traslación (a un factor de escala).
+    
+    \begin{figure}
+        \includegraphics[width=0.4\textwidth]{./images/essential_matrix_possible_solutions.pdf}
+    \end{figure}
+
+    En total tenemos 4 configuraciones posibles para las 2 cámaras. Nos quedamos con la configuración que haga que los puntos triangulados esten delante de ambas cámaras.
+
+\end{frame}
+
 
 \begin{frame}
     \frametitle{Geometría Epipolar}
@@ -1530,6 +1547,55 @@
     Los puntos correspondientes de la escena se encuentran sobre las líneas epipolares.
 
     Encontrar correspondencias es una búsqueda 1D.
+\end{frame}
+
+\begin{frame}<presentation:0>[noframenumbering]
+    \frametitle{Matríz Esencial}
+    \footnotesize
+
+    La {\bf Matríz Esencial} es una especialización de la {\bf Matríz Fundamental}. La Matríz Esencial trabaja sobre {\bf coordenadas  normalizadas}  de la imagen, es decir, requiere conocer la calibración de las cámaras, mientras que la Matríz Fundamental relaciona correspondencias desconociendo las calibraciones.
+
+    \begin{block}{Coordenadas Normalizadas:}
+        Dado $\homoImagePoint = \projectionMatrix \homoWorldPoint$, con $\projectionMatrix = \intrinsicMatrix [\rotation|\translation]$, si conocemos la matríz de calibración $\intrinsicMatrix$ entonces $\hat{\imagePoint} = \inverse{\intrinsicMatrix} \homoImagePoint$ decimos que $\hat{\imagePoint}$ está en {\bf coordenadas normalizadas}. Se lo puede pensar como una imagen del punto $\homoWorldPoint$ con respecto a una cámara $[\rotation|\translation]$ teniendo la matriz de calibración como la identidad. $ \inverse{\intrinsicMatrix} \projectionMatrix = [\rotation| \translation]$ se denomina {\bf cámara normalizada} donde los parámetros de calibración han sido removidos.
+    \end{block}
+%
+    \begin{equation*}
+        \hat{\imagePoint}^{\prime\top} \essentialMatrix \hat{\imagePoint}  = 0 \quad \text{(restricción de coplanaridad)}
+    \end{equation*}
+    donde $\essentialMatrix = \begin{bmatrix}
+        \translation 
+    \end{bmatrix}_{\times} \rotation$, y se denomina \emph{Essential Matrix}.
+%
+    \begin{align*}
+        \hat{\imagePoint}^{\prime\top} \essentialMatrix \hat{\imagePoint}  &= 0\\
+        \left( \inverse{\intrinsicMatrix^{\prime}} \homoImagePoint^{\prime} \right)^{\top} \essentialMatrix \left( \inverse{\intrinsicMatrix} \homoImagePoint \right) &= 0\\
+        \homoImagePoint^{\prime\top} \inverse{\intrinsicMatrix^{\prime\top}} \essentialMatrix \inverse{\intrinsicMatrix} \homoImagePoint&= 0
+    \end{align*}
+    La relación entre la matriz fundamental y la matríz esencial está dada por
+    \begin{equation*}
+        \essentialMatrix = \intrinsicMatrix^{\prime\top} \fundamentalMatrix \intrinsicMatrix
+    \end{equation*}
+
+    \note{has only ﬁve degrees of freedom: both the rotation matrix R and the translation t have three degrees of freedom, but there is an overall scale ambiguity - like the fundamental matrix, the essential matrix is a homogeneous quantity.}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Matríz Fundamental vs Matríz Esencial}
+    \footnotesize
+    \note{Ver vídeo de clase de Staschnis https://youtu.be/auhpPoAqprk}
+    
+    \begin{itemize}
+        \item Ambas matrizes tienen rango 2
+        \item La matríz esencial tiene 5 DoF
+        \item La matríz fundamental tiene 7 DoF (ya que contiene información sobre los parámetros de calibración)
+        \item Las restricciones coplanares más pares de correspondencias nos permiten encontrar dichas matrices por medio de la solución de un sistema líneal utilizando descomposición SVD (\emph{Singular Value Decomposition}).
+        \item La matríz fundamental puede ser hallada con \emph{8-Point Algorithm}
+        \item La matríz esencial puede ser hallada con \emph{5-Point Algorithm}
+        \item Una vez obtenida la matríz esencial podemos obtener la rotación y traslación (con ambig{\"u}edad de escala)
+        \item La matríz esencial o fundamental nos permiten delimitar la búsqueda de correspondencias en las líneas epipolares únicamente, en vez de tener que buscar en toda la imagen.
+    \end{itemize}
+   
 \end{frame}
 
 \begin{frame}
@@ -1722,78 +1788,6 @@
     \begin{equation*}
         \boxed{\mathbf{x}_r = (\mathbf{A}^{\top} \mathbf{A})^{-1} \mathbf{A}^{\top} \mathbf{b}}
     \end{equation*}
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Matríz Esencial}
-    \footnotesize
-
-    La {\bf Matríz Esencial} es una especialización de la {\bf Matríz Fundamental}. La Matríz Esencial trabaja sobre {\bf coordenadas  normalizadas}  de la imagen, es decir, requiere conocer la calibración de las cámaras, mientras que la Matríz Fundamental relaciona correspondencias desconociendo las calibraciones.
-
-    \begin{block}{Coordenadas Normalizadas:}
-        Dado $\homoImagePoint = \projectionMatrix \homoWorldPoint$, con $\projectionMatrix = \intrinsicMatrix [\rotation|\translation]$, si conocemos la matríz de calibración $\intrinsicMatrix$ entonces $\hat{\imagePoint} = \inverse{\intrinsicMatrix} \homoImagePoint$ decimos que $\hat{\imagePoint}$ está en {\bf coordenadas normalizadas}. Se lo puede pensar como una imagen del punto $\homoWorldPoint$ con respecto a una cámara $[\rotation|\translation]$ teniendo la matriz de calibración como la identidad. $ \inverse{\intrinsicMatrix} \projectionMatrix = [\rotation| \translation]$ se denomina {\bf cámara normalizada} donde los parámetros de calibración han sido removidos.
-    \end{block}
-%
-    \begin{equation*}
-        \hat{\imagePoint}^{\prime\top} \essentialMatrix \hat{\imagePoint}  = 0 \quad \text{(restricción de coplanaridad)}
-    \end{equation*}
-    donde $\essentialMatrix = \begin{bmatrix}
-        \translation 
-    \end{bmatrix}_{\times} \rotation$, y se denomina \emph{Essential Matrix}.
-%
-    \begin{align*}
-        \hat{\imagePoint}^{\prime\top} \essentialMatrix \hat{\imagePoint}  &= 0\\
-        \left( \inverse{\intrinsicMatrix^{\prime}} \homoImagePoint^{\prime} \right)^{\top} \essentialMatrix \left( \inverse{\intrinsicMatrix} \homoImagePoint \right) &= 0\\
-        \homoImagePoint^{\prime\top} \inverse{\intrinsicMatrix^{\prime\top}} \essentialMatrix \inverse{\intrinsicMatrix} \homoImagePoint&= 0
-    \end{align*}
-    La relación entre la matriz fundamental y la matríz esencial está dada por
-    \begin{equation*}
-        \essentialMatrix = \intrinsicMatrix^{\prime\top} \fundamentalMatrix \intrinsicMatrix
-    \end{equation*}
-
-    \note{has only ﬁve degrees of freedom: both the rotation matrix R and the translation t have three degrees of freedom, but there is an overall scale ambiguity - like the fundamental matrix, the essential matrix is a homogeneous quantity.}
-    
-\end{frame}
-
-\begin{frame}
-    \frametitle{Matríz Esencial}
-
-    \note{Info: https://3d.bk.tudelft.nl/courses/geo1016/slides/Lecture_05_Reconstruct3DGeometry.pdf}
-
-    \note{https://rpg.ifi.uzh.ch/docs/teaching/2017/08_multiple_view_geometry_2.pdf}
-
-    El plan es que podamos computar la Matríz Fundamental, y luego utilizando la calibración de la cámara calcular la Matríz Esencial. La Matríz Esencial está compuesta por rotación entre las cámaras y el vector dirección de traslación (a un factor de escala).
-    
-    \begin{figure}
-        \includegraphics[width=0.4\textwidth]{./images/essential_matrix_possible_solutions.pdf}
-    \end{figure}
-
-    En total tenemos 4 configuraciones posibles para las 2 cámaras. Nos quedamos con la configuración que haga que los puntos triangulados esten delante de ambas cámaras.
-
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Matríz Fundamental vs Matríz Esencial}
-    \footnotesize
-    \note{Ver vídeo de clase de Staschnis https://youtu.be/auhpPoAqprk}
-    
-    \begin{itemize}
-        \item Ambas matrizes tienen rango 2
-        \item La matríz esencial tiene 5 DoF
-        \item La matríz fundamental tiene 7 DoF (ya que contiene información sobre los parámetros de calibración)
-        \item Las restricciones coplanares más pares de correspondencias nos permiten encontrar dichas matrices por medio de la solución de un sistema líneal utilizando descomposición SVD (\emph{Singular Value Decomposition}).
-        \item La matríz fundamental puede ser hallada con \emph{8-Point Algorithm}
-        \item La matríz esencial puede ser hallada con \emph{5-Point Algorithm}
-        \item Una vez obtenida la matríz esencial podemos obtener la rotación y traslación (con ambig{\"u}edad de escala)
-        \item La matríz esencial o fundamental nos permiten delimitar la búsqueda de correspondencias en las líneas epipolares únicamente, en vez de tener que buscar en toda la imagen.
-    \end{itemize}
-
-    \begin{figure}
-        \includegraphics[width=\textwidth]{./images/stereo_matches.pdf}
-    \end{figure}
-    
 \end{frame}
 
 
