@@ -50,7 +50,7 @@
 
   Temas:
   \begin{enumerate}
-  \item Campo de Movimiento y Optical Flow
+  \item Motion Field y Optical Flow
   \item Ecuación de Restricción del Optical Flow
   \item Método de Lucas-Kanade
   \item Estimación de Flujo de Grueso a Fino
@@ -81,18 +81,18 @@
 
     \only<2>{\includegraphics[width=0.9\columnwidth]{./images/optical_flow/optical_flow_velocity_vectors_2.pdf}}
 
-    Idealmente: Optical Flow = Campo de Movimiento.
+    Idealmente: Optical Flow = Motion Field.
   \end{center}
 
 \end{frame}
 
 % Slide 4
 \begin{frame}
-  \frametitle{¿Cuándo es el Optical Flow $\neq$ Campo de Movimiento?}
+  \frametitle{¿Cuándo es el Optical Flow $\neq$ Motion Field?}
 
 
   \begin{figure}[!h]
-    \subfloat[Campo de movimiento]
+    \subfloat[Motion Field]
     {
         \includegraphics[valign=b,width=0.3\columnwidth]{./images/optical_flow/spinning_sphere_stationary_light.pdf}
     }
@@ -104,8 +104,8 @@
   \end{figure}
 
 \begin{itemize}
-  \item Existe Campo de Movimiento pero no Optical Flow (ej., esfera girando, fuente de luz estacionaria)
-  \item No existe Campo de Movimiento pero hay Optical Flow (ej., esfera estacionaria, fuente de luz en movimiento)
+  \item Existe Motion Field pero no Optical Flow (ej., esfera girando, fuente de luz estacionaria)
+  \item No existe Motion Field pero hay Optical Flow (ej., esfera estacionaria, fuente de luz en movimiento)
 \end{itemize}
 
 \end{frame}
@@ -113,14 +113,14 @@
 
 % Slide 4
 \begin{frame}
-  \frametitle{¿Cuándo es el Optical Flow $\neq$ Campo de Movimiento?}
+  \frametitle{¿Cuándo es el Optical Flow $\neq$ Motion Field?}
   \begin{figure}[!h]
     \subfloat[Ilusión del Poste de Barbero]
     {
       \movie[showcontrols,autostart,loop,poster]{\includegraphics[valign=m,width=0.2\columnwidth]{./images/optical_flow/barberpole_video.jpg}}{videos/barberpole.mp4}
     }
     \hspace*{2em}
-    \subfloat[Campo de movimiento]
+    \subfloat[Motion Field]
     {
         \includegraphics[valign=m,width=0.11\columnwidth]{./images/optical_flow/barberpole_motion_field.pdf}
     }
@@ -131,7 +131,7 @@
     }
   \end{figure}
   \begin{itemize}
-    \item Ilusión del Poste de Barbero: Campo de Movimiento horizontal, el Optical Flow aparece vertical.
+    \item Ilusión del Poste de Barbero: Motion Field horizontal, el Optical Flow aparece vertical.
   \end{itemize}
 \end{frame}
 
@@ -597,7 +597,7 @@
 \begin{frame}
   \frametitle{Solución de Lucas-Kanade}
 
-  \textbf{Suposición}: Para cada píxel, asumir que el Campo de Movimiento, y por lo tanto el Optical Flow $(u,v)$, es constante dentro de una pequeña vecindad $W$.
+  \textbf{Suposición}: Para cada píxel, asumir que el Motion Field, y por lo tanto el Optical Flow $(u,v)$, es constante dentro de una pequeña vecindad $W$.
 
   \begin{center}
     \includegraphics[width=0.55\textwidth]{optical_flow/klt_neighborhood.pdf}
