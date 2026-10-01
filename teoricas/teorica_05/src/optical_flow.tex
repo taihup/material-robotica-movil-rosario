@@ -768,21 +768,35 @@
 % Slide 12
 \begin{frame}
   \frametitle{Movimiento Grande: Problema}
-  La aproximación de Taylor no es válida cuando los desplazamientos son grandes.
+  \begin{minipage}[t]{0.35\columnwidth}
+    \begin{figure}
+      \includegraphics[width=0.8\columnwidth]{./images/optical_flow/optical_flow_larga_motion.pdf}
+    \end{figure}
+  \end{minipage}\hfill{}
+  \begin{minipage}[t]{0.6\columnwidth}
+    Cuando hay un desplazamiento grande, la aproximación de Taylor
+    $I(x + \delta x, y + \delta y, t + \delta t)$ no es válida.
 
-  \TODO{Agregar slides de coarse to fine from Optical Flow FPCV-4-3}
+    Nuestra restricción de flujo óptico $I_x u + I_y v + I_t = 0$ no es válida.
+
+  \end{minipage}
+  
+  \TODO{Continuar slides de coarse to fine from Optical Flow FPCV-4-3}
 
 \end{frame}
 
 % Slide 13
 \begin{frame}
-  \frametitle{Estimación de Grueso a Fino}
-  Usar pirámide de resolución:
-  \begin{itemize}
-    \item Calcular el flujo a baja resolución.
-    \item Deformar y refinar a resoluciones mayores.
-    \item Repetir hasta la resolución completa.
-  \end{itemize}
+  \frametitle{Movimiento Grande: Coarse-to-Fine estimation}
+
+  \begin{figure}
+    \includegraphics[width=\columnwidth]{./images/optical_flow/optical_flow_coarse_to_fine.pdf}
+  \end{figure}
+
+  En la resolución más baja, el movimiento es $\leq$ 1 píxel.
+
+
+  \TODO{Continuar slides de coarse to fine from Optical Flow FPCV-4-3}
 
 \end{frame}
 
