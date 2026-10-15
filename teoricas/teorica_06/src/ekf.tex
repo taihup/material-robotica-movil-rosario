@@ -30,21 +30,21 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Multivariate Gaussians PDFs}
+    \frametitle{PDFs de Gaussianas Multivariadas}
     \note{información extraida de https://youtu.be/nLQ-YiPPMeU?si=oI3GINrPWORx_wQA}
     
     \begin{itemize}
-        \item Moment Form:        
+        \item Forma de momentos:        
         
         \begin{equation*}
             x \sim \mathcal{N}\left(\mu, \covariance\right)  \qquad p(x)=\det(2\pi\covariance)^{\frac{1}{2}} \exp\left(-\dfrac{1}{2} (x - \mu )^{\top} \inverse{\covariance} (x - \mu )  \right)
         \end{equation*}
 
-        \item Information (or precision) form:
+        \item Forma de información (o de precisión):
         \begin{equation*}
             x \sim \inverse{\mathcal{N}}\left(\nu, \informationMatrix\right) \quad \text{or} \quad \inverse{\mathcal{N}}\left(x; \nu, \informationMatrix\right)  
         \end{equation*}
-        with
+        con
         $\nu = \inverse{\covariance} \mu$ y $\informationMatrix = \inverse{\covariance} \, \text{(Information Matrix)}$
         
     \end{itemize}
